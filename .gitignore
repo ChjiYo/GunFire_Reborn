@@ -23,3 +23,4 @@ Client/Bin/assimp-vc140-mtd.dll
 *.ilk
 *.log
 *.idb
+.vs/Framework/v17/.suo
