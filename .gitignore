@@ -17,3 +17,9 @@ Client/Bin/Resources/
 .vs/Framework/v17/Solution.VC.db-wal
 Client/Bin/assimp-vc140-mt.dll
 Client/Bin/assimp-vc140-mtd.dll
+*.exe
+*.pdb
+*.ini
+*.ilk
+*.log
+*.idb

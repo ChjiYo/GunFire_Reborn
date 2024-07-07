@@ -34,6 +34,9 @@ private:
 	_bool				m_bMouseMoce = { true };
 
 public:
+	void Move(_float fTimeDelta);
+
+public:
 	static CCamera_Free* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	virtual CGameObject* Clone(void* pArg) override;
 	virtual void Free() override;

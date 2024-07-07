@@ -47,8 +47,8 @@ void CMainApp::Update(_float fTimeDelta)
 	if (m_pGameInstance->Key_Down('O'))
 		m_bShowTool ? m_bShowTool = false : (m_bShowTool = true );
 
-	if (m_bShowTool)
-		fTimeDelta = 0.f;
+	//if (m_bShowTool)
+		//fTimeDelta = 0.f;
 
 	m_pGameInstance->Update_Engine(fTimeDelta);
 }

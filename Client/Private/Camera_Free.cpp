@@ -35,6 +35,26 @@ HRESULT CCamera_Free::Initialize(void * pArg)
 
 void CCamera_Free::Priority_Update(_float fTimeDelta)
 {
+
+	__super::Priority_Update(fTimeDelta);
+}
+
+void CCamera_Free::Update(_float fTimeDelta)
+{
+	Move(fTimeDelta);
+}
+
+void CCamera_Free::Late_Update(_float fTimeDelta)
+{
+}
+
+HRESULT CCamera_Free::Render()
+{
+	return S_OK;
+}
+
+void CCamera_Free::Move(_float fTimeDelta)
+{
 	if (m_pGameInstance->Get_DIKeyState(DIK_A) & 0x80)
 	{
 		m_pTransformCom->Go_Left(fTimeDelta);
@@ -66,23 +86,6 @@ void CCamera_Free::Priority_Update(_float fTimeDelta)
 	{
 		m_pTransformCom->Turn(m_pTransformCom->Get_State(CTransform::STATE_RIGHT), m_fMouseSensor * MouseMove * fTimeDelta);
 	}
-
-
-
-	__super::Priority_Update(fTimeDelta);
-}
-
-void CCamera_Free::Update(_float fTimeDelta)
-{
-}
-
-void CCamera_Free::Late_Update(_float fTimeDelta)
-{
-}
-
-HRESULT CCamera_Free::Render()
-{
-	return S_OK;
 }
 
 CCamera_Free * CCamera_Free::Create(ID3D11Device * pDevice, ID3D11DeviceContext * pContext)
