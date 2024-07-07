@@ -27,7 +27,7 @@ HRESULT CUI_Cross_Hair::Initialize(void* pArg)
 		return E_FAIL;
 
 	CROSS_HAIR_DESC* Desc =  static_cast<CROSS_HAIR_DESC*>(pArg);
-	int iCnt = Desc->iNum;
+	_uint iCnt = Desc->iNum;
 
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
@@ -64,6 +64,11 @@ HRESULT CUI_Cross_Hair::Initialize(void* pArg)
 
 void CUI_Cross_Hair::Priority_Update(_float fTimeDelta)
 {
+	if (GetAsyncKeyState(VK_LBUTTON) & 0x8000)
+		m_bMoveStop = false;
+
+	if(!m_bMoveStop)
+		Move(fTimeDelta);
 
 }
 
@@ -107,8 +112,24 @@ HRESULT CUI_Cross_Hair::Ready_Components()
 		return E_FAIL;
 }
 
-void CUI_Cross_Hair::Move()
+void CUI_Cross_Hair::Move(_float fTimeDelta)
 {
+	m_fMoveTimer += fTimeDelta;
+
+	if (m_fMoveTimer < 0.5f)
+	{
+		m_pTransformCom->Go_Right(fTimeDelta);
+	}
+	else
+	{
+		m_pTransformCom->Go_Left(fTimeDelta);
+	}
+
+	if (m_fMoveTimer > 1.0f)
+	{
+		m_fMoveTimer = 0.f;
+		m_bMoveStop = true;
+	}
 }
 
 CUI_Cross_Hair* CUI_Cross_Hair::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)

@@ -7,7 +7,7 @@ BEGIN(Client)
 class CUI_Cross_Hair final :public CUIObject
 {
 public:
-	typedef struct
+	typedef struct :public CTransform::TRANSFORM_DESC
 	{
 		_uint iNum = {};
 	}CROSS_HAIR_DESC;
@@ -27,7 +27,11 @@ public:
 
 private:
 	virtual HRESULT Ready_Components();
-	void Move();
+	void Move(_float fTimeDelta);
+
+private:
+	_float m_fMoveTimer = {};
+	_bool m_bMoveStop = { true };
 
 public:
 	static CUI_Cross_Hair* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
