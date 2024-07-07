@@ -44,10 +44,14 @@ HRESULT CMainApp::Initialize()
 
 void CMainApp::Update(_float fTimeDelta)
 {
-	m_pGameInstance->Update_Engine(fTimeDelta);
-
 	if (m_pGameInstance->Key_Down('O'))
-		m_bShowTool ? m_bShowTool = false : m_bShowTool = true;
+		m_bShowTool ? m_bShowTool = false : (m_bShowTool = true );
+
+	if (m_bShowTool)
+		fTimeDelta = 0.f;
+
+	m_pGameInstance->Update_Engine(fTimeDelta);
+	
 }
 
 HRESULT CMainApp::Render()

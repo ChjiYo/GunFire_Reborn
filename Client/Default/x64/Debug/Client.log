@@ -1,1 +1,26 @@
-﻿  Client.vcxproj -> C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Client\Bin\Client.exe
+﻿  MainApp.cpp
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\EngineSDK\Inc\Engine_Struct.h(33,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '/private/MainApp.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\EngineSDK\Inc\Engine_Struct.h(44,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '/private/MainApp.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\EngineSDK\Inc\Engine_Struct.h(58,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '/private/MainApp.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\EngineSDK\Inc\Engine_Struct.h(68,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '/private/MainApp.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\EngineSDK\Inc\Engine_Struct.h(80,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '/private/MainApp.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\EngineSDK\Inc\GameObject.h(12,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '/private/MainApp.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Client\Public\Player.h(18,17): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '/private/MainApp.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Client\Public\UI_Cross_Hair.h(11,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '/private/MainApp.cpp'을(를) 컴파일하는 중)
+  
+  Client.vcxproj -> C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Client\Bin\Client.exe
