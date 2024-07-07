@@ -1,0 +1,411 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="99.Defines">
+      <UniqueIdentifier>{8c591318-15da-4ab5-b108-cece8bf9b4ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98.Default">
+      <UniqueIdentifier>{a5d7bb35-f60e-4e85-ab2b-29cb4ae4c032}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00.MainApp">
+      <UniqueIdentifier>{e6010c80-2883-4fc2-a6f6-ce0528d5ebf3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Level">
+      <UniqueIdentifier>{0b8ec721-c28f-451e-b757-50c51a21f922}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Level\99.Loading">
+      <UniqueIdentifier>{703b851b-5e87-4f19-ae17-6dd977e9b740}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Level\00.Logo">
+      <UniqueIdentifier>{f9bf717e-ff70-4016-a902-ea46d7379546}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Level\01.GamePlay">
+      <UniqueIdentifier>{3c568b36-eb82-4660-a444-b3034e67d6da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Level\99.Loading\Loader">
+      <UniqueIdentifier>{c4ee70b7-b4c6-4fa4-8dab-9120dcb92c53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects">
+      <UniqueIdentifier>{30e5a356-2ca5-4a6b-a213-83b9dd46555e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.ShaderFiles">
+      <UniqueIdentifier>{733ac86c-7a5a-463a-bfd0-a888645feb70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\BackGround">
+      <UniqueIdentifier>{3e35f57c-2e17-4f11-ad21-6d7608c1df82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Terrain">
+      <UniqueIdentifier>{d76693a7-a132-4d65-87ab-35da376c0671}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Camera">
+      <UniqueIdentifier>{a9134e43-7bd9-4750-b2a8-7f285aa1847b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Camera\Free">
+      <UniqueIdentifier>{f7bf0f0b-5c20-42a4-ac03-da0a67d30e39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Monster">
+      <UniqueIdentifier>{42e671fb-7645-411d-8254-b037c28e4db5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI">
+      <UniqueIdentifier>{6a649472-e152-4d6d-b1e7-96237f523916}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Effect">
+      <UniqueIdentifier>{92070653-7700-4f2a-9520-214c61906558}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Skill">
+      <UniqueIdentifier>{28aad79e-9310-4ef9-ad67-b36ed50d28f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Cross_Hair">
+      <UniqueIdentifier>{4d34292b-521f-4a06-9d5a-5c8d553a86d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Player_State">
+      <UniqueIdentifier>{37e3332a-1d30-4068-b07f-495ab3b1cdfa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Effect\Monster_Effect">
+      <UniqueIdentifier>{c62a0cb7-0c05-4bbe-9446-9f2fcb813d26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Effect\Player_Effect">
+      <UniqueIdentifier>{f4d15c68-200a-4e07-a6b5-6ef90e1f1c5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Skill\Monster_Skill">
+      <UniqueIdentifier>{443d8294-9fee-42b0-ad8a-d67ae31511fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Skill\Player_Skill">
+      <UniqueIdentifier>{562a90bd-89ee-4d42-a647-16030806cd13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine">
+      <UniqueIdentifier>{060295b2-5463-4995-90b6-4093c15e6203}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Player_State\UI_Player_BarPanel">
+      <UniqueIdentifier>{cdcabc76-4758-48bb-950b-926b4684cf40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Player_State\UI_Player_HpBar">
+      <UniqueIdentifier>{fcec73a7-2c28-43a7-ba70-54e0560e8c8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Player_State\UI_Player_HpBlankBar">
+      <UniqueIdentifier>{e17baba3-8538-47ec-ae05-2cddf323d8b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Player_State\UI_Player_Icon">
+      <UniqueIdentifier>{c3e63d36-60e0-4e2b-8988-b6716089db82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Player_State\UI_Player_ShieldBar">
+      <UniqueIdentifier>{c28cea8d-ff8b-40b6-9230-32e7206a2237}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Player_State\UI_Player_ShieldBlankBar">
+      <UniqueIdentifier>{7c716f83-0c13-4393-9d15-2bfeebc44ed2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Player_State\UI_Player_Bar">
+      <UniqueIdentifier>{bdaefb0b-a597-4fa8-a0ed-904d1994e1ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Player">
+      <UniqueIdentifier>{6e636c24-ee8b-4f47-a87c-9018c83df05f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Player">
+      <UniqueIdentifier>{2a1625a8-9634-43cd-82e5-b151a840ca27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Player\FSM_Player_Dash">
+      <UniqueIdentifier>{42b81b8b-3d65-4cd0-bc9b-89da3450a2a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Player\FSM_Player_Attack">
+      <UniqueIdentifier>{2defec25-dffe-471a-a1d9-f7b62e4bed21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Skill\Player_Skill\Bullet">
+      <UniqueIdentifier>{55f8bc0f-609e-41d1-928a-e163d6959228}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="96.Imgui">
+      <UniqueIdentifier>{d9c0822e-98b4-4c37-8994-5760f4427334}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="96.Imgui\cpp">
+      <UniqueIdentifier>{37936c55-cd39-47f9-ba03-c3cc179bb758}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="96.Imgui\h">
+      <UniqueIdentifier>{a07293b1-9c65-49e4-809f-8774a6554002}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Tool">
+      <UniqueIdentifier>{8c0e2816-ab6f-417f-b331-89b50ff69f7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Tool\Object">
+      <UniqueIdentifier>{eb9d9dd5-d87c-428e-8dda-8c15f1a2d020}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Tool\Manager">
+      <UniqueIdentifier>{b27fc352-ca3d-4dee-8ed0-06ddcf04eb42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Tool\Save">
+      <UniqueIdentifier>{a113c2b2-a168-4c9d-a512-6146cc910c9d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Client.h">
+      <Filter>98.Default</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>98.Default</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>98.Default</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>98.Default</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\MainApp.h">
+      <Filter>00.MainApp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Client_Defines.h">
+      <Filter>99.Defines</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Level_GamePlay.h">
+      <Filter>01.Level\01.GamePlay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Level_Logo.h">
+      <Filter>01.Level\00.Logo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Level_Loading.h">
+      <Filter>01.Level\99.Loading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Loader.h">
+      <Filter>01.Level\99.Loading\Loader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\BackGround.h">
+      <Filter>02.GameObjects\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Terrain.h">
+      <Filter>02.GameObjects\Terrain</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Camera_Free.h">
+      <Filter>02.GameObjects\Camera\Free</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Monster.h">
+      <Filter>02.GameObjects\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\UIObject.h">
+      <Filter>02.GameObjects\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\UI_Cross_Hair.h">
+      <Filter>02.GameObjects\UI\UI_Cross_Hair</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\UI_Player_Bar.h">
+      <Filter>02.GameObjects\UI\UI_Player_State\UI_Player_Bar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\UI_Player_BarPanel.h">
+      <Filter>02.GameObjects\UI\UI_Player_State\UI_Player_BarPanel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\UI_Player_HpBar.h">
+      <Filter>02.GameObjects\UI\UI_Player_State\UI_Player_HpBar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\UI_Player_HpBlankBar.h">
+      <Filter>02.GameObjects\UI\UI_Player_State\UI_Player_HpBlankBar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\UI_Player_Icon.h">
+      <Filter>02.GameObjects\UI\UI_Player_State\UI_Player_Icon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\UI_Player_ShieldBar.h">
+      <Filter>02.GameObjects\UI\UI_Player_State\UI_Player_ShieldBar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\UI_Player_ShieldBlankBar.h">
+      <Filter>02.GameObjects\UI\UI_Player_State\UI_Player_ShieldBlankBar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Player.h">
+      <Filter>02.GameObjects\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\FSM_Player_Dash.h">
+      <Filter>03.State_Machine\FSM_Player\FSM_Player_Dash</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\FSM_Player_Attack.h">
+      <Filter>03.State_Machine\FSM_Player\FSM_Player_Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\FSM_Player.h">
+      <Filter>03.State_Machine\FSM_Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Skill.h">
+      <Filter>02.GameObjects\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Skill_Player.h">
+      <Filter>02.GameObjects\Skill\Player_Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Skill_Player_Bullet.h">
+      <Filter>02.GameObjects\Skill\Player_Skill\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Imgui\imconfig.h">
+      <Filter>96.Imgui\h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Imgui\imgui.h">
+      <Filter>96.Imgui\h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Imgui\imgui_impl_dx11.h">
+      <Filter>96.Imgui\h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Imgui\imgui_impl_win32.h">
+      <Filter>96.Imgui\h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Imgui\imgui_internal.h">
+      <Filter>96.Imgui\h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Imgui\imstb_rectpack.h">
+      <Filter>96.Imgui\h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Imgui\imstb_textedit.h">
+      <Filter>96.Imgui\h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Imgui\imstb_truetype.h">
+      <Filter>96.Imgui\h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Tool.h">
+      <Filter>04.Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Tool_Manager.h">
+      <Filter>04.Tool\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Tool_Object.h">
+      <Filter>04.Tool\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Tool_Save.h">
+      <Filter>04.Tool\Save</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Client.cpp">
+      <Filter>98.Default</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>98.Default</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\MainApp.cpp">
+      <Filter>00.MainApp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Level_GamePlay.cpp">
+      <Filter>01.Level\01.GamePlay</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Level_Logo.cpp">
+      <Filter>01.Level\00.Logo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Level_Loading.cpp">
+      <Filter>01.Level\99.Loading</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Loader.cpp">
+      <Filter>01.Level\99.Loading\Loader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\BackGround.cpp">
+      <Filter>02.GameObjects\BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Terrain.cpp">
+      <Filter>02.GameObjects\Terrain</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Camera_Free.cpp">
+      <Filter>02.GameObjects\Camera\Free</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Monster.cpp">
+      <Filter>02.GameObjects\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\UIObject.cpp">
+      <Filter>02.GameObjects\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\UI_Cross_Hair.cpp">
+      <Filter>02.GameObjects\UI\UI_Cross_Hair</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\UI_Player_Bar.cpp">
+      <Filter>02.GameObjects\UI\UI_Player_State\UI_Player_Bar</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\UI_Player_BarPanel.cpp">
+      <Filter>02.GameObjects\UI\UI_Player_State\UI_Player_BarPanel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\UI_Player_HpBar.cpp">
+      <Filter>02.GameObjects\UI\UI_Player_State\UI_Player_HpBar</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\UI_Player_HpBlankBar.cpp">
+      <Filter>02.GameObjects\UI\UI_Player_State\UI_Player_HpBlankBar</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\UI_Player_Icon.cpp">
+      <Filter>02.GameObjects\UI\UI_Player_State\UI_Player_Icon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\UI_Player_ShieldBar.cpp">
+      <Filter>02.GameObjects\UI\UI_Player_State\UI_Player_ShieldBar</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\UI_Player_ShieldBlankBar.cpp">
+      <Filter>02.GameObjects\UI\UI_Player_State\UI_Player_ShieldBlankBar</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Player.cpp">
+      <Filter>02.GameObjects\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\FSM_Player_Attack.cpp">
+      <Filter>03.State_Machine\FSM_Player\FSM_Player_Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\FSM_Player_Dash.cpp">
+      <Filter>03.State_Machine\FSM_Player\FSM_Player_Dash</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\FSM_Player.cpp">
+      <Filter>03.State_Machine\FSM_Player</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Skill.cpp">
+      <Filter>02.GameObjects\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Skill_Player.cpp">
+      <Filter>02.GameObjects\Skill\Player_Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Skill_Player_Bullet.cpp">
+      <Filter>02.GameObjects\Skill\Player_Skill\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Public\Imgui\imgui.cpp">
+      <Filter>96.Imgui\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Public\Imgui\imgui_demo.cpp">
+      <Filter>96.Imgui\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Public\Imgui\imgui_draw.cpp">
+      <Filter>96.Imgui\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Public\Imgui\imgui_impl_dx11.cpp">
+      <Filter>96.Imgui\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Public\Imgui\imgui_impl_win32.cpp">
+      <Filter>96.Imgui\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Public\Imgui\imgui_tables.cpp">
+      <Filter>96.Imgui\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Public\Imgui\imgui_widgets.cpp">
+      <Filter>96.Imgui\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Tool.cpp">
+      <Filter>04.Tool</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Tool_Manager.cpp">
+      <Filter>04.Tool\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Tool_Object.cpp">
+      <Filter>04.Tool\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Tool_Save.cpp">
+      <Filter>04.Tool\Save</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Client.ico">
+      <Filter>98.Default</Filter>
+    </Image>
+    <Image Include="small.ico">
+      <Filter>98.Default</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Client.rc">
+      <Filter>98.Default</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxPosTex.hlsl">
+      <Filter>97.ShaderFiles</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxNorTex.hlsl">
+      <Filter>97.ShaderFiles</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxMesh.hlsl">
+      <Filter>97.ShaderFiles</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxAnimMesh.hlsl">
+      <Filter>97.ShaderFiles</Filter>
+    </FxCompile>
+  </ItemGroup>
+</Project>
