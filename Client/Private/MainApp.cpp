@@ -51,7 +51,6 @@ void CMainApp::Update(_float fTimeDelta)
 		fTimeDelta = 0.f;
 
 	m_pGameInstance->Update_Engine(fTimeDelta);
-	
 }
 
 HRESULT CMainApp::Render()
