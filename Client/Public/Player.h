@@ -46,18 +46,19 @@ private:
 	CShader* m_pShaderCom = { nullptr };
 	CModel* m_pModelCom = { nullptr };
 	CState_Machine* m_pState = { nullptr };
+	CTransform* m_pCamTransform = { nullptr };
 
 private:
 	PLAYER_DESC Player_Desc = {};
 	_uint m_pAnimFrame = { 0 };
 
-	CTransform* m_pCamTransform = { nullptr };
 private:
 	HRESULT Ready_Components();
 	HRESULT Ready_State();
-
 	HRESULT Bind_ShaderResources();
+
 	void Key_State();
+	void Position();
 
 public:
 	static CPlayer* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);

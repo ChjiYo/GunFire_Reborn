@@ -29,23 +29,20 @@ void CLevel_Loading::Update(_float fTimeDelta)
 {
 	if (true == m_pLoader->isFinished())
 	{
-		if (GetKeyState(VK_SPACE) & 0x8000)
+		CLevel*	pNextLevel = { nullptr };
+
+		switch (m_eNextLevelID)
 		{
-			CLevel*	pNextLevel = { nullptr };
-
-			switch (m_eNextLevelID)
-			{
-			case LEVEL_LOGO:
-				pNextLevel = CLevel_Logo::Create(m_pDevice, m_pContext);
-				break;
-			case LEVEL_GAMEPLAY:
-				pNextLevel = CLevel_GamePlay::Create(m_pDevice, m_pContext);
-				break;
-			}
-
-			if (FAILED(m_pGameInstance->Change_Level(pNextLevel)))
-				return;
+		case LEVEL_LOGO:
+			pNextLevel = CLevel_Logo::Create(m_pDevice, m_pContext);
+			break;
+		case LEVEL_GAMEPLAY:
+			pNextLevel = CLevel_GamePlay::Create(m_pDevice, m_pContext);
+			break;
 		}
+
+		if (FAILED(m_pGameInstance->Change_Level(pNextLevel)))
+			return;
 	}
 }
 

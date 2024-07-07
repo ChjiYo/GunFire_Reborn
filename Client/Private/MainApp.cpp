@@ -7,6 +7,8 @@
 #include "GameInstance.h"
 #include "Level_Loading.h"
 
+#include "Camera_Free.h"
+
 #include "UI_Player_BarPanel.h"
 #include "UI_Player_Icon.h"
 #include "UI_Player_Bar.h"
@@ -39,6 +41,7 @@ HRESULT CMainApp::Initialize()
 
 	m_pTool_Manager = CTool_Manager::Create(m_pDevice, m_pContext);
 
+
 	return S_OK;
 }
 
@@ -47,8 +50,13 @@ void CMainApp::Update(_float fTimeDelta)
 	if (m_pGameInstance->Key_Down('O'))
 		m_bShowTool ? m_bShowTool = false : (m_bShowTool = true );
 
-	//if (m_bShowTool)
-		//fTimeDelta = 0.f;
+	if (m_bShowTool)
+	{
+		CCamera_Free* pCamera = dynamic_cast<CCamera_Free*>(m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Camera")).back());
+		pCamera->Update(fTimeDelta);
+
+		fTimeDelta = 0.f;
+	}
 
 	m_pGameInstance->Update_Engine(fTimeDelta);
 }
@@ -81,6 +89,11 @@ HRESULT CMainApp::Ready_Prototype_Component_ForStatic()
 	/* For.Prototype_Component_Shader_VtxPosTex */
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_STATIC, TEXT("Prototype_Component_Shader_VtxPosTex"),
 		CShader::Create(m_pDevice, m_pContext, TEXT("../Bin/ShaderFiles/Shader_VtxPosTex.hlsl"), VTXPOSTEX::Elements, VTXPOSTEX::iNumElements))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_VIBuffer_Rect */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_STATIC, TEXT("Prototype_Component_VIBuffer_Cube"),
+		CVIBuffer_Cube::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
 	return S_OK;

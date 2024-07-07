@@ -133,6 +133,9 @@
     <Filter Include="04.Tool\Save">
       <UniqueIdentifier>{a113c2b2-a168-4c9d-a512-6146cc910c9d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObjects\Cube">
+      <UniqueIdentifier>{9fd9f4f3-7f3f-4bf6-a119-d02189d7a6a2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -264,6 +267,9 @@
     <ClInclude Include="..\Public\Tool_Save.h">
       <Filter>04.Tool\Save</Filter>
     </ClInclude>
+    <ClInclude Include="..\Public\Cube.h">
+      <Filter>02.GameObjects\Cube</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -379,6 +385,9 @@
     </ClCompile>
     <ClCompile Include="..\Private\Tool_Save.cpp">
       <Filter>04.Tool\Save</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Cube.cpp">
+      <Filter>02.GameObjects\Cube</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

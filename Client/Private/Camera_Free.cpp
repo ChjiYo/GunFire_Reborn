@@ -41,7 +41,11 @@ void CCamera_Free::Priority_Update(_float fTimeDelta)
 
 void CCamera_Free::Update(_float fTimeDelta)
 {
-	Move(fTimeDelta);
+	if (m_bMouseMoce)
+		Mouse_Move(fTimeDelta);
+	else
+		Key_Move(fTimeDelta);
+
 }
 
 void CCamera_Free::Late_Update(_float fTimeDelta)
@@ -53,7 +57,7 @@ HRESULT CCamera_Free::Render()
 	return S_OK;
 }
 
-void CCamera_Free::Move(_float fTimeDelta)
+void CCamera_Free::Mouse_Move(_float fTimeDelta)
 {
 	if (m_pGameInstance->Get_DIKeyState(DIK_A) & 0x80)
 	{
@@ -85,6 +89,26 @@ void CCamera_Free::Move(_float fTimeDelta)
 	if (MouseMove = m_pGameInstance->Get_DIMouseMove(DIMM_Y))
 	{
 		m_pTransformCom->Turn(m_pTransformCom->Get_State(CTransform::STATE_RIGHT), m_fMouseSensor * MouseMove * fTimeDelta);
+	}
+}
+
+void CCamera_Free::Key_Move(_float fTimeDelta)
+{
+	if (m_pGameInstance->Get_DIKeyState(DIK_A) & 0x80)
+	{
+		m_pTransformCom->Turn(XMVectorSet(0.f, 1.f, 0.f, 0.f), fTimeDelta * -3.f * m_fMouseSensor);
+	}
+	if (m_pGameInstance->Get_DIKeyState(DIK_D) & 0x80)
+	{
+		m_pTransformCom->Turn(XMVectorSet(0.f, 1.f, 0.f, 0.f), fTimeDelta * 3.f * m_fMouseSensor);
+	}
+	if (m_pGameInstance->Get_DIKeyState(DIK_W) & 0x80)
+	{
+		m_pTransformCom->Turn(m_pTransformCom->Get_State(CTransform::STATE_RIGHT), fTimeDelta * -3.f * m_fMouseSensor);
+	}
+	if (m_pGameInstance->Get_DIKeyState(DIK_S) & 0x80)
+	{
+		m_pTransformCom->Turn(m_pTransformCom->Get_State(CTransform::STATE_RIGHT), fTimeDelta * 3.f * m_fMouseSensor);
 	}
 }
 

@@ -6,6 +6,7 @@
 #include "BackGround.h"
 #include "Monster.h"
 #include "Terrain.h"
+#include "Cube.h"
 
 #include "Player.h"
 #include "Skill_Player_Bullet.h"
@@ -86,7 +87,7 @@ HRESULT CLoader::Loading_For_LogoLevel()
 
 	/* For.Prototype_Component_Texture_Logo */
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_LOGO, TEXT("Prototype_Component_Texture_Logo"),
-		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/Resources/Textures/Default%d.jpg"), 2))))
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Logo/UI_Login_Logo.png")))))
 		return E_FAIL;
 	
 
@@ -122,8 +123,12 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 		return E_FAIL;
 
 	/* 텍스쳐를 로드한다. */
-	lstrcpy(m_szLoadingText, TEXT("텍스쳐를 로딩 중 입니다."));
+	lstrcpy(m_szLoadingText, TEXT("텍스쳐를 로딩 중 입니다.")); 
 
+	/* For.Prototype_Component_Texture_Black */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_Black"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/Black.png")))))
+		return E_FAIL;
 
 	/* For.Prototype_Component_Texture_Terrain */
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_Terrain"),
@@ -202,6 +207,11 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 	/* For.Prototype_GameObject_Skill_Bullet_Red */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Skill_Bullet_Red"),
 		CSkill_Player_Bullet::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Cube */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Cube"),
+		CCube::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
 	lstrcpy(m_szLoadingText, TEXT("로딩이 완료되었습니다."));

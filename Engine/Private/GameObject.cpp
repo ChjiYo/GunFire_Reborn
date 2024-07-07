@@ -43,6 +43,9 @@ HRESULT CGameObject::Initialize(void * pArg)
 		GAMEOBJECT_DESC* pDesc = static_cast<GAMEOBJECT_DESC*>(pArg);
 		m_iGameObjectData = pDesc->iGameObjectData;
 		m_pTransformCom->SetUp_TransformDesc(static_cast<CTransform::TRANSFORM_DESC*>(pArg));
+
+		FILEDATA* pDate = static_cast<FILEDATA*>(pArg);
+		XMStoreFloat3(&m_vPosition, pDate->position);
 	}
 		
 	if (nullptr != Get_Component(m_strTransformTag))

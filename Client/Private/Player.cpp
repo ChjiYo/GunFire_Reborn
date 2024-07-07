@@ -52,30 +52,18 @@ HRESULT CPlayer::Initialize(void* pArg)
 
 void CPlayer::Priority_Update(_float fTimeDelta)
 {
+    if (fTimeDelta == 0.f)
+        return;
+
+    Position();
+    Key_State();
+
     m_pModelCom->Play_Animation(fTimeDelta);
-
-    _long	MouseMove = {};
-
-    _vector vPlayerRight = m_pCamTransform->Get_State(CTransform::STATE_RIGHT);
-    _vector vPlayerUp = m_pCamTransform->Get_State(CTransform::STATE_UP);
-    _vector vPlayerLook = m_pCamTransform->Get_State(CTransform::STATE_LOOK);
-
-    _vector vPlayerPosition = m_pCamTransform->Get_State(CTransform::STATE_POSITION);
-
-    _vector vWeaponRight = vPlayerRight * 1.0f; 
-    _vector vWeaponUp = vPlayerUp * -1.0f;
-    _vector vWeaponLook = vPlayerLook * 1.f;
-    _vector vWeaponPosition = vPlayerPosition + vWeaponRight + vWeaponUp + vWeaponLook;
-
-    m_pTransformCom->Set_State(CTransform::STATE_POSITION, vWeaponPosition);
-
-    m_pTransformCom->LookAt(vPlayerPosition + vPlayerLook * 5.f);
-    m_pTransformCom->Radian_Turn(m_pTransformCom->Get_State(CTransform::STATE_UP), XMConvertToRadians(335.f));
 }
 
 void CPlayer::Update(_float fTimeDelta)
 {
-    Key_State();
+
 }
 
 void CPlayer::Late_Update(_float fTimeDelta)
@@ -178,6 +166,25 @@ void CPlayer::Key_State()
     if(m_pGameInstance->Key_Down(VK_LSHIFT))
         m_pState->Set_State(TEXT("Player_State_Dash"));
 
+}
+
+void CPlayer::Position()
+{
+    _vector vRight = m_pCamTransform->Get_State(CTransform::STATE_RIGHT);
+    _vector vUp = m_pCamTransform->Get_State(CTransform::STATE_UP);
+    _vector vLook = m_pCamTransform->Get_State(CTransform::STATE_LOOK);
+
+    _vector vPlayerPosition = m_pCamTransform->Get_State(CTransform::STATE_POSITION);
+
+    _vector vWeaponRight = vRight * 1.0f;
+    _vector vWeaponUp = vUp * -1.0f;
+    _vector vWeaponLook = vLook * 1.f;
+    _vector vWeaponPosition = vPlayerPosition + vWeaponRight + vWeaponUp + vWeaponLook;
+
+    m_pTransformCom->Set_State(CTransform::STATE_POSITION, vWeaponPosition);
+
+    m_pTransformCom->LookAt(vPlayerPosition + vLook * 5.f);
+    m_pTransformCom->Radian_Turn(m_pTransformCom->Get_State(CTransform::STATE_UP), XMConvertToRadians(335.f));
 }
 
 CPlayer* CPlayer::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)

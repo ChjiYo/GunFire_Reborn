@@ -33,8 +33,9 @@ private:
 	_float				m_fMouseSensor = {};
 	_bool				m_bMouseMoce = { true };
 
-public:
-	void Move(_float fTimeDelta);
+private:
+	void Mouse_Move(_float fTimeDelta);
+	void Key_Move(_float fTimeDelta);
 
 public:
 	static CCamera_Free* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);

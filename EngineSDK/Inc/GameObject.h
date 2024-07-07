@@ -58,6 +58,7 @@ protected:
 protected:
 	map<const _wstring, CComponent*>		m_Components;
 	_bool									m_bDead = { false };
+	_float3									m_vPosition = {};
 
 public:
 	_uint						m_iIndex = { 0 };

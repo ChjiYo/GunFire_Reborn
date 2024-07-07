@@ -171,6 +171,7 @@
     <ClInclude Include="..\public\BackGround.h" />
     <ClInclude Include="..\public\Camera_Free.h" />
     <ClInclude Include="..\Public\Client_Defines.h" />
+    <ClInclude Include="..\Public\Cube.h" />
     <ClInclude Include="..\Public\FSM_Player.h" />
     <ClInclude Include="..\Public\FSM_Player_Attack.h" />
     <ClInclude Include="..\Public\FSM_Player_Dash.h" />
@@ -214,6 +215,7 @@
   <ItemGroup>
     <ClCompile Include="..\private\BackGround.cpp" />
     <ClCompile Include="..\private\Camera_Free.cpp" />
+    <ClCompile Include="..\Private\Cube.cpp" />
     <ClCompile Include="..\Private\FSM_Player.cpp" />
     <ClCompile Include="..\Private\FSM_Player_Attack.cpp" />
     <ClCompile Include="..\Private\FSM_Player_Dash.cpp" />
