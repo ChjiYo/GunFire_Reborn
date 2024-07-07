@@ -27,6 +27,8 @@ CMainApp::CMainApp()
 
 HRESULT CMainApp::Initialize()
 {
+
+
 	if (FAILED(m_pGameInstance->Initialize_Engine(g_hInst, g_hWnd, true, LEVEL_END, g_iWinSizeX, g_iWinSizeY, &m_pDevice, &m_pContext)))
 		return E_FAIL;
 
@@ -50,6 +52,9 @@ void CMainApp::Update(_float fTimeDelta)
 	if (m_pGameInstance->Key_Down('O'))
 		m_bShowTool ? m_bShowTool = false : (m_bShowTool = true );
 
+	if(m_pGameInstance->Key_Down('P'))
+		m_bShowCursor ? m_bShowCursor = false : (m_bShowCursor = true);
+
 	if (m_bShowTool)
 	{
 		CCamera_Free* pCamera = dynamic_cast<CCamera_Free*>(m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Camera")).back());
@@ -57,6 +62,8 @@ void CMainApp::Update(_float fTimeDelta)
 
 		fTimeDelta = 0.f;
 	}
+
+	ShowCursor(m_bShowCursor);
 
 	m_pGameInstance->Update_Engine(fTimeDelta);
 }

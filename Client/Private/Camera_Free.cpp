@@ -71,12 +71,12 @@ void CCamera_Free::Mouse_Move(_float fTimeDelta)
 
 	if (GetKeyState('W') & 0x8000)
 	{
-		m_pTransformCom->Go_Straight(fTimeDelta);
+		m_pTransformCom->Go_StraightY(fTimeDelta);
 	}
 
 	if (GetKeyState('S') & 0x8000)
 	{
-		m_pTransformCom->Go_Backward(fTimeDelta);
+		m_pTransformCom->Go_BackwardY(fTimeDelta);
 	}
 
 	_long		MouseMove = {};

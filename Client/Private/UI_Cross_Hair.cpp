@@ -58,14 +58,13 @@ HRESULT CUI_Cross_Hair::Initialize(void* pArg)
 		__super::Set_UI_Setting(24.f, 7.f, 640.f, 336.f);
 		m_pTransformCom->Rotation({ 0.f, 0.f, 1.f }, XMConvertToRadians(90.f));
 		break;
-
-
 	}
 	return S_OK;
 }
 
 void CUI_Cross_Hair::Priority_Update(_float fTimeDelta)
 {
+
 }
 
 void CUI_Cross_Hair::Update(_float fTimeDelta)
@@ -106,6 +105,10 @@ HRESULT CUI_Cross_Hair::Ready_Components()
 	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Cross_Hair"),
 		TEXT("Com_Texture"), reinterpret_cast<CComponent**>(&m_pTextureCom))))
 		return E_FAIL;
+}
+
+void CUI_Cross_Hair::Move()
+{
 }
 
 CUI_Cross_Hair* CUI_Cross_Hair::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)

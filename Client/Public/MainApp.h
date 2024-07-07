@@ -28,6 +28,7 @@ private:
 	CTool_Manager*				m_pTool_Manager = { nullptr };
 
 	_bool m_bShowTool = { false };
+	_bool m_bShowCursor = { true };
 
 private:
 	HRESULT Ready_Prototype_Component_ForStatic();

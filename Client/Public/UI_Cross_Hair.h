@@ -27,6 +27,7 @@ public:
 
 private:
 	virtual HRESULT Ready_Components();
+	void Move();
 
 public:
 	static CUI_Cross_Hair* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
