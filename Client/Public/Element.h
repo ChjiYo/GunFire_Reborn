@@ -1,8 +1,9 @@
 #pragma once
 
+#include "Client_Defines.h"
 #include "GameObject.h"
 
-BEGIN(Engine)
+BEGIN(Client)
 
 class CElement abstract : public CGameObject
 {

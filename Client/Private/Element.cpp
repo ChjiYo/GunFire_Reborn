@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 #include "Element.h"
 
 CElement::CElement(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
