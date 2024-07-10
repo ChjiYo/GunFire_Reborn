@@ -4,12 +4,12 @@
 
 BEGIN(Client)
 
-class CWall_State1 final : public CElement
+class CWall_Stage1 final : public CElement
 {
 private:
-	CWall_State1(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
-	CWall_State1(const CWall_State1& pPrototype);
-	virtual ~CWall_State1() = default;
+	CWall_Stage1(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
+	CWall_Stage1(const CWall_Stage1& pPrototype);
+	virtual ~CWall_Stage1() = default;
 
 public:
 	virtual HRESULT Initialize_Prototype();
@@ -20,7 +20,7 @@ public:
 	virtual HRESULT Render();
 
 public:
-	static CWall_State1* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
+	static CWall_Stage1* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	virtual CGameObject* Clone(void* pArg);
 	virtual void Free() override;
 };

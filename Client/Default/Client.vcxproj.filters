@@ -282,7 +282,7 @@
     <ClInclude Include="..\public\Element.h">
       <Filter>02.GameObjects\Element</Filter>
     </ClInclude>
-    <ClInclude Include="..\public\Wall_State1.h">
+    <ClInclude Include="..\public\Wall_Stage1.h">
       <Filter>02.GameObjects\Element\Wall_State\State1</Filter>
     </ClInclude>
   </ItemGroup>
@@ -407,7 +407,7 @@
     <ClCompile Include="..\private\Element.cpp">
       <Filter>02.GameObjects\Element</Filter>
     </ClCompile>
-    <ClCompile Include="..\private\Wall_State1.cpp">
+    <ClCompile Include="..\private\Wall_Stage1.cpp">
       <Filter>02.GameObjects\Element\Wall_State\State1</Filter>
     </ClCompile>
   </ItemGroup>
