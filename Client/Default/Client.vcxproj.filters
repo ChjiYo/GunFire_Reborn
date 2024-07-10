@@ -136,6 +136,9 @@
     <Filter Include="02.GameObjects\Cube">
       <UniqueIdentifier>{9fd9f4f3-7f3f-4bf6-a119-d02189d7a6a2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObjects\Element">
+      <UniqueIdentifier>{528e55a3-7426-4316-bee3-148c3cae8e6a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -270,6 +273,9 @@
     <ClInclude Include="..\Public\Cube.h">
       <Filter>02.GameObjects\Cube</Filter>
     </ClInclude>
+    <ClInclude Include="..\public\Element.h">
+      <Filter>02.GameObjects\Element</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -388,6 +394,9 @@
     </ClCompile>
     <ClCompile Include="..\Private\Cube.cpp">
       <Filter>02.GameObjects\Cube</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Element.cpp">
+      <Filter>02.GameObjects\Element</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

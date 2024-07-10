@@ -2,7 +2,9 @@
 
 #include "GameObject.h"
 
-class CContainerObject abstract:public CGameObject
+BEGIN(Engine)
+
+class ENGINE_DLL CContainerObject abstract:public CGameObject
 {
 public:
 	typedef struct : public CGameObject::GAMEOBJECT_DESC
@@ -35,3 +37,4 @@ public:
 	virtual void Free() override;
 };
 
+END
