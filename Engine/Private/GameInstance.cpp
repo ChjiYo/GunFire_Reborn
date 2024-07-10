@@ -210,6 +210,14 @@ list<class CGameObject*> CGameInstance::Get_Layer(_uint iLevelIndex, const wstri
 	return m_pObject_Manager->Get_Layer(iLevelIndex, strLayerTag);
 }
 
+CGameObject* CGameInstance::Clone_GameObject(const wstring& strPrototypeTag, void* pArg)
+{
+	if (nullptr == m_pObject_Manager)
+		return nullptr;
+
+	return m_pObject_Manager->Clone_GameObject(strPrototypeTag, pArg);
+}
+
 HRESULT CGameInstance::AddObjectPrototypesVector(vector<string>* pVector)
 {
 	if (nullptr == m_pObject_Manager)

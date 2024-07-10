@@ -1,0 +1,70 @@
+#include "ContainerObject.h"
+#include "GameInstance.h"
+#include "PartObject.h"
+
+CContainerObject::CContainerObject(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
+	:CGameObject{ pDevice  , pContext }
+{
+}
+
+CContainerObject::CContainerObject(const CContainerObject& pPrototype)
+	:CGameObject{ pPrototype }
+{
+}
+
+HRESULT CContainerObject::Initialize_Prototype()
+{
+	return S_OK;
+}
+
+HRESULT CContainerObject::Initialize(void* pArg)
+{
+	CONTAINEROBJECT_DESC* pDesc = static_cast<CONTAINEROBJECT_DESC*>(pArg);
+	m_iNumParts = pDesc->iNumParts;
+	m_Parts.resize(m_iNumParts);
+
+	if (FAILED(__super::Initialize(pArg)))
+		return E_FAIL;
+
+	return S_OK;
+}
+
+void CContainerObject::Priority_Update(_float fTimeDelta)
+{
+}
+
+void CContainerObject::Update(_float fTimeDelta)
+{
+}
+
+void CContainerObject::Late_Update(_float fTimeDelta)
+{
+}
+
+HRESULT CContainerObject::Render()
+{
+	return S_OK;
+}
+
+HRESULT CContainerObject::Add_PartObject(_uint iPartIndex, const _wstring& strPrototypeTag, void* pArg)
+{
+	CPartObject* pPartObject = dynamic_cast<CPartObject*>(m_pGameInstance->Clone_GameObject(strPrototypeTag, pArg));
+	if (nullptr == pPartObject)
+		return E_FAIL;
+
+	m_Parts[iPartIndex] = pPartObject;
+
+	Safe_AddRef(pPartObject);
+
+	return S_OK;
+}
+
+void CContainerObject::Free()
+{
+	__super::Free();
+
+	for (auto& pPartObject : m_Parts)
+		Safe_Release(pPartObject);
+
+	m_Parts.clear();
+}

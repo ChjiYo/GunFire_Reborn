@@ -8,7 +8,7 @@ BEGIN(Engine)
 class ENGINE_DLL CGameObject abstract : public CBase
 {
 public:
-	typedef struct
+	typedef struct : public CTransform::TRANSFORM_DESC
 	{
 		_uint		iGameObjectData = {};
 	}GAMEOBJECT_DESC;

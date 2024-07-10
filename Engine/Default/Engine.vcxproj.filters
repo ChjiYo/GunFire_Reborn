@@ -124,6 +124,12 @@
     <Filter Include="01.Utility\10.File">
       <UniqueIdentifier>{8a42945f-35f9-43ae-8d11-f9435fc2dc7c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Utility\02.GameObjects\Container">
+      <UniqueIdentifier>{cc966756-d37d-492a-8ee1-d00fe026c187}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utility\02.GameObjects\Container\PartObject">
+      <UniqueIdentifier>{8442d06a-1187-44cd-82b8-8fa034ab9795}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\private\GameInstance.cpp">
@@ -239,6 +245,12 @@
     </ClCompile>
     <ClCompile Include="..\Private\FileManager.cpp">
       <Filter>01.Utility\10.File</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\ContainerObject.cpp">
+      <Filter>01.Utility\02.GameObjects\Container</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\PartObject.cpp">
+      <Filter>01.Utility\02.GameObjects\Container\PartObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -367,6 +379,12 @@
     </ClInclude>
     <ClInclude Include="..\Public\FileManager.h">
       <Filter>01.Utility\10.File</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\ContainerObject.h">
+      <Filter>01.Utility\02.GameObjects\Container</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\PartObject.h">
+      <Filter>01.Utility\02.GameObjects\Container\PartObject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

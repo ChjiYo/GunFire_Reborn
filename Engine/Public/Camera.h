@@ -11,7 +11,7 @@ BEGIN(Engine)
 class ENGINE_DLL CCamera abstract : public CGameObject
 {
 public:
-	typedef struct : public CTransform::TRANSFORM_DESC
+	typedef struct : public CGameObject::GAMEOBJECT_DESC
 	{
 		_float3		vEye, vAt;
 		_float		fFovy, fNear, fFar;

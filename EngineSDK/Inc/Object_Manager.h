@@ -26,6 +26,7 @@ public:
 	HRESULT AddObjectLayersVector(_uint, vector<pair < string, list<CGameObject*>>>* pVector);
 	HRESULT AddObjectLayersVector(_uint _level, vector<pair < wstring, list<CGameObject*>>>* pVector);
 	CGameObject* GetObjectByIndex(_uint iLevelIndex, const wstring& strLayerTag, _uint index);
+	class CGameObject* Clone_GameObject(const wstring& strPrototypeTag, void* pArg = nullptr);
 
 	void Priority_Update(_float fTimeDelta);
 	void Update(_float fTimeDelta);
