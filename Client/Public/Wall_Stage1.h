@@ -2,6 +2,12 @@
 
 #include "Element.h"
 
+BEGIN(Engine)
+class CShader;
+class CModel;
+END
+
+
 BEGIN(Client)
 
 class CWall_Stage1 final : public CElement
@@ -18,6 +24,14 @@ public:
 	virtual void Update(_float fTimeDelta);
 	virtual void Late_Update(_float fTimeDelta);
 	virtual HRESULT Render();
+
+private:
+	CShader* m_pShaderCom = { nullptr };
+	CModel* m_pModelCom = { nullptr };
+
+private:
+	HRESULT Ready_Components();
+	HRESULT Bind_ShaderResources();
 
 public:
 	static CWall_Stage1* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);

@@ -32,6 +32,7 @@ private:
 	HRESULT Ready_Layer_Monster(const _wstring& strLayerTag, CLandObject::LANDOBJECT_DESC& Desc);*/
 	HRESULT Ready_Layer_Player(const wstring& strLayerTag);
 	HRESULT Ready_Layer_Monster(const _wstring& strLayerTag);
+	HRESULT Ready_Layer_WallStage(const _wstring& strLayerTag);
 
 
 public:

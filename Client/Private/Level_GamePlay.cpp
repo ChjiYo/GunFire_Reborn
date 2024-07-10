@@ -25,6 +25,8 @@ HRESULT CLevel_GamePlay::Initialize()
 	if (FAILED(Ready_Layer_Effect(TEXT("Layer_Effect"))))
 		return E_FAIL;
 
+	if (FAILED(Ready_Layer_WallStage(TEXT("Layer_Wall_State"))))
+		return E_FAIL;
 
 	if (FAILED(Ready_LandObjects()))
 		return E_FAIL;
@@ -173,6 +175,14 @@ HRESULT CLevel_GamePlay::Ready_Layer_Player(const wstring& strLayerTag)
 HRESULT CLevel_GamePlay::Ready_Layer_Monster(const _wstring & strLayerTag)
 {
 	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Monster"), strLayerTag)))
+		return E_FAIL;
+
+	return S_OK;
+}
+
+HRESULT CLevel_GamePlay::Ready_Layer_WallStage(const _wstring& strLayerTag)
+{
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Wall_State1"), strLayerTag)))
 		return E_FAIL;
 
 	return S_OK;

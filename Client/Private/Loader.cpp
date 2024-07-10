@@ -7,10 +7,10 @@
 #include "Monster.h"
 #include "Terrain.h"
 #include "Cube.h"
+#include "Wall_Stage1.h"
 
 #include "Player.h"
 #include "Skill_Player_Bullet.h"
-
 
 CLoader::CLoader(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	: m_pDevice { pDevice }
@@ -218,6 +218,10 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 	/* For.Prototype_GameObject_Cube */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Cube"),
 		CCube::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Wall_State1"),
+		CWall_Stage1::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
 	lstrcpy(m_szLoadingText, TEXT("로딩이 완료되었습니다."));

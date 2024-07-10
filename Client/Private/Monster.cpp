@@ -36,8 +36,7 @@ HRESULT CMonster::Initialize(void * pArg)
 
 void CMonster::Priority_Update(_float fTimeDelta)
 {
-	
-	
+		
 }
 
 void CMonster::Update(_float fTimeDelta)
