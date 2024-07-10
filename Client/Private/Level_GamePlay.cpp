@@ -79,7 +79,7 @@ HRESULT CLevel_GamePlay::Ready_Layer_Camera(const _wstring & strLayerTag)
 {
 	CCamera_Free::CAMERA_FREE_DESC			CameraDesc{};
 
-	CameraDesc.vEye = _float3(0.f, 10.f, -10.f);
+	CameraDesc.vEye = _float3(0.f, 2.f, -10.f);
 	CameraDesc.vAt = _float3(0.f, 0.f, 0.f);
 	CameraDesc.fFovy = XMConvertToRadians(60.0f);
 	CameraDesc.fNear = 0.1f;
@@ -96,12 +96,6 @@ HRESULT CLevel_GamePlay::Ready_Layer_Camera(const _wstring & strLayerTag)
 
 HRESULT CLevel_GamePlay::Ready_Layer_Effect(const _wstring & strLayerTag)
 {
-	/*for (size_t i = 0; i < 30; i++)
-	{
-		if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Effect"), strLayerTag)))
-			return E_FAIL;
-	}	*/
-
 	return S_OK;
 }
 

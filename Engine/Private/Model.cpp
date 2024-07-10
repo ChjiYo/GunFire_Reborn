@@ -100,6 +100,7 @@ void CModel::Play_Animation(_float fTimeDelta)
 	/* 모든 뼈의 CombinedTransformationMatrix를 갱신한다. */
 	for (auto& pBone : m_Bones)	
 		pBone->Update_CombinedTransformationMatrix(m_Bones, XMLoadFloat4x4(&m_PreTransformMatrix));
+
 }
 
 void CModel::SetUp_Animation(_uint iAnimationIndex, _bool isLoop)
