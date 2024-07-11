@@ -28,7 +28,7 @@ HRESULT CUI_Player_BarPanel::Initialize(void* pArg)
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
-	__super::Set_UI_Setting(425.f, 75.f, 250.f, 600.f);
+	__super::Set_UI_Setting(425.f, 75.f, 250.f, 800.f);
 	return S_OK;
 }
 

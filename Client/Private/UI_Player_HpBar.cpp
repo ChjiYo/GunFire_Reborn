@@ -31,7 +31,7 @@ HRESULT CUI_Player_HpBar::Initialize(void* pArg)
 	m_fSizeX = 200.f;
 	m_fSizeY = 15.f;
 	m_fPosX = 290.f;
-	m_fPosY = 610.f;
+	m_fPosY = 810.f;
 
 	__super::Set_UI_Setting(m_fSizeX, m_fSizeY, m_fPosX, m_fPosY);
 

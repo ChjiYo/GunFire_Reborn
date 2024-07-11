@@ -94,25 +94,20 @@ void CCamera_Free::GamePlay_Camera(_float fTimeDelta)
 
 void CCamera_Free::FreeView_Camera(_float fTimeDelta)
 {
-	//방향키
-	if (m_pGameInstance->Get_DIKeyState(DIK_LEFT) & 0x80)
+	//마우스
+	if (m_pGameInstance->Get_DIKeyState(DIK_LSHIFT) & 0x80)
 	{
-		m_pTransformCom->Turn(XMVectorSet(0.f, 1.f, 0.f, 0.f), fTimeDelta * -3.f * m_fMouseSensor);
-	}
+		_long		MouseMove = {};
 
-	if (m_pGameInstance->Get_DIKeyState(DIK_RIGHT) & 0x80)
-	{
-		m_pTransformCom->Turn(XMVectorSet(0.f, 1.f, 0.f, 0.f), fTimeDelta * 3.f * m_fMouseSensor);
-	}
+		if (MouseMove = m_pGameInstance->Get_DIMouseMove(DIMM_X))
+		{
+			m_pTransformCom->Turn(XMVectorSet(0.f, 1.f, 0.f, 0.f), m_fMouseSensor * MouseMove * fTimeDelta);
+		}
 
-	if (m_pGameInstance->Get_DIKeyState(DIK_UP) & 0x80)
-	{
-		m_pTransformCom->Turn(m_pTransformCom->Get_State(CTransform::STATE_RIGHT), fTimeDelta * -3.f * m_fMouseSensor);
-	}
-
-	if (m_pGameInstance->Get_DIKeyState(DIK_DOWN) & 0x80)
-	{
-		m_pTransformCom->Turn(m_pTransformCom->Get_State(CTransform::STATE_RIGHT), fTimeDelta * 3.f * m_fMouseSensor);
+		if (MouseMove = m_pGameInstance->Get_DIMouseMove(DIMM_Y))
+		{
+			m_pTransformCom->Turn(m_pTransformCom->Get_State(CTransform::STATE_RIGHT), m_fMouseSensor * MouseMove * fTimeDelta);
+		}
 	}
 
 	//키보드

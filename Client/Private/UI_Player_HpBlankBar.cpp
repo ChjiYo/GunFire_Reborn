@@ -28,7 +28,7 @@ HRESULT CUI_Player_HpBlankBar::Initialize(void* pArg)
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
-	__super::Set_UI_Setting(200.f, 30.f, 290.f, 585.f);
+	__super::Set_UI_Setting(200.f, 30.f, 290.f, 810.f);
 
 	m_pTransformCom->Rotation({ 0.f, 0.f, 1.f }, XMConvertToRadians(355.f));
 

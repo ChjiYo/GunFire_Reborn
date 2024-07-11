@@ -28,7 +28,7 @@ HRESULT CUI_Player_Icon::Initialize(void* pArg)
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
-	__super::Set_UI_Setting(200.f, 200.f, 90.f, 540.f);
+	__super::Set_UI_Setting(200.f, 200.f, 90.f, 740.f);
 
 	return S_OK;
 }

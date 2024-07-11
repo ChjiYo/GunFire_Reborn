@@ -33,6 +33,10 @@ private:
 	_float m_fMoveTimer = {};
 	_bool m_bMoveStop = { true };
 
+	_float  m_fMidPosX = {};
+	_float  m_fMidPosY = {};
+	_float	m_fAddPos = {};
+
 public:
 	static CUI_Cross_Hair* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	virtual CGameObject* Clone(void* pArg);

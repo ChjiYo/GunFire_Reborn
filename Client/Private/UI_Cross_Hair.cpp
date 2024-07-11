@@ -32,30 +32,34 @@ HRESULT CUI_Cross_Hair::Initialize(void* pArg)
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
+	m_fMidPosX = Client::g_iWinSizeX * 0.5f;
+	m_fMidPosY = Client::g_iWinSizeY * 0.5f;
+
+	m_fAddPos = 24.f;
 	//640  360
 	switch (iCnt)
 	{
 	case 0:
 		//Right
-		__super::Set_UI_Setting(24.f, 7.f, 664.f, 360.f);
+		__super::Set_UI_Setting(24.f, 7.f, m_fMidPosX + m_fAddPos, m_fMidPosY);
 		m_pTransformCom->Rotation({ 0.f, 0.f, 1.f }, XMConvertToRadians(0.f));
 		break;
 
 	case 1:
 		//Left
-		__super::Set_UI_Setting(24.f, 7.f, 616.f, 360.f);
+		__super::Set_UI_Setting(24.f, 7.f, m_fMidPosX - m_fAddPos, m_fMidPosY);
 		m_pTransformCom->Rotation({ 0.f, 0.f, 1.f }, XMConvertToRadians(180.f));
 		break;
 
 	case 2:
 		//Up
-		__super::Set_UI_Setting(24.f, 7.f, 640.f, 384.f);
+		__super::Set_UI_Setting(24.f, 7.f, m_fMidPosX , m_fMidPosY + m_fAddPos);
 		m_pTransformCom->Rotation({ 0.f, 0.f, 1.f }, XMConvertToRadians(270.f));
 		break;
 
 	case 3:
 		//Down
-		__super::Set_UI_Setting(24.f, 7.f, 640.f, 336.f);
+		__super::Set_UI_Setting(24.f, 7.f, m_fMidPosX, m_fMidPosY - m_fAddPos);
 		m_pTransformCom->Rotation({ 0.f, 0.f, 1.f }, XMConvertToRadians(90.f));
 		break;
 	}

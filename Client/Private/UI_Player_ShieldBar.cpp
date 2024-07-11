@@ -31,9 +31,9 @@ HRESULT CUI_Player_ShieldBar::Initialize(void* pArg)
 	m_fSizeX = 200.f;
 	m_fSizeY = 15.f;
 	m_fPosX = 290.f;
-	m_fPosY = 585.f;
+	m_fPosY = 785.f;
 
-	__super::Set_UI_Setting(200.f, 15.f, 290.f, 585.f);
+	__super::Set_UI_Setting(m_fSizeX, m_fSizeY, m_fPosX, m_fPosY);
 	
 	m_pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Player")).back());
 	Safe_AddRef(m_pPlayer);
