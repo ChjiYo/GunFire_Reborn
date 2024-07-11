@@ -145,6 +145,12 @@
     <Filter Include="02.GameObjects\Element\Wall_State\State1">
       <UniqueIdentifier>{e75f25e7-73d7-4de8-9528-8c4888c01f41}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObjects\Element\Floor">
+      <UniqueIdentifier>{e6cba343-6b6d-4214-bbc9-2be7e7e107f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Element\Floor\102">
+      <UniqueIdentifier>{99cd78eb-4659-44da-908a-04e0561ca488}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -285,6 +291,9 @@
     <ClInclude Include="..\public\Wall_Stage1.h">
       <Filter>02.GameObjects\Element\Wall_State\State1</Filter>
     </ClInclude>
+    <ClInclude Include="..\Public\Floor_102.h">
+      <Filter>02.GameObjects\Element\Floor\102</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -409,6 +418,9 @@
     </ClCompile>
     <ClCompile Include="..\private\Wall_Stage1.cpp">
       <Filter>02.GameObjects\Element\Wall_State\State1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Floor_102.cpp">
+      <Filter>02.GameObjects\Element\Floor\102</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

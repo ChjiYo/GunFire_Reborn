@@ -7,7 +7,9 @@
 #include "Monster.h"
 #include "Terrain.h"
 #include "Cube.h"
+
 #include "Wall_Stage1.h"
+#include "Floor_102.h"
 
 #include "Player.h"
 #include "Skill_Player_Bullet.h"
@@ -155,6 +157,11 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Wall_Stage/Stage1/Wall_Stage1.fbx", PreTransformMatrix))))
 		return E_FAIL;
 
+	/* For.Prototype_Component_Model_Floor_102 */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Floor_102"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Floor/102/Floor_102.fbx", PreTransformMatrix))))
+		return E_FAIL;
+
 	/* For.Prototype_Component_Model_Player */
 	PreTransformMatrix = XMMatrixRotationY(XMConvertToRadians(180.0f));
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Player"),
@@ -220,8 +227,14 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 		CCube::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
-	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Wall_State1"),
-		CWall_Stage1::Create(m_pDevice, m_pContext))))
+	/* For.Prototype_GameObject_Wall_Stage1 */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Wall_Stage1"),
+		CFloor_102::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Floor_102 */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Floor_102"),
+		CFloor_102::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
 	lstrcpy(m_szLoadingText, TEXT("로딩이 완료되었습니다."));
