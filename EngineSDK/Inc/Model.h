@@ -32,9 +32,6 @@ public:
 	HRESULT Bind_MaterialSRV(class CShader* pShader, aiTextureType eType, const _char* pConstantName, _uint iMeshIndex);
 	HRESULT Bind_BoneMatrices(class CShader* pShader, const _char* pConstantName, _uint iMeshIndex);
 
-public:
-	void Save_Model();
-
 private:	
 	/* 파일로부터 읽어온 모델을 움직이고 그리기위한 모든 정보를 다 가지고 있는 객체 */
 	const aiScene*				m_pAIScene = { nullptr };
