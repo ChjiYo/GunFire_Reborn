@@ -36,7 +36,11 @@ HRESULT CVIBuffer_Terrain::Initialize_Prototype(_uint iNumVerticesX, _uint iNumV
 	m_ePrimitive_Topology = D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
 
 	/* 공간에 값을 채우기위한 작업을 수행해야한다. */
-	VTXPOSTEX* pVertices = { nullptr };
+	VTXNORTEX* pVertices = new VTXNORTEX[m_iNumVertices];
+	ZeroMemory(pVertices, sizeof(VTXNORTEX) * m_iNumVertices);
+
+	m_pVerticesPos = new _float3[m_iNumVertices];
+	ZeroMemory(m_pVerticesPos, sizeof(_float3) * m_iNumVertices);
 
 	m_pVerticesPos = new _float3[m_iNumVertices];
 	ZeroMemory(m_pVerticesPos, sizeof(_float3) * m_iNumVertices);
@@ -56,7 +60,8 @@ HRESULT CVIBuffer_Terrain::Initialize_Prototype(_uint iNumVerticesX, _uint iNumV
 		}
 	}
 
-	_uint* pIndices = { nullptr };
+	_uint* pIndices = new _uint[m_iNumIndices];
+	ZeroMemory(pIndices, sizeof(_uint) * m_iNumIndices);
 
 	_uint			iNumIndices = { 0 };
 

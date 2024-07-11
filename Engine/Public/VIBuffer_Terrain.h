@@ -19,12 +19,12 @@ public:
 public:
 	_bool Picked(class CTransform* pTransformCom, _vector* pPickedPos);
 
-	CVIBuffer_Terrain* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, _uint iNumVerticesX, _uint iNumVerticesZ);
 
 private:
 	_uint				m_iNumVerticesX{}, m_iNumVerticesZ{};
 
 public:
+	static CVIBuffer_Terrain* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, _uint iNumVerticesX, _uint iNumVerticesZ);
 	static CVIBuffer_Terrain* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, const _tchar* pHeightMapFilePath);
 	virtual CComponent* Clone(void* pArg) override;
 	virtual void Free() override;
