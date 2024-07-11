@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Client_Defines.h"
-#include "GameObject.h"
+#include "Element.h"
 
 BEGIN(Engine)
 
@@ -13,7 +13,7 @@ END
 
 BEGIN(Client)
 
-class CCube final : public CGameObject
+class CCube final : public CElement
 {
 private:
 	CCube(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);

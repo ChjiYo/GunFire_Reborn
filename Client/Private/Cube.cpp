@@ -4,12 +4,12 @@
 #include "GameInstance.h"
 
 CCube::CCube(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
-	:CGameObject { pDevice ,pContext }
+	:CElement{ pDevice ,pContext }
 {
 }
 
 CCube::CCube(const CCube& Prototype)
-	:CGameObject{ Prototype }
+	:CElement{ Prototype }
 {
 }
 
@@ -28,11 +28,6 @@ HRESULT CCube::Initialize(void* pArg)
 
 	if(FAILED(Ready_Components()))
 		return E_FAIL;
-
-	if (nullptr != pArg)
-	{
-		m_pTransformCom->Set_State(CTransform::STATE_POSITION, { m_vPosition.x , m_vPosition.y , m_vPosition.z ,1.f});
-	}
 
 	return S_OK;
 }

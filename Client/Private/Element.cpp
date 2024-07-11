@@ -25,6 +25,11 @@ HRESULT CElement::Initialize(void* pArg)
 	if (FAILED(__super::Initialize(pArg)))
 		return E_FAIL;
 
+	if (nullptr != pArg)
+	{
+		m_pTransformCom->Set_State(CTransform::STATE_POSITION, { m_vPosition.x , m_vPosition.y , m_vPosition.z ,1.f });
+	}
+
 	return S_OK;
 }
 
