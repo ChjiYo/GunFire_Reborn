@@ -229,7 +229,7 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 
 	/* For.Prototype_GameObject_Wall_Stage1 */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Wall_Stage1"),
-		CFloor_102::Create(m_pDevice, m_pContext))))
+		CWall_Stage1::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
 	/* For.Prototype_GameObject_Floor_102 */
