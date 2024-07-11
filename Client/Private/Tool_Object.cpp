@@ -30,7 +30,6 @@ HRESULT CTool_Object::Render()
 			Prototype_ObjectList_Tab();
 			Layer_ObjectList_Tab();
 			Setting_Tab();
-
 			ImGui::EndTabBar(); 
 		}
 		ImGui::End();

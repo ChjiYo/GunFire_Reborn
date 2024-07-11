@@ -17,9 +17,9 @@ CFSM_Player_Dash::CFSM_Player_Dash(const CFSM_Player_Dash& pPrototype)
 
 HRESULT CFSM_Player_Dash::Initialize()
 {
+	m_pPlayerTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Player"), TEXT("Com_Transform")));
+	Safe_AddRef(m_pPlayerTransform);
 
-	/*m_pPlayerTransform = dynamic_cast<CTransform*>(m_pGameInstance->(LEVEL_GAMEPLAY, TEXT("Layer_Player"), TEXT("Com_Transform")));
-	Safe_AddRef(m_pPlayerTransform);*/
 	return S_OK;
 }
 
@@ -43,8 +43,8 @@ void CFSM_Player_Dash::Late_Update(_float fTimeDelta)
 
 void CFSM_Player_Dash::Enter()
 {
-	/*m_vMovePos += m_vMoveDir * 5.f;
-	m_pPlayerTransform->Set_State(CTransform::STATE_POSITION, m_vMovePos);*/
+	m_vMovePos += m_vMoveDir * 5.f;
+	m_pPlayerTransform->Set_State(CTransform::STATE_POSITION, m_vMovePos);
 }
 
 void CFSM_Player_Dash::Exit()
