@@ -27,15 +27,15 @@ public:
 	virtual HRESULT Render() override;
 
 public:
-	void Set_MoveCheck(_bool bMove) { m_bMouseMoce = bMove; }
+	void Set_FreeView(_bool bCheck) { m_bCameraMode = bCheck; }
 
 private:
 	_float				m_fMouseSensor = {};
-	_bool				m_bMouseMoce = { true };
+	_bool				m_bCameraMode = { true };
 
 private:
-	void Mouse_Move(_float fTimeDelta);
-	void Key_Move(_float fTimeDelta);
+	void GamePlay_Camera(_float fTimeDelta);
+	void FreeView_Camera(_float fTimeDelta);
 
 public:
 	static CCamera_Free* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);

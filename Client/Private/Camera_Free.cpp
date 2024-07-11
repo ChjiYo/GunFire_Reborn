@@ -41,10 +41,10 @@ void CCamera_Free::Priority_Update(_float fTimeDelta)
 
 void CCamera_Free::Update(_float fTimeDelta)
 {
-	if (m_bMouseMoce)
-		Mouse_Move(fTimeDelta);
+	if (m_bCameraMode)
+		GamePlay_Camera(fTimeDelta);
 	else
-		Key_Move(fTimeDelta);
+		FreeView_Camera(fTimeDelta);
 
 }
 
@@ -57,24 +57,24 @@ HRESULT CCamera_Free::Render()
 	return S_OK;
 }
 
-void CCamera_Free::Mouse_Move(_float fTimeDelta)
+void CCamera_Free::GamePlay_Camera(_float fTimeDelta)
 {
 	if (m_pGameInstance->Get_DIKeyState(DIK_A) & 0x80)
 	{
 		m_pTransformCom->Go_Left(fTimeDelta);
 	}
 
-	if (GetKeyState('D') & 0x8000)
+	if (m_pGameInstance->Get_DIKeyState(DIK_D) & 0x80)
 	{
 		m_pTransformCom->Go_Right(fTimeDelta);
 	}
 
-	if (GetKeyState('W') & 0x8000)
+	if (m_pGameInstance->Get_DIKeyState(DIK_W) & 0x80)
 	{
 		m_pTransformCom->Go_StraightY(fTimeDelta);
 	}
 
-	if (GetKeyState('S') & 0x8000)
+	if (m_pGameInstance->Get_DIKeyState(DIK_S) & 0x80)
 	{
 		m_pTransformCom->Go_BackwardY(fTimeDelta);
 	}
@@ -92,23 +92,48 @@ void CCamera_Free::Mouse_Move(_float fTimeDelta)
 	}
 }
 
-void CCamera_Free::Key_Move(_float fTimeDelta)
+void CCamera_Free::FreeView_Camera(_float fTimeDelta)
 {
-	if (m_pGameInstance->Get_DIKeyState(DIK_A) & 0x80)
+	//방향키
+	if (m_pGameInstance->Get_DIKeyState(DIK_LEFT) & 0x80)
 	{
 		m_pTransformCom->Turn(XMVectorSet(0.f, 1.f, 0.f, 0.f), fTimeDelta * -3.f * m_fMouseSensor);
 	}
-	if (m_pGameInstance->Get_DIKeyState(DIK_D) & 0x80)
+
+	if (m_pGameInstance->Get_DIKeyState(DIK_RIGHT) & 0x80)
 	{
 		m_pTransformCom->Turn(XMVectorSet(0.f, 1.f, 0.f, 0.f), fTimeDelta * 3.f * m_fMouseSensor);
 	}
-	if (m_pGameInstance->Get_DIKeyState(DIK_W) & 0x80)
+
+	if (m_pGameInstance->Get_DIKeyState(DIK_UP) & 0x80)
 	{
 		m_pTransformCom->Turn(m_pTransformCom->Get_State(CTransform::STATE_RIGHT), fTimeDelta * -3.f * m_fMouseSensor);
 	}
-	if (m_pGameInstance->Get_DIKeyState(DIK_S) & 0x80)
+
+	if (m_pGameInstance->Get_DIKeyState(DIK_DOWN) & 0x80)
 	{
 		m_pTransformCom->Turn(m_pTransformCom->Get_State(CTransform::STATE_RIGHT), fTimeDelta * 3.f * m_fMouseSensor);
+	}
+
+	//키보드
+	if (m_pGameInstance->Get_DIKeyState(DIK_A) & 0x80)
+	{
+		m_pTransformCom->Go_Left(fTimeDelta);
+	}
+
+	if (m_pGameInstance->Get_DIKeyState(DIK_D) & 0x80)
+	{
+		m_pTransformCom->Go_Right(fTimeDelta);
+	}
+
+	if (m_pGameInstance->Get_DIKeyState(DIK_W) & 0x80)
+	{
+		m_pTransformCom->Go_Straight(fTimeDelta);
+	}
+
+	if (m_pGameInstance->Get_DIKeyState(DIK_S) & 0x80)
+	{
+		m_pTransformCom->Go_Backward(fTimeDelta);
 	}
 }
 
