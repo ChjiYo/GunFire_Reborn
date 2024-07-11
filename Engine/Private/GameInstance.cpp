@@ -218,6 +218,11 @@ CGameObject* CGameInstance::Clone_GameObject(const wstring& strPrototypeTag, voi
 	return m_pObject_Manager->Clone_GameObject(strPrototypeTag, pArg);
 }
 
+CComponent* CGameInstance::Get_PartObject_Component(_uint iLevelIndex, const _wstring& strLayerTag, _uint iPartID, const _wstring& strComponentTag, _uint iIndex)
+{
+	return nullptr;
+}
+
 HRESULT CGameInstance::AddObjectPrototypesVector(vector<string>* pVector)
 {
 	if (nullptr == m_pObject_Manager)

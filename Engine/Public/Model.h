@@ -19,6 +19,8 @@ public:
 		return m_iNumMeshes;
 	}
 
+	const _float4x4* Get_BoneMatrixPtr(const _char* pBoneName) const;
+
 public:
 	virtual HRESULT Initialize_Prototype(enum TYPE eModelType, const _char* strModelFilePath, _fmatrix PreTransformMatrix);
 	virtual HRESULT Initialize(void* pArg) override;

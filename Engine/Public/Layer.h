@@ -24,6 +24,7 @@ public:
 
 	class CComponent* Get_Component(const wstring& strComponentTag, _uint iIndex);
 	list<class CGameObject*> Get_Object_List() { return m_GameObjects; }
+	class CComponent* Get_PartObject_Component(_uint iPartID, const _wstring& strComponentTag, _uint iIndex);
 
 private:
 	list<class CGameObject*>			m_GameObjects;

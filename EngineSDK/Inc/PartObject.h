@@ -34,6 +34,9 @@ protected:
 	_float4x4				m_WorldMatrix = {};
 
 public:
+	HRESULT Bind_WorldMatrix(class CShader* pShader, const _char* pConstantName);
+
+public:
 	virtual CGameObject* Clone(void* pArg) = 0;
 	virtual void Free() override;
 };

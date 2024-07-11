@@ -45,6 +45,8 @@ public: /* For.Object_Manager */
 	class CComponent* Get_Component(_uint iLevelIndex, const _wstring& strLayerTag, const _wstring& strComponentTag, _uint iIndex = 0);
 	class list<class CGameObject*> Get_Layer(_uint iLevelIndex, const wstring& strLayerTag);
 	class CGameObject* Clone_GameObject(const wstring& strPrototypeTag, void* pArg = nullptr);
+	class CComponent* Get_PartObject_Component(_uint iLevelIndex, const _wstring& strLayerTag, _uint iPartID, const _wstring& strComponentTag, _uint iIndex);
+
 
 	HRESULT AddObjectPrototypesVector(vector<string>* pVector);
 	HRESULT AddObjectLayersVector(_uint iLevelIndex, vector<pair<string, list<CGameObject*>>>* pVector);

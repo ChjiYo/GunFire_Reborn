@@ -1,6 +1,7 @@
 #include "..\Public\Layer.h"
 
 #include "GameObject.h"
+#include "ContainerObject.h"
 
 CLayer::CLayer()
 {
@@ -86,6 +87,19 @@ CComponent* CLayer::Get_Component(const wstring& strComponentTag, _uint iIndex)
 		return nullptr;
 
 	return (*iter)->Get_Component(strComponentTag);
+}
+
+CComponent* CLayer::Get_PartObject_Component(_uint iPartID, const _wstring& strComponentTag, _uint iIndex)
+{
+	auto	iter = m_GameObjects.begin();
+
+	for (size_t i = 0; i < iIndex; i++)
+		++iter;
+
+	if (iter == m_GameObjects.end())
+		return nullptr;
+
+	return dynamic_cast<CContainerObject*>((*iter))->Get_Component(iPartID, strComponentTag);
 }
 
 CLayer * CLayer::Create()

@@ -12,6 +12,14 @@ CContainerObject::CContainerObject(const CContainerObject& pPrototype)
 {
 }
 
+CComponent* CContainerObject::Get_Component(_uint iPartID, const _wstring& strComponentTag)
+{
+	if (iPartID >= m_iNumParts)
+		return nullptr;
+
+	return m_Parts[iPartID]->Get_Component(strComponentTag);
+}
+
 HRESULT CContainerObject::Initialize_Prototype()
 {
 	return S_OK;
@@ -31,14 +39,29 @@ HRESULT CContainerObject::Initialize(void* pArg)
 
 void CContainerObject::Priority_Update(_float fTimeDelta)
 {
+	for (auto& pPartObject : m_Parts)
+	{
+		if (nullptr != pPartObject)
+			pPartObject->Priority_Update(fTimeDelta);
+	}
 }
 
 void CContainerObject::Update(_float fTimeDelta)
 {
+	for (auto& pPartObject : m_Parts)
+	{
+		if (nullptr != pPartObject)
+			pPartObject->Update(fTimeDelta);
+	}
 }
 
 void CContainerObject::Late_Update(_float fTimeDelta)
 {
+	for (auto& pPartObject : m_Parts)
+	{
+		if (nullptr != pPartObject)
+			pPartObject->Late_Update(fTimeDelta);
+	}
 }
 
 HRESULT CContainerObject::Render()
