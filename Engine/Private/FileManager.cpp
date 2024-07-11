@@ -71,8 +71,7 @@ HRESULT CFile_Manager::ParseLine(const wstring& line, FILEDATA& obj) {
 	wistringstream iss(line);
 	wstring key;
 
-	_float3 vObjPos = {};
-	XMStoreFloat3(&vObjPos, obj.position);
+	
 
 	// ':' 콜론을 기준으로 키와 값으로 문자열 분리
 	if (getline(iss, key, L':')) {
@@ -95,9 +94,10 @@ HRESULT CFile_Manager::ParseLine(const wstring& line, FILEDATA& obj) {
 			wistringstream vals(value);
 			float a, b, c;
 			vals >> a >> b >> c;
-			vObjPos.x = a;
-			vObjPos.y = b;
-			vObjPos.z = c;
+			
+			_float4 vPos = { a,b,c,1.f };
+
+			obj.position = XMLoadFloat4(&vPos);
 		}
 		else if (key == L"Scale") {
 			wistringstream vals(value);

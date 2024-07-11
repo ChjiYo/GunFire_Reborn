@@ -24,10 +24,22 @@ HRESULT CElement::Initialize(void* pArg)
 {
 	if (FAILED(__super::Initialize(pArg)))
 		return E_FAIL;
-
-	if (nullptr != pArg)
+	
+	if (pArg != nullptr)
 	{
-		m_pTransformCom->Set_State(CTransform::STATE_POSITION, { m_vPosition.x , m_vPosition.y , m_vPosition.z ,1.f });
+		// pArg가 FILEDATA 타입인지 확인
+		FILEDATA* pFileData = reinterpret_cast<FILEDATA*>(pArg);
+		if (pFileData != nullptr && !pFileData->isParsing) // isParsing 값을 확인
+		{
+			// 전달된 위치와 스케일 적용
+			CComponent* component = Get_Component(TEXT("Com_Transform"));
+			CTransform* transform = static_cast<CTransform*>(component);
+
+			transform->Set_State(CTransform::STATE_POSITION, pFileData->position);
+			transform->Set_Scaled(pFileData->scale.x , pFileData->scale.y , pFileData->scale.z);
+
+			return S_OK;
+		}
 	}
 
 	return S_OK;

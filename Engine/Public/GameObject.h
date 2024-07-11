@@ -41,6 +41,7 @@ public:
 
 public:
 	HRESULT Add_Component(_uint iPrototypeLevelIndex, const _wstring& strPrototypeTag, const _wstring& strComponentTag, class CComponent** ppOut, void* pArg = nullptr);
+	void	Set_Dead() { m_bDead = true; }
 	_bool	Get_Dead() { return m_bDead; }
 
 protected:	

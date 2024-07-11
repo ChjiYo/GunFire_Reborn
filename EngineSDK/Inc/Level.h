@@ -22,6 +22,7 @@ public:
 
 public:
 	HRESULT Clear_Resources();
+	HRESULT ParseInitialize();
 
 protected:
 	ID3D11Device*				m_pDevice = { nullptr };

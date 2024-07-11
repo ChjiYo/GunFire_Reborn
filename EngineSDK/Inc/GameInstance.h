@@ -81,6 +81,7 @@ public: /* For.Picking */
 
 public: /* For.FileManager */
 	HRESULT SaveObjects(const wstring& filename, void* pArg);
+	void* LoadObjects(const wstring& filename);
 
 public: /* For.Key_State */
 	_bool 		Key_Pressing(_uint _iKey);

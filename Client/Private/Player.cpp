@@ -176,14 +176,14 @@ void CPlayer::Position()
 
     _vector vPlayerPosition = m_pCamTransform->Get_State(CTransform::STATE_POSITION);
 
-    _vector vWeaponRight = vRight * 1.0f;
-    _vector vWeaponUp = vUp * -1.0f;
+    _vector vWeaponRight = vRight * 0.8f;
+    _vector vWeaponUp = vUp * -0.7f;
     _vector vWeaponLook = vLook * 1.f;
     _vector vWeaponPosition = vPlayerPosition + vWeaponRight + vWeaponUp + vWeaponLook;
 
     m_pTransformCom->Set_State(CTransform::STATE_POSITION, vWeaponPosition);
 
-    m_pTransformCom->LookAt(vPlayerPosition + vLook * 5.f);
+    m_pTransformCom->LookAt(vPlayerPosition + vLook * 15.f);
     m_pTransformCom->Radian_Turn(m_pTransformCom->Get_State(CTransform::STATE_UP), XMConvertToRadians(335.f));
 }
 

@@ -29,7 +29,14 @@ HRESULT CWall_Stage1::Initialize(void* pArg)
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
-	m_pTransformCom->Set_Scaled(0.01f, 0.01f, 0.01f);
+	if (m_bIsPasingObject)
+	{
+		FILEDATA* fileData = static_cast<FILEDATA*>(pArg);
+		m_pTransformCom->Set_Scaled(fileData->scale.x, fileData->scale.y, fileData->scale.z);
+		m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetW(fileData->position , 1.f));
+	}
+
+ 	m_pTransformCom->Set_Scaled(0.01f, 0.01f, 0.01f);
 
 	return S_OK;
 }

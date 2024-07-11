@@ -565,7 +565,9 @@ HRESULT CTool_Object::Click_Button_Release(std::vector<CGameObject*>& selectedGa
 	for (auto it = selectedGameObjects.begin(); it != selectedGameObjects.end(); /* 빈 상태 */) {
 		CGameObject* gameObject = *it;
 		// 삭제 로직 호출
-		Safe_Release(gameObject); // 오브젝트 릴리즈
+		gameObject->Set_Dead();
+		
+		//Safe_Release(gameObject); // 오브젝트 릴리즈
 		it = selectedGameObjects.erase(it); // 리스트에서 오브젝트 제거
 	}
 	return S_OK;

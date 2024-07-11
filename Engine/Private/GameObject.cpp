@@ -32,8 +32,6 @@ HRESULT CGameObject::Initialize_Prototype()
 
 HRESULT CGameObject::Initialize(void * pArg)
 {
-	
-
 	m_pTransformCom = CTransform::Create(m_pDevice, m_pContext);
 	if (nullptr == m_pTransformCom)
 		return E_FAIL;
@@ -44,10 +42,10 @@ HRESULT CGameObject::Initialize(void * pArg)
 		m_iGameObjectData = pDesc->iGameObjectData;
 		m_pTransformCom->SetUp_TransformDesc(static_cast<CTransform::TRANSFORM_DESC*>(pArg));
 
-		FILEDATA* pDate = static_cast<FILEDATA*>(pArg);
-		XMStoreFloat3(&m_vPosition, pDate->position);
+		FILEDATA* fileData = static_cast<FILEDATA*>(pArg);
+		m_bIsPasingObject = fileData->isParsing;
 	}
-		
+
 	if (nullptr != Get_Component(m_strTransformTag))
 		return E_FAIL;
 	
