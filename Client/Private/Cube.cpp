@@ -29,6 +29,8 @@ HRESULT CCube::Initialize(void* pArg)
 	if(FAILED(Ready_Components()))
 		return E_FAIL;
 
+	//_float3 vPos = XMStoreFloat3(m_pTransformCom->Get_State(CTransform::STATE_POSITION));
+
 	return S_OK;
 }
 

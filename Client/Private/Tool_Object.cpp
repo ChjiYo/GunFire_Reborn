@@ -619,7 +619,7 @@ HRESULT CTool_Object::PickingSelectedObject(const wstring& layerName, CGameObjec
 	copy_DESC.prototypeTag = prototypeTag;
 	copy_DESC.layerName = layerName;
 	copy_DESC.scale = sourceTransform->Get_Scaled();
-	copy_DESC.position = { vPos.x , vPos.y + sourceTransform->Get_Scaled().y / 2.f, vPos.z};
+	copy_DESC.position = { vPos.x , vPos.y + sourceTransform->Get_Scaled().y / 2.f, vPos.z , 1.f};
 	copy_DESC.isParsing = false;
 
 	// Create a new game object using the prototype

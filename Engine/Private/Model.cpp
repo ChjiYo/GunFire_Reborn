@@ -244,13 +244,8 @@ HRESULT CModel::Ready_Animations()
 		if (nullptr == pAnimation)
 			return E_FAIL;
 
-		
-		
-
 		m_Animations.emplace_back(pAnimation);
 	}
-
-
 
 	return S_OK;
 }
