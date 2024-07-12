@@ -62,9 +62,6 @@ HRESULT CFloor_102::Render()
 		//if (FAILED(m_pModelCom->Bind_Material(m_pShaderCom, "g_NormalTexture", i, aiTextureType_NORMALS)))
 		//	return E_FAIL;
 
-		if (FAILED(m_pModelCom->Bind_BoneMatrices(m_pShaderCom, "g_BoneMatrices", (_uint)i)))
-			return E_FAIL;
-
 		m_pShaderCom->Begin(0);
 
 		m_pModelCom->Render(i);
