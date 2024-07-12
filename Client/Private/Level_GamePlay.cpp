@@ -18,10 +18,13 @@ HRESULT CLevel_GamePlay::Initialize()
 
 	if (FAILED(Ready_Lights()))
 		return E_FAIL;
+
 	if (FAILED(Ready_Layer_BackGround(TEXT("Layer_BackGround"))))
 		return E_FAIL;
+
 	if (FAILED(Ready_Layer_Camera(TEXT("Layer_Camera"))))
 		return E_FAIL;
+
 	if (FAILED(Ready_Layer_Effect(TEXT("Layer_Effect"))))
 		return E_FAIL;
 
@@ -33,10 +36,10 @@ HRESULT CLevel_GamePlay::Initialize()
 
 	if (FAILED(Ready_LandObjects()))
 		return E_FAIL;
-
+	
 	if (FAILED(Ready_PlayerBar()))
 		return E_FAIL;
-
+	
 	if (FAILED(Ready_CrossHair()))
 		return E_FAIL;
 	
@@ -161,7 +164,6 @@ HRESULT CLevel_GamePlay::Ready_Layer_Player(const wstring& strLayerTag)
 	Desc.fRotationPerSec = XMConvertToRadians(90.0f);
 
 	Desc.pTargetTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Camera"), TEXT("Com_Transform")));
-
 
  	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Player"), strLayerTag, &Desc)))
 		return E_FAIL;
