@@ -41,7 +41,6 @@ HRESULT CMainApp::Initialize()
 
 	m_pTool_Manager = CTool_Manager::Create(m_pDevice, m_pContext);
 
-
 	return S_OK;
 }
 
