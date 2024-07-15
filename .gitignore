@@ -24,3 +24,4 @@ Client/Bin/assimp-vc140-mtd.dll
 *.log
 *.idb
 .vs/Framework/v17/.suo
+Engine/Bin/Engine.dll
