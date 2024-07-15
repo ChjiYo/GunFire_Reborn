@@ -21,7 +21,7 @@ public:
 	virtual HRESULT Initialize(void* pArg) override;
 
 	virtual void Update(_fmatrix TerrainWorldMatrix);
-	virtual HRESULT Render() override;
+	virtual HRESULT Render();
 
 public:
 	_bool is_Move(_fvector vPosition);

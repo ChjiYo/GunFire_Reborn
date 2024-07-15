@@ -25,7 +25,7 @@ HRESULT CTransform::Bind_ShaderResource(CShader * pShader, const _char * pConsta
 	return pShader->Bind_Matrix(pConstantName, &m_WorldMatrix);	
 }
 
-void CTransform::Go_Straight(_float fTimeDelta)
+void CTransform::Go_Straight(_float fTimeDelta, CNavigation* pNavigation)
 {
 	_vector		vPosition = Get_State(STATE_POSITION);
 	_vector		vLook = Get_State(STATE_LOOK);	

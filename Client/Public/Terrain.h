@@ -7,6 +7,7 @@ BEGIN(Engine)
 class CShader;
 class CTexture;
 class CVIBuffer_Terrain;
+class CNavigation;
 END
 
 BEGIN(Client)
@@ -33,6 +34,7 @@ private:
 	CShader*					m_pShaderCom = { nullptr };
 	CTexture*					m_pTextureCom = { nullptr };
 	CVIBuffer_Terrain*			m_pVIBufferCom = { nullptr };
+	CNavigation*				m_pNavigationCom =	{ nullptr };
 
 	_float3						m_vPicking = {};
 

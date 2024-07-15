@@ -6,3 +6,4 @@ xcopy /y/s .\Engine\Public\*.*		.\EngineSDK\Inc\
 
 xcopy /y .\Engine\Bin\Engine.lib	.\EngineSDK\lib\
 xcopy /y .\Engine\Bin\Engine.dll	.\Client\bin\
+xcopy /y .\Engine\Bin\ShaderFiles\*.hlsl .\Client\bin\ShaderFiles\

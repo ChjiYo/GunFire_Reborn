@@ -93,6 +93,12 @@ HRESULT CLoader::Loading_For_LogoLevel()
 		return E_FAIL;
 	
 
+	/* 네비게이션을 로드한다. */
+	lstrcpy(m_szLoadingText, TEXT("네비게이션을 로딩 중 입니다."));
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Navigation"),
+		CNavigation::Create(m_pDevice, m_pContext, TEXT("../Bin/DataFiles/Navigation.dat")))))
+		return E_FAIL;
+
 	/* 모델을 로드한다. */
 	lstrcpy(m_szLoadingText, TEXT("모델을 로딩 중 입니다."));
 
