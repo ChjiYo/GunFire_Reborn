@@ -142,6 +142,9 @@
     <Filter Include="01.Utility\03.Components\VIBuffer\Cell">
       <UniqueIdentifier>{0b7a72c1-1ed6-45aa-b0aa-17514d65edf6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Utility\03.Components\BinModel">
+      <UniqueIdentifier>{7f6bfe84-04ad-4535-b946-3178302b4bd0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\private\GameInstance.cpp">
@@ -272,6 +275,9 @@
     </ClCompile>
     <ClCompile Include="..\Private\VIBuffer_Cell.cpp">
       <Filter>01.Utility\03.Components\VIBuffer\Cell</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\BinModel.cpp">
+      <Filter>01.Utility\03.Components\BinModel</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -415,6 +421,9 @@
     </ClInclude>
     <ClInclude Include="..\Public\VIBuffer_Cell.h">
       <Filter>01.Utility\03.Components\VIBuffer\Cell</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\BinModel.h">
+      <Filter>01.Utility\03.Components\BinModel</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
