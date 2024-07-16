@@ -56,7 +56,7 @@ const _float4x4* CBinModel::Get_BoneMatrixPtr(const _char* pBoneName) const
 	return (*iter)->Get_CombinedTransformationMatrix();
 }
 
-HRESULT CBinModel::Initialize_Prototype(enum TYPE eModelType, const _char* pModelFilePath, _fmatrix PreTransformMatrix)
+HRESULT CBinModel::Initialize_Prototype(enum TYPE eModelType, const _wstring& pModelFilePath, _fmatrix PreTransformMatrix)
 {
 	/* aiProcess_PreTransformVertices : 각 메시가 배치되어야할 위치로 사전에 변환을 시켜 로드한다. */
 	/* 피오나 : 칼, 피오나, 피오나배낭, 그림자. 메시들이 각각 배치되기위한 기초상태를 정의한 뼈라는 개념이 존재한다.  */
@@ -66,26 +66,35 @@ HRESULT CBinModel::Initialize_Prototype(enum TYPE eModelType, const _char* pMode
 		iFlag |= aiProcess_PreTransformVertices;
 
 	/* 지정해준 경로에 해당하는 파일의 정보를 읽어서 aiScene안에 저장해주는 역활. */
-	m_pAIScene = m_Importer.ReadFile(pModelFilePath, iFlag);
+	/*m_pAIScene = m_Importer.ReadFile(pModelFilePath, iFlag);
 
 	if (nullptr == m_pAIScene)
+		return E_FAIL;*/
+
+	_ulong			dwByte = { 0 };
+
+	HANDLE			hFile = CreateFile(pModelFilePath.c_str(), GENERIC_READ, 0, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
+	if (0 == hFile)
 		return E_FAIL;
+
+
+	//ReadFile(hFile, vPoints, sizeof(_float3) * 3, &dwByte, nullptr);
 
 	XMStoreFloat4x4(&m_PreTransformMatrix, PreTransformMatrix);
 
 	m_eModelType = eModelType;
 
-	if (FAILED(Ready_Bones(m_pAIScene->mRootNode)))
+	if (FAILED(Ready_Materials(hFile)))
 		return E_FAIL;
 
-	if (FAILED(Ready_Meshes(PreTransformMatrix)))
+	if (FAILED(Ready_Meshes(hFile, PreTransformMatrix)))
 		return E_FAIL;
 
-	if (FAILED(Ready_Materials(pModelFilePath)))
-		return E_FAIL;
-
-	if (FAILED(Ready_Animations()))
-		return E_FAIL;
+	//if (FAILED(Ready_Bones(m_pAIScene->mRootNode)))
+	//	return E_FAIL;
+	//
+	//if (FAILED(Ready_Animations()))
+	//	return E_FAIL;
 
 	return S_OK;
 }
@@ -149,11 +158,14 @@ HRESULT CBinModel::Bind_BoneMatrices(CShader* pShader, const _char* pConstantNam
 	return S_OK;
 }
 
-HRESULT CBinModel::Ready_Meshes(_fmatrix PreTransformMatrix)
+HRESULT CBinModel::Ready_Meshes(HANDLE hFile,_fmatrix PreTransformMatrix)
 {
-	m_iNumMeshes = m_pAIScene->mNumMeshes;
+	_ulong			dwByte = { 0 };
 
-	for (size_t i = 0; i < m_iNumMeshes; i++)
+	_uint NumMesh = 0;
+	ReadFile(hFile, &NumMesh, sizeof(_uint), &dwByte, nullptr);
+
+	for (size_t i = 0; i < NumMesh; i++)
 	{
 		CModel::TYPE eType = static_cast<CModel::TYPE>(m_eModelType);
 		
@@ -168,21 +180,31 @@ HRESULT CBinModel::Ready_Meshes(_fmatrix PreTransformMatrix)
 	return S_OK;
 }
 
-HRESULT CBinModel::Ready_Materials(const _char* pModelFilePath)
+HRESULT CBinModel::Ready_Materials(HANDLE hFile)
 {
-	m_iNumMaterials = m_pAIScene->mNumMaterials;
+	_ulong			dwByte = { 0 };
+
+	_uint iNumMatl = 0;
+	ReadFile(hFile, &iNumMatl, sizeof(_uint), &dwByte, nullptr);
+
+	_uint iModelPathLength = 0;
+	char   szModelPath[MAX_PATH];
+
+	ReadFile(hFile, &iModelPathLength, sizeof(_uint), &dwByte, nullptr);
+	ReadFile(hFile, szModelPath, iModelPathLength, &dwByte, nullptr);
 
 	_char			szDrive[MAX_PATH] = {};
 	_char			szDir[MAX_PATH] = {};
 
-	_splitpath_s(pModelFilePath, szDrive, MAX_PATH, szDir, MAX_PATH, nullptr, 0, nullptr, 0);
+	_splitpath_s(szModelPath, szDrive, MAX_PATH, szDir, MAX_PATH, nullptr, 0, nullptr, 0);
 
-	for (size_t i = 0; i < m_iNumMaterials; i++)
+
+	for (size_t i = 0; i < iNumMatl; i++)
 	{
 		aiMaterial* pAIMaterial = m_pAIScene->mMaterials[i];
 		MESHMATERIAL	MeshMaterial{};
 
-		for (size_t j = 1; j < AI_TEXTURE_TYPE_MAX; j++)
+		for (size_t j = 1; j < 18; j++)
 		{
 			aiString	strAIPath;
 
@@ -192,7 +214,14 @@ HRESULT CBinModel::Ready_Materials(const _char* pModelFilePath)
 			_char			szFileName[MAX_PATH] = {};
 			_char			szExt[MAX_PATH] = {};
 
-			_splitpath_s(strAIPath.data, nullptr, 0, nullptr, 0, szFileName, MAX_PATH, szExt, MAX_PATH);
+			
+			_uint iAIPathLength = 0;
+			char szAIData[MAX_PATH] = {};
+
+			ReadFile(hFile, &iAIPathLength, sizeof(iAIPathLength), &dwByte, nullptr);
+			ReadFile(hFile, szAIData, iAIPathLength, &dwByte, nullptr);
+
+			_splitpath_s(szAIData, nullptr, 0, nullptr, 0, szFileName, MAX_PATH, szExt, MAX_PATH);
 
 			_char			szFullPath[MAX_PATH] = {};
 
@@ -252,7 +281,7 @@ HRESULT CBinModel::Ready_Animations()
 	return S_OK;
 }
 
-CBinModel* CBinModel::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, enum TYPE eModelType, const _char* pModelFilePath, _fmatrix PreTransformMatrix)
+CBinModel* CBinModel::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, enum TYPE eModelType, const _wstring& pModelFilePath, _fmatrix PreTransformMatrix)
 {
 	CBinModel* pInstance = new CBinModel(pDevice, pContext);
 

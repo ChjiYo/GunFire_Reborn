@@ -209,7 +209,7 @@ HRESULT CModel::Ready_Materials(const _char* pModelFilePath)
 			_char			szExt[MAX_PATH] = {};
 
 			//char strAIPath.data ¿˙¿Â 
-			strcpy_s(AiPathData, sizeof(strAIPath.data), strAIPath.data);
+			strcpy_s(AiPathData, strAIPath.data);
 			_splitpath_s(strAIPath.data, nullptr, 0, nullptr, 0, szFileName, MAX_PATH, szExt, MAX_PATH);
 
 			_char			szFullPath[MAX_PATH] = {};
@@ -279,10 +279,6 @@ HRESULT CModel::Write_Materials(HANDLE hWnd , const _char* pModelFilePath)
 
 	for (int i = 0; i < m_iNumMaterials; ++i)
 	{
-		_uint iNumMatl = m_iNumMaterials;
-		WriteFile(hWnd, &iNumMatl, sizeof(iNumMatl), &dwByte, nullptr);
-
-
 		string strModelPath = pModelFilePath;
 		_uint iModelPathLength = strModelPath.length();
 

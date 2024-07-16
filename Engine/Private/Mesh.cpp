@@ -92,6 +92,79 @@ HRESULT CMesh::Initialize_Prototype(CModel::TYPE eModelType, const aiMesh * pAIM
 	return S_OK;
 }
 
+HRESULT CMesh::Initialize_Prototype(CModel::TYPE eModelType, MESH_DESC tDesc, const vector<class CBone*>& Bones, _fmatrix PreTransformMatrix)
+{
+	strcpy_s(m_szName, tDesc.szName);
+
+	m_iMaterialIndex = tDesc.iMaterialIndex;
+	m_iNumVertexBuffers = 1;
+	m_iNumVertices = tDesc.iNumVertices;
+	m_iVertexStride = eModelType == CModel::TYPE_NONANIM ? sizeof(VTXMESH) : sizeof(VTXANIMMESH);
+
+	m_iNumIndices = tDesc.mNumFaces * 3;
+	m_iIndexStride = 4;
+	m_eIndexFormat = DXGI_FORMAT_R32_UINT;
+	m_ePrimitive_Topology = D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
+
+#pragma region VERTEX_BUFFER
+	m_BufferDesc.ByteWidth = m_iNumVertices * m_iVertexStride;
+	m_BufferDesc.Usage = D3D11_USAGE_DEFAULT; /* 정적할당한다. 추후 우리가 직접 정점버퍼의 공간을 변경할 일이 없다. */
+	m_BufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+	m_BufferDesc.CPUAccessFlags = 0;
+	m_BufferDesc.MiscFlags = 0;
+	m_BufferDesc.StructureByteStride = m_iVertexStride;
+
+	/* 장치가 할당해주는 공간에 채워넣어야할 값들을 내가 미리 준비한다. */
+
+	void* pVertices =
+		eModelType == CModel::TYPE_NONANIM ? Create_BinNonAnimVertices(tDesc, PreTransformMatrix) : Create_BinAnimVertices(tDesc, Bones);
+	if (nullptr == pVertices)
+		return E_FAIL;
+
+	ZeroMemory(&m_InitialData, sizeof m_InitialData);
+	m_InitialData.pSysMem = pVertices;
+
+	if (FAILED(__super::Create_Buffer(&m_pVB)))
+		return E_FAIL;
+
+	Safe_Delete_Array(pVertices);
+
+#pragma endregion
+
+#pragma region INDEX_BUFFER
+	m_BufferDesc.ByteWidth = m_iNumIndices * m_iIndexStride;
+	m_BufferDesc.Usage = D3D11_USAGE_DEFAULT; /* 정적할당한다. 추후 우리가 직접 정점버퍼의 공간을 변경할 일이 없다. */
+	m_BufferDesc.BindFlags = D3D11_BIND_INDEX_BUFFER;
+	m_BufferDesc.CPUAccessFlags = 0;
+	m_BufferDesc.MiscFlags = 0;
+	m_BufferDesc.StructureByteStride = /*m_iIndexStride*/0;
+
+	_uint* pIndices = new _uint[m_iNumIndices];
+	ZeroMemory(pIndices, sizeof(_uint) * m_iNumIndices);
+
+	_uint	iNumIndices = { 0 };
+
+	/* 삼각형 갯수만큼 루프돈다. */
+	for (size_t i = 0; i < tDesc.mNumFaces; i++)
+	{
+		pIndices[iNumIndices++] = tDesc.vIndices[iNumIndices];
+		pIndices[iNumIndices++] = tDesc.vIndices[iNumIndices];
+		pIndices[iNumIndices++] = tDesc.vIndices[iNumIndices];
+	}
+
+	ZeroMemory(&m_InitialData, sizeof m_InitialData);
+	m_InitialData.pSysMem = pIndices;
+
+	if (FAILED(__super::Create_Buffer(&m_pIB)))
+		return E_FAIL;
+
+	Safe_Delete_Array(pIndices);
+
+#pragma endregion
+
+	return S_OK;
+}
+
 void CMesh::SetUp_Matrices(_float4x4 * pMatrices, const vector<class CBone*>& Bones)
 {
 	for (size_t i = 0; i < m_iNumBones; i++)
@@ -117,10 +190,10 @@ void * CMesh::Create_NonAnimVertices(const aiMesh* pAIMesh, _fmatrix PreTransfor
 		memcpy(&pVertices[i].vTexcoord, &pAIMesh->mTextureCoords[0][i], sizeof(_float2));
 		memcpy(&pVertices[i].vTangent, &pAIMesh->mTangents[i], sizeof(_float3));
 
-		m_tMeshDesc.vPosition.at(i) = pVertices[i].vPosition;
-		m_tMeshDesc.vNormal.at(i) = pVertices[i].vNormal;
-		m_tMeshDesc.vTexcoord.at(i) = pVertices[i].vTexcoord;
-		m_tMeshDesc.vTangent.at(i) = pVertices[i].vTangent;
+		m_tMeshDesc.vPosition.push_back(pVertices[i].vPosition);
+		m_tMeshDesc.vNormal.push_back(pVertices[i].vNormal);
+		m_tMeshDesc.vTexcoord.push_back(pVertices[i].vTexcoord);
+		m_tMeshDesc.vTangent.push_back(pVertices[i].vTangent);
 
 	}
 	return pVertices;
@@ -226,11 +299,44 @@ void * CMesh::Create_AnimVertices(const aiMesh* pAIMesh, const vector<CBone*>& B
 	return pVertices;	
 }
 
+void* CMesh::Create_BinNonAnimVertices(MESH_DESC tDesc,_fmatrix PreTransformMatrix)
+{
+	VTXMESH* pVertices = new VTXMESH[m_iNumVertices];
+	ZeroMemory(pVertices, sizeof(VTXMESH) * m_iNumVertices);
+
+	for (size_t i = 0; i < m_iNumVertices; i++)
+	{
+		pVertices[i].vPosition = tDesc.vPosition.at(i);
+		pVertices[i].vNormal = tDesc.vNormal.at(i);
+		pVertices[i].vTexcoord = tDesc.vTexcoord.at(i);
+		pVertices[i].vTangent = tDesc.vTangent.at(i);
+	}
+	return pVertices;
+}
+
+void* CMesh::Create_BinAnimVertices(MESH_DESC tDesc,const vector<CBone*>& Bones)
+{
+	return nullptr;
+}
+
 CMesh * CMesh::Create(ID3D11Device * pDevice, ID3D11DeviceContext * pContext, CModel::TYPE eModelType, const aiMesh * pAIMesh, const vector<class CBone*>& Bones, _fmatrix PreTransformMatrix)
 {
 	CMesh*		pInstance = new CMesh(pDevice, pContext);
 
 	if (FAILED(pInstance->Initialize_Prototype(eModelType, pAIMesh, Bones, PreTransformMatrix)))
+	{
+		MSG_BOX(TEXT("Failed to Created : CMesh"));
+		Safe_Release(pInstance);
+	}
+
+	return pInstance;
+}
+
+CMesh* CMesh::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, CModel::TYPE eModelType, MESH_DESC tDesc, const vector<class CBone*>& Bones, _fmatrix PreTransformMatrix)
+{
+	CMesh* pInstance = new CMesh(pDevice, pContext);
+
+	if (FAILED(pInstance->Initialize_Prototype(eModelType, tDesc, Bones, PreTransformMatrix)))
 	{
 		MSG_BOX(TEXT("Failed to Created : CMesh"));
 		Safe_Release(pInstance);

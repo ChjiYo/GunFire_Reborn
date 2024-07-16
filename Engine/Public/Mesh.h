@@ -37,6 +37,7 @@ public:
 
 public:
 	virtual HRESULT Initialize_Prototype(CModel::TYPE eModelType, const aiMesh* pAIMesh, const vector<class CBone*>& Bones, _fmatrix PreTransformMatrix);
+	virtual HRESULT Initialize_Prototype(CModel::TYPE eModelType, MESH_DESC tDesc, const vector<class CBone*>& Bones, _fmatrix PreTransformMatrix);
 
 public:
 	void SetUp_Matrices(_float4x4* pMatrices, const vector<class CBone*>& Bones);
@@ -55,8 +56,13 @@ private:
 	void* Create_NonAnimVertices(const aiMesh* pAIMesh, _fmatrix PreTransformMatrix);
 	void* Create_AnimVertices(const aiMesh* pAIMesh, const vector<CBone*>& Bones);
 
+private:
+	void* Create_BinNonAnimVertices(MESH_DESC tDesc, _fmatrix PreTransformMatrix);
+	void* Create_BinAnimVertices(MESH_DESC tDesc,const vector<CBone*>& Bones);
+
 public:
 	static CMesh* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, CModel::TYPE eModelType, const aiMesh* pAIMesh, const vector<class CBone*>& Bones, _fmatrix PreTransformMatrix);
+	static CMesh* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, CModel::TYPE eModelType, MESH_DESC tDesc, const vector<class CBone*>& Bones, _fmatrix PreTransformMatrix);
 	virtual CComponent* Clone(void* pArg) { return nullptr; }
 	virtual void Free() override;
 };

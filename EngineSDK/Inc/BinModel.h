@@ -22,7 +22,7 @@ public:
 	const _float4x4* Get_BoneMatrixPtr(const _char* pBoneName) const;
 
 public:
-	virtual HRESULT Initialize_Prototype(enum TYPE eModelType, const _char* strModelFilePath, _fmatrix PreTransformMatrix);
+	virtual HRESULT Initialize_Prototype(enum TYPE eModelType, const _wstring& strModelFilePath, _fmatrix PreTransformMatrix);
 	virtual HRESULT Initialize(void* pArg) override;
 	virtual HRESULT Render(_uint iMeshIndex);
 
@@ -67,8 +67,8 @@ private: /* For.Animation */
 public:
 	/* 모델 하나가 여러개의 메시(Vertex, Index)로 구분되어있기 때문에. */
 	/* 대부분의 모델들은 교체가 필요한 메시들 기준으로 나눠둔다. */
-	HRESULT Ready_Meshes(_fmatrix PreTransformMatrix);
-	HRESULT Ready_Materials(const _char* pModelFilePath);
+	HRESULT Ready_Meshes(HANDLE hFile,_fmatrix PreTransformMatrix);
+	HRESULT Ready_Materials(HANDLE hFile);
 
 	/* 모델의 뼈들을 로드한다. */
 	/* 뼈 : 정점들이 뼈에 붙어서 렌더링 되야하기때문 */
@@ -79,7 +79,7 @@ public:
 	HRESULT Ready_Animations();
 
 public:
-	static CBinModel* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, enum TYPE eModelType, const _char* pModelFilePath, _fmatrix PreTransformMatrix);
+	static CBinModel* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, enum TYPE eModelType, const _wstring& pModelFilePath, _fmatrix PreTransformMatrix);
 	virtual CComponent* Clone(void* pArg) override;
 	virtual void Free() override;
 };
