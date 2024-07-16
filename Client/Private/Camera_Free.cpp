@@ -83,22 +83,22 @@ void CCamera_Free::GamePlay_Camera(_float fTimeDelta)
 {
 	if (m_pGameInstance->Get_DIKeyState(DIK_A) & 0x80)
 	{
-		m_pTransformCom->Player_Go_Left(fTimeDelta, m_pNavigationCom);
+		m_pTransformCom->Go_Left(fTimeDelta, m_pNavigationCom);
 	}
 
 	if (m_pGameInstance->Get_DIKeyState(DIK_D) & 0x80)
 	{
-		m_pTransformCom->Player_Go_Right(fTimeDelta, m_pNavigationCom);
+		m_pTransformCom->Go_Right(fTimeDelta, m_pNavigationCom);
 	}
 
 	if (m_pGameInstance->Get_DIKeyState(DIK_W) & 0x80)
 	{
-		m_pTransformCom->Player_Go_Straight(fTimeDelta, m_pNavigationCom);
+		m_pTransformCom->Go_StraightY(fTimeDelta, m_pNavigationCom);
 	}
 
 	if (m_pGameInstance->Get_DIKeyState(DIK_S) & 0x80)
 	{
-		m_pTransformCom->Player_Go_Backward(fTimeDelta, m_pNavigationCom);
+		m_pTransformCom->Go_BackwardY(fTimeDelta, m_pNavigationCom);
 	}
 
 	_long		MouseMove = {};
