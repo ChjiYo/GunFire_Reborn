@@ -95,8 +95,6 @@ HRESULT CNavigation::Render()
 
 	if (-1 == m_iCurrentCellIndex)
 	{
-
-
 		m_pShader->Begin(0);
 
 		for (auto& pCell : m_Cells)
