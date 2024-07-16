@@ -30,6 +30,11 @@ HRESULT CCamera_Free::Initialize(void * pArg)
 	if (FAILED(__super::Initialize(pArg)))
 		return E_FAIL;
 
+	if (FAILED(Read_Component()))
+		return E_FAIL;
+
+	m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 7.f , 1.3f , 3.f, 1.f });
+
 	return S_OK;
 }
 
@@ -54,6 +59,23 @@ void CCamera_Free::Late_Update(_float fTimeDelta)
 
 HRESULT CCamera_Free::Render()
 {
+#ifdef _DEBUG
+	m_pNavigationCom->Render();
+#endif
+
+	return S_OK;
+}
+
+HRESULT CCamera_Free::Read_Component()
+{
+	CNavigation::NAVIGATION_DESC		NavigationDesc{};
+	NavigationDesc.iCurrentCellIndex = 0;
+
+	/* Com_Navigation */
+	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Navigation"),
+		TEXT("Com_Navigation"), reinterpret_cast<CComponent**>(&m_pNavigationCom), &NavigationDesc)))
+		return E_FAIL;
+
 	return S_OK;
 }
 
@@ -61,22 +83,22 @@ void CCamera_Free::GamePlay_Camera(_float fTimeDelta)
 {
 	if (m_pGameInstance->Get_DIKeyState(DIK_A) & 0x80)
 	{
-		m_pTransformCom->Go_Left(fTimeDelta);
+		m_pTransformCom->Player_Go_Left(fTimeDelta, m_pNavigationCom);
 	}
 
 	if (m_pGameInstance->Get_DIKeyState(DIK_D) & 0x80)
 	{
-		m_pTransformCom->Go_Right(fTimeDelta);
+		m_pTransformCom->Player_Go_Right(fTimeDelta, m_pNavigationCom);
 	}
 
 	if (m_pGameInstance->Get_DIKeyState(DIK_W) & 0x80)
 	{
-		m_pTransformCom->Go_StraightY(fTimeDelta);
+		m_pTransformCom->Player_Go_Straight(fTimeDelta, m_pNavigationCom);
 	}
 
 	if (m_pGameInstance->Get_DIKeyState(DIK_S) & 0x80)
 	{
-		m_pTransformCom->Go_BackwardY(fTimeDelta);
+		m_pTransformCom->Player_Go_Backward(fTimeDelta, m_pNavigationCom);
 	}
 
 	_long		MouseMove = {};
@@ -160,6 +182,8 @@ CGameObject * CCamera_Free::Clone(void * pArg)
 
 void CCamera_Free::Free()
 {
+	Safe_Release(m_pNavigationCom);
+	
 	__super::Free();
 
 }

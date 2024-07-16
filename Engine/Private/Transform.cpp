@@ -1,5 +1,6 @@
 #include "..\Public\Transform.h"
 #include "Shader.h"
+#include "Navigation.h"
 
 CTransform::CTransform(ID3D11Device * pDevice, ID3D11DeviceContext * pContext)
 	: CComponent { pDevice, pContext }
@@ -25,10 +26,10 @@ HRESULT CTransform::Bind_ShaderResource(CShader * pShader, const _char * pConsta
 	return pShader->Bind_Matrix(pConstantName, &m_WorldMatrix);	
 }
 
-void CTransform::Go_Straight(_float fTimeDelta, CNavigation* pNavigation)
+void CTransform::Go_Straight(_float fTimeDelta)
 {
 	_vector		vPosition = Get_State(STATE_POSITION);
-	_vector		vLook = Get_State(STATE_LOOK);	
+	_vector		vLook = Get_State(STATE_LOOK);
 
 	vPosition += XMVector3Normalize(vLook) * m_fSpeedPerSec * fTimeDelta;
 
@@ -65,7 +66,7 @@ void CTransform::Go_Right(_float fTimeDelta)
 	Set_State(STATE_POSITION, vPosition);
 }
 
-void CTransform::Go_StraightY(_float fTimeDelta)
+void CTransform::Player_Go_Straight(_float fTimeDelta, CNavigation* pNavigation)
 {
 	_vector	vPosition = Get_State(STATE_POSITION);
 	_vector	vLook = Get_State(STATE_LOOK);
@@ -75,10 +76,14 @@ void CTransform::Go_StraightY(_float fTimeDelta)
 
 	vPosition += XMVector3Normalize(XMLoadFloat3(&vLookDir)) * m_fSpeedPerSec * fTimeDelta;
 
-	Set_State(STATE_POSITION, vPosition);
+	if (nullptr == pNavigation || true == pNavigation->is_Move(vPosition))
+	{
+		Set_State(STATE_POSITION, vPosition);
+		return;
+	}
 }
 
-void CTransform::Go_BackwardY(_float fTimeDelta)
+void CTransform::Player_Go_Backward(_float fTimeDelta, CNavigation* pNavigation)
 {
 	_vector	vPosition = Get_State(STATE_POSITION);
 	_vector	vLook = Get_State(STATE_LOOK);
@@ -88,7 +93,39 @@ void CTransform::Go_BackwardY(_float fTimeDelta)
 
 	vPosition -= XMVector3Normalize(XMLoadFloat3(&vLookDir)) * m_fSpeedPerSec * fTimeDelta;
 
-	Set_State(STATE_POSITION, vPosition);
+	if (nullptr == pNavigation || true == pNavigation->is_Move(vPosition))
+	{
+		Set_State(STATE_POSITION, vPosition);
+		return;
+	}
+}
+
+void CTransform::Player_Go_Left(_float fTimeDelta, CNavigation* pNavigation)
+{
+	_vector		vPosition = Get_State(STATE_POSITION);
+	_vector		vRight = Get_State(STATE_RIGHT);
+
+	vPosition -= XMVector3Normalize(vRight) * m_fSpeedPerSec * fTimeDelta;
+
+	if (nullptr == pNavigation || true == pNavigation->is_Move(vPosition))
+	{
+		Set_State(STATE_POSITION, vPosition);
+		return;
+	}
+}
+
+void CTransform::Player_Go_Right(_float fTimeDelta, CNavigation* pNavigation)
+{
+	_vector		vPosition = Get_State(STATE_POSITION);
+	_vector		vRight = Get_State(STATE_RIGHT);
+
+	vPosition += XMVector3Normalize(vRight) * m_fSpeedPerSec * fTimeDelta;
+
+	if (nullptr == pNavigation || true == pNavigation->is_Move(vPosition))
+	{
+		Set_State(STATE_POSITION, vPosition);
+		return;
+	}
 }
 
 void CTransform::Turn(_fvector vAxis, _float fTimeDelta)

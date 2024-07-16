@@ -63,13 +63,16 @@ public:
 
 public:
 	/* Transform_Position */
-	void Go_Straight(_float fTimeDelta, class CNavigation* pNavigation = nullptr);
+	void Go_Straight(_float fTimeDelta);
 	void Go_Backward(_float fTimeDelta);
 	void Go_Left(_float fTimeDelta);
 	void Go_Right(_float fTimeDelta);
 
-	void Go_StraightY(_float fTimeDelta);
-	void Go_BackwardY(_float fTimeDelta);
+	/* Player_Transform_Position */
+	void Player_Go_Straight(_float fTimeDelta,class CNavigation* pNavigation = nullptr);
+	void Player_Go_Backward(_float fTimeDelta,class CNavigation* pNavigation = nullptr);
+	void Player_Go_Left(_float fTimeDelta,class CNavigation* pNavigation = nullptr);
+	void Player_Go_Right(_float fTimeDelta,class CNavigation* pNavigation = nullptr);
 
 public:
 	/* Transform_Rotation */

@@ -28,11 +28,11 @@ public:
 
 public:
 	void Set_FreeView(_bool bCheck) { m_bCameraMode = bCheck; }
-
+	HRESULT Read_Component();
 private:
 	_float				m_fMouseSensor = {};
 	_bool				m_bCameraMode = { true };
-
+	CNavigation*		m_pNavigationCom = { nullptr };
 private:
 	void GamePlay_Camera(_float fTimeDelta);
 	void FreeView_Camera(_float fTimeDelta);
