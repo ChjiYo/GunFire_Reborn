@@ -64,6 +64,10 @@ HRESULT CMesh::Initialize_Prototype(CModel::TYPE eModelType, const aiMesh * pAIM
 	{
 		aiFace		AIFace = pAIMesh->mFaces[i];
 
+		m_tMeshDesc.vIndices.push_back(AIFace.mIndices[0]);
+		m_tMeshDesc.vIndices.push_back(AIFace.mIndices[1]);
+		m_tMeshDesc.vIndices.push_back(AIFace.mIndices[2]);
+
 		pIndices[iNumIndices++] = AIFace.mIndices[0];
 		pIndices[iNumIndices++] = AIFace.mIndices[1];
 		pIndices[iNumIndices++] = AIFace.mIndices[2];
@@ -79,7 +83,12 @@ HRESULT CMesh::Initialize_Prototype(CModel::TYPE eModelType, const aiMesh * pAIM
 
 #pragma endregion
 
-
+	strcpy_s(m_tMeshDesc.szName, m_szName);
+	m_tMeshDesc.iMaterialIndex = m_iMaterialIndex;
+	m_tMeshDesc.iNumVertices = m_iNumVertices;
+	m_tMeshDesc.iNumIndices = m_iNumIndices;
+	m_tMeshDesc.mNumFaces = pAIMesh->mNumFaces;
+	
 	return S_OK;
 }
 
@@ -107,6 +116,12 @@ void * CMesh::Create_NonAnimVertices(const aiMesh* pAIMesh, _fmatrix PreTransfor
 		/* i번째 정점의 0번째 Texcoord를 가져오겠다. why? 정점은 ㅔㅌㄱ스쿠드를 여덟개 가질 수 있으니까. */
 		memcpy(&pVertices[i].vTexcoord, &pAIMesh->mTextureCoords[0][i], sizeof(_float2));
 		memcpy(&pVertices[i].vTangent, &pAIMesh->mTangents[i], sizeof(_float3));
+
+		m_tMeshDesc.vPosition.at(i) = pVertices[i].vPosition;
+		m_tMeshDesc.vNormal.at(i) = pVertices[i].vNormal;
+		m_tMeshDesc.vTexcoord.at(i) = pVertices[i].vTexcoord;
+		m_tMeshDesc.vTangent.at(i) = pVertices[i].vTangent;
+
 	}
 	return pVertices;
 }

@@ -304,6 +304,46 @@ HRESULT CModel::Write_Meshes(HANDLE hWnd ,  _fmatrix PreTransformMatrix)
 {
 	_ulong			dwByte = { 0 };
 
+	_uint iNumMesh = m_iNumMeshes;
+	WriteFile(hWnd, &iNumMesh, sizeof(iNumMesh), &dwByte, nullptr);
+
+	for (auto iter : m_Meshes)
+	{
+		string strName = iter->Get_Desc().szName;
+		_uint iMeshLength = strName.length();
+
+		WriteFile(hWnd, &iMeshLength, sizeof(_uint), &dwByte, nullptr);
+		WriteFile(hWnd, iter->Get_Desc().szName, iMeshLength, &dwByte, nullptr);
+
+		_uint iMaterialIndex = iter->Get_Desc().iMaterialIndex;
+		WriteFile(hWnd, &iMaterialIndex, sizeof(_uint), &dwByte, nullptr);
+
+		_uint iNumVertices = iter->Get_Desc().iNumVertices;
+		WriteFile(hWnd, &iNumVertices, sizeof(_uint), &dwByte, nullptr);
+
+		_uint iNumIndices = iter->Get_Desc().iNumIndices;
+		WriteFile(hWnd, &iNumIndices, sizeof(_uint), &dwByte, nullptr);
+
+		//Start
+		vector<XMFLOAT3> vPosition = iter->Get_Desc().vPosition;
+		WriteFile(hWnd, vPosition.data(), sizeof(XMFLOAT3)* vPosition.size(), &dwByte, nullptr);
+
+		vector<XMFLOAT3> vNormal = iter->Get_Desc().vNormal;
+		WriteFile(hWnd, vNormal.data(), sizeof(XMFLOAT3) * vNormal.size(), &dwByte, nullptr);
+
+		vector<XMFLOAT3>vTexcoord = iter->Get_Desc().vTexcoord;
+		WriteFile(hWnd, vTexcoord.data(), sizeof(XMFLOAT3) * vTexcoord.size(), &dwByte, nullptr);
+
+		vector<XMFLOAT3> vTangent = iter->Get_Desc().vTangent;
+		WriteFile(hWnd, vTangent.data(), sizeof(XMFLOAT3) * vTangent.size(), &dwByte, nullptr);
+
+		_uint mNumFaces = iter->Get_Desc().mNumFaces;
+		WriteFile(hWnd, &mNumFaces, sizeof(_uint), &dwByte, nullptr);
+
+		vector<_uint> vIndices = iter->Get_Desc().vIndices;
+		WriteFile(hWnd, vIndices.data(), sizeof(_uint) * vIndices.size(), &dwByte, nullptr);
+	}
+
 	return S_OK;
 }
 
