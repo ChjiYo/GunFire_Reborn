@@ -56,7 +56,7 @@ const _float4x4* CModel::Get_BoneMatrixPtr(const _char* pBoneName) const
 	return (*iter)->Get_CombinedTransformationMatrix();
 }
 
-HRESULT CModel::Initialize_Prototype(enum TYPE eModelType, const _char* pModelFilePath, _fmatrix PreTransformMatrix)
+HRESULT CModel::Initialize_Prototype(enum TYPE eModelType, const _char* pModelFilePath,const _wstring& strBinFilePath, _fmatrix PreTransformMatrix)
 {
 	/* aiProcess_PreTransformVertices : 각 메시가 배치되어야할 위치로 사전에 변환을 시켜 로드한다. */
 	/* 피오나 : 칼, 피오나, 피오나배낭, 그림자. 메시들이 각각 배치되기위한 기초상태를 정의한 뼈라는 개념이 존재한다.  */
@@ -64,7 +64,7 @@ HRESULT CModel::Initialize_Prototype(enum TYPE eModelType, const _char* pModelFi
 
 	if (TYPE_NONANIM == eModelType)	
 		iFlag |= aiProcess_PreTransformVertices;	
-
+	
 	/* 지정해준 경로에 해당하는 파일의 정보를 읽어서 aiScene안에 저장해주는 역활. */
 	m_pAIScene = m_Importer.ReadFile(pModelFilePath, iFlag);
 
@@ -86,6 +86,21 @@ HRESULT CModel::Initialize_Prototype(enum TYPE eModelType, const _char* pModelFi
 
 	if (FAILED(Ready_Animations()))
 		return E_FAIL;
+
+	/* 바이너리화 */
+	
+
+	HANDLE			hFile = CreateFile(strBinFilePath.c_str() , GENERIC_WRITE, 0, nullptr, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, 0);
+	if (0 == hFile)
+		return E_FAIL;
+
+	if (FAILED(Write_Materials(hFile,pModelFilePath)))
+		return E_FAIL;
+
+	if (FAILED(Write_Meshes(hFile,PreTransformMatrix)))
+		return E_FAIL;
+
+	CloseHandle(hFile);
 
 	return S_OK;
 }
@@ -168,7 +183,10 @@ HRESULT CModel::Ready_Meshes(_fmatrix PreTransformMatrix)
 
 HRESULT CModel::Ready_Materials(const _char* pModelFilePath)
 {
+	//갯수 저장
 	m_iNumMaterials = m_pAIScene->mNumMaterials;
+
+	//pModelFilePath 저장
 
 	_char			szDrive[MAX_PATH] = {};
 	_char			szDir[MAX_PATH] = {};
@@ -190,6 +208,8 @@ HRESULT CModel::Ready_Materials(const _char* pModelFilePath)
 			_char			szFileName[MAX_PATH] = {};
 			_char			szExt[MAX_PATH] = {};
 
+			//char strAIPath.data 저장 
+			strcpy_s(AiPathData, sizeof(strAIPath.data), strAIPath.data);
 			_splitpath_s(strAIPath.data, nullptr, 0, nullptr, 0, szFileName, MAX_PATH, szExt, MAX_PATH);
 
 			_char			szFullPath[MAX_PATH] = {};
@@ -250,11 +270,48 @@ HRESULT CModel::Ready_Animations()
 	return S_OK;
 }
 
-CModel * CModel::Create(ID3D11Device * pDevice, ID3D11DeviceContext * pContext, enum TYPE eModelType, const _char* pModelFilePath, _fmatrix PreTransformMatrix)
+HRESULT CModel::Write_Materials(HANDLE hWnd , const _char* pModelFilePath)
+{
+	_ulong			dwByte = { 0 };
+
+	_uint iNumMatl = m_iNumMaterials;
+	WriteFile(hWnd, &iNumMatl, sizeof(iNumMatl), &dwByte, nullptr);
+
+	for (int i = 0; i < m_iNumMaterials; ++i)
+	{
+		_uint iNumMatl = m_iNumMaterials;
+		WriteFile(hWnd, &iNumMatl, sizeof(iNumMatl), &dwByte, nullptr);
+
+
+		string strModelPath = pModelFilePath;
+		_uint iModelPathLength = strModelPath.length();
+
+		WriteFile(hWnd, &iModelPathLength, sizeof(_uint), &dwByte, nullptr);
+		WriteFile(hWnd, pModelFilePath, strModelPath.length(), &dwByte, nullptr);
+
+
+		string strAIPath = AiPathData;
+		_uint iAIPathLength = strAIPath.length();
+
+		WriteFile(hWnd, &iAIPathLength, sizeof(iAIPathLength), &dwByte, nullptr);
+		WriteFile(hWnd, AiPathData, strAIPath.length(), &dwByte, nullptr);
+	}
+
+	return S_OK;
+}
+
+HRESULT CModel::Write_Meshes(HANDLE hWnd ,  _fmatrix PreTransformMatrix)
+{
+	_ulong			dwByte = { 0 };
+
+	return S_OK;
+}
+
+CModel * CModel::Create(ID3D11Device * pDevice, ID3D11DeviceContext * pContext, enum TYPE eModelType, const _char* pModelFilePath,const _wstring& strBinFilePath, _fmatrix PreTransformMatrix)
 {
 	CModel*		pInstance = new CModel(pDevice, pContext);
 
-	if (FAILED(pInstance->Initialize_Prototype(eModelType, pModelFilePath, PreTransformMatrix)))
+	if (FAILED(pInstance->Initialize_Prototype(eModelType, pModelFilePath ,strBinFilePath, PreTransformMatrix)))
 	{
 		MSG_BOX(TEXT("Failed to Created : CModel"));
 		Safe_Release(pInstance);

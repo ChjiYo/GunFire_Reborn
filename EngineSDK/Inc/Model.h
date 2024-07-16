@@ -22,7 +22,7 @@ public:
 	const _float4x4* Get_BoneMatrixPtr(const _char* pBoneName) const;
 
 public:
-	virtual HRESULT Initialize_Prototype(enum TYPE eModelType, const _char* strModelFilePath, _fmatrix PreTransformMatrix);
+	virtual HRESULT Initialize_Prototype(enum TYPE eModelType, const _char* strModelFilePath, const _wstring& strBinFilePath, _fmatrix PreTransformMatrix);
 	virtual HRESULT Initialize(void* pArg) override;
 	virtual HRESULT Render(_uint iMeshIndex);
 
@@ -53,6 +53,8 @@ private: /* For.Materials */
 	_uint						m_iNumMaterials = {};
 	vector<MESHMATERIAL>		m_Materials;
 
+	char AiPathData[MAX_PATH] = {};
+
 private: /* For.Bones */
 	vector<class CBone*>		m_Bones;
 
@@ -79,7 +81,11 @@ public:
 	HRESULT Ready_Animations();
 
 public:
-	static CModel* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, enum TYPE eModelType, const _char* pModelFilePath, _fmatrix PreTransformMatrix);
+	HRESULT Write_Materials(HANDLE hWnd,const _char* pModelFilePath);
+	HRESULT Write_Meshes(HANDLE hWnd ,_fmatrix PreTransformMatrix);
+
+public:
+	static CModel* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, enum TYPE eModelType, const _char* pModelFilePath, const _wstring& strBinFilePath, _fmatrix PreTransformMatrix);
 	virtual CComponent* Clone(void* pArg) override;
 	virtual void Free() override;
 };
