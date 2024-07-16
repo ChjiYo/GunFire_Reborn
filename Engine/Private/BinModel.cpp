@@ -188,11 +188,12 @@ HRESULT CBinModel::Ready_Materials(HANDLE hFile)
 	ReadFile(hFile, &iNumMatl, sizeof(_uint), &dwByte, nullptr);
 
 	_uint iModelPathLength = 0;
-	char   szModelPath[MAX_PATH];
+	char   szModelPath[MAX_PATH] = {};
 
+	
 	ReadFile(hFile, &iModelPathLength, sizeof(_uint), &dwByte, nullptr);
 	ReadFile(hFile, szModelPath, iModelPathLength, &dwByte, nullptr);
-
+	szModelPath[iModelPathLength] = '\0';
 	_char			szDrive[MAX_PATH] = {};
 	_char			szDir[MAX_PATH] = {};
 
@@ -201,25 +202,24 @@ HRESULT CBinModel::Ready_Materials(HANDLE hFile)
 
 	for (size_t i = 0; i < iNumMatl; i++)
 	{
-		aiMaterial* pAIMaterial = m_pAIScene->mMaterials[i];
+
 		MESHMATERIAL	MeshMaterial{};
 
 		for (size_t j = 1; j < 18; j++)
 		{
-			aiString	strAIPath;
-
-			if (FAILED(pAIMaterial->GetTexture(aiTextureType(j), 0, &strAIPath)))
-				continue;
-
 			_char			szFileName[MAX_PATH] = {};
 			_char			szExt[MAX_PATH] = {};
 
-			
 			_uint iAIPathLength = 0;
 			char szAIData[MAX_PATH] = {};
 
 			ReadFile(hFile, &iAIPathLength, sizeof(iAIPathLength), &dwByte, nullptr);
 			ReadFile(hFile, szAIData, iAIPathLength, &dwByte, nullptr);
+			szAIData[iAIPathLength] = '\0';
+
+			char Test = szAIData[0];
+			if (szAIData[0] == '\0' )
+				continue;
 
 			_splitpath_s(szAIData, nullptr, 0, nullptr, 0, szFileName, MAX_PATH, szExt, MAX_PATH);
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Model.h"
+#include "BinModel.h"
 #include "Shader.h"
 #include "Texture.h"
 #include "Transform.h"

@@ -279,18 +279,18 @@ HRESULT CModel::Write_Materials(HANDLE hWnd , const _char* pModelFilePath)
 
 	for (int i = 0; i < m_iNumMaterials; ++i)
 	{
-		string strModelPath = pModelFilePath;
-		_uint iModelPathLength = strModelPath.length();
+		const _char* strModelPath = pModelFilePath;
+		_uint iModelPathLength = strlen(strModelPath);
 
 		WriteFile(hWnd, &iModelPathLength, sizeof(_uint), &dwByte, nullptr);
-		WriteFile(hWnd, pModelFilePath, strModelPath.length(), &dwByte, nullptr);
+		WriteFile(hWnd, pModelFilePath, sizeof(char) * iModelPathLength, &dwByte, nullptr);
 
 
-		string strAIPath = AiPathData;
-		_uint iAIPathLength = strAIPath.length();
+		const _char* strAIPath = AiPathData;
+		_uint iAIPathLength = strlen(strAIPath);
 
 		WriteFile(hWnd, &iAIPathLength, sizeof(iAIPathLength), &dwByte, nullptr);
-		WriteFile(hWnd, AiPathData, strAIPath.length(), &dwByte, nullptr);
+		WriteFile(hWnd, AiPathData, sizeof(char) * iAIPathLength, &dwByte, nullptr);
 	}
 
 	return S_OK;
