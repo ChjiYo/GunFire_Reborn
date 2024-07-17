@@ -55,7 +55,8 @@ private: /* For.Materials */
 
 	char AiPathData[MAX_PATH] = {};
 	vector<int>		m_vMatlIndex = {};
-	vector<char*> AiPath;
+	vector<char*>	m_AiPath;
+	char* m_arrAiPath[18];
 
 private: /* For.Bones */
 	vector<class CBone*>		m_Bones;

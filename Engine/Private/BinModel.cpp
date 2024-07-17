@@ -259,7 +259,7 @@ HRESULT CBinModel::Ready_Materials(_ulong& dwByte, HANDLE& hFile)
 
 	vector<int> vMatlIndex;
 
-	_uint vMatIndexSize = vMatlIndex.size();
+	_uint vMatIndexSize = {};
 	ReadFile(hFile, &vMatIndexSize, sizeof(_int) , &dwByte, nullptr);
 
 	for (int i = 0; i < vMatIndexSize; ++i)
@@ -278,36 +278,37 @@ HRESULT CBinModel::Ready_Materials(_ulong& dwByte, HANDLE& hFile)
 			_char			szFileName[MAX_PATH] = {};
 			_char			szExt[MAX_PATH] = {};
 
-			_uint iAIPathLength = 0;
-			char szAIData[MAX_PATH] = {};
-
-			ReadFile(hFile, &iAIPathLength, sizeof(iAIPathLength), &dwByte, nullptr);
-			ReadFile(hFile, szAIData, iAIPathLength, &dwByte, nullptr);
-			szAIData[iAIPathLength] = '\0';
-
-			char Test = szAIData[0];
-			if (szAIData[0] == '\0' )
-				continue;
-
-			_splitpath_s(szAIData, nullptr, 0, nullptr, 0, szFileName, MAX_PATH, szExt, MAX_PATH);
-			
-			_char			szFullPath[MAX_PATH] = {};
-
-			strcpy_s(szFullPath, szDrive);
-			strcat_s(szFullPath, szDir);
-			strcat_s(szFullPath, szFileName);
-			strcat_s(szFullPath, szExt);
-
-			_tchar			szPerfectFullPath[MAX_PATH] = {};
-
-			MultiByteToWideChar(CP_ACP, 0, szFullPath, strlen(szFullPath), szPerfectFullPath, MAX_PATH);
-
 			for (int k = 0; k < vMatlIndex.size(); ++k)
 			{
-				//Continue와 CTrexture 어떻게 해야할지 고민
-				MeshMaterial.pMaterials[vMatlIndex.at(k)] = CTexture::Create(m_pDevice, m_pContext, szPerfectFullPath, 1);
-				if (nullptr == MeshMaterial.pMaterials[vMatlIndex.at(k)])
-					return E_FAIL;
+				_uint iAIPathLength = 0;
+				char szAIData[MAX_PATH] = {};
+
+				ReadFile(hFile, &iAIPathLength, sizeof(_uint), &dwByte, nullptr);
+				ReadFile(hFile, szAIData, sizeof(_uint) * iAIPathLength, &dwByte, nullptr);
+				szAIData[iAIPathLength] = '\0';
+
+				char Test = szAIData[0];
+				if (szAIData[0] == '\0' )
+					continue;
+
+				_splitpath_s(szAIData, nullptr, 0, nullptr, 0, szFileName, MAX_PATH, szExt, MAX_PATH);
+				
+				_char			szFullPath[MAX_PATH] = {};
+
+				strcpy_s(szFullPath, szDrive);
+				strcat_s(szFullPath, szDir);
+				strcat_s(szFullPath, szFileName);
+				strcat_s(szFullPath, szExt);
+
+				_tchar			szPerfectFullPath[MAX_PATH] = {};
+
+				MultiByteToWideChar(CP_ACP, 0, szFullPath, strlen(szFullPath), szPerfectFullPath, MAX_PATH);
+
+				
+					//Continue와 CTrexture 어떻게 해야할지 고민
+					MeshMaterial.pMaterials[vMatlIndex.at(k)] = CTexture::Create(m_pDevice, m_pContext, szPerfectFullPath, 1);
+					if (nullptr == MeshMaterial.pMaterials[vMatlIndex.at(k)])
+						return E_FAIL;
 			}
 		
 
