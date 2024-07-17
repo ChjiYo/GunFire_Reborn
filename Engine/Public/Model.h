@@ -54,6 +54,7 @@ private: /* For.Materials */
 	vector<MESHMATERIAL>		m_Materials;
 
 	char AiPathData[MAX_PATH] = {};
+	vector<int>		m_vMatlIndex = {};
 
 private: /* For.Bones */
 	vector<class CBone*>		m_Bones;
@@ -81,8 +82,8 @@ public:
 	HRESULT Ready_Animations();
 
 public:
-	HRESULT Write_Materials(HANDLE hWnd,const _char* pModelFilePath);
-	HRESULT Write_Meshes(HANDLE hWnd ,_fmatrix PreTransformMatrix);
+	HRESULT Write_Materials(_ulong&	dwByte ,HANDLE& hWnd,const _char* pModelFilePath);
+	HRESULT Write_Meshes(_ulong&	dwByte ,HANDLE& hWnd ,_fmatrix PreTransformMatrix);
 
 public:
 	static CModel* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, enum TYPE eModelType, const _char* pModelFilePath, const _wstring& strBinFilePath, _fmatrix PreTransformMatrix);

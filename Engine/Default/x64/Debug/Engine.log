@@ -1,4 +1,24 @@
 ﻿  BinModel.cpp
+  Mesh.cpp
+  Model.cpp
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(32,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Mesh.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(41,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Mesh.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(52,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Mesh.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(66,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Mesh.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(76,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Mesh.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(88,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Mesh.cpp'을(를) 컴파일하는 중)
+  
 C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(32,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
   (소스 파일 '../private/BinModel.cpp'을(를) 컴파일하는 중)
   
@@ -17,7 +37,54 @@ C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_S
 C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(88,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
   (소스 파일 '../private/BinModel.cpp'을(를) 컴파일하는 중)
   
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(32,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Model.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(41,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Model.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(52,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Model.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(66,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Model.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(76,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Model.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(88,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Model.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\private\Mesh.cpp(249,51): warning C4267: '=': 'size_t'에서 'uint32_t'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\private\Mesh.cpp(255,51): warning C4267: '=': 'size_t'에서 'uint32_t'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\private\Mesh.cpp(261,51): warning C4267: '=': 'size_t'에서 'uint32_t'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\private\Mesh.cpp(267,51): warning C4267: '=': 'size_t'에서 'uint32_t'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\private\BinModel.cpp(133,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\private\BinModel.cpp(235,53): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\private\BinModel.cpp(256,25): warning C4267: '초기화 중': 'size_t'에서 'Engine::_int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\private\BinModel.cpp(260,22): warning C4267: '초기화 중': 'size_t'에서 'Engine::_uint'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\private\BinModel.cpp(263,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\private\BinModel.cpp(301,53): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\private\BinModel.cpp(326,25): warning C4267: '초기화 중': 'size_t'에서 'Engine::_int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\private\Model.cpp(137,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\private\Model.cpp(206,27): warning C4267: '인수': 'size_t'에서 '_Ty'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\private\Model.cpp(206,27): warning C4267:         with
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\private\Model.cpp(206,27): warning C4267:         [
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\private\Model.cpp(206,27): warning C4267:             _Ty=int
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\private\Model.cpp(206,27): warning C4267:         ]
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\private\Model.cpp(224,53): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\private\Model.cpp(245,25): warning C4267: '초기화 중': 'size_t'에서 'Engine::_int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\private\Model.cpp(279,25): warning C4267: '초기화 중': 'size_t'에서 'Engine::_uint'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\private\Model.cpp(286,22): warning C4267: '초기화 중': 'size_t'에서 'Engine::_uint'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\private\Model.cpp(295,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\private\Model.cpp(298,23): warning C4267: '초기화 중': 'size_t'에서 'Engine::_uint'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\private\Model.cpp(315,21): warning C4267: '초기화 중': 'size_t'에서 'Engine::_uint'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\private\Model.cpp(333,23): warning C4267: '초기화 중': 'size_t'에서 'Engine::_uint'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\private\Model.cpp(336,53): warning C4267: '인수': 'size_t'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\private\Model.cpp(340,21): warning C4267: '초기화 중': 'size_t'에서 'Engine::_uint'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\private\Model.cpp(343,52): warning C4267: '인수': 'size_t'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\private\Model.cpp(346,23): warning C4267: '초기화 중': 'size_t'에서 'Engine::_uint'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\private\Model.cpp(349,54): warning C4267: '인수': 'size_t'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\private\Model.cpp(353,22): warning C4267: '초기화 중': 'size_t'에서 'Engine::_uint'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\private\Model.cpp(356,53): warning C4267: '인수': 'size_t'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\private\Model.cpp(360,22): warning C4267: '초기화 중': 'size_t'에서 'Engine::_uint'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\private\Model.cpp(363,50): warning C4267: '인수': 'size_t'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   Engine.vcxproj -> C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Bin\Engine.dll

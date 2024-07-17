@@ -141,7 +141,7 @@ HRESULT CMesh::Initialize_Prototype(CModel::TYPE eModelType, MESH_DESC tDesc, co
 
 	_uint* pIndices = new _uint[m_iNumIndices];
 	ZeroMemory(pIndices, sizeof(_uint) * m_iNumIndices);
-
+	
 	_uint	iNumIndices = { 0 };
 
 	/* »ï°¢Çü °¹¼ö¸¸Å­ ·çÇÁµ·´Ù. */

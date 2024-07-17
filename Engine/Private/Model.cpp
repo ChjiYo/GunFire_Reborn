@@ -88,16 +88,16 @@ HRESULT CModel::Initialize_Prototype(enum TYPE eModelType, const _char* pModelFi
 		return E_FAIL;
 
 	/* 바이너리화 */
-	
+	_ulong			dwByte = { 0 };
 
 	HANDLE			hFile = CreateFile(strBinFilePath.c_str() , GENERIC_WRITE, 0, nullptr, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, 0);
 	if (0 == hFile)
 		return E_FAIL;
 
-	if (FAILED(Write_Materials(hFile,pModelFilePath)))
+	if (FAILED(Write_Materials(dwByte,hFile,pModelFilePath)))
 		return E_FAIL;
 
-	if (FAILED(Write_Meshes(hFile,PreTransformMatrix)))
+	if (FAILED(Write_Meshes(dwByte,hFile,PreTransformMatrix)))
 		return E_FAIL;
 
 	CloseHandle(hFile);
@@ -107,8 +107,6 @@ HRESULT CModel::Initialize_Prototype(enum TYPE eModelType, const _char* pModelFi
 
 HRESULT CModel::Initialize(void * pArg)
 {
-
-
 	return S_OK;
 }
 
@@ -205,6 +203,8 @@ HRESULT CModel::Ready_Materials(const _char* pModelFilePath)
 			if (FAILED(pAIMaterial->GetTexture(aiTextureType(j), 0, &strAIPath)))
 				continue;	
 
+			m_vMatlIndex.push_back(j);
+
 			_char			szFileName[MAX_PATH] = {};
 			_char			szExt[MAX_PATH] = {};
 
@@ -270,22 +270,30 @@ HRESULT CModel::Ready_Animations()
 	return S_OK;
 }
 
-HRESULT CModel::Write_Materials(HANDLE hWnd , const _char* pModelFilePath)
+HRESULT CModel::Write_Materials(_ulong& dwByte ,HANDLE& hWnd , const _char* pModelFilePath)
 {
-	_ulong			dwByte = { 0 };
-
 	_uint iNumMatl = m_iNumMaterials;
 	WriteFile(hWnd, &iNumMatl, sizeof(iNumMatl), &dwByte, nullptr);
 
+	const _char* strModelPath = pModelFilePath;
+	_uint iModelPathLength = strlen(strModelPath);
+
+	WriteFile(hWnd, &iModelPathLength, sizeof(_uint), &dwByte, nullptr);
+	WriteFile(hWnd, strModelPath , sizeof(char) * iModelPathLength, &dwByte, nullptr);
+
+	vector<int> vMatlIndex = m_vMatlIndex;
+
+	_uint vMatIndexSize = vMatlIndex.size();
+	WriteFile(hWnd, &vMatIndexSize, sizeof(_int) , &dwByte, nullptr);
+
+	for (auto& iter : m_vMatlIndex)
+	{
+		WriteFile(hWnd, &iter , sizeof(_int), &dwByte, nullptr);
+	}
+
+
 	for (int i = 0; i < m_iNumMaterials; ++i)
 	{
-		const _char* strModelPath = pModelFilePath;
-		_uint iModelPathLength = strlen(strModelPath);
-
-		WriteFile(hWnd, &iModelPathLength, sizeof(_uint), &dwByte, nullptr);
-		WriteFile(hWnd, pModelFilePath, sizeof(char) * iModelPathLength, &dwByte, nullptr);
-
-
 		const _char* strAIPath = AiPathData;
 		_uint iAIPathLength = strlen(strAIPath);
 
@@ -296,10 +304,8 @@ HRESULT CModel::Write_Materials(HANDLE hWnd , const _char* pModelFilePath)
 	return S_OK;
 }
 
-HRESULT CModel::Write_Meshes(HANDLE hWnd ,  _fmatrix PreTransformMatrix)
+HRESULT CModel::Write_Meshes(_ulong& dwByte ,HANDLE& hWnd ,  _fmatrix PreTransformMatrix)
 {
-	_ulong			dwByte = { 0 };
-
 	_uint iNumMesh = m_iNumMeshes;
 	WriteFile(hWnd, &iNumMesh, sizeof(iNumMesh), &dwByte, nullptr);
 
@@ -320,23 +326,40 @@ HRESULT CModel::Write_Meshes(HANDLE hWnd ,  _fmatrix PreTransformMatrix)
 		_uint iNumIndices = iter->Get_Desc().iNumIndices;
 		WriteFile(hWnd, &iNumIndices, sizeof(_uint), &dwByte, nullptr);
 
-		//Start
-		vector<XMFLOAT3> vPosition = iter->Get_Desc().vPosition;
-		WriteFile(hWnd, vPosition.data(), sizeof(XMFLOAT3)* vPosition.size(), &dwByte, nullptr);
-
-		vector<XMFLOAT3> vNormal = iter->Get_Desc().vNormal;
-		WriteFile(hWnd, vNormal.data(), sizeof(XMFLOAT3) * vNormal.size(), &dwByte, nullptr);
-
-		vector<XMFLOAT3>vTexcoord = iter->Get_Desc().vTexcoord;
-		WriteFile(hWnd, vTexcoord.data(), sizeof(XMFLOAT3) * vTexcoord.size(), &dwByte, nullptr);
-
-		vector<XMFLOAT3> vTangent = iter->Get_Desc().vTangent;
-		WriteFile(hWnd, vTangent.data(), sizeof(XMFLOAT3) * vTangent.size(), &dwByte, nullptr);
-
 		_uint mNumFaces = iter->Get_Desc().mNumFaces;
 		WriteFile(hWnd, &mNumFaces, sizeof(_uint), &dwByte, nullptr);
 
+		vector<XMFLOAT3> vPosition = iter->Get_Desc().vPosition;
+		_uint vPositionSize = vPosition.size();
+
+		WriteFile(hWnd, &vPositionSize , sizeof(_uint), &dwByte, nullptr);
+		WriteFile(hWnd, vPosition.data(), sizeof(XMFLOAT3)* vPosition.size(), &dwByte, nullptr);
+
+
+		vector<XMFLOAT3> vNormal = iter->Get_Desc().vNormal;
+		_uint vNormalSize = vNormal.size();
+
+		WriteFile(hWnd, &vNormalSize, sizeof(_uint) , &dwByte, nullptr);
+		WriteFile(hWnd, vNormal.data(), sizeof(XMFLOAT3) * vNormal.size(), &dwByte, nullptr);
+
+		vector<XMFLOAT3>vTexcoord = iter->Get_Desc().vTexcoord;
+		_uint vTexcoordSize = vTexcoord.size();
+
+		WriteFile(hWnd, &vTexcoordSize, sizeof(_uint), &dwByte, nullptr);
+		WriteFile(hWnd, vTexcoord.data(), sizeof(XMFLOAT3) * vTexcoord.size(), &dwByte, nullptr);
+
+
+		vector<XMFLOAT3> vTangent = iter->Get_Desc().vTangent;
+		_uint vTangentSize = vTexcoord.size();
+
+		WriteFile(hWnd, &vTangentSize, sizeof(_uint), &dwByte, nullptr);
+		WriteFile(hWnd, vTangent.data(), sizeof(XMFLOAT3) * vTangent.size(), &dwByte, nullptr);
+
+
 		vector<_uint> vIndices = iter->Get_Desc().vIndices;
+		_uint vIndicesSize = vIndices.size();
+
+		WriteFile(hWnd, &vIndicesSize, sizeof(_uint), &dwByte, nullptr);
 		WriteFile(hWnd, vIndices.data(), sizeof(_uint) * vIndices.size(), &dwByte, nullptr);
 	}
 

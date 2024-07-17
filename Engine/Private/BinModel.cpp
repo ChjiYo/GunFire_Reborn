@@ -84,10 +84,10 @@ HRESULT CBinModel::Initialize_Prototype(enum TYPE eModelType, const _wstring& pM
 
 	m_eModelType = eModelType;
 
-	if (FAILED(Ready_Materials(hFile)))
+	if (FAILED(Ready_Materials(dwByte, hFile)))
 		return E_FAIL;
 
-	if (FAILED(Ready_Meshes(hFile, PreTransformMatrix)))
+	if (FAILED(Ready_Meshes(dwByte, hFile, PreTransformMatrix)))
 		return E_FAIL;
 
 	//if (FAILED(Ready_Bones(m_pAIScene->mRootNode)))
@@ -135,7 +135,7 @@ void CBinModel::SetUp_Animation(_uint iAnimationIndex, _bool isLoop)
 
 	m_fCurrentAnimPosition = 0.f;
 	m_isLoopAnim = isLoop;
-	m_iCurrentAnimationIndex = iAnimationIndex;
+	m_iCurrentAnimationIndex = iAnimationIndex; 
 }
 
 HRESULT CBinModel::Bind_MaterialSRV(CShader* pShader, aiTextureType eType, const _char* pConstantName, _uint iMeshIndex)
@@ -158,19 +158,75 @@ HRESULT CBinModel::Bind_BoneMatrices(CShader* pShader, const _char* pConstantNam
 	return S_OK;
 }
 
-HRESULT CBinModel::Ready_Meshes(HANDLE hFile,_fmatrix PreTransformMatrix)
+HRESULT CBinModel::Ready_Meshes(_ulong& dwByte, HANDLE& hFile,_fmatrix PreTransformMatrix)
 {
-	_ulong			dwByte = { 0 };
-
 	_uint NumMesh = 0;
 	ReadFile(hFile, &NumMesh, sizeof(_uint), &dwByte, nullptr);
-
+	m_iNumMeshes = NumMesh;
 	for (size_t i = 0; i < NumMesh; i++)
 	{
+		CMesh::MESH_DESC Desc = {};
+		
+		Desc.szName;
+		_uint iMeshLength = {};
+
+		ReadFile(hFile, &iMeshLength, sizeof(_uint), &dwByte, nullptr);
+		ReadFile(hFile, Desc.szName, iMeshLength, &dwByte, nullptr);
+
+		Desc.iMaterialIndex;
+		ReadFile(hFile, &Desc.iMaterialIndex, sizeof(_uint), &dwByte, nullptr);
+
+		Desc.iNumVertices;
+		ReadFile(hFile, &Desc.iNumVertices, sizeof(_uint), &dwByte, nullptr);
+
+		Desc.iNumIndices;
+		ReadFile(hFile, &Desc.iNumIndices, sizeof(_uint), &dwByte, nullptr);
+
+		Desc.mNumFaces;
+		ReadFile(hFile, &Desc.mNumFaces, sizeof(_uint), &dwByte, nullptr);
+
+		Desc.vPosition = {};
+		_uint vPositionSize = {};
+
+		ReadFile(hFile, &vPositionSize, sizeof(_uint), &dwByte, nullptr);
+		Desc.vPosition.resize(vPositionSize);
+		ReadFile(hFile, Desc.vPosition.data(), sizeof(XMFLOAT3) * vPositionSize, &dwByte, nullptr);
+
+
+		Desc.vNormal = {};
+		_uint vNormalSize = {};
+
+		ReadFile(hFile, &vNormalSize, sizeof(_uint), &dwByte, nullptr);
+		Desc.vNormal.resize(vNormalSize);
+		ReadFile(hFile, Desc.vNormal.data(), sizeof(XMFLOAT3) * vNormalSize, &dwByte, nullptr);
+
+		Desc.vTexcoord = {};
+		_uint vTexcoordSize = {};
+
+		ReadFile(hFile, &vTexcoordSize, sizeof(_uint), &dwByte, nullptr);
+		Desc.vTexcoord.resize(vTexcoordSize);
+		ReadFile(hFile, Desc.vTexcoord.data(), sizeof(XMFLOAT3) * vTexcoordSize, &dwByte, nullptr);
+
+
+		Desc.vTangent = {};
+		_uint vTangentSize = {};
+
+		ReadFile(hFile, &vTangentSize, sizeof(_uint), &dwByte, nullptr);
+		Desc.vTangent.resize(vTangentSize);
+		ReadFile(hFile, Desc.vTangent.data(), sizeof(XMFLOAT3) * vTangentSize, &dwByte, nullptr);
+
+
+		Desc.vIndices = {};
+		_uint vIndicesSize = {};
+
+		ReadFile(hFile, &vIndicesSize, sizeof(_uint), &dwByte, nullptr);
+		Desc.vIndices.resize(vIndicesSize);
+		ReadFile(hFile, Desc.vIndices.data(), sizeof(_uint) * vIndicesSize, &dwByte, nullptr);
+
 		CModel::TYPE eType = static_cast<CModel::TYPE>(m_eModelType);
 		
 		/* 메시를 하나씩 만든다. == VertexBuffer ,IndexBuffer를 만드낟. */
-		CMesh* pMesh = CMesh::Create(m_pDevice, m_pContext, eType, m_pAIScene->mMeshes[i], m_Bones, PreTransformMatrix);
+		CMesh* pMesh = CMesh::Create(m_pDevice, m_pContext, eType, Desc, m_Bones, PreTransformMatrix);
 		if (nullptr == pMesh)
 			return E_FAIL;
 
@@ -180,12 +236,11 @@ HRESULT CBinModel::Ready_Meshes(HANDLE hFile,_fmatrix PreTransformMatrix)
 	return S_OK;
 }
 
-HRESULT CBinModel::Ready_Materials(HANDLE hFile)
+HRESULT CBinModel::Ready_Materials(_ulong& dwByte, HANDLE& hFile)
 {
-	_ulong			dwByte = { 0 };
-
 	_uint iNumMatl = 0;
 	ReadFile(hFile, &iNumMatl, sizeof(_uint), &dwByte, nullptr);
+	m_iNumMaterials = iNumMatl;
 
 	_uint iModelPathLength = 0;
 	char   szModelPath[MAX_PATH] = {};
@@ -193,20 +248,31 @@ HRESULT CBinModel::Ready_Materials(HANDLE hFile)
 	
 	ReadFile(hFile, &iModelPathLength, sizeof(_uint), &dwByte, nullptr);
 	ReadFile(hFile, szModelPath, iModelPathLength, &dwByte, nullptr);
+
 	szModelPath[iModelPathLength] = '\0';
 	_char			szDrive[MAX_PATH] = {};
 	_char			szDir[MAX_PATH] = {};
 
 	_splitpath_s(szModelPath, szDrive, MAX_PATH, szDir, MAX_PATH, nullptr, 0, nullptr, 0);
 
+	vector<int> vMatlIndex;
+
+	_uint vMatIndexSize = vMatlIndex.size();
+	ReadFile(hFile, &vMatIndexSize, sizeof(_int) , &dwByte, nullptr);
+
+	for (int i = 0; i < vMatIndexSize; ++i)
+	{
+		_uint iMatIndex;
+		ReadFile(hFile, &iMatIndex, sizeof(_int), &dwByte, nullptr);
+
+		vMatlIndex.push_back(iMatIndex);
+	}
+
 
 	for (size_t i = 0; i < iNumMatl; i++)
 	{
+			MESHMATERIAL	MeshMaterial{};
 
-		MESHMATERIAL	MeshMaterial{};
-
-		for (size_t j = 1; j < 18; j++)
-		{
 			_char			szFileName[MAX_PATH] = {};
 			_char			szExt[MAX_PATH] = {};
 
@@ -234,10 +300,14 @@ HRESULT CBinModel::Ready_Materials(HANDLE hFile)
 
 			MultiByteToWideChar(CP_ACP, 0, szFullPath, strlen(szFullPath), szPerfectFullPath, MAX_PATH);
 
-			MeshMaterial.pMaterials[j] = CTexture::Create(m_pDevice, m_pContext, szPerfectFullPath, 1);
-			if (nullptr == MeshMaterial.pMaterials[j])
-				return E_FAIL;
-		}
+			for (int k = 0; k < vMatlIndex.size(); ++k)
+			{
+				//Continue와 CTrexture 어떻게 해야할지 고민
+				MeshMaterial.pMaterials[vMatlIndex.at(k)] = CTexture::Create(m_pDevice, m_pContext, szPerfectFullPath, 1);
+				if (nullptr == MeshMaterial.pMaterials[vMatlIndex.at(k)])
+					return E_FAIL;
+			}
+		
 		m_Materials.emplace_back(MeshMaterial);
 	}
 	return S_OK;
