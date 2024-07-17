@@ -83,18 +83,16 @@ HRESULT CBinModel::Initialize_Prototype(enum TYPE eModelType, const _wstring& pM
 
 	m_eModelType = eModelType;
 
-	if (FAILED(Ready_Meshes(dwByte, hFile, PreTransformMatrix)))
+	if (FAILED(Ready_Bones(dwByte, hFile)))
 		return E_FAIL;
 
+	if (FAILED(Ready_Meshes(dwByte, hFile, PreTransformMatrix)))
+		return E_FAIL;
 
 	if (FAILED(Ready_Materials(dwByte, hFile)))
 		return E_FAIL;
 
-
-
-	//if (FAILED(Ready_Bones(m_pAIScene->mRootNode)))
-	//	return E_FAIL;
-	//
+	
 	//if (FAILED(Ready_Animations()))
 	//	return E_FAIL;
 
@@ -318,20 +316,38 @@ HRESULT CBinModel::Ready_Materials(_ulong& dwByte, HANDLE& hFile)
 	return S_OK;
 }
 
-HRESULT CBinModel::Ready_Bones(const aiNode* pAINode, _int iParentIndex)
+HRESULT CBinModel::Ready_Bones(_ulong& dwByte, HANDLE& hFile)
 {
-	CBone* pBone = CBone::Create(pAINode, iParentIndex);
-	if (nullptr == pBone)
-		return E_FAIL;
+	_uint iNumBones = {};
+	ReadFile(hFile, &iNumBones, sizeof(_uint), &dwByte, nullptr);
 
-	m_Bones.emplace_back(pBone);
+	for (int i = 0; i < iNumBones; ++i)
+	{
+		_char szName[MAX_PATH] = {};
+		_uint iNameLegnth;
 
-	_uint		iNumChildren = pAINode->mNumChildren;
+		ReadFile(hFile, &iNameLegnth, sizeof(_uint), &dwByte, nullptr);
+		ReadFile(hFile, szName, sizeof(_char) * iNameLegnth, &dwByte, nullptr);
+		szName[iNameLegnth] = '\0';
 
-	_int		iParentBoneIndex = m_Bones.size() - 1;
+		_uint iParentIndex = {};
+		ReadFile(hFile, &iParentIndex, sizeof(_uint), &dwByte, nullptr);
 
-	for (size_t i = 0; i < iNumChildren; i++)
-		Ready_Bones(pAINode->mChildren[i], iParentBoneIndex);
+		_float4x4 iTransformMatrix = {};
+		ReadFile(hFile, &iTransformMatrix, sizeof(_float4x4), &dwByte, nullptr);
+
+		CBone::BONE_DESC	Desc = {};
+		Desc.iParentIndex = iParentIndex;
+		Desc.szName = szName;
+		Desc.TransformationMatrix = iTransformMatrix;
+
+		CBone* pBone = CBone::Create(Desc, iParentIndex);
+
+		if (nullptr == pBone)
+			return E_FAIL;
+
+		m_Bones.emplace_back(pBone);
+	}
 
 	return S_OK;
 }

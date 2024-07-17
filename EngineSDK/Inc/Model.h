@@ -84,6 +84,7 @@ public:
 	HRESULT Ready_Animations();
 
 public:
+	HRESULT Write_Bones(_ulong& dwByte, HANDLE& hWnd);
 	HRESULT Write_Materials(_ulong&	dwByte ,HANDLE& hWnd,const _char* pModelFilePath);
 	HRESULT Write_Meshes(_ulong&	dwByte ,HANDLE& hWnd ,_fmatrix PreTransformMatrix);
 

@@ -74,7 +74,7 @@ public:
 	/* 모델의 뼈들을 로드한다. */
 	/* 뼈 : 정점들이 뼈에 붙어서 렌더링 되야하기때문 */
 	/* 정점들이 뼈에 붙는다?! : 뼈를 움직여서 애니메이션을 표현하겠다. == 애니메이션이 구동된다. */
-	HRESULT Ready_Bones(const aiNode* pAINode, _int iParentIndex = -1);
+	HRESULT Ready_Bones(_ulong& dwByte, HANDLE& hFile);
 
 	/* 추후, 런타임간에 뼈의 시간에 맞는 상태를 구하기위해 필요한 데이터들을 미리 모두 셋팅해둔다.  */
 	HRESULT Ready_Animations();

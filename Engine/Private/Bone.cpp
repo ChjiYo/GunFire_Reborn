@@ -22,6 +22,24 @@ HRESULT CBone::Initialize(const aiNode * pAINode, _int iParentIndex)
 	/* 초기 상태는 항등이지만, 추후 CombinedTransformationMAtrix를 갱신해주는 작업을 수행해야한다. */
 	XMStoreFloat4x4(&m_CombinedTransformationMatrix, XMMatrixIdentity());
 	
+	m_tBoneDesc.szName = m_szName;
+	m_tBoneDesc.TransformationMatrix = m_TransformationMatrix;
+	m_tBoneDesc.iParentIndex = m_iParentIndex;
+
+	return S_OK;
+}
+
+HRESULT CBone::Initialize(BONE_DESC Desc, _int iParentIndex)
+{
+	strcpy_s(m_szName, Desc.szName);
+
+	m_iParentIndex = iParentIndex;
+
+	m_TransformationMatrix = m_tBoneDesc.TransformationMatrix;
+	m_iParentIndex = m_tBoneDesc.iParentIndex;
+
+	XMStoreFloat4x4(&m_CombinedTransformationMatrix, XMMatrixIdentity());
+
 	return S_OK;
 }
 
@@ -44,6 +62,19 @@ CBone * CBone::Create(const aiNode * pAINode, _int iParentIndex)
 	CBone*		pInstance = new CBone();
 
 	if (FAILED(pInstance->Initialize(pAINode, iParentIndex)))
+	{
+		MSG_BOX(TEXT("Failed to Created : CBone"));
+		Safe_Release(pInstance);
+	}
+
+	return pInstance;
+}
+
+CBone* CBone::Create(BONE_DESC Desc, _int iParentIndex)
+{
+	CBone* pInstance = new CBone();
+
+	if (FAILED(pInstance->Initialize(Desc, iParentIndex)))
 	{
 		MSG_BOX(TEXT("Failed to Created : CBone"));
 		Safe_Release(pInstance);

@@ -76,8 +76,9 @@ HRESULT CModel::Initialize_Prototype(enum TYPE eModelType, const _char* pModelFi
 
 	m_eModelType = eModelType;
 
-	/*if (FAILED(Ready_Bones(m_pAIScene->mRootNode)))
-		return E_FAIL;*/
+
+	if (FAILED(Ready_Bones(m_pAIScene->mRootNode)))
+		return E_FAIL;
 
 	if (FAILED(Ready_Meshes(PreTransformMatrix)))
 		return E_FAIL;
@@ -85,6 +86,8 @@ HRESULT CModel::Initialize_Prototype(enum TYPE eModelType, const _char* pModelFi
 	if (FAILED(Ready_Materials(pModelFilePath)))
 		return E_FAIL;
 
+	/*if (FAILED(Ready_Animations()))
+		return E_FAIL;*/
 
 	/* 바이너리화 */
 	_ulong			dwByte = { 0 };
@@ -93,6 +96,8 @@ HRESULT CModel::Initialize_Prototype(enum TYPE eModelType, const _char* pModelFi
 	if (0 == hFile)
 		return E_FAIL;
 
+	if (FAILED(Write_Bones(dwByte, hFile)))
+		return E_FAIL;
 
 	if (FAILED(Write_Meshes(dwByte, hFile, PreTransformMatrix)))
 		return E_FAIL;
@@ -271,6 +276,28 @@ HRESULT CModel::Ready_Animations()
 		m_Animations.emplace_back(pAnimation);
 	}
 
+	return S_OK;
+}
+
+HRESULT CModel::Write_Bones(_ulong& dwByte, HANDLE& hWnd)
+{
+	_uint iNumBones = m_Bones.size();
+	WriteFile(hWnd, &iNumBones, sizeof(_uint), &dwByte, nullptr);
+
+	for (auto& iter : m_Bones)
+	{
+		_char* szName =  iter->Get_Desc().szName;
+		_uint iNameLegnth = strlen(szName);
+
+		WriteFile(hWnd, &iNameLegnth, sizeof(_uint), &dwByte, nullptr);
+		WriteFile(hWnd, szName, sizeof(_char)* iNameLegnth, &dwByte, nullptr);
+
+		_uint iParentIndex = iter->Get_Desc().iParentIndex;
+		WriteFile(hWnd, &iParentIndex, sizeof(_uint) , &dwByte, nullptr);
+
+		_float4x4 iTransformMatrix = iter->Get_Desc().TransformationMatrix;
+		WriteFile(hWnd, &iTransformMatrix, sizeof(_float4x4), &dwByte, nullptr);
+	}
 	return S_OK;
 }
 

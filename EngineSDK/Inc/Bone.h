@@ -14,6 +14,13 @@ BEGIN(Engine)
 
 class CBone final : public CBase
 {
+public:
+	typedef struct
+	{
+		_char* szName = {};
+		_uint		iParentIndex = {};
+		_float4x4	TransformationMatrix = {};
+	}BONE_DESC;
 private:
 	CBone();
 	virtual ~CBone() = default;
@@ -22,6 +29,8 @@ public:
 	const _char* Get_Name() const {
 		return m_szName;
 	}
+
+	BONE_DESC Get_Desc() { return m_tBoneDesc; }
 
 	const _float4x4* Get_CombinedTransformationMatrix() const {
 		return &m_CombinedTransformationMatrix;
@@ -34,6 +43,7 @@ public:
 
 public:
 	HRESULT Initialize(const aiNode* pAINode, _int iParentIndex);
+	HRESULT Initialize(BONE_DESC Desc,_int iParentIndex);
 	void Update_CombinedTransformationMatrix(const vector<CBone*>& Bones, _fmatrix PreTransformMatrix);
 	
 
@@ -57,9 +67,10 @@ private:
 	/* 추후 뼈를 복제할 때 나는 깊은 복사로 처리할려고 한다. */
 	/* CBone객체도 복제를 통해 생성하게 될 것이고 본이 가지고 있는 부모본의 인덱스또한 걍 복제되면 된다. */
 	_int				m_iParentIndex = { -1 };
-
+	BONE_DESC			m_tBoneDesc = {};
 public:
 	static CBone* Create(const aiNode* pAINode, _int iParentIndex);
+	static CBone* Create(BONE_DESC Desc, _int iParentIndex);
 	CBone* Clone();
 	virtual void Free() override;
 };
