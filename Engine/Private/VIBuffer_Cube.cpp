@@ -21,7 +21,7 @@ HRESULT CVIBuffer_Cube::Initialize_Prototype()
 	m_ePrimitive_Topology = D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
 
 #pragma region VERTEX_BUFFER
-
+	
 	ZeroMemory(&m_BufferDesc, sizeof m_BufferDesc);
 	m_BufferDesc.ByteWidth = m_iVertexStride * m_iNumVertices;
 	m_BufferDesc.Usage = D3D11_USAGE_DEFAULT;

@@ -22,6 +22,8 @@ CBinModel::CBinModel(const CBinModel& Prototype)
 	, m_iNumAnimations{ Prototype.m_iNumAnimations }
 	, m_Animations{ Prototype.m_Animations }
 	, m_KeyFrameIndices{ Prototype.m_KeyFrameIndices }
+	, m_eModelType{ Prototype.m_eModelType }
+
 {
 
 
@@ -64,7 +66,7 @@ HRESULT CBinModel::Initialize_Prototype(enum TYPE eModelType, const _wstring& pM
 
 	if (TYPE_NONANIM == eModelType)
 		iFlag |= aiProcess_PreTransformVertices;
-
+	
 	/* 지정해준 경로에 해당하는 파일의 정보를 읽어서 aiScene안에 저장해주는 역활. */
 	/*m_pAIScene = m_Importer.ReadFile(pModelFilePath, iFlag);
 
@@ -77,18 +79,18 @@ HRESULT CBinModel::Initialize_Prototype(enum TYPE eModelType, const _wstring& pM
 	if (0 == hFile)
 		return E_FAIL;
 
-
-	//ReadFile(hFile, vPoints, sizeof(_float3) * 3, &dwByte, nullptr);
-
 	XMStoreFloat4x4(&m_PreTransformMatrix, PreTransformMatrix);
 
 	m_eModelType = eModelType;
 
+	if (FAILED(Ready_Meshes(dwByte, hFile, PreTransformMatrix)))
+		return E_FAIL;
+
+
 	if (FAILED(Ready_Materials(dwByte, hFile)))
 		return E_FAIL;
 
-	if (FAILED(Ready_Meshes(dwByte, hFile, PreTransformMatrix)))
-		return E_FAIL;
+
 
 	//if (FAILED(Ready_Bones(m_pAIScene->mRootNode)))
 	//	return E_FAIL;
@@ -288,7 +290,7 @@ HRESULT CBinModel::Ready_Materials(_ulong& dwByte, HANDLE& hFile)
 				continue;
 
 			_splitpath_s(szAIData, nullptr, 0, nullptr, 0, szFileName, MAX_PATH, szExt, MAX_PATH);
-
+			
 			_char			szFullPath[MAX_PATH] = {};
 
 			strcpy_s(szFullPath, szDrive);
@@ -308,7 +310,9 @@ HRESULT CBinModel::Ready_Materials(_ulong& dwByte, HANDLE& hFile)
 					return E_FAIL;
 			}
 		
-		m_Materials.emplace_back(MeshMaterial);
+
+			m_Materials.emplace_back(MeshMaterial);
+			int a = 10;
 	}
 	return S_OK;
 }

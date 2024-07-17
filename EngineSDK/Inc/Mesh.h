@@ -32,7 +32,7 @@ public:
 	_uint Get_MaterialIndex() const {
 		return m_iMaterialIndex;
 	}
-
+	
 	MESH_DESC Get_Desc() { return m_tMeshDesc; }
 
 public:

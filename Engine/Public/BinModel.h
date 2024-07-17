@@ -52,6 +52,7 @@ private: /* For.Meshes */
 private: /* For.Materials */
 	_uint						m_iNumMaterials = {};
 	vector<MESHMATERIAL>		m_Materials;
+	vector<char*>				AiPath;
 
 private: /* For.Bones */
 	vector<class CBone*>		m_Bones;
