@@ -223,6 +223,62 @@ HRESULT CBinModel::Ready_Meshes(_ulong& dwByte, HANDLE& hFile,_fmatrix PreTransf
 		Desc.vIndices.resize(vIndicesSize);
 		ReadFile(hFile, Desc.vIndices.data(), sizeof(_uint) * vIndicesSize, &dwByte, nullptr);
 
+		//Anim
+		Desc.vBlendIndex = {};
+		_uint vBlendIndexSize = {};
+
+		ReadFile(hFile, &vBlendIndexSize, sizeof(_uint), &dwByte, nullptr);
+		Desc.vBlendIndex.resize(vBlendIndexSize);
+		ReadFile(hFile, Desc.vBlendIndex.data(), sizeof(_uint) * vBlendIndexSize, &dwByte, nullptr);
+
+		Desc.vBlendWeight;
+		_uint vBlendWeightSize;
+
+		ReadFile(hFile, &vBlendWeightSize, sizeof(_uint), &dwByte, nullptr);
+		Desc.vBlendWeight.resize(vBlendWeightSize);
+		ReadFile(hFile, Desc.vBlendWeight.data(), sizeof(_uint) * vBlendWeightSize, &dwByte, nullptr);
+
+		Desc.iNumBones;
+		ReadFile(hFile, &Desc.iNumBones, sizeof(_uint), &dwByte, nullptr);
+
+		Desc.BoneIndices;
+		_uint			iBoneIndicesSize;
+
+		ReadFile(hFile, &iBoneIndicesSize, sizeof(_uint), &dwByte, nullptr);
+		Desc.BoneIndices.resize(iBoneIndicesSize);
+		ReadFile(hFile, Desc.BoneIndices.data(), sizeof(_uint) * iBoneIndicesSize, &dwByte, nullptr);
+
+		Desc.OffsetMatrices;
+		_uint			iOffsetMatricesSize;
+
+		ReadFile(hFile, &iOffsetMatricesSize, sizeof(_uint), &dwByte, nullptr);
+		Desc.OffsetMatrices.resize(iOffsetMatricesSize);
+		ReadFile(hFile, Desc.OffsetMatrices.data(), sizeof(_float4x4) * iOffsetMatricesSize, &dwByte, nullptr);
+
+		_uint		mNumWeights;
+		ReadFile(hFile, &mNumWeights, sizeof(_uint), &dwByte, nullptr);
+
+		Desc.mVertexId;
+		_uint			mVertexIdSize;
+
+		ReadFile(hFile, &mVertexIdSize, sizeof(_uint), &dwByte, nullptr);
+		Desc.mVertexId.resize(mVertexIdSize);
+		ReadFile(hFile, Desc.mVertexId.data(), sizeof(_uint) * mVertexIdSize, &dwByte, nullptr);
+
+		Desc.vecNumBones;
+		_uint			vecNumBonesSize;
+
+		ReadFile(hFile, &vecNumBonesSize, sizeof(_uint), &dwByte, nullptr);
+		Desc.vecNumBones.resize(vecNumBonesSize);
+		ReadFile(hFile, Desc.vecNumBones.data(), sizeof(size_t) * vecNumBonesSize, &dwByte, nullptr);
+
+		Desc.mWeight;
+		_uint			mWeightSize;
+
+		ReadFile(hFile, &mWeightSize, sizeof(_uint), &dwByte, nullptr);
+		Desc.mWeight.resize(mWeightSize);
+		ReadFile(hFile, Desc.mWeight.data(), sizeof(_uint) * mWeightSize, &dwByte, nullptr);
+
 		CModel::TYPE eType = static_cast<CModel::TYPE>(m_eModelType);
 		
 		/* 메시를 하나씩 만든다. == VertexBuffer ,IndexBuffer를 만드낟. */

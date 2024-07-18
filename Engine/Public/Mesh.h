@@ -20,8 +20,20 @@ public:
 		vector<XMFLOAT3>	vNormal;
 		vector<XMFLOAT3>	vTexcoord;
 		vector<XMFLOAT3>	vTangent;
+		vector<XMUINT4>		vBlendIndex;
+		vector<XMFLOAT4>	vBlendWeight;
 		_uint				mNumFaces;
 		vector<_uint>		vIndices;
+
+		_uint				iNumBones;
+		vector<_uint>		BoneIndices;
+		vector<_float4x4>	OffsetMatrices;
+
+		_uint				mNumWeights;
+		vector<_uint>		mVertexId;
+
+		vector<size_t>		vecNumBones;
+		vector<float>		mWeight;
 	}MESH_DESC;
 
 private:
@@ -46,7 +58,7 @@ private:
 	_uint				m_iMaterialIndex = {};
 	/* 이 메시에게 영향을 주는 뼈의 갯수 .*/
 	_uint				m_iNumBones = {};
-
+	
 	/* 이 메시에게 영향을 주는 뼈의 인덱스를 저장한다. (전체뼈기준) */
 	vector<_uint>		m_BoneIndices; 
 	vector<_float4x4>	m_OffsetMatrices;

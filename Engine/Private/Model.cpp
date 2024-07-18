@@ -389,7 +389,64 @@ HRESULT CModel::Write_Meshes(_ulong& dwByte, HANDLE& hWnd, _fmatrix PreTransform
 
 		WriteFile(hWnd, &vIndicesSize, sizeof(_uint), &dwByte, nullptr);
 		WriteFile(hWnd, vIndices.data(), sizeof(_uint) * vIndices.size(), &dwByte, nullptr);
+
+		//Anim
+		vector<XMUINT4> vBlendIndex = iter->Get_Desc().vBlendIndex;
+		_uint vBlendIndexSize = vBlendIndex.size();
+
+		WriteFile(hWnd, &vBlendIndexSize, sizeof(_uint), &dwByte, nullptr);
+		WriteFile(hWnd, vBlendIndex.data(), sizeof(_uint) * vBlendIndex.size(), &dwByte, nullptr);
+
+
+		vector<XMFLOAT4> vBlendWeight = iter->Get_Desc().vBlendWeight;
+		_uint vBlendWeightSize = vBlendIndex.size();
+
+		WriteFile(hWnd, &vBlendWeightSize, sizeof(_uint), &dwByte, nullptr);
+		WriteFile(hWnd, vBlendWeight.data(), sizeof(_uint) * vBlendWeight.size(), &dwByte, nullptr);
+
+		_uint  iNumBones = iter->Get_Desc().iNumBones;
+		WriteFile(hWnd, &iNumBones, sizeof(_uint), &dwByte, nullptr);
+
+		vector<_uint>	BoneIndices = iter->Get_Desc().BoneIndices;
+		_uint			iBoneIndicesSize = BoneIndices.size();
+
+		WriteFile(hWnd, &iBoneIndicesSize, sizeof(_uint), &dwByte, nullptr);
+		WriteFile(hWnd, BoneIndices.data(), sizeof(_uint)* iBoneIndicesSize, &dwByte, nullptr);
+
+		vector<_float4x4>	OffsetMatrices = iter->Get_Desc().OffsetMatrices;
+		_uint			iOffsetMatricesSize = OffsetMatrices.size();
+
+		WriteFile(hWnd, &iOffsetMatricesSize, sizeof(_uint), &dwByte, nullptr);
+		WriteFile(hWnd, OffsetMatrices.data(), sizeof(_float4x4) * iOffsetMatricesSize, &dwByte, nullptr);
+
+		_uint		mNumWeights = iter->Get_Desc().mNumWeights;
+		WriteFile(hWnd, &mNumWeights, sizeof(_uint), &dwByte, nullptr);
+
+		vector<_uint>	mVertexId = iter->Get_Desc().mVertexId;
+		_uint			mVertexIdSize = mVertexId.size();
+
+		WriteFile(hWnd, &mVertexIdSize, sizeof(_uint), &dwByte, nullptr);
+		WriteFile(hWnd, mVertexId.data(), sizeof(_uint) * mVertexIdSize, &dwByte, nullptr);
+
+		vector<size_t>	vecNumBones = iter->Get_Desc().vecNumBones;
+		_uint			vecNumBonesSize = vecNumBones.size();
+
+		WriteFile(hWnd, &vecNumBonesSize, sizeof(_uint), &dwByte, nullptr);
+		WriteFile(hWnd, vecNumBones.data(), sizeof(size_t) * vecNumBonesSize, &dwByte, nullptr);
+
+		vector<float>	mWeight = iter->Get_Desc().mWeight;
+		_uint			mWeightSize = mWeight.size();
+
+		WriteFile(hWnd, &mWeightSize, sizeof(_uint), &dwByte, nullptr);
+		WriteFile(hWnd, mWeight.data(), sizeof(_uint)* mWeightSize, &dwByte, nullptr);
 	}
+
+	return S_OK;
+}
+
+HRESULT CModel::Write_Animations(_ulong& dwByte, HANDLE& hWnd)
+{
+
 
 	return S_OK;
 }
