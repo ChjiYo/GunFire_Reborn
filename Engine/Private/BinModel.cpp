@@ -92,9 +92,8 @@ HRESULT CBinModel::Initialize_Prototype(enum TYPE eModelType, const _wstring& pM
 	if (FAILED(Ready_Materials(dwByte, hFile)))
 		return E_FAIL;
 
-	
-	//if (FAILED(Ready_Animations()))
-	//	return E_FAIL;
+	if (FAILED(Ready_Animations(dwByte, hFile)))
+		return E_FAIL;
 
 	return S_OK;
 }
@@ -294,82 +293,36 @@ HRESULT CBinModel::Ready_Meshes(_ulong& dwByte, HANDLE& hFile,_fmatrix PreTransf
 
 HRESULT CBinModel::Ready_Materials(_ulong& dwByte, HANDLE& hFile)
 {
-	_uint iNumMatl = 0;
-	ReadFile(hFile, &iNumMatl, sizeof(_uint), &dwByte, nullptr);
-	m_iNumMaterials = iNumMatl;
+	_uint iMatVecSize = 0;
+	ReadFile(hFile, &iMatVecSize, sizeof(_uint), &dwByte, nullptr);
 
-	_uint iModelPathLength = 0;
-	char   szModelPath[MAX_PATH] = {};
-
-	
-	ReadFile(hFile, &iModelPathLength, sizeof(_uint), &dwByte, nullptr);
-	ReadFile(hFile, szModelPath, iModelPathLength, &dwByte, nullptr);
-
-	szModelPath[iModelPathLength] = '\0';
-	_char			szDrive[MAX_PATH] = {};
-	_char			szDir[MAX_PATH] = {};
-
-	_splitpath_s(szModelPath, szDrive, MAX_PATH, szDir, MAX_PATH, nullptr, 0, nullptr, 0);
-
-	vector<int> vMatlIndex;
-
-	_uint vMatIndexSize = {};
-	ReadFile(hFile, &vMatIndexSize, sizeof(_int) , &dwByte, nullptr);
-
-	for (int i = 0; i < vMatIndexSize; ++i)
+	//for(int i = 0 ;  i)
+	//iiNumTexture
+	for (size_t i = 0; i < iMatVecSize; ++i)
 	{
-		_uint iMatIndex;
-		ReadFile(hFile, &iMatIndex, sizeof(_int), &dwByte, nullptr);
+		_uint iTextureCnt = 0;
+		ReadFile(hFile, &iTextureCnt, sizeof(_uint), &dwByte, nullptr);
 
-		vMatlIndex.push_back(iMatIndex);
-	}
+		MESHMATERIAL			MeshMaterial = {};
+
+		for (int k = 0; k < iTextureCnt; ++k)
+		{
 
 
-	for (size_t i = 0; i < iNumMatl; i++)
-	{
-			MESHMATERIAL	MeshMaterial{};
+			_uint iPathLength = 0;
+			_tchar szPerfectPath[MAX_PATH] = {};
 
-			_char			szFileName[MAX_PATH] = {};
-			_char			szExt[MAX_PATH] = {};
+			ReadFile(hFile, &iPathLength, sizeof(_uint), &dwByte, nullptr);
+			ReadFile(hFile, szPerfectPath, sizeof(_tchar) * iPathLength, &dwByte, nullptr);
+			szPerfectPath[iPathLength] = '\0';
 
-			for (int k = 0; k < vMatlIndex.size(); ++k)
-			{
-				_uint iAIPathLength = 0;
-				char szAIData[MAX_PATH] = {};
-
-				ReadFile(hFile, &iAIPathLength, sizeof(_uint), &dwByte, nullptr);
-				ReadFile(hFile, szAIData, sizeof(_uint) * iAIPathLength, &dwByte, nullptr);
-				szAIData[iAIPathLength] = '\0';
-
-				char Test = szAIData[0];
-				if (szAIData[0] == '\0' )
-					continue;
-
-				_splitpath_s(szAIData, nullptr, 0, nullptr, 0, szFileName, MAX_PATH, szExt, MAX_PATH);
-				
-				_char			szFullPath[MAX_PATH] = {};
-
-				strcpy_s(szFullPath, szDrive);
-				strcat_s(szFullPath, szDir);
-				strcat_s(szFullPath, szFileName);
-				strcat_s(szFullPath, szExt);
-
-				_tchar			szPerfectFullPath[MAX_PATH] = {};
-
-				MultiByteToWideChar(CP_ACP, 0, szFullPath, strlen(szFullPath), szPerfectFullPath, MAX_PATH);
-
-				
-					//Continue와 CTrexture 어떻게 해야할지 고민
-					MeshMaterial.pMaterials[vMatlIndex.at(k)] = CTexture::Create(m_pDevice, m_pContext, szPerfectFullPath, 1);
-					if (nullptr == MeshMaterial.pMaterials[vMatlIndex.at(k)])
-						return E_FAIL;
-			}
+			MeshMaterial.pMaterials[i] = CTexture::Create(m_pDevice, m_pContext, szPerfectPath, 1);
+			if (nullptr == MeshMaterial.pMaterials[i])
+				return E_FAIL;
+		}
+		m_Materials.emplace_back(MeshMaterial);
 		
-
-			m_Materials.emplace_back(MeshMaterial);
-			int a = 10;
 	}
-	return S_OK;
 }
 
 HRESULT CBinModel::Ready_Bones(_ulong& dwByte, HANDLE& hFile)
@@ -408,17 +361,71 @@ HRESULT CBinModel::Ready_Bones(_ulong& dwByte, HANDLE& hFile)
 	return S_OK;
 }
 
-HRESULT CBinModel::Ready_Animations()
+HRESULT CBinModel::Ready_Animations(_ulong& dwByte, HANDLE& hFile)
 {
-	m_iNumAnimations = m_pAIScene->mNumAnimations;
+	_uint m_iNumAnimations = {};
+	ReadFile(hFile, &m_iNumAnimations, sizeof(_uint), &dwByte, nullptr);
+	
 
 	/* vector<_uint> 애니메이션 갯수만큼 할당한다. */
 	m_KeyFrameIndices.resize(m_iNumAnimations);
 
 	for (size_t i = 0; i < m_iNumAnimations; i++)
 	{
-		/* _uint : 키프레임인덱스를 애니메이션 사용하는 뼈 갯수만큼 확보해둔다. */
-		CAnimation* pAnimation = CAnimation::Create(m_pAIScene->mAnimations[i], m_Bones, m_KeyFrameIndices[i]);
+		vector<CChannel::CHANNEL_DESC>	Desc;
+		_uint iDescSize = {};
+		ReadFile(hFile, &iDescSize, sizeof(_uint), &dwByte, nullptr);
+		Desc.resize(iDescSize);
+		for (int k = 0; k < iDescSize; ++k)
+		{
+			_uint iChNameLength = {};
+
+			ReadFile(hFile, &iChNameLength, sizeof(_uint), &dwByte, nullptr);
+			char pTest[MAX_PATH] = {};
+			ReadFile(hFile, pTest, sizeof(_char) * iChNameLength, &dwByte, nullptr);
+			pTest[iChNameLength] = '\0';
+
+			Desc.at(k).szName = pTest;
+
+			vector<KEYFRAME> KeyFrames = {};
+			_uint KeyFramesSize = {};
+
+			ReadFile(hFile, &KeyFramesSize, sizeof(_uint), &dwByte, nullptr);
+			Desc.at(k).KeyFrames.resize(KeyFramesSize);
+			ReadFile(hFile, Desc.at(k).KeyFrames.data(), sizeof(KEYFRAME) * KeyFramesSize, &dwByte, nullptr);
+
+			_uint iNumKeyFrames = {};
+			ReadFile(hFile, &iNumKeyFrames, sizeof(_uint), &dwByte, nullptr);
+
+			_uint iNameLength = {};
+			ReadFile(hFile, &iNameLength, sizeof(_uint), &dwByte, nullptr);
+
+			_uint iBoneIndex = {};
+			ReadFile(hFile, &iBoneIndex, sizeof(_uint), &dwByte, nullptr);
+		}
+
+	
+		CAnimation::ANIM_DESC Anim_Desc = {};
+
+		Anim_Desc.fDuration;
+		ReadFile(hFile, &Anim_Desc.fDuration, sizeof(_float), &dwByte, nullptr);
+
+		Anim_Desc.fTickPerSecond;
+		ReadFile(hFile, &Anim_Desc.fTickPerSecond, sizeof(_float), &dwByte, nullptr);
+
+		Anim_Desc.iNumChannels ;
+		ReadFile(hFile, &Anim_Desc.iNumChannels, sizeof(_uint), &dwByte, nullptr);
+
+		char szName[MAX_PATH] = {};
+		_uint iNameLength;
+
+		ReadFile(hFile, &iNameLength, sizeof(_uint), &dwByte, nullptr);
+		ReadFile(hFile, szName, sizeof(char) * iNameLength, &dwByte, nullptr);
+		szName[iNameLength] = '\0';
+
+		Anim_Desc.szName = szName;
+
+		CAnimation* pAnimation = CAnimation::Create(Desc, Anim_Desc, m_Bones, m_KeyFrameIndices[i]);
 		if (nullptr == pAnimation)
 			return E_FAIL;
 

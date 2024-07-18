@@ -13,8 +13,11 @@ public:
 	typedef struct
 	{
 		_char* szName = {};
+		_uint iNameLength = {};
+
 		_uint iBoneIndex = {};
 		_uint iNumKeyFrames = {};
+
 		vector<KEYFRAME>	KeyFrames = {};
 	}CHANNEL_DESC;
 private:
@@ -25,7 +28,6 @@ public:
 	HRESULT Initialize(const aiNodeAnim* pAIChannel, const vector<class CBone*>& Bones);
 	HRESULT Initialize(CHANNEL_DESC Desc, const vector<class CBone*>& Bones);
 	void Compute_TransformationMatrix(_float fCurrentPosition, const vector<class CBone*>& Bones, _uint* pKeyFrameIndex);
-
 
 public:
 	CHANNEL_DESC Get_Desc() { return Desc; }
@@ -38,6 +40,8 @@ private:
 	vector<KEYFRAME>	m_KeyFrames;
 
 	CHANNEL_DESC		Desc = {};
+	vector<CHANNEL_DESC> vecDesc = {};
+
 public:
 	static CChannel* Create(const aiNodeAnim* pAIChannel, const vector<class CBone*>& Bones);
 	static CChannel* Create(CHANNEL_DESC Desc, const vector<class CBone*>& Bones);

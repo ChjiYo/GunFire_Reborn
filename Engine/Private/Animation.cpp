@@ -26,7 +26,7 @@ HRESULT CAnimation::Initialize(const aiAnimation * pAIAnimation, const vector<cl
 	Desc.iNumChannels = m_iNumChannels;
 
 	KeyFrameIndices.resize(m_iNumChannels);
-
+	vecChDesc.resize(m_iNumChannels);
 	for (size_t i = 0; i < m_iNumChannels; i++)
 	{
 		CChannel*		pChannel = CChannel::Create(pAIAnimation->mChannels[i], Bones);
@@ -34,29 +34,36 @@ HRESULT CAnimation::Initialize(const aiAnimation * pAIAnimation, const vector<cl
 			return E_FAIL;
 
 		m_Channels.emplace_back(pChannel);
+
+		vecChDesc.at(i).iBoneIndex = pChannel->Get_Desc().iBoneIndex;
+		vecChDesc.at(i).iNumKeyFrames = pChannel->Get_Desc().iNumKeyFrames;
+		vecChDesc.at(i).KeyFrames = pChannel->Get_Desc().KeyFrames;
+		vecChDesc.at(i).szName = pChannel->Get_Desc().szName;
+
+		vecChDesc.at(i).iNameLength = strlen(vecChDesc.at(i).szName);
 	}
 
 	return S_OK;
 }
 
-HRESULT CAnimation::Initialize(CChannel::CHANNEL_DESC Channle_Desc, ANIM_DESC Anim_Desc, const vector<class CBone*>& Bones, vector<_uint>& KeyFrameIndices)
+HRESULT CAnimation::Initialize(vector<CChannel::CHANNEL_DESC> Channle_Desc, ANIM_DESC Anim_Desc, const vector<class CBone*>& Bones, vector<_uint>& KeyFrameIndices)
 {
-	strcpy_s(m_szName, Desc.szName);
+	strcpy_s(m_szName, Anim_Desc.szName);
 
 	/* 애니메이션 재생하는데 걸리는 총 거리. */
-	m_fDuration = Desc.fDuration;
+	m_fDuration = Anim_Desc.fDuration;
 
 	/* 애니메이션 재생바초당 얼마나 이동해야하는지(재생속도) */
-	m_fTickPerSecond = Desc.fTickPerSecond;
+	m_fTickPerSecond = Anim_Desc.fTickPerSecond;
 
 	/* 애니메이션이 컨트롤하는 뼈의 갯수 /*/
-	m_iNumChannels = Desc.iNumChannels;
+	m_iNumChannels = Anim_Desc.iNumChannels;
 
 	KeyFrameIndices.resize(m_iNumChannels);
 
 	for (size_t i = 0; i < m_iNumChannels; i++)
 	{
-		CChannel* pChannel = CChannel::Create(Channle_Desc, Bones);
+		CChannel* pChannel = CChannel::Create(Channle_Desc.at(i), Bones);
 		if (nullptr == pChannel)
 			return E_FAIL;
 
@@ -102,7 +109,7 @@ CAnimation * CAnimation::Create(const aiAnimation * pAIAnimation, const vector<c
 	return pInstance;
 }
 
-CAnimation* CAnimation::Create(CChannel::CHANNEL_DESC Channle_Desc, ANIM_DESC Anim_Desc, const vector<class CBone*>& Bones, vector<_uint>& KeyFrameIndices)
+CAnimation* CAnimation::Create(vector<CChannel::CHANNEL_DESC> Channle_Desc, ANIM_DESC Anim_Desc, const vector<class CBone*>& Bones, vector<_uint>& KeyFrameIndices)
 {
 	CAnimation* pInstance = new CAnimation();
 

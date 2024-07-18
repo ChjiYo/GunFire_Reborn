@@ -30,12 +30,12 @@ private:
 
 public:
 	HRESULT Initialize(const aiAnimation* pAIAnimation, const vector<class CBone*>& Bones, vector<_uint>& KeyFrameIndices);
-	HRESULT Initialize(CChannel::CHANNEL_DESC Channle_Desc, ANIM_DESC Anim_Desc, const vector<class CBone*>& Bones, vector<_uint>& KeyFrameIndices);
+	HRESULT Initialize(vector<CChannel::CHANNEL_DESC> Channle_Desc, ANIM_DESC Anim_Desc, const vector<class CBone*>& Bones, vector<_uint>& KeyFrameIndices);
 	void Update_TransformationMatrix(_float* pCurrentAnimPosition, _float fTimeDelta, const vector<class CBone*>& Bones, _bool isLoop, vector<_uint>& KeyFrameIndices);
 
 public:
 	ANIM_DESC Get_Desc() { return Desc; }
-	vector<class CChannel*> Get_Channels() { return m_Channels; }
+	vector<CChannel::CHANNEL_DESC> Get_ChDesc() { return vecChDesc; }
 private:
 	_char			m_szName[MAX_PATH] = {};
 	_float			m_fDuration = {};
@@ -49,11 +49,12 @@ private:
 	/* 이 애니메이션을 표현하기위해 컨트롤해야하는 뼈들 */
 	vector<class CChannel*>		m_Channels;
 
-	ANIM_DESC					Desc;
 
+	ANIM_DESC					Desc;
+	vector< CChannel::CHANNEL_DESC> vecChDesc = {};
 public:
 	static CAnimation* Create(const aiAnimation* pAIAnimation, const vector<class CBone*>& Bones, vector<_uint>& KeyFrameIndices);
-	static CAnimation* Create(CChannel::CHANNEL_DESC Channle_Desc , ANIM_DESC Anim_Desc ,const vector<class CBone*>& Bones, vector<_uint>& KeyFrameIndices);
+	static CAnimation* Create(vector<CChannel::CHANNEL_DESC> Channle_Desc , ANIM_DESC Anim_Desc ,const vector<class CBone*>& Bones, vector<_uint>& KeyFrameIndices);
 	
 	virtual void Free() override;
 };

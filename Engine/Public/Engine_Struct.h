@@ -16,6 +16,7 @@ namespace Engine
 	typedef struct
 	{
 		class CTexture*		pMaterials[AI_TEXTURE_TYPE_MAX];
+		int				iTextureCnt;
 	}MESHMATERIAL;
 
 	typedef struct

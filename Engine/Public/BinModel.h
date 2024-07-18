@@ -77,7 +77,7 @@ public:
 	HRESULT Ready_Bones(_ulong& dwByte, HANDLE& hFile);
 
 	/* 추후, 런타임간에 뼈의 시간에 맞는 상태를 구하기위해 필요한 데이터들을 미리 모두 셋팅해둔다.  */
-	HRESULT Ready_Animations();
+	HRESULT Ready_Animations(_ulong& dwByte, HANDLE& hFile);
 
 public:
 	static CBinModel* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, enum TYPE eModelType, const _wstring& pModelFilePath, _fmatrix PreTransformMatrix);

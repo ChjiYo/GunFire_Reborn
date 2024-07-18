@@ -87,8 +87,8 @@ HRESULT CModel::Initialize_Prototype(enum TYPE eModelType, const _char* pModelFi
 	if (FAILED(Ready_Materials(pModelFilePath)))
 		return E_FAIL;
 
-	/*if (FAILED(Ready_Animations()))
-		return E_FAIL;*/
+	if (FAILED(Ready_Animations()))
+		return E_FAIL;
 
 	/* 바이너리화 */
 	_ulong			dwByte = { 0 };
@@ -104,6 +104,9 @@ HRESULT CModel::Initialize_Prototype(enum TYPE eModelType, const _char* pModelFi
 		return E_FAIL;
 
 	if (FAILED(Write_Materials(dwByte, hFile, pModelFilePath)))
+		return E_FAIL;
+
+	if (FAILED(Write_Animations(dwByte, hFile)))
 		return E_FAIL;
 
 	CloseHandle(hFile);
@@ -219,6 +222,10 @@ HRESULT CModel::Ready_Materials(const _char* pModelFilePath)
 			
 			m_arrAiPath[j] = new char[strlen(strAIPath.data) + 1];
 			strcpy_s(m_arrAiPath[j], strlen(strAIPath.data) + 1, strAIPath.data);
+
+			string Test = m_arrAiPath[j];
+			vector<string> Src;
+			
 			
 			_splitpath_s(strAIPath.data, nullptr, 0, nullptr, 0, szFileName, MAX_PATH, szExt, MAX_PATH);
 
@@ -236,6 +243,8 @@ HRESULT CModel::Ready_Materials(const _char* pModelFilePath)
 			MeshMaterial.pMaterials[j] = CTexture::Create(m_pDevice, m_pContext, szPerfectFullPath, 1);
 			if (nullptr == MeshMaterial.pMaterials[j])
 				return E_FAIL;
+
+			++(MeshMaterial.iTextureCnt);
 		}
 		m_Materials.emplace_back(MeshMaterial);
 	}
@@ -275,6 +284,7 @@ HRESULT CModel::Ready_Animations()
 			return E_FAIL;
 
 		m_Animations.emplace_back(pAnimation);
+		int a = 10;
 	}
 
 	return S_OK;
@@ -304,32 +314,59 @@ HRESULT CModel::Write_Bones(_ulong& dwByte, HANDLE& hWnd)
 
 HRESULT CModel::Write_Materials(_ulong& dwByte, HANDLE& hWnd, const _char* pModelFilePath)
 {
-	_uint iNumMatl = m_iNumMaterials;
-	WriteFile(hWnd, &iNumMatl, sizeof(iNumMatl), &dwByte, nullptr);
+	_uint iMatVecSize = (_uint)m_Materials.size();
+	WriteFile(hWnd, &iMatVecSize, sizeof(_uint), &dwByte, nullptr);
 
-	const _char* strModelPath = pModelFilePath;
-	_uint iModelPathLength = strlen(strModelPath);
-
-	WriteFile(hWnd, &iModelPathLength, sizeof(_uint), &dwByte, nullptr);
-	WriteFile(hWnd, strModelPath, sizeof(char) * iModelPathLength, &dwByte, nullptr);
-
-	vector<int> vMatlIndex = m_vMatlIndex;
-
-	_uint vMatIndexSize = vMatlIndex.size();
-	WriteFile(hWnd, &vMatIndexSize, sizeof(_int), &dwByte, nullptr);
-
-	for (auto& iter : m_vMatlIndex)
+	for(int i = 0 ; i < m_iNumMaterials ; ++i)
 	{
-		WriteFile(hWnd, &iter, sizeof(_int), &dwByte, nullptr);
-	}
+		aiMaterial* pAIMaterial = m_pAIScene->mMaterials[i];
 
-	for(int i = 0  ; i< m_vMatlIndex.size() ; ++i)
-	{
-		_uint iAiPathLength = strlen(m_arrAiPath[m_vMatlIndex.at(i)]);
-		WriteFile(hWnd, &iAiPathLength, sizeof(_uint), &dwByte, nullptr);
-		WriteFile(hWnd, m_arrAiPath[m_vMatlIndex.at(i)], sizeof(char) * iAiPathLength, &dwByte, nullptr);
+		MESHMATERIAL  MeshMaterial = {};
+		
+		_uint iiNumTexture = m_Materials.at(i).iTextureCnt;
+		WriteFile(hWnd, &iiNumTexture, sizeof(_uint), &dwByte, nullptr);
+		
+		for (size_t k = 1; k < AI_TEXTURE_TYPE_MAX; ++k)
+		{
+			aiString   strTexturePath;
+
+			if (FAILED(pAIMaterial->GetTexture(aiTextureType(k), 0, &strTexturePath)))
+				continue;
+
+			/* 얻어온 경로에서 신용할 수 있는 건 파일의 이름과 확장자 */
+
+			// 내가 지정한 텍스처의 경로를 얻어온다.
+			// 18개의 텍스처 타입 중에 없는 것이 있다면 continue로 다음 타입으로 넘어감
+
+			_char   szFullPath[MAX_PATH] = {};
+
+			/* 모델 파일 경로로부터 뜯어온 문자열 */
+			_char   szDrive[MAX_PATH] = {};      // 드라이브 경로
+			_char   szDir[MAX_PATH] = {};      // 디렉토리
+
+			/* 모델 파일(aiScene)로부터 뜯어온 문자열 */
+			_char   szFileName[MAX_PATH] = {};   // 파일 이름
+			_char   szExt[MAX_PATH] = {};      // 확장자
+
+			_splitpath_s(pModelFilePath, szDrive, MAX_PATH, szDir, MAX_PATH, nullptr, 0, nullptr, 0);
+			_splitpath_s(strTexturePath.data, nullptr, 0, nullptr, 0, szFileName, MAX_PATH, szExt, MAX_PATH);
+
+			strcpy_s(szFullPath, szDrive);      // szFullPath에 szDrive를 복사함
+			strcat_s(szFullPath, szDir);      // szFullPath에 szDir을 붙임
+			strcat_s(szFullPath, szFileName);   // szFullPath에 szFileName을 붙임
+			strcat_s(szFullPath, szExt);      // szFullPath에 szExt를 붙임
+
+			_tchar      szPerfectPath[MAX_PATH] = {};
+
+			// _char형의 szFullPath를 _tchar형의 szPerfectPath로 치환함
+			MultiByteToWideChar(CP_ACP, 0, szFullPath, strlen(szFullPath), szPerfectPath, MAX_PATH);
+
+			_uint iPathLength = wcslen(szPerfectPath);
+			WriteFile(hWnd, &iPathLength, sizeof(_uint), &dwByte, nullptr);
+			WriteFile(hWnd, szPerfectPath, sizeof(_tchar) * iPathLength, &dwByte, nullptr);
+			int a = 10;
+		}
 	}
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
 	return S_OK;
 }
 
@@ -449,30 +486,58 @@ HRESULT CModel::Write_Animations(_ulong& dwByte, HANDLE& hWnd)
 {
 	WriteFile(hWnd, &m_iNumAnimations, sizeof(_uint), &dwByte, nullptr);
 
+	//m_iNumChannels
 	for(auto& iter :m_Animations)
 	{
-		CChannel::CHANNEL_DESC Desc;
+		vector<CChannel::CHANNEL_DESC>	Desc = iter->Get_ChDesc();
+		_uint iDescSize = Desc.size();
 
-		for (auto& iter : iter->Get_Channels())
+		WriteFile(hWnd, &iDescSize, sizeof(_uint), &dwByte, nullptr);
+
+		for (int i = 0; i < iDescSize; ++i)
 		{
-			//iter->Get_Desc().iBoneIndex
+			_uint iChNameLength = strlen(Desc.at(i).szName);
+
+			WriteFile(hWnd, &iChNameLength, sizeof(_uint), &dwByte, nullptr);
+			WriteFile(hWnd, Desc.at(i).szName, sizeof(char) * iChNameLength, &dwByte, nullptr);
+
+			vector<KEYFRAME> KeyFrames = Desc.at(i).KeyFrames;
+			_uint KeyFramesSize = KeyFrames.size();
+
+			WriteFile(hWnd, &KeyFramesSize, sizeof(_uint) , &dwByte, nullptr);
+			WriteFile(hWnd, Desc.at(i).KeyFrames.data(), sizeof(KEYFRAME) * KeyFramesSize, &dwByte, nullptr);
+
+			_uint iNumKeyFrames = Desc.at(i).iNumKeyFrames;
+			WriteFile(hWnd, &iNumKeyFrames, sizeof(_uint), &dwByte, nullptr);
+
+			_uint iNameLength = Desc.at(i).iNameLength;
+			WriteFile(hWnd, &iNameLength, sizeof(_uint), &dwByte, nullptr);
+
+			_uint iBoneIndex = Desc.at(i).iBoneIndex;
+			WriteFile(hWnd, &iBoneIndex, sizeof(_uint), &dwByte, nullptr);
 		}
 
-		//_char* szName = iter->Get_Desc().szName;
-		//_uint iNameLength = strlen(szName);
-		//
-		//WriteFile(hWnd, &iNameLength , sizeof(_uint), &dwByte, nullptr);
-		//WriteFile(hWnd, szName, sizeof(_uint) * iNameLength, &dwByte, nullptr);
+		//WriteFile(hWnd, &iDescSize, sizeof(_uint), &dwByte, nullptr);
+		//WriteFile(hWnd, Desc.data(), sizeof(CChannel::CHANNEL_DESC)* iDescSize, &dwByte, nullptr);
+		/*WriteFile(hWnd, &iDescSize, sizeof(_uint), &dwByte, nullptr);
+		WriteFile(hWnd, Desc.data(), sizeof(CChannel::CHANNEL_DESC) * iDescSize, &dwByte, nullptr);*/
 
-		//_uint iBoneIndex = //iter->Get_Desc().iB;
-		//
-		//_uint iNumKeyFrames = {};
-		//vector<KEYFRAME>	KeyFrames = {};
+		_float fDuration = iter->Get_Desc().fDuration;
+		WriteFile(hWnd, &fDuration, sizeof(_float) , &dwByte, nullptr);
 
+		_float fTickPerSecond = iter->Get_Desc().fTickPerSecond;
+		WriteFile(hWnd, &fTickPerSecond, sizeof(_float), &dwByte, nullptr);
+
+		_uint iNumChannels = iter->Get_Desc().iNumChannels;
+		WriteFile(hWnd, &iNumChannels, sizeof(_uint), &dwByte, nullptr);
+
+		char* szName = iter->Get_Desc().szName;
+		_uint iNameLength = strlen(szName);
+
+		WriteFile(hWnd, &iNameLength, sizeof(_uint), &dwByte, nullptr);
+		WriteFile(hWnd, szName, sizeof(char) * iNameLength, &dwByte, nullptr);
 
 	}
-
-	
 
 	return S_OK;
 }

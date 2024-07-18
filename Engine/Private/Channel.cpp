@@ -63,18 +63,18 @@ HRESULT CChannel::Initialize(const aiNodeAnim * pAIChannel, const vector<CBone*>
 		m_KeyFrames.emplace_back(KeyFrame);	
 	}
 	Desc.KeyFrames = m_KeyFrames;
-
+	vecDesc.push_back(Desc);
 	return S_OK;
 }
 
 HRESULT CChannel::Initialize(CHANNEL_DESC Desc, const vector<class CBone*>& Bones)
-{
+{	
 	/* 이 뼈의 이름은 모델으 전체뼈의 이름과 동기화되어있어요. */
 	strcpy_s(m_szName, Desc.szName);
 
 	/* 추후 계산한 채널의 상태 행렬을 모델 전체 기준 뼈에 빠르게 전달해주기위해 미리 검색하여 인덱스르 ㄹ저앙햏ㄹ운다. */
 	m_iNumKeyFrames = Desc.iNumKeyFrames;
-	m_iBoneIndex = Desc.iBoneIndex ;
+	m_iBoneIndex = Desc.iBoneIndex;
 	m_KeyFrames = Desc.KeyFrames;
 
 	return S_OK;

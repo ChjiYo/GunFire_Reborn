@@ -28,7 +28,7 @@ public:
 
 private:
 	CShader* m_pShaderCom = { nullptr };
-	CBinModel* m_pModelCom = { nullptr };
+	CModel* m_pModelCom = { nullptr };
 
 private:
 	HRESULT Ready_Components();
