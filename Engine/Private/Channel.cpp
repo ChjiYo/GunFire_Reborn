@@ -11,6 +11,8 @@ HRESULT CChannel::Initialize(const aiNodeAnim * pAIChannel, const vector<CBone*>
 	/* 이 뼈의 이름은 모델으 전체뼈의 이름과 동기화되어있어요. */
 	strcpy_s(m_szName, pAIChannel->mNodeName.data);
 
+	Desc.szName = m_szName;
+
 	/* 추후 계산한 채널의 상태 행렬을 모델 전체 기준 뼈에 빠르게 전달해주기위해 미리 검색하여 인덱스르 ㄹ저앙햏ㄹ운다. */
 	auto	iter = find_if(Bones.begin(), Bones.end(), [&](CBone* pBone) {
 		if (false == strcmp(m_szName, pBone->Get_Name()))
@@ -19,8 +21,12 @@ HRESULT CChannel::Initialize(const aiNodeAnim * pAIChannel, const vector<CBone*>
 		return false;
 	});	
 
+	Desc.iBoneIndex = m_iBoneIndex;;
+
 	m_iNumKeyFrames = max(pAIChannel->mNumScalingKeys, pAIChannel->mNumRotationKeys);
 	m_iNumKeyFrames = max(m_iNumKeyFrames, pAIChannel->mNumPositionKeys);
+
+	Desc.iNumKeyFrames = m_iNumKeyFrames;
 
 	_float3			vScale{};
 	_float4			vRotation{};
@@ -53,9 +59,23 @@ HRESULT CChannel::Initialize(const aiNodeAnim * pAIChannel, const vector<CBone*>
 		KeyFrame.vScale = vScale;
 		KeyFrame.vRotation = vRotation;
 		KeyFrame.vPosition = vPosition;
-
-		m_KeyFrames.emplace_back(KeyFrame);
+		
+		m_KeyFrames.emplace_back(KeyFrame);	
 	}
+	Desc.KeyFrames = m_KeyFrames;
+
+	return S_OK;
+}
+
+HRESULT CChannel::Initialize(CHANNEL_DESC Desc, const vector<class CBone*>& Bones)
+{
+	/* 이 뼈의 이름은 모델으 전체뼈의 이름과 동기화되어있어요. */
+	strcpy_s(m_szName, Desc.szName);
+
+	/* 추후 계산한 채널의 상태 행렬을 모델 전체 기준 뼈에 빠르게 전달해주기위해 미리 검색하여 인덱스르 ㄹ저앙햏ㄹ운다. */
+	m_iNumKeyFrames = Desc.iNumKeyFrames;
+	m_iBoneIndex = Desc.iBoneIndex ;
+	m_KeyFrames = Desc.KeyFrames;
 
 	return S_OK;
 }
@@ -117,6 +137,19 @@ CChannel * CChannel::Create(const aiNodeAnim * pAIChannel, const vector<CBone*>&
 	CChannel*		pInstance = new CChannel();
 
 	if (FAILED(pInstance->Initialize(pAIChannel, Bones)))
+	{
+		MSG_BOX(TEXT("Failed to Created : CChannel"));
+		Safe_Release(pInstance);
+	}
+
+	return pInstance;
+}
+
+CChannel* CChannel::Create(CHANNEL_DESC Desc, const vector<class CBone*>& Bones)
+{
+	CChannel* pInstance = new CChannel();
+
+	if (FAILED(pInstance->Initialize(Desc, Bones)))
 	{
 		MSG_BOX(TEXT("Failed to Created : CChannel"));
 		Safe_Release(pInstance);

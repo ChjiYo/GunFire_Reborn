@@ -4,6 +4,7 @@
 #include "Shader.h"
 #include "Texture.h"
 #include "Animation.h"
+#include "Channel.h"
 
 CModel::CModel(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	: CComponent{ pDevice, pContext }
@@ -446,7 +447,32 @@ HRESULT CModel::Write_Meshes(_ulong& dwByte, HANDLE& hWnd, _fmatrix PreTransform
 
 HRESULT CModel::Write_Animations(_ulong& dwByte, HANDLE& hWnd)
 {
+	WriteFile(hWnd, &m_iNumAnimations, sizeof(_uint), &dwByte, nullptr);
 
+	for(auto& iter :m_Animations)
+	{
+		CChannel::CHANNEL_DESC Desc;
+
+		for (auto& iter : iter->Get_Channels())
+		{
+			//iter->Get_Desc().iBoneIndex
+		}
+
+		//_char* szName = iter->Get_Desc().szName;
+		//_uint iNameLength = strlen(szName);
+		//
+		//WriteFile(hWnd, &iNameLength , sizeof(_uint), &dwByte, nullptr);
+		//WriteFile(hWnd, szName, sizeof(_uint) * iNameLength, &dwByte, nullptr);
+
+		//_uint iBoneIndex = //iter->Get_Desc().iB;
+		//
+		//_uint iNumKeyFrames = {};
+		//vector<KEYFRAME>	KeyFrames = {};
+
+
+	}
+
+	
 
 	return S_OK;
 }

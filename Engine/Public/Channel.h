@@ -9,13 +9,26 @@ BEGIN(Engine)
 
 class CChannel final : public CBase
 {
+public:
+	typedef struct
+	{
+		_char* szName = {};
+		_uint iBoneIndex = {};
+		_uint iNumKeyFrames = {};
+		vector<KEYFRAME>	KeyFrames = {};
+	}CHANNEL_DESC;
 private:
 	CChannel();
 	virtual ~CChannel() = default;
 
 public:
 	HRESULT Initialize(const aiNodeAnim* pAIChannel, const vector<class CBone*>& Bones);
+	HRESULT Initialize(CHANNEL_DESC Desc, const vector<class CBone*>& Bones);
 	void Compute_TransformationMatrix(_float fCurrentPosition, const vector<class CBone*>& Bones, _uint* pKeyFrameIndex);
+
+
+public:
+	CHANNEL_DESC Get_Desc() { return Desc; }
 
 private:
 	_char				m_szName[MAX_PATH] = {};
@@ -24,8 +37,10 @@ private:
 	_uint				m_iNumKeyFrames = {};
 	vector<KEYFRAME>	m_KeyFrames;
 
+	CHANNEL_DESC		Desc = {};
 public:
 	static CChannel* Create(const aiNodeAnim* pAIChannel, const vector<class CBone*>& Bones);
+	static CChannel* Create(CHANNEL_DESC Desc, const vector<class CBone*>& Bones);
 	virtual void Free() override;
 };
 
