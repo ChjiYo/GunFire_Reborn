@@ -24,7 +24,7 @@ public:
 		vector<XMFLOAT4>	vBlendWeight;
 		_uint				mNumFaces;
 		vector<_uint>		vIndices;
-
+		
 		_uint				iNumBones;
 		vector<_uint>		BoneIndices;
 		vector<_float4x4>	OffsetMatrices;

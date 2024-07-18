@@ -267,7 +267,7 @@ void * CMesh::Create_AnimVertices(const aiMesh* pAIMesh, const vector<CBone*>& B
 			if(0.f == pVertices[AIWeight.mVertexId].vBlendWeight.x)
 			{
 				pVertices[AIWeight.mVertexId].vBlendIndex.x = i;
-				pVertices[AIWeight.mVertexId].vBlendWeight.x = AIWeight.mWeight;
+				pVertices[AIWeight.mVertexId].vBlendWeight. x = AIWeight.mWeight;
 			}
 
 			else if(0.f == pVertices[AIWeight.mVertexId].vBlendWeight.y)
@@ -288,6 +288,7 @@ void * CMesh::Create_AnimVertices(const aiMesh* pAIMesh, const vector<CBone*>& B
 				pVertices[AIWeight.mVertexId].vBlendWeight.w = AIWeight.mWeight;
 			}			
 		}
+
 	}
 
 	if (0 == m_iNumBones)
