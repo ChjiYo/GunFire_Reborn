@@ -45,7 +45,7 @@ public:
 
 private:
 	CShader* m_pShaderCom = { nullptr };
-	CBinModel* m_pModelCom = { nullptr };
+	CModel* m_pModelCom = { nullptr };
 	CState_Machine* m_pState = { nullptr };
 	CTransform* m_pCamTransform = { nullptr };
 

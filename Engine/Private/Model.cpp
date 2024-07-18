@@ -437,7 +437,7 @@ HRESULT CModel::Write_Meshes(_ulong& dwByte, HANDLE& hWnd, _fmatrix PreTransform
 
 
 		vector<XMFLOAT4> vBlendWeight = iter->Get_Desc().vBlendWeight;
-		_uint vBlendWeightSize = vBlendIndex.size();
+		_uint vBlendWeightSize = vBlendIndex.size(); 
 
 		WriteFile(hWnd, &vBlendWeightSize, sizeof(_uint), &dwByte, nullptr);
 		WriteFile(hWnd, vBlendWeight.data(), sizeof(_uint) * vBlendWeight.size(), &dwByte, nullptr);
@@ -457,8 +457,11 @@ HRESULT CModel::Write_Meshes(_ulong& dwByte, HANDLE& hWnd, _fmatrix PreTransform
 		WriteFile(hWnd, &iOffsetMatricesSize, sizeof(_uint), &dwByte, nullptr);
 		WriteFile(hWnd, OffsetMatrices.data(), sizeof(_float4x4) * iOffsetMatricesSize, &dwByte, nullptr);
 
-		_uint		mNumWeights = iter->Get_Desc().mNumWeights;
-		WriteFile(hWnd, &mNumWeights, sizeof(_uint), &dwByte, nullptr);
+		vector<_uint>		mNumWeights = iter->Get_Desc().mNumWeights;
+		_uint				mNumWeightsSize = mNumWeights.size();
+
+		WriteFile(hWnd, &mNumWeightsSize, sizeof(_uint), &dwByte, nullptr);
+		WriteFile(hWnd, &mNumWeights, sizeof(_uint)* mNumWeightsSize, &dwByte, nullptr);
 
 		vector<_uint>	mVertexId = iter->Get_Desc().mVertexId;
 		_uint			mVertexIdSize = mVertexId.size();

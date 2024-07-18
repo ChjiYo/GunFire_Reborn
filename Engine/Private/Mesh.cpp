@@ -224,6 +224,7 @@ void * CMesh::Create_AnimVertices(const aiMesh* pAIMesh, const vector<CBone*>& B
 	/* 이 메시의 정점들에게 영향을 주는 뼈의 갯수. */
 	m_iNumBones = pAIMesh->mNumBones;
 	m_tMeshDesc.iNumBones = m_iNumBones;
+	m_tMeshDesc.mWeight.resize(m_iNumBones);
 
 	for (size_t i = 0; i < m_iNumBones; i++)
 	{
@@ -247,10 +248,10 @@ void * CMesh::Create_AnimVertices(const aiMesh* pAIMesh, const vector<CBone*>& B
 		XMStoreFloat4x4(&OffsetMatrix, XMMatrixTranspose(XMLoadFloat4x4(&OffsetMatrix)));
 		
 		m_OffsetMatrices.emplace_back(OffsetMatrix);
-		m_tMeshDesc.OffsetMatrices = m_OffsetMatrices;
+		m_tMeshDesc.OffsetMatrices.push_back(OffsetMatrix);
 
 
-		m_tMeshDesc.mNumWeights = pAIBone->mNumWeights;
+		m_tMeshDesc.mNumWeights.push_back(pAIBone->mNumWeights);
 		for (size_t j = 0; j < pAIBone->mNumWeights; j++)
 		{
 			aiVertexWeight	AIWeight = pAIBone->mWeights[j];
@@ -260,6 +261,7 @@ void * CMesh::Create_AnimVertices(const aiMesh* pAIMesh, const vector<CBone*>& B
 
 			m_tMeshDesc.mVertexId.push_back(AIWeight.mVertexId);
 			m_tMeshDesc.vecNumBones.push_back(i);
+			
 			m_tMeshDesc.mWeight.push_back(AIWeight.mWeight);
 
 			if(0.f == pVertices[AIWeight.mVertexId].vBlendWeight.x)
@@ -338,25 +340,25 @@ void* CMesh::Create_BinAnimVertices(MESH_DESC tDesc,const vector<CBone*>& Bones)
 	VTXANIMMESH* pVertices = new VTXANIMMESH[m_iNumVertices];
 	ZeroMemory(pVertices, sizeof(VTXANIMMESH) * m_iNumVertices);
 
-	m_tMeshDesc.iNumBones = m_iNumBones;
-	m_tMeshDesc.BoneIndices = m_BoneIndices;
-	m_tMeshDesc.OffsetMatrices = m_OffsetMatrices;
+	m_iNumBones = tDesc.iNumBones;
+	m_BoneIndices = tDesc.BoneIndices;
+	m_OffsetMatrices = tDesc.OffsetMatrices ;
 
 	for (size_t i = 0; i < m_iNumVertices; i++)
 	{
-		pVertices[i].vPosition = m_tMeshDesc.vPosition.at(i);
-		pVertices[i].vNormal = m_tMeshDesc.vNormal.at(i);
-		pVertices[i].vTexcoord = m_tMeshDesc.vTexcoord.at(i);
-		pVertices[i].vTangent = m_tMeshDesc.vTangent.at(i);
+		pVertices[i].vPosition = tDesc.vPosition.at(i);
+		pVertices[i].vNormal = tDesc.vNormal.at(i);
+		pVertices[i].vTexcoord = tDesc.vTexcoord.at(i);
+		pVertices[i].vTangent = tDesc.vTangent.at(i);
 	}
 
 	/* 이 메시의 정점들에게 영향을 주는 뼈의 갯수. */
 	//m_iNumBones = pAIMesh->mNumBones;
 
-	for (size_t i = 0; i < m_tMeshDesc.iNumBones; i++)
+	for (size_t i = 0; i < tDesc.iNumBones; i++)
 	{
 		//aiBone* pAIBone = pAIMesh->mBones[i];
-		m_BoneIndices = m_tMeshDesc.BoneIndices;
+		m_BoneIndices = tDesc.BoneIndices;
 
 		_float4x4		OffsetMatrix;
 		//memcpy(&OffsetMatrix, &pAIBone->mOffsetMatrix, sizeof(_float4x4));
@@ -365,33 +367,33 @@ void* CMesh::Create_BinAnimVertices(MESH_DESC tDesc,const vector<CBone*>& Bones)
 
 		m_OffsetMatrices.emplace_back(OffsetMatrix);
 
-		for (size_t j = 0; j < m_tMeshDesc.mNumWeights; j++)
+		for (size_t j = 0; j < m_tMeshDesc.mNumWeights.at(i); j++)
 		{
 			/* i번째 뼈가 영향을 주는 정점의 갯수는 pAIBone->mNumWeights(j-> 0, 1 ~~~) */
 			/* i번째 뼈가 영향을 주는 정점들 중, j번째 정점의 인덱스 AIWeight.mVertexId */
 		
-			if (0.f == pVertices[m_tMeshDesc.mVertexId.at(j)].vBlendWeight.x)
+			if (0.f == pVertices[tDesc.mVertexId.at(j)].vBlendWeight.x)
 			{
-				pVertices[m_tMeshDesc.mVertexId.at(j)].vBlendIndex.x = i;
-				pVertices[m_tMeshDesc.mVertexId.at(j)].vBlendWeight.x = m_tMeshDesc.mWeight.at(j);
+				pVertices[tDesc.mVertexId.at(j)].vBlendIndex.x = i;
+				pVertices[tDesc.mVertexId.at(j)].vBlendWeight.x = tDesc.mWeight.at(j);
 			}
 		
-			else if (0.f == pVertices[m_tMeshDesc.mVertexId.at(j)].vBlendWeight.y)
+			else if (0.f == pVertices[tDesc.mVertexId.at(j)].vBlendWeight.y)
 			{
-				pVertices[m_tMeshDesc.mVertexId.at(j)].vBlendIndex.y = i;
-				pVertices[m_tMeshDesc.mVertexId.at(j)].vBlendWeight.y = m_tMeshDesc.mWeight.at(j);
+				pVertices[tDesc.mVertexId.at(j)].vBlendIndex.y = i;
+				pVertices[tDesc.mVertexId.at(j)].vBlendWeight.y = tDesc.mWeight.at(j);
 			}
 		
-			else if (0.f == pVertices[m_tMeshDesc.mVertexId.at(j)].vBlendWeight.z)
+			else if (0.f == pVertices[tDesc.mVertexId.at(j)].vBlendWeight.z)
 			{
-				pVertices[m_tMeshDesc.mVertexId.at(j)].vBlendIndex.z = i;
-				pVertices[m_tMeshDesc.mVertexId.at(j)].vBlendWeight.z = m_tMeshDesc.mWeight.at(j);
+				pVertices[tDesc.mVertexId.at(j)].vBlendIndex.z = i;
+				pVertices[tDesc.mVertexId.at(j)].vBlendWeight.z = tDesc.mWeight.at(j);
 			}
 		
 			else
 			{
-				pVertices[m_tMeshDesc.mVertexId.at(j)].vBlendIndex.w = i;
-				pVertices[m_tMeshDesc.mVertexId.at(j)].vBlendWeight.w = m_tMeshDesc.mWeight.at(j);
+				pVertices[tDesc.mVertexId.at(j)].vBlendIndex.w = i;
+				pVertices[tDesc.mVertexId.at(j)].vBlendWeight.w = tDesc.mWeight.at(j);
 			}
 		}
 	}
@@ -403,7 +405,7 @@ void* CMesh::Create_BinAnimVertices(MESH_DESC tDesc,const vector<CBone*>& Bones)
 		/* 메시와 이름이같은 뼈를 찾아주면 된다,. */
 		m_iNumBones = 1;
 
-		m_BoneIndices = m_tMeshDesc.BoneIndices;
+		m_BoneIndices = tDesc.BoneIndices;
 
 		_float4x4		OffsetMatrix{};
 

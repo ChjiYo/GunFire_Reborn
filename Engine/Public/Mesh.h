@@ -24,12 +24,12 @@ public:
 		vector<XMFLOAT4>	vBlendWeight;
 		_uint				mNumFaces;
 		vector<_uint>		vIndices;
-
+		
 		_uint				iNumBones;
 		vector<_uint>		BoneIndices;
 		vector<_float4x4>	OffsetMatrices;
 
-		_uint				mNumWeights;
+		vector<_uint>		mNumWeights; //
 		vector<_uint>		mVertexId;
 
 		vector<size_t>		vecNumBones;

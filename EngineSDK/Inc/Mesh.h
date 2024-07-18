@@ -29,7 +29,7 @@ public:
 		vector<_uint>		BoneIndices;
 		vector<_float4x4>	OffsetMatrices;
 
-		_uint				mNumWeights;
+		vector<_uint>		mNumWeights; //
 		vector<_uint>		mVertexId;
 
 		vector<size_t>		vecNumBones;

@@ -254,8 +254,12 @@ HRESULT CBinModel::Ready_Meshes(_ulong& dwByte, HANDLE& hFile,_fmatrix PreTransf
 		Desc.OffsetMatrices.resize(iOffsetMatricesSize);
 		ReadFile(hFile, Desc.OffsetMatrices.data(), sizeof(_float4x4) * iOffsetMatricesSize, &dwByte, nullptr);
 
-		_uint		mNumWeights;
-		ReadFile(hFile, &mNumWeights, sizeof(_uint), &dwByte, nullptr);
+		Desc.mNumWeights;
+		_uint				mNumWeightsSize;
+
+		ReadFile(hFile, &mNumWeightsSize, sizeof(_uint), &dwByte, nullptr);
+		Desc.mNumWeights.resize(mNumWeightsSize);
+		ReadFile(hFile, &Desc.mNumWeights, sizeof(_uint) * mNumWeightsSize, &dwByte, nullptr);
 
 		Desc.mVertexId;
 		_uint			mVertexIdSize;
