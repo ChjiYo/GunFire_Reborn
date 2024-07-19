@@ -36,29 +36,61 @@ void CBounding_AABB::Update(_fmatrix TransformMatrix)
 
 HRESULT CBounding_AABB::Render(PrimitiveBatch<VertexPositionColor>* pBatch, _fvector vColor)
 {
-	//DX::Draw(pBatch, *m_pDesc, vColor);
+	DX::Draw(pBatch, *m_pDesc, vColor);
 
 	return S_OK;
 }
 
 _bool CBounding_AABB::isCollision(CCollider::TYPE eTargetColliderType, CBounding* pTargetBounding)
 {
-	return _bool();
+	_bool		isColl = { false };
+
+	switch (eTargetColliderType)
+	{
+	case CCollider::TYPE_AABB:
+		// isColl = m_pDesc->Intersects(static_cast<CBounding_AABB*>(pTargetBounding)->Get_Desc());
+		isColl = Collision_AABB(static_cast<CBounding_AABB*>(pTargetBounding));
+		break;
+	case CCollider::TYPE_OBB:
+		isColl = m_pDesc->Intersects(static_cast<CBounding_OBB*>(pTargetBounding)->Get_Desc());
+		break;
+	case CCollider::TYPE_SPHERE:
+		isColl = m_pDesc->Intersects(static_cast<CBounding_Sphere*>(pTargetBounding)->Get_Desc());
+		break;
+	}
+
+	return isColl;
 }
 
 _bool CBounding_AABB::Collision_AABB(CBounding_AABB* pTargetDesc)
 {
-	return _bool();
+	_float3		vSourMin = Compute_Min();
+	_float3		vSourMax = Compute_Max();
+
+	_float3		vDestMin = pTargetDesc->Compute_Min();
+	_float3		vDestMax = pTargetDesc->Compute_Max();
+
+	/* 너비로 충돌안했냐? */
+	if (max(vSourMin.x, vDestMin.x) > min(vSourMax.x, vDestMax.x))
+		return false;
+	/* 높이로 충돌안했냐? */
+	if (max(vSourMin.y, vDestMin.y) > min(vSourMax.y, vDestMax.y))
+		return false;
+	/* 깊이로 충돌안했냐? */
+	if (max(vSourMin.z, vDestMin.z) > min(vSourMax.z, vDestMax.z))
+		return false;
+
+	return true;
 }
 
 _float3 CBounding_AABB::Compute_Min()
 {
-	return _float3();
+	return _float3(m_pDesc->Center.x - m_pDesc->Extents.x, m_pDesc->Center.y - m_pDesc->Extents.y, m_pDesc->Center.z - m_pDesc->Extents.z);
 }
 
 _float3 CBounding_AABB::Compute_Max()
 {
-	return _float3();
+	return _float3(m_pDesc->Center.x + m_pDesc->Extents.x, m_pDesc->Center.y + m_pDesc->Extents.y, m_pDesc->Center.z + m_pDesc->Extents.z);
 }
 
 CBounding_AABB* CBounding_AABB::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, CBounding::BOUNDING_DESC* pDesc)
@@ -77,4 +109,7 @@ CBounding_AABB* CBounding_AABB::Create(ID3D11Device* pDevice, ID3D11DeviceContex
 void CBounding_AABB::Free()
 {
 	__super::Free();
+
+	Safe_Delete(m_pOriginalDesc);
+	Safe_Delete(m_pDesc);
 }

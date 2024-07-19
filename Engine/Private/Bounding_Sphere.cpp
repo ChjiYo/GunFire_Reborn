@@ -11,21 +11,44 @@ CBounding_Sphere::CBounding_Sphere(ID3D11Device* pDevice, ID3D11DeviceContext* p
 
 HRESULT CBounding_Sphere::Initialize(CBounding::BOUNDING_DESC* pDesc)
 {
+	BOUNDING_SPHERE_DESC* pBoundingDesc = static_cast<BOUNDING_SPHERE_DESC*>(pDesc);
+
+	m_pOriginalDesc = new BoundingSphere(pBoundingDesc->vCenter, pBoundingDesc->fRadius);
+	m_pDesc = new BoundingSphere(*m_pOriginalDesc);
+
 	return S_OK;
 }
 
 void CBounding_Sphere::Update(_fmatrix TransformMatrix)
 {
+	m_pOriginalDesc->Transform(*m_pDesc, TransformMatrix);
 }
 
 HRESULT CBounding_Sphere::Render(PrimitiveBatch<VertexPositionColor>* pBatch, _fvector vColor)
 {
+	DX::Draw(pBatch, *m_pDesc, vColor);
+
 	return S_OK;
 }
 
 _bool CBounding_Sphere::isCollision(CCollider::TYPE eTargetColliderType, CBounding* pTargetBounding)
 {
-	return _bool();
+	_bool		isColl = { false };
+
+	switch (eTargetColliderType)
+	{
+	case CCollider::TYPE_AABB:
+		isColl = m_pDesc->Intersects(static_cast<CBounding_AABB*>(pTargetBounding)->Get_Desc());
+		break;
+	case CCollider::TYPE_OBB:
+		isColl = m_pDesc->Intersects(static_cast<CBounding_OBB*>(pTargetBounding)->Get_Desc());
+		break;
+	case CCollider::TYPE_SPHERE:
+		isColl = m_pDesc->Intersects(static_cast<CBounding_Sphere*>(pTargetBounding)->Get_Desc());
+		break;
+	}
+
+	return isColl;
 }
 
 CBounding_Sphere* CBounding_Sphere::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, CBounding::BOUNDING_DESC* pDesc)
@@ -43,5 +66,8 @@ CBounding_Sphere* CBounding_Sphere::Create(ID3D11Device* pDevice, ID3D11DeviceCo
 
 void CBounding_Sphere::Free()
 {
+	Safe_Delete(m_pOriginalDesc);
+	Safe_Delete(m_pDesc);
+
 	__super::Free();
 }

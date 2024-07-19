@@ -51,18 +51,18 @@ HRESULT CCollider::Initialize_Prototype(TYPE eColliderType)
 HRESULT CCollider::Initialize(void* pArg)
 {
 	/* 타입에 맞는 충돌체를 위한 데이터를 생성하낟. */
-	//switch (m_eColliderType)
-	//{
-	//case TYPE_SPHERE:
-	//	m_pBounding = CBounding_Sphere::Create(m_pDevice, m_pContext, static_cast<CBounding::BOUNDING_DESC*>(pArg));
-	//	break;
-	//case TYPE_AABB:
-	//	m_pBounding = CBounding_AABB::Create(m_pDevice, m_pContext, static_cast<CBounding::BOUNDING_DESC*>(pArg));
-	//	break;
-	//case TYPE_OBB:
-	//	m_pBounding = CBounding_OBB::Create(m_pDevice, m_pContext, static_cast<CBounding::BOUNDING_DESC*>(pArg));
-	//	break;
-	//}
+	switch (m_eColliderType)
+	{
+	case TYPE_SPHERE:
+		m_pBounding = CBounding_Sphere::Create(m_pDevice, m_pContext, static_cast<CBounding::BOUNDING_DESC*>(pArg));
+		break;
+	case TYPE_AABB:
+		m_pBounding = CBounding_AABB::Create(m_pDevice, m_pContext, static_cast<CBounding::BOUNDING_DESC*>(pArg));
+		break;
+	case TYPE_OBB:
+		m_pBounding = CBounding_OBB::Create(m_pDevice, m_pContext, static_cast<CBounding::BOUNDING_DESC*>(pArg));
+		break;
+	}
 
 	if (nullptr == m_pBounding)
 		return E_FAIL;
