@@ -63,7 +63,7 @@ void CPlayer::Priority_Update(_float fTimeDelta)
 
 void CPlayer::Update(_float fTimeDelta)
 {
-
+    m_pColliderCom->Update(m_pTransformCom->Get_WorldMatrix());
 }
 
 void CPlayer::Late_Update(_float fTimeDelta)
@@ -94,6 +94,10 @@ HRESULT CPlayer::Render()
         m_pModelCom->Render(i);
     }
 
+#ifdef _DEBUG
+    m_pColliderCom->Render();
+#endif
+
     return S_OK;
 }
 
@@ -113,6 +117,13 @@ HRESULT CPlayer::Ready_Components()
     if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_State"),
         TEXT("Com_State"), reinterpret_cast<CComponent**>(&m_pState))))
         return E_FAIL;
+
+   CBounding_AABB::BOUNDING_AABB_DESC	BoundingDesc{};
+   
+   BoundingDesc.vExtents = _float3(0.5f, 0.5f, 0.5f);
+   BoundingDesc.vCenter = _float3(0.f, BoundingDesc.vExtents.y, 0.f);   if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Collider_AABB"),
+       TEXT("Com_Collider"), reinterpret_cast<CComponent**>(&m_pColliderCom), &BoundingDesc)))
+       return E_FAIL;
 
     return S_OK;
 }
@@ -219,6 +230,7 @@ void CPlayer::Free()
     Safe_Release(m_pModelCom);
     Safe_Release(m_pCamTransform);
     Safe_Release(m_pState);
+    Safe_Release(m_pColliderCom);
 
     __super::Free();
 }

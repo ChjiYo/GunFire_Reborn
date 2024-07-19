@@ -8,6 +8,7 @@ class CShader;
 class CModel;
 class CBinModel;
 class CKeyState;
+class CCollider;
 class CState_Machine;
 END
 
@@ -50,6 +51,7 @@ private:
 
 	CState_Machine* m_pState = { nullptr };
 	CTransform* m_pCamTransform = { nullptr };
+	CCollider* m_pColliderCom = { nullptr };
 
 private:
 	PLAYER_DESC Player_Desc = {};
