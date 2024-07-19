@@ -1,1 +1,135 @@
-﻿  Engine.vcxproj -> C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Bin\Engine.dll
+﻿  Bounding.cpp
+  Bounding_AABB.cpp
+  Bounding_OBB.cpp
+  Bounding_Sphere.cpp
+  Collider.cpp
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(33,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Bounding_AABB.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(42,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Bounding_AABB.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(53,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Bounding_AABB.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(67,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Bounding_AABB.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(77,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Bounding_AABB.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(89,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Bounding_AABB.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Bounding_AABB.h(10,17): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Bounding_AABB.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Bounding_OBB.h(10,17): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Bounding_AABB.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Bounding_Sphere.h(10,17): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Bounding_AABB.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(33,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Bounding_Sphere.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(42,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Bounding_Sphere.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(53,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Bounding_Sphere.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(67,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Bounding_Sphere.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(77,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Bounding_Sphere.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(89,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Bounding_Sphere.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Bounding_Sphere.h(10,17): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Bounding_Sphere.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Bounding_AABB.h(10,17): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Bounding_Sphere.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Bounding_OBB.h(10,17): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Bounding_Sphere.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(33,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Collider.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(42,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Collider.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(53,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Collider.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(67,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Collider.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(77,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Collider.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(89,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Collider.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Bounding_AABB.h(10,17): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Collider.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Bounding_OBB.h(10,17): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Collider.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Bounding_Sphere.h(10,17): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Collider.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Navigation.h(11,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Collider.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(33,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Bounding.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(42,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Bounding.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(53,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Bounding.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(67,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Bounding.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(77,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Bounding.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(89,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Bounding.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(33,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Bounding_OBB.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(42,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Bounding_OBB.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(53,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Bounding_OBB.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(67,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Bounding_OBB.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(77,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Bounding_OBB.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(89,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Bounding_OBB.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Bounding_OBB.h(10,17): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Bounding_OBB.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Bounding_AABB.h(10,17): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Bounding_OBB.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Bounding_Sphere.h(10,17): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/Bounding_OBB.cpp'을(를) 컴파일하는 중)
+  
+  Engine.vcxproj -> C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Bin\Engine.dll

@@ -145,6 +145,21 @@
     <Filter Include="01.Utility\03.Components\BinModel">
       <UniqueIdentifier>{7f6bfe84-04ad-4535-b946-3178302b4bd0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Utility\03.Components\Collider">
+      <UniqueIdentifier>{f2c44b93-3508-4fa7-be81-3897a25d535d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utility\03.Components\Collider\Bounding">
+      <UniqueIdentifier>{ebc076c4-dbd0-424e-84c2-ec3feae8d0ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utility\03.Components\Collider\Bounding\AABB">
+      <UniqueIdentifier>{4ef4e56a-9678-4b59-9dc8-48b2f34019db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utility\03.Components\Collider\Bounding\OBB">
+      <UniqueIdentifier>{2b970a30-d35b-47c8-a658-ee4c3129a95a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utility\03.Components\Collider\Bounding\Sphere">
+      <UniqueIdentifier>{65b0b0fa-1450-4b72-b2e7-c913cc9a858c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\private\GameInstance.cpp">
@@ -278,6 +293,24 @@
     </ClCompile>
     <ClCompile Include="..\private\BinModel.cpp">
       <Filter>01.Utility\03.Components\BinModel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Bounding.cpp">
+      <Filter>01.Utility\03.Components\Collider\Bounding</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Collider.cpp">
+      <Filter>01.Utility\03.Components\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Bounding_AABB.cpp">
+      <Filter>01.Utility\03.Components\Collider\Bounding\AABB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Bounding_OBB.cpp">
+      <Filter>01.Utility\03.Components\Collider\Bounding\OBB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Bounding_Sphere.cpp">
+      <Filter>01.Utility\03.Components\Collider\Bounding\Sphere</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\DebugDraw.cpp">
+      <Filter>01.Utility\03.Components\Collider</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -424,6 +457,24 @@
     </ClInclude>
     <ClInclude Include="..\public\BinModel.h">
       <Filter>01.Utility\03.Components\BinModel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Bounding.h">
+      <Filter>01.Utility\03.Components\Collider\Bounding</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Collider.h">
+      <Filter>01.Utility\03.Components\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Bounding_AABB.h">
+      <Filter>01.Utility\03.Components\Collider\Bounding\AABB</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Bounding_OBB.h">
+      <Filter>01.Utility\03.Components\Collider\Bounding\OBB</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Bounding_Sphere.h">
+      <Filter>01.Utility\03.Components\Collider\Bounding\Sphere</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\DebugDraw.h">
+      <Filter>01.Utility\03.Components\Collider</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
