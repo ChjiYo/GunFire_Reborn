@@ -165,7 +165,7 @@ HRESULT CBinModel::Ready_Meshes(_ulong& dwByte, HANDLE& hFile,_fmatrix PreTransf
 	for (size_t i = 0; i < NumMesh; i++)
 	{
 		CMesh::MESH_DESC Desc = {};
-		
+
 		Desc.szName;
 		_uint iMeshLength = {};
 
@@ -284,38 +284,15 @@ HRESULT CBinModel::Ready_Meshes(_ulong& dwByte, HANDLE& hFile,_fmatrix PreTransf
 		ReadFile(hFile, Desc.mWeight.data(), sizeof(_uint) * mWeightSize, &dwByte, nullptr);
 
 		//------
-		Desc.vvFloat = {};
-		_uint iTotalFloatNum = {};
+
+		Desc.vecAnimMesh = {};
+		_uint			vAnimPositionSize = {};
+
+		ReadFile(hFile, &vAnimPositionSize, sizeof(_uint), &dwByte, nullptr);
+		Desc.vecAnimMesh.resize(vAnimPositionSize);
+		ReadFile(hFile, Desc.vecAnimMesh.data(), sizeof(VTXANIMMESH)* vAnimPositionSize, &dwByte, nullptr);
 		
-		iTotalFloatNum = {};
-
-		vector<_uint>	vFloatSize = {};
-		_uint iFloatSize = {};
-
-		ReadFile(hFile, &iFloatSize, sizeof(_uint), &dwByte, nullptr);
-		vFloatSize.resize(iFloatSize);
-		ReadFile(hFile, vFloatSize.data(), sizeof(_uint)* iFloatSize, &dwByte, nullptr);
-
-		Desc.vvFloat.resize(iFloatSize);
-		for (int i = 0; i < vFloatSize.size(); ++i)
-		{
-			Desc.vvFloat.at(i).resize(vFloatSize.at(i));
-		}
-
-		
-		_float iSrc = { };
-		for (int i = 0; i < iFloatSize; ++i)
-		{
-			for (int k = 0; k < vFloatSize.at(i); ++k)
-			{
-				ReadFile(hFile, &iSrc, sizeof(_float) , &dwByte, nullptr);
-				Desc.vvFloat.at(i).at(k) = iSrc;
-		
-			}
-		}
-
-		//ReadFile(hFile, &iTotalFloatNum, sizeof(_uint), &dwByte, nullptr);
- 		//ReadFile(hFile, Desc.vvFloat.data(), sizeof(_uint) * iTotalFloatNum, &dwByte, nullptr);
+		int sda = 10;
 
 
 		CModel::TYPE eType = static_cast<CModel::TYPE>(m_eModelType);
@@ -335,7 +312,7 @@ HRESULT CBinModel::Ready_Materials(_ulong& dwByte, HANDLE& hFile)
 {
 	_uint iMatVecSize = 0;
 	ReadFile(hFile, &iMatVecSize, sizeof(_uint), &dwByte, nullptr);
-
+	m_iNumMaterials = iMatVecSize;
 	//for(int i = 0 ;  i)
 	//iiNumTexture
 	for (size_t i = 0; i < iMatVecSize; ++i)
@@ -347,17 +324,20 @@ HRESULT CBinModel::Ready_Materials(_ulong& dwByte, HANDLE& hFile)
 
 		for (int k = 0; k < iTextureCnt; ++k)
 		{
-
-
 			_uint iPathLength = 0;
 			_tchar szPerfectPath[MAX_PATH] = {};
+
+			_uint iTexType = {};
+			ReadFile(hFile, &iTexType, sizeof(_uint), &dwByte, nullptr);
+
+
 
 			ReadFile(hFile, &iPathLength, sizeof(_uint), &dwByte, nullptr);
 			ReadFile(hFile, szPerfectPath, sizeof(_tchar) * iPathLength, &dwByte, nullptr);
 			szPerfectPath[iPathLength] = '\0';
 
-			MeshMaterial.pMaterials[i] = CTexture::Create(m_pDevice, m_pContext, szPerfectPath, 1);
-			if (nullptr == MeshMaterial.pMaterials[i])
+			MeshMaterial.pMaterials[iTexType] = CTexture::Create(m_pDevice, m_pContext, szPerfectPath, 1);
+			if (nullptr == MeshMaterial.pMaterials[iTexType])
 				return E_FAIL;
 		}
 		m_Materials.emplace_back(MeshMaterial);

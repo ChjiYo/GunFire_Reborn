@@ -357,59 +357,17 @@ void* CMesh::Create_BinAnimVertices(MESH_DESC tDesc,const vector<CBone*>& Bones)
 	m_iNumBones = tDesc.iNumBones;
 	m_BoneIndices = tDesc.BoneIndices;
 	m_OffsetMatrices = tDesc.OffsetMatrices ;
-
+	
 	for (size_t i = 0; i < m_iNumVertices; i++)
 	{
-		pVertices[i].vPosition = tDesc.vPosition.at(i);
-		pVertices[i].vNormal = tDesc.vNormal.at(i);
-		pVertices[i].vTexcoord = tDesc.vTexcoord.at(i);
-		pVertices[i].vTangent = tDesc.vTangent.at(i);
-	}
+		pVertices[i].vPosition = tDesc.vecAnimMesh.at(i).vPosition;
+		pVertices[i].vNormal = tDesc.vecAnimMesh.at(i).vNormal;
+		pVertices[i].vTexcoord = tDesc.vecAnimMesh.at(i).vTexcoord;
+		pVertices[i].vTangent = tDesc.vecAnimMesh.at(i).vTangent;
 
-	/* 이 메시의 정점들에게 영향을 주는 뼈의 갯수. */
-	//m_iNumBones = pAIMesh->mNumBones;
-
-	for (size_t i = 0; i < tDesc.iNumBones; i++)
-	{
-		//aiBone* pAIBone = pAIMesh->mBones[i];
-		m_BoneIndices = tDesc.BoneIndices;
-
-		_float4x4		OffsetMatrix;
-		//memcpy(&OffsetMatrix, &pAIBone->mOffsetMatrix, sizeof(_float4x4));
-
-		XMStoreFloat4x4(&OffsetMatrix, XMMatrixTranspose(XMLoadFloat4x4(&OffsetMatrix)));
-
-		m_OffsetMatrices.emplace_back(OffsetMatrix);
-
-		for (size_t j = 0; j < tDesc.mNumWeights.at(i); j++)
-		{
-			/* i번째 뼈가 영향을 주는 정점의 갯수는 pAIBone->mNumWeights(j-> 0, 1 ~~~) */
-			/* i번째 뼈가 영향을 주는 정점들 중, j번째 정점의 인덱스 AIWeight.mVertexId */
+		pVertices[i].vBlendIndex = tDesc.vecAnimMesh.at(i).vBlendIndex;
+		pVertices[i].vBlendWeight = tDesc.vecAnimMesh.at(i).vBlendWeight;
 		
-			if (0.f == pVertices[tDesc.mVertexId.at(j)].vBlendWeight.x)
-			{
-				pVertices[tDesc.mVertexId.at(j)].vBlendIndex.x = i;
-				pVertices[tDesc.mVertexId.at(j)].vBlendWeight.x = tDesc.vvFloat.at(i).at(j);
-			}
-		
-			else if (0.f == pVertices[tDesc.mVertexId.at(j)].vBlendWeight.y)
-			{
-				pVertices[tDesc.mVertexId.at(j)].vBlendIndex.y = i;
-				pVertices[tDesc.mVertexId.at(j)].vBlendWeight.y = tDesc.vvFloat.at(i).at(j);;
-			}
-		
-			else if (0.f == pVertices[tDesc.mVertexId.at(j)].vBlendWeight.z)
-			{
-				pVertices[tDesc.mVertexId.at(j)].vBlendIndex.z = i;
-				pVertices[tDesc.mVertexId.at(j)].vBlendWeight.z = tDesc.vvFloat.at(i).at(j);;
-			}
-		
-			else
-			{
-				pVertices[tDesc.mVertexId.at(j)].vBlendIndex.w = i;
-				pVertices[tDesc.mVertexId.at(j)].vBlendWeight.w = tDesc.vvFloat.at(i).at(j);;
-			}
-		}
 	}
 
 	if (0 == m_iNumBones)

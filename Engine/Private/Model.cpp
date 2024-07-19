@@ -333,6 +333,8 @@ HRESULT CModel::Write_Materials(_ulong& dwByte, HANDLE& hWnd, const _char* pMode
 			if (FAILED(pAIMaterial->GetTexture(aiTextureType(k), 0, &strTexturePath)))
 				continue;
 
+			//_uint TexType = k;
+			WriteFile(hWnd, &k, sizeof(_uint), &dwByte, nullptr);
 			/* 얻어온 경로에서 신용할 수 있는 건 파일의 이름과 확장자 */
 
 			// 내가 지정한 텍스처의 경로를 얻어온다.
@@ -482,33 +484,13 @@ HRESULT CModel::Write_Meshes(_ulong& dwByte, HANDLE& hWnd, _fmatrix PreTransform
 		WriteFile(hWnd, mWeight.data(), sizeof(_uint)* mWeightSize, &dwByte, nullptr);
 
 		//-----
-		vector<vector<float>> vvFloat = iter->Get_Desc().vvFloat;
-		_uint iTotalFloatNum = {};
+		
+		vector<VTXANIMMESH>	vAnimPosition = iter->Get_Desc().vecAnimMesh;
+		_uint			vAnimPositionSize = vAnimPosition.size();
 
-		vector<_uint>	vFloatSize = {};
-		_uint iFloatSize = vvFloat.size();
-
-		for (int i = 0; i < vvFloat.size(); ++i)
-		{
-			vFloatSize.push_back(vvFloat.at(i).size());
-			iTotalFloatNum += vvFloat.at(i).size();
-		}
-
-		WriteFile(hWnd, &iFloatSize, sizeof(_uint), &dwByte, nullptr);
-		WriteFile(hWnd, vFloatSize.data(), sizeof(_uint)* iFloatSize, &dwByte, nullptr);
-
-		for (int i = 0; i < vvFloat.size(); ++i)
-		{
-			for (int k = 0; k < vFloatSize.at(i); ++k)
-			{
-				WriteFile(hWnd, &(vvFloat.at(i).at(k)), sizeof(_float) , &dwByte, nullptr);
-				int a = 10;
-			}
-		}
-		//WriteFile(hWnd, &iTotalFloatNum, sizeof(_uint), &dwByte, nullptr);
-		//WriteFile(hWnd, vvFloat.data(), sizeof(_uint)* iTotalFloatNum, &dwByte, nullptr);
-
-
+		WriteFile(hWnd, &vAnimPositionSize, sizeof(_uint), &dwByte, nullptr);
+		WriteFile(hWnd, vAnimPosition.data(), sizeof(VTXANIMMESH)* vAnimPositionSize, &dwByte, nullptr);
+		int a = 10;
 	}
 
 	return S_OK;
