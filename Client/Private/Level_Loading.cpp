@@ -39,6 +39,9 @@ void CLevel_Loading::Update(_float fTimeDelta)
 		case LEVEL_GAMEPLAY:
 			pNextLevel = CLevel_GamePlay::Create(m_pDevice, m_pContext);
 			break;
+
+		default:
+			return;
 		}
 
 		if (FAILED(m_pGameInstance->Change_Level(pNextLevel)))

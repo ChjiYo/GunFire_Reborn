@@ -6,6 +6,7 @@
 BEGIN(Engine)
 class CShader;
 class CModel;
+class CBinModel;
 END
 
 BEGIN(Client)
@@ -27,7 +28,7 @@ public:
 
 private:
 	CShader*				m_pShaderCom = { nullptr };	
-	CModel*					m_pModelCom = { nullptr };
+	CBinModel* m_pModelCom = { nullptr };
 
 	_float					m_fRandom = {};
 

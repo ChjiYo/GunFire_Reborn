@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <ProjectOutputs>
+    <ProjectOutput>
+      <FullPath>C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Client\Bin\Client.exe</FullPath>
+    </ProjectOutput>
+  </ProjectOutputs>
+  <ContentFiles>
+    <ContentFile>
+      <FullPath>C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Client\Bin\Shader_VtxAnimMesh.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Client\Bin\Shader_VtxMesh.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Client\Bin\Shader_VtxNorTex.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Client\Bin\Shader_VtxPosTex.cso</FullPath>
+    </ContentFile>
+  </ContentFiles>
+  <SatelliteDlls />
+  <NonRecipeFileRefs />
+</Project>

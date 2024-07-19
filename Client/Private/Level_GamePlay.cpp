@@ -19,8 +19,8 @@ HRESULT CLevel_GamePlay::Initialize()
 	if (FAILED(Ready_Lights()))
 		return E_FAIL;
 
-	/*if (FAILED(Ready_Layer_BackGround(TEXT("Layer_BackGround"))))
-		return E_FAIL;*/
+	if (FAILED(Ready_Layer_BackGround(TEXT("Layer_BackGround"))))
+		return E_FAIL;
 
 	if (FAILED(Ready_Layer_Camera(TEXT("Layer_Camera"))))
 		return E_FAIL;
@@ -34,15 +34,15 @@ HRESULT CLevel_GamePlay::Initialize()
 	/*if (FAILED(Ready_Layer_WallStage(TEXT("Layer_Wall_Stage"))))
 		return E_FAIL;*/
 
-	/*if (FAILED(__super::ParseInitialize()))
+	
+	if (FAILED(__super::ParseInitialize()))
 		return E_FAIL;
-
 	
 	if (FAILED(Ready_PlayerBar()))
 		return E_FAIL;
 	
 	if (FAILED(Ready_CrossHair()))
-		return E_FAIL;*/
+		return E_FAIL;
 	
 
 	return S_OK;
@@ -109,8 +109,8 @@ HRESULT CLevel_GamePlay::Ready_Layer_Effect(const _wstring & strLayerTag)
 HRESULT CLevel_GamePlay::Ready_LandObjects()
 {
 	
-	/*if (FAILED(Ready_Layer_Monster(TEXT("Layer_Monster"))))
-		return E_FAIL;*/
+	if (FAILED(Ready_Layer_Monster(TEXT("Layer_Monster"))))
+		return E_FAIL;
 
 	if (FAILED(Ready_Layer_Player(TEXT("Layer_Player"))))
 		return E_FAIL;

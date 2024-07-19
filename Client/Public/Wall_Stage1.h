@@ -28,6 +28,7 @@ public:
 
 private:
 	CShader* m_pShaderCom = { nullptr };
+
 	CBinModel* m_pModelCom = { nullptr };
 
 private:

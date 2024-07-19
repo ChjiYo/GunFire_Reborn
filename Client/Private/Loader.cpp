@@ -64,11 +64,17 @@ HRESULT CLoader::Loading()
 
 	switch (m_eLevelID)
 	{
+	case LEVEL_BIN:
+		hr = Loading_For_BinaryFile();
+		break;
 	case LEVEL_LOGO:
 		hr = Loading_For_LogoLevel();
 		break;
 	case LEVEL_GAMEPLAY:
 		hr = Loading_For_GamePlayLevel();
+		break;
+
+	default:
 		break;
 	}
 
@@ -76,6 +82,38 @@ HRESULT CLoader::Loading()
 		return E_FAIL;
 
 	LeaveCriticalSection(&m_Critical_Section);
+
+	return S_OK;
+}
+
+HRESULT CLoader::Loading_For_BinaryFile()
+{
+	lstrcpy(m_szLoadingText, TEXT("바이너리 파일을 로딩 중 입니다."));
+
+	_matrix			PreTransformMatrix = XMMatrixIdentity();
+	PreTransformMatrix = XMMatrixRotationY(XMConvertToRadians(180.0f));
+
+	//Anim 모델을 로드합니다.
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Player"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_ANIM, "../Bin/GunFire_Resources/Models/Gun/Weapon_Pistol/Pistol.fbx", TEXT("../Bin/DataFiles/Player_Pistol.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Fiona"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_ANIM, "../Bin/Resources/Models/Fiona/Fiona.fbx", TEXT("../Bin/DataFiles/Fiona.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	//NonAnim 모델을 로드합니다.
+
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Wall_Stage1"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Wall_Stage/Stage1/Wall_Stage1.fbx", TEXT("../Bin/DataFiles/Wall_Stage.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Floor_102"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Floor/102/Floor_102.fbx", TEXT("../Bin/DataFiles/Floor_102.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+
+	lstrcpy(m_szLoadingText, TEXT("바이러리 파일 로드가 완료되었습니다."));
 
 	return S_OK;
 }
@@ -155,39 +193,31 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 		return E_FAIL;
 
 	_matrix			PreTransformMatrix = XMMatrixIdentity();
-
-	/* For.Prototype_Component_Model_Wall_State1 */
-	/*if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Wall_Stage1"),
-		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Wall_Stage/Stage1/Wall_Stage1.fbx" ,TEXT("../Bin/DataFiles/Wall_Stage.dat"), PreTransformMatrix))))
-		return E_FAIL;*/
-
-	/*if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Wall_Stage1"),
-		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Wall_Stage.dat"), PreTransformMatrix))))
-		return E_FAIL;*/
-
-	///* For.Prototype_Component_Model_Floor_102 */ 
-	//if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Floor_102"),
-	//	CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Floor/102/Floor_102.fbx", PreTransformMatrix))))
-	//	return E_FAIL;
-	//
-	/* For.Prototype_Component_Model_Player */
 	PreTransformMatrix = XMMatrixRotationY(XMConvertToRadians(180.0f));
 
-	/*if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Player"),
-		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_ANIM, "../Bin/GunFire_Resources/Models/Gun/Weapon_Pistol/Pistol.fbx", TEXT("../Bin/DataFiles/Player_Pistol.dat"), PreTransformMatrix))))
-		return E_FAIL;*/
+	/* For.Prototype_Component_Model_Wall_State1 */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Wall_Stage1"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Wall_Stage.dat"), PreTransformMatrix))))
+		return E_FAIL;
 
+	/* For.Prototype_Component_Model_Floor_102 */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Floor_102"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Floor_102.dat"), PreTransformMatrix))))
+		return E_FAIL;
+	
+	
+	/* For.Prototype_Component_Model_Player */
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Player"),
 		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_ANIM, TEXT("../Bin/DataFiles/Player_Pistol.dat"), PreTransformMatrix))))
 		return E_FAIL;
-	
-	///* For.Prototype_Component_Model_Fiona*/
-	//PreTransformMatrix = XMMatrixRotationY(XMConvertToRadians(180.0f));
-	//if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Fiona"),
-	//	CModel::Create(m_pDevice, m_pContext, CModel::TYPE_ANIM, "../Bin/Resources/Models/Fiona/Fiona.fbx", PreTransformMatrix))))
-	//	return E_FAIL;
 
-	/* 쉐이더를 로드하낟. */
+	
+	/* For.Prototype_Component_Model_Fiona*/
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Fiona"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_ANIM, TEXT("../Bin/DataFiles/Fiona.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	/* 쉐이더를 로드한다. */
 	/* For.Prototype_Component_Shader_VtxNorTex */
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Shader_VtxNorTex"),
 		CShader::Create(m_pDevice, m_pContext, TEXT("../Bin/ShaderFiles/Shader_VtxNorTex.hlsl"), VTXNORTEX::Elements, VTXNORTEX::iNumElements))))

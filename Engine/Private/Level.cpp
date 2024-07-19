@@ -38,10 +38,11 @@ HRESULT CLevel::ParseInitialize()
     // 파일 이름을 미리 배열로 정의
     const wchar_t* filePaths[] = {
         L"../Bin/LevelStaticObjects.txt",          // 0: LEVEL_STATIC
-        L"../Bin/LevelLoadingObjects.txt",         // 1: LEVEL_LOADING
-        L"../Bin/LevelLogoObjects.txt",             // 2 : LEVEL_LOGO
-        L"../Bin/LevelGamePlayObjects.txt",        // 3: LEVEL_GAMEPLAY
-        L"../Bin/DefaultLevelObjects.txt"          // 8: LEVEL_END (또는 기타)
+        L"../Bin/LevelBinObjects.txt",                                            // 1 : LEVEL_BIN
+        L"../Bin/LevelLoadingObjects.txt",         // 2: LEVEL_LOADING
+        L"../Bin/LevelLogoObjects.txt",             // 3 : LEVEL_LOGO
+        L"../Bin/LevelGamePlayObjects.txt",        // 4: LEVEL_GAMEPLAY
+        L"../Bin/DefaultLevelObjects.txt"          // End: LEVEL_END (또는 기타)
     };
 
      // 배열 인덱스를 사용하여 파일 경로 가져오기
