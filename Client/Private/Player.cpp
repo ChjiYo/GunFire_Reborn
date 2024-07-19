@@ -176,7 +176,6 @@ void CPlayer::Key_State()
 
     if(m_pGameInstance->Key_Down(VK_LSHIFT))
         m_pState->Set_State(TEXT("Player_State_Dash"));
-
 }
 
 void CPlayer::Position()

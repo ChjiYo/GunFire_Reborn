@@ -211,6 +211,7 @@
     <ClInclude Include="..\Public\UI_Player_ShieldBlankBar.h" />
     <ClInclude Include="..\public\Wall_Stage1.h" />
     <ClInclude Include="Client.h" />
+    <ClInclude Include="FSM_Player_Jump.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -257,6 +258,7 @@
     <ClCompile Include="..\Public\Imgui\imgui_tables.cpp" />
     <ClCompile Include="..\Public\Imgui\imgui_widgets.cpp" />
     <ClCompile Include="Client.cpp" />
+    <ClCompile Include="FSM_Player_Jump.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
