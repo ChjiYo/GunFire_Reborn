@@ -31,14 +31,12 @@ HRESULT CBone::Initialize(const aiNode * pAINode, _int iParentIndex)
 
 HRESULT CBone::Initialize(BONE_DESC Desc, _int iParentIndex)
 {
-	strcpy_s(m_szName, Desc.szName);
-
-	m_iParentIndex = iParentIndex;
-
-	m_TransformationMatrix = m_tBoneDesc.TransformationMatrix;
-	m_iParentIndex = m_tBoneDesc.iParentIndex;
-
 	XMStoreFloat4x4(&m_CombinedTransformationMatrix, XMMatrixIdentity());
+
+	strcpy_s(m_szName, Desc.szName);
+	m_TransformationMatrix = Desc.TransformationMatrix;
+	m_iParentIndex = Desc.iParentIndex;
+
 
 	return S_OK;
 }

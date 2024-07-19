@@ -383,9 +383,9 @@ HRESULT CBinModel::Ready_Bones(_ulong& dwByte, HANDLE& hFile)
 
 HRESULT CBinModel::Ready_Animations(_ulong& dwByte, HANDLE& hFile)
 {
-	_uint m_iNumAnimations = {};
-	ReadFile(hFile, &m_iNumAnimations, sizeof(_uint), &dwByte, nullptr);
-	
+	_uint iNumAnimations = {};
+	ReadFile(hFile, &iNumAnimations, sizeof(_uint), &dwByte, nullptr);
+	m_iNumAnimations = iNumAnimations;
 
 	/* vector<_uint> 애니메이션 갯수만큼 할당한다. */
 	m_KeyFrameIndices.resize(m_iNumAnimations);
@@ -398,30 +398,34 @@ HRESULT CBinModel::Ready_Animations(_ulong& dwByte, HANDLE& hFile)
 		Desc.resize(iDescSize);
 		for (int k = 0; k < iDescSize; ++k)
 		{
+			//m_arrAiPath[j] = new char[strlen(strAIPath.data) + 1];
+			//strcpy_s(m_arrAiPath[j], strlen(strAIPath.data) + 1, strAIPath.data);
+
 			_uint iChNameLength = {};
 
 			ReadFile(hFile, &iChNameLength, sizeof(_uint), &dwByte, nullptr);
-			char pTest[MAX_PATH] = {};
+			char* pTest = new char[iChNameLength + 1];
+			
 			ReadFile(hFile, pTest, sizeof(_char) * iChNameLength, &dwByte, nullptr);
 			pTest[iChNameLength] = '\0';
 
 			Desc.at(k).szName = pTest;
 
-			vector<KEYFRAME> KeyFrames = {};
+			Desc.at(k).KeyFrames = {};
 			_uint KeyFramesSize = {};
 
 			ReadFile(hFile, &KeyFramesSize, sizeof(_uint), &dwByte, nullptr);
 			Desc.at(k).KeyFrames.resize(KeyFramesSize);
 			ReadFile(hFile, Desc.at(k).KeyFrames.data(), sizeof(KEYFRAME) * KeyFramesSize, &dwByte, nullptr);
 
-			_uint iNumKeyFrames = {};
-			ReadFile(hFile, &iNumKeyFrames, sizeof(_uint), &dwByte, nullptr);
+			Desc.at(k).iNumKeyFrames = {};
+			ReadFile(hFile, &(Desc.at(k).iNumKeyFrames), sizeof(_uint), &dwByte, nullptr);
 
-			_uint iNameLength = {};
-			ReadFile(hFile, &iNameLength, sizeof(_uint), &dwByte, nullptr);
+			Desc.at(k).iNameLength = {};
+			ReadFile(hFile, &(Desc.at(k).iNameLength), sizeof(_uint), &dwByte, nullptr);
 
-			_uint iBoneIndex = {};
-			ReadFile(hFile, &iBoneIndex, sizeof(_uint), &dwByte, nullptr);
+			Desc.at(k).iBoneIndex = {};
+			ReadFile(hFile, &(Desc.at(k).iBoneIndex), sizeof(_uint), &dwByte, nullptr);
 		}
 
 	

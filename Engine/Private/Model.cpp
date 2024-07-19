@@ -284,7 +284,7 @@ HRESULT CModel::Ready_Animations()
 			return E_FAIL;
 
 		m_Animations.emplace_back(pAnimation);
-		int a = 10;
+		int a = 10; 
 	}
 
 	return S_OK;
