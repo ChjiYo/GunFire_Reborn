@@ -34,6 +34,10 @@ public:
 
 		vector<size_t>		vecNumBones;
 		vector<float>		mWeight;
+
+		vector<vector<float>> vvFloat = {};
+
+		vector<VTXANIMMESH>	 vecAnimMesh = {};
 	}MESH_DESC;
 
 private:
@@ -64,6 +68,8 @@ private:
 	vector<_float4x4>	m_OffsetMatrices;
 
 	MESH_DESC			m_tMeshDesc = {};
+
+	vector<VTXANIMMESH*> vAnim = {};
 private:
 	void* Create_NonAnimVertices(const aiMesh* pAIMesh, _fmatrix PreTransformMatrix);
 	void* Create_AnimVertices(const aiMesh* pAIMesh, const vector<CBone*>& Bones);

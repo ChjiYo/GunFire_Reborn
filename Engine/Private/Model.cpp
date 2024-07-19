@@ -461,11 +461,11 @@ HRESULT CModel::Write_Meshes(_ulong& dwByte, HANDLE& hWnd, _fmatrix PreTransform
 		_uint				mNumWeightsSize = mNumWeights.size();
 
 		WriteFile(hWnd, &mNumWeightsSize, sizeof(_uint), &dwByte, nullptr);
-		WriteFile(hWnd, &mNumWeights, sizeof(_uint)* mNumWeightsSize, &dwByte, nullptr);
+		WriteFile(hWnd, mNumWeights.data(), sizeof(_uint) * mNumWeightsSize, &dwByte, nullptr);
 
 		vector<_uint>	mVertexId = iter->Get_Desc().mVertexId;
 		_uint			mVertexIdSize = mVertexId.size();
-
+		
 		WriteFile(hWnd, &mVertexIdSize, sizeof(_uint), &dwByte, nullptr);
 		WriteFile(hWnd, mVertexId.data(), sizeof(_uint) * mVertexIdSize, &dwByte, nullptr);
 
@@ -480,6 +480,35 @@ HRESULT CModel::Write_Meshes(_ulong& dwByte, HANDLE& hWnd, _fmatrix PreTransform
 
 		WriteFile(hWnd, &mWeightSize, sizeof(_uint), &dwByte, nullptr);
 		WriteFile(hWnd, mWeight.data(), sizeof(_uint)* mWeightSize, &dwByte, nullptr);
+
+		//-----
+		vector<vector<float>> vvFloat = iter->Get_Desc().vvFloat;
+		_uint iTotalFloatNum = {};
+
+		vector<_uint>	vFloatSize = {};
+		_uint iFloatSize = vvFloat.size();
+
+		for (int i = 0; i < vvFloat.size(); ++i)
+		{
+			vFloatSize.push_back(vvFloat.at(i).size());
+			iTotalFloatNum += vvFloat.at(i).size();
+		}
+
+		WriteFile(hWnd, &iFloatSize, sizeof(_uint), &dwByte, nullptr);
+		WriteFile(hWnd, vFloatSize.data(), sizeof(_uint)* iFloatSize, &dwByte, nullptr);
+
+		for (int i = 0; i < vvFloat.size(); ++i)
+		{
+			for (int k = 0; k < vFloatSize.at(i); ++k)
+			{
+				WriteFile(hWnd, &(vvFloat.at(i).at(k)), sizeof(_float) , &dwByte, nullptr);
+				int a = 10;
+			}
+		}
+		//WriteFile(hWnd, &iTotalFloatNum, sizeof(_uint), &dwByte, nullptr);
+		//WriteFile(hWnd, vvFloat.data(), sizeof(_uint)* iTotalFloatNum, &dwByte, nullptr);
+
+
 	}
 
 	return S_OK;

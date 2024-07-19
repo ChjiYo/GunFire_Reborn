@@ -259,13 +259,14 @@ HRESULT CBinModel::Ready_Meshes(_ulong& dwByte, HANDLE& hFile,_fmatrix PreTransf
 
 		ReadFile(hFile, &mNumWeightsSize, sizeof(_uint), &dwByte, nullptr);
 		Desc.mNumWeights.resize(mNumWeightsSize);
-		ReadFile(hFile, &Desc.mNumWeights, sizeof(_uint) * mNumWeightsSize, &dwByte, nullptr);
+		ReadFile(hFile, Desc.mNumWeights.data(), sizeof(_uint) * mNumWeightsSize, &dwByte, nullptr);
 
-		Desc.mVertexId;
-		_uint			mVertexIdSize;
+		Desc.mVertexId = {};
+		_uint			mVertexIdSize = {};
 
 		ReadFile(hFile, &mVertexIdSize, sizeof(_uint), &dwByte, nullptr);
 		Desc.mVertexId.resize(mVertexIdSize);
+		int a = 10;
 		ReadFile(hFile, Desc.mVertexId.data(), sizeof(_uint) * mVertexIdSize, &dwByte, nullptr);
 
 		Desc.vecNumBones;
@@ -281,6 +282,41 @@ HRESULT CBinModel::Ready_Meshes(_ulong& dwByte, HANDLE& hFile,_fmatrix PreTransf
 		ReadFile(hFile, &mWeightSize, sizeof(_uint), &dwByte, nullptr);
 		Desc.mWeight.resize(mWeightSize);
 		ReadFile(hFile, Desc.mWeight.data(), sizeof(_uint) * mWeightSize, &dwByte, nullptr);
+
+		//------
+		Desc.vvFloat = {};
+		_uint iTotalFloatNum = {};
+		
+		iTotalFloatNum = {};
+
+		vector<_uint>	vFloatSize = {};
+		_uint iFloatSize = {};
+
+		ReadFile(hFile, &iFloatSize, sizeof(_uint), &dwByte, nullptr);
+		vFloatSize.resize(iFloatSize);
+		ReadFile(hFile, vFloatSize.data(), sizeof(_uint)* iFloatSize, &dwByte, nullptr);
+
+		Desc.vvFloat.resize(iFloatSize);
+		for (int i = 0; i < vFloatSize.size(); ++i)
+		{
+			Desc.vvFloat.at(i).resize(vFloatSize.at(i));
+		}
+
+		
+		_float iSrc = { };
+		for (int i = 0; i < iFloatSize; ++i)
+		{
+			for (int k = 0; k < vFloatSize.at(i); ++k)
+			{
+				ReadFile(hFile, &iSrc, sizeof(_float) , &dwByte, nullptr);
+				Desc.vvFloat.at(i).at(k) = iSrc;
+		
+			}
+		}
+
+		//ReadFile(hFile, &iTotalFloatNum, sizeof(_uint), &dwByte, nullptr);
+ 		//ReadFile(hFile, Desc.vvFloat.data(), sizeof(_uint) * iTotalFloatNum, &dwByte, nullptr);
+
 
 		CModel::TYPE eType = static_cast<CModel::TYPE>(m_eModelType);
 		

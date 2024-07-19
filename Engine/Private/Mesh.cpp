@@ -250,7 +250,7 @@ void * CMesh::Create_AnimVertices(const aiMesh* pAIMesh, const vector<CBone*>& B
 		m_OffsetMatrices.emplace_back(OffsetMatrix);
 		m_tMeshDesc.OffsetMatrices.push_back(OffsetMatrix);
 
-
+		m_tMeshDesc.vvFloat.resize(m_iNumBones);
 		m_tMeshDesc.mNumWeights.push_back(pAIBone->mNumWeights);
 		for (size_t j = 0; j < pAIBone->mNumWeights; j++)
 		{
@@ -258,6 +258,7 @@ void * CMesh::Create_AnimVertices(const aiMesh* pAIMesh, const vector<CBone*>& B
 
 			/* i번째 뼈가 영향을 주는 정점의 갯수는 pAIBone->mNumWeights(j-> 0, 1 ~~~) */
 			/* i번째 뼈가 영향을 주는 정점들 중, j번째 정점의 인덱스 AIWeight.mVertexId */
+			m_tMeshDesc.vvFloat.at(i).push_back(AIWeight.mWeight);
 
 			m_tMeshDesc.mVertexId.push_back(AIWeight.mVertexId);
 			m_tMeshDesc.vecNumBones.push_back(i);
@@ -267,7 +268,7 @@ void * CMesh::Create_AnimVertices(const aiMesh* pAIMesh, const vector<CBone*>& B
 			if(0.f == pVertices[AIWeight.mVertexId].vBlendWeight.x)
 			{
 				pVertices[AIWeight.mVertexId].vBlendIndex.x = i;
-				pVertices[AIWeight.mVertexId].vBlendWeight. x = AIWeight.mWeight;
+				pVertices[AIWeight.mVertexId].vBlendWeight.x = AIWeight.mWeight;
 			}
 
 			else if(0.f == pVertices[AIWeight.mVertexId].vBlendWeight.y)
@@ -286,10 +287,22 @@ void * CMesh::Create_AnimVertices(const aiMesh* pAIMesh, const vector<CBone*>& B
 			{
 				pVertices[AIWeight.mVertexId].vBlendIndex.w = i;
 				pVertices[AIWeight.mVertexId].vBlendWeight.w = AIWeight.mWeight;
-			}			
+			}		
+		
 		}
-
 	}
+	m_tMeshDesc.vecAnimMesh.resize(m_iNumVertices);
+
+	for (int i = 0; i < m_iNumVertices; ++i)
+	{
+		m_tMeshDesc.vecAnimMesh.at(i).vBlendIndex = pVertices[i].vBlendIndex;
+		m_tMeshDesc.vecAnimMesh.at(i).vBlendWeight = pVertices[i].vBlendWeight;
+		m_tMeshDesc.vecAnimMesh.at(i).vNormal = pVertices[i].vNormal;
+		m_tMeshDesc.vecAnimMesh.at(i).vPosition = pVertices[i].vPosition;
+		m_tMeshDesc.vecAnimMesh.at(i).vTangent = pVertices[i].vTangent;
+		m_tMeshDesc.vecAnimMesh.at(i).vTexcoord = pVertices[i].vTexcoord;
+	}
+	
 
 	if (0 == m_iNumBones)
 	{
@@ -368,7 +381,7 @@ void* CMesh::Create_BinAnimVertices(MESH_DESC tDesc,const vector<CBone*>& Bones)
 
 		m_OffsetMatrices.emplace_back(OffsetMatrix);
 
-		for (size_t j = 0; j < m_tMeshDesc.mNumWeights.at(i); j++)
+		for (size_t j = 0; j < tDesc.mNumWeights.at(i); j++)
 		{
 			/* i번째 뼈가 영향을 주는 정점의 갯수는 pAIBone->mNumWeights(j-> 0, 1 ~~~) */
 			/* i번째 뼈가 영향을 주는 정점들 중, j번째 정점의 인덱스 AIWeight.mVertexId */
@@ -376,25 +389,25 @@ void* CMesh::Create_BinAnimVertices(MESH_DESC tDesc,const vector<CBone*>& Bones)
 			if (0.f == pVertices[tDesc.mVertexId.at(j)].vBlendWeight.x)
 			{
 				pVertices[tDesc.mVertexId.at(j)].vBlendIndex.x = i;
-				pVertices[tDesc.mVertexId.at(j)].vBlendWeight.x = tDesc.mWeight.at(j);
+				pVertices[tDesc.mVertexId.at(j)].vBlendWeight.x = tDesc.vvFloat.at(i).at(j);
 			}
 		
 			else if (0.f == pVertices[tDesc.mVertexId.at(j)].vBlendWeight.y)
 			{
 				pVertices[tDesc.mVertexId.at(j)].vBlendIndex.y = i;
-				pVertices[tDesc.mVertexId.at(j)].vBlendWeight.y = tDesc.mWeight.at(j);
+				pVertices[tDesc.mVertexId.at(j)].vBlendWeight.y = tDesc.vvFloat.at(i).at(j);;
 			}
 		
 			else if (0.f == pVertices[tDesc.mVertexId.at(j)].vBlendWeight.z)
 			{
 				pVertices[tDesc.mVertexId.at(j)].vBlendIndex.z = i;
-				pVertices[tDesc.mVertexId.at(j)].vBlendWeight.z = tDesc.mWeight.at(j);
+				pVertices[tDesc.mVertexId.at(j)].vBlendWeight.z = tDesc.vvFloat.at(i).at(j);;
 			}
 		
 			else
 			{
 				pVertices[tDesc.mVertexId.at(j)].vBlendIndex.w = i;
-				pVertices[tDesc.mVertexId.at(j)].vBlendWeight.w = tDesc.mWeight.at(j);
+				pVertices[tDesc.mVertexId.at(j)].vBlendWeight.w = tDesc.vvFloat.at(i).at(j);;
 			}
 		}
 	}
