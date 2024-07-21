@@ -71,6 +71,7 @@ public:
 	void Go_StraightY(_float fTimeDelta, class  CNavigation* pNavigation = nullptr);
 	void Go_BackwardY(_float fTimeDelta, class  CNavigation* pNavigation = nullptr);
 
+	void Go_Up(_float fTimeDelta);
 public:
 	/* Transform_Rotation */
 	void Turn(_fvector vAxis, _float fTimeDelta);
