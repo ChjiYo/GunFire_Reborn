@@ -101,6 +101,11 @@ void CCamera_Free::GamePlay_Camera(_float fTimeDelta)
 		m_pTransformCom->Go_BackwardY(fTimeDelta, m_pNavigationCom);
 	}
 
+	if (m_pGameInstance->Key_Pressing(VK_SPACE))
+	{
+		m_pTransformCom->Go_Up(fTimeDelta);
+	}
+
 	_long		MouseMove = {};
 
 	if (MouseMove = m_pGameInstance->Get_DIMouseMove(DIMM_X))

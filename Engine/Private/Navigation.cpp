@@ -130,8 +130,9 @@ _bool CNavigation::is_Move(_fvector vPosition)
 	_int		iNeighborIndex = { -1 };
 
 	if (true == m_Cells[m_iCurrentCellIndex]->isIn(vLocalPos, &iNeighborIndex))
+	{
 		return true;
-
+	}
 	/* 움직이고난 결과위치가 이 쎌 밖으로 나갔다.*/
 	else
 	{

@@ -119,12 +119,37 @@ void CTransform::Go_BackwardY(_float fTimeDelta, CNavigation* pNavigation)
 void CTransform::Go_Up(_float fTimeDelta)
 {
 	_vector		vPosition = Get_State(STATE_POSITION);
-	_vector		vUp = Get_State(STATE_RIGHT);
+	_vector		vUp = {0.0f , 1.f , 0.f };
 
 	vPosition += XMVector3Normalize(vUp) * m_fSpeedPerSec * fTimeDelta;
 
 	Set_State(STATE_POSITION, vPosition);
 }
+
+HRESULT CTransform::Gravity(_float fWeight, _float fLandPosY, _float fTimeDelta)
+{
+	_float4 vPosition = {};
+	XMStoreFloat4(&vPosition ,Get_State(STATE_POSITION));
+
+	_float4 vDirection = { 0.f, -1.f, 0.f ,1.f};
+
+	m_fGravity_Weight += fWeight;
+
+	vPosition.x += vDirection.x * m_fGravity_Weight * fTimeDelta;
+	vPosition.y += vDirection.y * m_fGravity_Weight * fTimeDelta;
+	vPosition.z += vDirection.z * m_fGravity_Weight * fTimeDelta;
+
+	if (vPosition.y <= fLandPosY)
+	{
+		vPosition.y = fLandPosY;
+		m_fGravity_Weight = { 0.f };
+	}
+
+	Set_State(STATE_POSITION, XMLoadFloat4(&vPosition));
+
+	return S_OK;
+}
+
 
 void CTransform::Turn(_fvector vAxis, _float fTimeDelta)
 {

@@ -72,6 +72,8 @@ public:
 	void Go_BackwardY(_float fTimeDelta, class  CNavigation* pNavigation = nullptr);
 
 	void Go_Up(_float fTimeDelta);
+
+	HRESULT CTransform::Gravity(_float fWeight, _float fLandPosY, _float fTimeDelta);
 public:
 	/* Transform_Rotation */
 	void Turn(_fvector vAxis, _float fTimeDelta);
@@ -87,7 +89,7 @@ private:
 	_float4x4				m_WorldMatrix = {};
 	_float					m_fSpeedPerSec = {};
 	_float					m_fRotationPerSec = {};
-
+	_float					m_fGravity_Weight = {};
 public:
 	static CTransform* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	virtual CComponent* Clone(void* pArg) override;

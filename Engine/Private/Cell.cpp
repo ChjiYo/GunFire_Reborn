@@ -67,7 +67,7 @@ _bool CCell::isIn(_fvector vPosition, _int* pNeighborIndex)
 			return false;
 		}
 	}
-
+	//XMPlaneFromPoints();
 	return true;
 }
 
