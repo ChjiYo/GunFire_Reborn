@@ -3,6 +3,13 @@
 #include "Client_Defines.h"
 #include "Camera.h"
 
+BEGIN(Engine)
+
+class CState_Machine;
+class CNavigation;
+
+END
+
 BEGIN(Client)
 
 class CCamera_Free final : public CCamera
@@ -29,10 +36,13 @@ public:
 public:
 	void Set_FreeView(_bool bCheck) { m_bCameraMode = bCheck; }
 	HRESULT Read_Component();
+
 private:
+	CState_Machine*		m_pState = { nullptr };
+	CNavigation*		m_pNavigationCom = { nullptr };
+
 	_float				m_fMouseSensor = {};
 	_bool				m_bCameraMode = { true };
-	CNavigation*		m_pNavigationCom = { nullptr };
 private:
 	void GamePlay_Camera(_float fTimeDelta);
 	void FreeView_Camera(_float fTimeDelta);

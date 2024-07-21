@@ -45,17 +45,16 @@ public:
 	PLAYER_DESC Get_Player_Desc() { return Player_Desc; }
 
 private:
-	CShader* m_pShaderCom = { nullptr };
+	CShader*			m_pShaderCom = { nullptr };
+	CBinModel*			m_pModelCom = { nullptr };
 
-	CBinModel* m_pModelCom = { nullptr };
-
-	CState_Machine* m_pState = { nullptr };
-	CTransform* m_pCamTransform = { nullptr };
-	CCollider* m_pColliderCom = { nullptr };
+	CState_Machine*		m_pState = { nullptr };
+	CTransform*			m_pCamTransform = { nullptr };
+	CCollider*			m_pColliderCom = { nullptr };
 
 private:
-	PLAYER_DESC Player_Desc = {};
-	_uint m_pAnimFrame = { 0 };
+	PLAYER_DESC			Player_Desc = {};
+	_uint				m_pAnimFrame = { 0 };
 
 private:
 	HRESULT Ready_Components();

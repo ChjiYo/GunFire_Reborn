@@ -40,7 +40,7 @@ HRESULT CCamera_Free::Initialize(void * pArg)
 
 void CCamera_Free::Priority_Update(_float fTimeDelta)
 {
-
+	m_pTransformCom->Gravity(0.5f, 1.5f, fTimeDelta);
 	__super::Priority_Update(fTimeDelta);
 }
 
