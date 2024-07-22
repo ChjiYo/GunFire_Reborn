@@ -1,20 +1,37 @@
-﻿  FileManager.cpp
+﻿  BinModel.cpp
 C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(33,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
-  (소스 파일 '../Private/FileManager.cpp'을(를) 컴파일하는 중)
+  (소스 파일 '../private/BinModel.cpp'을(를) 컴파일하는 중)
   
 C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(42,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
-  (소스 파일 '../Private/FileManager.cpp'을(를) 컴파일하는 중)
+  (소스 파일 '../private/BinModel.cpp'을(를) 컴파일하는 중)
   
 C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(53,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
-  (소스 파일 '../Private/FileManager.cpp'을(를) 컴파일하는 중)
+  (소스 파일 '../private/BinModel.cpp'을(를) 컴파일하는 중)
   
 C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(67,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
-  (소스 파일 '../Private/FileManager.cpp'을(를) 컴파일하는 중)
+  (소스 파일 '../private/BinModel.cpp'을(를) 컴파일하는 중)
   
 C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(77,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
-  (소스 파일 '../Private/FileManager.cpp'을(를) 컴파일하는 중)
+  (소스 파일 '../private/BinModel.cpp'을(를) 컴파일하는 중)
   
 C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Engine_Struct.h(89,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
-  (소스 파일 '../Private/FileManager.cpp'을(를) 컴파일하는 중)
+  (소스 파일 '../private/BinModel.cpp'을(를) 컴파일하는 중)
   
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Mesh.h(14,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/BinModel.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Bone.h(19,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/BinModel.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Channel.h(14,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/BinModel.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Public\Animation.h(18,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
+  (소스 파일 '../private/BinModel.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\private\BinModel.cpp(132,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\private\BinModel.cpp(325,21): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\private\BinModel.cpp(353,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\private\BinModel.cpp(399,21): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\private\BinModel.cpp(346,1): warning C4715: 'Engine::CBinModel::Ready_Materials': 모든 제어 경로에서 값을 반환하지는 않습니다.
   Engine.vcxproj -> C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Bin\Engine.dll

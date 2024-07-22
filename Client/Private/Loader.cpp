@@ -9,7 +9,19 @@
 #include "Cube.h"
 
 #include "Wall_Stage1.h"
+#include "Floor_101.h"
 #include "Floor_102.h"
+#include "Floor_103.h"
+#include "Floor_105.h"
+#include "Floor_106.h"
+#include "Floor_107.h"
+#include "Floor_108.h"
+#include "Floor_109.h"
+#include "Floor_110.h"
+#include "Floor_111.h"
+#include "Floor_112.h"
+#include "Floor_114.h"
+
 
 #include "Player.h"
 #include "Skill_Player_Bullet.h"
@@ -109,6 +121,8 @@ HRESULT CLoader::Loading_For_BinaryFile()
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Wall_Stage1"),
 		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Wall_Stage/Stage1/Wall_Stage1.fbx", TEXT("../Bin/DataFiles/Wall_Stage.dat"), PreTransformMatrix))))
 		return E_FAIL;
+
+	PreTransformMatrix = XMMatrixRotationY(XMConvertToRadians(180.0f));
 
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Floor_101"),
 		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Floor/Floor_101/Floor_101.fbx", TEXT("../Bin/DataFiles/Floor_101.dat"), PreTransformMatrix))))
@@ -275,9 +289,64 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Wall_Stage.dat"), PreTransformMatrix))))
 		return E_FAIL;
 
+	/* For.Prototype_Component_Model_Floor_101 */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Floor_101"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Floor_101.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
 	/* For.Prototype_Component_Model_Floor_102 */
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Floor_102"),
 		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Floor_102.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Model_Floor_103 */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Floor_103"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Floor_103.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Model_Floor_105 */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Floor_105"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Floor_105.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Model_Floor_106 */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Floor_106"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Floor_106.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Model_Floor_107 */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Floor_107"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Floor_107.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Model_Floor_108 */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Floor_108"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Floor_108.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Model_Floor_109 */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Floor_109"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Floor_109.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Model_Floor_110 */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Floor_110"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Floor_110.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Model_Floor_111 */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Floor_111"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Floor_111.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Model_Floor_112 */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Floor_112"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Floor_112.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Model_Floor_114 */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Floor_114"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Floor_114.dat"), PreTransformMatrix))))
 		return E_FAIL;
 	
 	/* 쉐이더를 로드한다. */
@@ -335,9 +404,64 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 		CWall_Stage1::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
+	/* For.Prototype_GameObject_Floor_101 */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Floor_101"),
+		CFloor_101::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
 	/* For.Prototype_GameObject_Floor_102 */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Floor_102"),
 		CFloor_102::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Floor_103 */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Floor_103"),
+		CFloor_103::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Floor_105 */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Floor_105"),
+		CFloor_105::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Floor_106 */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Floor_106"),
+		CFloor_106::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Floor_107 */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Floor_107"),
+		CFloor_107::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Floor_108 */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Floor_108"),
+		CFloor_108::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Floor_109 */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Floor_109"),
+		CFloor_109::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Floor_110 */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Floor_110"),
+		CFloor_110::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Floor_111 */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Floor_111"),
+		CFloor_111::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Floor_112 */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Floor_112"),
+		CFloor_112::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Floor_114 */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Floor_114"),
+		CFloor_114::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
 	lstrcpy(m_szLoadingText, TEXT("로딩이 완료되었습니다."));
