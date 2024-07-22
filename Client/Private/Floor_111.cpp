@@ -29,8 +29,6 @@ HRESULT CFloor_111::Initialize(void* pArg)
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
-	m_pTransformCom->Set_Scaled(0.01f, 0.01f, 0.01f);
-
 	return S_OK;
 }
 

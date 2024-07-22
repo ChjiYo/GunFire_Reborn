@@ -24,7 +24,14 @@ HRESULT CElement::Initialize(void* pArg)
 {
 	if (FAILED(__super::Initialize(pArg)))
 		return E_FAIL;
-	
+
+	if (m_bIsPasingObject)
+	{
+		FILEDATA* fileData = static_cast<FILEDATA*>(pArg);
+		m_pTransformCom->Set_Scaled(fileData->scale.x, fileData->scale.y, fileData->scale.z);
+		m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetW(fileData->position, 1.f));
+	}
+
 	if (pArg != nullptr)
 	{
 		// pArg가 FILEDATA 타입인지 확인

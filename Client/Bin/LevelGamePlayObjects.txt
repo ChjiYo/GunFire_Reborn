@@ -1,7 +1,98 @@
+LayerName: Layer_Floor_101
+PrototypeTag: Prototype_GameObject_Floor_101
+LevelIndex: 4
+Position: 29.104 0 17.164
+Scale: 1.148 1 1.074
+IsParsing: 1
+
+LayerName: Layer_Floor_102
+PrototypeTag: Prototype_GameObject_Floor_102
+LevelIndex: 4
+Position: 14.179 0 22.761
+Scale: 0.852 1 0.704
+IsParsing: 1
+
+LayerName: Layer_Floor_105
+PrototypeTag: Prototype_GameObject_Floor_105
+LevelIndex: 4
+Position: 16.045 0 14.925
+Scale: 1.148 1 1.208
+IsParsing: 1
+
+LayerName: Layer_Floor_106
+PrototypeTag: Prototype_GameObject_Floor_106
+LevelIndex: 4
+Position: 19.776 0 22.761
+Scale: 1.504 1 2.182
+IsParsing: 1
+
+LayerName: Layer_Floor_107
+PrototypeTag: Prototype_GameObject_Floor_107
+LevelIndex: 4
+Position: 20.895 0 14.552
+Scale: 1.296 1 2.7
+IsParsing: 1
+
+LayerName: Layer_Floor_108
+PrototypeTag: Prototype_GameObject_Floor_108
+LevelIndex: 4
+Position: 7.463 0 19.776
+Scale: 1 1 1
+IsParsing: 1
+
+LayerName: Layer_Floor_108
+PrototypeTag: Prototype_GameObject_Floor_108
+LevelIndex: 4
+Position: 11.194 0 19.776
+Scale: 1 1 1
+IsParsing: 1
+
+LayerName: Layer_Floor_108
+PrototypeTag: Prototype_GameObject_Floor_108
+LevelIndex: 4
+Position: 7.437 0 14.925
+Scale: 1 1 1
+IsParsing: 1
+
+LayerName: Layer_Floor_108
+PrototypeTag: Prototype_GameObject_Floor_108
+LevelIndex: 4
+Position: 11.309 0 14.552
+Scale: 1.148 1 1.148
+IsParsing: 1
+
+LayerName: Layer_Floor_110
+PrototypeTag: Prototype_GameObject_Floor_110
+LevelIndex: 4
+Position: 3.358 0 2.612
+Scale: 0.926 1 0.852
+IsParsing: 1
+
+LayerName: Layer_Floor_110
+PrototypeTag: Prototype_GameObject_Floor_110
+LevelIndex: 4
+Position: 10.059 0 2.6
+Scale: 0.926 1 0.852
+IsParsing: 1
+
+LayerName: Layer_Floor_111
+PrototypeTag: Prototype_GameObject_Floor_111
+LevelIndex: 4
+Position: 37.314 0 25.373
+Scale: 1.148 1 1.148
+IsParsing: 1
+
+LayerName: Layer_Floor_114
+PrototypeTag: Prototype_GameObject_Floor_114
+LevelIndex: 4
+Position: 14.553 0 19.776
+Scale: 1.221 1 1.799
+IsParsing: 1
+
 LayerName: Layer_Wall_Stage
 PrototypeTag: Prototype_GameObject_Wall_Stage
 LevelIndex: 4
-Position: 20.896 0 16.044
-Scale: 1.01 1.00999998 1.01
+Position: 21.269 0 16.044
+Scale: 1.01 1.01 1.01
 IsParsing: 1
 
