@@ -104,7 +104,7 @@ HRESULT CLoader::Loading_For_BinaryFile()
 		return E_FAIL;
 
 	//NonAnim 모델을 로드합니다.
-	PreTransformMatrix = XMMatrixRotationY(XMConvertToRadians(180.0f));
+	PreTransformMatrix = XMMatrixScaling(0.01f, 0.01f, 0.01f) * XMMatrixRotationY(XMConvertToRadians(180.0f));
 
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Wall_Stage1"),
 		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Wall_Stage/Stage1/Wall_Stage1.fbx", TEXT("../Bin/DataFiles/Wall_Stage.dat"), PreTransformMatrix))))
@@ -114,49 +114,49 @@ HRESULT CLoader::Loading_For_BinaryFile()
 		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Floor/Floor_101/Floor_101.fbx", TEXT("../Bin/DataFiles/Floor_101.dat"), PreTransformMatrix))))
 		return E_FAIL;
 
-	//if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Floor_B"),
-	//	CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Floor/102/Floor_102.fbx", TEXT("../Bin/DataFiles/Floor_B.dat"), PreTransformMatrix))))
-	//	return E_FAIL;
-	//
-	//if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Floor_103"),
-	//	CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Floor/103/Floor_103.fbx", TEXT("../Bin/DataFiles/Floor_103.dat"), PreTransformMatrix))))
-	//	return E_FAIL;
-	//
-	//if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Floor_105"),
-	//	CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Floor/105/Floor_105.fbx", TEXT("../Bin/DataFiles/Floor_105.dat"), PreTransformMatrix))))
-	//	return E_FAIL;
-	//
-	//if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Floor_106"),
-	//	CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Floor/106/Floor_106.fbx", TEXT("../Bin/DataFiles/Floor_106.dat"), PreTransformMatrix))))
-	//	return E_FAIL;
-	//
-	//if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Floor_107"),
-	//	CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Floor/107/Floor_107.fbx", TEXT("../Bin/DataFiles/Floor_107.dat"), PreTransformMatrix))))
-	//	return E_FAIL;
-	//
-	//if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Floor_108"),
-	//	CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Floor/108/Floor_108.fbx", TEXT("../Bin/DataFiles/Floor_108.dat"), PreTransformMatrix))))
-	//	return E_FAIL;
-	//
-	//if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Floor_109"),
-	//	CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Floor/109/Floor_109.fbx", TEXT("../Bin/DataFiles/Floor_109.dat"), PreTransformMatrix))))
-	//	return E_FAIL;
-	//
-	//if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Floor_110"),
-	//	CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Floor/110/Floor_110.fbx", TEXT("../Bin/DataFiles/Floor_110.dat"), PreTransformMatrix))))
-	//	return E_FAIL;
-	//
-	//if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Floor_111"),
-	//	CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Floor/111/Floor_111.fbx", TEXT("../Bin/DataFiles/Floor_111.dat"), PreTransformMatrix))))
-	//	return E_FAIL;
-	//
-	//if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Floor_112"),
-	//	CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Floor/112/Floor_112.fbx", TEXT("../Bin/DataFiles/Floor_112.dat"), PreTransformMatrix))))
-	//	return E_FAIL;
-	//
-	//if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Floor_114"),
-	//	CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Floor/114/Floor_114.fbx", TEXT("../Bin/DataFiles/Floor_114.dat"), PreTransformMatrix))))
-	//	return E_FAIL;
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Floor_102"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Floor/Floor_102/Floor_102.fbx", TEXT("../Bin/DataFiles/Floor_102.dat"), PreTransformMatrix))))
+		return E_FAIL;
+	
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Floor_103"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Floor/Floor_103/Floor_103.fbx", TEXT("../Bin/DataFiles/Floor_103.dat"), PreTransformMatrix))))
+		return E_FAIL;
+	
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Floor_105"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Floor/Floor_105/Floor_105.fbx", TEXT("../Bin/DataFiles/Floor_105.dat"), PreTransformMatrix))))
+		return E_FAIL;
+	
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Floor_106"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Floor/Floor_106/Floor_106.fbx", TEXT("../Bin/DataFiles/Floor_106.dat"), PreTransformMatrix))))
+		return E_FAIL;
+	
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Floor_107"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Floor/Floor_107/Floor_107.fbx", TEXT("../Bin/DataFiles/Floor_107.dat"), PreTransformMatrix))))
+		return E_FAIL;
+	
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Floor_108"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Floor/Floor_108/Floor_108.fbx", TEXT("../Bin/DataFiles/Floor_108.dat"), PreTransformMatrix))))
+		return E_FAIL;
+	
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Floor_109"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Floor/Floor_109/Floor_109.fbx", TEXT("../Bin/DataFiles/Floor_109.dat"), PreTransformMatrix))))
+		return E_FAIL;
+	
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Floor_110"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Floor/Floor_110/Floor_110.fbx", TEXT("../Bin/DataFiles/Floor_110.dat"), PreTransformMatrix))))
+		return E_FAIL;
+	
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Floor_111"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Floor/Floor_111/Floor_111.fbx", TEXT("../Bin/DataFiles/Floor_111.dat"), PreTransformMatrix))))
+		return E_FAIL;
+	
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Floor_112"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Floor/Floor_112/Floor_112.fbx", TEXT("../Bin/DataFiles/Floor_112.dat"), PreTransformMatrix))))
+		return E_FAIL;
+	
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Floor_114"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Floor/Floor_114/Floor_114.fbx", TEXT("../Bin/DataFiles/Floor_114.dat"), PreTransformMatrix))))
+		return E_FAIL;
 
 	lstrcpy(m_szLoadingText, TEXT("바이러리 파일 로드가 완료되었습니다."));
 

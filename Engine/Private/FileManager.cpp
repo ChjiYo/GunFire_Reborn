@@ -29,7 +29,6 @@ HRESULT CFile_Manager::SaveObjects(const wstring& filename, void* pArg)
 		file << L"PrototypeTag: " << data.prototypeTag << L"\n";
 		file << L"LevelIndex: " << data.levelIndex << L"\n";
 		file << L"Position: " << vSaveData.x << L" " << vSaveData.y << L" " << vSaveData.z << L"\n";
-		//file << L"Position: " << data.<< L" " << vSaveData.y << L" " << vSaveData.z << L"\n";
 		file << L"Scale: " << data.scale.x << L" " << data.scale.y << L" " << data.scale.z << L"\n";
 		file << L"IsParsing: " << data.isParsing << L"\n\n";
 	}
@@ -104,9 +103,10 @@ HRESULT CFile_Manager::ParseLine(const wstring& line, FILEDATA& obj) {
 			wistringstream vals(value);
 			float a, b, c;
 			vals >> a >> b >> c;
-			obj.scale.x = a;
-			obj.scale.y = b;
-			obj.scale.z = c;
+			
+			_float3 vScale = { a,b,c};
+
+			obj.scale = vScale;
 		}
 		else if (key == L"IsParsing") {
 			obj.isParsing = (value == L"true" || value == L"1");

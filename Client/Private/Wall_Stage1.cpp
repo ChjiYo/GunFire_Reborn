@@ -35,6 +35,8 @@ HRESULT CWall_Stage1::Initialize(void* pArg)
 		m_pTransformCom->Set_Scaled(fileData->scale.x, fileData->scale.y, fileData->scale.z);
 		m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetW(fileData->position , 1.f));
 	}
+
+	//m_pTransformCom->Set_Scaled( 0.01f ,0.01f ,0.01f );
 	m_pTransformCom->Rotation({ 0.f, 1.f, 0.f }, XMConvertToRadians(180.f));
 
 	return S_OK;
