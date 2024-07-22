@@ -151,6 +151,39 @@
     <Filter Include="02.GameObjects\Element\Floor\102">
       <UniqueIdentifier>{99cd78eb-4659-44da-908a-04e0561ca488}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObjects\Element\Floor\101">
+      <UniqueIdentifier>{7e6b0a8b-9eb4-4759-b8f8-68a32e146699}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Element\Floor\103">
+      <UniqueIdentifier>{2d647eef-107c-4a75-b99a-882be8959de5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Element\Floor\105">
+      <UniqueIdentifier>{6860049c-f1a2-40e3-b267-7446729ac320}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Element\Floor\106">
+      <UniqueIdentifier>{a8fb802c-31f7-4a5f-b0ba-b8706f1a10be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Element\Floor\107">
+      <UniqueIdentifier>{bbea7eee-94e4-40d0-b45b-cea5b3146413}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Element\Floor\108">
+      <UniqueIdentifier>{53a4b3de-5f8b-443a-a1f3-f4d2cbd0ddf1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Element\Floor\109">
+      <UniqueIdentifier>{1558e512-b5e5-4e90-9465-9b3bca67c532}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Element\Floor\110">
+      <UniqueIdentifier>{432b428b-257a-4a85-a967-c2e9ce751577}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Element\Floor\111">
+      <UniqueIdentifier>{39856446-70fe-4472-811e-858a890c6a3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Element\Floor\112">
+      <UniqueIdentifier>{617b9673-18b0-47c2-9543-263aa88c9b6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Element\Floor\114">
+      <UniqueIdentifier>{8c8a7dd2-4fd0-4bb7-86c9-5d2c8276a7d2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -294,6 +327,40 @@
     <ClInclude Include="..\Public\Floor_102.h">
       <Filter>02.GameObjects\Element\Floor\102</Filter>
     </ClInclude>
+    <ClInclude Include="FSM_Player_Jump.h" />
+    <ClInclude Include="..\public\Floor_101.h">
+      <Filter>02.GameObjects\Element\Floor\101</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Floor_103.h">
+      <Filter>02.GameObjects\Element\Floor\103</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Floor_105.h">
+      <Filter>02.GameObjects\Element\Floor\105</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Floor_106.h">
+      <Filter>02.GameObjects\Element\Floor\106</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Floor_107.h">
+      <Filter>02.GameObjects\Element\Floor\107</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Floor_108.h">
+      <Filter>02.GameObjects\Element\Floor\108</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Floor_109.h">
+      <Filter>02.GameObjects\Element\Floor\109</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Floor_110.h">
+      <Filter>02.GameObjects\Element\Floor\110</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Floor_111.h">
+      <Filter>02.GameObjects\Element\Floor\111</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Floor_112.h">
+      <Filter>02.GameObjects\Element\Floor\112</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Floor_114.h">
+      <Filter>02.GameObjects\Element\Floor\114</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -421,6 +488,40 @@
     </ClCompile>
     <ClCompile Include="..\Private\Floor_102.cpp">
       <Filter>02.GameObjects\Element\Floor\102</Filter>
+    </ClCompile>
+    <ClCompile Include="FSM_Player_Jump.cpp" />
+    <ClCompile Include="..\private\Floor_101.cpp">
+      <Filter>02.GameObjects\Element\Floor\101</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Floor_103.cpp">
+      <Filter>02.GameObjects\Element\Floor\103</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Floor_105.cpp">
+      <Filter>02.GameObjects\Element\Floor\105</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Floor_106.cpp">
+      <Filter>02.GameObjects\Element\Floor\106</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Floor_107.cpp">
+      <Filter>02.GameObjects\Element\Floor\107</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Floor_108.cpp">
+      <Filter>02.GameObjects\Element\Floor\108</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Floor_109.cpp">
+      <Filter>02.GameObjects\Element\Floor\109</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Floor_110.cpp">
+      <Filter>02.GameObjects\Element\Floor\110</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Floor_111.cpp">
+      <Filter>02.GameObjects\Element\Floor\111</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Floor_112.cpp">
+      <Filter>02.GameObjects\Element\Floor\112</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Floor_114.cpp">
+      <Filter>02.GameObjects\Element\Floor\114</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

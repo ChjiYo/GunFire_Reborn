@@ -29,6 +29,7 @@ HRESULT CFile_Manager::SaveObjects(const wstring& filename, void* pArg)
 		file << L"PrototypeTag: " << data.prototypeTag << L"\n";
 		file << L"LevelIndex: " << data.levelIndex << L"\n";
 		file << L"Position: " << vSaveData.x << L" " << vSaveData.y << L" " << vSaveData.z << L"\n";
+		//file << L"Position: " << data.<< L" " << vSaveData.y << L" " << vSaveData.z << L"\n";
 		file << L"Scale: " << data.scale.x << L" " << data.scale.y << L" " << data.scale.z << L"\n";
 		file << L"IsParsing: " << data.isParsing << L"\n\n";
 	}

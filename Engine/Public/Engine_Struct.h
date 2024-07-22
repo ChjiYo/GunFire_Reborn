@@ -105,6 +105,7 @@ namespace Engine
 		wstring layerName;
 		int levelIndex;
 		XMVECTOR position;
+		XMVECTOR rotation;
 		XMFLOAT3 scale;
 		bool isParsing;
 	}FILEDATA;

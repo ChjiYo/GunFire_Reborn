@@ -1,7 +1,7 @@
 LayerName: Layer_Wall_Stage
 PrototypeTag: Prototype_GameObject_Wall_Stage
-LevelIndex: 3
-Position: 20.896 0 16.418
-Scale: 0.01 0.01 0.01
+LevelIndex: 4
+Position: 20.896 0 16.044
+Scale: 0.01 0.00999998 0.01
 IsParsing: 1
 

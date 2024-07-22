@@ -64,7 +64,7 @@ HRESULT CModel::Initialize_Prototype(enum TYPE eModelType, const _char* pModelFi
 	/* 피오나 : 칼, 피오나, 피오나배낭, 그림자. 메시들이 각각 배치되기위한 기초상태를 정의한 뼈라는 개념이 존재한다.  */
 	_uint	iFlag = aiProcess_ConvertToLeftHanded | aiProcessPreset_TargetRealtime_Fast;
 
-	if (TYPE_NONANIM == eModelType)
+	if (TYPE_NONANIM == eModelType) 
 		iFlag |= aiProcess_PreTransformVertices;
 
 	/* 지정해준 경로에 해당하는 파일의 정보를 읽어서 aiScene안에 저장해주는 역활. */

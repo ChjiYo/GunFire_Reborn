@@ -39,7 +39,7 @@ HRESULT CMainApp::Initialize()
 	if (FAILED(Ready_Gara()))
 		return E_FAIL;
 
-	if (FAILED(Open_Level(LEVEL_LOGO)))
+	if (FAILED(Open_Level(LEVEL_BIN)))
 		return E_FAIL;	
 
 	m_pTool_Manager = CTool_Manager::Create(m_pDevice, m_pContext);
