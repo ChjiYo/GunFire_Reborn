@@ -17,7 +17,7 @@ sampler DefaultSampler = sampler_state
 	Filter = MIN_MAG_MIP_LINEAR;
 	AddressU = wrap;
 	AddressV = wrap;
-};
+};	
 
 struct VS_IN
 {

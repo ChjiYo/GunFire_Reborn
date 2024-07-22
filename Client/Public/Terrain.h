@@ -14,6 +14,9 @@ BEGIN(Client)
 
 class CTerrain final : public CGameObject
 {
+public:
+	enum TEXTURETEX { TEX_DIFFUSE, TEX_MASK, TEX_BRUSH, TEX_END };
+
 private:
 	CTerrain(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	CTerrain(const CTerrain& Prototype);
@@ -32,7 +35,7 @@ public:
 
 private:
 	CShader*					m_pShaderCom = { nullptr };
-	CTexture*					m_pTextureCom = { nullptr };
+	CTexture*					m_pTextureCom[TEX_END] = { nullptr };
 	CVIBuffer_Terrain*			m_pVIBufferCom = { nullptr };
 	CNavigation*				m_pNavigationCom =	{ nullptr };
 

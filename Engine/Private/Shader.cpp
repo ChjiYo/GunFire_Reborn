@@ -146,6 +146,20 @@ HRESULT CShader::Bind_ShaderResourceView(const _char* pConstantName, ID3D11Shade
 	return pSRVariable->SetResource(pSRV);	
 }
 
+HRESULT CShader::Bind_ShaderResourceViews(const _char* pConstantName, ID3D11ShaderResourceView** ppSRV, _uint iNumTextures)
+{
+	/* 전달해준 문자열과 같은 이름을 가진 쉐이더내에 존재하는 전역변수의 컴객체(핸들)를 얻어온다.*/
+	ID3DX11EffectVariable* pVariable = m_pEffect->GetVariableByName(pConstantName);
+	if (nullptr == pVariable)
+		return E_FAIL;
+
+	ID3DX11EffectShaderResourceVariable* pSRVariable = pVariable->AsShaderResource();
+	if (nullptr == pSRVariable)
+		return E_FAIL;
+
+	return pSRVariable->SetResourceArray(ppSRV, 0, iNumTextures);
+}
+
 CShader * CShader::Create(ID3D11Device * pDevice, ID3D11DeviceContext * pContext, const _tchar * pShaderFilePath, const D3D11_INPUT_ELEMENT_DESC* pElements, _uint iNumElements)
 {
 	CShader*		pInstance = new CShader(pDevice, pContext);

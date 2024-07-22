@@ -88,7 +88,7 @@ HRESULT CTerrain::Ready_Components()
 
 	/* Com_Texture */
 	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_Terrain"),
-		TEXT("Com_Texture"), reinterpret_cast<CComponent**>(&m_pTextureCom))))
+		TEXT("Com_Texture"), reinterpret_cast<CComponent**>(&m_pTextureCom[TEX_DIFFUSE]))))
 		return E_FAIL;	
 
 	/* Com_VIBuffer */
@@ -115,8 +115,14 @@ HRESULT CTerrain::Bind_ShaderResources()
 	if (FAILED(m_pShaderCom->Bind_Matrix("g_ProjMatrix", &m_pGameInstance->Get_Transform_Float4x4(CPipeLine::D3DTS_PROJ))))
 		return E_FAIL;
 
-	if (FAILED(m_pTextureCom->Bind_ShaderResource(m_pShaderCom, "g_DiffuseTexture", 0)))
+	if (FAILED(m_pTextureCom[TEX_DIFFUSE]->Bind_ShaderResource(m_pShaderCom, "g_DiffuseTexture", 0)))
 		return E_FAIL;	
+
+	//if (FAILED(m_pTextureCom[TEX_MASK]->Bind_ShaderResource(m_pShaderCom, "g_MaskTexture", 0)))
+	//	return E_FAIL;
+	//
+	//if (FAILED(m_pTextureCom[TEX_BRUSH]->Bind_ShaderResource(m_pShaderCom, "g_BrushTexture", 0)))
+	//	return E_FAIL;
 
 	if (FAILED(m_pShaderCom->Bind_RawValue("g_vCamPosition", &m_pGameInstance->Get_CamPosition_Float4(), sizeof(_float4))))
 		return E_FAIL;
@@ -168,7 +174,10 @@ void CTerrain::Free()
 	__super::Free();
 
 	Safe_Release(m_pNavigationCom);
-	Safe_Release(m_pTextureCom);
+
+	for (auto& pTexture : m_pTextureCom)
+		Safe_Release(pTexture);
+
 	Safe_Release(m_pShaderCom);
 	Safe_Release(m_pVIBufferCom);
 }
