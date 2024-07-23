@@ -183,6 +183,21 @@ HRESULT CNavigation::Add_Sell(_float3 fPoint[3])
 		}
 	}
 
+	_vector vPointA = { fPoint[0].x , fPoint[0].y ,fPoint[0].z };
+	_vector  vPointB = { fPoint[1].x,fPoint[1].y ,fPoint[1].z };
+	_vector  vPointC = { fPoint[2].x , fPoint[2].y , fPoint[2].z };
+
+	_vector  vLineAB = XMVectorSubtract(vPointB , vPointA);
+	_vector  vLineAC = XMVectorSubtract(vPointC , vPointA);
+	XMVECTOR  vNormal = XMVector3Cross(vLineAB, vLineAC);
+
+	_float fNormalY = XMVectorGetY(vNormal);
+
+	if (!(fNormalY > 0))
+	{
+		swap(fPoint[0], fPoint[1]);
+	}
+
 	CCell* pCell = CCell::Create(m_pDevice, m_pContext, fPoint, m_Cells.size());
 	if (nullptr == pCell)
 		return E_FAIL;
