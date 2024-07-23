@@ -73,9 +73,9 @@ HRESULT CLevel::ParseInitialize()
 
 void CLevel::Free()
 {
-	__super::Free();
 
 	Safe_Release(m_pGameInstance);
 	Safe_Release(m_pDevice);
 	Safe_Release(m_pContext);
+	__super::Free();
 }

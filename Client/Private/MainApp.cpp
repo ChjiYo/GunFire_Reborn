@@ -266,7 +266,6 @@ void CMainApp::Free()
 {
 	Safe_Release(m_pTool_Manager);
 
-	__super::Free();
 
 	Safe_Release(m_pContext);
 	Safe_Release(m_pDevice);
@@ -274,5 +273,7 @@ void CMainApp::Free()
 	m_pGameInstance->Release_Engine();
 
 	Safe_Release(m_pGameInstance);	
+
+	__super::Free();
 }
 

@@ -52,7 +52,6 @@ CLight_Manager * CLight_Manager::Create(ID3D11Device * pDevice, ID3D11DeviceCont
 
 void CLight_Manager::Free()
 {
-	__super::Free();
 
 	for (auto& pLight : m_Lights)
 		Safe_Release(pLight);
@@ -61,4 +60,5 @@ void CLight_Manager::Free()
 
 	Safe_Release(m_pDevice);
 	Safe_Release(m_pContext);
+	__super::Free();
 }

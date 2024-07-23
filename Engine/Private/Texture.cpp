@@ -99,10 +99,10 @@ CComponent * CTexture::Clone(void * pArg)
 
 void CTexture::Free()
 {
-	__super::Free();
 
 	for (auto& pSRV : m_SRVs)
 		Safe_Release(pSRV);
 
 	m_SRVs.clear();
+	__super::Free();
 }

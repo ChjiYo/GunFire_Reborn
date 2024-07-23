@@ -51,7 +51,7 @@ HRESULT CNavigation::Initialize_Prototype(const _tchar * pNavigationDataFilePath
 
 	CloseHandle(hFile);
 
-	Make_Neighbors();
+	//Make_Neighbors();
 
 #ifdef _DEBUG
 
@@ -225,8 +225,6 @@ CComponent * CNavigation::Clone(void * pArg)
 
 void CNavigation::Free()
 {
-	__super::Free();
-
 #ifdef _DEBUG
 	Safe_Release(m_pShader);
 #endif
@@ -235,4 +233,6 @@ void CNavigation::Free()
 		Safe_Release(pCell);
 
 	m_Cells.clear();
+
+	__super::Free();
 }

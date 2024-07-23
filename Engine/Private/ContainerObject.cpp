@@ -84,10 +84,10 @@ HRESULT CContainerObject::Add_PartObject(_uint iPartIndex, const _wstring& strPr
 
 void CContainerObject::Free()
 {
-	__super::Free();
 
 	for (auto& pPartObject : m_Parts)
 		Safe_Release(pPartObject);
 
 	m_Parts.clear();
+	__super::Free();
 }

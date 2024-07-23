@@ -101,12 +101,13 @@ HRESULT CTool_Object::Setting_Tab()
 		}
 
 		CTerrain* pTerrain = dynamic_cast<CTerrain*>(m_pGameInstance->Get_Layer(currentLevel, TEXT("Layer_BackGround")).back());
-		m_vPickingPos = pTerrain->Get_TerrainPicking();
 
 		if (bNaviPicking)
 		{
-			//if(m_pGameInstance->Ket)
-			pTerrain->Add_NaviMesh(m_vPickingPos);
+			if (m_pGameInstance->Key_Down(VK_LBUTTON))
+			{
+				pTerrain->Add_NaviMesh(PickingPos());
+			}
 		}
 		
 		ImGui::EndTabItem(); // "ObjectList" 탭 아이템 종료

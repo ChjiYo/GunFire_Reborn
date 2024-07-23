@@ -487,7 +487,6 @@ CComponent* CBinModel::Clone(void* pArg)
 
 void CBinModel::Free()
 {
-	__super::Free();
 
 	for (auto& pAnimation : m_Animations)
 		Safe_Release(pAnimation);
@@ -509,5 +508,6 @@ void CBinModel::Free()
 		Safe_Release(pMesh);
 
 	m_Importer.FreeScene();
+	__super::Free();
 }
 

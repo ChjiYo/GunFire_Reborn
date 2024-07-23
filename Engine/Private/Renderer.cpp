@@ -125,7 +125,6 @@ CRenderer * CRenderer::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pConte
 
 void CRenderer::Free()
 {
-	__super::Free();
 
 	for (size_t i = 0; i < RG_END; i++)
 	{
@@ -136,4 +135,5 @@ void CRenderer::Free()
 
 	Safe_Release(m_pDevice);
 	Safe_Release(m_pContext);
+	__super::Free();
 }

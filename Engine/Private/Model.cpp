@@ -584,7 +584,6 @@ CComponent* CModel::Clone(void* pArg)
 
 void CModel::Free()
 {
-	__super::Free();
 
 	for (auto& pAnimation : m_Animations)
 		Safe_Release(pAnimation);
@@ -618,5 +617,6 @@ void CModel::Free()
 	*/
 
 	m_Importer.FreeScene();
+	__super::Free();
 }
 

@@ -42,7 +42,7 @@ private:
 
 	_float3						m_vPicking = {};
 	_uint						m_iNumNaviPicking = { 0 };
-	_float3*						vPoints = {};
+	_float3						vPoints[3] = {};
 private:
 	HRESULT Ready_Components();
 	HRESULT Bind_ShaderResources();

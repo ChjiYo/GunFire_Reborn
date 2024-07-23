@@ -82,7 +82,6 @@ CComponent_Manager * CComponent_Manager::Create(_uint iNumLevels)
 
 void CComponent_Manager::Free()
 {
-	__super::Free();
 
 	for (size_t i = 0; i < m_iNumLevels; i++)
 	{
@@ -93,6 +92,7 @@ void CComponent_Manager::Free()
 	}
 
 	Safe_Delete_Array(m_pPrototypes);
+	__super::Free();
 }
 
 

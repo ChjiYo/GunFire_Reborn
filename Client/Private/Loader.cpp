@@ -485,7 +485,6 @@ CLoader * CLoader::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, 
 
 void CLoader::Free()
 {
-	__super::Free();
 
 	WaitForSingleObject(m_hThread, INFINITE);
 
@@ -497,4 +496,5 @@ void CLoader::Free()
 
 	Safe_Release(m_pDevice);
 	Safe_Release(m_pContext);
+	__super::Free();
 }
