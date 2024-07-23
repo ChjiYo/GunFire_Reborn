@@ -85,6 +85,8 @@ void CTerrain::Add_NaviMesh(_float3 vPos)
 	if (vPos.x == 0 && vPos.y == 0 && vPos.z == 0)
 		return;
 
+	//m_pNavigationCom->
+
 	switch (m_iNumNaviPicking)
 	{
 	case 0:
@@ -101,7 +103,7 @@ void CTerrain::Add_NaviMesh(_float3 vPos)
 		break;
 	}
 
-	
+
 
 	
 if (m_iNumNaviPicking == 3)

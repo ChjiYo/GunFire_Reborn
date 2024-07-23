@@ -36,8 +36,8 @@ HRESULT CMainApp::Initialize()
 	if (FAILED(Ready_Prototoype_Resource_ForStatic()))
 		return E_FAIL;
 
-	if (FAILED(Ready_Gara()))
-		return E_FAIL;
+	//if (FAILED(Ready_Gara()))
+	//	return E_FAIL;
 
 	//LOGO 먼저 (실수 2스택!!)
 	if (FAILED(Open_Level(LEVEL_LOGO)))

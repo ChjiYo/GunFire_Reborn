@@ -66,6 +66,10 @@ void CTransform::Go_Left(_float fTimeDelta, CNavigation* pNavigation)
 		Set_State(STATE_POSITION, vPosition);
 		return;
 	}
+	else
+	{
+		int a = 10;
+	}
 }
 
 void CTransform::Go_Right(_float fTimeDelta, CNavigation* pNavigation)
@@ -96,6 +100,10 @@ void CTransform::Go_StraightY(_float fTimeDelta, CNavigation* pNavigation)
 	{
 		Set_State(STATE_POSITION, vPosition);
 		return;
+	}
+	else
+	{
+		int a = 10;
 	}
 }
 

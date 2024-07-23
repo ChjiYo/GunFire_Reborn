@@ -51,7 +51,7 @@ HRESULT CNavigation::Initialize_Prototype(const _tchar * pNavigationDataFilePath
 
 	CloseHandle(hFile);
 
-	//Make_Neighbors();
+	Make_Neighbors();
 
 #ifdef _DEBUG
 
@@ -165,30 +165,21 @@ _bool CNavigation::is_Move(_fvector vPosition)
 
 HRESULT CNavigation::Add_Sell(_float3 fPoint[3])
 {
+	//XMVector3Length()
+
 	for (auto& iter : m_Cells)
 	{
 		for (int i = 0; i < 3; ++i)
 		{
 			for (int k = 0; k < 3; ++k)
 			{
-				_float PosX = iter->Get_Point(i).x - fPoint[k].x;
-				_float PosY = iter->Get_Point(i).y - fPoint[k].y;
-				_float PosZ = iter->Get_Point(i).z - fPoint[k].z;
-
-				if (PosX < 3.f && PosX > -3.f)
-				{
-					fPoint[k].x = iter->Get_Point(i).x;
-				}
-				else if (PosY < 3.f && PosY > -3.f)
-				{
-					fPoint[k].y = iter->Get_Point(i).y;
-				}
-				else if (PosZ < 3.f && PosZ > -3.f)
-				{
-					fPoint[k].z = iter->Get_Point(i).z;
-				}
+				_float fPosX =  fPoint[i].x - iter->Get_Point(k).x;
+				_float fPosY = fPoint[i].y - iter->Get_Point(k).y;
+				_float fPosZ = fPoint[i].z - iter->Get_Point(k).z;
+			
+				if((fPosX > -0.5f && fPosX < 0.5f) && (fPosY > -0.5f && fPosY < 0.5f) && (fPosZ > -0.5f && fPosZ < 0.5f))
+					fPoint[i] =	iter->Get_Point(k);
 			}
-
 		}
 	}
 
@@ -198,7 +189,7 @@ HRESULT CNavigation::Add_Sell(_float3 fPoint[3])
 
 	m_Cells.emplace_back(pCell);
 
-	Make_Neighbors();
+	//Make_Neighbors();
 
 	return S_OK;
 }
@@ -246,6 +237,17 @@ HRESULT CNavigation::Save_Navi()
 	CloseHandle(hFile);
 
 	return S_OK; 
+}
+
+HRESULT CNavigation::Delete_Navi()
+{
+	if (m_Cells.size() == 0)
+		return E_FAIL;
+
+	Safe_Release(m_Cells.back());
+	m_Cells.pop_back();
+
+	return S_OK;
 }
 
 CNavigation * CNavigation::Create(ID3D11Device * pDevice, ID3D11DeviceContext * pContext, const _tchar * pNavigationDataFilePath)

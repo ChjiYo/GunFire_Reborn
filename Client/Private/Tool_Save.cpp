@@ -46,6 +46,10 @@ HRESULT CTool_Save::Save_Button()
 		Save_Navi();
 	}
 
+	if (ImGui::Button("NaviDelete")) { // "Delete" ¹öÆ°
+		Delete_Navi();
+	}
+
 	return S_OK;
 }
 
@@ -56,6 +60,17 @@ HRESULT CTool_Save::Save_Navi()
 	CTerrain* pTerrain = dynamic_cast<CTerrain*>(m_pGameInstance->Get_Layer(currentLevel, TEXT("Layer_BackGround")).back());
 	CNavigation* TerrainNavi = dynamic_cast<CNavigation*>(m_pGameInstance->Get_Component(currentLevel, TEXT("Layer_BackGround"), TEXT("Com_Navigation")));
 	TerrainNavi->Save_Navi();
+
+	return S_OK;
+}
+
+HRESULT CTool_Save::Delete_Navi()
+{
+	_uint currentLevel = m_pGameInstance->GetCurrentLevelIndex();
+
+	CTerrain* pTerrain = dynamic_cast<CTerrain*>(m_pGameInstance->Get_Layer(currentLevel, TEXT("Layer_BackGround")).back());
+	CNavigation* TerrainNavi = dynamic_cast<CNavigation*>(m_pGameInstance->Get_Component(currentLevel, TEXT("Layer_BackGround"), TEXT("Com_Navigation")));
+	TerrainNavi->Delete_Navi();
 
 	return S_OK;
 }

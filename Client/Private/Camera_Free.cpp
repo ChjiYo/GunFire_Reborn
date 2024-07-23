@@ -33,7 +33,7 @@ HRESULT CCamera_Free::Initialize(void * pArg)
 	if (FAILED(Read_Component()))
 		return E_FAIL;
 
-	m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 7.f , 1.3f , 3.f, 1.f });
+	m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 5.f , 1.3f , 3.f, 1.f });
 
 	return S_OK;
 }

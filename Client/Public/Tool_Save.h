@@ -16,9 +16,10 @@ public:
 
 public:
 	HRESULT Save_Button();
-	HRESULT Save_Navi();
 public:
 	HRESULT Save_Button_Pressed(bool* bShowSaveSuccessMessage, bool* bShowSaveFailMessage);
+	HRESULT Save_Navi();
+	HRESULT Delete_Navi();
 
 private:
 	bool bShowSettings = { true };
