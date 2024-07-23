@@ -82,6 +82,8 @@ HRESULT CTool_Object::Layer_ObjectList_Tab()
 
 HRESULT CTool_Object::Setting_Tab()
 {
+	_uint currentLevel = m_pGameInstance->GetCurrentLevelIndex();
+
 	if (ImGui::BeginTabItem("Setting")) { // "ObjectList" 탭 아이템 시작
 		//원형 오브젝트 창
 		bool bShowObjectWindow = true;
@@ -92,6 +94,21 @@ HRESULT CTool_Object::Setting_Tab()
 				Click_Camera_FreeView(bColliderToggle);
 			}
 		}
+
+		static bool bNaviPicking = false ;
+		if (true) {
+			ImGui::Checkbox("NaviPicking", &bNaviPicking);
+		}
+
+		CTerrain* pTerrain = dynamic_cast<CTerrain*>(m_pGameInstance->Get_Layer(currentLevel, TEXT("Layer_BackGround")).back());
+		m_vPickingPos = pTerrain->Get_TerrainPicking();
+
+		if (bNaviPicking)
+		{
+			//if(m_pGameInstance->Ket)
+			pTerrain->Add_NaviMesh(m_vPickingPos);
+		}
+		
 		ImGui::EndTabItem(); // "ObjectList" 탭 아이템 종료
 	}
 
@@ -109,7 +126,7 @@ HRESULT CTool_Object::ShowLevels()
 	for (auto& level : levels) {
 		if (ImGui::Button(level.first.c_str())) {
 			return m_pGameInstance->Change_Level(CLevel_Loading::Create(m_pDevice, m_pContext, level.second));
-		}
+		}	
 	}
 
 	return S_OK;
@@ -156,10 +173,7 @@ HRESULT CTool_Object::Show_LayerObjects()
 	ImGui::EndChild();
 	ImGui::NextColumn(); // 다음 컬럼으로 이동
 
-	if (ImGui::Checkbox("Picking_Create", &m_bPickingCheckBox))
-	{
-		m_bPicking = m_bPickingCheckBox;
-	}
+	ImGui::Checkbox("Picking_Create", &m_bPickingCheckBox);
 
 	string layerName; // layerName 변수를 스코프 바깥으로 이동
 
@@ -205,7 +219,7 @@ HRESULT CTool_Object::Show_LayerObjects()
 
 			++it; // 삭제하지 않으면 다음 오브젝트로 이동
 			index++;  // 다음 오브젝트에 대해 인덱스 증가
-		}
+		}  
 	}
 
 	if (!selectedGameObjects.empty())
@@ -250,7 +264,6 @@ HRESULT CTool_Object::Show_LayerObjects()
 					_vector vSrc = XMLoadFloat3(&fPos);
 
 					transform->Set_State(CTransform::STATE_POSITION, vSrc);
-					int a = 10;
 				}
 			}
 		}
@@ -270,8 +283,6 @@ HRESULT CTool_Object::Show_LayerObjects()
 				averagePosition.x += vSrc.x;
 				averagePosition.y += vSrc.y;
 				averagePosition.z += vSrc.z;
-
-				int a = 10;
 			}
 		}
 
@@ -368,16 +379,14 @@ HRESULT CTool_Object::Show_LayerObjects()
 		if (ImGui::Button("-SX")) averageScale.x -= 0.01f;
 		ImGui::SameLine();
 		ImGui::SliderFloat("##ScaleX", &averageScale.x, 0.1f, 10.0f, "%.3f", sliderPower);
-	
+
 		ImGui::SameLine();
 		if (ImGui::Button("+SX")) averageScale.x += 0.01f;
 		ImGui::SameLine();
 		ImGui::PushItemWidth(inputWidth);
 		if (ImGui::InputFloat("##ScaleXInput", &averageScale.x))
-		{
-			int b = 10;
-		}
-		ImGui::PopItemWidth();
+
+			ImGui::PopItemWidth();
 
 		// 스케일 Y 축 조정
 		if (ImGui::Button("-SY")) averageScale.y -= 0.01f;
@@ -392,7 +401,7 @@ HRESULT CTool_Object::Show_LayerObjects()
 
 		// 스케일 Z 축 조정
 		if (ImGui::Button("-SZ")) averageScale.z -= 0.01f;
-		
+
 		ImGui::SameLine();
 		ImGui::SliderFloat("##ScaleZ", &averageScale.z, 0.1f, 10.0f, "%.3f", sliderPower);
 		ImGui::SameLine();
@@ -410,7 +419,7 @@ HRESULT CTool_Object::Show_LayerObjects()
 			CComponent* component = gameObject->Get_Component(TEXT("Com_Transform"));
 			if (component != nullptr) {
 				CTransform* transform = static_cast<CTransform*>(component);
-				transform->Set_Scaled(averageScale.x, averageScale.y , averageScale.z); // 스케일 적용
+				transform->Set_Scaled(averageScale.x, averageScale.y, averageScale.z); // 스케일 적용
 			}
 		}
 
@@ -421,7 +430,7 @@ HRESULT CTool_Object::Show_LayerObjects()
 		// 회전 X 축 조정
 		if (ImGui::Button("-SX")) averageRotation.x -= 1.f;
 		ImGui::SameLine();
-		ImGui::SliderFloat("##RotationX", &averageRotation.x , 0.0f, 360.0f, "%.3f", sliderPower);
+		ImGui::SliderFloat("##RotationX", &averageRotation.x, 0.0f, 360.0f, "%.3f", sliderPower);
 		ImGui::SameLine();
 		if (ImGui::Button("+SX")) averageRotation.x += 1.f;
 		ImGui::SameLine();
@@ -442,7 +451,7 @@ HRESULT CTool_Object::Show_LayerObjects()
 
 		// 회전 Z 축 조정
 		if (ImGui::Button("-SZ")) averageRotation.z -= 1.f;
-		
+
 		ImGui::SameLine();
 		ImGui::SliderFloat("##RotationZ", &averageRotation.z, 0.0f, 360.0f, "%.3f", sliderPower);
 		ImGui::SameLine();
@@ -460,7 +469,7 @@ HRESULT CTool_Object::Show_LayerObjects()
 
 				CTransform* transform = static_cast<CTransform*>(component);
 
-				if(averageRotation.x > 0.f)
+				if (averageRotation.x > 0.f)
 					transform->Rotation({ 0.f, 1.f, 0.f ,0.f }, XMConvertToRadians(averageRotation.x));
 
 				if (averageRotation.y > 0.f)
@@ -492,35 +501,34 @@ HRESULT CTool_Object::Show_LayerObjects()
 		// 피킹 기능
 		ImGui::Separator(); // 구분선 추가
 
-		if (m_pGameInstance->Key_Down(VK_LBUTTON))
+		if (m_bPickingCheckBox)
 		{
-			for (CGameObject* gameObject : selectedGameObjects) 
+			if (m_pGameInstance->Key_Down(VK_LBUTTON))
 			{
-				// 레이어 이름과 함께 객체를 복사합니다.
-				wstring_convert<std::codecvt_utf8<wchar_t>> converter;
-				std::wstring wLayerName = converter.from_bytes(layerName);
-
-				if (m_bPicking)
+				for (CGameObject* gameObject : selectedGameObjects)
 				{
-					CTerrain* pTerrain = dynamic_cast<CTerrain*>(m_pGameInstance->Get_Layer(currentLevel, TEXT("Layer_BackGround")).back());
-					m_vPickingPos = pTerrain->Get_TerrainPicking();
-
+					// 레이어 이름과 함께 객체를 복사합니다.
+					wstring_convert<std::codecvt_utf8<wchar_t>> converter;
+					std::wstring wLayerName = converter.from_bytes(layerName);
+					
+					m_vPickingPos = PickingPos();
 					PickingSelectedObject(wLayerName, gameObject, m_vPickingPos);
 				}
 			}
+		
 		}
 	}
-	ImGui::EndChild();
+		ImGui::EndChild();
 
-	ImGui::Columns(1); // 열 병합
+		ImGui::Columns(1); // 열 병합
 
-	for (auto& iter : objectLayersVector)
-	{
-		for (auto& iter2 : iter.second)
-			Safe_Release(iter2);
-	}
-
-	return S_OK;
+		for (auto& iter : objectLayersVector)
+		{
+			for (auto& iter2 : iter.second)
+				Safe_Release(iter2);
+		}
+	
+		return S_OK;
 }
 
 HRESULT CTool_Object::Click_Camera_FreeView(_bool bColliderToggle)
@@ -626,10 +634,26 @@ HRESULT CTool_Object::PickingSelectedObject(const wstring& layerName, CGameObjec
 	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(currentLevel, prototypeTag.c_str(), layerName.c_str(), &copy_DESC)))
 		return E_FAIL;
 
-	//m_bPicking = false;
-	//m_bPickingCheckBox = false;
-
 	return S_OK;
+}
+
+_float3 CTool_Object::PickingPos()
+{
+	_uint currentLevel = m_pGameInstance->GetCurrentLevelIndex();
+
+	CTerrain* pTerrain = dynamic_cast<CTerrain*>(m_pGameInstance->Get_Layer(currentLevel, TEXT("Layer_BackGround")).back());
+	m_vPickingPos = pTerrain->Get_TerrainPicking();
+
+
+	CVIBuffer_Terrain* TerrainBuffer =  dynamic_cast<CVIBuffer_Terrain*>(m_pGameInstance->Get_Component(currentLevel, TEXT("Layer_BackGround"), TEXT("Com_VIBuffer")));
+
+	_vector	vPos = {};
+	TerrainBuffer->Picked(pTerrain->Get_Transform() , &vPos);
+
+	_float3 vStorePos = {};
+	XMStoreFloat3(&vStorePos, vPos);
+
+	return vStorePos;
 }
 
 CTool_Object* CTool_Object::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)

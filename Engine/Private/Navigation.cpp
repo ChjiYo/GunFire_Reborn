@@ -37,7 +37,8 @@ HRESULT CNavigation::Initialize_Prototype(const _tchar * pNavigationDataFilePath
 	
 	while (true)
 	{
-		ReadFile(hFile, vPoints, sizeof(_float3) * 3, &dwByte, nullptr);
+
+ 		ReadFile(hFile, vPoints, sizeof(_float3) * 3, &dwByte, nullptr);
 		if (0 == dwByte)
 			break;
 
@@ -77,6 +78,8 @@ HRESULT CNavigation::Initialize(void * pArg)
 
 void CNavigation::Update(_fmatrix TerrainWorldMatrix)
 {
+
+
 	XMStoreFloat4x4(&m_WorldMatrix, TerrainWorldMatrix);
 }
 
@@ -158,6 +161,19 @@ _bool CNavigation::is_Move(_fvector vPosition)
 			return false;
 		}
 	}
+}
+
+HRESULT CNavigation::Add_Sell(_float3 fPoint[3])
+{
+	CCell* pCell = CCell::Create(m_pDevice, m_pContext, fPoint, m_Cells.size());
+	if (nullptr == pCell)
+		return E_FAIL;
+
+	m_Cells.emplace_back(pCell);
+
+	Make_Neighbors();
+
+	return S_OK;
 }
 
 void CNavigation::Make_Neighbors()

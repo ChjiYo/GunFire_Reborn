@@ -28,6 +28,8 @@ HRESULT CTerrain::Initialize(void * pArg)
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
+	vPoints = new _float3[m_iNumNaviPicking];
+
 	return S_OK;
 }
 
@@ -38,18 +40,18 @@ void CTerrain::Priority_Update(_float fTimeDelta)
 void CTerrain::Update(_float fTimeDelta)
 {
 	m_pNavigationCom->Update(m_pTransformCom->Get_WorldMatrix());
+	
+	//if (m_pGameInstance->Key_Down(VK_LBUTTON))
+	//{
+	//	_vector		vPos{};
+	//	m_pVIBufferCom->Picked(m_pTransformCom, &vPos);
 
-	if (GetKeyState(VK_LBUTTON) & 0x8000)
-	{
-		_vector		vPos{};
-		m_pVIBufferCom->Picked(m_pTransformCom, &vPos);
+	//	m_vPicking = {};
+	//	XMStoreFloat3(&m_vPicking, vPos);
 
-		m_vPicking = {};
-		XMStoreFloat3(&m_vPicking, vPos);
-
-
-		int a = 10;
-	}
+	//	
+	//	//Add_NaviMesh(m_vPicking);
+	//}
 }
 
 void CTerrain::Late_Update(_float fTimeDelta)
@@ -77,6 +79,33 @@ HRESULT CTerrain::Render()
 #endif
 
 	return S_OK;
+}
+
+void CTerrain::Add_NaviMesh(_float3 vPos)
+{
+
+	switch (m_iNumNaviPicking)
+	{
+	case 0:
+		vPoints[m_iNumNaviPicking++] = _float3(vPos.x, vPos.y, vPos.z);
+		break;
+	case 1:
+		vPoints[m_iNumNaviPicking++] = _float3(vPos.x, vPos.y, vPos.z);
+		break;
+	case 2:
+		vPoints[m_iNumNaviPicking++] = _float3(vPos.x, vPos.y, vPos.z);
+		break;
+
+	default:
+		break;
+	}
+
+	if (m_iNumNaviPicking == 3)
+	{
+		m_pNavigationCom->Add_Sell(vPoints);
+		m_iNumNaviPicking = 0;
+	}
+
 }
 
 HRESULT CTerrain::Ready_Components()

@@ -11,7 +11,6 @@
 #include "KeyState.h"
 #include "Picking.h"
 #include "FileManager.h"
-
 #include "PipeLine.h"
 
 IMPLEMENT_SINGLETON(CGameInstance)

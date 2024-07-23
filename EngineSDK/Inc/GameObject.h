@@ -28,6 +28,8 @@ public:
 	void SetPicking(_bool _picking) { m_bIsPicking = _picking; };
 	_bool GetIsPicking() { return m_bIsPicking; };
 
+	CTransform* Get_Transform() { return m_pTransformCom; }
+
 public:
 	static const _wstring		m_strTransformTag;
 

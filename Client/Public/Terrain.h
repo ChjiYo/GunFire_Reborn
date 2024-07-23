@@ -32,6 +32,7 @@ public:
 
 public:
 	_float3			Get_TerrainPicking() { return m_vPicking; }
+	void			Add_NaviMesh(_float3 vPos);
 
 private:
 	CShader*					m_pShaderCom = { nullptr };
@@ -40,7 +41,8 @@ private:
 	CNavigation*				m_pNavigationCom =	{ nullptr };
 
 	_float3						m_vPicking = {};
-
+	_uint						m_iNumNaviPicking = { 0 };
+	_float3*						vPoints = {};
 private:
 	HRESULT Ready_Components();
 	HRESULT Bind_ShaderResources();
