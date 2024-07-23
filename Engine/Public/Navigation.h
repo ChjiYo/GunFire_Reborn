@@ -26,6 +26,7 @@ public:
 public:
 	_bool is_Move(_fvector vPosition);
 	HRESULT Add_Sell(_float3 fPoint[3]);
+	HRESULT Save_Navi();
 
 private:
 	vector<class CCell*>				m_Cells;

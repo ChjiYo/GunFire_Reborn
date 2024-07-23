@@ -3,6 +3,9 @@
 #include "Tool_Save.h"
 #include "GameObject.h"
 
+#include "GameInstance.h"
+#include "Terrain.h"
+
 CTool_Save::CTool_Save(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	:CTool{ pDevice , pContext }
 {
@@ -38,6 +41,21 @@ HRESULT CTool_Save::Save_Button()
 	if (ImGui::Button("Save")) { // "Save" 버튼
 		Save_Button_Pressed(&bShowSaveSuccessMessage, &bShowSaveFailMessage);
 	}
+
+	if (ImGui::Button("NaviSave")) { // "Save" 버튼
+		Save_Navi();
+	}
+
+	return S_OK;
+}
+
+HRESULT CTool_Save::Save_Navi()
+{
+	_uint currentLevel = m_pGameInstance->GetCurrentLevelIndex();
+
+	CTerrain* pTerrain = dynamic_cast<CTerrain*>(m_pGameInstance->Get_Layer(currentLevel, TEXT("Layer_BackGround")).back());
+	CNavigation* TerrainNavi = dynamic_cast<CNavigation*>(m_pGameInstance->Get_Component(currentLevel, TEXT("Layer_BackGround"), TEXT("Com_Navigation")));
+	TerrainNavi->Save_Navi();
 
 	return S_OK;
 }

@@ -36,8 +36,8 @@ HRESULT CMainApp::Initialize()
 	if (FAILED(Ready_Prototoype_Resource_ForStatic()))
 		return E_FAIL;
 
-	/*if (FAILED(Ready_Gara()))
-		return E_FAIL;*/
+	if (FAILED(Ready_Gara()))
+		return E_FAIL;
 
 	//LOGO 먼저 (실수 2스택!!)
 	if (FAILED(Open_Level(LEVEL_LOGO)))
@@ -216,24 +216,28 @@ HRESULT CMainApp::Ready_Gara()
 
 	_float3			vPoints[3];
 
-	vPoints[0] = _float3(0.0f, 0.f, 0.f);
-	vPoints[1] = _float3(0.0f, 0.f, 10.f);
-	vPoints[2] = _float3(10.0f, 0.f, 0.f);
+	vPoints[0] = _float3(0.0f, 0.f, 10.f);
+	vPoints[1] = _float3(10.f, 0.f, 0.f);
+	vPoints[2] = _float3(0.0f, 0.f, 0.f);
+
 	WriteFile(hFile, vPoints, sizeof(_float3) * 3, &dwByte, nullptr);
 
 	vPoints[0] = _float3(0.0f, 0.f, 10.f);
-	vPoints[1] = _float3(10.0f, 0.f, 10.f);
-	vPoints[2] = _float3(10.0f, 0.f, 0.f);
+	vPoints[1] = _float3(10.f, 0.f, 10.f);
+	vPoints[2] = _float3(10.f, 0.f, 0.f);
+
 	WriteFile(hFile, vPoints, sizeof(_float3) * 3, &dwByte, nullptr);
 
 	vPoints[0] = _float3(0.0f, 0.f, 20.f);
-	vPoints[1] = _float3(10.0f, 0.f, 10.f);
+	vPoints[1] = _float3(10.f, 0.f, 10.f);
 	vPoints[2] = _float3(0.0f, 0.f, 10.f);
+
 	WriteFile(hFile, vPoints, sizeof(_float3) * 3, &dwByte, nullptr);
 
-	vPoints[0] = _float3(10.0f, 0.f, 10.f);
-	vPoints[1] = _float3(20.0f, 10.f, 0.f);
-	vPoints[2] = _float3(10.0f, 0.f, 0.f);
+	vPoints[0] = _float3(10.f, 0.f, 10.f);
+	vPoints[1] = _float3(20.f, 0.f, 0.f);
+	vPoints[2] = _float3(10.f, 0.f, 0.f);
+
 	WriteFile(hFile, vPoints, sizeof(_float3) * 3, &dwByte, nullptr);
 
 	CloseHandle(hFile);

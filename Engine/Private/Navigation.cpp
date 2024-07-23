@@ -78,7 +78,7 @@ HRESULT CNavigation::Initialize(void * pArg)
 
 void CNavigation::Update(_fmatrix TerrainWorldMatrix)
 {
-
+	
 
 	XMStoreFloat4x4(&m_WorldMatrix, TerrainWorldMatrix);
 }
@@ -165,6 +165,33 @@ _bool CNavigation::is_Move(_fvector vPosition)
 
 HRESULT CNavigation::Add_Sell(_float3 fPoint[3])
 {
+	for (auto& iter : m_Cells)
+	{
+		for (int i = 0; i < 3; ++i)
+		{
+			for (int k = 0; k < 3; ++k)
+			{
+				_float PosX = iter->Get_Point(i).x - fPoint[k].x;
+				_float PosY = iter->Get_Point(i).y - fPoint[k].y;
+				_float PosZ = iter->Get_Point(i).z - fPoint[k].z;
+
+				if (PosX < 3.f && PosX > -3.f)
+				{
+					fPoint[k].x = iter->Get_Point(i).x;
+				}
+				else if (PosY < 3.f && PosY > -3.f)
+				{
+					fPoint[k].y = iter->Get_Point(i).y;
+				}
+				else if (PosZ < 3.f && PosZ > -3.f)
+				{
+					fPoint[k].z = iter->Get_Point(i).z;
+				}
+			}
+
+		}
+	}
+
 	CCell* pCell = CCell::Create(m_pDevice, m_pContext, fPoint, m_Cells.size());
 	if (nullptr == pCell)
 		return E_FAIL;
@@ -195,6 +222,30 @@ void CNavigation::Make_Neighbors()
 				pSourCell->Set_Neighbor(CCell::LINE_CA, pDestCell);
 		}
 	}
+}
+
+HRESULT CNavigation::Save_Navi()
+{
+	_ulong			dwByte = { 0 };
+
+	HANDLE			hFile = CreateFile(TEXT("../Bin/DataFiles/Navigation.dat"), GENERIC_WRITE, 0, nullptr, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, 0);
+	if (0 == hFile)
+		return E_FAIL;
+
+	_float3			vPoints[3];
+	
+	for (auto& iter : m_Cells)
+	{
+		vPoints[0] = iter->Get_Point(0);
+		vPoints[1] = iter->Get_Point(1);
+		vPoints[2] = iter->Get_Point(2);
+
+		WriteFile(hFile, vPoints, sizeof(_float3) * 3, &dwByte, nullptr);
+	}
+
+	CloseHandle(hFile);
+
+	return S_OK; 
 }
 
 CNavigation * CNavigation::Create(ID3D11Device * pDevice, ID3D11DeviceContext * pContext, const _tchar * pNavigationDataFilePath)

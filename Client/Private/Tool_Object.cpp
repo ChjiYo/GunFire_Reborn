@@ -96,9 +96,9 @@ HRESULT CTool_Object::Setting_Tab()
 		}
 
 		static bool bNaviPicking = false ;
-		if (true) {
-			ImGui::Checkbox("NaviPicking", &bNaviPicking);
-		}
+
+		ImGui::Checkbox("NaviPicking", &bNaviPicking);
+		
 
 		CTerrain* pTerrain = dynamic_cast<CTerrain*>(m_pGameInstance->Get_Layer(currentLevel, TEXT("Layer_BackGround")).back());
 
@@ -644,7 +644,7 @@ _float3 CTool_Object::PickingPos()
 
 	CTerrain* pTerrain = dynamic_cast<CTerrain*>(m_pGameInstance->Get_Layer(currentLevel, TEXT("Layer_BackGround")).back());
 	m_vPickingPos = pTerrain->Get_TerrainPicking();
-
+	
 
 	CVIBuffer_Terrain* TerrainBuffer =  dynamic_cast<CVIBuffer_Terrain*>(m_pGameInstance->Get_Component(currentLevel, TEXT("Layer_BackGround"), TEXT("Com_VIBuffer")));
 

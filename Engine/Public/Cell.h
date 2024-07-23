@@ -24,6 +24,9 @@ public:
 	}
 
 public:
+	_float3 Get_Point(_uint iIndex) { return m_vPoints[iIndex];}
+
+public:
 	HRESULT Initialize(const _float3* pPoints, _uint iIndex);
 	//SourPoint¿Í DestPoint ºñ±³
 	_bool Compare_Point(_fvector vSourPoint, _fvector vDestPoint);

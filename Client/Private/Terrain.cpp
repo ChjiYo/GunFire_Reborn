@@ -38,7 +38,8 @@ void CTerrain::Priority_Update(_float fTimeDelta)
 void CTerrain::Update(_float fTimeDelta)
 {
 	m_pNavigationCom->Update(m_pTransformCom->Get_WorldMatrix());
-	
+
+	/*
 	if (m_pGameInstance->Key_Down(VK_LBUTTON))
 	{
 		_vector		vPos{};
@@ -49,7 +50,7 @@ void CTerrain::Update(_float fTimeDelta)
 
 		
 		Add_NaviMesh(m_vPicking);
-	}
+	}*/
 }
 
 void CTerrain::Late_Update(_float fTimeDelta)
@@ -81,6 +82,8 @@ HRESULT CTerrain::Render()
 
 void CTerrain::Add_NaviMesh(_float3 vPos)
 {
+	if (vPos.x == 0 && vPos.y == 0 && vPos.z == 0)
+		return;
 
 	switch (m_iNumNaviPicking)
 	{
@@ -97,6 +100,9 @@ void CTerrain::Add_NaviMesh(_float3 vPos)
 	default:
 		break;
 	}
+
+	
+
 	
 if (m_iNumNaviPicking == 3)
 {

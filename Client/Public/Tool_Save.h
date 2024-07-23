@@ -16,7 +16,7 @@ public:
 
 public:
 	HRESULT Save_Button();
-
+	HRESULT Save_Navi();
 public:
 	HRESULT Save_Button_Pressed(bool* bShowSaveSuccessMessage, bool* bShowSaveFailMessage);
 

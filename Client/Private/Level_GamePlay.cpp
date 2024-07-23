@@ -34,8 +34,8 @@ HRESULT CLevel_GamePlay::Initialize()
 	/*if (FAILED(Ready_Layer_WallStage(TEXT("Layer_Wall_Stage"))))
 		return E_FAIL;*/
 
-	if (FAILED(__super::ParseInitialize()))
-		return E_FAIL;
+	//if (FAILED(__super::ParseInitialize()))
+	//	return E_FAIL;
 	
 	if (FAILED(Ready_PlayerBar()))
 		return E_FAIL;
