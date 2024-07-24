@@ -36,9 +36,8 @@ private:
 	CVIBuffer_Rect* m_pVIBufferCom = { nullptr };
 
 private:
-	_vector m_vCamLook = {};
+	_vector m_vLook = {};
 	_float m_fTimer = {};
-
 public:
 	static CSkill_Player_Bullet* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	virtual CGameObject* Clone(void* pArg) ;

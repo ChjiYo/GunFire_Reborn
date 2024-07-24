@@ -30,19 +30,18 @@ HRESULT CSkill_Player_Bullet::Initialize(void* pArg)
         return E_FAIL;
 
     SKILL_DESC* Desc = static_cast<SKILL_DESC*>(pArg);
-    m_pPlayerTransform = Desc->pPlayerTransform;
-    m_pCamTransform = Desc->pCamTransform;
+    m_pTargetTransform = Desc->pTargetTransform;
 
-    Safe_AddRef(m_pPlayerTransform);
-    Safe_AddRef(m_pCamTransform);
+    Safe_AddRef(m_pTargetTransform);
 
-    m_pTransformCom->Set_State(CTransform::STATE_POSITION, m_pPlayerTransform->Get_State(CTransform::STATE_POSITION));
-    m_pTransformCom->Radian_Turn({0.f, 1.f, 0.f} , XMConvertToRadians(m_pCamTransform->Look_Degree() + 80.f));
+    m_pTransformCom->Set_State(CTransform::STATE_POSITION, m_pTargetTransform->Get_State(CTransform::STATE_POSITION));
+    m_pTransformCom->Radian_Turn({0.f, 1.f, 0.f} , XMConvertToRadians(m_pTargetTransform->Look_Degree() + 80.f));
+    m_vLook = m_pTargetTransform->Get_State(CTransform::STATE_LOOK);
 
-    m_pTransformCom->Set_State(CTransform::STATE_UP, m_pCamTransform->Get_State(CTransform::STATE_UP));
+    //m_pTransformCom->Set_State(CTransform::STATE_UP, m_pTargetTransform->Get_State(CTransform::STATE_UP));
+    
 
-    m_vCamLook = m_pCamTransform->Get_State(CTransform::STATE_LOOK);
-
+    //네비게이션 메쉬 밖으로 나가면 delete? good 
     return S_OK;
 }
 
@@ -52,10 +51,9 @@ void CSkill_Player_Bullet::Priority_Update(_float fTimeDelta)
 
 void CSkill_Player_Bullet::Update(_float fTimeDelta)
 {
-    _vector	vPosition = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
-
-    vPosition += m_vCamLook * 5.f * fTimeDelta;
-
+   _vector	vPosition = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
+    vPosition += m_vLook * 5.f * fTimeDelta;
+   
     m_pTransformCom->Set_State(CTransform::STATE_POSITION, vPosition);
 
     Destroy(fTimeDelta);
@@ -118,22 +116,6 @@ HRESULT CSkill_Player_Bullet::Bind_ShaderResources()
     if (FAILED(m_pTextureCom->Bind_ShaderResource(m_pShaderCom, "g_Texture", 0)))
         return E_FAIL;
 
-   /* if (FAILED(m_pShaderCom->Bind_RawValue("g_vCamPosition", &m_pGameInstance->Get_CamPosition_Float4(), sizeof(_float4))))
-        return E_FAIL;*/
-
-   /* const LIGHT_DESC* pLightDesc = m_pGameInstance->Get_LightDesc(0);
-    if (nullptr == pLightDesc)
-        return E_FAIL;
-
-    if (FAILED(m_pShaderCom->Bind_RawValue("g_vLightDir", &pLightDesc->vDirection, sizeof(_float4))))
-        return E_FAIL;
-    if (FAILED(m_pShaderCom->Bind_RawValue("g_vLightDiffuse", &pLightDesc->vDiffuse, sizeof(_float4))))
-        return E_FAIL;
-    if (FAILED(m_pShaderCom->Bind_RawValue("g_vLightAmbient", &pLightDesc->vAmbient, sizeof(_float4))))
-        return E_FAIL;
-    if (FAILED(m_pShaderCom->Bind_RawValue("g_vLightSpecular", &pLightDesc->vSpecular, sizeof(_float4))))
-        return E_FAIL;*/
-
     return S_OK;
 }
 
@@ -174,8 +156,7 @@ CGameObject* CSkill_Player_Bullet::Clone(void* pArg)
 
 void CSkill_Player_Bullet::Free()
 {
-    Safe_Release(m_pPlayerTransform);
-    Safe_Release(m_pCamTransform);
+    Safe_Release(m_pTargetTransform);
     Safe_Release(m_pShaderCom);
     Safe_Release(m_pVIBufferCom);
     Safe_Release(m_pTextureCom);

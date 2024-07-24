@@ -38,16 +38,12 @@ public:
 	void Set_FreeView(_bool bCheck) { m_bCameraMode = bCheck; }
 
 private:
-	CState_Machine*		m_pState = { nullptr };
-	CNavigation*		m_pNavigationCom = { nullptr };
 	CTransform*			m_pPlayerTransform = { nullptr };
 
 	_float				m_fMouseSensor = {};
 	_bool				m_bCameraMode = { true };
 private:
-	void GamePlay_Camera(_float fTimeDelta);
 	void FreeView_Camera(_float fTimeDelta);
-
 	void Position();
 
 public:

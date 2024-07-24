@@ -7,13 +7,15 @@
 #include "FSM_Player_Attack.h"
 #include "FSM_Player_Dash.h"
 
+#include "Skill.h"
+
 CWeapon_Player_Pistol::CWeapon_Player_Pistol(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
-    :CPartObject{ pDevice  , pContext }
+    :CWeapon_Player{ pDevice  , pContext }
 {
 }
 
 CWeapon_Player_Pistol::CWeapon_Player_Pistol(const CWeapon_Player_Pistol& Prototype)
-    :CPartObject{ Prototype }
+    :CWeapon_Player{ Prototype }
 {
 }
 
@@ -31,18 +33,8 @@ HRESULT CWeapon_Player_Pistol::Initialize(void* pArg)
         return E_FAIL;
 
     WEAPON_DESC* Desc = static_cast<WEAPON_DESC*>(pArg);
-
-    Player_Desc.iHp = Desc->iHp;
-    Player_Desc.iMaxHp = Desc->iMaxHp;
-    Player_Desc.iShield = Desc->iShield;
-    Player_Desc.iMaxShield = Desc->iMaxShield;
-
-    Safe_AddRef(m_pCamTransform);
-
+   
     if (FAILED(Ready_Components()))
-        return E_FAIL;
-
-    if (FAILED(Ready_State()))
         return E_FAIL;
 
     return S_OK;
@@ -53,7 +45,6 @@ void CWeapon_Player_Pistol::Priority_Update(_float fTimeDelta)
     if (fTimeDelta == 0.f)
         return;
 
-    //Position();
     Key_State();
 
     m_pModelCom->Play_Animation(fTimeDelta);
@@ -63,8 +54,6 @@ void CWeapon_Player_Pistol::Priority_Update(_float fTimeDelta)
 
 void CWeapon_Player_Pistol::Update(_float fTimeDelta)
 {
-    //m_pColliderCom->Update(m_pTransformCom->Get_WorldMatrix());
-
     __super::Update(fTimeDelta);
 }
 
@@ -100,10 +89,6 @@ HRESULT CWeapon_Player_Pistol::Render()
             return E_FAIL;
     }
 
-#ifdef _DEBUG
-    //m_pColliderCom->Render();
-#endif
-
     return S_OK;
 }
 
@@ -117,27 +102,7 @@ HRESULT CWeapon_Player_Pistol::Ready_Components()
     /* For.Com_Model */
     if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Player"),
         TEXT("Com_Model"), reinterpret_cast<CComponent**>(&m_pModelCom))))
-        return E_FAIL;
-
-    /* For.Com_State */
-    if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_State"),
-        TEXT("Com_State"), reinterpret_cast<CComponent**>(&m_pState))))
-        return E_FAIL;
-
-    //CBounding_AABB::BOUNDING_AABB_DESC	BoundingDesc{};
-    //
-    //BoundingDesc.vExtents = _float3(0.5f, 0.5f, 0.5f);
-    //BoundingDesc.vCenter = _float3(0.f, BoundingDesc.vExtents.y, 0.f);   if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Collider_AABB"),
-    //    TEXT("Com_Collider"), reinterpret_cast<CComponent**>(&m_pColliderCom), &BoundingDesc)))
-    //    return E_FAIL;
-
-    return S_OK;
-}
-
-HRESULT CWeapon_Player_Pistol::Ready_State()
-{
-    m_pState->Add_State(CFSM_Player_Attack::Create(m_pDevice, m_pContext), TEXT("Player_State_Attack"));
-    m_pState->Add_State(CFSM_Player_Dash::Create(m_pDevice, m_pContext), TEXT("Player_State_Dash"));
+        return E_FAIL;    
 
     return S_OK;
 }
@@ -177,30 +142,19 @@ void CWeapon_Player_Pistol::Key_State()
     if (m_pGameInstance->Key_Down(VK_LBUTTON))
     {
         m_pModelCom->SetUp_Animation(1, false);
-        m_pState->Set_State(TEXT("Player_State_Attack"));
+        Create_Bullet();
     }
-
-    if (m_pGameInstance->Key_Down(VK_LSHIFT))
-        m_pState->Set_State(TEXT("Player_State_Dash"));
 }
 
-void CWeapon_Player_Pistol::Position()
+void CWeapon_Player_Pistol::Create_Bullet()
 {
-    _vector vRight = m_pCamTransform->Get_State(CTransform::STATE_RIGHT);
-    _vector vUp = m_pCamTransform->Get_State(CTransform::STATE_UP);
-    _vector vLook = m_pCamTransform->Get_State(CTransform::STATE_LOOK);
+    CSkill::SKILL_DESC	Desc = {};
 
-    _vector vPlayerPosition = m_pCamTransform->Get_State(CTransform::STATE_POSITION);
-
-    _vector vWeaponRight = vRight * 0.8f;
-    _vector vWeaponUp = vUp * -0.7f;
-    _vector vWeaponLook = vLook * 1.f;
-    _vector vWeaponPosition = vPlayerPosition + vWeaponRight + vWeaponUp + vWeaponLook;
-
-    m_pTransformCom->Set_State(CTransform::STATE_POSITION, vWeaponPosition);
-
-    m_pTransformCom->LookAt(vPlayerPosition + vLook * 15.f);
-    m_pTransformCom->Radian_Turn(m_pTransformCom->Get_State(CTransform::STATE_UP), XMConvertToRadians(335.f));
+	Desc.pTargetTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Player"), TEXT("Com_Transform")));
+	Desc.fSpeedPerSec = 5.f;
+	Desc.fRotationPerSec = XMConvertToRadians(90.0f);
+	
+	m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Skill_Bullet_Red"),TEXT("Layer_Skill_Player_Bullet"), &Desc);
 }
 
 CWeapon_Player_Pistol* CWeapon_Player_Pistol::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
@@ -233,9 +187,6 @@ void CWeapon_Player_Pistol::Free()
 {
     Safe_Release(m_pShaderCom);
     Safe_Release(m_pModelCom);
-    Safe_Release(m_pCamTransform);
-    Safe_Release(m_pState);
-    //Safe_Release(m_pColliderCom);
 
     __super::Free();
 }

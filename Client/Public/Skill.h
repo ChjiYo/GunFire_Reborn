@@ -6,10 +6,9 @@
 class CSkill abstract:public CGameObject
 {
 public:
-	typedef struct : public CTransform::TRANSFORM_DESC
+	typedef struct : public CGameObject::GAMEOBJECT_DESC
 	{
-		CTransform* pPlayerTransform = {};
-		CTransform* pCamTransform = {};
+		CTransform* pTargetTransform = {};
 	}SKILL_DESC;
 
 protected:
@@ -26,8 +25,7 @@ public:
 	virtual HRESULT Render() override;
 
 protected:
-	CTransform* m_pPlayerTransform = {};
-	CTransform* m_pCamTransform = {};
+	CTransform* m_pTargetTransform = {};
 
 public:
 	virtual CGameObject* Clone(void* pArg)  = 0;

@@ -61,52 +61,7 @@ void CCamera_Free::Late_Update(_float fTimeDelta)
 
 HRESULT CCamera_Free::Render()
 {
-#ifdef _DEBUG
-	m_pNavigationCom->Render();
-#endif
-
 	return S_OK;
-}
-
-
-void CCamera_Free::GamePlay_Camera(_float fTimeDelta)
-{
-	if (m_pGameInstance->Get_DIKeyState(DIK_A) & 0x80)
-	{
-		m_pTransformCom->Go_Left(fTimeDelta);
-	}
-
-	if (m_pGameInstance->Get_DIKeyState(DIK_D) & 0x80)
-	{
-		m_pTransformCom->Go_Right(fTimeDelta);
-	}
-
-	if (m_pGameInstance->Get_DIKeyState(DIK_W) & 0x80)
-	{
-		m_pTransformCom->Go_StraightY(fTimeDelta);
-	}
-
-	if (m_pGameInstance->Get_DIKeyState(DIK_S) & 0x80)
-	{
-		m_pTransformCom->Go_BackwardY(fTimeDelta);
-	}
-
-	if (m_pGameInstance->Key_Pressing(VK_SPACE))
-	{
-		m_pTransformCom->Go_Up(fTimeDelta);
-	}
-
-	_long		MouseMove = {};
-
-	if (MouseMove = m_pGameInstance->Get_DIMouseMove(DIMM_X))
-	{
-		m_pTransformCom->Turn(XMVectorSet(0.f, 1.f, 0.f, 0.f), m_fMouseSensor * MouseMove * fTimeDelta);
-	}
-
-	if (MouseMove = m_pGameInstance->Get_DIMouseMove(DIMM_Y))
-	{
-		m_pTransformCom->Turn(m_pTransformCom->Get_State(CTransform::STATE_RIGHT), m_fMouseSensor * MouseMove * fTimeDelta);
-	}
 }
 
 void CCamera_Free::FreeView_Camera(_float fTimeDelta)
@@ -194,9 +149,7 @@ CGameObject * CCamera_Free::Clone(void * pArg)
 
 void CCamera_Free::Free()
 {
-	Safe_Release(m_pNavigationCom);
 	Safe_Release(m_pPlayerTransform);
 
 	__super::Free();
-
 }

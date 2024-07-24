@@ -31,19 +31,19 @@ void CFSM_Player_Attack::Update(_float fTimeDelta)
 
 void CFSM_Player_Attack::Late_Update(_float fTimeDelta)
 {
-}
+} 
 
 void CFSM_Player_Attack::Enter()
 {
 	__super::Enter();
 
-	CSkill::SKILL_DESC	Desc = {};
-	Desc.pPlayerTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Player"), TEXT("Com_Transform")));
-	Desc.pCamTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Camera"), TEXT("Com_Transform")));
-	Desc.fSpeedPerSec = 5.f;
-	Desc.fRotationPerSec = XMConvertToRadians(90.0f);
-
-	m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Skill_Bullet_Red"),TEXT("Layer_Skill_Player_Bullet"), &Desc);
+	//CSkill::SKILL_DESC	Desc = {};
+	//Desc.pPlayerTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Player"), TEXT("Com_Transform")));
+	//Desc.pCamTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Camera"), TEXT("Com_Transform")));
+	//Desc.fSpeedPerSec = 5.f;
+	//Desc.fRotationPerSec = XMConvertToRadians(90.0f);
+	//
+	//m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Skill_Bullet_Red"),TEXT("Layer_Skill_Player_Bullet"), &Desc);
 }
 
 void CFSM_Player_Attack::Exit()

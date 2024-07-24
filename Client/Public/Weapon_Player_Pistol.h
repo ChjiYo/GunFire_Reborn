@@ -14,16 +14,12 @@ END
 
 BEGIN(Client)
 
-class CWeapon_Player_Pistol final : public CPartObject
+class CWeapon_Player_Pistol final : public CWeapon_Player
 {
 public:
 	typedef struct :public CWeapon_Player::PLAYER_WEAPON_DESC
 	{
-		_int iHp = { 0 };
-		_int iShield = { 0 };
-
-		_int iMaxHp = { 0 };
-		_int iMaxShield = { 0 };
+		_uint iNumBullet = {};
 	}WEAPON_DESC;
 
 private:
@@ -46,8 +42,6 @@ private:
 	CShader* m_pShaderCom = { nullptr };
 	CBinModel* m_pModelCom = { nullptr };
 
-	CState_Machine* m_pState = { nullptr };
-	CTransform* m_pCamTransform = { nullptr };
 	CCollider* m_pColliderCom = { nullptr };
 
 private:
@@ -56,11 +50,10 @@ private:
 
 private:
 	HRESULT Ready_Components();
-	HRESULT Ready_State();
 	HRESULT Bind_ShaderResources();
 
 	void Key_State();
-	void Position();
+	void Create_Bullet();
 
 public:
 	static CWeapon_Player_Pistol* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
