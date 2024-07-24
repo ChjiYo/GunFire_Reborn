@@ -23,20 +23,21 @@ HRESULT CLevel_GamePlay::Initialize()
 	if (FAILED(Ready_Layer_BackGround(TEXT("Layer_BackGround"))))
 		return E_FAIL;
 
+	if (FAILED(Ready_LandObjects()))
+		return E_FAIL;
+
 	if (FAILED(Ready_Layer_Camera(TEXT("Layer_Camera"))))
 		return E_FAIL;
 
 	if (FAILED(Ready_Layer_Effect(TEXT("Layer_Effect"))))
 		return E_FAIL;
 
-	if (FAILED(Ready_LandObjects()))
-		return E_FAIL;
 
 	/*if (FAILED(Ready_Layer_WallStage(TEXT("Layer_Wall_Stage"))))
 		return E_FAIL;*/
 
-	if (FAILED(__super::ParseInitialize()))
-		return E_FAIL;
+	//if (FAILED(__super::ParseInitialize()))
+	//	return E_FAIL;
 	
 	//if (FAILED(Ready_PlayerBar()))
 	//	return E_FAIL;
@@ -97,6 +98,8 @@ HRESULT CLevel_GamePlay::Ready_Layer_Camera(const _wstring & strLayerTag)
 	CameraDesc.fSpeedPerSec = 5.f;
 	CameraDesc.fRotationPerSec = XMConvertToRadians(90.0f);
 	CameraDesc.fSensor = 0.1f;
+
+	CameraDesc.pPlayerTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Player"), TEXT("Com_Transform")));
 
 	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Camera_Free"), strLayerTag, &CameraDesc)))
 		return E_FAIL;
@@ -166,8 +169,6 @@ HRESULT CLevel_GamePlay::Ready_Layer_Player(const wstring& strLayerTag)
 	Desc.iMaxShield = 65;
 	Desc.fSpeedPerSec = 5.f;
 	Desc.fRotationPerSec = XMConvertToRadians(90.0f);
-
-	Desc.pTargetTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Camera"), TEXT("Com_Transform")));
 
  	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Player"), strLayerTag, &Desc)))
 		return E_FAIL;

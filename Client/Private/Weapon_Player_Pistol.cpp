@@ -37,8 +37,6 @@ HRESULT CWeapon_Player_Pistol::Initialize(void* pArg)
     Player_Desc.iShield = Desc->iShield;
     Player_Desc.iMaxShield = Desc->iMaxShield;
 
-    m_pCamTransform = Desc->pTargetTransform;
-
     Safe_AddRef(m_pCamTransform);
 
     if (FAILED(Ready_Components()))

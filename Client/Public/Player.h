@@ -49,7 +49,7 @@ public:
 
 private:
 	CState_Machine*		m_pState = { nullptr };
-	CTransform*			m_pCamTransform = { nullptr };
+	CNavigation*		m_pNavigationCom = { nullptr };
 	CCollider*			m_pColliderCom = { nullptr };
 
 private:
@@ -61,7 +61,7 @@ private:
 	HRESULT Ready_Components();
 	HRESULT Ready_State();
 
-	void Key_State();
+	void Key_State(_float fTimeDelta);
 
 public:
 	static CPlayer* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);

@@ -30,27 +30,28 @@ HRESULT CCamera_Free::Initialize(void * pArg)
 	if (FAILED(__super::Initialize(pArg)))
 		return E_FAIL;
 
-	if (FAILED(Read_Component()))
-		return E_FAIL;
+	CAMERA_FREE_DESC* Desc = static_cast<CAMERA_FREE_DESC*>(pArg);
+	m_pPlayerTransform = Desc->pPlayerTransform;
+	Safe_Release(m_pPlayerTransform);
 
-	m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 5.f , 1.3f , 3.f, 1.f });
+	m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 5.f , 5.5f , 0.f, 1.f });
 
 	return S_OK;
 }
 
 void CCamera_Free::Priority_Update(_float fTimeDelta)
 {
-	m_pTransformCom->Gravity(0.5f, 1.5f, fTimeDelta);
+	if (m_bCameraMode)
+		Position();
+	else
+		FreeView_Camera(fTimeDelta);
+
 	__super::Priority_Update(fTimeDelta);
 }
 
 void CCamera_Free::Update(_float fTimeDelta)
 {
-	if (m_bCameraMode)
-		GamePlay_Camera(fTimeDelta);
-	else
-		FreeView_Camera(fTimeDelta);
-
+	
 }
 
 void CCamera_Free::Late_Update(_float fTimeDelta)
@@ -67,39 +68,27 @@ HRESULT CCamera_Free::Render()
 	return S_OK;
 }
 
-HRESULT CCamera_Free::Read_Component()
-{
-	CNavigation::NAVIGATION_DESC		NavigationDesc{};
-	NavigationDesc.iCurrentCellIndex = 0;
-
-	/* Com_Navigation */
-	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Navigation"),
-		TEXT("Com_Navigation"), reinterpret_cast<CComponent**>(&m_pNavigationCom), &NavigationDesc)))
-		return E_FAIL;
-
-	return S_OK;
-}
 
 void CCamera_Free::GamePlay_Camera(_float fTimeDelta)
 {
 	if (m_pGameInstance->Get_DIKeyState(DIK_A) & 0x80)
 	{
-		m_pTransformCom->Go_Left(fTimeDelta, m_pNavigationCom);
+		m_pTransformCom->Go_Left(fTimeDelta);
 	}
 
 	if (m_pGameInstance->Get_DIKeyState(DIK_D) & 0x80)
 	{
-		m_pTransformCom->Go_Right(fTimeDelta, m_pNavigationCom);
+		m_pTransformCom->Go_Right(fTimeDelta);
 	}
 
 	if (m_pGameInstance->Get_DIKeyState(DIK_W) & 0x80)
 	{
-		m_pTransformCom->Go_StraightY(fTimeDelta, m_pNavigationCom);
+		m_pTransformCom->Go_StraightY(fTimeDelta);
 	}
 
 	if (m_pGameInstance->Get_DIKeyState(DIK_S) & 0x80)
 	{
-		m_pTransformCom->Go_BackwardY(fTimeDelta, m_pNavigationCom);
+		m_pTransformCom->Go_BackwardY(fTimeDelta);
 	}
 
 	if (m_pGameInstance->Key_Pressing(VK_SPACE))
@@ -160,6 +149,23 @@ void CCamera_Free::FreeView_Camera(_float fTimeDelta)
 	}
 }
 
+void CCamera_Free::Position()
+{
+	_vector vRight = m_pPlayerTransform->Get_State(CTransform::STATE_RIGHT);
+	_vector vUp = m_pPlayerTransform->Get_State(CTransform::STATE_UP);
+	_vector vLook = m_pPlayerTransform->Get_State(CTransform::STATE_LOOK);
+	_vector vPlayerPosition = m_pPlayerTransform->Get_State(CTransform::STATE_POSITION);
+
+	_vector vWeaponRight = vRight * -0.3f;
+	_vector vWeaponUp = vUp * 0.45f;
+	_vector vWeaponLook = vLook * -0.5f;
+	_vector vWeaponPosition = vPlayerPosition + vWeaponRight + vWeaponUp + vWeaponLook;
+
+	m_pTransformCom->Set_State(CTransform::STATE_POSITION, vWeaponPosition);
+
+	m_pTransformCom->LookAt(vPlayerPosition + vLook * 15.f);
+}
+
 CCamera_Free * CCamera_Free::Create(ID3D11Device * pDevice, ID3D11DeviceContext * pContext)
 {
 	CCamera_Free*		pInstance = new CCamera_Free(pDevice, pContext);
@@ -189,7 +195,8 @@ CGameObject * CCamera_Free::Clone(void * pArg)
 void CCamera_Free::Free()
 {
 	Safe_Release(m_pNavigationCom);
-	
+	Safe_Release(m_pPlayerTransform);
+
 	__super::Free();
 
 }

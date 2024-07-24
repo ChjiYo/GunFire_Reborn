@@ -59,7 +59,7 @@ void CMainApp::Update(_float fTimeDelta)
 	if (m_bShowTool)
 	{
 		CCamera_Free* pCamera = dynamic_cast<CCamera_Free*>(m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Camera")).back());
-		pCamera->Update(fTimeDelta);
+		pCamera->Priority_Update(fTimeDelta);
 
 		fTimeDelta = 0.f;
 	}

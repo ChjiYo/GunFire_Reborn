@@ -45,8 +45,6 @@ HRESULT CPlayer::Initialize(void* pArg)
     Player_Desc.iShield = Desc->iShield;
     Player_Desc.iMaxShield = Desc->iMaxShield;
 
-    m_pCamTransform = Desc->pTargetTransform; // clear
-
     if (FAILED(Ready_PartObjects()))
         return E_FAIL;
 
@@ -56,8 +54,7 @@ HRESULT CPlayer::Initialize(void* pArg)
     if (FAILED(Ready_State()))
         return E_FAIL;
 
-
-    Safe_AddRef(m_pCamTransform);
+    m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 5.f , 1.3f , 3.f, 1.f });
 
     return S_OK;
 }
@@ -67,7 +64,21 @@ void CPlayer::Priority_Update(_float fTimeDelta)
     if (fTimeDelta == 0.f)
         return;
 
-    Key_State();
+    m_pTransformCom->Gravity(0.5f, 1.5f, fTimeDelta);
+
+   
+
+    _long		MouseMove = {};
+
+    if (MouseMove = m_pGameInstance->Get_DIMouseMove(DIMM_X))
+    {
+        m_pTransformCom->Turn(XMVectorSet(0.f, 1.f, 0.f, 0.f), 0.1f * MouseMove * fTimeDelta);
+    }
+
+    if (MouseMove = m_pGameInstance->Get_DIMouseMove(DIMM_Y))
+    {
+        m_pTransformCom->Turn(m_pTransformCom->Get_State(CTransform::STATE_RIGHT), 0.1f * MouseMove * fTimeDelta);
+    }
 
     __super::Priority_Update(fTimeDelta);
 }
@@ -75,7 +86,6 @@ void CPlayer::Priority_Update(_float fTimeDelta)
 void CPlayer::Update(_float fTimeDelta)
 {
     m_pColliderCom->Update(m_pTransformCom->Get_WorldMatrix());
-
     __super::Update(fTimeDelta);
 }
 
@@ -83,6 +93,7 @@ void CPlayer::Late_Update(_float fTimeDelta)
 {
     __super::Late_Update(fTimeDelta);
 
+    Key_State(fTimeDelta);
     m_pGameInstance->Add_RenderObject(CRenderer::RG_NONBLEND, this);
 }
 
@@ -100,7 +111,6 @@ HRESULT CPlayer::Ready_PartObjects()
     CWeapon_Player_Pistol::WEAPON_DESC  Desc{};
     Desc.pParentMatrix = m_pTransformCom->Get_WorldMatrixPtr();
     Desc.pParentState = 0x00000000;
-    Desc.pTargetTransform = m_pCamTransform;
 
     if (FAILED(__super::Add_PartObject(PART_WEAPON, TEXT("Prototype_GameObject_Weapon_Player_Pistol"), &Desc)))
         return E_FAIL;
@@ -110,11 +120,20 @@ HRESULT CPlayer::Ready_PartObjects()
 
 HRESULT CPlayer::Ready_Components()
 {
+    CNavigation::NAVIGATION_DESC		NavigationDesc{};
+    NavigationDesc.iCurrentCellIndex = 0;
+
+    /* Com_Navigation */
+    if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Navigation"),
+        TEXT("Com_Navigation"), reinterpret_cast<CComponent**>(&m_pNavigationCom), &NavigationDesc)))
+        return E_FAIL;
+
     /* For.Com_State */
     if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_State"),
         TEXT("Com_State"), reinterpret_cast<CComponent**>(&m_pState))))
         return E_FAIL;
 
+    /* For.Com_Collider */
    CBounding_AABB::BOUNDING_AABB_DESC	BoundingDesc{};
    
    BoundingDesc.vExtents = _float3(0.5f, 0.5f, 0.5f);
@@ -132,14 +151,41 @@ HRESULT CPlayer::Ready_State()
 
     return S_OK;
 }
-void CPlayer::Key_State()
+void CPlayer::Key_State(_float fTimeDelta)
 {
-    if (m_pGameInstance->Key_Down(VK_LBUTTON))
+   /* if (m_pGameInstance->Key_Down(VK_LBUTTON))
         m_pState->Set_State(TEXT("Player_State_Attack"));
     
 
     if(m_pGameInstance->Key_Down(VK_LSHIFT))
-        m_pState->Set_State(TEXT("Player_State_Dash"));
+        m_pState->Set_State(TEXT("Player_State_Dash"));*/
+
+    if (m_pGameInstance->Get_DIKeyState(DIK_A) & 0x80)
+    {
+        m_pTransformCom->Go_Left(fTimeDelta, m_pNavigationCom);
+    }
+
+    if (m_pGameInstance->Get_DIKeyState(DIK_D) & 0x80)
+    {
+        m_pTransformCom->Go_Right(fTimeDelta, m_pNavigationCom);
+    }
+
+    if (m_pGameInstance->Get_DIKeyState(DIK_W) & 0x80)
+    {
+        m_pTransformCom->Go_StraightY(fTimeDelta, m_pNavigationCom);
+    }
+
+    if (m_pGameInstance->Get_DIKeyState(DIK_S) & 0x80)
+    {
+        m_pTransformCom->Go_BackwardY(fTimeDelta, m_pNavigationCom);
+    }
+
+
+
+    /*if (m_pGameInstance->Key_Pressing(VK_SPACE))
+    {
+        m_pTransformCom->Go_Up(fTimeDelta);
+    }*/
 }
 
 CPlayer* CPlayer::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
@@ -170,9 +216,9 @@ CGameObject* CPlayer::Clone(void* pArg)
 
 void CPlayer::Free()
 {
-    Safe_Release(m_pCamTransform);
     Safe_Release(m_pState);
     Safe_Release(m_pColliderCom);
+    Safe_Release(m_pNavigationCom);
 
     __super::Free();
 }

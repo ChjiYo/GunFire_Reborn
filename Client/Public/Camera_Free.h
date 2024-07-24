@@ -18,6 +18,7 @@ public:
 	typedef struct : public CCamera::CAMERA_DESC
 	{
 		_float		fSensor = {};
+		CTransform* pPlayerTransform = {};
 	}CAMERA_FREE_DESC;
 
 private:
@@ -35,17 +36,19 @@ public:
 
 public:
 	void Set_FreeView(_bool bCheck) { m_bCameraMode = bCheck; }
-	HRESULT Read_Component();
 
 private:
 	CState_Machine*		m_pState = { nullptr };
 	CNavigation*		m_pNavigationCom = { nullptr };
+	CTransform*			m_pPlayerTransform = { nullptr };
 
 	_float				m_fMouseSensor = {};
 	_bool				m_bCameraMode = { true };
 private:
 	void GamePlay_Camera(_float fTimeDelta);
 	void FreeView_Camera(_float fTimeDelta);
+
+	void Position();
 
 public:
 	static CCamera_Free* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);

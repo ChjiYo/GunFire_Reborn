@@ -24,7 +24,6 @@ public:
 
 		_int iMaxHp = { 0 };
 		_int iMaxShield = { 0 };
-		CTransform* pTargetTransform = { nullptr };
 	}WEAPON_DESC;
 
 private:
