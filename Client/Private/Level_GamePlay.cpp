@@ -6,6 +6,7 @@
 
 #include "UI_Cross_Hair.h"
 #include "Player.h"
+#include "Weapon_Player_Pistol.h"
 
 CLevel_GamePlay::CLevel_GamePlay(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	: CLevel{ pDevice, pContext } 
@@ -37,11 +38,11 @@ HRESULT CLevel_GamePlay::Initialize()
 	if (FAILED(__super::ParseInitialize()))
 		return E_FAIL;
 	
-	if (FAILED(Ready_PlayerBar()))
-		return E_FAIL;
-	
-	if (FAILED(Ready_CrossHair()))
-		return E_FAIL;
+	//if (FAILED(Ready_PlayerBar()))
+	//	return E_FAIL;
+	//
+	//if (FAILED(Ready_CrossHair()))
+	//	return E_FAIL;
 	
 
 	return S_OK;

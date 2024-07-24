@@ -202,7 +202,9 @@
     <ClInclude Include="..\Public\Loader.h" />
     <ClInclude Include="..\public\MainApp.h" />
     <ClInclude Include="..\Public\Monster.h" />
-    <ClInclude Include="..\Public\Player.h" />
+    <ClInclude Include="..\Public\Player.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="..\Public\Skill.h" />
     <ClInclude Include="..\Public\Skill_Player.h" />
     <ClInclude Include="..\Public\Skill_Player_Bullet.h" />
@@ -222,6 +224,8 @@
     <ClInclude Include="..\Public\UI_Player_ShieldBar.h" />
     <ClInclude Include="..\Public\UI_Player_ShieldBlankBar.h" />
     <ClInclude Include="..\public\Wall_Stage1.h" />
+    <ClInclude Include="..\public\Weapon_Player.h" />
+    <ClInclude Include="..\public\Weapon_Player_Pistol.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="FSM_Player_Jump.h" />
     <ClInclude Include="Resource.h" />
@@ -254,7 +258,9 @@
     <ClCompile Include="..\Private\Loader.cpp" />
     <ClCompile Include="..\private\MainApp.cpp" />
     <ClCompile Include="..\Private\Monster.cpp" />
-    <ClCompile Include="..\Private\Player.cpp" />
+    <ClCompile Include="..\Private\Player.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\Private\Skill.cpp" />
     <ClCompile Include="..\Private\Skill_Player.cpp" />
     <ClCompile Include="..\Private\Skill_Player_Bullet.cpp" />
@@ -274,6 +280,8 @@
     <ClCompile Include="..\Private\UI_Player_ShieldBar.cpp" />
     <ClCompile Include="..\Private\UI_Player_ShieldBlankBar.cpp" />
     <ClCompile Include="..\private\Wall_Stage1.cpp" />
+    <ClCompile Include="..\private\Weapon_Player.cpp" />
+    <ClCompile Include="..\private\Weapon_Player_Pistol.cpp" />
     <ClCompile Include="..\Public\Imgui\imgui.cpp" />
     <ClCompile Include="..\Public\Imgui\imgui_demo.cpp" />
     <ClCompile Include="..\Public\Imgui\imgui_draw.cpp" />

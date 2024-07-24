@@ -190,6 +190,15 @@
     <Filter Include="02.GameObjects\Sky">
       <UniqueIdentifier>{9f180b86-7db2-4596-959b-2746586d3363}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObjects\Player\Weapon">
+      <UniqueIdentifier>{06537524-4bb5-4999-a70e-309c19d24907}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Player\Weapon\Pistol">
+      <UniqueIdentifier>{e17149b1-b922-407d-8446-fb95870b2b47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Player\Weapon\Sniper">
+      <UniqueIdentifier>{4c8f9250-26e6-41f3-be63-ce57cb4e6506}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -372,6 +381,12 @@
     <ClInclude Include="..\public\Sky.h">
       <Filter>02.GameObjects\Sky</Filter>
     </ClInclude>
+    <ClInclude Include="..\public\Weapon_Player_Pistol.h">
+      <Filter>02.GameObjects\Player\Weapon\Pistol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Weapon_Player.h">
+      <Filter>02.GameObjects\Player\Weapon</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -538,6 +553,12 @@
     </ClCompile>
     <ClCompile Include="..\private\Sky.cpp">
       <Filter>02.GameObjects\Sky</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Weapon_Player_Pistol.cpp">
+      <Filter>02.GameObjects\Player\Weapon\Pistol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Weapon_Player.cpp">
+      <Filter>02.GameObjects\Player\Weapon</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

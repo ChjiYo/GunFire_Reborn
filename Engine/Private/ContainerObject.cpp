@@ -77,8 +77,6 @@ HRESULT CContainerObject::Add_PartObject(_uint iPartIndex, const _wstring& strPr
 
 	m_Parts[iPartIndex] = pPartObject;
 
-	Safe_AddRef(pPartObject);
-
 	return S_OK;
 }
 

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Client_Defines.h"
-#include "GameObject.h"
+#include "ContainerObject.h"
 
 BEGIN(Engine)
 class CShader;
@@ -14,10 +14,13 @@ END
 
 BEGIN(Client)
 
-class CPlayer final : public CGameObject
+class CPlayer final : public CContainerObject
 {
 public:
-	typedef struct :public CTransform::TRANSFORM_DESC
+	enum PARTID {  PART_WEAPON, PART_EFFECT, PART_END };
+
+public:
+	typedef struct :public CContainerObject::CONTAINEROBJECT_DESC
 	{
 		_int iHp = { 0 };
 		_int iShield = { 0 };
@@ -45,9 +48,6 @@ public:
 	PLAYER_DESC Get_Player_Desc() { return Player_Desc; }
 
 private:
-	CShader*			m_pShaderCom = { nullptr };
-	CBinModel*			m_pModelCom = { nullptr };
-
 	CState_Machine*		m_pState = { nullptr };
 	CTransform*			m_pCamTransform = { nullptr };
 	CCollider*			m_pColliderCom = { nullptr };
@@ -57,12 +57,11 @@ private:
 	_uint				m_pAnimFrame = { 0 };
 
 private:
+	HRESULT Ready_PartObjects();
 	HRESULT Ready_Components();
 	HRESULT Ready_State();
-	HRESULT Bind_ShaderResources();
 
 	void Key_State();
-	void Position();
 
 public:
 	static CPlayer* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
