@@ -184,6 +184,12 @@
     <Filter Include="02.GameObjects\Element\Floor\114">
       <UniqueIdentifier>{8c8a7dd2-4fd0-4bb7-86c9-5d2c8276a7d2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03.State_Machine\FSM_Player\FSM_Player_Jump">
+      <UniqueIdentifier>{8771929b-0cd1-45ee-98e8-2c16fd487ca2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Sky">
+      <UniqueIdentifier>{9f180b86-7db2-4596-959b-2746586d3363}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -327,7 +333,6 @@
     <ClInclude Include="..\Public\Floor_102.h">
       <Filter>02.GameObjects\Element\Floor\102</Filter>
     </ClInclude>
-    <ClInclude Include="FSM_Player_Jump.h" />
     <ClInclude Include="..\public\Floor_101.h">
       <Filter>02.GameObjects\Element\Floor\101</Filter>
     </ClInclude>
@@ -360,6 +365,12 @@
     </ClInclude>
     <ClInclude Include="..\public\Floor_114.h">
       <Filter>02.GameObjects\Element\Floor\114</Filter>
+    </ClInclude>
+    <ClInclude Include="FSM_Player_Jump.h">
+      <Filter>03.State_Machine\FSM_Player\FSM_Player_Jump</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Sky.h">
+      <Filter>02.GameObjects\Sky</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -489,7 +500,6 @@
     <ClCompile Include="..\Private\Floor_102.cpp">
       <Filter>02.GameObjects\Element\Floor\102</Filter>
     </ClCompile>
-    <ClCompile Include="FSM_Player_Jump.cpp" />
     <ClCompile Include="..\private\Floor_101.cpp">
       <Filter>02.GameObjects\Element\Floor\101</Filter>
     </ClCompile>
@@ -523,6 +533,12 @@
     <ClCompile Include="..\private\Floor_114.cpp">
       <Filter>02.GameObjects\Element\Floor\114</Filter>
     </ClCompile>
+    <ClCompile Include="FSM_Player_Jump.cpp">
+      <Filter>03.State_Machine\FSM_Player\FSM_Player_Jump</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Sky.cpp">
+      <Filter>02.GameObjects\Sky</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -548,6 +564,9 @@
       <Filter>97.ShaderFiles</Filter>
     </FxCompile>
     <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxAnimMesh.hlsl">
+      <Filter>97.ShaderFiles</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxCube.hlsl">
       <Filter>97.ShaderFiles</Filter>
     </FxCompile>
   </ItemGroup>

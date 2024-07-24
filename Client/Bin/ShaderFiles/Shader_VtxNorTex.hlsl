@@ -1,4 +1,6 @@
 
+#include "Engine_Shader_Defines.hlsli"
+
 float4x4		g_WorldMatrix, g_ViewMatrix, g_ProjMatrix;
 
 float4			g_vLightDir = float4(1.f, -1.f, 1.f, 0.f);
@@ -11,13 +13,6 @@ float4			g_vMtrlAmbient = float4(0.3f, 0.3f, 0.3f, 1.f);
 float4			g_vMtrlSpecular = float4(1.f, 1.f, 1.f, 1.f);
 
 vector			g_vCamPosition;
-
-sampler DefaultSampler = sampler_state 
-{
-	Filter = MIN_MAG_MIP_LINEAR;
-	AddressU = wrap;
-	AddressV = wrap;
-};	
 
 struct VS_IN
 {
@@ -67,8 +62,29 @@ struct PS_OUT
 PS_OUT PS_MAIN(PS_IN In)
 {
 	PS_OUT			Out;	
+	
+	/*
+	
+	vector		vSourDiffuse = g_DiffuseTexture[0].Sample(LinearSampler, In.vTexcoord * 30.f);
+	vector		vDestDiffuse = g_DiffuseTexture[1].Sample(LinearSampler, In.vTexcoord * 30.f);
+	
+	vector		vBrush = (vector)0;
+	vector		vMask = g_MaskTexture.Sample(LinearSampler, In.vTexcoord);
 
-	vector		vMtrlDiffuse = g_DiffuseTexture.Sample(DefaultSampler, In.vTexcoord * 30.f);
+	if (g_vBrushPos.x - g_fBrushRange < In.vWorldPos.x && In.vWorldPos.x <= g_vBrushPos.x + g_fBrushRange && 
+		g_vBrushPos.z - g_fBrushRange < In.vWorldPos.z && In.vWorldPos.z <= g_vBrushPos.z + g_fBrushRange)
+	{
+		float2		vTexcoord;
+
+		vTexcoord.x = (In.vWorldPos.x - (g_vBrushPos.x - g_fBrushRange)) / (2.f * g_fBrushRange);
+		vTexcoord.y = ((g_vBrushPos.z + g_fBrushRange) - In.vWorldPos.z) / (2.f * g_fBrushRange);
+
+		vBrush = g_BrushTexture.Sample(LinearSampler, vTexcoord);
+	}
+	
+	*/
+
+	vector		vMtrlDiffuse = g_DiffuseTexture.Sample(LinearSampler, In.vTexcoord * 30.f);
 
 	/* 0.0f ~ 1.f */
 	float		fShade = max(dot(normalize(g_vLightDir) * -1.f, normalize(In.vNormal)), 0.f);
@@ -90,7 +106,11 @@ PS_OUT PS_MAIN(PS_IN In)
 technique11		DefaultTechnique
 {	
 	pass Default
-	{
+    {
+        SetRasterizerState(RS_Default);
+        SetDepthStencilState(DSS_Default, 0);
+        SetBlendState(BS_Default, float4(0.f, 0.f, 0.f, 0.f), 0xffffffff);
+
 		VertexShader = compile vs_5_0 VS_MAIN();
 		PixelShader = compile ps_5_0 PS_MAIN();
 	}

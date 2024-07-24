@@ -1,26 +1,12 @@
 
+#include "Engine_Shader_Defines.hlsli"
+
 float4x4		g_WorldMatrix, g_ViewMatrix, g_ProjMatrix;
 texture2D		g_Texture;
 
 // m_pGraphic_Device->SetSamplerState(0, D3DSAMP_MINFILTER, D3DTEXF_LINEAR);
 
 // D3D11_SAMPLER_DESC
-sampler DefaultSampler = sampler_state 
-{
-	Filter = MIN_MAG_MIP_LINEAR;
-	AddressU = wrap;
-	AddressV = wrap;
-};
-
-sampler DefaultSampler1 = sampler_state
-{
-	Filter = MIN_MAG_MIP_POINT;
-	AddressU = CLAMP;
-	AddressV = CLAMP;
-};
-
-
-
 
 struct VS_IN
 {
@@ -73,7 +59,7 @@ PS_OUT PS_MAIN(PS_IN In)
 {
 	PS_OUT			Out;	
 
-	Out.vColor = g_Texture.Sample(DefaultSampler, In.vTexcoord);
+	Out.vColor = g_Texture.Sample(LinearSampler, In.vTexcoord);
 
 	//Out.vColor.gb = Out.vColor.r;
     if (Out.vColor.a <= 0.1f)

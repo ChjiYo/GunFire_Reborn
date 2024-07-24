@@ -1,4 +1,6 @@
 
+#include "Engine_Shader_Defines.hlsli"
+
 float4x4		g_WorldMatrix, g_ViewMatrix, g_ProjMatrix;
 
 float4			g_vLightDir = float4(1.f, -1.f, 1.f, 0.f);
@@ -12,12 +14,6 @@ float4			g_vMtrlSpecular = float4(1.f, 1.f, 1.f, 1.f);
 
 vector			g_vCamPosition;
 
-sampler DefaultSampler = sampler_state 
-{
-	Filter = MIN_MAG_MIP_LINEAR;
-	AddressU = wrap;
-	AddressV = wrap;
-};
 
 struct VS_IN
 {
@@ -69,7 +65,7 @@ PS_OUT PS_MAIN(PS_IN In)
 {
 	PS_OUT			Out;	
 
-	vector		vMtrlDiffuse = g_DiffuseTexture.Sample(DefaultSampler, In.vTexcoord);
+	vector		vMtrlDiffuse = g_DiffuseTexture.Sample(LinearSampler, In.vTexcoord);
 	if (vMtrlDiffuse.a < 0.1f)
 		discard;
 
@@ -93,7 +89,11 @@ PS_OUT PS_MAIN(PS_IN In)
 technique11		DefaultTechnique
 {	
 	pass Default
-	{
+    {
+        SetRasterizerState(RS_Default);
+        SetDepthStencilState(DSS_Default, 0);
+        SetBlendState(BS_Default, float4(0.f, 0.f, 0.f, 0.f), 0xffffffff);
+
 		VertexShader = compile vs_5_0 VS_MAIN();
 		PixelShader = compile ps_5_0 PS_MAIN();
 	}

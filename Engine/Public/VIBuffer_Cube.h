@@ -4,11 +4,11 @@
 
 BEGIN(Engine)
 
-class ENGINE_DLL CVIBuffer_Cube final :public CVIBuffer
+class ENGINE_DLL CVIBuffer_Cube final : public CVIBuffer
 {
 private:
 	CVIBuffer_Cube(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
-	CVIBuffer_Cube(const CVIBuffer_Cube& rhs);
+	CVIBuffer_Cube(const CVIBuffer_Cube& Prototype);
 	virtual ~CVIBuffer_Cube() = default;
 
 public:
@@ -22,4 +22,3 @@ public:
 };
 
 END
-

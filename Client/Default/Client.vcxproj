@@ -206,6 +206,7 @@
     <ClInclude Include="..\Public\Skill.h" />
     <ClInclude Include="..\Public\Skill_Player.h" />
     <ClInclude Include="..\Public\Skill_Player_Bullet.h" />
+    <ClInclude Include="..\public\Sky.h" />
     <ClInclude Include="..\Public\Terrain.h" />
     <ClInclude Include="..\Public\Tool.h" />
     <ClInclude Include="..\Public\Tool_Manager.h" />
@@ -257,6 +258,7 @@
     <ClCompile Include="..\Private\Skill.cpp" />
     <ClCompile Include="..\Private\Skill_Player.cpp" />
     <ClCompile Include="..\Private\Skill_Player_Bullet.cpp" />
+    <ClCompile Include="..\private\Sky.cpp" />
     <ClCompile Include="..\Private\Terrain.cpp" />
     <ClCompile Include="..\Private\Tool.cpp" />
     <ClCompile Include="..\Private\Tool_Manager.cpp" />
@@ -297,6 +299,7 @@
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxAnimMesh.hlsl" />
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxCube.hlsl" />
     <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxMesh.hlsl" />
     <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxNorTex.hlsl" />
     <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxPosTex.hlsl" />

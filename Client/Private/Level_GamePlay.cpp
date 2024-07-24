@@ -34,8 +34,8 @@ HRESULT CLevel_GamePlay::Initialize()
 	/*if (FAILED(Ready_Layer_WallStage(TEXT("Layer_Wall_Stage"))))
 		return E_FAIL;*/
 
-	//if (FAILED(__super::ParseInitialize()))
-	//	return E_FAIL;
+	if (FAILED(__super::ParseInitialize()))
+		return E_FAIL;
 	
 	if (FAILED(Ready_PlayerBar()))
 		return E_FAIL;
@@ -76,6 +76,9 @@ HRESULT CLevel_GamePlay::Ready_Lights()
 HRESULT CLevel_GamePlay::Ready_Layer_BackGround(const _wstring & strLayerTag)
 {
 	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Terrain"), strLayerTag)))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Sky"), strLayerTag)))
 		return E_FAIL;
 
 	return S_OK;
