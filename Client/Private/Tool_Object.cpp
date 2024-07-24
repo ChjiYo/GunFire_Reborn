@@ -100,7 +100,7 @@ HRESULT CTool_Object::Setting_Tab()
 		ImGui::Checkbox("NaviPicking", &bNaviPicking);
 		
 
-		CTerrain* pTerrain = dynamic_cast<CTerrain*>(m_pGameInstance->Get_Layer(currentLevel, TEXT("Layer_BackGround")).back());
+		CTerrain* pTerrain = dynamic_cast<CTerrain*>(m_pGameInstance->Get_Layer(currentLevel, TEXT("Layer_BackGround")).front());
 
 		if (bNaviPicking)
 		{
@@ -642,7 +642,7 @@ _float3 CTool_Object::PickingPos()
 {
 	_uint currentLevel = m_pGameInstance->GetCurrentLevelIndex();
 
-	CTerrain* pTerrain = dynamic_cast<CTerrain*>(m_pGameInstance->Get_Layer(currentLevel, TEXT("Layer_BackGround")).back());
+	CTerrain* pTerrain = dynamic_cast<CTerrain*>(m_pGameInstance->Get_Layer(currentLevel, TEXT("Layer_BackGround")).front());
 	m_vPickingPos = pTerrain->Get_TerrainPicking();
 	
 
