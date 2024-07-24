@@ -43,8 +43,7 @@ HRESULT CElement::Initialize(void* pArg)
 			CTransform* transform = static_cast<CTransform*>(component);
 
 			transform->Set_State(CTransform::STATE_POSITION, pFileData->position);
-			transform->Set_Scaled(pFileData->scale.x , pFileData->scale.y , pFileData->scale.z);
-
+			transform->Set_Scaled(pFileData->scale.x, pFileData->scale.y, pFileData->scale.z);
 			return S_OK;
 		}
 	}

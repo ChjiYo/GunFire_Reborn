@@ -471,10 +471,10 @@ HRESULT CTool_Object::Show_LayerObjects()
 				CTransform* transform = static_cast<CTransform*>(component);
 
 				if (averageRotation.x > 0.f)
-					transform->Rotation({ 0.f, 1.f, 0.f ,0.f }, XMConvertToRadians(averageRotation.x));
+					transform->Rotation({ 1.f, 0.f, 0.f ,0.f }, XMConvertToRadians(averageRotation.x));
 
 				if (averageRotation.y > 0.f)
-					transform->Rotation({ 1.f, 0.f, 0.f ,0.f }, XMConvertToRadians(averageRotation.y));
+					transform->Rotation({ 0.f, 1.f, 0.f ,0.f }, XMConvertToRadians(averageRotation.y));
 
 				if (averageRotation.z > 0.f)
 					transform->Rotation({ 0.f, 0.f, 1.f ,0.f }, XMConvertToRadians(averageRotation.z));
@@ -630,7 +630,6 @@ HRESULT CTool_Object::PickingSelectedObject(const wstring& layerName, CGameObjec
 	copy_DESC.scale = sourceTransform->Get_Scaled();
 	copy_DESC.position = { vPos.x , vPos.y + sourceTransform->Get_Scaled().y / 2.f, vPos.z , 1.f};
 	copy_DESC.isParsing = false;
-
 	// Create a new game object using the prototype
 	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(currentLevel, prototypeTag.c_str(), layerName.c_str(), &copy_DESC)))
 		return E_FAIL;

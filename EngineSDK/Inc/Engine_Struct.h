@@ -106,6 +106,7 @@ namespace Engine
 		int levelIndex;
 		XMVECTOR position;
 		XMFLOAT3 scale;
+		float	fRotation;
 		bool isParsing;
 	}FILEDATA;
 }

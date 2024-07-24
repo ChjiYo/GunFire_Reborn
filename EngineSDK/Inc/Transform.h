@@ -90,6 +90,7 @@ private:
 	_float					m_fSpeedPerSec = {};
 	_float					m_fRotationPerSec = {};
 	_float					m_fGravity_Weight = {};
+	_float					m_fRotationY = {};
 public:
 	static CTransform* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	virtual CComponent* Clone(void* pArg) override;
