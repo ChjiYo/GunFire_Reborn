@@ -64,21 +64,6 @@ void CPlayer::Priority_Update(_float fTimeDelta)
     if (fTimeDelta == 0.f)
         return;
 
-    m_pTransformCom->Gravity(0.5f, 1.5f, fTimeDelta);
-
-  
-    _long		MouseMove = {};
-
-    if (MouseMove = m_pGameInstance->Get_DIMouseMove(DIMM_X))
-    {
-        m_pTransformCom->Turn(XMVectorSet(0.f, 1.f, 0.f, 0.f), 0.1f * MouseMove * fTimeDelta);
-    }
-
-    if (MouseMove = m_pGameInstance->Get_DIMouseMove(DIMM_Y))
-    {
-        m_pTransformCom->Turn(m_pTransformCom->Get_State(CTransform::STATE_RIGHT), 0.1f * MouseMove * fTimeDelta);
-    }
-
     __super::Priority_Update(fTimeDelta);
 }
 
@@ -152,39 +137,71 @@ HRESULT CPlayer::Ready_State()
 }
 void CPlayer::Key_State(_float fTimeDelta)
 {
-   /* if (m_pGameInstance->Key_Down(VK_LBUTTON))
-        m_pState->Set_State(TEXT("Player_State_Attack"));
-    
+    Player_Move(fTimeDelta);
+    Player_Jump(fTimeDelta);
+}
 
-    if(m_pGameInstance->Key_Down(VK_LSHIFT))
-        m_pState->Set_State(TEXT("Player_State_Dash"));*/
+void CPlayer::Player_Move(_float fTimeDelta)
+{
+    _long		MouseMove = {};
+
+    if (MouseMove = m_pGameInstance->Get_DIMouseMove(DIMM_X))
+    {
+        m_pTransformCom->Turn(XMVectorSet(0.f, 1.f, 0.f, 0.f), 0.1f * MouseMove * fTimeDelta);
+    }
+
+    if (MouseMove = m_pGameInstance->Get_DIMouseMove(DIMM_Y))
+    {
+        m_pTransformCom->Turn(m_pTransformCom->Get_State(CTransform::STATE_RIGHT), 0.1f * MouseMove * fTimeDelta);
+    }
 
     if (m_pGameInstance->Get_DIKeyState(DIK_A) & 0x80)
     {
         m_pTransformCom->Go_Left(fTimeDelta, m_pNavigationCom);
+
+        if (m_pGameInstance->Key_Down(VK_LSHIFT))
+            m_pTransformCom->Go_Left(fTimeDelta + 0.5f, m_pNavigationCom);
     }
 
     if (m_pGameInstance->Get_DIKeyState(DIK_D) & 0x80)
     {
         m_pTransformCom->Go_Right(fTimeDelta, m_pNavigationCom);
+
+        if (m_pGameInstance->Key_Down(VK_LSHIFT))
+            m_pTransformCom->Go_Right(fTimeDelta + 0.5f, m_pNavigationCom);
     }
 
     if (m_pGameInstance->Get_DIKeyState(DIK_W) & 0x80)
     {
         m_pTransformCom->Go_StraightY(fTimeDelta, m_pNavigationCom);
+
+        if (m_pGameInstance->Key_Down(VK_LSHIFT))
+            m_pTransformCom->Go_StraightY(fTimeDelta + 0.5f, m_pNavigationCom);
+        
     }
 
     if (m_pGameInstance->Get_DIKeyState(DIK_S) & 0x80)
     {
         m_pTransformCom->Go_BackwardY(fTimeDelta, m_pNavigationCom);
+
+        if (m_pGameInstance->Key_Down(VK_LSHIFT))
+            m_pTransformCom->Go_BackwardY(fTimeDelta + 0.5f, m_pNavigationCom);
+            
     }
+}
 
-
-
-    /*if (m_pGameInstance->Key_Pressing(VK_SPACE))
+void CPlayer::Player_Jump(_float fTimeDelta)
+{
+    if (m_pGameInstance->Key_Down(VK_SPACE)|| m_bJump)
     {
         m_pTransformCom->Go_Up(fTimeDelta);
-    }*/
+        m_bJump = true;
+    }
+
+    if (m_pTransformCom->Gravity(0.2f, 1.3f, fTimeDelta) && m_bJump)
+    {
+        m_bJump = false;
+    }
 }
 
 CPlayer* CPlayer::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)

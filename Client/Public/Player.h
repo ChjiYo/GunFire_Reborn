@@ -54,7 +54,7 @@ private:
 
 private:
 	PLAYER_DESC			Player_Desc = {};
-	_uint				m_pAnimFrame = { 0 };
+	_bool				m_bJump = { false };
 
 private:
 	HRESULT Ready_PartObjects();
@@ -62,6 +62,8 @@ private:
 	HRESULT Ready_State();
 
 	void Key_State(_float fTimeDelta);
+	void Player_Move(_float fTimeDelta);
+	void Player_Jump(_float fTimeDelta);
 
 public:
 	static CPlayer* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);

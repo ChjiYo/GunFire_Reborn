@@ -134,7 +134,7 @@ void CTransform::Go_Up(_float fTimeDelta)
 	Set_State(STATE_POSITION, vPosition);
 }
 
-HRESULT CTransform::Gravity(_float fWeight, _float fLandPosY, _float fTimeDelta)
+_bool CTransform::Gravity(_float fWeight, _float fLandPosY, _float fTimeDelta)
 {
 	_float4 vPosition = {};
 	XMStoreFloat4(&vPosition ,Get_State(STATE_POSITION));
@@ -151,11 +151,13 @@ HRESULT CTransform::Gravity(_float fWeight, _float fLandPosY, _float fTimeDelta)
 	{
 		vPosition.y = fLandPosY;
 		m_fGravity_Weight = { 0.f };
+
+		return true;
 	}
+	else 
+		Set_State(STATE_POSITION, XMLoadFloat4(&vPosition));
 
-	Set_State(STATE_POSITION, XMLoadFloat4(&vPosition));
-
-	return S_OK;
+	return false;
 }
 
 
