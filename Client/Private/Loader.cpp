@@ -26,6 +26,7 @@
 
 #include "Player.h"
 #include "Weapon_Player_Pistol.h"
+#include "Weapon_Player_Sniper.h"
 
 #include "Skill_Player_Bullet.h"
 
@@ -110,8 +111,12 @@ HRESULT CLoader::Loading_For_BinaryFile()
 	//Anim 모델을 로드합니다.
 	PreTransformMatrix = XMMatrixRotationY(XMConvertToRadians(180.0f));
 
-	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Player"),
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Weapon_Player_Pistol"),
 		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_ANIM, "../Bin/GunFire_Resources/Models/Gun/Weapon_Pistol/Pistol.fbx", TEXT("../Bin/DataFiles/Player_Pistol.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Weapon_Player_Sniper"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_ANIM, "../Bin/GunFire_Resources/Models/Gun/Weapon_Sniper/Sniper.fbx", TEXT("../Bin/DataFiles/Player_Sniper.dat"), PreTransformMatrix))))
 		return E_FAIL;
 
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Fiona"),
@@ -277,9 +282,14 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 	_matrix			PreTransformMatrix = XMMatrixIdentity();
 	PreTransformMatrix = XMMatrixRotationY(XMConvertToRadians(180.0f));
 
-	/* For.Prototype_Component_Model_Player */
-	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Player"),
+	/* For.Prototype_Component_Model_Weapon_Player_Pistol */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Weapon_Player_Pistol"),
 		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_ANIM, TEXT("../Bin/DataFiles/Player_Pistol.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Model_Weapon_Player_Sniper */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Weapon_Player_Sniper"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_ANIM, TEXT("../Bin/DataFiles/Player_Sniper.dat"), PreTransformMatrix))))
 		return E_FAIL;
 
 
