@@ -66,8 +66,7 @@ void CPlayer::Priority_Update(_float fTimeDelta)
 
     m_pTransformCom->Gravity(0.5f, 1.5f, fTimeDelta);
 
-   
-
+  
     _long		MouseMove = {};
 
     if (MouseMove = m_pGameInstance->Get_DIMouseMove(DIMM_X))
