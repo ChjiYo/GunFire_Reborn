@@ -387,6 +387,9 @@
     <ClInclude Include="..\public\Weapon_Player.h">
       <Filter>02.GameObjects\Player\Weapon</Filter>
     </ClInclude>
+    <ClInclude Include="..\public\Weapon_Player_Sniper.h">
+      <Filter>02.GameObjects\Player\Weapon\Sniper</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -556,6 +559,9 @@
     </ClCompile>
     <ClCompile Include="..\private\Weapon_Player_Pistol.cpp">
       <Filter>02.GameObjects\Player\Weapon\Pistol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Weapon_Player_Sniper.cpp">
+      <Filter>02.GameObjects\Player\Weapon\Sniper</Filter>
     </ClCompile>
     <ClCompile Include="..\private\Weapon_Player.cpp">
       <Filter>02.GameObjects\Player\Weapon</Filter>
