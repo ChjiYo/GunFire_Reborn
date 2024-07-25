@@ -62,8 +62,10 @@ private:
 	HRESULT Ready_State();
 
 	void Key_State(_float fTimeDelta);
+
 	void Player_Move(_float fTimeDelta);
 	void Player_Jump(_float fTimeDelta);
+	void Player_Weapon_Change();
 
 public:
 	static CPlayer* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
