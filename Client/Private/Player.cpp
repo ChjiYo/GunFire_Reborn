@@ -96,7 +96,7 @@ HRESULT CPlayer::Ready_PartObjects()
     Desc.pParentMatrix = m_pTransformCom->Get_WorldMatrixPtr();
     Desc.pParentState = 0x00000000;
 
-    if (FAILED(__super::Add_PartObject(PART_WEAPON, TEXT("Prototype_GameObject_Weapon_Player_Pistol"), &Desc)))
+    if (FAILED(__super::Add_PartObject(PART_WEAPON, TEXT("Prototype_GameObject_Weapon_Player_Sniper"), &Desc)))
         return E_FAIL;
 
     return S_OK;
@@ -208,7 +208,7 @@ void CPlayer::Player_Weapon_Change()
 {
     //if(m_pGameInstance->Key_Down('1'))
 
-        //if (m_pGameInstance->Key_Down('1'))
+    //if (m_pGameInstance->Key_Down('1'))
 }
 
 CPlayer* CPlayer::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
