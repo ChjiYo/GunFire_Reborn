@@ -101,6 +101,21 @@ namespace Engine
 
 	typedef struct ENGINE_DLL
 	{
+		XMFLOAT4		vRight;
+		XMFLOAT4		vUp;
+		XMFLOAT4		vLook;
+		XMFLOAT4		vTranslation;
+	}VTXINSTANCE;
+
+
+	typedef struct ENGINE_DLL
+	{
+		static const unsigned int					iNumElements = { 6 };
+		static const D3D11_INPUT_ELEMENT_DESC		Elements[iNumElements];
+	}VTXPARTICLE_RECT;
+
+	typedef struct ENGINE_DLL
+	{
 		wstring prototypeTag;
 		wstring layerName;
 		int levelIndex;

@@ -172,6 +172,7 @@
     <ClInclude Include="..\public\Camera_Free.h" />
     <ClInclude Include="..\Public\Client_Defines.h" />
     <ClInclude Include="..\Public\Cube.h" />
+    <ClInclude Include="..\public\Effect_Deco_Snow.h" />
     <ClInclude Include="..\public\Element.h" />
     <ClInclude Include="..\public\Floor_101.h" />
     <ClInclude Include="..\Public\Floor_102.h" />
@@ -228,7 +229,6 @@
     <ClInclude Include="..\public\Weapon_Player_Pistol.h" />
     <ClInclude Include="..\public\Weapon_Player_Sniper.h" />
     <ClInclude Include="Client.h" />
-    <ClInclude Include="FSM_Player_Jump.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -237,6 +237,7 @@
     <ClCompile Include="..\private\BackGround.cpp" />
     <ClCompile Include="..\private\Camera_Free.cpp" />
     <ClCompile Include="..\Private\Cube.cpp" />
+    <ClCompile Include="..\private\Effect_Deco_Snow.cpp" />
     <ClCompile Include="..\private\Element.cpp" />
     <ClCompile Include="..\private\Floor_101.cpp" />
     <ClCompile Include="..\Private\Floor_102.cpp" />
@@ -292,7 +293,6 @@
     <ClCompile Include="..\Public\Imgui\imgui_tables.cpp" />
     <ClCompile Include="..\Public\Imgui\imgui_widgets.cpp" />
     <ClCompile Include="Client.cpp" />
-    <ClCompile Include="FSM_Player_Jump.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -308,6 +308,7 @@
     <Image Include="small.ico" />
   </ItemGroup>
   <ItemGroup>
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_Particle_VtxRect.hlsl" />
     <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxAnimMesh.hlsl" />
     <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxCube.hlsl" />
     <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxMesh.hlsl" />

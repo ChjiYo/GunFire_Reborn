@@ -199,6 +199,12 @@
     <Filter Include="02.GameObjects\Player\Weapon\Sniper">
       <UniqueIdentifier>{4c8f9250-26e6-41f3-be63-ce57cb4e6506}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObjects\Effect\Deco_Effect">
+      <UniqueIdentifier>{8bc71388-0dd5-4237-95f6-1089016e1a2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Effect\Deco_Effect\Snow">
+      <UniqueIdentifier>{cacac927-36a2-4666-bbb6-f74abe48f82f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -375,9 +381,6 @@
     <ClInclude Include="..\public\Floor_114.h">
       <Filter>02.GameObjects\Element\Floor\114</Filter>
     </ClInclude>
-    <ClInclude Include="FSM_Player_Jump.h">
-      <Filter>03.State_Machine\FSM_Player\FSM_Player_Jump</Filter>
-    </ClInclude>
     <ClInclude Include="..\public\Sky.h">
       <Filter>02.GameObjects\Sky</Filter>
     </ClInclude>
@@ -389,6 +392,9 @@
     </ClInclude>
     <ClInclude Include="..\public\Weapon_Player_Sniper.h">
       <Filter>02.GameObjects\Player\Weapon\Sniper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Effect_Deco_Snow.h">
+      <Filter>02.GameObjects\Effect\Deco_Effect\Snow</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -551,9 +557,6 @@
     <ClCompile Include="..\private\Floor_114.cpp">
       <Filter>02.GameObjects\Element\Floor\114</Filter>
     </ClCompile>
-    <ClCompile Include="FSM_Player_Jump.cpp">
-      <Filter>03.State_Machine\FSM_Player\FSM_Player_Jump</Filter>
-    </ClCompile>
     <ClCompile Include="..\private\Sky.cpp">
       <Filter>02.GameObjects\Sky</Filter>
     </ClCompile>
@@ -565,6 +568,9 @@
     </ClCompile>
     <ClCompile Include="..\private\Weapon_Player.cpp">
       <Filter>02.GameObjects\Player\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Effect_Deco_Snow.cpp">
+      <Filter>02.GameObjects\Effect\Deco_Effect\Snow</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -594,6 +600,9 @@
       <Filter>97.ShaderFiles</Filter>
     </FxCompile>
     <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxCube.hlsl">
+      <Filter>97.ShaderFiles</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_Particle_VtxRect.hlsl">
       <Filter>97.ShaderFiles</Filter>
     </FxCompile>
   </ItemGroup>

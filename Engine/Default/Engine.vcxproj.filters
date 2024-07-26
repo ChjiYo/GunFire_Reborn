@@ -160,6 +160,12 @@
     <Filter Include="01.Utility\03.Components\Collider\Bounding\Sphere">
       <UniqueIdentifier>{65b0b0fa-1450-4b72-b2e7-c913cc9a858c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Utility\03.Components\VIBuffer\Instancing">
+      <UniqueIdentifier>{18162fe5-6038-4d5d-ab1f-bc727df5c889}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utility\03.Components\VIBuffer\Instancing\Rect">
+      <UniqueIdentifier>{f2ab809b-11e8-4755-93ad-c30743a1358b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\private\GameInstance.cpp">
@@ -311,6 +317,12 @@
     </ClCompile>
     <ClCompile Include="..\private\DebugDraw.cpp">
       <Filter>01.Utility\03.Components\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\VIBuffer_Instancing.cpp">
+      <Filter>01.Utility\03.Components\VIBuffer\Instancing</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\VIBuffer_Rect_Instancing.cpp">
+      <Filter>01.Utility\03.Components\VIBuffer\Instancing\Rect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -475,6 +487,12 @@
     </ClInclude>
     <ClInclude Include="..\public\DebugDraw.h">
       <Filter>01.Utility\03.Components\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\VIBuffer_Instancing.h">
+      <Filter>01.Utility\03.Components\VIBuffer\Instancing</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\VIBuffer_Rect_Instancing.h">
+      <Filter>01.Utility\03.Components\VIBuffer\Instancing\Rect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
