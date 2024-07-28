@@ -1,0 +1,45 @@
+#include "stdafx.h"
+
+#include "FSM_Monster.h"
+#include "GameInstance.h"
+
+CFSM_Monster::CFSM_Monster(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
+	:CFSM_State{ pDevice , pContext }
+{
+}
+
+CFSM_Monster::CFSM_Monster(const CFSM_Monster& pPrototype)
+	:CFSM_State{ pPrototype }
+{
+}
+
+HRESULT CFSM_Monster::Initialize()
+{
+	return S_OK;
+}
+
+void CFSM_Monster::Priority_Update(_float fTimeDelta)
+{
+}
+
+void CFSM_Monster::Update(_float fTimeDelta)
+{
+}
+
+void CFSM_Monster::Late_Update(_float fTimeDelta)
+{
+}
+
+void CFSM_Monster::Enter()
+{
+
+}
+
+void CFSM_Monster::Exit()
+{
+}
+
+void CFSM_Monster::Free()
+{
+	__super::Free();
+}

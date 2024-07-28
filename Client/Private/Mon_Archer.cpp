@@ -33,6 +33,9 @@ HRESULT CMon_Archer::Initialize(void* pArg)
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
+	if(FAILED(Ready_State()))
+		return E_FAIL;
+
 	m_pModelCom->SetUp_Animation(1, true);
 	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSet(20.f, 1.f, 20.f, 1.f));
 
@@ -92,6 +95,14 @@ HRESULT CMon_Archer::Render()
 	return S_OK;
 }
 
+HRESULT CMon_Archer::Ready_State()
+{
+	//m_pState->Add_State(CFSM_Player_Attack::Create(m_pDevice, m_pContext), TEXT("Player_State_Attack"));
+	//m_pState->Add_State(CFSM_Player_Dash::Create(m_pDevice, m_pContext), TEXT("Player_State_Dash"));
+
+	return S_OK;
+}
+
 HRESULT CMon_Archer::Ready_Components()
 {
 	if (FAILED(__super::Ready_Components()))
@@ -105,6 +116,11 @@ HRESULT CMon_Archer::Ready_Components()
 	/* Com_Model */
 	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Monster_Archer"),
 		TEXT("Com_Model"), reinterpret_cast<CComponent**>(&m_pModelCom))))
+		return E_FAIL;
+
+	/* Com_State */
+	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_State"),
+		TEXT("Com_State"), reinterpret_cast<CComponent**>(&m_pStateCom))))
 		return E_FAIL;
 
 	return S_OK;

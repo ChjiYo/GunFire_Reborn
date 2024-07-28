@@ -6,6 +6,7 @@
 BEGIN(Engine)
 class CShader;
 class CBinModel;
+class CFSM_State;
 END
 
 BEGIN(Client)
@@ -28,10 +29,11 @@ public:
 private:
 	CShader* m_pShaderCom = { nullptr };
 	CBinModel* m_pModelCom = { nullptr };
-
-	_float					m_fRandom = {};
+	CFSM_State* m_pStateCom = { nullptr };
+	
 
 private:
+	HRESULT Ready_State();
 	HRESULT Ready_Components();
 	HRESULT Bind_ShaderResources();
 

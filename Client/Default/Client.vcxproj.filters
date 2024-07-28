@@ -211,6 +211,24 @@
     <Filter Include="02.GameObjects\Monster\Archer">
       <UniqueIdentifier>{262534a7-d7bc-4555-9ca0-4e2c30470290}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster">
+      <UniqueIdentifier>{1c7e76de-15b9-4119-98e0-ab7a99811d81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Archer">
+      <UniqueIdentifier>{72482472-99ce-4584-ac0e-be49db759177}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Archer\Walk">
+      <UniqueIdentifier>{847a8625-bb20-42da-b603-b118028ce411}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Archer\Idle">
+      <UniqueIdentifier>{74321b09-e829-4091-be45-0231758aeef2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Archer\Attack">
+      <UniqueIdentifier>{e6e6e182-fb2f-4bea-bc3f-3c0acd2613fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Archer\Hit">
+      <UniqueIdentifier>{70217aa6-bcf4-43de-8099-ac7a1aef23de}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -408,6 +426,21 @@
     <ClInclude Include="..\public\Mon_Archer.h">
       <Filter>02.GameObjects\Monster\Archer</Filter>
     </ClInclude>
+    <ClInclude Include="..\public\FSM_Monster.h">
+      <Filter>03.State_Machine\FSM_Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Archer_Attack.h">
+      <Filter>03.State_Machine\FSM_Monster\Archer\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Archer_Hit.h">
+      <Filter>03.State_Machine\FSM_Monster\Archer\Hit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Archer_Idle.h">
+      <Filter>03.State_Machine\FSM_Monster\Archer\Idle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Archer_Walk.h">
+      <Filter>03.State_Machine\FSM_Monster\Archer\Walk</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -589,6 +622,21 @@
     </ClCompile>
     <ClCompile Include="..\private\Mon_Archer.cpp">
       <Filter>02.GameObjects\Monster\Archer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Monster.cpp">
+      <Filter>03.State_Machine\FSM_Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Archer_Attack.cpp">
+      <Filter>03.State_Machine\FSM_Monster\Archer\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Archer_Hit.cpp">
+      <Filter>03.State_Machine\FSM_Monster\Archer\Hit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Archer_Idle.cpp">
+      <Filter>03.State_Machine\FSM_Monster\Archer\Idle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Archer_Walk.cpp">
+      <Filter>03.State_Machine\FSM_Monster\Archer\Walk</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

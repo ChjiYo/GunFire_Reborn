@@ -186,6 +186,11 @@
     <ClInclude Include="..\public\Floor_111.h" />
     <ClInclude Include="..\public\Floor_112.h" />
     <ClInclude Include="..\public\Floor_114.h" />
+    <ClInclude Include="..\public\FSM_Monster.h" />
+    <ClInclude Include="..\public\FSM_Mon_Archer_Attack.h" />
+    <ClInclude Include="..\public\FSM_Mon_Archer_Hit.h" />
+    <ClInclude Include="..\public\FSM_Mon_Archer_Idle.h" />
+    <ClInclude Include="..\public\FSM_Mon_Archer_Walk.h" />
     <ClInclude Include="..\Public\FSM_Player.h" />
     <ClInclude Include="..\Public\FSM_Player_Attack.h" />
     <ClInclude Include="..\Public\FSM_Player_Dash.h" />
@@ -253,6 +258,11 @@
     <ClCompile Include="..\private\Floor_111.cpp" />
     <ClCompile Include="..\private\Floor_112.cpp" />
     <ClCompile Include="..\private\Floor_114.cpp" />
+    <ClCompile Include="..\private\FSM_Monster.cpp" />
+    <ClCompile Include="..\private\FSM_Mon_Archer_Attack.cpp" />
+    <ClCompile Include="..\private\FSM_Mon_Archer_Hit.cpp" />
+    <ClCompile Include="..\private\FSM_Mon_Archer_Idle.cpp" />
+    <ClCompile Include="..\private\FSM_Mon_Archer_Walk.cpp" />
     <ClCompile Include="..\Private\FSM_Player.cpp" />
     <ClCompile Include="..\Private\FSM_Player_Attack.cpp" />
     <ClCompile Include="..\Private\FSM_Player_Dash.cpp" />
