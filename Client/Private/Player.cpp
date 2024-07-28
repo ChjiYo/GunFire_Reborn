@@ -72,8 +72,6 @@ void CPlayer::Priority_Update(_float fTimeDelta)
 
 void CPlayer::Update(_float fTimeDelta)
 {
-    //Ready_PartObjects();
-
     m_pColliderCom->Update(m_pTransformCom->Get_WorldMatrix());
     __super::Update(fTimeDelta);
 }

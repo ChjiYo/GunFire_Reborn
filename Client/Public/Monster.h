@@ -5,13 +5,12 @@
 
 BEGIN(Engine)
 class CShader;
-class CModel;
 class CBinModel;
 END
 
 BEGIN(Client)
 
-class CMonster final : public CGameObject
+class CMonster final : public CContainerObject
 {
 private:
 	CMonster(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
