@@ -93,32 +93,7 @@ HRESULT CMon_Archer::Render()
 
 HRESULT CMon_Archer::Ready_Components()
 {
-	/* For.Com_Collider */
-	CBounding_AABB::BOUNDING_AABB_DESC	BoundingDesc{};
-	
-	BoundingDesc.vExtents = _float3(0.5f, 0.5f, 0.5f);
-	BoundingDesc.vCenter = _float3(0.f, BoundingDesc.vExtents.y, 0.f);  
-	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Collider_AABB"),
-		TEXT("Com_ColliderAABB"), reinterpret_cast<CComponent**>(&m_pColliderCom[COLL_AABB]), &BoundingDesc)))
-		return E_FAIL;
-
-	CBounding_Sphere::BOUNDING_SPHERE_DESC	BoundingSphereDesc{};
-
-	BoundingSphereDesc.fRadius = 0.5f;
-	BoundingSphereDesc.vCenter = _float3(0.f, BoundingSphereDesc.fRadius + 1.f, 0.f);
-
-
-	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Collider_Sphere"),
-		TEXT("Com_Collider_Sphere"), reinterpret_cast<CComponent**>(&m_pColliderCom[COLL_SPHERE]), &BoundingSphereDesc)))
-		return E_FAIL;
-
-
-	CNavigation::NAVIGATION_DESC		NavigationDesc{};
-	NavigationDesc.iCurrentCellIndex = 0;
-
-	/* Com_Navigation */
-	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Navigation"),
-		TEXT("Com_Navigation"), reinterpret_cast<CComponent**>(&m_pNavigationCom), &NavigationDesc)))
+	if (FAILED(__super::Ready_Components()))
 		return E_FAIL;
 
 	/* Com_Shader */

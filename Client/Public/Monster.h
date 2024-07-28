@@ -31,6 +31,9 @@ public:
 	virtual void Late_Update(_float fTimeDelta) override;
 	virtual HRESULT Render() override;
 
+public:
+	HRESULT Ready_Components();
+
 protected:
 	CNavigation* m_pNavigationCom	= { nullptr };
 	CCollider*	m_pColliderCom[COLL_END] = { nullptr , nullptr };
