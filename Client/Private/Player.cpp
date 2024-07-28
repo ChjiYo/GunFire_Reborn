@@ -96,7 +96,7 @@ HRESULT CPlayer::Ready_PartObjects()
     Desc.pParentMatrix = m_pTransformCom->Get_WorldMatrixPtr();
     Desc.pParentState = 0x00000000;
 
-    if (FAILED(__super::Add_PartObject(PART_WEAPON, TEXT("Prototype_GameObject_Weapon_Player_Sniper"), &Desc)))
+    if (FAILED(__super::Add_PartObject(PART_WEAPON, TEXT("Prototype_GameObject_Weapon_Player_Shuriken"), &Desc)))
         return E_FAIL;
 
     return S_OK;

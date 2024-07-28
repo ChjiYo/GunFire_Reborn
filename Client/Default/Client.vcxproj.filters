@@ -205,6 +205,9 @@
     <Filter Include="02.GameObjects\Effect\Deco_Effect\Snow">
       <UniqueIdentifier>{cacac927-36a2-4666-bbb6-f74abe48f82f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObjects\Player\Weapon\Shuriken">
+      <UniqueIdentifier>{8ff33ea0-521e-46ae-87ae-d94cb9286569}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -396,6 +399,9 @@
     <ClInclude Include="..\public\Effect_Deco_Snow.h">
       <Filter>02.GameObjects\Effect\Deco_Effect\Snow</Filter>
     </ClInclude>
+    <ClInclude Include="..\public\Weapon_Player_Shuriken.h">
+      <Filter>02.GameObjects\Player\Weapon\Shuriken</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -571,6 +577,9 @@
     </ClCompile>
     <ClCompile Include="..\private\Effect_Deco_Snow.cpp">
       <Filter>02.GameObjects\Effect\Deco_Effect\Snow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Weapon_Player_Shuriken.cpp">
+      <Filter>02.GameObjects\Player\Weapon\Shuriken</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

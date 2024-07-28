@@ -227,6 +227,7 @@
     <ClInclude Include="..\public\Wall_Stage1.h" />
     <ClInclude Include="..\public\Weapon_Player.h" />
     <ClInclude Include="..\public\Weapon_Player_Pistol.h" />
+    <ClInclude Include="..\public\Weapon_Player_Shuriken.h" />
     <ClInclude Include="..\public\Weapon_Player_Sniper.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="Resource.h" />
@@ -284,6 +285,7 @@
     <ClCompile Include="..\private\Wall_Stage1.cpp" />
     <ClCompile Include="..\private\Weapon_Player.cpp" />
     <ClCompile Include="..\private\Weapon_Player_Pistol.cpp" />
+    <ClCompile Include="..\private\Weapon_Player_Shuriken.cpp" />
     <ClCompile Include="..\private\Weapon_Player_Sniper.cpp" />
     <ClCompile Include="..\Public\Imgui\imgui.cpp" />
     <ClCompile Include="..\Public\Imgui\imgui_demo.cpp" />
