@@ -41,7 +41,7 @@ HRESULT CMon_Archer::Initialize(void* pArg)
 
 void CMon_Archer::Priority_Update(_float fTimeDelta)
 {
-
+	
 }
 
 void CMon_Archer::Update(_float fTimeDelta)
@@ -54,6 +54,7 @@ void CMon_Archer::Update(_float fTimeDelta)
 
 void CMon_Archer::Late_Update(_float fTimeDelta)
 {
+	__super::Late_Update(fTimeDelta);
 	m_pGameInstance->Add_RenderObject(CRenderer::RG_NONBLEND, this);
 }
 
