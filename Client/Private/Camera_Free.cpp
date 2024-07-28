@@ -42,9 +42,15 @@ HRESULT CCamera_Free::Initialize(void * pArg)
 void CCamera_Free::Priority_Update(_float fTimeDelta)
 {
 	if (m_bCameraMode)
+	{
+		m_pTransformCom->Set_Speed(5.f);
 		Position();
+	}
 	else
+	{
+		m_pTransformCom->Set_Speed(10.f);
 		FreeView_Camera(fTimeDelta);
+	}
 
 	__super::Priority_Update(fTimeDelta);
 }

@@ -1,18 +1,24 @@
 #pragma once
 
 #include "Client_Defines.h"
-#include "GameObject.h"
+#include "ContainerObject.h"
 
 BEGIN(Engine)
-class CShader;
-class CBinModel;
+
+class CNavigation;
+class CCollider;
+
 END
 
 BEGIN(Client)
 
-class CMonster final : public CContainerObject
+class CMonster abstract : public CContainerObject
 {
-private:
+public:
+	enum COLLIDERTYPE { COLL_AABB, COLL_SPHERE, COLL_END };
+	enum PARTID { PART_HEAD, PART_EFFECT, PART_END };
+
+protected:
 	CMonster(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	CMonster(const CMonster& Prototype);
 	virtual ~CMonster() = default;
@@ -25,19 +31,11 @@ public:
 	virtual void Late_Update(_float fTimeDelta) override;
 	virtual HRESULT Render() override;
 
-private:
-	CShader*				m_pShaderCom = { nullptr };	
-	CBinModel*				m_pModelCom = { nullptr };
-
-	_float					m_fRandom = {};
-
-private:
-	HRESULT Ready_Components();
-	HRESULT Bind_ShaderResources();
+protected:
+	CNavigation* m_pNavigationCom	= { nullptr };
+	CCollider*	m_pColliderCom[COLL_END] = { nullptr , nullptr };
 
 public:
-	static CMonster* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
-	virtual CGameObject* Clone(void* pArg) override;
 	virtual void Free() override;
 };
 

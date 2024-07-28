@@ -4,13 +4,13 @@
 #include "GameInstance.h"
 
 CMon_Archer::CMon_Archer(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
-	: CGameObject{ pDevice, pContext }
+	: CMonster{ pDevice, pContext }
 {
 
 }
 
 CMon_Archer::CMon_Archer(const CMon_Archer& Prototype)
-	: CGameObject{ Prototype }
+	: CMonster{ Prototype }
 {
 
 }
@@ -22,13 +22,18 @@ HRESULT CMon_Archer::Initialize_Prototype()
 
 HRESULT CMon_Archer::Initialize(void* pArg)
 {
-	if (FAILED(__super::Initialize(pArg)))
+	CContainerObject::CONTAINEROBJECT_DESC		ContainerDesc{};
+	ContainerDesc.fRotationPerSec = XMConvertToRadians(90.0f);
+	ContainerDesc.fSpeedPerSec = 5.f;
+	ContainerDesc.iNumParts = PART_HEAD;
+
+	if (FAILED(__super::Initialize(&ContainerDesc)))
 		return E_FAIL;
 
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
-	m_pModelCom->SetUp_Animation(24, true);
+	m_pModelCom->SetUp_Animation(1, true);
 	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSet(20.f, 1.f, 20.f, 1.f));
 
 	return S_OK;
@@ -42,6 +47,9 @@ void CMon_Archer::Priority_Update(_float fTimeDelta)
 void CMon_Archer::Update(_float fTimeDelta)
 {
 	m_pModelCom->Play_Animation(fTimeDelta);
+
+	for(int i = 0 ; i < COLL_END ; ++i)
+		m_pColliderCom[i]->Update(m_pTransformCom->Get_WorldMatrix());
 }
 
 void CMon_Archer::Late_Update(_float fTimeDelta)
@@ -51,6 +59,11 @@ void CMon_Archer::Late_Update(_float fTimeDelta)
 
 HRESULT CMon_Archer::Render()
 {
+#ifdef _DEBUG
+	for(int i = 0 ; i < COLL_END ; ++i)
+		m_pColliderCom[i]->Render();
+#endif
+
 	if (FAILED(Bind_ShaderResources()))
 		return E_FAIL;
 
@@ -80,6 +93,34 @@ HRESULT CMon_Archer::Render()
 
 HRESULT CMon_Archer::Ready_Components()
 {
+	/* For.Com_Collider */
+	CBounding_AABB::BOUNDING_AABB_DESC	BoundingDesc{};
+	
+	BoundingDesc.vExtents = _float3(0.5f, 0.5f, 0.5f);
+	BoundingDesc.vCenter = _float3(0.f, BoundingDesc.vExtents.y, 0.f);  
+	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Collider_AABB"),
+		TEXT("Com_ColliderAABB"), reinterpret_cast<CComponent**>(&m_pColliderCom[COLL_AABB]), &BoundingDesc)))
+		return E_FAIL;
+
+	CBounding_Sphere::BOUNDING_SPHERE_DESC	BoundingSphereDesc{};
+
+	BoundingSphereDesc.fRadius = 0.5f;
+	BoundingSphereDesc.vCenter = _float3(0.f, BoundingSphereDesc.fRadius + 1.f, 0.f);
+
+
+	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Collider_Sphere"),
+		TEXT("Com_Collider_Sphere"), reinterpret_cast<CComponent**>(&m_pColliderCom[COLL_SPHERE]), &BoundingSphereDesc)))
+		return E_FAIL;
+
+
+	CNavigation::NAVIGATION_DESC		NavigationDesc{};
+	NavigationDesc.iCurrentCellIndex = 0;
+
+	/* Com_Navigation */
+	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Navigation"),
+		TEXT("Com_Navigation"), reinterpret_cast<CComponent**>(&m_pNavigationCom), &NavigationDesc)))
+		return E_FAIL;
+
 	/* Com_Shader */
 	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Shader_VtxAnimMesh"),
 		TEXT("Com_Shader"), reinterpret_cast<CComponent**>(&m_pShaderCom))))
@@ -153,6 +194,10 @@ void CMon_Archer::Free()
 {
 	Safe_Release(m_pShaderCom);
 	Safe_Release(m_pModelCom);
+	Safe_Release(m_pNavigationCom);
+
+	for (size_t i = 0; i < COLL_END; i++)
+		Safe_Release(m_pColliderCom[i]);
 
 	__super::Free();
 }
