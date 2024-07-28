@@ -208,6 +208,9 @@
     <Filter Include="02.GameObjects\Player\Weapon\Shuriken">
       <UniqueIdentifier>{8ff33ea0-521e-46ae-87ae-d94cb9286569}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObjects\Monster\Archer">
+      <UniqueIdentifier>{262534a7-d7bc-4555-9ca0-4e2c30470290}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -402,6 +405,9 @@
     <ClInclude Include="..\public\Weapon_Player_Shuriken.h">
       <Filter>02.GameObjects\Player\Weapon\Shuriken</Filter>
     </ClInclude>
+    <ClInclude Include="..\public\Mon_Archer.h">
+      <Filter>02.GameObjects\Monster\Archer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -580,6 +586,9 @@
     </ClCompile>
     <ClCompile Include="..\private\Weapon_Player_Shuriken.cpp">
       <Filter>02.GameObjects\Player\Weapon\Shuriken</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Mon_Archer.cpp">
+      <Filter>02.GameObjects\Monster\Archer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

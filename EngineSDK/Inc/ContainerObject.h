@@ -27,6 +27,9 @@ public:
 	virtual void Update(_float fTimeDelta);
 	virtual void Late_Update(_float fTimeDelta);
 	virtual HRESULT Render();
+		
+public:
+	vector<class CPartObject*>			Get_Parts() { return  m_Parts; }
 
 protected:
 	_uint								m_iNumParts = {};

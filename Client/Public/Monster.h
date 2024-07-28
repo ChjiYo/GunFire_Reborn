@@ -28,7 +28,7 @@ public:
 
 private:
 	CShader*				m_pShaderCom = { nullptr };	
-	CBinModel* m_pModelCom = { nullptr };
+	CBinModel*				m_pModelCom = { nullptr };
 
 	_float					m_fRandom = {};
 

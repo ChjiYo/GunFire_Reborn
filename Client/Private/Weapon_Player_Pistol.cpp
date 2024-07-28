@@ -138,7 +138,7 @@ HRESULT CWeapon_Player_Pistol::Bind_ShaderResources()
 }
 
 void CWeapon_Player_Pistol::Key_State()
-{
+{   
     if (m_pGameInstance->Key_Down(VK_LBUTTON))
     {
         m_pModelCom->SetUp_Animation(1, false);

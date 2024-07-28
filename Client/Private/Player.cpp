@@ -55,6 +55,7 @@ HRESULT CPlayer::Initialize(void* pArg)
         return E_FAIL;
 
     m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 5.f , 1.3f , 3.f, 1.f });
+    m_eWeaponID = PISTOL;
 
     return S_OK;
 }
@@ -64,11 +65,15 @@ void CPlayer::Priority_Update(_float fTimeDelta)
     if (fTimeDelta == 0.f)
         return;
 
+    Player_Weapon_Change();
+
     __super::Priority_Update(fTimeDelta);
 }
 
 void CPlayer::Update(_float fTimeDelta)
 {
+    //Ready_PartObjects();
+
     m_pColliderCom->Update(m_pTransformCom->Get_WorldMatrix());
     __super::Update(fTimeDelta);
 }
@@ -92,13 +97,13 @@ HRESULT CPlayer::Render()
 
 HRESULT CPlayer::Ready_PartObjects()
 {
-    CWeapon_Player_Pistol::WEAPON_DESC  Desc{};
-    Desc.pParentMatrix = m_pTransformCom->Get_WorldMatrixPtr();
-    Desc.pParentState = 0x00000000;
+        CWeapon_Player_Pistol::WEAPON_DESC  Desc{};
+        Desc.pParentMatrix = m_pTransformCom->Get_WorldMatrixPtr();
+        Desc.pParentState = 0x00000000;
 
-    if (FAILED(__super::Add_PartObject(PART_WEAPON, TEXT("Prototype_GameObject_Weapon_Player_Shuriken"), &Desc)))
-        return E_FAIL;
-
+        if (FAILED(__super::Add_PartObject(PART_WEAPON, TEXT("Prototype_GameObject_Weapon_Player_Pistol"), &Desc)))
+            return E_FAIL;
+    
     return S_OK;
 }
 
@@ -186,7 +191,22 @@ void CPlayer::Player_Move(_float fTimeDelta)
 
         if (m_pGameInstance->Key_Down(VK_LSHIFT))
             m_pTransformCom->Go_BackwardY(fTimeDelta + 0.5f, m_pNavigationCom);
-            
+    }
+
+    if (m_pGameInstance->Key_Down('1'))
+    {
+        m_eWeaponID = SHURIKEN;
+    }
+
+    if (m_pGameInstance->Key_Down('2'))
+    {
+
+    }
+
+    if (m_pGameInstance->Key_Down('3'))
+    {
+        //CWeapon_Player* pWeapon = m_pGameInstance->Clone_GameObject();
+        m_eWeaponID = PISTOL;
     }
 }
 
@@ -206,9 +226,26 @@ void CPlayer::Player_Jump(_float fTimeDelta)
 
 void CPlayer::Player_Weapon_Change()
 {
-    //if(m_pGameInstance->Key_Down('1'))
+    if (m_pGameInstance->Key_Down('E'))
+    {
+        Safe_Release(__super::Get_Parts().front());
+        __super::Get_Parts().clear();
 
-    //if (m_pGameInstance->Key_Down('1'))
+        CWeapon_Player_Pistol::WEAPON_DESC  Desc{};
+        Desc.pParentMatrix = m_pTransformCom->Get_WorldMatrixPtr();
+        Desc.pParentState = 0x00000000;
+
+        switch (m_eWeaponID)
+        {
+        case PISTOL:
+            __super::Add_PartObject(PART_WEAPON, TEXT("Prototype_GameObject_Weapon_Player_Pistol"), &Desc);
+            break;
+
+        case SHURIKEN:
+            __super::Add_PartObject(PART_WEAPON, TEXT("Prototype_GameObject_Weapon_Player_Shuriken"), &Desc);
+            break;
+        }
+    }
 }
 
 CPlayer* CPlayer::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
