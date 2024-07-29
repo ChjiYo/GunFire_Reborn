@@ -13,9 +13,9 @@ protected:
 
 public:
 	virtual HRESULT Initialize();
-	virtual void Priority_Update(_float fTimeDelta);
-	virtual void Update(_float fTimeDelta);
-	virtual void Late_Update(_float fTimeDelta);
+	virtual wstring Priority_Update(_float fTimeDelta);
+	virtual wstring Update(_float fTimeDelta);
+	virtual wstring Late_Update(_float fTimeDelta);
 
 public:
 	const wstring& Get_Name() const { return m_strName; }

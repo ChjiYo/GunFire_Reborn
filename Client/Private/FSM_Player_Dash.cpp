@@ -23,22 +23,27 @@ HRESULT CFSM_Player_Dash::Initialize()
 	return S_OK;
 }
 
-void CFSM_Player_Dash::Priority_Update(_float fTimeDelta)
+wstring CFSM_Player_Dash::Priority_Update(_float fTimeDelta)
 {
 	m_vCurrPos = m_pPlayerTransform->Get_State(CTransform::STATE_POSITION);
+
+	return TEXT("");
 }
 
-void CFSM_Player_Dash::Update(_float fTimeDelta)
+wstring CFSM_Player_Dash::Update(_float fTimeDelta)
 {
 	m_vPrevPos = m_pPlayerTransform->Get_State(CTransform::STATE_POSITION);
 
 	m_vMoveDir =  m_vPrevPos - m_vCurrPos;
 
 	m_vMoveDir = XMVector3Normalize(m_vMoveDir);
+
+	return TEXT("");
 }
 
-void CFSM_Player_Dash::Late_Update(_float fTimeDelta)
+wstring CFSM_Player_Dash::Late_Update(_float fTimeDelta)
 {
+	return TEXT("");
 }
 
 void CFSM_Player_Dash::Enter()

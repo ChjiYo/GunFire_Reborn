@@ -18,16 +18,19 @@ HRESULT CFSM_Monster::Initialize()
 	return S_OK;
 }
 
-void CFSM_Monster::Priority_Update(_float fTimeDelta)
+wstring CFSM_Monster::Priority_Update(_float fTimeDelta)
 {
+	return TEXT("");
 }
 
-void CFSM_Monster::Update(_float fTimeDelta)
+wstring CFSM_Monster::Update(_float fTimeDelta)
 {
+	return TEXT("");
 }
 
-void CFSM_Monster::Late_Update(_float fTimeDelta)
+wstring CFSM_Monster::Late_Update(_float fTimeDelta)
 {
+	return TEXT("");
 }
 
 void CFSM_Monster::Enter()

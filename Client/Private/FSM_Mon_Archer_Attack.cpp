@@ -21,16 +21,19 @@ HRESULT CFSM_Mon_Archer_Attack::Initialize()
 	return S_OK;
 }
 
-void CFSM_Mon_Archer_Attack::Priority_Update(_float fTimeDelta)
+wstring CFSM_Mon_Archer_Attack::Priority_Update(_float fTimeDelta)
 {
+	return TEXT("");
 }
 
-void CFSM_Mon_Archer_Attack::Update(_float fTimeDelta)
+wstring CFSM_Mon_Archer_Attack::Update(_float fTimeDelta)
 {
+	return TEXT("");
 }
 
-void CFSM_Mon_Archer_Attack::Late_Update(_float fTimeDelta)
+wstring CFSM_Mon_Archer_Attack::Late_Update(_float fTimeDelta)
 {
+	return TEXT("");
 }
 
 void CFSM_Mon_Archer_Attack::Enter()

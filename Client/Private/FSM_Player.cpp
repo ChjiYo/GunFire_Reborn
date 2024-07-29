@@ -18,16 +18,19 @@ HRESULT CFSM_Player::Initialize()
 	return S_OK;
 }
 
-void CFSM_Player::Priority_Update(_float fTimeDelta)
+wstring CFSM_Player::Priority_Update(_float fTimeDelta)
 {
+	return TEXT("");
 }
 
-void CFSM_Player::Update(_float fTimeDelta)
+wstring CFSM_Player::Update(_float fTimeDelta)
 {
+	return TEXT("");
 }
 
-void CFSM_Player::Late_Update(_float fTimeDelta)
+wstring CFSM_Player::Late_Update(_float fTimeDelta)
 {
+	return TEXT("");
 }
 
 void CFSM_Player::Enter()

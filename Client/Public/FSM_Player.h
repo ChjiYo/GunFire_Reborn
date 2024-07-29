@@ -20,9 +20,9 @@ protected:
 
 public:
 	virtual HRESULT Initialize();
-	virtual void Priority_Update(_float fTimeDelta);
-	virtual void Update(_float fTimeDelta);
-	virtual void Late_Update(_float fTimeDelta);
+	virtual wstring Priority_Update(_float fTimeDelta);
+	virtual wstring Update(_float fTimeDelta);
+	virtual wstring Late_Update(_float fTimeDelta);
 
 public:
 	virtual void Enter() override;

@@ -184,9 +184,6 @@
     <Filter Include="02.GameObjects\Element\Floor\114">
       <UniqueIdentifier>{8c8a7dd2-4fd0-4bb7-86c9-5d2c8276a7d2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.State_Machine\FSM_Player\FSM_Player_Jump">
-      <UniqueIdentifier>{8771929b-0cd1-45ee-98e8-2c16fd487ca2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="02.GameObjects\Sky">
       <UniqueIdentifier>{9f180b86-7db2-4596-959b-2746586d3363}</UniqueIdentifier>
     </Filter>

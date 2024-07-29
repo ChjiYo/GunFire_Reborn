@@ -21,16 +21,19 @@ HRESULT CFSM_Player_Attack::Initialize()
 	return S_OK;
 }
 
-void CFSM_Player_Attack::Priority_Update(_float fTimeDelta)
+wstring CFSM_Player_Attack::Priority_Update(_float fTimeDelta)
 {
+	return TEXT("");
 }
 
-void CFSM_Player_Attack::Update(_float fTimeDelta)
+wstring CFSM_Player_Attack::Update(_float fTimeDelta)
 {
+	return TEXT("");
 }
 
-void CFSM_Player_Attack::Late_Update(_float fTimeDelta)
+wstring CFSM_Player_Attack::Late_Update(_float fTimeDelta)
 {
+	return TEXT("");
 } 
 
 void CFSM_Player_Attack::Enter()
