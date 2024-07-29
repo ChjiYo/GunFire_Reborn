@@ -37,6 +37,7 @@ public:
 
 protected:
 	FSM_MON_DESC	m_tDesc = {};
+	CTransform* m_pTransform = { nullptr };
 
 public:
 	virtual void Free() override;

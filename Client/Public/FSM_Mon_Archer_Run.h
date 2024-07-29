@@ -21,6 +21,8 @@ public:
 	virtual void Enter() override;
 	virtual void Exit()	 override;
 
+
+
 public:
 	static CFSM_Mon_Archer_Run* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, FSM_MON_DESC tDesc);
 	virtual void Free() override;
