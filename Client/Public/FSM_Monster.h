@@ -6,6 +6,7 @@
 BEGIN(Engine)
 
 class CTransform;
+class CNavigation;
 
 END
 

@@ -34,7 +34,7 @@ wstring CFSM_Mon_Archer_Run::Update(_float fTimeDelta)
 	CPlayer* pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Player")).front());
 	_vector vTargetPos = pPlayer->Get_Transform()->Get_State(CTransform::STATE_POSITION);
 	m_tDesc.pTransform->LookAt(vTargetPos);
-	
+	m_tDesc.pTransform->Go_StraightY(fTimeDelta);
 
 	return TEXT("Monster_Archer_State_Run");
 }
