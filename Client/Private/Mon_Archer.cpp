@@ -128,8 +128,6 @@ HRESULT CMon_Archer::Ready_Components()
 		TEXT("Com_Model"), reinterpret_cast<CComponent**>(&m_pModelCom))))
 		return E_FAIL;
 
-	CState_Machine::STATE_DESC Desc = {};
-
 	/* Com_State */
 	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_State"),
 		TEXT("Com_State"), reinterpret_cast<CComponent**>(&m_pStateCom))))
