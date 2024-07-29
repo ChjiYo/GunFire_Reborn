@@ -94,7 +94,7 @@ HRESULT CState_Machine::Add_State(CFSM_State* pState, const wstring& strStateTag
 		return E_FAIL;
 
 	m_pStates.emplace(strStateTag, pState);
-
+	
 	Safe_AddRef(m_pCurState);
 
 	return S_OK;

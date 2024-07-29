@@ -13,6 +13,13 @@ BEGIN(Client)
 
 class  CFSM_Monster abstract : public CFSM_State
 {
+public:
+	typedef struct
+	{
+		class CTransform* pTransform = { nullptr };
+		class CNavigation* pNavigation = { nullptr };
+	}FSM_MON_DESC;
+
 protected:
 	CFSM_Monster(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	CFSM_Monster(const CFSM_Monster& pPrototype);
@@ -27,6 +34,9 @@ public:
 public:
 	virtual void Enter() override;
 	virtual void Exit()	 override;
+
+protected:
+	FSM_MON_DESC	m_tDesc = {};
 
 public:
 	virtual void Free() override;

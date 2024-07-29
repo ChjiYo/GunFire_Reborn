@@ -16,28 +16,38 @@ CFSM_Mon_Archer_Idle::CFSM_Mon_Archer_Idle(const CFSM_Mon_Archer_Idle& pPrototyp
 {
 }
 
-HRESULT CFSM_Mon_Archer_Idle::Initialize()
+HRESULT CFSM_Mon_Archer_Idle::Initialize(FSM_MON_DESC tDesc)
 {
+	m_tDesc.pTransform = tDesc.pTransform;
+	m_tDesc.pNavigation = tDesc.pNavigation;
+
 	return S_OK;
 }
 
 wstring CFSM_Mon_Archer_Idle::Priority_Update(_float fTimeDelta)
-{
-	CPlayer* pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Player")).front());
-	_vector vPos = pPlayer->Get_Transform()->Get_State(CTransform::STATE_POSITION);
-	
-
-	return TEXT("");
+{	
+	return TEXT("Monster_Archer_State_Idle");
 }
 
 wstring CFSM_Mon_Archer_Idle::Update(_float fTimeDelta)
 {
-	return TEXT("");
+	return TEXT("Monster_Archer_State_Idle");
 }
 
 wstring CFSM_Mon_Archer_Idle::Late_Update(_float fTimeDelta)
 {
-	return TEXT("");
+	CPlayer* pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY,TEXT("Layer_Player")).front());
+	_vector vTargetPos = pPlayer->Get_Transform()->Get_State(CTransform::STATE_POSITION);
+	_vector vPos = m_tDesc.pTransform->Get_State(CTransform::STATE_POSITION);
+
+	_vector vDistance = vTargetPos - vPos;
+	XMVector4Length(vDistance);
+	_float fLength = XMVectorGetX(vDistance);
+
+	if (abs(fLength) < 5.f)
+		return TEXT("Monster_Archer_State_Run");
+
+	return TEXT("Monster_Archer_State_Idle");
 }
 
 void CFSM_Mon_Archer_Idle::Enter()
@@ -51,11 +61,11 @@ void CFSM_Mon_Archer_Idle::Exit()
 {
 }
 
-CFSM_Mon_Archer_Idle* CFSM_Mon_Archer_Idle::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
+CFSM_Mon_Archer_Idle* CFSM_Mon_Archer_Idle::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, FSM_MON_DESC tDesc)
 {
 	CFSM_Mon_Archer_Idle* pInstance = new CFSM_Mon_Archer_Idle(pDevice, pContext);
 
-	if (FAILED(pInstance->Initialize()))
+	if (FAILED(pInstance->Initialize(tDesc)))
 	{
 		MSG_BOX(TEXT("Failed to Created : CFSM_Mon_Archer_Idle "));
 		Safe_Release(pInstance);

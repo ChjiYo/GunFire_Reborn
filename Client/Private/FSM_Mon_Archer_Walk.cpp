@@ -16,7 +16,7 @@ CFSM_Mon_Archer_Walk::CFSM_Mon_Archer_Walk(const CFSM_Mon_Archer_Walk& pPrototyp
 {
 }
 
-HRESULT CFSM_Mon_Archer_Walk::Initialize()
+HRESULT CFSM_Mon_Archer_Walk::Initialize(FSM_MON_DESC tDesc)
 {
 	return S_OK;
 }
@@ -46,11 +46,11 @@ void CFSM_Mon_Archer_Walk::Exit()
 {
 }
 
-CFSM_Mon_Archer_Walk* CFSM_Mon_Archer_Walk::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
+CFSM_Mon_Archer_Walk* CFSM_Mon_Archer_Walk::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, FSM_MON_DESC tDesc)
 {
 	CFSM_Mon_Archer_Walk* pInstance = new CFSM_Mon_Archer_Walk(pDevice, pContext);
 
-	if (FAILED(pInstance->Initialize()))
+	if (FAILED(pInstance->Initialize(tDesc)))
 	{
 		MSG_BOX(TEXT("Failed to Created : CFSM_Mon_Archer_Walk "));
 		Safe_Release(pInstance);
