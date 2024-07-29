@@ -32,6 +32,18 @@ HRESULT CState_Machine::Initialize(void* pArg)
 
 void CState_Machine::Priority_Update(_float fTimeDelta)
 {
+	if (nullptr == m_pCurState)
+		return;
+
+	const wstring& strStateName = m_pCurState->Priority_Update(fTimeDelta);
+
+	if (strStateName != m_pCurState->Get_Name())
+	{
+		Change_State(strStateName);
+		return;
+	}
+
+	return;
 }
 
 void CState_Machine::Update(_float fTimeDelta)
@@ -39,20 +51,31 @@ void CState_Machine::Update(_float fTimeDelta)
 	if (nullptr == m_pCurState)
 		return;
 
-	//const wstring& strStateName = m_pCurState->Update(fTimeDelta);
+	const wstring& strStateName = m_pCurState->Update(fTimeDelta);
 
-	/*if (strStateName != m_pCurState->Get_Name())
+	if (strStateName != m_pCurState->Get_Name())
 	{
 		Change_State(strStateName);
 		return;
-	}*/
+	}
 
 	return;
 }
 
 void CState_Machine::Late_Update(_float fTimeDelta)
 {
+	if (nullptr == m_pCurState)
+		return;
 
+	const wstring& strStateName = m_pCurState->Late_Update(fTimeDelta);
+
+	if (strStateName != m_pCurState->Get_Name())
+	{
+		Change_State(strStateName);
+		return;
+	}
+
+	return;
 }
 
 HRESULT CState_Machine::Set_State(const wstring& strStateTag)

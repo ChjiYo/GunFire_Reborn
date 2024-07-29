@@ -19,16 +19,19 @@ HRESULT CFSM_State::Initialize()
 	return S_OK;
 }
 
-void CFSM_State::Priority_Update(_float fTimeDelta)
+wstring CFSM_State::Priority_Update(_float fTimeDelta)
 {
+	return TEXT("");
 }
 
-void CFSM_State::Update(_float fTimeDelta)
+wstring CFSM_State::Update(_float fTimeDelta)
 {
+	return TEXT("");
 }
 
-void CFSM_State::Late_Update(_float fTimeDelta)
+wstring CFSM_State::Late_Update(_float fTimeDelta)
 {
+	return TEXT("");
 }
 
 

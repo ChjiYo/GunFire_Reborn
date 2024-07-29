@@ -203,7 +203,6 @@ void CPlayer::Player_Move(_float fTimeDelta)
 
     if (m_pGameInstance->Key_Down('3'))
     {
-        //CWeapon_Player* pWeapon = m_pGameInstance->Clone_GameObject();
         m_eWeaponID = PISTOL;
     }
 }
