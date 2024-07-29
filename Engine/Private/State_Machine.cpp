@@ -36,7 +36,18 @@ void CState_Machine::Priority_Update(_float fTimeDelta)
 
 void CState_Machine::Update(_float fTimeDelta)
 {
-	
+	if (nullptr == m_pCurState)
+		return;
+
+	//const wstring& strStateName = m_pCurState->Update(fTimeDelta);
+
+	/*if (strStateName != m_pCurState->Get_Name())
+	{
+		Change_State(strStateName);
+		return;
+	}*/
+
+	return;
 }
 
 void CState_Machine::Late_Update(_float fTimeDelta)

@@ -5,6 +5,7 @@
 
 #include "FSM_Mon_Archer_Idle.h"
 #include "FSM_Mon_Archer_Hit.h"
+#include "FSM_Mon_Archer_Run.h"
 #include "FSM_Mon_Archer_Walk.h"
 #include "FSM_Mon_Archer_Attack.h"
 
@@ -102,8 +103,11 @@ HRESULT CMon_Archer::Render()
 
 HRESULT CMon_Archer::Ready_State()
 {
-	//m_pState->Add_State(CFSM_Player_Attack::Create(m_pDevice, m_pContext), TEXT("Player_State_Attack"));
-	//m_pState->Add_State(CFSM_Player_Dash::Create(m_pDevice, m_pContext), TEXT("Player_State_Dash"));
+	m_pStateCom->Add_State(CFSM_Mon_Archer_Idle::Create(m_pDevice, m_pContext), TEXT("Monster_Archer_State_Idle"));
+	m_pStateCom->Add_State(CFSM_Mon_Archer_Hit::Create(m_pDevice, m_pContext), TEXT("Monster_Archer_State_Hit"));
+	m_pStateCom->Add_State(CFSM_Mon_Archer_Run::Create(m_pDevice, m_pContext), TEXT("Monster_Archer_State_Run"));
+	m_pStateCom->Add_State(CFSM_Mon_Archer_Walk::Create(m_pDevice, m_pContext), TEXT("Monster_Archer_State_Walk"));
+	m_pStateCom->Add_State(CFSM_Mon_Archer_Attack::Create(m_pDevice, m_pContext), TEXT("Monster_Archer_State_Attack"));
 
 	return S_OK;
 }

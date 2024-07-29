@@ -7,12 +7,12 @@
 #include "Player.h"
 
 CFSM_Mon_Archer_Hit::CFSM_Mon_Archer_Hit(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
-	:CFSM_Player{ pDevice , pContext }
+	:CFSM_Monster{ pDevice , pContext }
 {
 }
 
 CFSM_Mon_Archer_Hit::CFSM_Mon_Archer_Hit(const CFSM_Mon_Archer_Hit& pPrototype)
-	:CFSM_Player{ pPrototype }
+	:CFSM_Monster{ pPrototype }
 {
 }
 

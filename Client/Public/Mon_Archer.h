@@ -6,7 +6,7 @@
 BEGIN(Engine)
 class CShader;
 class CBinModel;
-class CFSM_State;
+class CState_Machine;
 END
 
 BEGIN(Client)
@@ -29,7 +29,7 @@ public:
 private:
 	CShader* m_pShaderCom = { nullptr };
 	CBinModel* m_pModelCom = { nullptr };
-	CFSM_State* m_pStateCom = { nullptr };
+	CState_Machine* m_pStateCom = { nullptr };
 	
 
 private:

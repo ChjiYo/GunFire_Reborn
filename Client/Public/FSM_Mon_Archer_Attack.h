@@ -1,10 +1,10 @@
 #pragma once
 
-#include "FSM_Player.h"
+#include "FSM_Monster.h"
 
 BEGIN(Client)
 
-class CFSM_Mon_Archer_Attack final : public CFSM_Player
+class CFSM_Mon_Archer_Attack final : public CFSM_Monster
 {
 private:
 	CFSM_Mon_Archer_Attack(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
