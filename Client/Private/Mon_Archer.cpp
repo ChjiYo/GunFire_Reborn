@@ -3,6 +3,11 @@
 
 #include "GameInstance.h"
 
+#include "FSM_Mon_Archer_Idle.h"
+#include "FSM_Mon_Archer_Hit.h"
+#include "FSM_Mon_Archer_Walk.h"
+#include "FSM_Mon_Archer_Attack.h"
+
 CMon_Archer::CMon_Archer(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	: CMonster{ pDevice, pContext }
 {

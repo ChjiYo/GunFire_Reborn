@@ -190,6 +190,7 @@
     <ClInclude Include="..\public\FSM_Mon_Archer_Attack.h" />
     <ClInclude Include="..\public\FSM_Mon_Archer_Hit.h" />
     <ClInclude Include="..\public\FSM_Mon_Archer_Idle.h" />
+    <ClInclude Include="..\public\FSM_Mon_Archer_Run.h" />
     <ClInclude Include="..\public\FSM_Mon_Archer_Walk.h" />
     <ClInclude Include="..\Public\FSM_Player.h" />
     <ClInclude Include="..\Public\FSM_Player_Attack.h" />
@@ -262,6 +263,7 @@
     <ClCompile Include="..\private\FSM_Mon_Archer_Attack.cpp" />
     <ClCompile Include="..\private\FSM_Mon_Archer_Hit.cpp" />
     <ClCompile Include="..\private\FSM_Mon_Archer_Idle.cpp" />
+    <ClCompile Include="..\private\FSM_Mon_Archer_Run.cpp" />
     <ClCompile Include="..\private\FSM_Mon_Archer_Walk.cpp" />
     <ClCompile Include="..\Private\FSM_Player.cpp" />
     <ClCompile Include="..\Private\FSM_Player_Attack.cpp" />

@@ -229,6 +229,9 @@
     <Filter Include="03.State_Machine\FSM_Monster\Archer\Hit">
       <UniqueIdentifier>{70217aa6-bcf4-43de-8099-ac7a1aef23de}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Archer\Run">
+      <UniqueIdentifier>{7b820549-2c38-4ec8-864f-0497ae5d267f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -441,6 +444,9 @@
     <ClInclude Include="..\public\FSM_Mon_Archer_Walk.h">
       <Filter>03.State_Machine\FSM_Monster\Archer\Walk</Filter>
     </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Archer_Run.h">
+      <Filter>03.State_Machine\FSM_Monster\Archer\Run</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -637,6 +643,9 @@
     </ClCompile>
     <ClCompile Include="..\private\FSM_Mon_Archer_Walk.cpp">
       <Filter>03.State_Machine\FSM_Monster\Archer\Walk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Archer_Run.cpp">
+      <Filter>03.State_Machine\FSM_Monster\Archer\Run</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
