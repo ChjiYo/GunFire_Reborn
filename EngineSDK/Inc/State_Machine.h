@@ -7,6 +7,13 @@ BEGIN(Engine)
 
 class ENGINE_DLL CState_Machine final : public CComponent
 {
+public:
+	typedef struct
+	{
+		class CTransform* pTransform = { nullptr };
+		class CNavigation* pNavigation = { nullptr };
+	}STATE_DESC;
+
 private:
 	CState_Machine(ID3D11Device* pDevice , ID3D11DeviceContext* pContext);
 	CState_Machine(const CState_Machine& Prototype );

@@ -87,15 +87,10 @@ HRESULT CMon_Archer::Render()
 
 	for (size_t i = 0; i < iNumMeshes; i++)
 	{
-		/* 모델이 가지고 있는 머테리얼 중 i번째 메시가 사용해야하는 머테리얼구조체의 aiTextureType_DIFFUSE번째 텍스쳐를 */
-		/* m_pShaderCom에 있는 g_DiffuseTexture변수에 던져. */
 		if (FAILED(m_pModelCom->Bind_MaterialSRV(m_pShaderCom, aiTextureType_DIFFUSE, "g_DiffuseTexture", i)))
 			return E_FAIL;
-		// m_pModelCom->Bind_MaterialSRV(m_pShaderCom, aiTextureType_NORMALS, "g_NormalTexture", i);
 
-		/* 모델이 가지고 있는 뼈들 중에서 현재 렌더링할려고 했던 i번째ㅑ 메시가 사용하는 뼈들을 배열로 만들어서 쉐이더로 던져준다.  */
 		m_pModelCom->Bind_BoneMatrices(m_pShaderCom, "g_BoneMatrices", i);
-
 
 		if (FAILED(m_pShaderCom->Begin(0)))
 			return E_FAIL;
@@ -132,6 +127,8 @@ HRESULT CMon_Archer::Ready_Components()
 	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Monster_Archer"),
 		TEXT("Com_Model"), reinterpret_cast<CComponent**>(&m_pModelCom))))
 		return E_FAIL;
+
+	CState_Machine::STATE_DESC Desc = {};
 
 	/* Com_State */
 	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_State"),
@@ -200,6 +197,7 @@ CGameObject* CMon_Archer::Clone(void* pArg)
 void CMon_Archer::Free()
 {
 	Safe_Release(m_pShaderCom);
+	Safe_Release(m_pStateCom);
 	Safe_Release(m_pModelCom);
 	Safe_Release(m_pNavigationCom);
 
