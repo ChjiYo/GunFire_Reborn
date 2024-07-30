@@ -19,6 +19,7 @@ public:
 	{
 		class CTransform* pTransform = { nullptr };
 		class CNavigation* pNavigation = { nullptr };
+		class CBinModel* pModel = { nullptr };
 	}FSM_MON_DESC;
 
 protected:

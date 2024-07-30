@@ -52,25 +52,36 @@ HRESULT CMon_Archer::Initialize(void* pArg)
 
 void CMon_Archer::Priority_Update(_float fTimeDelta)
 {
-	m_pStateCom->Priority_Update(fTimeDelta);
+	//m_pStateCom->Priority_Update(fTimeDelta);
 }
 
 void CMon_Archer::Update(_float fTimeDelta)
 {
-	m_pModelCom->Play_Animation(fTimeDelta);
+	
 
 	for(int i = 0 ; i < COLL_END ; ++i)
 		m_pColliderCom[i]->Update(m_pTransformCom->Get_WorldMatrix());
 
-	m_pStateCom->Update(fTimeDelta);
+	if (m_pGameInstance->Key_Down('N'))
+	{
+		m_iAnimFrame--;
+		m_pModelCom->SetUp_Animation(m_iAnimFrame, false);
+	}
+	if (m_pGameInstance->Key_Down('M'))
+	{
+		m_iAnimFrame++;
+		m_pModelCom->SetUp_Animation(m_iAnimFrame, false);
+	}
+	//m_pStateCom->Update(fTimeDelta);
 }
 
 void CMon_Archer::Late_Update(_float fTimeDelta)
 {
 	__super::Late_Update(fTimeDelta);
+	m_pModelCom->Play_Animation(fTimeDelta);
 	m_pGameInstance->Add_RenderObject(CRenderer::RG_NONBLEND, this);
 
-	m_pStateCom->Late_Update(fTimeDelta);
+	//m_pStateCom->Late_Update(fTimeDelta);
 }
 
 HRESULT CMon_Archer::Render()
@@ -99,6 +110,9 @@ HRESULT CMon_Archer::Render()
 			return E_FAIL;
 	}
 
+	wstring m_strMaxHp = to_wstring(m_iAnimFrame);
+	m_pGameInstance->Draw_Font(TEXT("Font_Nexon"), m_strMaxHp, _float2(1200.f, 100.f), XMVectorSet(0.7f, 1.f, 0.3f, 1.f), XMConvertToRadians(-5.f), 0.8f);
+
 	return S_OK;
 }
 
@@ -107,6 +121,7 @@ HRESULT CMon_Archer::Ready_State()
 	CFSM_Monster::FSM_MON_DESC Desc = {};
 	Desc.pTransform = m_pTransformCom;
 	Desc.pNavigation = m_pNavigationCom;
+	Desc.pModel = m_pModelCom;
 
 	m_pStateCom->Add_State(CFSM_Mon_Archer_Idle::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Archer_State_Idle"));
 	m_pStateCom->Add_State(CFSM_Mon_Archer_Hit::Create(m_pDevice, m_pContext), TEXT("Monster_Archer_State_Hit"));

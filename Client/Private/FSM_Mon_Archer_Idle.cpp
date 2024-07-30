@@ -20,6 +20,7 @@ HRESULT CFSM_Mon_Archer_Idle::Initialize(FSM_MON_DESC tDesc)
 {
 	m_tDesc.pTransform = tDesc.pTransform;
 	m_tDesc.pNavigation = tDesc.pNavigation;
+	m_tDesc.pModel = tDesc.pModel;
 
 	return S_OK;
 }

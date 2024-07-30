@@ -129,7 +129,7 @@ void CBinModel::SetUp_Animation(_uint iAnimationIndex, _bool isLoop)
 	if (iAnimationIndex >= m_iNumAnimations)
 		return;
 
-	for (int i = 0; i < m_iNumAnimations; ++i)
+	for (int i = 0; i < m_KeyFrameIndices[iAnimationIndex].size(); ++i)
 		m_KeyFrameIndices[iAnimationIndex][i] = 0;
 
 	m_fCurrentAnimPosition = 0.f;

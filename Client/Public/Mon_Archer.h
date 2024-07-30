@@ -31,6 +31,8 @@ private:
 	CBinModel* m_pModelCom = { nullptr };
 	CState_Machine* m_pStateCom = { nullptr };
 	
+private:
+	_uint m_iAnimFrame = { 0 };
 
 private:
 	HRESULT Ready_State();
