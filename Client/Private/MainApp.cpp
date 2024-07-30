@@ -43,6 +43,9 @@ HRESULT CMainApp::Initialize()
 	if (FAILED(Open_Level(LEVEL_LOGO)))
 		return E_FAIL;	
 
+	if (FAILED(m_pGameInstance->Add_Font(m_pDevice, m_pContext,TEXT("Font_Nexon"), TEXT("../Bin/Resources/Fonts/144ex.spriteFont"))))
+		return E_FAIL;
+
 	m_pTool_Manager = CTool_Manager::Create(m_pDevice, m_pContext);
 
 	return S_OK;
@@ -117,7 +120,7 @@ HRESULT CMainApp::Ready_Prototoype_Resource_ForStatic()
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Player_BarPanel"),
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Bar/UI_Player_Panel.png")))))
 		return E_FAIL;
-
+	  
 	/* For.Prototype_Component_Player_Icon */
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Player_Icon"),
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Bar/UI_Player_Icon.png")))))

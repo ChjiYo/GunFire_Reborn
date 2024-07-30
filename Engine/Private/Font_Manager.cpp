@@ -9,7 +9,7 @@ CFont_Manager::CFont_Manager(ID3D11Device * pDevice, ID3D11DeviceContext * pCont
 	Safe_AddRef(m_pContext);
 }
 
-HRESULT CFont_Manager::Add_Font(const _wstring& strFontTag, const _wstring & strFontFilePath)
+HRESULT CFont_Manager::Add_Font(ID3D11Device* pDevice, ID3D11DeviceContext* pContext,const _wstring& strFontTag, const _wstring & strFontFilePath)
 {
 	if (nullptr != Find_Font(strFontTag))
 		return E_FAIL;

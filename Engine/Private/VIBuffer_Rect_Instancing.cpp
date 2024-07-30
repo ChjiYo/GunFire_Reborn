@@ -10,15 +10,17 @@ CVIBuffer_Rect_Instancing::CVIBuffer_Rect_Instancing(const CVIBuffer_Rect_Instan
 {
 }
 
-HRESULT CVIBuffer_Rect_Instancing::Initialize_Prototype(_uint iNumInstance)
+HRESULT CVIBuffer_Rect_Instancing::Initialize_Prototype(const CVIBuffer_Instancing::VIBUFFER_INSTANCE_DESC* pInitialDesc)
 {
-	m_iNumInstance = iNumInstance;
+	if (FAILED(__super::Initialize_Prototype(pInitialDesc)))
+		return E_FAIL;
+
 	m_iNumVertexBuffers = 2;
 	m_iNumVertices = 4;
 	m_iVertexStride = sizeof(VTXPOSTEX);
 	m_iInstanceVertexStride = sizeof(VTXINSTANCE);
 	m_iNumIndexPerInstance = 6;
-	m_iNumIndices = m_iNumIndexPerInstance * iNumInstance;
+	m_iNumIndices = m_iNumIndexPerInstance * m_iNumInstance;
 	m_iIndexStride = 2;
 	m_eIndexFormat = DXGI_FORMAT_R16_UINT;
 	m_ePrimitive_Topology = D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
@@ -95,31 +97,21 @@ HRESULT CVIBuffer_Rect_Instancing::Initialize_Prototype(_uint iNumInstance)
 
 
 #pragma region INSTANCE_BUFFER
-	m_BufferDesc.ByteWidth = m_iNumInstance * m_iInstanceVertexStride;
-	m_BufferDesc.Usage = D3D11_USAGE_DEFAULT; /* 정적할당한다. 추후 우리가 직접 정점버퍼의 공간을 변경할 일이 없다. */
-	m_BufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-	m_BufferDesc.CPUAccessFlags = 0;
-	m_BufferDesc.MiscFlags = 0;
-	m_BufferDesc.StructureByteStride = m_iInstanceVertexStride;
 
-	VTXINSTANCE* pVertexMatrices = new VTXINSTANCE[m_iNumInstance];
-	ZeroMemory(pVertexMatrices, sizeof(VTXINSTANCE) * m_iNumInstance);
+	m_pInstanceVertices = new VTXINSTANCE[m_iNumInstance];
+	ZeroMemory(m_pInstanceVertices, sizeof(VTXINSTANCE) * m_iNumInstance);
 
 	for (size_t i = 0; i < m_iNumInstance; i++)
 	{
-		pVertexMatrices[i].vRight = _float4(1.f, 0.f, 0.f, 0.f);
-		pVertexMatrices[i].vUp = _float4(0.f, 1.f, 0.f, 0.f);
-		pVertexMatrices[i].vLook = _float4(0.f, 0.f, 1.f, 0.f);
-		pVertexMatrices[i].vTranslation = _float4(Get_Random(0.0f, 10.f), Get_Random(0.0f, 10.f), Get_Random(0.0f, 10.f), 1.f);
+		m_pInstanceVertices[i].vRight = _float4(1.f, 0.f, 0.f, 0.f);
+		m_pInstanceVertices[i].vUp = _float4(0.f, 1.f, 0.f, 0.f);
+		m_pInstanceVertices[i].vLook = _float4(0.f, 0.f, 1.f, 0.f);
+		m_pInstanceVertices[i].vTranslation = _float4(
+			Get_Random(pInitialDesc->vCenter.x - pInitialDesc->vRange.x * 0.5f, pInitialDesc->vCenter.x + pInitialDesc->vRange.x * 0.5f),
+			Get_Random(pInitialDesc->vCenter.y - pInitialDesc->vRange.y * 0.5f, pInitialDesc->vCenter.y + pInitialDesc->vRange.y * 0.5f),
+			Get_Random(pInitialDesc->vCenter.z - pInitialDesc->vRange.z * 0.5f, pInitialDesc->vCenter.z + pInitialDesc->vRange.z * 0.5f),
+			1.f);
 	}
-
-	ZeroMemory(&m_InitialData, sizeof m_InitialData);
-	m_InitialData.pSysMem = pVertexMatrices;
-
-	if (FAILED(__super::Create_Buffer(&m_pVBInstance)))
-		return E_FAIL;
-
-	Safe_Delete_Array(pVertexMatrices);
 
 #pragma endregion
 
@@ -129,14 +121,17 @@ HRESULT CVIBuffer_Rect_Instancing::Initialize_Prototype(_uint iNumInstance)
 
 HRESULT CVIBuffer_Rect_Instancing::Initialize(void* pArg)
 {
+	if (FAILED(Create_InstanceBuffer()))
+		return E_FAIL;
+
 	return S_OK;
 }
 
-CVIBuffer_Rect_Instancing* CVIBuffer_Rect_Instancing::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, _uint iNumInstance)
+CVIBuffer_Rect_Instancing* CVIBuffer_Rect_Instancing::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, const CVIBuffer_Instancing::VIBUFFER_INSTANCE_DESC* pInitialDesc)
 {
 	CVIBuffer_Rect_Instancing* pInstance = new CVIBuffer_Rect_Instancing(pDevice, pContext);
 
-	if (FAILED(pInstance->Initialize_Prototype(iNumInstance)))
+	if (FAILED(pInstance->Initialize_Prototype(pInitialDesc)))
 	{
 		MSG_BOX(TEXT("Failed to Created : CVIBuffer_Rect_Instancing"));
 		Safe_Release(pInstance);

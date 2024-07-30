@@ -37,6 +37,7 @@ void CEffect_Deco_Snow::Priority_Update(_float fTimeDelta)
 
 void CEffect_Deco_Snow::Update(_float fTimeDelta)
 {
+	m_pVIBufferCom->Spread(fTimeDelta);
 }
 
 void CEffect_Deco_Snow::Late_Update(_float fTimeDelta)

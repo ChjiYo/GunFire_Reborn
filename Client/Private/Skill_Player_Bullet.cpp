@@ -51,6 +51,8 @@ void CSkill_Player_Bullet::Priority_Update(_float fTimeDelta)
 
 void CSkill_Player_Bullet::Update(_float fTimeDelta)
 {
+    m_pColliderCom->Update(m_pTransformCom->Get_WorldMatrix());
+
    _vector	vPosition = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
     vPosition += m_vLook * 5.f * fTimeDelta;
    
@@ -66,6 +68,10 @@ void CSkill_Player_Bullet::Late_Update(_float fTimeDelta)
 
 HRESULT CSkill_Player_Bullet::Render()
 {
+#ifdef _DEBUG
+        m_pColliderCom->Render();
+#endif
+
     if(FAILED(Bind_ShaderResources()))
         return E_FAIL;
 
@@ -97,6 +103,15 @@ HRESULT CSkill_Player_Bullet::Ready_Components()
     /* For.Com_VIBuffer */
     if (FAILED(__super::Add_Component(LEVEL_STATIC, TEXT("Prototype_Component_VIBuffer_Rect"),
         TEXT("Com_VIBuffer"), reinterpret_cast<CComponent**>(&m_pVIBufferCom))))
+        return E_FAIL;
+
+    /* For.Com_Collider */
+    CBounding_AABB::BOUNDING_AABB_DESC	BoundingDesc{};
+
+    BoundingDesc.vExtents = _float3(0.25f, 0.25f, 0.25f);
+    BoundingDesc.vCenter = _float3(0.f, BoundingDesc.vExtents.y - 0.25f, 0.f);
+    if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Collider_AABB"),
+        TEXT("Com_ColliderAABB"), reinterpret_cast<CComponent**>(&m_pColliderCom), &BoundingDesc)))
         return E_FAIL;
 
     return S_OK;
@@ -160,6 +175,7 @@ void CSkill_Player_Bullet::Free()
     Safe_Release(m_pShaderCom);
     Safe_Release(m_pVIBufferCom);
     Safe_Release(m_pTextureCom);
+    Safe_Release(m_pColliderCom);
 
 	__super::Free();
 }

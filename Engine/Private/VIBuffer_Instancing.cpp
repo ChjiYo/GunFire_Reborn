@@ -11,12 +11,27 @@ CVIBuffer_Instancing::CVIBuffer_Instancing(const CVIBuffer_Instancing& Prototype
 	, m_iNumInstance{ Prototype.m_iNumInstance }
 	, m_iInstanceVertexStride{ Prototype.m_iInstanceVertexStride }
 	, m_iNumIndexPerInstance{ Prototype.m_iNumIndexPerInstance }
+	, m_pInstanceVertices{ Prototype.m_pInstanceVertices }
+	, m_pSpeeds{ Prototype.m_pSpeeds }
+	, m_vPivotPos{ Prototype.m_vPivotPos }
 {
 	Safe_AddRef(m_pVBInstance);
 }
 
-HRESULT CVIBuffer_Instancing::Initialize_Prototype()
+HRESULT CVIBuffer_Instancing::Initialize_Prototype(const VIBUFFER_INSTANCE_DESC* pInitialDesc)
 {
+	m_iNumInstance = pInitialDesc->iNumInstance;
+
+	m_pSpeeds = new _float[m_iNumInstance];
+
+	m_vPivotPos = pInitialDesc->vPivot;
+
+	/* 인게임내에서 스피드가 바뀌지 않도록 파티클 원형객체를 생성할때 각 입자별 스피드를 계산하여 저장해둔다. */
+	for (size_t i = 0; i < m_iNumInstance; i++)
+	{
+		m_pSpeeds[i] = Get_Random(pInitialDesc->vSpeed.x, pInitialDesc->vSpeed.y);
+	}
+
 	return S_OK;
 }
 
@@ -57,6 +72,45 @@ HRESULT CVIBuffer_Instancing::Render()
 	return S_OK;
 }
 
+void CVIBuffer_Instancing::Spread(_float fTimeDelta)
+{
+	D3D11_MAPPED_SUBRESOURCE		MappedSubResource{};
+
+	m_pContext->Map(m_pVBInstance, 0, D3D11_MAP_WRITE_NO_OVERWRITE, 0, &MappedSubResource);
+
+	VTXINSTANCE* pMatrices = static_cast<VTXINSTANCE*>(MappedSubResource.pData);
+
+	for (size_t i = 0; i < m_iNumInstance; i++)
+	{
+		_vector		vMoveDir = XMVector3Normalize(XMLoadFloat4(&m_pInstanceVertices[i].vTranslation) - XMVectorSetW(XMLoadFloat3(&m_vPivotPos), 1.f));
+
+		XMStoreFloat4(&pMatrices[i].vTranslation,
+			XMLoadFloat4(&pMatrices[i].vTranslation) + vMoveDir * m_pSpeeds[i] * fTimeDelta);
+	}
+
+	m_pContext->Unmap(m_pVBInstance, 0);
+}
+
+
+HRESULT CVIBuffer_Instancing::Create_InstanceBuffer()
+{
+	ZeroMemory(&m_BufferDesc, sizeof(m_BufferDesc));
+
+	m_BufferDesc.ByteWidth = m_iNumInstance * m_iInstanceVertexStride;
+	m_BufferDesc.Usage = D3D11_USAGE_DYNAMIC;
+	m_BufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+	m_BufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+	m_BufferDesc.MiscFlags = 0;
+	m_BufferDesc.StructureByteStride = m_iInstanceVertexStride;
+
+	ZeroMemory(&m_InitialData, sizeof m_InitialData);
+	m_InitialData.pSysMem = m_pInstanceVertices;
+
+	if (FAILED(__super::Create_Buffer(&m_pVBInstance)))
+		return E_FAIL;
+
+	return S_OK;
+}
 
 _float CVIBuffer_Instancing::Get_RandomNormalize()
 {
@@ -74,4 +128,10 @@ void CVIBuffer_Instancing::Free()
 
 	Safe_Release(m_pVBInstance);
 
+	if (false == m_isCloned)
+	{
+		Safe_Delete_Array(m_pInstanceVertices);
+		Safe_Delete_Array(m_pSpeeds);
+
+	}
 }

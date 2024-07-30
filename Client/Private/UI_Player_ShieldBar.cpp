@@ -86,7 +86,7 @@ HRESULT CUI_Player_ShieldBar::Render()
 	if (FAILED(m_pVIBufferCom->Render()))
 		return E_FAIL;
 
-	m_pGameInstance->Render_Font(TEXT("Font_Default"), m_strShield + TEXT(" / ") + m_strMaxShield, _float2(400.f, 565.f), XMVectorSet(0.1f, 0.9f, 1.f, 1.f), XMConvertToRadians(-5.f), 0.8f);
+	m_pGameInstance->Draw_Font(TEXT("Font_Nexon"), m_strShield + TEXT(" / ") + m_strMaxShield, _float2(400.f, 565.f), XMVectorSet(0.1f, 0.9f, 1.f, 1.f), XMConvertToRadians(-5.f), 0.8f);
 	
 	return S_OK;
 }

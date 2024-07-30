@@ -399,8 +399,15 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 		return E_FAIL;
 
 	/* For.Prototype_Component_VIBuffer_Rect_Instancing */
+	CVIBuffer_Instancing::VIBUFFER_INSTANCE_DESC	ParticleDesc{};
+	ParticleDesc.iNumInstance = 1000;
+	ParticleDesc.vRange = _float3(1.0f, 1.f, 1.f);
+	ParticleDesc.vCenter = _float3(0.f, 0.f, 0.f);
+	ParticleDesc.vPivot = _float3(0.f, -1.5f, 0.f);
+	ParticleDesc.vSpeed = _float2(1.f, 2.f);
+
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_VIBuffer_Rect_Instancing"),
-		CVIBuffer_Rect_Instancing::Create(m_pDevice, m_pContext, 20))))
+		CVIBuffer_Rect_Instancing::Create(m_pDevice, m_pContext, &ParticleDesc))))
 		return E_FAIL;
 
 	/* 쉐이더를 로드한다. */

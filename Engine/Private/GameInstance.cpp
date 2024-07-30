@@ -317,12 +317,12 @@ void CGameInstance::Set_Transform(CPipeLine::D3DTRANSFORMSTATE eState, _fmatrix 
 	m_pPipeLine->Set_Transform(eState, TransformMatrix);
 }
 
-HRESULT CGameInstance::Add_Font(const _wstring& strFontTag, const _wstring& strFontFilePath)
+HRESULT CGameInstance::Add_Font(ID3D11Device* pDevice, ID3D11DeviceContext* pContext,const _wstring& strFontTag, const _wstring& strFontFilePath)
 {
-	return m_pFont_Manager->Add_Font(strFontTag, strFontFilePath);
+	return m_pFont_Manager->Add_Font( pDevice, pContext , strFontTag, strFontFilePath);
 }
 
-HRESULT CGameInstance::Render_Font(const _wstring& strFontTag, const _wstring& strText, const _float2& vPosition, _fvector vColor, _float fRotation, _float fScale)
+HRESULT CGameInstance::Draw_Font(const _wstring& strFontTag, const _wstring& strText, const _float2& vPosition, _fvector vColor, _float fRotation, _float fScale)
 {
 	return m_pFont_Manager->Render(strFontTag, strText, vPosition, vColor, fRotation, fScale);
 }

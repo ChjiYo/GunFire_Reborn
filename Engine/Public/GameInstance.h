@@ -71,8 +71,8 @@ public: /* For.PipeLine */
 	void Set_Transform(CPipeLine::D3DTRANSFORMSTATE eState, _fmatrix TransformMatrix);
 
 public: /* For.Font_Manager */
-	HRESULT Add_Font(const _wstring& strFontTag, const _wstring& strFontFilePath);
-	HRESULT Render_Font(const _wstring& strFontTag, const _wstring& strText, const _float2& vPosition, _fvector vColor = XMVectorSet(0.f, 0.f, 0.f, 1.f), _float fRotation = 0.f, _float fScale = 1.f);
+	HRESULT Add_Font(ID3D11Device* pDevice,ID3D11DeviceContext* pContext,const _wstring& strFontTag, const _wstring& strFontFilePath);
+	HRESULT Draw_Font(const _wstring& strFontTag, const _wstring& strText, const _float2& vPosition, _fvector vColor = XMVectorSet(0.f, 0.f, 0.f, 1.f), _float fRotation = 0.f, _float fScale = 1.f);
 
 public: /* For.Picking */
 	void Transform_ToLocalSpace(const _matrix* pWorldMatrix);

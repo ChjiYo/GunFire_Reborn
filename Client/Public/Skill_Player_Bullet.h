@@ -6,6 +6,7 @@ BEGIN(Engine)
 class CShader;
 class CTexture;
 class CVIBuffer_Rect;
+class CCollider;
 END
 
 class CSkill_Player_Bullet final :public CSkill_Player
@@ -34,6 +35,7 @@ private:
 	CShader* m_pShaderCom = { nullptr };
 	CTexture* m_pTextureCom = { nullptr };
 	CVIBuffer_Rect* m_pVIBufferCom = { nullptr };
+	CCollider* m_pColliderCom = { nullptr };
 
 private:
 	_vector m_vLook = {};

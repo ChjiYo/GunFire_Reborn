@@ -11,7 +11,7 @@ private:
 	virtual ~CFont_Manager() = default;
 
 public:
-	HRESULT Add_Font(const _wstring& strFontTag, const _wstring& strFontFilePath);
+	HRESULT Add_Font(ID3D11Device* pDevice, ID3D11DeviceContext* pContext , const _wstring& strFontTag, const _wstring& strFontFilePath);
 	HRESULT Render(const _wstring& strFontTag, const _wstring& strText, const _float2 & vPosition, _fvector vColor = XMVectorSet(0.f, 0.f, 0.f, 1.f), _float rotation = 0.f, _float fScale = 1.f);
 private:
 	ID3D11Device*						m_pDevice = { nullptr };
