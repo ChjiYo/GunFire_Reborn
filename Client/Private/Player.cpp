@@ -24,7 +24,7 @@ HRESULT CPlayer::Initialize_Prototype()
 {
     if (FAILED(__super::Initialize_Prototype()))
         return E_FAIL;
-
+    
     return S_OK;
 }
 
@@ -95,12 +95,12 @@ HRESULT CPlayer::Render()
 
 HRESULT CPlayer::Ready_PartObjects()
 {
-        CWeapon_Player_Pistol::WEAPON_DESC  Desc{};
-        Desc.pParentMatrix = m_pTransformCom->Get_WorldMatrixPtr();
-        Desc.pParentState = 0x00000000;
+   CWeapon_Player_Pistol::WEAPON_DESC  Desc{};
+   Desc.pParentMatrix = m_pTransformCom->Get_WorldMatrixPtr();
+   Desc.pParentState = 0x00000000;
 
-        if (FAILED(__super::Add_PartObject(PART_WEAPON, TEXT("Prototype_GameObject_Weapon_Player_Pistol"), &Desc)))
-            return E_FAIL;
+   if (FAILED(__super::Add_PartObject(PART_WEAPON, TEXT("Prototype_GameObject_Weapon_Player_Pistol"), &Desc)))
+       return E_FAIL;
     
     return S_OK;
 }

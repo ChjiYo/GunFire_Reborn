@@ -20,7 +20,8 @@ HRESULT CFSM_Mon_Archer_Run::Initialize(FSM_MON_DESC tDesc)
 {
 	m_tDesc.pTransform =  tDesc.pTransform;
 	m_tDesc.pNavigation = tDesc.pNavigation;
-	
+	m_tDesc.pModel = tDesc.pModel;
+
 	return S_OK;
 }
 
@@ -64,6 +65,7 @@ void CFSM_Mon_Archer_Run::Enter()
 	__super::Enter();
 
 	m_strName = TEXT("Monster_Archer_State_Run");
+	m_tDesc.pModel->SetUp_Animation(12, true);
 }
 
 void CFSM_Mon_Archer_Run::Exit()

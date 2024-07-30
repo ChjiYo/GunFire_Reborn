@@ -56,6 +56,7 @@ void CFSM_Mon_Archer_Idle::Enter()
 	__super::Enter();
 
 	m_strName = TEXT("Monster_Archer_State_Idle");
+	m_tDesc.pModel->SetUp_Animation(0, true);
 }
 
 void CFSM_Mon_Archer_Idle::Exit()

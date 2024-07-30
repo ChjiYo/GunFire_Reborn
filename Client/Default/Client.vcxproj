@@ -215,7 +215,8 @@
     </ClInclude>
     <ClInclude Include="..\Public\Skill.h" />
     <ClInclude Include="..\Public\Skill_Player.h" />
-    <ClInclude Include="..\Public\Skill_Player_Bullet.h" />
+    <ClInclude Include="..\Public\Skill_Pistol_Bullet.h" />
+    <ClInclude Include="..\public\Skill_Shuriken_Bullet.h" />
     <ClInclude Include="..\public\Sky.h" />
     <ClInclude Include="..\Public\Terrain.h" />
     <ClInclude Include="..\Public\Tool.h" />
@@ -280,7 +281,8 @@
     </ClCompile>
     <ClCompile Include="..\Private\Skill.cpp" />
     <ClCompile Include="..\Private\Skill_Player.cpp" />
-    <ClCompile Include="..\Private\Skill_Player_Bullet.cpp" />
+    <ClCompile Include="..\Private\Skill_Pistol_Bullet.cpp" />
+    <ClCompile Include="..\private\Skill_Shuriken_Bullet.cpp" />
     <ClCompile Include="..\private\Sky.cpp" />
     <ClCompile Include="..\Private\Terrain.cpp" />
     <ClCompile Include="..\Private\Tool.cpp" />

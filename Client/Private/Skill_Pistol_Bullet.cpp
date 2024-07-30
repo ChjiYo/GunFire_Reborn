@@ -1,19 +1,19 @@
 #include "stdafx.h"
 
-#include "Skill_Player_Bullet.h"
+#include "Skill_Pistol_Bullet.h"
 #include "GameInstance.h"   
 
-CSkill_Player_Bullet::CSkill_Player_Bullet(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
+CSkill_Pistol_Bullet::CSkill_Pistol_Bullet(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
     :CSkill_Player { pDevice , pContext }
 {
 }
 
-CSkill_Player_Bullet::CSkill_Player_Bullet(const CSkill& Prototype)
+CSkill_Pistol_Bullet::CSkill_Pistol_Bullet(const CSkill& Prototype)
     :CSkill_Player{ Prototype }
 {
 }
 
-HRESULT CSkill_Player_Bullet::Initialize_Prototype()
+HRESULT CSkill_Pistol_Bullet::Initialize_Prototype()
 {
     if(FAILED(__super::Initialize_Prototype()))
         return E_FAIL;
@@ -21,7 +21,7 @@ HRESULT CSkill_Player_Bullet::Initialize_Prototype()
 	return S_OK;
 }
 
-HRESULT CSkill_Player_Bullet::Initialize(void* pArg)
+HRESULT CSkill_Pistol_Bullet::Initialize(void* pArg)
 {
     if (FAILED(__super::Initialize(pArg)))
         return E_FAIL;
@@ -31,12 +31,25 @@ HRESULT CSkill_Player_Bullet::Initialize(void* pArg)
 
     SKILL_DESC* Desc = static_cast<SKILL_DESC*>(pArg);
     m_pTargetTransform = Desc->pTargetTransform;
+    m_iTextureIndex = Desc->iTextureIndex;
 
     Safe_AddRef(m_pTargetTransform);
 
     m_pTransformCom->Set_State(CTransform::STATE_POSITION, m_pTargetTransform->Get_State(CTransform::STATE_POSITION));
-    m_pTransformCom->Radian_Turn({0.f, 1.f, 0.f} , XMConvertToRadians(m_pTargetTransform->Look_Degree() + 80.f));
-    m_vLook = m_pTargetTransform->Get_State(CTransform::STATE_LOOK);
+    //m_pTransformCom->Radian_Turn({0.f, 1.f, 0.f} , XMConvertToRadians(m_pTargetTransform->Look_Degree() + 270.f));
+
+    m_vTargetLook = m_pTargetTransform->Get_State(CTransform::STATE_LOOK);
+
+    _vector vTargetUp = m_pTargetTransform->Get_State(CTransform::STATE_UP);
+    _vector vTargetRight = m_pTargetTransform->Get_State(CTransform::STATE_RIGHT);
+        
+    m_pTransformCom->Set_State(CTransform::STATE_LOOK, m_vTargetLook);
+    m_pTransformCom->Set_State(CTransform::STATE_UP, vTargetUp);
+    m_pTransformCom->Set_State(CTransform::STATE_RIGHT, vTargetRight);
+
+    m_pTransformCom->Radian_Turn({ 0.f , 1.f ,0.f }, XMConvertToRadians(270.f));
+        
+    m_pTransformCom->Set_Scaled(3.f, 0.25f, 1.f);
 
     //m_pTransformCom->Set_State(CTransform::STATE_UP, m_pTargetTransform->Get_State(CTransform::STATE_UP));
     
@@ -45,28 +58,28 @@ HRESULT CSkill_Player_Bullet::Initialize(void* pArg)
     return S_OK;
 }
 
-void CSkill_Player_Bullet::Priority_Update(_float fTimeDelta)
+void CSkill_Pistol_Bullet::Priority_Update(_float fTimeDelta)
 {
 }
 
-void CSkill_Player_Bullet::Update(_float fTimeDelta)
+void CSkill_Pistol_Bullet::Update(_float fTimeDelta)
 {
     m_pColliderCom->Update(m_pTransformCom->Get_WorldMatrix());
 
    _vector	vPosition = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
-    vPosition += m_vLook * 5.f * fTimeDelta;
-   
+
+    vPosition += m_vTargetLook * 5.f * fTimeDelta;
     m_pTransformCom->Set_State(CTransform::STATE_POSITION, vPosition);
 
     Destroy(fTimeDelta);
 }
 
-void CSkill_Player_Bullet::Late_Update(_float fTimeDelta)
+void CSkill_Pistol_Bullet::Late_Update(_float fTimeDelta)
 {
     m_pGameInstance->Add_RenderObject(CRenderer::RG_BLEND, this);
 }
 
-HRESULT CSkill_Player_Bullet::Render()
+HRESULT CSkill_Pistol_Bullet::Render()
 {
 #ifdef _DEBUG
         m_pColliderCom->Render();
@@ -88,7 +101,7 @@ HRESULT CSkill_Player_Bullet::Render()
     return S_OK;
 }
 
-HRESULT CSkill_Player_Bullet::Ready_Components()
+HRESULT CSkill_Pistol_Bullet::Ready_Components()
 {
     /* For.Com_Shader */
     if (FAILED(__super::Add_Component(LEVEL_STATIC, TEXT("Prototype_Component_Shader_VtxPosTex"),
@@ -108,8 +121,8 @@ HRESULT CSkill_Player_Bullet::Ready_Components()
     /* For.Com_Collider */
     CBounding_AABB::BOUNDING_AABB_DESC	BoundingDesc{};
 
-    BoundingDesc.vExtents = _float3(0.25f, 0.25f, 0.25f);
-    BoundingDesc.vCenter = _float3(0.f, BoundingDesc.vExtents.y - 0.25f, 0.f);
+    BoundingDesc.vExtents = _float3(0.1f, 0.1f, 0.105f);
+    BoundingDesc.vCenter = _float3(-0.01f, BoundingDesc.vExtents.y - 0.25f, 0.1f);
     if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Collider_AABB"),
         TEXT("Com_ColliderAABB"), reinterpret_cast<CComponent**>(&m_pColliderCom), &BoundingDesc)))
         return E_FAIL;
@@ -117,7 +130,7 @@ HRESULT CSkill_Player_Bullet::Ready_Components()
     return S_OK;
 }
 
-HRESULT CSkill_Player_Bullet::Bind_ShaderResources()
+HRESULT CSkill_Pistol_Bullet::Bind_ShaderResources()
 {
     if (FAILED(m_pTransformCom->Bind_ShaderResource(m_pShaderCom, "g_WorldMatrix")))
         return E_FAIL;
@@ -128,48 +141,48 @@ HRESULT CSkill_Player_Bullet::Bind_ShaderResources()
     if (FAILED(m_pShaderCom->Bind_Matrix("g_ProjMatrix", &m_pGameInstance->Get_Transform_Float4x4(CPipeLine::D3DTS_PROJ))))
         return E_FAIL;
 
-    if (FAILED(m_pTextureCom->Bind_ShaderResource(m_pShaderCom, "g_Texture", 0)))
+    if (FAILED(m_pTextureCom->Bind_ShaderResource(m_pShaderCom, "g_Texture", m_iTextureIndex)))
         return E_FAIL;
 
     return S_OK;
 }
 
-void CSkill_Player_Bullet::Destroy(_float fTimeDelta)
+void CSkill_Pistol_Bullet::Destroy(_float fTimeDelta)
 {
-    m_fTimer += fTimeDelta;
+    m_fDestroyTimer += fTimeDelta;
 
-    if(m_fTimer > 5.f)
+    if(m_fDestroyTimer > 5.f)
         m_bDead = true;
   
 }
 
-CSkill_Player_Bullet* CSkill_Player_Bullet::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
+CSkill_Pistol_Bullet* CSkill_Pistol_Bullet::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 {
-    CSkill_Player_Bullet* pInstance = new CSkill_Player_Bullet(pDevice, pContext);
+    CSkill_Pistol_Bullet* pInstance = new CSkill_Pistol_Bullet(pDevice, pContext);
 
     if (FAILED(pInstance->Initialize_Prototype()))
     {
-        MSG_BOX(TEXT("Failed to Created : CSkill_Player_Bullet"));
+        MSG_BOX(TEXT("Failed to Created : CSkill_Pistol_Bullet"));
         Safe_Release(pInstance);
     }
 
     return pInstance;
 }
 
-CGameObject* CSkill_Player_Bullet::Clone(void* pArg)
+CGameObject* CSkill_Pistol_Bullet::Clone(void* pArg)
 {
-    CSkill_Player_Bullet* pInstance = new CSkill_Player_Bullet(*this);
+    CSkill_Pistol_Bullet* pInstance = new CSkill_Pistol_Bullet(*this);
 
     if (FAILED(pInstance->Initialize(pArg)))
     {
-        MSG_BOX(TEXT("Failed to Cloned : CSkill_Player_Bullet"));
+        MSG_BOX(TEXT("Failed to Cloned : CSkill_Pistol_Bullet"));
         Safe_Release(pInstance);
     }
 
     return pInstance;
 }
 
-void CSkill_Player_Bullet::Free()
+void CSkill_Pistol_Bullet::Free()
 {
     Safe_Release(m_pTargetTransform);
     Safe_Release(m_pShaderCom);

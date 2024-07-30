@@ -12,6 +12,9 @@ public:
 	{
 		const _uint* pParentState;
 		CTransform* pTargetTransform = { nullptr };
+
+		_uint iNumMaxBullet = { 0 };
+		_uint iNumCurrBullet = { 0 };
 	}PLAYER_WEAPON_DESC;
 
 protected:

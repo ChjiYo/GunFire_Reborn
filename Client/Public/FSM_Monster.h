@@ -7,6 +7,7 @@ BEGIN(Engine)
 
 class CTransform;
 class CNavigation;
+class CBinModel;
 
 END
 

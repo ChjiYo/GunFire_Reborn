@@ -27,6 +27,14 @@ RasterizerState RS_Cull_CW
     FrontCounterClockwise = false;
 };
 
+RasterizerState RS_Cull_NONE
+{
+    FillMode = Solid;
+    CullMode = None;
+    FrontCounterClockwise = false;
+};
+
+
 /* D3D11_DEPTH_STENCIL_DESC */
 DepthStencilState DSS_Default
 {

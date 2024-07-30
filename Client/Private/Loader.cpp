@@ -33,7 +33,7 @@
 #include "Weapon_Player_Sniper.h"
 #include "Weapon_Player_Shuriken.h"
 
-#include "Skill_Player_Bullet.h"
+#include "Skill_Pistol_Bullet.h"
 
 CLoader::CLoader(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	: m_pDevice { pDevice }
@@ -275,9 +275,8 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 
 	/* For.Prototype_Component_Texture_Bullet_Red */
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_Skill_Bullet_Red"),
-		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/Skill/Player/Bullet/bullet_red.dds"), 1))))
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/Skill/Player/Bullet/Bullet_%d.dds"), 3))))
 		return E_FAIL;
-
 
 	/* 모델을 로드한다. */
 	lstrcpy(m_szLoadingText, TEXT("모델(정점 -> 폴리곤 -> 메시 -> 모델)을 로딩 중 입니다."));	
@@ -479,7 +478,7 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 
 	/* For.Prototype_GameObject_Skill_Bullet_Red */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Skill_Bullet_Red"),
-		CSkill_Player_Bullet::Create(m_pDevice, m_pContext))))
+		CSkill_Pistol_Bullet::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
 	/* For.Prototype_GameObject_Cube */

@@ -109,9 +109,6 @@
     <Filter Include="03.State_Machine\FSM_Player\FSM_Player_Attack">
       <UniqueIdentifier>{2defec25-dffe-471a-a1d9-f7b62e4bed21}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02.GameObjects\Skill\Player_Skill\Bullet">
-      <UniqueIdentifier>{55f8bc0f-609e-41d1-928a-e163d6959228}</UniqueIdentifier>
-    </Filter>
     <Filter Include="96.Imgui">
       <UniqueIdentifier>{d9c0822e-98b4-4c37-8994-5760f4427334}</UniqueIdentifier>
     </Filter>
@@ -229,6 +226,12 @@
     <Filter Include="03.State_Machine\FSM_Monster\Archer\Run">
       <UniqueIdentifier>{7b820549-2c38-4ec8-864f-0497ae5d267f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObjects\Skill\Player_Skill\Pistol_Bullet">
+      <UniqueIdentifier>{55f8bc0f-609e-41d1-928a-e163d6959228}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Skill\Player_Skill\Shuriken_Bullet">
+      <UniqueIdentifier>{3dbcbd65-0182-4e69-83b3-ba9b334cb9e3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -321,8 +324,8 @@
     <ClInclude Include="..\Public\Skill_Player.h">
       <Filter>02.GameObjects\Skill\Player_Skill</Filter>
     </ClInclude>
-    <ClInclude Include="..\Public\Skill_Player_Bullet.h">
-      <Filter>02.GameObjects\Skill\Player_Skill\Bullet</Filter>
+    <ClInclude Include="..\Public\Skill_Pistol_Bullet.h">
+      <Filter>02.GameObjects\Skill\Player_Skill\Pistol_Bullet</Filter>
     </ClInclude>
     <ClInclude Include="..\Public\Imgui\imconfig.h">
       <Filter>96.Imgui\h</Filter>
@@ -444,6 +447,9 @@
     <ClInclude Include="..\public\FSM_Mon_Archer_Run.h">
       <Filter>03.State_Machine\FSM_Monster\Archer\Run</Filter>
     </ClInclude>
+    <ClInclude Include="..\public\Skill_Shuriken_Bullet.h">
+      <Filter>02.GameObjects\Skill\Player_Skill\Shuriken_Bullet</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -524,8 +530,8 @@
     <ClCompile Include="..\Private\Skill_Player.cpp">
       <Filter>02.GameObjects\Skill\Player_Skill</Filter>
     </ClCompile>
-    <ClCompile Include="..\Private\Skill_Player_Bullet.cpp">
-      <Filter>02.GameObjects\Skill\Player_Skill\Bullet</Filter>
+    <ClCompile Include="..\Private\Skill_Pistol_Bullet.cpp">
+      <Filter>02.GameObjects\Skill\Player_Skill\Pistol_Bullet</Filter>
     </ClCompile>
     <ClCompile Include="..\Public\Imgui\imgui.cpp">
       <Filter>96.Imgui\cpp</Filter>
@@ -643,6 +649,9 @@
     </ClCompile>
     <ClCompile Include="..\private\FSM_Mon_Archer_Run.cpp">
       <Filter>03.State_Machine\FSM_Monster\Archer\Run</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Skill_Shuriken_Bullet.cpp">
+      <Filter>02.GameObjects\Skill\Player_Skill\Shuriken_Bullet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

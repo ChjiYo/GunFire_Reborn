@@ -30,7 +30,7 @@ HRESULT CMon_Archer::Initialize(void* pArg)
 {
 	CContainerObject::CONTAINEROBJECT_DESC		ContainerDesc{};
 	ContainerDesc.fRotationPerSec = XMConvertToRadians(90.0f);
-	ContainerDesc.fSpeedPerSec = 5.f;
+	ContainerDesc.fSpeedPerSec = 2.5f;
 	ContainerDesc.iNumParts = PART_HEAD;
 
 	if (FAILED(__super::Initialize(&ContainerDesc)))
@@ -52,13 +52,11 @@ HRESULT CMon_Archer::Initialize(void* pArg)
 
 void CMon_Archer::Priority_Update(_float fTimeDelta)
 {
-	//m_pStateCom->Priority_Update(fTimeDelta);
+	m_pStateCom->Priority_Update(fTimeDelta);
 }
 
 void CMon_Archer::Update(_float fTimeDelta)
 {
-	
-
 	for(int i = 0 ; i < COLL_END ; ++i)
 		m_pColliderCom[i]->Update(m_pTransformCom->Get_WorldMatrix());
 
@@ -72,7 +70,7 @@ void CMon_Archer::Update(_float fTimeDelta)
 		m_iAnimFrame++;
 		m_pModelCom->SetUp_Animation(m_iAnimFrame, false);
 	}
-	//m_pStateCom->Update(fTimeDelta);
+	m_pStateCom->Update(fTimeDelta);
 }
 
 void CMon_Archer::Late_Update(_float fTimeDelta)
@@ -81,7 +79,7 @@ void CMon_Archer::Late_Update(_float fTimeDelta)
 	m_pModelCom->Play_Animation(fTimeDelta);
 	m_pGameInstance->Add_RenderObject(CRenderer::RG_NONBLEND, this);
 
-	//m_pStateCom->Late_Update(fTimeDelta);
+	m_pStateCom->Late_Update(fTimeDelta);
 }
 
 HRESULT CMon_Archer::Render()

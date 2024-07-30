@@ -9,12 +9,12 @@ class CVIBuffer_Rect;
 class CCollider;
 END
 
-class CSkill_Player_Bullet final :public CSkill_Player
+class CSkill_Shuriken_Bullet final :public CSkill_Player
 {
 protected:
-	CSkill_Player_Bullet(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
-	CSkill_Player_Bullet(const CSkill& Prototype);
-	virtual ~CSkill_Player_Bullet() = default;
+	CSkill_Shuriken_Bullet(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
+	CSkill_Shuriken_Bullet(const CSkill& Prototype);
+	virtual ~CSkill_Shuriken_Bullet() = default;
 
 public:
 	virtual HRESULT Initialize_Prototype() override;
@@ -38,11 +38,13 @@ private:
 	CCollider* m_pColliderCom = { nullptr };
 
 private:
-	_vector m_vLook = {};
-	_float m_fTimer = {};
+	_vector m_vTargetLook = {};
+
+	_float m_fDestroyTimer = {};
+	_uint m_iTextureIndex = { 0 };
 public:
-	static CSkill_Player_Bullet* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
-	virtual CGameObject* Clone(void* pArg) ;
+	static CSkill_Shuriken_Bullet* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
+	virtual CGameObject* Clone(void* pArg);
 	virtual void Free() override;
 };
 

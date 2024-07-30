@@ -142,7 +142,7 @@ void CWeapon_Player_Shuriken::Key_State()
 {
     if (m_pGameInstance->Key_Down(VK_LBUTTON))
     {
-        m_pModelCom->SetUp_Animation(1, false);
+        m_pModelCom->SetUp_Animation(0, false);
         Create_Bullet();
     }
 }
@@ -154,6 +154,7 @@ void CWeapon_Player_Shuriken::Create_Bullet()
     Desc.pTargetTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Player"), TEXT("Com_Transform")));
     Desc.fSpeedPerSec = 5.f;
     Desc.fRotationPerSec = XMConvertToRadians(90.0f);
+    Desc.iTextureIndex = 2;
 
     m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Skill_Bullet_Red"), TEXT("Layer_Skill_Player_Bullet"), &Desc);
 }
