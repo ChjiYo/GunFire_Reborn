@@ -22,7 +22,7 @@ public:
 	
 
 private:
-	_uint m_iNumAttack = { 0 };
+	_uint m_iRanNumAttack = { 0 };
 	_uint m_iAttackCnt = { 0 };
 
 	_float m_fAttackTimer = { 0.f };

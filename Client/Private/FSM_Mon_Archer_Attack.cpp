@@ -25,15 +25,17 @@ HRESULT CFSM_Mon_Archer_Attack::Initialize(FSM_MON_DESC Desc)
 	m_tDesc.pNavigation = Desc.pNavigation;
 	m_tDesc.pModel = Desc.pModel;
 
-
-
 	return S_OK;
 }
 
 wstring CFSM_Mon_Archer_Attack::Priority_Update(_float fTimeDelta)
 {
-	m_vPlayerPos = m_pPlayerTransform->Get_State(CTransform::STATE_POSITION);
-	m_tDesc.pTransform->LookAt(m_vPlayerPos);
+	_vector vTargetPos = m_pPlayerTransform->Get_State(CTransform::STATE_POSITION);
+	_float4 vFloatPos = {};
+	XMStoreFloat4(&vFloatPos, vTargetPos);
+
+	vFloatPos.y = 0.25f;
+	m_tDesc.pTransform->LookAt(XMLoadFloat4(&vFloatPos));
 
 	m_fAttackTimer += fTimeDelta;
 
@@ -54,9 +56,11 @@ wstring CFSM_Mon_Archer_Attack::Update(_float fTimeDelta)
 
 wstring CFSM_Mon_Archer_Attack::Late_Update(_float fTimeDelta)
 {
-	if (m_iAttackCnt >= m_iNumAttack)
-		return TEXT("Monster_Archer_State_Idle");
-
+	if (m_iAttackCnt >= m_iRanNumAttack)
+	{
+		m_iAttackCnt = 0;
+		return TEXT("Monster_Archer_State_Walk");
+	}
 	return TEXT("Monster_Archer_State_Attack");
 }
 
@@ -64,8 +68,8 @@ void CFSM_Mon_Archer_Attack::Create_Bullet()
 {
 	CSkill::SKILL_DESC	Desc = {};
 	
-	Desc.pTargetTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Player"), TEXT("Com_Transform")));
-	Desc.fSpeedPerSec = 5.f;
+	Desc.pTargetTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Monster"), TEXT("Com_Transform")));
+	Desc.fSpeedPerSec = 10.f;
 	Desc.fRotationPerSec = XMConvertToRadians(90.0f);
 	
 	m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Skill_Archer_Bullet"), TEXT("Layer_Skill_Archer_Bullet"), &Desc);
@@ -75,7 +79,7 @@ void CFSM_Mon_Archer_Attack::Enter()
 {
 	__super::Enter();
 
-	m_iNumAttack = rand() % 4 + 1;
+	m_iRanNumAttack = rand() % 4 + 1;
 
 	m_tDesc.pModel->SetUp_Animation( 5, false);
 	m_strName = TEXT("Monster_Archer_State_Attack");
@@ -91,7 +95,7 @@ CFSM_Mon_Archer_Attack* CFSM_Mon_Archer_Attack::Create(ID3D11Device* pDevice, ID
 
 	if (FAILED(pInstance->Initialize(Desc)))
 	{
-		MSG_BOX(TEXT("Failed to Created : CFSM_Mon_Archer_Idle "));
+		MSG_BOX(TEXT("Failed to Created : CFSM_Mon_Archer_Idle"));
 		Safe_Release(pInstance);
 	}
 

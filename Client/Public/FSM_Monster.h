@@ -16,6 +16,9 @@ BEGIN(Client)
 class  CFSM_Monster abstract : public CFSM_State
 {
 public:
+	enum MOVEDIR { DIR_FRONT ,DIR_LEFT , DIR_BACK , DIR_RIGHT , DIR_END };
+
+public:
 	typedef struct
 	{
 		class CTransform* pTransform = { nullptr };

@@ -21,6 +21,14 @@ public:
 	virtual void Enter() override;
 	virtual void Exit()	 override;
 
+private:
+	void Setup_Rendom();
+	void Move(_float fTimeDelta);
+
+private:
+	_uint m_iRanDir = { 0 };
+	_float m_fChangeTimer = { 0.f };
+
 public:
 	static CFSM_Mon_Archer_Walk* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, FSM_MON_DESC tDesc);
 	virtual void Free() override;

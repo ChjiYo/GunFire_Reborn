@@ -48,15 +48,14 @@ wstring CFSM_Mon_Archer_Run::Update(_float fTimeDelta)
 
 wstring CFSM_Mon_Archer_Run::Late_Update(_float fTimeDelta)
 {
-	CPlayer* pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Player")).front());
-	_vector vTargetPos = pPlayer->Get_Transform()->Get_State(CTransform::STATE_POSITION);
+	_vector vTargetPos = m_pPlayerTransform->Get_State(CTransform::STATE_POSITION);
 	_vector vPos = m_tDesc.pTransform->Get_State(CTransform::STATE_POSITION);
 
 	_vector vDistance = vTargetPos - vPos;
 	XMVector4Length(vDistance);
 	_float fLength = XMVectorGetX(vDistance);
 
-	if (abs(fLength) > 8.0f)
+	if (abs(fLength) < 5.0f)
 		return TEXT("Monster_Archer_State_Attack");
 
 	return TEXT("Monster_Archer_State_Run");
