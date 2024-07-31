@@ -232,6 +232,9 @@
     <Filter Include="02.GameObjects\Skill\Player_Skill\Shuriken_Bullet">
       <UniqueIdentifier>{3dbcbd65-0182-4e69-83b3-ba9b334cb9e3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObjects\Skill\Monster_Skill\Skill_Archer_Bullet">
+      <UniqueIdentifier>{839362e7-0039-47e0-a3e4-ddd61baa8ef4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -453,6 +456,9 @@
     <ClInclude Include="..\public\Skill_Monster.h">
       <Filter>02.GameObjects\Skill\Monster_Skill</Filter>
     </ClInclude>
+    <ClInclude Include="..\public\Skill_Archer_Bullet.h">
+      <Filter>02.GameObjects\Skill\Monster_Skill\Skill_Archer_Bullet</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -658,6 +664,9 @@
     </ClCompile>
     <ClCompile Include="..\private\Skill_Monster.cpp">
       <Filter>02.GameObjects\Skill\Monster_Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Skill_Archer_Bullet.cpp">
+      <Filter>02.GameObjects\Skill\Monster_Skill\Skill_Archer_Bullet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
