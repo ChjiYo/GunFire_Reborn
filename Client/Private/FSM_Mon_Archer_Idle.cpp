@@ -18,6 +18,9 @@ CFSM_Mon_Archer_Idle::CFSM_Mon_Archer_Idle(const CFSM_Mon_Archer_Idle& pPrototyp
 
 HRESULT CFSM_Mon_Archer_Idle::Initialize(FSM_MON_DESC tDesc)
 {
+	if(FAILED(__super::Initialize()))
+		return E_FAIL;
+
 	m_tDesc.pTransform = tDesc.pTransform;
 	m_tDesc.pNavigation = tDesc.pNavigation;
 	m_tDesc.pModel = tDesc.pModel;
@@ -37,16 +40,17 @@ wstring CFSM_Mon_Archer_Idle::Update(_float fTimeDelta)
 
 wstring CFSM_Mon_Archer_Idle::Late_Update(_float fTimeDelta)
 {
-	CPlayer* pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY,TEXT("Layer_Player")).front());
-	_vector vTargetPos = pPlayer->Get_Transform()->Get_State(CTransform::STATE_POSITION);
+	_vector vTargetPos = m_pPlayerTransform->Get_State(CTransform::STATE_POSITION);
 	_vector vPos = m_tDesc.pTransform->Get_State(CTransform::STATE_POSITION);
 
 	_vector vDistance = vTargetPos - vPos;
 	XMVector4Length(vDistance);
 	_float fLength = XMVectorGetX(vDistance);
 
-	if (abs(fLength) < 15.f)
+	if (abs(fLength) < 10.f)
 		return TEXT("Monster_Archer_State_Run");
+
+
 
 	return TEXT("Monster_Archer_State_Idle");
 }

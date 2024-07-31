@@ -40,7 +40,7 @@ public:
 
 protected:
 	FSM_MON_DESC	m_tDesc = {};
-	CTransform* m_pTransform = { nullptr };
+	CTransform* m_pPlayerTransform = { nullptr };
 
 public:
 	virtual void Free() override;

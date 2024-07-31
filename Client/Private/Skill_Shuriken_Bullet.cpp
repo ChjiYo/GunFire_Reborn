@@ -29,10 +29,6 @@ HRESULT CSkill_Shuriken_Bullet::Initialize(void* pArg)
     if (FAILED(Ready_Components()))
         return E_FAIL;
 
-    SKILL_DESC* Desc = static_cast<SKILL_DESC*>(pArg);
-    m_pTargetTransform = Desc->pTargetTransform;
-    m_iTextureIndex = Desc->iTextureIndex;
-
     Safe_AddRef(m_pTargetTransform);
 
     m_pTransformCom->Set_State(CTransform::STATE_POSITION, m_pTargetTransform->Get_State(CTransform::STATE_POSITION));
@@ -40,14 +36,14 @@ HRESULT CSkill_Shuriken_Bullet::Initialize(void* pArg)
 
     m_vTargetLook = m_pTargetTransform->Get_State(CTransform::STATE_LOOK);
 
-    _vector vTargetUp = m_pTargetTransform->Get_State(CTransform::STATE_UP);
-    _vector vTargetRight = m_pTargetTransform->Get_State(CTransform::STATE_RIGHT);
-
-    m_pTransformCom->Set_State(CTransform::STATE_LOOK, m_vTargetLook);
-    m_pTransformCom->Set_State(CTransform::STATE_UP, vTargetUp);
-    m_pTransformCom->Set_State(CTransform::STATE_RIGHT, vTargetRight);
-
-    m_pTransformCom->Radian_Turn(m_pTransformCom->Get_State(CTransform::STATE_UP), XMConvertToRadians(270.f));
+    //_vector vTargetUp = m_pTargetTransform->Get_State(CTransform::STATE_UP);
+    //_vector vTargetRight = m_pTargetTransform->Get_State(CTransform::STATE_RIGHT);
+//
+    //m_pTransformCom->Set_State(CTransform::STATE_LOOK, m_vTargetLook);
+    //m_pTransformCom->Set_State(CTransform::STATE_UP, vTargetUp);
+    //m_pTransformCom->Set_State(CTransform::STATE_RIGHT, vTargetRight);
+//
+    //m_pTransformCom->Radian_Turn(m_pTransformCom->Get_State(CTransform::STATE_UP), XMConvertToRadians(270.f));
 
     m_pTransformCom->Set_Scaled(3.f, 0.25f, 1.f);
 
@@ -143,7 +139,7 @@ HRESULT CSkill_Shuriken_Bullet::Bind_ShaderResources()
     if (FAILED(m_pShaderCom->Bind_Matrix("g_ProjMatrix", &m_pGameInstance->Get_Transform_Float4x4(CPipeLine::D3DTS_PROJ))))
         return E_FAIL;
 
-    if (FAILED(m_pTextureCom->Bind_ShaderResource(m_pShaderCom, "g_Texture", m_iTextureIndex)))
+    if (FAILED(m_pTextureCom->Bind_ShaderResource(m_pShaderCom, "g_Texture", 2)))
         return E_FAIL;
 
     return S_OK;

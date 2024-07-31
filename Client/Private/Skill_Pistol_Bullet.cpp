@@ -31,22 +31,21 @@ HRESULT CSkill_Pistol_Bullet::Initialize(void* pArg)
 
     SKILL_DESC* Desc = static_cast<SKILL_DESC*>(pArg);
     m_pTargetTransform = Desc->pTargetTransform;
-    m_iTextureIndex = Desc->iTextureIndex;
-
+   
     Safe_AddRef(m_pTargetTransform);
 
     m_pTransformCom->Set_State(CTransform::STATE_POSITION, m_pTargetTransform->Get_State(CTransform::STATE_POSITION));
 
     m_vTargetLook = m_pTargetTransform->Get_State(CTransform::STATE_LOOK);
 
-    _vector vTargetUp = m_pTargetTransform->Get_State(CTransform::STATE_UP);
-    _vector vTargetRight = m_pTargetTransform->Get_State(CTransform::STATE_RIGHT);
-        
-    m_pTransformCom->Set_State(CTransform::STATE_LOOK, m_vTargetLook);
-    m_pTransformCom->Set_State(CTransform::STATE_UP, vTargetUp);
-    m_pTransformCom->Set_State(CTransform::STATE_RIGHT, vTargetRight);
-
-    m_pTransformCom->Radian_Turn(m_pTransformCom->Get_State(CTransform::STATE_UP), XMConvertToRadians(270.f));
+    //_vector vTargetUp = m_pTargetTransform->Get_State(CTransform::STATE_UP);
+    //_vector vTargetRight = m_pTargetTransform->Get_State(CTransform::STATE_RIGHT);
+    //    
+    //m_pTransformCom->Set_State(CTransform::STATE_LOOK, m_vTargetLook);
+    //m_pTransformCom->Set_State(CTransform::STATE_UP, vTargetUp);
+    //m_pTransformCom->Set_State(CTransform::STATE_RIGHT, vTargetRight);
+    //
+    //m_pTransformCom->Radian_Turn(m_pTransformCom->Get_State(CTransform::STATE_UP), XMConvertToRadians(270.f));
         
     m_pTransformCom->Set_Scaled(3.f, 0.25f, 0.25f);
 

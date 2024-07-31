@@ -37,6 +37,7 @@ public:
 protected:
 	CNavigation* m_pNavigationCom	= { nullptr };
 	CCollider*	m_pColliderCom[COLL_END] = { nullptr , nullptr };
+	CCollider* m_pRangeCom = { nullptr };
 
 public:
 	virtual void Free() override;

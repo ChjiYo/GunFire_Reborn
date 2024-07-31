@@ -18,6 +18,9 @@ CFSM_Mon_Archer_Hit::CFSM_Mon_Archer_Hit(const CFSM_Mon_Archer_Hit& pPrototype)
 
 HRESULT CFSM_Mon_Archer_Hit::Initialize(FSM_MON_DESC Desc)
 {
+	if (FAILED(__super::Initialize()))
+		return E_FAIL;
+
 	m_tDesc.pTransform = Desc.pTransform;
 	m_tDesc.pNavigation = Desc.pNavigation;
 	m_tDesc.pModel = Desc.pModel;

@@ -18,6 +18,19 @@ public:
 	virtual wstring Late_Update(_float fTimeDelta);
 
 public:
+	void Create_Bullet();
+	
+
+private:
+	_uint m_iNumAttack = { 0 };
+	_uint m_iAttackCnt = { 0 };
+
+	_float m_fAttackTimer = { 0.f };
+
+
+	_vector m_vPlayerPos = { };
+
+public:
 	virtual void Enter() override;
 	virtual void Exit()	 override;
 

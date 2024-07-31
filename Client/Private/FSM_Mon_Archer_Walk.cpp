@@ -18,6 +18,9 @@ CFSM_Mon_Archer_Walk::CFSM_Mon_Archer_Walk(const CFSM_Mon_Archer_Walk& pPrototyp
 
 HRESULT CFSM_Mon_Archer_Walk::Initialize(FSM_MON_DESC tDesc)
 {
+	if (FAILED(__super::Initialize()))
+		return E_FAIL;
+
 	return S_OK;
 }
 

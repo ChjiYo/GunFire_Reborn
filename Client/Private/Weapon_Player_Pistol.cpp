@@ -166,9 +166,8 @@ void CWeapon_Player_Pistol::Create_Bullet()
     CSkill::SKILL_DESC	Desc = {};
 
 	Desc.pTargetTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Player"), TEXT("Com_Transform")));
-	Desc.fSpeedPerSec = 5.f;
+	Desc.fSpeedPerSec = 10.f;
 	Desc.fRotationPerSec = XMConvertToRadians(90.0f);
-    Desc.iTextureIndex = 0;
 
 	m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Skill_Pistol_Bullet"),TEXT("Layer_Skill_Player_Bullet"), &Desc);
 }

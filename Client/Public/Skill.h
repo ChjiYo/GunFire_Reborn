@@ -9,7 +9,6 @@ public:
 	typedef struct : public CGameObject::GAMEOBJECT_DESC
 	{
 		CTransform* pTargetTransform = {};
-		_uint		iTextureIndex = { 0 };
 	}SKILL_DESC;
 
 protected:

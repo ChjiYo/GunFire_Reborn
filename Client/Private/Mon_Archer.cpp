@@ -60,6 +60,8 @@ void CMon_Archer::Update(_float fTimeDelta)
 	for(int i = 0 ; i < COLL_END ; ++i)
 		m_pColliderCom[i]->Update(m_pTransformCom->Get_WorldMatrix());
 
+	m_pRangeCom->Update(m_pTransformCom->Get_WorldMatrix());
+
 	if (m_pGameInstance->Key_Down('N'))
 	{
 		m_iAnimFrame--;
@@ -87,6 +89,8 @@ HRESULT CMon_Archer::Render()
 #ifdef _DEBUG
 	for(int i = 0 ; i < COLL_END ; ++i)
 		m_pColliderCom[i]->Render();
+
+	m_pRangeCom->Render();
 #endif
 
 	if (FAILED(Bind_ShaderResources()))

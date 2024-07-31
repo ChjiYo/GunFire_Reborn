@@ -77,10 +77,22 @@ HRESULT CMonster::Ready_Components()
 		TEXT("Com_Collider_Sphere"), reinterpret_cast<CComponent**>(&m_pColliderCom[COLL_SPHERE]), &BoundingSphereDesc)))
 		return E_FAIL;
 
+	CBounding_Sphere::BOUNDING_SPHERE_DESC	RangeDesc{};
+
+	RangeDesc.fRadius = 10.f;
+	RangeDesc.vCenter = _float3(0.f, RangeDesc.fRadius / 2.f , 0.f);
+
+	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Collider_Sphere"),
+		TEXT("Com_Collider_Range"), reinterpret_cast<CComponent**>(&m_pRangeCom), &RangeDesc)))
+		return E_FAIL;
+	
+
 	return S_OK;
 }
 
 void CMonster::Free()
 {
+	Safe_Release(m_pRangeCom);
+
 	__super::Free();
 }

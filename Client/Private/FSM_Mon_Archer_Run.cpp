@@ -18,6 +18,9 @@ CFSM_Mon_Archer_Run::CFSM_Mon_Archer_Run(const CFSM_Mon_Archer_Run& pPrototype)
 
 HRESULT CFSM_Mon_Archer_Run::Initialize(FSM_MON_DESC tDesc)
 {
+	if (FAILED(__super::Initialize()))
+		return E_FAIL;
+
 	m_tDesc.pTransform =  tDesc.pTransform;
 	m_tDesc.pNavigation = tDesc.pNavigation;
 	m_tDesc.pModel = tDesc.pModel;
@@ -32,8 +35,7 @@ wstring CFSM_Mon_Archer_Run::Priority_Update(_float fTimeDelta)
 
 wstring CFSM_Mon_Archer_Run::Update(_float fTimeDelta)
 {
-	CPlayer* pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Player")).front());
-	_vector vTargetPos = pPlayer->Get_Transform()->Get_State(CTransform::STATE_POSITION);
+	_vector vTargetPos = m_pPlayerTransform->Get_State(CTransform::STATE_POSITION);
 	_float4 vFloatPos = {};
 	XMStoreFloat4(&vFloatPos, vTargetPos);
 
