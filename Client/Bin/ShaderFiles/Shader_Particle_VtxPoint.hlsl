@@ -47,7 +47,7 @@ VS_OUT VS_MAIN(VS_IN In)
 	return Out;
 }
 
-GS_MAIN()a
+GS_MAIN()
 {
 
 }
