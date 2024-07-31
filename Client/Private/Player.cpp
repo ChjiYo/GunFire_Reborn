@@ -95,13 +95,9 @@ HRESULT CPlayer::Render()
 
 HRESULT CPlayer::Ready_PartObjects()
 {
-   CWeapon_Player_Pistol::WEAPON_DESC  Desc{};
-   Desc.pParentMatrix = m_pTransformCom->Get_WorldMatrixPtr();
-   Desc.pParentState = 0x00000000;
+    m_eWeaponID = PISTOL;
+    m_bWeaponChange = true;
 
-   if (FAILED(__super::Add_PartObject(PART_WEAPON, TEXT("Prototype_GameObject_Weapon_Player_Pistol"), &Desc)))
-       return E_FAIL;
-    
     return S_OK;
 }
 
@@ -194,16 +190,18 @@ void CPlayer::Player_Move(_float fTimeDelta)
     if (m_pGameInstance->Key_Down('1'))
     {
         m_eWeaponID = SHURIKEN;
+        m_bWeaponChange = true;
     }
 
     if (m_pGameInstance->Key_Down('2'))
     {
-
+        m_bWeaponChange = true;
     }
 
     if (m_pGameInstance->Key_Down('3'))
     {
         m_eWeaponID = PISTOL;
+        m_bWeaponChange = true;
     }
 }
 
@@ -223,18 +221,21 @@ void CPlayer::Player_Jump(_float fTimeDelta)
 
 void CPlayer::Player_Weapon_Change()
 {
-    if (m_pGameInstance->Key_Down('E'))
+    if (m_bWeaponChange)
     {
         Safe_Release(__super::Get_Parts().front());
         __super::Get_Parts().clear();
 
-        CWeapon_Player_Pistol::WEAPON_DESC  Desc{};
+        CWeapon_Player::PLAYER_WEAPON_DESC Desc{};
         Desc.pParentMatrix = m_pTransformCom->Get_WorldMatrixPtr();
         Desc.pParentState = 0x00000000;
+        
 
         switch (m_eWeaponID)
         {
         case PISTOL:
+            Desc.iNumBullet = 30;
+            Desc.fAttackSpeed = 0.25f;
             __super::Add_PartObject(PART_WEAPON, TEXT("Prototype_GameObject_Weapon_Player_Pistol"), &Desc);
             break;
 
@@ -242,6 +243,8 @@ void CPlayer::Player_Weapon_Change()
             __super::Add_PartObject(PART_WEAPON, TEXT("Prototype_GameObject_Weapon_Player_Shuriken"), &Desc);
             break;
         }
+
+        m_bWeaponChange = false;
     }
 }
 

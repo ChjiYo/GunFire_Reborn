@@ -24,7 +24,7 @@ HRESULT CWeapon_Player_Pistol::Initialize_Prototype()
     if (FAILED(__super::Initialize_Prototype()))
         return E_FAIL;
 
-    return S_OK;
+    return S_OK; 
 }
 
 HRESULT CWeapon_Player_Pistol::Initialize(void* pArg)
@@ -32,8 +32,11 @@ HRESULT CWeapon_Player_Pistol::Initialize(void* pArg)
     if (FAILED(__super::Initialize(pArg)))
         return E_FAIL;
 
-    WEAPON_DESC* Desc = static_cast<WEAPON_DESC*>(pArg);
-   
+    PLAYER_WEAPON_DESC* Desc = static_cast<PLAYER_WEAPON_DESC*>(pArg);
+    m_iNumMaxBullet = Desc->iNumBullet;
+    m_iNumBullet = m_iNumMaxBullet;
+    m_fAttackSpeed = Desc->fAttackSpeed;
+
     if (FAILED(Ready_Components()))
         return E_FAIL;
 
@@ -44,6 +47,8 @@ void CWeapon_Player_Pistol::Priority_Update(_float fTimeDelta)
 {
     if (fTimeDelta == 0.f)
         return;
+
+    m_fAttackTimer += fTimeDelta;
 
     Key_State();
 
@@ -76,9 +81,6 @@ HRESULT CWeapon_Player_Pistol::Render()
         if (FAILED(m_pModelCom->Bind_MaterialSRV(m_pShaderCom, aiTextureType_DIFFUSE, "g_DiffuseTexture", i)))
             return E_FAIL;
 
-        //if (FAILED(m_pModelCom->Bind_Material(m_pShaderCom, "g_NormalTexture", i, aiTextureType_NORMALS)))
-        //	return E_FAIL;
-
         if (FAILED(m_pModelCom->Bind_BoneMatrices(m_pShaderCom, "g_BoneMatrices", (_uint)i)))
             return E_FAIL;
 
@@ -88,6 +90,12 @@ HRESULT CWeapon_Player_Pistol::Render()
         if (FAILED(m_pModelCom->Render(i)))
             return E_FAIL;
     }
+    wstring strNumBullet = to_wstring(m_iNumBullet);
+    wstring strNumMaxBullet = to_wstring(m_iNumMaxBullet);
+
+    m_pGameInstance->Draw_Font(TEXT("Font_Nexon"), strNumBullet, _float2(1300.f ,  800.f), XMVectorSet(0.7f, 1.f, 0.3f, 1.f), XMConvertToRadians(-5.f), 0.8f);
+    m_pGameInstance->Draw_Font(TEXT("Font_Nexon"), strNumMaxBullet, _float2(1450.f, 800.f), XMVectorSet(0.7f, 1.f, 0.3f, 1.f), XMConvertToRadians(-5.f), 0.8f);
+
 
     return S_OK;
 }
@@ -139,10 +147,17 @@ HRESULT CWeapon_Player_Pistol::Bind_ShaderResources()
 
 void CWeapon_Player_Pistol::Key_State()
 {   
-    if (m_pGameInstance->Key_Down(VK_LBUTTON))
+    if (m_pGameInstance->Key_Down(VK_LBUTTON) && m_iNumBullet > 0  && m_fAttackTimer > m_fAttackSpeed)
     {
+        m_iNumBullet--;
         m_pModelCom->SetUp_Animation(1, false);
         Create_Bullet();
+        m_fAttackTimer = 0.f;
+    }
+
+    if (m_pGameInstance->Key_Down('R'))
+    {
+        m_iNumBullet = m_iNumMaxBullet;
     }
 }
 
@@ -157,6 +172,7 @@ void CWeapon_Player_Pistol::Create_Bullet()
 
 	m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Skill_Bullet_Red"),TEXT("Layer_Skill_Player_Bullet"), &Desc);
 }
+
 
 CWeapon_Player_Pistol* CWeapon_Player_Pistol::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 {

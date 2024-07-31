@@ -36,7 +36,6 @@ HRESULT CSkill_Pistol_Bullet::Initialize(void* pArg)
     Safe_AddRef(m_pTargetTransform);
 
     m_pTransformCom->Set_State(CTransform::STATE_POSITION, m_pTargetTransform->Get_State(CTransform::STATE_POSITION));
-    //m_pTransformCom->Radian_Turn({0.f, 1.f, 0.f} , XMConvertToRadians(m_pTargetTransform->Look_Degree() + 270.f));
 
     m_vTargetLook = m_pTargetTransform->Get_State(CTransform::STATE_LOOK);
 
@@ -47,12 +46,9 @@ HRESULT CSkill_Pistol_Bullet::Initialize(void* pArg)
     m_pTransformCom->Set_State(CTransform::STATE_UP, vTargetUp);
     m_pTransformCom->Set_State(CTransform::STATE_RIGHT, vTargetRight);
 
-    m_pTransformCom->Radian_Turn({ 0.f , 1.f ,0.f }, XMConvertToRadians(270.f));
+    m_pTransformCom->Radian_Turn(m_pTransformCom->Get_State(CTransform::STATE_UP), XMConvertToRadians(270.f));
         
-    m_pTransformCom->Set_Scaled(3.f, 0.25f, 1.f);
-
-    //m_pTransformCom->Set_State(CTransform::STATE_UP, m_pTargetTransform->Get_State(CTransform::STATE_UP));
-    
+    m_pTransformCom->Set_Scaled(3.f, 0.25f, 0.25f);
 
     //네비게이션 메쉬 밖으로 나가면 delete? good 
     return S_OK;
@@ -68,7 +64,7 @@ void CSkill_Pistol_Bullet::Update(_float fTimeDelta)
 
    _vector	vPosition = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
 
-    vPosition += m_vTargetLook * 5.f * fTimeDelta;
+    vPosition += m_vTargetLook * 10.f * fTimeDelta;
     m_pTransformCom->Set_State(CTransform::STATE_POSITION, vPosition);
 
     Destroy(fTimeDelta);
@@ -121,8 +117,8 @@ HRESULT CSkill_Pistol_Bullet::Ready_Components()
     /* For.Com_Collider */
     CBounding_AABB::BOUNDING_AABB_DESC	BoundingDesc{};
 
-    BoundingDesc.vExtents = _float3(0.1f, 0.1f, 0.105f);
-    BoundingDesc.vCenter = _float3(-0.01f, BoundingDesc.vExtents.y - 0.25f, 0.1f);
+    BoundingDesc.vExtents = _float3(0.05f, 0.5f, 1.0f);
+    BoundingDesc.vCenter = _float3(0.0f, BoundingDesc.vExtents.y, 1.0f);
     if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Collider_AABB"),
         TEXT("Com_ColliderAABB"), reinterpret_cast<CComponent**>(&m_pColliderCom), &BoundingDesc)))
         return E_FAIL;

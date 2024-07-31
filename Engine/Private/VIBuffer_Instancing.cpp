@@ -14,6 +14,7 @@ CVIBuffer_Instancing::CVIBuffer_Instancing(const CVIBuffer_Instancing& Prototype
 	, m_pInstanceVertices{ Prototype.m_pInstanceVertices }
 	, m_pSpeeds{ Prototype.m_pSpeeds }
 	, m_vPivotPos{ Prototype.m_vPivotPos }
+	, m_isLoop{ Prototype.m_isLoop }
 {
 	Safe_AddRef(m_pVBInstance);
 }
@@ -25,6 +26,8 @@ HRESULT CVIBuffer_Instancing::Initialize_Prototype(const VIBUFFER_INSTANCE_DESC*
 	m_pSpeeds = new _float[m_iNumInstance];
 
 	m_vPivotPos = pInitialDesc->vPivot;
+
+	m_isLoop = pInitialDesc->isLoop;
 
 	/* 인게임내에서 스피드가 바뀌지 않도록 파티클 원형객체를 생성할때 각 입자별 스피드를 계산하여 저장해둔다. */
 	for (size_t i = 0; i < m_iNumInstance; i++)
@@ -86,6 +89,40 @@ void CVIBuffer_Instancing::Spread(_float fTimeDelta)
 
 		XMStoreFloat4(&pMatrices[i].vTranslation,
 			XMLoadFloat4(&pMatrices[i].vTranslation) + vMoveDir * m_pSpeeds[i] * fTimeDelta);
+
+		pMatrices[i].vLifeTime.y += fTimeDelta;
+		if (m_isLoop == true && pMatrices[i].vLifeTime.y >= pMatrices[i].vLifeTime.x)
+		{
+			pMatrices[i].vTranslation = m_pInstanceVertices[i].vTranslation;
+			pMatrices[i].vLifeTime.y = 0.f;
+		}
+	}
+
+	m_pContext->Unmap(m_pVBInstance, 0);
+}
+
+void CVIBuffer_Instancing::Drop(_float fTimeDelta)
+{
+	D3D11_MAPPED_SUBRESOURCE		MappedSubResource{};
+
+	m_pContext->Map(m_pVBInstance, 0, D3D11_MAP_WRITE_NO_OVERWRITE, 0, &MappedSubResource);
+
+	VTXINSTANCE* pMatrices = static_cast<VTXINSTANCE*>(MappedSubResource.pData);
+
+	for (size_t i = 0; i < m_iNumInstance; i++)
+	{
+		// _vector		vMoveDir = XMVectorSet(Get_Random(0.f, 2.f) - 1.f, -1.f, Get_Random(0.f, 2.f) - 1.f, 0.f);
+		_vector		vMoveDir = XMVectorSet(0.0f, -1.f, 0.0f, 0.f);
+
+		XMStoreFloat4(&pMatrices[i].vTranslation,
+			XMLoadFloat4(&pMatrices[i].vTranslation) + vMoveDir * m_pSpeeds[i] * fTimeDelta);
+
+		pMatrices[i].vLifeTime.y += fTimeDelta;
+		if (m_isLoop == true && pMatrices[i].vLifeTime.y >= pMatrices[i].vLifeTime.x)
+		{
+			pMatrices[i].vTranslation = m_pInstanceVertices[i].vTranslation;
+			pMatrices[i].vLifeTime.y = 0.f;
+		}
 	}
 
 	m_pContext->Unmap(m_pVBInstance, 0);

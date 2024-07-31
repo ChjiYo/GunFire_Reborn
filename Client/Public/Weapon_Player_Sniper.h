@@ -16,12 +16,6 @@ BEGIN(Client)
 
 class CWeapon_Player_Sniper final : public CWeapon_Player
 {
-public:
-	typedef struct :public CWeapon_Player::PLAYER_WEAPON_DESC
-	{
-		_uint iNumBullet = {};
-	}WEAPON_DESC;
-
 private:
 	CWeapon_Player_Sniper(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	CWeapon_Player_Sniper(const CWeapon_Player_Sniper& Prototype);
@@ -35,9 +29,6 @@ public:
 	virtual void Late_Update(_float fTimeDelta) override;
 	virtual HRESULT Render() override;
 
-public:
-	WEAPON_DESC Get_Player_Desc() { return Player_Desc; }
-
 private:
 	CShader* m_pShaderCom = { nullptr };
 	CBinModel* m_pModelCom = { nullptr };
@@ -45,7 +36,6 @@ private:
 	CCollider* m_pColliderCom = { nullptr };
 
 private:
-	WEAPON_DESC			Player_Desc = {};
 	_uint				m_pAnimFrame = { 0 };
 
 private:

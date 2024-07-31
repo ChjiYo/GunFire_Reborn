@@ -3,6 +3,7 @@
 
 float4x4 g_WorldMatrix, g_ViewMatrix, g_ProjMatrix;
 texture2D g_Texture;
+float4			g_vColor = vector(1.f, 1.f, 1.f, 1.f);
 
 struct VS_IN
 {
@@ -15,12 +16,15 @@ struct VS_IN
     float4 vUp : TEXCOORD2;
     float4 vLook : TEXCOORD3;
     float4 vTranslation : TEXCOORD4;
+
+    float2 vLifeTime : TEXCOORD5;
 };
 
 struct VS_OUT
 {
     float4 vPosition : SV_POSITION;
     float2 vTexcoord : TEXCOORD0;
+    float2 vLifeTime : TEXCOORD1;
 };
 
 VS_OUT VS_MAIN(VS_IN In)
@@ -38,6 +42,7 @@ VS_OUT VS_MAIN(VS_IN In)
 
     Out.vPosition = vPosition;
     Out.vTexcoord = In.vTexcoord;
+    Out.vLifeTime = In.vLifeTime;
 
     return Out;
 }
@@ -46,6 +51,7 @@ struct PS_IN
 {
     float4 vPosition : SV_POSITION;
     float2 vTexcoord : TEXCOORD0;
+    float2 vLifeTime : TEXCOORD1;
 };
 
 struct PS_OUT
@@ -55,12 +61,17 @@ struct PS_OUT
 
 PS_OUT PS_MAIN(PS_IN In)
 {
-    PS_OUT Out;
+    PS_OUT			Out;
 
     Out.vColor = g_Texture.Sample(LinearSampler, In.vTexcoord);
 
-    if (Out.vColor.a < 0.1f)
+
+    if (In.vLifeTime.y >= In.vLifeTime.x || Out.vColor.a < 0.1f)
         discard;
+
+    Out.vColor = g_vColor;
+
+    Out.vColor.a = Out.vColor.a * (In.vLifeTime.x - In.vLifeTime.y);
 
     return Out;
 }
@@ -72,7 +83,7 @@ technique11 DefaultTechnique
     {
         SetRasterizerState(RS_Default);
         SetDepthStencilState(DSS_Default, 0);
-        SetBlendState(BS_Default, float4(0.f, 0.f, 0.f, 0.f), 0xffffffff);
+        SetBlendState(BS_AlphaBlend, float4(0.f, 0.f, 0.f, 0.f), 0xffffffff);
 
         VertexShader = compile vs_5_0 VS_MAIN();
         PixelShader = compile ps_5_0 PS_MAIN();

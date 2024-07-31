@@ -16,8 +16,12 @@ CFSM_Mon_Archer_Hit::CFSM_Mon_Archer_Hit(const CFSM_Mon_Archer_Hit& pPrototype)
 {
 }
 
-HRESULT CFSM_Mon_Archer_Hit::Initialize()
+HRESULT CFSM_Mon_Archer_Hit::Initialize(FSM_MON_DESC Desc)
 {
+	m_tDesc.pTransform = Desc.pTransform;
+	m_tDesc.pNavigation = Desc.pNavigation;
+	m_tDesc.pModel = Desc.pModel;
+
 	return S_OK;
 }
 
@@ -46,11 +50,11 @@ void CFSM_Mon_Archer_Hit::Exit()
 {
 }
 
-CFSM_Mon_Archer_Hit* CFSM_Mon_Archer_Hit::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
+CFSM_Mon_Archer_Hit* CFSM_Mon_Archer_Hit::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, FSM_MON_DESC Desc)
 {
 	CFSM_Mon_Archer_Hit* pInstance = new CFSM_Mon_Archer_Hit(pDevice, pContext);
 
-	if (FAILED(pInstance->Initialize()))
+	if (FAILED(pInstance->Initialize(Desc)))
 	{
 		MSG_BOX(TEXT("Failed to Created : CFSM_Mon_Archer_Hit "));
 		Safe_Release(pInstance);

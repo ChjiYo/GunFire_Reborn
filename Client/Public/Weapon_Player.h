@@ -13,8 +13,8 @@ public:
 		const _uint* pParentState;
 		CTransform* pTargetTransform = { nullptr };
 
-		_uint iNumMaxBullet = { 0 };
-		_uint iNumCurrBullet = { 0 };
+		_uint iNumBullet = {};
+		_float fAttackSpeed = {};
 	}PLAYER_WEAPON_DESC;
 
 protected:
@@ -31,6 +31,11 @@ public:
 	virtual void Late_Update(_float fTimeDelta)	override;
 	virtual HRESULT Render()	override;
 
+protected:
+	_uint m_iNumBullet = { 0 };
+	_uint m_iNumMaxBullet = { 0 };
+	_float m_fAttackSpeed = { 0.f };
+	_float m_fAttackTimer = { 0.f };
 
 public:
 	virtual void Free() override;

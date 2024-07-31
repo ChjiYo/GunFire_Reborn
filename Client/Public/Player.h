@@ -55,8 +55,10 @@ private:
 private:
 	PLAYER_DESC			Player_Desc = {};
 	_bool				m_bJump = { false };
+	_bool				m_bWeaponChange = { false };
 
 	WEAPONID m_eWeaponID = { WEAPON_END };
+	
 
 private:
 	HRESULT Ready_PartObjects();

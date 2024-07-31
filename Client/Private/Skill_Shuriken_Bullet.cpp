@@ -47,7 +47,7 @@ HRESULT CSkill_Shuriken_Bullet::Initialize(void* pArg)
     m_pTransformCom->Set_State(CTransform::STATE_UP, vTargetUp);
     m_pTransformCom->Set_State(CTransform::STATE_RIGHT, vTargetRight);
 
-    m_pTransformCom->Radian_Turn({ 0.f , 1.f ,0.f }, XMConvertToRadians(270.f));
+    m_pTransformCom->Radian_Turn(m_pTransformCom->Get_State(CTransform::STATE_UP), XMConvertToRadians(270.f));
 
     m_pTransformCom->Set_Scaled(3.f, 0.25f, 1.f);
 
@@ -119,12 +119,14 @@ HRESULT CSkill_Shuriken_Bullet::Ready_Components()
         return E_FAIL;
 
     /* For.Com_Collider */
-    CBounding_AABB::BOUNDING_AABB_DESC	BoundingDesc{};
+    CBounding_OBB::BOUNDING_OBB_DESC	BoundingDesc{};
 
-    BoundingDesc.vExtents = _float3(0.1f, 0.1f, 0.105f);
-    BoundingDesc.vCenter = _float3(-0.01f, BoundingDesc.vExtents.y - 0.25f, 0.1f);
-    if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Collider_AABB"),
-        TEXT("Com_ColliderAABB"), reinterpret_cast<CComponent**>(&m_pColliderCom), &BoundingDesc)))
+    BoundingDesc.vRotation = _float3(XMConvertToRadians(0.0f), XMConvertToRadians(270.0f), XMConvertToRadians(270.0f));
+    BoundingDesc.vExtents = _float3(0.5f, 0.5f, 0.5f);
+    BoundingDesc.vCenter = _float3(0.0f, BoundingDesc.vExtents.y , 0.0f);
+
+    if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Collider_OBB"),
+        TEXT("Com_ColliderOBB"), reinterpret_cast<CComponent**>(&m_pColliderCom), &BoundingDesc)))
         return E_FAIL;
 
     return S_OK;

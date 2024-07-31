@@ -103,14 +103,18 @@ HRESULT CVIBuffer_Rect_Instancing::Initialize_Prototype(const CVIBuffer_Instanci
 
 	for (size_t i = 0; i < m_iNumInstance; i++)
 	{
-		m_pInstanceVertices[i].vRight = _float4(1.f, 0.f, 0.f, 0.f);
-		m_pInstanceVertices[i].vUp = _float4(0.f, 1.f, 0.f, 0.f);
-		m_pInstanceVertices[i].vLook = _float4(0.f, 0.f, 1.f, 0.f);
+		_float		fScale = Get_Random(pInitialDesc->vScale.x, pInitialDesc->vScale.y);
+
+		m_pInstanceVertices[i].vRight = _float4(fScale, 0.f, 0.f, 0.f);
+		m_pInstanceVertices[i].vUp = _float4(0.f, fScale, 0.f, 0.f);
+		m_pInstanceVertices[i].vLook = _float4(0.f, 0.f, fScale, 0.f);
 		m_pInstanceVertices[i].vTranslation = _float4(
 			Get_Random(pInitialDesc->vCenter.x - pInitialDesc->vRange.x * 0.5f, pInitialDesc->vCenter.x + pInitialDesc->vRange.x * 0.5f),
 			Get_Random(pInitialDesc->vCenter.y - pInitialDesc->vRange.y * 0.5f, pInitialDesc->vCenter.y + pInitialDesc->vRange.y * 0.5f),
 			Get_Random(pInitialDesc->vCenter.z - pInitialDesc->vRange.z * 0.5f, pInitialDesc->vCenter.z + pInitialDesc->vRange.z * 0.5f),
 			1.f);
+
+		m_pInstanceVertices[i].vLifeTime.x = Get_Random(pInitialDesc->vLifeTime.x, pInitialDesc->vLifeTime.y);
 	}
 
 #pragma endregion

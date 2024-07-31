@@ -19,7 +19,7 @@ HRESULT CBounding_OBB::Initialize(CBounding::BOUNDING_DESC* pDesc)
 	m_pOriginalDesc = new BoundingOrientedBox(pBoundingDesc->vCenter, pBoundingDesc->vExtents, vRotation);
 	m_pDesc = new BoundingOrientedBox(*m_pOriginalDesc);
 
-	return S_OK;
+	return S_OK; 
 }
 
 void CBounding_OBB::Update(_fmatrix TransformMatrix)

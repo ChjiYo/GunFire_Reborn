@@ -37,7 +37,7 @@ void CEffect_Deco_Snow::Priority_Update(_float fTimeDelta)
 
 void CEffect_Deco_Snow::Update(_float fTimeDelta)
 {
-	m_pVIBufferCom->Spread(fTimeDelta);
+	m_pVIBufferCom->Drop(fTimeDelta);
 }
 
 void CEffect_Deco_Snow::Late_Update(_float fTimeDelta)
@@ -76,7 +76,7 @@ HRESULT CEffect_Deco_Snow::Ready_Components()
 
 
 	/* Com_VIBuffer */
-	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_VIBuffer_Rect_Instancing"),
+	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_VIBuffer_Particle_Snow"),
 		TEXT("Com_VIBuffer"), reinterpret_cast<CComponent**>(&m_pVIBufferCom))))
 		return E_FAIL;
 

@@ -12,7 +12,7 @@ private:
 	virtual ~CFSM_Mon_Archer_Attack() = default;
 
 public:
-	virtual HRESULT Initialize();
+	virtual HRESULT Initialize(FSM_MON_DESC Desc);
 	virtual wstring Priority_Update(_float fTimeDelta);
 	virtual wstring Update(_float fTimeDelta);
 	virtual wstring Late_Update(_float fTimeDelta);
@@ -22,7 +22,7 @@ public:
 	virtual void Exit()	 override;
 
 public:
-	static CFSM_Mon_Archer_Attack* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
+	static CFSM_Mon_Archer_Attack* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, FSM_MON_DESC Desc);
 	virtual void Free() override;
 };
 
