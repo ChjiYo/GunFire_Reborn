@@ -14,6 +14,10 @@ public:
 		_float3		vCenter = {};
 		_float3		vPivot = {};
 		_float2		vSpeed = {};
+		_float2		vScale = {};
+
+		_float2		vLifeTime = {};
+		_bool		isLoop = {};
 	}VIBUFFER_INSTANCE_DESC;
 
 protected:
@@ -29,6 +33,7 @@ public:
 
 public:
 	void Spread(_float fTimeDelta);
+	void Drop(_float fTimeDelta);
 
 protected:
 	/* 모델(Instance하나)의 상태제어를 위한 행렬정보를 가지는 정점 버퍼.  */
@@ -42,6 +47,7 @@ protected:
 	_float3					m_vPivotPos = {};
 
 	_float*					m_pSpeeds = { nullptr };
+	_bool					m_isLoop = {  };
 
 	_uint					m_iNumIndexPerInstance = { 0 };
 
