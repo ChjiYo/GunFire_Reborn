@@ -153,7 +153,7 @@ void CWeapon_Player_Sniper::Create_Bullet()
     Desc.fSpeedPerSec = 5.f;
     Desc.fRotationPerSec = XMConvertToRadians(90.0f);
 
-    m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Skill_Bullet_Red"), TEXT("Layer_Skill_Player_Bullet"), &Desc);
+    m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Skill_Pistol_Bullet"), TEXT("Layer_Skill_Player_Bullet"), &Desc);
 }
 
 CWeapon_Player_Sniper* CWeapon_Player_Sniper::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)

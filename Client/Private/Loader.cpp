@@ -5,9 +5,6 @@
 #include "Camera_Free.h"
 #include "BackGround.h"
 
-#include "Monster.h"
-#include "Mon_Archer.h"
-
 #include "Terrain.h"
 #include "Sky.h"
 #include "Cube.h"
@@ -34,6 +31,11 @@
 #include "Weapon_Player_Shuriken.h"
 
 #include "Skill_Pistol_Bullet.h"
+#include "Skill_Shuriken_Bullet.h"
+
+#include "Monster.h"
+#include "Mon_Archer.h"
+#include "Skill_Archer_Bullet.h"
 
 CLoader::CLoader(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	: m_pDevice { pDevice }
@@ -479,9 +481,19 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 		CWeapon_Player_Shuriken::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
-	/* For.Prototype_GameObject_Skill_Bullet_Red */
-	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Skill_Bullet_Red"),
+	/* For.Prototype_GameObject_Skill_Pistol_Bullet */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Skill_Pistol_Bullet"),
 		CSkill_Pistol_Bullet::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Skill_Shuriken_Bullet */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Skill_Shuriken_Bullet"),
+		CSkill_Shuriken_Bullet::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Skill_Shuriken_Bullet */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Skill_Archer_Bullet"),
+		CSkill_Archer_Bullet::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
 	/* For.Prototype_GameObject_Cube */

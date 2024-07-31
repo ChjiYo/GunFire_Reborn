@@ -170,7 +170,7 @@ void CWeapon_Player_Pistol::Create_Bullet()
 	Desc.fRotationPerSec = XMConvertToRadians(90.0f);
     Desc.iTextureIndex = 0;
 
-	m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Skill_Bullet_Red"),TEXT("Layer_Skill_Player_Bullet"), &Desc);
+	m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Skill_Pistol_Bullet"),TEXT("Layer_Skill_Player_Bullet"), &Desc);
 }
 
 

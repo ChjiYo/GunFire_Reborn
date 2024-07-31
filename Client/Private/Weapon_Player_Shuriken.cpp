@@ -156,7 +156,7 @@ void CWeapon_Player_Shuriken::Create_Bullet()
     Desc.fRotationPerSec = XMConvertToRadians(90.0f);
     Desc.iTextureIndex = 2;
 
-    m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Skill_Bullet_Red"), TEXT("Layer_Skill_Player_Bullet"), &Desc);
+    m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Skill_Shuriken_Bullet"), TEXT("Layer_Skill_Player_Bullet"), &Desc);
 }
 
 CWeapon_Player_Shuriken* CWeapon_Player_Shuriken::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
