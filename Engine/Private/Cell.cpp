@@ -62,7 +62,9 @@ _bool CCell::isIn(_fvector vPosition, _int* pNeighborIndex)
 		_vector		vNormal = XMVector3Normalize(XMVectorSet(XMVectorGetZ(vLine) * -1.f, 0.f, XMVectorGetX(vLine), 0.f));
 
 		if (0 < XMVectorGetX(XMVector3Dot(vDir, vNormal)))
-		{
+		{	
+			
+
 			*pNeighborIndex = m_iNeighborIndices[i];
 			return false;
 		}

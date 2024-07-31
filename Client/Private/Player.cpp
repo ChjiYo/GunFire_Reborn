@@ -54,7 +54,8 @@ HRESULT CPlayer::Initialize(void* pArg)
     if (FAILED(Ready_State()))
         return E_FAIL;
 
-    m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 5.f , 1.3f , 3.f, 1.f });
+    //m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 5.f , 1.3f , 3.f, 1.f });
+    m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 10.f , 1.3f , 10.f, 1.f });
     m_eWeaponID = PISTOL;
 
     return S_OK;
@@ -88,6 +89,7 @@ HRESULT CPlayer::Render()
 {
 #ifdef _DEBUG
     m_pColliderCom->Render();
+    m_pNavigationCom->Render();
 #endif
 
     return S_OK;
@@ -172,7 +174,7 @@ void CPlayer::Player_Move(_float fTimeDelta)
 
     if (m_pGameInstance->Get_DIKeyState(DIK_W) & 0x80)
     {
-        m_pTransformCom->Go_StraightY(fTimeDelta, m_pNavigationCom);
+        m_pTransformCom->Go_StraightY(fTimeDelta);
 
         if (m_pGameInstance->Key_Down(VK_LSHIFT))
             m_pTransformCom->Go_StraightY(fTimeDelta + 0.5f, m_pNavigationCom);
