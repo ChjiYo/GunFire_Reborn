@@ -10,6 +10,7 @@ public:
 	typedef struct
 	{
 		_int		iCurrentCellIndex{ -1 };
+		_vector		vPos = {};
 	}NAVIGATION_DESC;
 private:
 	CNavigation(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
@@ -33,8 +34,10 @@ public:
 private:
 	vector<class CCell*>				m_Cells;
 	_int								m_iCurrentCellIndex = { -1 };
+	_float3								m_vPos = {};
 
 	static _float4x4					m_WorldMatrix;
+
 
 #ifdef _DEBUG
 private:
@@ -43,7 +46,7 @@ private:
 
 private:
 	void Make_Neighbors();
-
+	void Init_Index();
 public:
 	static CNavigation* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, const _tchar* pNavigationDataFilePath);
 	virtual CComponent* Clone(void* pArg) override;

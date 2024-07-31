@@ -36,6 +36,9 @@ HRESULT CMon_Archer::Initialize(void* pArg)
 	if (FAILED(__super::Initialize(&ContainerDesc)))
 		return E_FAIL;
 
+	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSet(20.f, 1.f, 20.f, 1.f));
+
+
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
@@ -45,7 +48,6 @@ HRESULT CMon_Archer::Initialize(void* pArg)
 	m_pStateCom->Set_State(TEXT("Monster_Archer_State_Idle"));
 
 	m_pModelCom->SetUp_Animation(1, true);
-	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSet(20.f, 1.f, 20.f, 1.f));
 
 	return S_OK;
 }

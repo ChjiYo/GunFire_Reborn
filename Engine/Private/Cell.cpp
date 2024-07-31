@@ -23,6 +23,7 @@ HRESULT CCell::Initialize(const _float3 * pPoints, _uint iIndex)
 		return E_FAIL;
 #endif
 
+
 	return S_OK;
 }
 

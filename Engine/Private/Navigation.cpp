@@ -72,6 +72,9 @@ HRESULT CNavigation::Initialize(void * pArg)
 	{
 		NAVIGATION_DESC*		pDesc = static_cast<NAVIGATION_DESC*>(pArg);
 		m_iCurrentCellIndex = pDesc->iCurrentCellIndex;
+		 XMStoreFloat3(&m_vPos ,pDesc->vPos);
+
+		Init_Index();
 	}
 
 	return S_OK;
@@ -227,6 +230,33 @@ void CNavigation::Make_Neighbors()
 
 			if (true == pDestCell->Compare_Point(pSourCell->Get_Point(CCell::POINT_C), pSourCell->Get_Point(CCell::POINT_A)))
 				pSourCell->Set_Neighbor(CCell::LINE_CA, pDestCell);
+		}
+	}
+}
+
+void CNavigation::Init_Index()
+{
+	for (int i = 0; i < m_Cells.size(); ++i)
+	{
+		_float2								m_vPosX = {};
+		_float2								m_vPosZ = {};
+
+		m_vPosX.y = m_Cells.at(i)->Get_Point(0).x;
+		m_vPosZ.y = m_Cells.at(i)->Get_Point(0).z;
+
+		for (int k = 0; k < 3; ++k)
+		{
+			m_vPosX.x = max(m_vPosX.x, m_Cells.at(i)->Get_Point(k).x);
+			m_vPosX.y = min(m_vPosX.y, m_Cells.at(i)->Get_Point(k).x);
+
+			m_vPosZ.x = max(m_vPosZ.x, m_Cells.at(i)->Get_Point(k).z);
+			m_vPosZ.y = min(m_vPosZ.y, m_Cells.at(i)->Get_Point(k).z);
+		}
+
+			
+		if ((m_vPosX.y < m_vPos.x && m_vPos.x < m_vPosX.x) && (m_vPosZ.y < m_vPos.z && m_vPos.z < m_vPosZ.x))
+		{
+			m_iCurrentCellIndex = i;
 		}
 	}
 }
