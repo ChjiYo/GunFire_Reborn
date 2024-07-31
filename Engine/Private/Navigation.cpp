@@ -13,6 +13,7 @@ CNavigation::CNavigation(ID3D11Device * pDevice, ID3D11DeviceContext * pContext)
 CNavigation::CNavigation(const CNavigation & Prototype)
 	: CComponent{ Prototype }
 	, m_Cells{ Prototype.m_Cells }
+	, m_iCurrentCellIndex{ Prototype.m_iCurrentCellIndex }
 #ifdef _DEBUG
 	, m_pShader { Prototype.m_pShader }
 #endif
