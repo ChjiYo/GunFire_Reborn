@@ -9,6 +9,8 @@ public:
 	typedef struct : public CGameObject::GAMEOBJECT_DESC
 	{
 		CTransform* pTargetTransform = {};
+		_uint		iSkillDamage = {};
+
 	}SKILL_DESC;
 
 protected:
@@ -26,6 +28,7 @@ public:
 
 protected:
 	CTransform* m_pTargetTransform = {};
+	_uint		m_iSkillDamage = {};
 
 public:
 	virtual CGameObject* Clone(void* pArg)  = 0;

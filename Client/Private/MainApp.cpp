@@ -201,8 +201,6 @@ HRESULT CMainApp::Ready_Prototoype_Resource_ForStatic()
 		CUI_Player_ShiieldBlankBar::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
-	//CrossHair
-
 	/* For.Prototype_GameObject_UI_CrossHair */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_Cross_Hair"),
 		CUI_Cross_Hair::Create(m_pDevice, m_pContext))))

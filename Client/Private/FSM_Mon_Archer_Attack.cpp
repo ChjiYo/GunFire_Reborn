@@ -71,6 +71,7 @@ void CFSM_Mon_Archer_Attack::Create_Bullet()
 	Desc.pTargetTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Monster"), TEXT("Com_Transform")));
 	Desc.fSpeedPerSec = 10.f;
 	Desc.fRotationPerSec = XMConvertToRadians(90.0f);
+	Desc.iSkillDamage = 5.f;
 	
 	m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Skill_Archer_Bullet"), TEXT("Layer_Skill_Archer_Bullet"), &Desc);
 }

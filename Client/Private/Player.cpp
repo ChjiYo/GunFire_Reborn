@@ -66,6 +66,11 @@ void CPlayer::Priority_Update(_float fTimeDelta)
     if (fTimeDelta == 0.f)
         return;
 
+    if (Player_Desc.iMaxShield > Player_Desc.iShield)
+        m_fShieldRecoveryTimer += fTimeDelta;
+    else
+        m_fShieldRecoveryTimer = 0.f;
+    
     Player_Weapon_Change();
 
     __super::Priority_Update(fTimeDelta);
@@ -74,6 +79,9 @@ void CPlayer::Priority_Update(_float fTimeDelta)
 void CPlayer::Update(_float fTimeDelta)
 {
     m_pColliderCom->Update(m_pTransformCom->Get_WorldMatrix());
+
+    ShieldRecovery();
+        
     __super::Update(fTimeDelta);
 }
 
@@ -93,6 +101,14 @@ HRESULT CPlayer::Render()
 #endif
 
     return S_OK;
+}
+
+void CPlayer::ShieldRecovery()
+{
+    if (m_fShieldRecoveryTimer > 3.f)
+    {
+        Player_Desc.iShield++;
+    }
 }
 
 HRESULT CPlayer::Ready_PartObjects()
@@ -123,7 +139,8 @@ HRESULT CPlayer::Ready_Components()
    CBounding_AABB::BOUNDING_AABB_DESC	BoundingDesc{};
    
    BoundingDesc.vExtents = _float3(0.5f, 0.5f, 0.5f);
-   BoundingDesc.vCenter = _float3(0.f, BoundingDesc.vExtents.y, 0.f);   if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Collider_AABB"),
+   BoundingDesc.vCenter = _float3(0.f, BoundingDesc.vExtents.y / 2.f, 0.f);  
+   if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Collider_AABB"),
        TEXT("Com_Collider"), reinterpret_cast<CComponent**>(&m_pColliderCom), &BoundingDesc)))
        return E_FAIL;
 

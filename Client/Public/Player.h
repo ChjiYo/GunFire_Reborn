@@ -46,11 +46,19 @@ public:
 
 public:
 	PLAYER_DESC Get_Player_Desc() { return Player_Desc; }
-	void		Set_Damage(_uint iHp , _uint iShield ) 
+	void		Set_Damage(_uint iDamage)
 	{
-		Player_Desc.iHp += iHp;
-		Player_Desc.iShield += iShield;
+		if(Player_Desc.iShield <= 0 )
+			Player_Desc.iHp += iDamage;
+		else 
+			Player_Desc.iShield += iDamage;	
+
+		m_fShieldRecoveryTimer = 0.f;
 	}
+
+private:
+	void ShieldRecovery();
+
 
 private:
 	CState_Machine*		m_pState = { nullptr };
@@ -62,6 +70,7 @@ private:
 	_bool				m_bJump = { false };
 	_bool				m_bWeaponChange = { false };
 
+	_float				m_fShieldRecoveryTimer = { 0.f };
 	WEAPONID m_eWeaponID = { WEAPON_END };
 	
 

@@ -3,6 +3,8 @@
 #include "Skill_Archer_Bullet.h"
 #include "GameInstance.h"   
 
+#include "Player.h"
+
 CSkill_Archer_Bullet::CSkill_Archer_Bullet(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
     :CSkill_Monster{ pDevice , pContext }
 {
@@ -31,6 +33,7 @@ HRESULT CSkill_Archer_Bullet::Initialize(void* pArg)
 
     SKILL_DESC* Desc = static_cast<SKILL_DESC*>(pArg);
     m_pTargetTransform = Desc->pTargetTransform;
+    m_iSkillDamage = Desc->iSkillDamage;
 
     Safe_AddRef(m_pTargetTransform);
 
@@ -54,8 +57,6 @@ void CSkill_Archer_Bullet::Update(_float fTimeDelta)
 {
     m_pColliderCom->Update(m_pTransformCom->Get_WorldMatrix());
 
-
-
     _vector	vPosition = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
 
     vPosition += m_vTargetLook * 10.f * fTimeDelta;
@@ -66,6 +67,15 @@ void CSkill_Archer_Bullet::Update(_float fTimeDelta)
 
 void CSkill_Archer_Bullet::Late_Update(_float fTimeDelta)
 {
+    CCollider* pTargetCollider = dynamic_cast<CCollider*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Player"), TEXT("Com_Collider"), 0));
+    CPlayer* pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Player")).front());
+
+    if (m_pColliderCom->isCollision(pTargetCollider))
+    {
+        pPlayer->Set_Damage(-5.f);
+        m_bDead = true;
+    }
+
     m_pGameInstance->Add_RenderObject(CRenderer::RG_BLEND, this);
 }
 
