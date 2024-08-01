@@ -37,6 +37,11 @@ HRESULT CSkill_Archer_Bullet::Initialize(void* pArg)
     m_vTargetLook = m_pTargetTransform->Get_State(CTransform::STATE_LOOK);
     m_pTransformCom->Set_Scaled(3.f, 0.25f, 0.25f);
 
+    _float3 vPos = {};
+    XMStoreFloat3(&vPos ,m_pTargetTransform->Get_State(CTransform::STATE_POSITION));
+
+    m_pTransformCom->Set_State(CTransform::STATE_POSITION, { vPos .x , 1.f , vPos .z ,1.f});
+
     //네비게이션 메쉬 밖으로 나가면 delete? good 
     return S_OK;
 }
@@ -48,6 +53,8 @@ void CSkill_Archer_Bullet::Priority_Update(_float fTimeDelta)
 void CSkill_Archer_Bullet::Update(_float fTimeDelta)
 {
     m_pColliderCom->Update(m_pTransformCom->Get_WorldMatrix());
+
+
 
     _vector	vPosition = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
 
@@ -101,13 +108,14 @@ HRESULT CSkill_Archer_Bullet::Ready_Components()
         TEXT("Com_VIBuffer"), reinterpret_cast<CComponent**>(&m_pVIBufferCom))))
         return E_FAIL;
 
-    /* For.Com_Collider */
-    CBounding_AABB::BOUNDING_AABB_DESC	BoundingDesc{};
+    /* For.Com_ColliderSphere */
+    CBounding_Sphere::BOUNDING_SPHERE_DESC   BoundingDesc{};
 
-    BoundingDesc.vExtents = _float3(0.05f, 0.5f, 1.0f);
-    BoundingDesc.vCenter = _float3(0.0f, BoundingDesc.vExtents.y, 1.0f);
-    if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Collider_AABB"),
-        TEXT("Com_ColliderAABB"), reinterpret_cast<CComponent**>(&m_pColliderCom), &BoundingDesc)))
+    BoundingDesc.fRadius = 0.05f;
+    BoundingDesc.vCenter = _float3(0.5f, BoundingDesc.fRadius, 0.0f);
+
+    if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Collider_Sphere"),
+        TEXT("Com_ColliderSphere"), reinterpret_cast<CComponent**>(&m_pColliderCom), &BoundingDesc)))
         return E_FAIL;
 
     return S_OK;
@@ -138,6 +146,7 @@ void CSkill_Archer_Bullet::Destroy(_float fTimeDelta)
         m_bDead = true;
 
 }
+
 
 CSkill_Archer_Bullet* CSkill_Archer_Bullet::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 {

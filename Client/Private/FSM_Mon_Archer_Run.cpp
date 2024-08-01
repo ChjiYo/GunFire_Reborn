@@ -55,7 +55,7 @@ wstring CFSM_Mon_Archer_Run::Late_Update(_float fTimeDelta)
 	XMVector4Length(vDistance);
 	_float fLength = XMVectorGetX(vDistance);
 
-	if (abs(fLength) < 5.0f)
+	if (abs(fLength) < 6.5f)
 		return TEXT("Monster_Archer_State_Attack");
 
 	return TEXT("Monster_Archer_State_Run");

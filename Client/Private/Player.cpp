@@ -56,8 +56,6 @@ HRESULT CPlayer::Initialize(void* pArg)
     if (FAILED(Ready_State()))
         return E_FAIL;
 
-    //m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 5.f , 1.3f , 3.f, 1.f });
-    //m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 10.f , 1.3f , 10.f, 1.f });
     m_eWeaponID = PISTOL;
 
     return S_OK;

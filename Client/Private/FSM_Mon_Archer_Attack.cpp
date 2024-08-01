@@ -56,7 +56,7 @@ wstring CFSM_Mon_Archer_Attack::Update(_float fTimeDelta)
 
 wstring CFSM_Mon_Archer_Attack::Late_Update(_float fTimeDelta)
 {
-	if (m_iAttackCnt >= m_iRanNumAttack)
+	if (m_iAttackCnt >= m_iRanNumAttack + 4)
 	{
 		m_iAttackCnt = 0;
 		return TEXT("Monster_Archer_State_Walk");

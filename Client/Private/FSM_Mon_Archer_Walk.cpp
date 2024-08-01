@@ -50,7 +50,7 @@ wstring CFSM_Mon_Archer_Walk::Update(_float fTimeDelta)
 
 wstring CFSM_Mon_Archer_Walk::Late_Update(_float fTimeDelta)
 {
-	if (m_fChangeTimer > 3.f)
+	if (m_fChangeTimer > 1.5f)
 	{
 		m_fChangeTimer = 0.f;
 		return TEXT("Monster_Archer_State_Idle");

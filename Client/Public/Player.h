@@ -46,6 +46,11 @@ public:
 
 public:
 	PLAYER_DESC Get_Player_Desc() { return Player_Desc; }
+	void		Set_Damage(_uint iHp , _uint iShield ) 
+	{
+		Player_Desc.iHp += iHp;
+		Player_Desc.iShield += iShield;
+	}
 
 private:
 	CState_Machine*		m_pState = { nullptr };
