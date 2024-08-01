@@ -256,7 +256,7 @@ void CNavigation::Init_Index()
 			
 		if ((m_vPosX.y < m_vPos.x && m_vPos.x < m_vPosX.x) && (m_vPosZ.y < m_vPos.z && m_vPos.z < m_vPosZ.x))
 		{
-			m_iCurrentCellIndex = i;
+			m_iCurrentCellIndex = i+ 1;
 		}
 	}
 }

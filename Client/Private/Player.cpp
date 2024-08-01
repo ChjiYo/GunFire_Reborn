@@ -177,7 +177,7 @@ void CPlayer::Player_Move(_float fTimeDelta)
 
     if (m_pGameInstance->Get_DIKeyState(DIK_W) & 0x80)
     {
-        m_pTransformCom->Go_StraightY(fTimeDelta);
+        m_pTransformCom->Go_StraightY(fTimeDelta, m_pNavigationCom);
 
         if (m_pGameInstance->Key_Down(VK_LSHIFT))
             m_pTransformCom->Go_StraightY(fTimeDelta + 0.5f, m_pNavigationCom);

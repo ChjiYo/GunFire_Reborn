@@ -37,15 +37,6 @@ HRESULT CSkill_Pistol_Bullet::Initialize(void* pArg)
     m_pTransformCom->Set_State(CTransform::STATE_POSITION, m_pTargetTransform->Get_State(CTransform::STATE_POSITION));
 
     m_vTargetLook = m_pTargetTransform->Get_State(CTransform::STATE_LOOK);
-
-    //_vector vTargetUp = m_pTargetTransform->Get_State(CTransform::STATE_UP);
-    //_vector vTargetRight = m_pTargetTransform->Get_State(CTransform::STATE_RIGHT);
-    //    
-    //m_pTransformCom->Set_State(CTransform::STATE_LOOK, m_vTargetLook);
-    //m_pTransformCom->Set_State(CTransform::STATE_UP, vTargetUp);
-    //m_pTransformCom->Set_State(CTransform::STATE_RIGHT, vTargetRight);
-    //
-    //m_pTransformCom->Radian_Turn(m_pTransformCom->Get_State(CTransform::STATE_UP), XMConvertToRadians(270.f));
         
     m_pTransformCom->Set_Scaled(3.f, 0.25f, 0.25f);
 
@@ -59,6 +50,8 @@ void CSkill_Pistol_Bullet::Priority_Update(_float fTimeDelta)
 
 void CSkill_Pistol_Bullet::Update(_float fTimeDelta)
 {
+
+
     m_pColliderCom->Update(m_pTransformCom->Get_WorldMatrix());
 
    _vector	vPosition = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
@@ -71,6 +64,10 @@ void CSkill_Pistol_Bullet::Update(_float fTimeDelta)
 
 void CSkill_Pistol_Bullet::Late_Update(_float fTimeDelta)
 {
+    CCollider* pTargetCollider = dynamic_cast<CCollider*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Monster"), TEXT("Com_Collider_Sphere"), 0));
+
+    m_pColliderCom->isCollision(pTargetCollider);
+
     m_pGameInstance->Add_RenderObject(CRenderer::RG_BLEND, this);
 }
 
@@ -113,13 +110,14 @@ HRESULT CSkill_Pistol_Bullet::Ready_Components()
         TEXT("Com_VIBuffer"), reinterpret_cast<CComponent**>(&m_pVIBufferCom))))
         return E_FAIL;
 
-    /* For.Com_Collider */
-    CBounding_AABB::BOUNDING_AABB_DESC	BoundingDesc{};
+    /* For.Com_ColliderSphere */
+    CBounding_Sphere::BOUNDING_SPHERE_DESC   BoundingDesc{};
 
-    BoundingDesc.vExtents = _float3(0.05f, 0.5f, 1.0f);
-    BoundingDesc.vCenter = _float3(0.0f, BoundingDesc.vExtents.y, 1.0f);
-    if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Collider_AABB"),
-        TEXT("Com_ColliderAABB"), reinterpret_cast<CComponent**>(&m_pColliderCom), &BoundingDesc)))
+    BoundingDesc.fRadius = 0.05f;
+    BoundingDesc.vCenter = _float3(0.5f, BoundingDesc.fRadius, 0.0f);
+
+    if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Collider_Sphere"),
+        TEXT("Com_ColliderSphere"), reinterpret_cast<CComponent**>(&m_pColliderCom), &BoundingDesc)))
         return E_FAIL;
 
     return S_OK;
