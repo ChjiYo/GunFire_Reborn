@@ -53,7 +53,8 @@ wstring CFSM_Mon_Archer_Walk::Late_Update(_float fTimeDelta)
 	if (m_fChangeTimer > 1.5f)
 	{
 		m_fChangeTimer = 0.f;
-		return TEXT("Monster_Archer_State_Idle");
+
+		return TEXT("Monster_Archer_State_Run");
 	}
 
 	return TEXT("Monster_Archer_State_Walk");

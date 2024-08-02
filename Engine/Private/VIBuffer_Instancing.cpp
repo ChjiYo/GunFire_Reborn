@@ -111,7 +111,6 @@ void CVIBuffer_Instancing::Drop(_float fTimeDelta)
 
 	for (size_t i = 0; i < m_iNumInstance; i++)
 	{
-		// _vector		vMoveDir = XMVectorSet(Get_Random(0.f, 2.f) - 1.f, -1.f, Get_Random(0.f, 2.f) - 1.f, 0.f);
 		_vector		vMoveDir = XMVectorSet(0.0f, -1.f, 0.0f, 0.f);
 
 		XMStoreFloat4(&pMatrices[i].vTranslation,
@@ -156,7 +155,7 @@ _float CVIBuffer_Instancing::Get_RandomNormalize()
 
 _float CVIBuffer_Instancing::Get_Random(_float fMin, _float fMax)
 {
-	return fMin + (fMax - fMin) * Get_RandomNormalize();
+	return fMin + (fMax - fMin) * Get_RandomNormalize(); 	
 }
 
 void CVIBuffer_Instancing::Free()

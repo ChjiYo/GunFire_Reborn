@@ -37,14 +37,19 @@ HRESULT CSkill_Archer_Bullet::Initialize(void* pArg)
 
     Safe_AddRef(m_pTargetTransform);
 
-    m_vTargetLook = m_pTargetTransform->Get_State(CTransform::STATE_LOOK);
     m_pTransformCom->Set_Scaled(3.f, 0.25f, 0.25f);
 
-    _float3 vPos = {};
-    XMStoreFloat3(&vPos ,m_pTargetTransform->Get_State(CTransform::STATE_POSITION));
+    m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetY(m_pTransformCom->Get_State(CTransform::STATE_POSITION) ,1.f));
+    m_vPos = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
 
-    m_pTransformCom->Set_State(CTransform::STATE_POSITION, { vPos .x , 1.f , vPos .z ,1.f});
+    CTransform* pPlayerTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Player"), TEXT("Com_Transform")));
 
+    m_vOffsetRandomPos = { Get_Random(0, 2) - 1.f , Get_Random(0, 2) - 1.f,Get_Random(0, 2) - 1.0f };
+
+    m_vPlayerPos = pPlayerTransform->Get_State(CTransform::STATE_POSITION);
+    m_vPlayerPos += m_vOffsetRandomPos;
+        //XMVectorSetX(pPlayerTransform->Get_State(CTransform::STATE_POSITION) , m_vOffsetRandomPos.x);
+    
     //네비게이션 메쉬 밖으로 나가면 delete? good 
     return S_OK;
 }
@@ -56,10 +61,11 @@ void CSkill_Archer_Bullet::Priority_Update(_float fTimeDelta)
 void CSkill_Archer_Bullet::Update(_float fTimeDelta)
 {
     m_pColliderCom->Update(m_pTransformCom->Get_WorldMatrix());
-
+    
     _vector	vPosition = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
+    _vector vMoveDir = XMVector4Normalize(m_vPlayerPos - m_vPos);   
 
-    vPosition += m_vTargetLook * 10.f * fTimeDelta;
+    vPosition += vMoveDir * 10.f * fTimeDelta;
     m_pTransformCom->Set_State(CTransform::STATE_POSITION, vPosition);
 
     Destroy(fTimeDelta);

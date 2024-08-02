@@ -38,7 +38,10 @@ private:
 	CCollider* m_pColliderCom = { nullptr };
 
 private:
-	_vector m_vTargetLook = {};
+	_vector		m_vPlayerPos = {};
+	_vector		m_vPos = {};
+
+	_vector		m_vOffsetRandomPos = {};
 
 	_float m_fDestroyTimer = {};
 	_uint m_iTextureIndex = { 0 };

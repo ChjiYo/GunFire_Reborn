@@ -45,6 +45,17 @@ HRESULT CSkill_Monster::Render()
 	return S_OK;
 }
 
+
+_float CSkill_Monster::Get_RandomNormalize()
+{
+	return (_float)rand() / RAND_MAX;
+}
+
+_float CSkill_Monster::Get_Random(_float fMin, _float fMax)
+{
+	return fMin + (fMax - fMin) * Get_RandomNormalize();
+}
+
 void CSkill_Monster::Free()
 {
 	__super::Free();

@@ -17,6 +17,10 @@ public:
 	virtual void Late_Update(_float fTimeDelta) override;
 	virtual HRESULT Render() override;
 
+protected:
+	_float Get_RandomNormalize();
+	_float Get_Random(_float fMin, _float fMax);
+
 public:
 	virtual CGameObject* Clone(void* pArg) = 0;
 	virtual void Free() override;

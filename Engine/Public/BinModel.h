@@ -65,6 +65,9 @@ private: /* For.Animation */
 	vector<class CAnimation*>	m_Animations;
 	vector<vector<_uint>>		m_KeyFrameIndices;
 
+private:
+	vector<vector<_uint>>		m_PrevKeyFrameIndices;
+
 public:
 	/* 모델 하나가 여러개의 메시(Vertex, Index)로 구분되어있기 때문에. */
 	/* 대부분의 모델들은 교체가 필요한 메시들 기준으로 나눠둔다. */

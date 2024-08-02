@@ -66,7 +66,7 @@ void CFSM_Mon_Archer_Run::Enter()
 	__super::Enter();
 
 	m_strName = TEXT("Monster_Archer_State_Run");
-	m_tDesc.pModel->SetUp_Animation(12, true);
+	m_tDesc.pModel->SetUp_Animation(3, true);
 }
 
 void CFSM_Mon_Archer_Run::Exit()
