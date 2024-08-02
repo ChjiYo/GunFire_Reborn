@@ -96,11 +96,12 @@ HRESULT CMonster::Ready_UI(CUIObject::UI_DESC  tDesc)
 	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Monster_BarPanel"), TEXT("Layer_UI_Monster_ABarPanel"), &tDesc)))
 		return E_FAIL;
 
-	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Monster_HpBar"), TEXT("Layer_UI_Monster_BHpBar"),&tDesc)))
-		return E_FAIL;
-	
 	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Monster_HpBlankBar"), TEXT("Layer_UI_Monster_BHpBlankBar"),&tDesc)))
 		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Monster_HpBar"), TEXT("Layer_UI_Monster_CHpBar"),&tDesc)))
+		return E_FAIL;
+	
 
 	return S_OK;
 }

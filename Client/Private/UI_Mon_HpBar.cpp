@@ -25,9 +25,14 @@ HRESULT CUI_Mon_HpBar::Initialize(void* pArg)
 	if (FAILED(__super::Initialize(pArg)))
 		return E_FAIL;
 
+	UI_DESC* Desc = static_cast<UI_DESC*>(pArg);
+	m_pTargetTransform = Desc->pTargetTransform;
+	Safe_AddRef(m_pTargetTransform);
+
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
+	m_pTransformCom->Set_Scaled(1.5f, 0.125f, 1.f);
 
 	return S_OK;
 }
@@ -35,7 +40,7 @@ HRESULT CUI_Mon_HpBar::Initialize(void* pArg)
 void CUI_Mon_HpBar::Priority_Update(_float fTimeDelta)
 {
 	CTransform* pCamTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Camera"), TEXT("Com_Transform")));
-	m_pTransformCom->LookAt(pCamTransform->Get_State(CTransform::STATE_POSITION));
+	m_pTransformCom->LookAt(XMVectorSetY(pCamTransform->Get_State(CTransform::STATE_POSITION), 3.f));
 }
 
 void CUI_Mon_HpBar::Update(_float fTimeDelta)
@@ -56,7 +61,7 @@ HRESULT CUI_Mon_HpBar::Render()
 	if (FAILED(m_pTextureCom->Bind_ShaderResource(m_pShaderCom, "g_Texture", 0)))
 		return E_FAIL;
 
-	if (FAILED(m_pShaderCom->Begin(0)))
+	if (FAILED(m_pShaderCom->Begin(1)))
 		return E_FAIL;
 
 	if (FAILED(m_pVIBufferCom->Bind_Buffers()))
@@ -109,6 +114,7 @@ CGameObject* CUI_Mon_HpBar::Clone(void* pArg)
 
 void CUI_Mon_HpBar::Free()
 {
+	Safe_Release(m_pTargetTransform);
 
 	__super::Free();
 }
