@@ -235,6 +235,18 @@
     <Filter Include="02.GameObjects\Skill\Monster_Skill\Skill_Archer_Bullet">
       <UniqueIdentifier>{839362e7-0039-47e0-a3e4-ddd61baa8ef4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Monster_State">
+      <UniqueIdentifier>{427dd227-3146-47e6-8d8c-0705b63598bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Monster_State\UI_Mon_BarPanel">
+      <UniqueIdentifier>{4ce20854-3571-41dc-b5ec-02c8882da868}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Monster_State\UI_Mon_HpBar">
+      <UniqueIdentifier>{3ec6c444-31ed-4537-b6f7-d9cb8e658782}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Monster_State\UI_Mon_HpBlankBar">
+      <UniqueIdentifier>{994f5467-087b-439e-9c4b-981a1e76f0d7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -459,6 +471,15 @@
     <ClInclude Include="..\public\Skill_Archer_Bullet.h">
       <Filter>02.GameObjects\Skill\Monster_Skill\Skill_Archer_Bullet</Filter>
     </ClInclude>
+    <ClInclude Include="..\public\UI_Mon_BarPanel.h">
+      <Filter>02.GameObjects\UI\UI_Monster_State\UI_Mon_BarPanel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\UI_Mon_HpBar.h">
+      <Filter>02.GameObjects\UI\UI_Monster_State\UI_Mon_HpBar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\UI_Mon_HpBlankBar.h">
+      <Filter>02.GameObjects\UI\UI_Monster_State\UI_Mon_HpBlankBar</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -667,6 +688,15 @@
     </ClCompile>
     <ClCompile Include="..\private\Skill_Archer_Bullet.cpp">
       <Filter>02.GameObjects\Skill\Monster_Skill\Skill_Archer_Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\UI_Mon_BarPanel.cpp">
+      <Filter>02.GameObjects\UI\UI_Monster_State\UI_Mon_BarPanel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\UI_Mon_HpBar.cpp">
+      <Filter>02.GameObjects\UI\UI_Monster_State\UI_Mon_HpBar</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\UI_Mon_HpBlankBar.cpp">
+      <Filter>02.GameObjects\UI\UI_Monster_State\UI_Mon_HpBlankBar</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

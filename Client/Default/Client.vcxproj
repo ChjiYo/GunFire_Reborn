@@ -227,6 +227,9 @@
     <ClInclude Include="..\Public\Tool_Save.h" />
     <ClInclude Include="..\Public\UIObject.h" />
     <ClInclude Include="..\Public\UI_Cross_Hair.h" />
+    <ClInclude Include="..\public\UI_Mon_BarPanel.h" />
+    <ClInclude Include="..\public\UI_Mon_HpBar.h" />
+    <ClInclude Include="..\public\UI_Mon_HpBlankBar.h" />
     <ClInclude Include="..\Public\UI_Player_Bar.h" />
     <ClInclude Include="..\Public\UI_Player_BarPanel.h" />
     <ClInclude Include="..\Public\UI_Player_HpBar.h" />
@@ -295,6 +298,9 @@
     <ClCompile Include="..\Private\Tool_Save.cpp" />
     <ClCompile Include="..\Private\UIObject.cpp" />
     <ClCompile Include="..\Private\UI_Cross_Hair.cpp" />
+    <ClCompile Include="..\private\UI_Mon_BarPanel.cpp" />
+    <ClCompile Include="..\private\UI_Mon_HpBar.cpp" />
+    <ClCompile Include="..\private\UI_Mon_HpBlankBar.cpp" />
     <ClCompile Include="..\Private\UI_Player_Bar.cpp" />
     <ClCompile Include="..\Private\UI_Player_BarPanel.cpp" />
     <ClCompile Include="..\Private\UI_Player_HpBar.cpp" />
