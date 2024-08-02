@@ -19,6 +19,10 @@
 
 #include "UI_Cross_Hair.h"
 
+#include "UI_Mon_BarPanel.h"
+#include "UI_Mon_HpBar.h"
+#include "UI_Mon_HpBlankBar.h"
+
 CMainApp::CMainApp()
 	: m_pGameInstance { CGameInstance::Get_Instance() }
 {
@@ -143,12 +147,12 @@ HRESULT CMainApp::Ready_Prototoype_Resource_ForStatic()
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Bar/UI_Player_ShieldBar.png")))))
 		return E_FAIL;
 
-	/* For.Prototype_Component_Player_HpBar */
+	/* For.Prototype_Component_Player_HpBlankBar */
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Player_HpBlankBar"),
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Bar/UI_Player_HpBlankBar.png")))))
 		return E_FAIL;
 
-	/* For.Prototype_Component_Player_ShieldBar */
+	/* For.Prototype_Component_Player_ShieldBlankBar */
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Cross_Hair"),
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/CrossHair/CrossHair.png")))))
 		return E_FAIL;
@@ -160,7 +164,22 @@ HRESULT CMainApp::Ready_Prototoype_Resource_ForStatic()
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Bar/UI_Player_ShieldBlankBar.png")))))
 		return E_FAIL;
 
+	//UI_Monster_Bar
+	
+	/* For.Prototype_Component_Monster_Bar */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Monster_BarPanel"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Bar/UI_Monster_Panel.png")))))
+		return E_FAIL;
 
+	/* For.Prototype_Component_Monster_Hp */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Monster_HpBar"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Bar/UI_Monster_HpBar.png")))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Monster_HpBlankBar */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Monster_HpBlankBar"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Bar/UI_Monster_HpBlankBar.png")))))
+		return E_FAIL;
 
 	/* Prototype Load */
 
@@ -204,6 +223,19 @@ HRESULT CMainApp::Ready_Prototoype_Resource_ForStatic()
 	/* For.Prototype_GameObject_UI_CrossHair */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_Cross_Hair"),
 		CUI_Cross_Hair::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	// UI_Monster_State
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_Monster_BarPanel"),
+		CUI_Mon_BarPanel::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_Monster_HpBar"),
+		CUI_Mon_HpBar::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_Monster_HpBlankBar"),
+		CUI_Mon_HpBlankBar::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
 	return S_OK;
