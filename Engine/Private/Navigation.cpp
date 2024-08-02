@@ -72,8 +72,11 @@ HRESULT CNavigation::Initialize(void * pArg)
 	{
 		NAVIGATION_DESC*		pDesc = static_cast<NAVIGATION_DESC*>(pArg);
 		m_iCurrentCellIndex = pDesc->iCurrentCellIndex;
-		 XMStoreFloat3(&m_vPos ,pDesc->vPos);
+		m_pTargetTransform = pDesc->pTargetTransform;
 
+		Safe_AddRef(m_pTargetTransform);
+		XMStoreFloat3(&m_vPos, m_pTargetTransform->Get_State(CTransform::STATE_POSITION));
+		
 		Init_Index();
 	}
 
@@ -257,6 +260,7 @@ void CNavigation::Init_Index()
 		if ((m_vPosX.y < m_vPos.x && m_vPos.x < m_vPosX.x) && (m_vPosZ.y < m_vPos.z && m_vPos.z < m_vPosZ.x))
 		{
 			m_iCurrentCellIndex = i;
+			break;
 		}
 	}
 }
@@ -332,6 +336,8 @@ void CNavigation::Free()
 		Safe_Release(pCell);
 
 	m_Cells.clear();
+
+	Safe_Release(m_pTargetTransform);
 
 	__super::Free();
 }

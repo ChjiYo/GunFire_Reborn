@@ -19,6 +19,8 @@
 #include <DirectXTK\SpriteBatch.h>
 #include <DirectXTK\SpriteFont.h>
 
+#include <DirectXTK\ScreenGrab.h>
+
 #include <Effects11\d3dx11effect.h>
 
 #include <assimp\Importer.hpp>

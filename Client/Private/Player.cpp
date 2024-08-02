@@ -56,6 +56,7 @@ HRESULT CPlayer::Initialize(void* pArg)
     if (FAILED(Ready_State()))
         return E_FAIL;
 
+   
     m_eWeaponID = PISTOL;
 
     return S_OK;
@@ -123,7 +124,7 @@ HRESULT CPlayer::Ready_Components()
 {
     CNavigation::NAVIGATION_DESC		NavigationDesc{};
     NavigationDesc.iCurrentCellIndex = 0;
-    NavigationDesc.vPos = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
+    NavigationDesc.pTargetTransform = m_pTransformCom;
     
     /* Com_Navigation */
     if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Navigation"),

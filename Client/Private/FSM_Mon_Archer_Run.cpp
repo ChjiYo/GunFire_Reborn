@@ -41,7 +41,7 @@ wstring CFSM_Mon_Archer_Run::Update(_float fTimeDelta)
 
 	vFloatPos.y = 0.25f;
 	m_tDesc.pTransform->LookAt(XMLoadFloat4(&vFloatPos));
-	m_tDesc.pTransform->Go_StraightY(fTimeDelta);
+	m_tDesc.pTransform->Go_StraightY(fTimeDelta, m_tDesc.pNavigation);
 
 	return TEXT("Monster_Archer_State_Run");
 }

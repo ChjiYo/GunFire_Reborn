@@ -24,8 +24,6 @@ private:
 	virtual HRESULT Ready_Components();
 
 private:
-	CPlayer* m_pPlayer = {};
-
 	wstring m_strHp = {};
 	wstring m_strMaxHp = {};
 

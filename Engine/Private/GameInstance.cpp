@@ -424,6 +424,7 @@ void CGameInstance::Release_Engine()
 	Safe_Release(m_pKeyState);
 	Safe_Release(m_pPicking);
 	Safe_Release(m_pFileManager);
+	Safe_Release(m_pTarget_Manager);
 
 	CGameInstance::Get_Instance()->Destroy_Instance();
 }

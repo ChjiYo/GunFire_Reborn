@@ -28,19 +28,18 @@ HRESULT CUI_Mon_HpBlankBar::Initialize(void* pArg)
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
-	__super::Set_UI_Setting(200.f, 30.f, 290.f, 810.f);
-
-	m_pTransformCom->Rotation({ 0.f, 0.f, 1.f }, XMConvertToRadians(355.f));
-
 	return S_OK;
 }
 
 void CUI_Mon_HpBlankBar::Priority_Update(_float fTimeDelta)
 {
+	CTransform* pCamTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Camera"), TEXT("Com_Transform")));
+	m_pTransformCom->LookAt(pCamTransform->Get_State(CTransform::STATE_POSITION));
 }
 
 void CUI_Mon_HpBlankBar::Update(_float fTimeDelta)
 {
+	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetY(m_pTargetTransform->Get_State(CTransform::STATE_POSITION), 3.f));
 }
 
 void CUI_Mon_HpBlankBar::Late_Update(_float fTimeDelta)
@@ -50,7 +49,7 @@ void CUI_Mon_HpBlankBar::Late_Update(_float fTimeDelta)
 
 HRESULT CUI_Mon_HpBlankBar::Render()
 {
-	if (FAILED(__super::Bind_ShaderResources()))
+	if (FAILED(__super::Bind_Perspective()))
 		return E_FAIL;
 
 	if (FAILED(m_pTextureCom->Bind_ShaderResource(m_pShaderCom, "g_Texture", 0)))
@@ -74,7 +73,7 @@ HRESULT CUI_Mon_HpBlankBar::Ready_Components()
 		return E_FAIL;
 
 	/* For.Com_Texture */
-	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Player_HpBlankBar"),
+	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Monster_HpBlankBar"),
 		TEXT("Com_Texture"), reinterpret_cast<CComponent**>(&m_pTextureCom))))
 		return E_FAIL;
 }

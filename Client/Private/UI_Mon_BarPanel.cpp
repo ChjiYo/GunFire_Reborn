@@ -28,18 +28,19 @@ HRESULT CUI_Mon_BarPanel::Initialize(void* pArg)
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
-
-
-
+	m_pTransformCom->Set_Scaled(2.f , 0.5, 1.f);
 	return S_OK;
 }
 
 void CUI_Mon_BarPanel::Priority_Update(_float fTimeDelta)
 {
+	CTransform* pCamTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Camera"), TEXT("Com_Transform")));
+	m_pTransformCom->LookAt(pCamTransform->Get_State(CTransform::STATE_POSITION));
 }
 
 void CUI_Mon_BarPanel::Update(_float fTimeDelta)
 {
+	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetY(m_pTargetTransform->Get_State(CTransform::STATE_POSITION) , 3.f));
 }
 
 void CUI_Mon_BarPanel::Late_Update(_float fTimeDelta)
@@ -73,7 +74,7 @@ HRESULT CUI_Mon_BarPanel::Ready_Components()
 		return E_FAIL;
 
 	/* For.Com_Texture */
-	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Player_BarPanel"),
+	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Monster_BarPanel"),
 		TEXT("Com_Texture"), reinterpret_cast<CComponent**>(&m_pTextureCom))))
 		return E_FAIL;
 }
@@ -106,5 +107,7 @@ CGameObject* CUI_Mon_BarPanel::Clone(void* pArg)
 
 void CUI_Mon_BarPanel::Free()
 {
+	Safe_Release(m_pTargetTransform);
+
 	__super::Free();
 }

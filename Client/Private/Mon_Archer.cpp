@@ -44,13 +44,11 @@ HRESULT CMon_Archer::Initialize(void* pArg)
 	if(FAILED(Ready_State()))
 		return E_FAIL;
 
-	//CUIObject::UI_DESC Desc = {};
-	//Desc.pTargetTransform = m_pTransformCom;
-	//if (FAILED(Ready_UI(Desc)))
-	//	return E_FAIL;
+	CUIObject::UI_DESC Desc = {};
+	Desc.pTargetTransform = m_pTransformCom;
+	if (FAILED(Ready_UI(Desc)))
+		return E_FAIL;
 
-
-	//Pos말고 Transform으로 던지자
 	m_pStateCom->Set_State(TEXT("Monster_Archer_State_Idle"));
 
 	m_pModelCom->SetUp_Animation(1, true);
