@@ -90,6 +90,21 @@ HRESULT CMonster::Ready_Components()
 	return S_OK;
 }
 
+HRESULT CMonster::Ready_UI(CUIObject::UI_DESC  tDesc)
+{
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Monster_BarPanel"), TEXT("Layer_UI_Monster_ABarPanel"))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Monster_HpBar"), TEXT("Layer_UI_Monster_BHpBar"))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Monster_HpBlankBar"), TEXT("Layer_UI_Monster_BHpBlankBar"))))
+		return E_FAIL;
+
+
+	return S_OK;
+}
+
 void CMonster::Free()
 {
 	Safe_Release(m_pRangeCom);

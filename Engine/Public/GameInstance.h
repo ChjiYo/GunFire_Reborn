@@ -92,7 +92,11 @@ public: /* For.Light */
 	const LIGHT_DESC* Get_LightDesc(_uint iLightIndex) const;
 	HRESULT Add_Light(const LIGHT_DESC& LightDesc);
 
-
+public: /* For.Target_Manager */
+	HRESULT Add_RenderTarget(const _wstring& strTargetTag, _uint iWidth, _uint iHeight, DXGI_FORMAT ePixelFormat, _fvector vClearColor);
+	HRESULT Add_MRT(const _wstring& strMRTTag, const _wstring& strTargetTag);
+	HRESULT Begin_MRT(const _wstring& strMRTTag);
+	HRESULT End_MRT();
 
 private:
 	class CGraphic_Device*				m_pGraphic_Device = { nullptr };
@@ -108,6 +112,7 @@ private:
 	class CKeyState*					m_pKeyState = { nullptr };
 	class CFile_Manager*				m_pFileManager = {};
 	class CPicking*						m_pPicking = { nullptr };
+	class CTarget_Manager*				m_pTarget_Manager = { nullptr };
 
 public:
 	void Release_Engine();

@@ -38,13 +38,19 @@ HRESULT CMon_Archer::Initialize(void* pArg)
 
 	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSet(20.f, 1.f, 20.f, 1.f));
 
-
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
 	if(FAILED(Ready_State()))
 		return E_FAIL;
 
+	//CUIObject::UI_DESC Desc = {};
+	//Desc.pTargetTransform = m_pTransformCom;
+	//if (FAILED(Ready_UI(Desc)))
+	//	return E_FAIL;
+
+
+	//Pos말고 Transform으로 던지자
 	m_pStateCom->Set_State(TEXT("Monster_Archer_State_Idle"));
 
 	m_pModelCom->SetUp_Animation(1, true);
@@ -80,6 +86,7 @@ void CMon_Archer::Update(_float fTimeDelta)
 void CMon_Archer::Late_Update(_float fTimeDelta)
 {
 	__super::Late_Update(fTimeDelta);
+
 	m_pModelCom->Play_Animation(fTimeDelta);
 	m_pGameInstance->Add_RenderObject(CRenderer::RG_NONBLEND, this);
 

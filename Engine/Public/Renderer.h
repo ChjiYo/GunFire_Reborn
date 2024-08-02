@@ -25,6 +25,8 @@ private:
 	ID3D11DeviceContext*	m_pContext = { nullptr };
 	list<class CGameObject*>			m_RenderObjects[RG_END];
 
+	class CGameInstance* m_pGameInstance = { nullptr };
+
 private:
 	HRESULT Render_Priority();
 	HRESULT Render_NonBlend();

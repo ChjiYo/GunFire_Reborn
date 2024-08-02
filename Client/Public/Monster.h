@@ -2,6 +2,7 @@
 
 #include "Client_Defines.h"
 #include "ContainerObject.h"
+#include "UIObject.h"
 
 BEGIN(Engine)
 
@@ -33,6 +34,7 @@ public:
 
 public:
 	HRESULT Ready_Components();
+	HRESULT Ready_UI(CUIObject::UI_DESC tDesc);
 
 protected:
 	CNavigation* m_pNavigationCom	= { nullptr };

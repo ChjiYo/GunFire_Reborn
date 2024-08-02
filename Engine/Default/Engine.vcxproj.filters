@@ -166,6 +166,12 @@
     <Filter Include="01.Utility\03.Components\VIBuffer\Instancing\Rect">
       <UniqueIdentifier>{f2ab809b-11e8-4755-93ad-c30743a1358b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Utility\11.RenderTargets">
+      <UniqueIdentifier>{ac1327b7-fd12-4897-9ae2-446b115b3da5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utility\11.RenderTargets\Manager">
+      <UniqueIdentifier>{d5f97aed-2c7e-4eb6-8a2c-c84752c7bc6d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\private\GameInstance.cpp">
@@ -323,6 +329,12 @@
     </ClCompile>
     <ClCompile Include="..\private\VIBuffer_Rect_Instancing.cpp">
       <Filter>01.Utility\03.Components\VIBuffer\Instancing\Rect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Target_Manager.cpp">
+      <Filter>01.Utility\11.RenderTargets\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\RenderTarget.cpp">
+      <Filter>01.Utility\11.RenderTargets</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -493,6 +505,12 @@
     </ClInclude>
     <ClInclude Include="..\public\VIBuffer_Rect_Instancing.h">
       <Filter>01.Utility\03.Components\VIBuffer\Instancing\Rect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Target_Manager.h">
+      <Filter>01.Utility\11.RenderTargets\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\RenderTarget.h">
+      <Filter>01.Utility\11.RenderTargets</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

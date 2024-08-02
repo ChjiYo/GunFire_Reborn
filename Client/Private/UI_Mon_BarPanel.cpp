@@ -28,7 +28,9 @@ HRESULT CUI_Mon_BarPanel::Initialize(void* pArg)
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
-	__super::Set_UI_Setting(425.f, 75.f, 250.f, 800.f);
+
+
+
 	return S_OK;
 }
 
@@ -47,7 +49,7 @@ void CUI_Mon_BarPanel::Late_Update(_float fTimeDelta)
 
 HRESULT CUI_Mon_BarPanel::Render()
 {
-	if (FAILED(__super::Bind_ShaderResources()))
+	if (FAILED(__super::Bind_Perspective()))
 		return E_FAIL;
 
 	if (FAILED(m_pTextureCom->Bind_ShaderResource(m_pShaderCom, "g_Texture", 0)))

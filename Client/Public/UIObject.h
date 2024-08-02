@@ -17,6 +17,12 @@ BEGIN(Client)
 
 class CUIObject abstract : public CGameObject
 {
+public:
+	typedef struct MyStruct
+	{
+		CTransform* pTargetTransform = {};
+	}UI_DESC;
+
 protected:
 	CUIObject(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	CUIObject(const CUIObject& Prototype);
@@ -32,6 +38,8 @@ public:
 
 protected:
 	virtual HRESULT Bind_ShaderResources();
+	virtual HRESULT Bind_Perspective();
+
 	virtual HRESULT Ready_Components();
 
 	virtual void Set_UI_Setting(_float fSizeX, _float fSizeY , _float fPosX , _float fPosY);

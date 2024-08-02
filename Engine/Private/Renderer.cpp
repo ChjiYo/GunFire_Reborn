@@ -1,17 +1,45 @@
 #include "..\Public\Renderer.h"
 
 #include "GameObject.h"
+#include "GameInstance.h"
 
 CRenderer::CRenderer(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	: m_pDevice{ pDevice }
 	, m_pContext{ pContext }
+	, m_pGameInstance{ CGameInstance::Get_Instance() }
 {
+	Safe_AddRef(m_pGameInstance);
 	Safe_AddRef(m_pDevice);
 	Safe_AddRef(m_pContext);
 }
 
 HRESULT CRenderer::Initialize(ID3D11Device * pDevice, ID3D11DeviceContext * pContext)
 {
+	// D3D11_VIEWPORT			ViewportDesc{};
+	// _uint					iNumViewport = { 1 };
+	// m_pContext->RSGetViewports(&iNumViewport, &ViewportDesc);
+	// 
+	// /* 렌더타겟들을 추가한다. */
+	// if (FAILED(m_pGameInstance->Add_RenderTarget(TEXT("Target_Diffuse"), ViewportDesc.Width, ViewportDesc.Height, DXGI_FORMAT_B8G8R8A8_UNORM, XMVectorSet(1.f, 1.f, 1.f, 1.f))))
+	// 	return E_FAIL;
+	// if (FAILED(m_pGameInstance->Add_RenderTarget(TEXT("Target_Normal"), ViewportDesc.Width, ViewportDesc.Height, DXGI_FORMAT_R16G16B16A16_UNORM, XMVectorSet(1.f, 1.f, 1.f, 1.f))))
+	// 	return E_FAIL;
+	// if (FAILED(m_pGameInstance->Add_RenderTarget(TEXT("Target_Shade"), ViewportDesc.Width, ViewportDesc.Height, DXGI_FORMAT_R16G16B16A16_UNORM, XMVectorSet(1.f, 1.f, 1.f, 1.f))))
+	// 	return E_FAIL;
+	// 
+	// 
+	// /* 멀티렌더타겟에 타겟들을 모아놓는다. */
+	// 
+	// //객체들의 정보들을 저장하기 위한 렌더타겟
+	// if (FAILED(m_pGameInstance->Add_MRT(TEXT("MRT_GameObjects"), TEXT("Target_Diffuse"))))
+	// 	return E_FAIL;
+	// if (FAILED(m_pGameInstance->Add_MRT(TEXT("MRT_GameObjects"), TEXT("Target_Normal"))))
+	// 	return E_FAIL;
+	// 
+	// //빛연산의 결과를 저장하기 위한 값
+	// if (FAILED(m_pGameInstance->Add_MRT(TEXT("MRT_LightAcc"), TEXT("Target_Shade"))))
+	// 	return E_FAIL;  
+
 
 	return S_OK;
 }
@@ -38,10 +66,6 @@ HRESULT CRenderer::Draw()
 		return E_FAIL;
 	if (FAILED(Render_UI()))
 		return E_FAIL;
-
-	
-
-
 
 	return S_OK;
 }
@@ -122,7 +146,7 @@ CRenderer * CRenderer::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pConte
 {
 	return new CRenderer(pDevice, pContext);
 }
-
+    
 void CRenderer::Free()
 {
 
@@ -133,7 +157,9 @@ void CRenderer::Free()
 		m_RenderObjects[i].clear();
 	}
 
+	Safe_Release(m_pGameInstance);
 	Safe_Release(m_pDevice);
 	Safe_Release(m_pContext);
+
 	__super::Free();
 }
