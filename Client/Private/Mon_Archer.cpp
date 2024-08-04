@@ -85,6 +85,8 @@ void CMon_Archer::Update(_float fTimeDelta)
 		m_pModelCom->SetUp_Animation(m_iAnimFrame, false);
 	}
 	m_pStateCom->Update(fTimeDelta);
+
+	Destroy();
 }
 
 void CMon_Archer::Late_Update(_float fTimeDelta)
@@ -129,6 +131,13 @@ HRESULT CMon_Archer::Render()
 	m_pGameInstance->Draw_Font(TEXT("Font_Nexon"), m_strMaxHp, _float2(1200.f, 100.f), XMVectorSet(0.7f, 1.f, 0.3f, 1.f), XMConvertToRadians(-5.f), 0.8f);
 
 	return S_OK;
+}
+
+void CMon_Archer::Destroy()
+{
+	if (m_tMonDesc.iHp <= 0.f)
+		m_bDead = true;
+
 }
 
 HRESULT CMon_Archer::Ready_State()

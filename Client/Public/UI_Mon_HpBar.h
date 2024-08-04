@@ -21,12 +21,15 @@ public:
 	virtual HRESULT Render();
 
 private:
+	void Destroy();
+
+private:
 	virtual HRESULT Ready_Components();
 	HRESULT Bind_ShaderResources();
 
 private:
-	class CMonster* m_pMonster= {};
 	_float fHpRatio = {};
+	class CMonster* m_pMonster = {};
 
 public:
 	static CUI_Mon_HpBar* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);

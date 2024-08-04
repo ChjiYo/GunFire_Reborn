@@ -27,6 +27,9 @@ public:
 	virtual HRESULT Render() override;
 
 private:
+	void Destroy();
+
+private:
 	CShader* m_pShaderCom = { nullptr };
 	CBinModel* m_pModelCom = { nullptr };
 	CState_Machine* m_pStateCom = { nullptr };

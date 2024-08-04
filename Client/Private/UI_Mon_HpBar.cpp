@@ -61,6 +61,8 @@ void CUI_Mon_HpBar::Update(_float fTimeDelta)
 	XMStoreFloat3(&vPos, m_pTargetTransform->Get_State(CTransform::STATE_POSITION));
 
 	fHpRatio = static_cast<float>(m_pMonster->Get_MonDesc().iHp) / static_cast<float>(m_pMonster->Get_MonDesc().iMaxHp);
+
+	Destroy();
 }
 
 void CUI_Mon_HpBar::Late_Update(_float fTimeDelta)
@@ -95,6 +97,12 @@ HRESULT CUI_Mon_HpBar::Render()
 		return E_FAIL;
 
 	return S_OK;
+}
+
+void CUI_Mon_HpBar::Destroy()
+{
+	if (m_pMonster->Get_MonDesc().iHp <= 0)
+		m_bDead = true;
 }
 
 HRESULT CUI_Mon_HpBar::Ready_Components()

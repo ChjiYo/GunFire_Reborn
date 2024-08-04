@@ -21,6 +21,10 @@ public:
 
 private:
 	virtual HRESULT Ready_Components();
+	void Destroy();
+
+private:
+	class CMonster* m_pMonster = {};
 
 public:
 	static CUI_Mon_BarPanel* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);

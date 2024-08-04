@@ -28,7 +28,9 @@ HRESULT CUI_Mon_BarPanel::Initialize(void* pArg)
 
 	UI_DESC* Desc = static_cast<UI_DESC*>(pArg);
 	m_pTargetTransform = Desc->pTransform;
+	m_pMonster = static_cast<CMonster*>(Desc->pGameObject);
 	Safe_AddRef(m_pTargetTransform);
+	Safe_AddRef(m_pMonster);
 
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
@@ -46,6 +48,7 @@ void CUI_Mon_BarPanel::Priority_Update(_float fTimeDelta)
 void CUI_Mon_BarPanel::Update(_float fTimeDelta)
 {
 	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetY(m_pTargetTransform->Get_State(CTransform::STATE_POSITION), 3.f));
+	Destroy();
 }
 
 void CUI_Mon_BarPanel::Late_Update(_float fTimeDelta)
@@ -84,6 +87,12 @@ HRESULT CUI_Mon_BarPanel::Ready_Components()
 		return E_FAIL;
 }
 
+void CUI_Mon_BarPanel::Destroy()
+{
+	if (m_pMonster->Get_MonDesc().iHp <= 0)
+		m_bDead = true;
+}
+
 CUI_Mon_BarPanel* CUI_Mon_BarPanel::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 {
 	CUI_Mon_BarPanel* pInstatnce = new CUI_Mon_BarPanel(pDevice, pContext);
@@ -113,6 +122,7 @@ CGameObject* CUI_Mon_BarPanel::Clone(void* pArg)
 void CUI_Mon_BarPanel::Free()
 {
 	Safe_Release(m_pTargetTransform);
+	Safe_Release(m_pMonster);
 
-	__super::Free();
+	__super::Free(); 
 }
