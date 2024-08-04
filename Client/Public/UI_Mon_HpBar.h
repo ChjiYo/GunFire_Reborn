@@ -22,9 +22,11 @@ public:
 
 private:
 	virtual HRESULT Ready_Components();
+	HRESULT Bind_ShaderResources();
 
 private:
 	class CMonster* m_pMonster= {};
+	_float fHpRatio = {};
 
 public:
 	static CUI_Mon_HpBar* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);

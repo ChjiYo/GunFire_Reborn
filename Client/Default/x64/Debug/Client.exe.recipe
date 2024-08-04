@@ -24,6 +24,9 @@
     <ContentFile>
       <FullPath>C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Client\Bin\Shader_VtxPosTex.cso</FullPath>
     </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Client\Bin\Shader_UI_VtxRect.cso</FullPath>
+    </ContentFile>
   </ContentFiles>
   <SatelliteDlls />
   <NonRecipeFileRefs />

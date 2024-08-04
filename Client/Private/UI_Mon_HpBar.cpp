@@ -45,43 +45,22 @@ HRESULT CUI_Mon_HpBar::Initialize(void* pArg)
 
 void CUI_Mon_HpBar::Priority_Update(_float fTimeDelta)
 {
+	CTransform* pCamTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Camera"), TEXT("Com_Transform")));
+	_float3 vPos = {};
+	XMStoreFloat3(&vPos , pCamTransform->Get_State(CTransform::STATE_POSITION));
 
+	m_pTransformCom->LookAt({ vPos.x ,3.f,  vPos.z , 1.f});
+	m_pTransformCom->Radian_Turn({ 0.f,  1.f, 0.f }, XMConvertToRadians(180.f));
 }
 
 void CUI_Mon_HpBar::Update(_float fTimeDelta)
 {
-	CTransform* pCamTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Camera"), TEXT("Com_Transform")));
-	_vector CamPos = pCamTransform->Get_State(CTransform::STATE_POSITION);
-
+	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetY(m_pTargetTransform->Get_State(CTransform::STATE_POSITION), 3.f));
 
 	_float3 vPos = {};
 	XMStoreFloat3(&vPos, m_pTargetTransform->Get_State(CTransform::STATE_POSITION));
-	//m_pTransformCom->Set_State(CTransform::STATE_POSITION, {vPos.x , 3.f, vPos.z , 1.f});
 
-	
-	//m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetX(m_pTargetTransform->Get_State(CTransform::STATE_POSITION), ));
-
-	XMMATRIX matWorld = m_pTransformCom->Get_WorldMatrix(); 
-	XMMATRIX matWorldInverse = XMMatrixInverse(nullptr, matWorld); 
-
-	XMVECTOR vWorldPos = XMVectorSet(vPos.x, vPos.y + 2.75f, vPos.z, 1.0f);
-
-	XMVECTOR vLocalPos = XMVector3Transform(vWorldPos, matWorldInverse);
-
-	float fHpRatio = static_cast<float>(m_pMonster->Get_MonDesc().iHp) / static_cast<float>(m_pMonster->Get_MonDesc().iMaxHp);
-	float fSclaeX = fHpRatio * m_fSizeX;
-	if (fSclaeX < 0.0f)
-	{
-		fSclaeX = 0.0f;
-	}
-
-	float fLeftEdge = XMVectorGetX(vLocalPos) - m_fSizeX * 0.5f;
-	vLocalPos = XMVectorSetX(vLocalPos, fLeftEdge + fSclaeX * 0.5f);
-
-	XMVECTOR vNewWorldPos = XMVector3Transform(vLocalPos, matWorld);
-
-	m_pTransformCom->Set_Scaled(fSclaeX, 0.125f, 1.0f);
-	m_pTransformCom->Set_State(CTransform::STATE_POSITION, vNewWorldPos);
+	fHpRatio = static_cast<float>(m_pMonster->Get_MonDesc().iHp) / static_cast<float>(m_pMonster->Get_MonDesc().iMaxHp);
 }
 
 void CUI_Mon_HpBar::Late_Update(_float fTimeDelta)
@@ -91,13 +70,22 @@ void CUI_Mon_HpBar::Late_Update(_float fTimeDelta)
 
 HRESULT CUI_Mon_HpBar::Render()
 {
-	if (FAILED(__super::Bind_Perspective()))
+	if (FAILED(m_pTransformCom->Bind_ShaderResource(m_pShaderCom, "g_WorldMatrix")))
+		return E_FAIL;
+
+	if (FAILED(m_pShaderCom->Bind_Matrix("g_ViewMatrix", &m_pGameInstance->Get_Transform_Float4x4(CPipeLine::D3DTS_VIEW))))
+		return E_FAIL;
+
+	if (FAILED(m_pShaderCom->Bind_Matrix("g_ProjMatrix", &m_pGameInstance->Get_Transform_Float4x4(CPipeLine::D3DTS_PROJ))))
+		return E_FAIL;
+
+	if (FAILED(m_pShaderCom->Bind_RawValue("g_Ratio", &fHpRatio,sizeof(_float))))
 		return E_FAIL;
 
 	if (FAILED(m_pTextureCom->Bind_ShaderResource(m_pShaderCom, "g_Texture", 0)))
 		return E_FAIL;
 
-	if (FAILED(m_pShaderCom->Begin(1)))
+	if (FAILED(m_pShaderCom->Begin(0)))
 		return E_FAIL;
 
 	if (FAILED(m_pVIBufferCom->Bind_Buffers()))
@@ -111,13 +99,40 @@ HRESULT CUI_Mon_HpBar::Render()
 
 HRESULT CUI_Mon_HpBar::Ready_Components()
 {
-	if (FAILED(__super::Ready_Components()))
+	/*if (FAILED(__super::Ready_Components()))
+		return E_FAIL;*/
+
+		/* For.Com_VIBuffer */
+	if (FAILED(__super::Add_Component(LEVEL_STATIC, TEXT("Prototype_Component_VIBuffer_Rect"),
+		TEXT("Com_VIBuffer"), reinterpret_cast<CComponent**>(&m_pVIBufferCom))))
+		return E_FAIL;
+
+	/* For.Com_Shader */
+	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Shader_UI_VtxRect"),
+		TEXT("Com_Shader"), reinterpret_cast<CComponent**>(&m_pShaderCom))))
 		return E_FAIL;
 
 	/* For.Com_Texture */
 	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Monster_HpBar"),
 		TEXT("Com_Texture"), reinterpret_cast<CComponent**>(&m_pTextureCom))))
 		return E_FAIL;
+}
+
+HRESULT CUI_Mon_HpBar::Bind_ShaderResources()
+{
+	if (FAILED(m_pTransformCom->Bind_ShaderResource(m_pShaderCom, "g_WorldMatrix")))
+		return E_FAIL;
+
+	if (FAILED(m_pShaderCom->Bind_Matrix("g_ViewMatrix", &m_pGameInstance->Get_Transform_Float4x4(CPipeLine::D3DTS_VIEW))))
+		return E_FAIL;
+
+	if (FAILED(m_pShaderCom->Bind_Matrix("g_ProjMatrix", &m_pGameInstance->Get_Transform_Float4x4(CPipeLine::D3DTS_PROJ))))
+		return E_FAIL;
+
+	//if (FAILED(m_pShaderCom->Bind_RawValue("g_Ratio", &fHpRatio,sizeof(_float))))
+	//	return E_FAIL;
+
+	return S_OK;
 }
 
 CUI_Mon_HpBar* CUI_Mon_HpBar::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)

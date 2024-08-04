@@ -108,6 +108,16 @@ namespace Engine
 		XMFLOAT2		vLifeTime;
 	}VTXINSTANCE;
 
+	typedef struct ENGINE_DLL
+	{
+		XMFLOAT3		vPosition;
+		XMFLOAT2		vTexcoord;
+		XMFLOAT3		vScale;
+
+		static const unsigned int					iNumElements = { 3 };
+		static const D3D11_INPUT_ELEMENT_DESC		Elements[iNumElements];
+	}VTXUIRECT;
+
 
 	typedef struct ENGINE_DLL
 	{

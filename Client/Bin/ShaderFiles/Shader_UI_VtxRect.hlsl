@@ -3,22 +3,26 @@
 
 float4x4 g_WorldMatrix, g_ViewMatrix, g_ProjMatrix;
 texture2D g_Texture;
+float g_Ratio;
 
 struct VS_IN
 {
     float3 vPosition : POSITION;
     float2 vTexcoord : TEXCOORD0;
+    float3 vScale : TEXCOORD1;
 };
 
 struct VS_OUT
 {
     float4 vPosition : SV_POSITION;
     float2 vTexcoord : TEXCOORD0;
+    float3 vScale : TEXCOORD1;
 };
 
 VS_OUT VS_MAIN(VS_IN In)
 {
     VS_OUT Out;
+    
 
     vector vPosition = mul(vector(In.vPosition, 1.f), g_WorldMatrix);
     vPosition = mul(vPosition, g_ViewMatrix);
@@ -26,6 +30,7 @@ VS_OUT VS_MAIN(VS_IN In)
 
     Out.vPosition = vPosition;
     Out.vTexcoord = In.vTexcoord;
+    Out.vScale = In.vScale;
 
     return Out;
 }
@@ -34,6 +39,7 @@ struct PS_IN
 {
     float4 vPosition : SV_POSITION;
     float2 vTexcoord : TEXCOORD0;
+    float3 vScale : TEXCOORD1;
 };
 
 struct PS_OUT
@@ -45,12 +51,18 @@ PS_OUT PS_MAIN(PS_IN In)
 {
     PS_OUT Out;
 
-    Out.vColor = g_Texture.Sample(LinearSampler, In.vTexcoord);
+    // g_Ratio를 사용하여 텍스처 좌표 스케일링
+    float2 scaledTexCoord = In.vTexcoord * g_Ratio;
+    
+      Out.vColor = g_Texture.Sample(LinearSampler, scaledTexCoord);
 
-	//Out.vColor.gb = Out.vColor.r;
+    // 알파 값이 0.1 이하인 경우 픽셀 제거
     if (Out.vColor.a <= 0.1f)
         discard;
-
+    
+    if (In.vTexcoord.x > g_Ratio)
+        Out.vColor.gb = Out.vColor.r;
+        
     return Out;
 }
 
@@ -60,37 +72,12 @@ technique11 DefaultTechnique
     pass Default
     {
 
-        SetRasterizerState(RS_Cull_NONE);
-        SetDepthStencilState(DSS_Default, 0);
-        SetBlendState(BS_Default, float4(0.f, 0.f, 0.f, 0.f), 0xffffffff);
-
-        VertexShader = compile vs_5_0 VS_MAIN();
-        PixelShader = compile ps_5_0 PS_MAIN();
-    }
-
-    pass Test
-    {
-
-        SetRasterizerState(RS_Cull_NONE);
-        SetDepthStencilState(DSS_None, 0);
-        SetBlendState(BS_Default, float4(0.f, 0.f, 0.f, 0.f), 0xffffffff);
+        SetRasterizerState(RS_Default);
+        SetDepthStencilState(DSS_Default,0);
+        SetBlendState(BS_AlphaBlend, float4(0.f, 0.f, 0.f, 0.f), 0xffffffff);
 
         VertexShader = compile vs_5_0 VS_MAIN();
         PixelShader = compile ps_5_0 PS_MAIN();
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

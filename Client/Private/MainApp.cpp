@@ -38,7 +38,7 @@ HRESULT CMainApp::Initialize()
 
 	if (FAILED(Ready_Prototype_Component_ForStatic()))
 		return E_FAIL;
-
+	
 	if (FAILED(Ready_Prototoype_Resource_ForStatic()))
 		return E_FAIL;
 
