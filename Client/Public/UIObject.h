@@ -18,9 +18,10 @@ BEGIN(Client)
 class CUIObject abstract : public CGameObject
 {
 public:
-	typedef struct MyStruct
+	typedef struct
 	{
-		CTransform* pTargetTransform = {};
+		class CTransform* pTransform = {};
+		CGameObject* pGameObject = {};
 	}UI_DESC;
 
 protected:
@@ -59,7 +60,6 @@ protected:
 	_float m_fPosY = { 0.f };
 
 	CTransform* m_pTargetTransform = {};
-
 public:
 	virtual CGameObject* Clone(void* pArg) = 0;
 	virtual void Free() override;

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "UIObject.h"
-#include "Player.h"
+#include "Monster.h"
 
 BEGIN(Client)
 
@@ -24,8 +24,7 @@ private:
 	virtual HRESULT Ready_Components();
 
 private:
-	wstring m_strHp = {};
-	wstring m_strMaxHp = {};
+	class CMonster* m_pMonster= {};
 
 public:
 	static CUI_Mon_HpBar* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);

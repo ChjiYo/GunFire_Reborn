@@ -3,6 +3,8 @@
 #include "Skill_Pistol_Bullet.h"
 #include "GameInstance.h"   
 
+#include "Monster.h"
+
 CSkill_Pistol_Bullet::CSkill_Pistol_Bullet(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
     :CSkill_Player { pDevice , pContext }
 {
@@ -65,8 +67,13 @@ void CSkill_Pistol_Bullet::Update(_float fTimeDelta)
 void CSkill_Pistol_Bullet::Late_Update(_float fTimeDelta)
 {
     CCollider* pTargetCollider = dynamic_cast<CCollider*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Monster"), TEXT("Com_Collider_Sphere"), 0));
+    CMonster* pMonster = dynamic_cast<CMonster*>(m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Monster")).front());
 
-    m_pColliderCom->isCollision(pTargetCollider);
+    if (m_pColliderCom->isCollision(pTargetCollider))
+    {
+        pMonster->Set_Damage(-5.f);
+        m_bDead = true;
+    }
 
     m_pGameInstance->Add_RenderObject(CRenderer::RG_BLEND, this);
 }

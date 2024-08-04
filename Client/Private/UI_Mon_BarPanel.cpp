@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "UI_Mon_BarPanel.h"
+#include "Monster.h"
 
 CUI_Mon_BarPanel::CUI_Mon_BarPanel(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	:CUIObject{ pDevice ,pContext }
@@ -26,7 +27,7 @@ HRESULT CUI_Mon_BarPanel::Initialize(void* pArg)
 		return E_FAIL;
 
 	UI_DESC* Desc = static_cast<UI_DESC*>(pArg);
-	m_pTargetTransform = Desc->pTargetTransform;
+	m_pTargetTransform = Desc->pTransform;
 	Safe_AddRef(m_pTargetTransform);
 
 	if (FAILED(Ready_Components()))
@@ -44,7 +45,7 @@ void CUI_Mon_BarPanel::Priority_Update(_float fTimeDelta)
 
 void CUI_Mon_BarPanel::Update(_float fTimeDelta)
 {
-	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetY(m_pTargetTransform->Get_State(CTransform::STATE_POSITION) , 3.f));
+	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetY(m_pTargetTransform->Get_State(CTransform::STATE_POSITION), 3.f));
 }
 
 void CUI_Mon_BarPanel::Late_Update(_float fTimeDelta)

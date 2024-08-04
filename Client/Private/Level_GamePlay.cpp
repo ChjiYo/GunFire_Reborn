@@ -8,6 +8,8 @@
 #include "Player.h"
 #include "Weapon_Player_Pistol.h"
 
+#include "Mon_Archer.h"
+
 CLevel_GamePlay::CLevel_GamePlay(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	: CLevel{ pDevice, pContext } 
 {
@@ -180,7 +182,11 @@ HRESULT CLevel_GamePlay::Ready_Layer_Player(const wstring& strLayerTag)
 
 HRESULT CLevel_GamePlay::Ready_Layer_Monster(const _wstring & strLayerTag)
 {
-	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Mon_Archer"), strLayerTag)))
+	CMonster::MON_DESC	Desc = {};
+	Desc.iMaxHp = 30.f;
+	Desc.iHp = 30.f;
+
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Mon_Archer"), strLayerTag, &Desc)))
 		return E_FAIL;
 
 	return S_OK;

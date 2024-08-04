@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "UI_Mon_HpBar.h"
+#include "Mon_Archer.h"
 
 CUI_Mon_HpBar::CUI_Mon_HpBar(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	:CUIObject{ pDevice ,pContext }
@@ -26,26 +27,61 @@ HRESULT CUI_Mon_HpBar::Initialize(void* pArg)
 		return E_FAIL;
 
 	UI_DESC* Desc = static_cast<UI_DESC*>(pArg);
-	m_pTargetTransform = Desc->pTargetTransform;
+	m_pTargetTransform = Desc->pTransform;
+	m_pMonster = dynamic_cast<CMonster*>(Desc->pGameObject);
+
 	Safe_AddRef(m_pTargetTransform);
+	Safe_AddRef(m_pMonster);
 
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
-	m_pTransformCom->Set_Scaled(1.5f, 0.125f, 1.f);
-
+	m_fSizeX = 1.5f;
+	m_fPosX = XMVectorGetX(m_pTransformCom->Get_State(CTransform::STATE_POSITION));
+	m_pTransformCom->Set_Scaled(m_fSizeX, 0.125f, 1.f);
+	
 	return S_OK;
 }
 
 void CUI_Mon_HpBar::Priority_Update(_float fTimeDelta)
 {
-	CTransform* pCamTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Camera"), TEXT("Com_Transform")));
-	m_pTransformCom->LookAt(XMVectorSetY(pCamTransform->Get_State(CTransform::STATE_POSITION), 3.f));
+
 }
 
 void CUI_Mon_HpBar::Update(_float fTimeDelta)
 {
-	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetY(m_pTargetTransform->Get_State(CTransform::STATE_POSITION), 3.f));
+	CTransform* pCamTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Camera"), TEXT("Com_Transform")));
+	_vector CamPos = pCamTransform->Get_State(CTransform::STATE_POSITION);
+
+
+	_float3 vPos = {};
+	XMStoreFloat3(&vPos, m_pTargetTransform->Get_State(CTransform::STATE_POSITION));
+	//m_pTransformCom->Set_State(CTransform::STATE_POSITION, {vPos.x , 3.f, vPos.z , 1.f});
+
+	
+	//m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetX(m_pTargetTransform->Get_State(CTransform::STATE_POSITION), ));
+
+	XMMATRIX matWorld = m_pTransformCom->Get_WorldMatrix(); 
+	XMMATRIX matWorldInverse = XMMatrixInverse(nullptr, matWorld); 
+
+	XMVECTOR vWorldPos = XMVectorSet(vPos.x, vPos.y + 2.75f, vPos.z, 1.0f);
+
+	XMVECTOR vLocalPos = XMVector3Transform(vWorldPos, matWorldInverse);
+
+	float fHpRatio = static_cast<float>(m_pMonster->Get_MonDesc().iHp) / static_cast<float>(m_pMonster->Get_MonDesc().iMaxHp);
+	float fSclaeX = fHpRatio * m_fSizeX;
+	if (fSclaeX < 0.0f)
+	{
+		fSclaeX = 0.0f;
+	}
+
+	float fLeftEdge = XMVectorGetX(vLocalPos) - m_fSizeX * 0.5f;
+	vLocalPos = XMVectorSetX(vLocalPos, fLeftEdge + fSclaeX * 0.5f);
+
+	XMVECTOR vNewWorldPos = XMVector3Transform(vLocalPos, matWorld);
+
+	m_pTransformCom->Set_Scaled(fSclaeX, 0.125f, 1.0f);
+	m_pTransformCom->Set_State(CTransform::STATE_POSITION, vNewWorldPos);
 }
 
 void CUI_Mon_HpBar::Late_Update(_float fTimeDelta)
@@ -69,8 +105,6 @@ HRESULT CUI_Mon_HpBar::Render()
 
 	if (FAILED(m_pVIBufferCom->Render()))
 		return E_FAIL;
-
-	//m_pGameInstance->Draw_Font(TEXT("Font_Nexon"), m_strHp + TEXT(" / ") + m_strMaxHp, _float2(m_fPosX + 100.f, m_fPosY), XMVectorSet(0.7f, 1.f, 0.3f, 1.f), XMConvertToRadians(-5.f), 0.8f);
 
 	return S_OK;
 }
@@ -115,6 +149,7 @@ CGameObject* CUI_Mon_HpBar::Clone(void* pArg)
 void CUI_Mon_HpBar::Free()
 {
 	Safe_Release(m_pTargetTransform);
+	Safe_Release(m_pMonster);
 
 	__super::Free();
 }

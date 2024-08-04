@@ -36,6 +36,10 @@ HRESULT CMon_Archer::Initialize(void* pArg)
 	if (FAILED(__super::Initialize(&ContainerDesc)))
 		return E_FAIL;
 
+	MON_DESC* MonDesc = static_cast<MON_DESC*>(pArg);
+	m_tMonDesc.iMaxHp = MonDesc->iMaxHp;
+	m_tMonDesc.iHp = MonDesc->iHp;
+
 	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSet(20.f, 1.f, 20.f, 1.f));
 
 	if (FAILED(Ready_Components()))
@@ -45,7 +49,9 @@ HRESULT CMon_Archer::Initialize(void* pArg)
 		return E_FAIL;
 
 	CUIObject::UI_DESC Desc = {};
-	Desc.pTargetTransform = m_pTransformCom;
+	Desc.pTransform = m_pTransformCom;
+	Desc.pGameObject = this;
+
 	if (FAILED(Ready_UI(Desc)))
 		return E_FAIL;
 

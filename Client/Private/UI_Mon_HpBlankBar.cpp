@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "UI_Mon_HpBlankBar.h"
+#include "Monster.h"
 
 CUI_Mon_HpBlankBar::CUI_Mon_HpBlankBar(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	:CUIObject{ pDevice ,pContext }
@@ -26,7 +27,7 @@ HRESULT CUI_Mon_HpBlankBar::Initialize(void* pArg)
 		return E_FAIL;
 
 	UI_DESC* Desc = static_cast<UI_DESC*>(pArg);
-	m_pTargetTransform = Desc->pTargetTransform;
+	m_pTargetTransform = Desc->pTransform;
 	Safe_AddRef(m_pTargetTransform);
 
 	if (FAILED(Ready_Components()))
