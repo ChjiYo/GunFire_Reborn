@@ -93,7 +93,7 @@ HRESULT CSkill_Archer_Bullet::Render()
     if (FAILED(Bind_ShaderResources()))
         return E_FAIL;
 
-    if (FAILED(m_pShaderCom->Begin(1)))
+    if (FAILED(m_pShaderCom->Begin(0)))
         return E_FAIL;
 
     if (FAILED(m_pVIBufferCom->Bind_Buffers()))
