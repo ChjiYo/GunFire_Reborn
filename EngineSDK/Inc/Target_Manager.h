@@ -18,16 +18,22 @@ public:
 	HRESULT Begin_MRT(const _wstring& strMRTTag);
 	HRESULT End_MRT();
 
+#ifdef _DEBUG
+public:
+	HRESULT Ready_Debug(const _wstring& strTargetTag, _float fCenterX, _float fCenterY, _float fSizeX, _float fSizeY);
+	HRESULT Render_Debug(const _wstring& strMRTTag, class CShader* pShader, class CVIBuffer_Rect* pVIBuffer);
+#endif
+
 private:
-	ID3D11Device* m_pDevice = { nullptr };
-	ID3D11DeviceContext* m_pContext = { nullptr };
+	ID3D11Device*									m_pDevice = { nullptr };
+	ID3D11DeviceContext*							m_pContext = { nullptr };
 
 	map<const _wstring, class CRenderTarget*>		m_RenderTargets;
 	map<const _wstring, list<class CRenderTarget*>>	m_MRTs;
 
 private:
-	ID3D11RenderTargetView* m_pOldRTV = { nullptr };
-	ID3D11DepthStencilView* m_pOldDSV = { nullptr };
+	ID3D11RenderTargetView*							m_pOldRTV = { nullptr };
+	ID3D11DepthStencilView*							m_pOldDSV = { nullptr };
 
 public:
 	class CRenderTarget* Find_RenderTarget(const _wstring& strTargetTag);

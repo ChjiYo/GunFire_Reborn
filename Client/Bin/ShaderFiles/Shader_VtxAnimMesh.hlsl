@@ -78,6 +78,7 @@ struct PS_IN
 struct PS_OUT
 {
 	float4	vColor : SV_TARGET0;
+    float4 vNormal : SV_TARGET1;
 };
 
 PS_OUT PS_MAIN(PS_IN In)
@@ -100,6 +101,7 @@ PS_OUT PS_MAIN(PS_IN In)
 	float		fSpecular = pow(max(dot(normalize(vReflect) * -1.f, normalize(vLook)), 0.f), 30.f);
 	vector		vSpecular = g_vLightSpecular * g_vMtrlSpecular * fSpecular;
 
+    Out.vNormal = vector(In.vNormal.xyz * 0.5f + 0.5f, 0.f);
 	Out.vColor = (g_vLightDiffuse * vMtrlDiffuse) * vShade + vSpecular;
 
     Out.vColor.a = 0.5f;
