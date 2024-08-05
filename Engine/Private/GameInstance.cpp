@@ -84,8 +84,6 @@ HRESULT CGameInstance::Initialize_Engine(HINSTANCE hInst, HWND hWnd, _bool isWin
 
 void CGameInstance::Update_Engine(_float fTimeDelta)
 {	
-
-
 	m_pPicking->Update();
 	/* 키보드와 마우스의 상태를 저장한다. */
 	m_pInput_Device->Update();

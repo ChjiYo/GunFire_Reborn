@@ -65,6 +65,8 @@ HRESULT CTarget_Manager::Begin_MRT(const _wstring& strMRTTag)
 
 	for (auto& pRenderTarget : *pMRTList)
 	{
+		pRenderTarget->Clear();
+
 		RenderTargets[iNumRTV++] = pRenderTarget->Get_RTV();
 	}
 
@@ -91,8 +93,6 @@ HRESULT CTarget_Manager::Ready_Debug(const _wstring& strTargetTag, _float fCente
 		return E_FAIL;
 
 	return pRenderTarget->Ready_Debug(fCenterX, fCenterY, fSizeX, fSizeY);
-
-	return S_OK;
 }
 
 HRESULT CTarget_Manager::Render_Debug(const _wstring& strMRTTag, CShader* pShader, CVIBuffer_Rect* pVIBuffer)

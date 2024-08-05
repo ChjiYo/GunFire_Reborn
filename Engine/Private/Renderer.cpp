@@ -161,10 +161,23 @@ HRESULT CRenderer::Render_UI()
 	return S_OK;
 }
 
+#ifdef _DEBUG
+
 HRESULT CRenderer::Render_Debug()
 {
+	if (FAILED(m_pShader->Bind_Matrix("g_ViewMatrix", &m_ViewMatrix)))
+		return E_FAIL;
+	if (FAILED(m_pShader->Bind_Matrix("g_ProjMatrix", &m_ProjMatrix)))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Render_RT_Debug(TEXT("MRT_GameObjects"), m_pShader, m_pVIBuffer)))
+		return E_FAIL;
+	if (FAILED(m_pGameInstance->Render_RT_Debug(TEXT("MRT_LightAcc"), m_pShader, m_pVIBuffer)))
+		return E_FAIL;
+
 	return S_OK;
 }
+#endif
 
 CRenderer * CRenderer::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 {
@@ -180,6 +193,8 @@ void CRenderer::Free()
 			Safe_Release(pRenderObject);
 		m_RenderObjects[i].clear();
 	}
+	Safe_Release(m_pShader);
+	Safe_Release(m_pVIBuffer);
 
 	Safe_Release(m_pGameInstance);
 	Safe_Release(m_pDevice);

@@ -12,6 +12,8 @@ CRenderTarget::CRenderTarget(ID3D11Device* pDevice, ID3D11DeviceContext* pContex
 
 HRESULT CRenderTarget::Initialize(_uint iWidth, _uint iHeight, DXGI_FORMAT ePixelFormat, _fvector vClearColor)
 {
+	XMStoreFloat4(&m_vClearColor, vClearColor);
+
 	D3D11_TEXTURE2D_DESC	TextureDesc;
 	ZeroMemory(&TextureDesc, sizeof(D3D11_TEXTURE2D_DESC));
 
@@ -95,7 +97,7 @@ CRenderTarget* CRenderTarget::Create(ID3D11Device* pDevice, ID3D11DeviceContext*
 
 void CRenderTarget::Free()
 {
-	SaveDDSTextureToFile(m_pContext, m_pTexture2D, TEXT("../Bin/Tmp.dds"));
+	//SaveDDSTextureToFile(m_pContext, m_pTexture2D, TEXT("../Bin/Tmp.dds"));
 
 	Safe_Release(m_pSRV);
 	Safe_Release(m_pRTV);
