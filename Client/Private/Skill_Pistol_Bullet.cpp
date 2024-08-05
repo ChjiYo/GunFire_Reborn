@@ -58,7 +58,7 @@ void CSkill_Pistol_Bullet::Update(_float fTimeDelta)
 
    _vector	vPosition = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
 
-    vPosition += m_vTargetLook * 10.f * fTimeDelta;
+    vPosition += m_vTargetLook * 50.f * fTimeDelta;
     m_pTransformCom->Set_State(CTransform::STATE_POSITION, vPosition);
 
     Destroy(fTimeDelta);

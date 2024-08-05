@@ -56,7 +56,6 @@ HRESULT CPlayer::Initialize(void* pArg)
     if (FAILED(Ready_State()))
         return E_FAIL;
 
-   
     m_eWeaponID = PISTOL;
 
     return S_OK;

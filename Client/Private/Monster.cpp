@@ -52,7 +52,7 @@ HRESULT CMonster::Ready_Components()
 {
 	CNavigation::NAVIGATION_DESC		NavigationDesc{};
 	NavigationDesc.iCurrentCellIndex = 0;
-	NavigationDesc.pTargetTransform = m_pTransformCom;
+	NavigationDesc.pOriginTransform = m_pTransformCom;
 
 	/* Com_Navigation */
 	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Navigation"),
@@ -90,15 +90,19 @@ HRESULT CMonster::Ready_Components()
 	return S_OK;
 }
 
-HRESULT CMonster::Ready_UI(CUIObject::UI_DESC  tDesc)
+HRESULT CMonster::Ready_UI()
 {
-	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Monster_BarPanel"), TEXT("Layer_UI_Monster_ABarPanel"), &tDesc)))
+	CUIObject::UI_DESC Desc = {};
+	Desc.pTransform = m_pTransformCom;
+	Desc.pGameObject = this;
+
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Monster_BarPanel"), TEXT("Layer_UI_Monster_ABarPanel"), &Desc)))
 		return E_FAIL;
 	
 	//if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Monster_HpBlankBar"), TEXT("Layer_UI_Monster_BHpBlankBar"),&tDesc)))
 	//return E_FAIL;
 	
-	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Monster_HpBar"), TEXT("Layer_UI_Monster_CHpBar"),&tDesc)))
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Monster_HpBar"), TEXT("Layer_UI_Monster_CHpBar"),&Desc)))
 		return E_FAIL;
 	
 	return S_OK;

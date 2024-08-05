@@ -38,18 +38,16 @@ HRESULT CSkill_Archer_Bullet::Initialize(void* pArg)
     Safe_AddRef(m_pOriginTransform);
 
     m_pTransformCom->Set_Scaled(3.f, 0.25f, 0.25f);
-
     m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetY(m_pTransformCom->Get_State(CTransform::STATE_POSITION) ,1.f));
+
     m_vPos = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
 
-    CTransform* pPlayerTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Player"), TEXT("Com_Transform")));
+    CTransform* pTargetTransform = static_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Player"), TEXT("Com_Transform")));
 
     m_vOffsetRandomPos = { Get_Random(0, 2) - 1.f , Get_Random(0, 2) - 1.f,Get_Random(0, 2) - 1.0f };
 
-    m_vPlayerPos = pPlayerTransform->Get_State(CTransform::STATE_POSITION);
+    m_vPlayerPos = pTargetTransform->Get_State(CTransform::STATE_POSITION);
     m_vPlayerPos += m_vOffsetRandomPos;
-
-    //XMVectorSetX(pPlayerTransform->Get_State(CTransform::STATE_POSITION) , m_vOffsetRandomPos.x);
     
     //네비게이션 메쉬 밖으로 나가면 delete? good 
     return S_OK;

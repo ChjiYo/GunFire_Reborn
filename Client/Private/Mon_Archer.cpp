@@ -48,11 +48,7 @@ HRESULT CMon_Archer::Initialize(void* pArg)
 	if(FAILED(Ready_State()))
 		return E_FAIL;
 
-	CUIObject::UI_DESC Desc = {};
-	Desc.pTransform = m_pTransformCom;
-	Desc.pGameObject = this;
-
-	if (FAILED(Ready_UI(Desc)))
+	if (FAILED(Ready_UI()))
 		return E_FAIL;
 
 	m_pStateCom->Set_State(TEXT("Monster_Archer_State_Idle"));

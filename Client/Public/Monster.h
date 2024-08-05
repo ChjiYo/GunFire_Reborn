@@ -48,7 +48,7 @@ public:
 
 public:
 	HRESULT Ready_Components();
-	HRESULT Ready_UI(CUIObject::UI_DESC tDesc);
+	HRESULT Ready_UI();
 
 protected:
 	CNavigation* m_pNavigationCom	= { nullptr };
