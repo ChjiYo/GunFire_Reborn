@@ -52,7 +52,6 @@ HRESULT CMonster::Ready_Components()
 {
 	CNavigation::NAVIGATION_DESC		NavigationDesc{};
 	NavigationDesc.iCurrentCellIndex = 0;
-	NavigationDesc.pOriginTransform = m_pTransformCom;
 
 	/* Com_Navigation */
 	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Navigation"),

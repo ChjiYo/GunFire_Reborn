@@ -45,7 +45,6 @@ HRESULT CPlayer::Initialize(void* pArg)
     Player_Desc.iShield = Desc->iShield;
     Player_Desc.iMaxShield = Desc->iMaxShield;
 
-    m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 10.f , 1.3f , 10.f, 1.f });
 
     if (FAILED(Ready_PartObjects()))
         return E_FAIL;
@@ -58,6 +57,9 @@ HRESULT CPlayer::Initialize(void* pArg)
 
     m_eWeaponID = PISTOL;
 
+    m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 10.f , 1.3f , 10.f, 1.f });
+    m_pNavigationCom->Init_Index(m_pTransformCom);
+    
     return S_OK;
 }
 
@@ -123,7 +125,6 @@ HRESULT CPlayer::Ready_Components()
 {
     CNavigation::NAVIGATION_DESC		NavigationDesc{};
     NavigationDesc.iCurrentCellIndex = 0;
-    NavigationDesc.pOriginTransform = m_pTransformCom;
     
     /* Com_Navigation */
     if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Navigation"),

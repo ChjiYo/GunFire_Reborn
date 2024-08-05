@@ -72,12 +72,6 @@ HRESULT CNavigation::Initialize(void * pArg)
 	{
 		NAVIGATION_DESC*		pDesc = static_cast<NAVIGATION_DESC*>(pArg);
 		m_iCurrentCellIndex = pDesc->iCurrentCellIndex;
-		m_pOriginTransform = pDesc->pOriginTransform;
-
-		Safe_AddRef(m_pOriginTransform);
-		XMStoreFloat3(&m_vPos, m_pOriginTransform->Get_State(CTransform::STATE_POSITION));
-		
-		Init_Index();
 	}
 
 	return S_OK;
@@ -237,8 +231,12 @@ void CNavigation::Make_Neighbors()
 	}
 }
 
-void CNavigation::Init_Index()
+void CNavigation::Init_Index(class CTransform* pTransform)
 {
+	_float3 vPos = {};
+	XMStoreFloat3(&vPos, pTransform->Get_State(CTransform::STATE_POSITION));
+
+
 	for (int i = 0; i < m_Cells.size(); ++i)
 	{
 		_float2								m_vPosX = {};
@@ -257,9 +255,9 @@ void CNavigation::Init_Index()
 		}
 
 			
-		if ((m_vPosX.y < m_vPos.x && m_vPos.x < m_vPosX.x) && (m_vPosZ.y < m_vPos.z && m_vPos.z < m_vPosZ.x))
+		if ((m_vPosX.y < vPos.x && vPos.x < m_vPosX.x) && (m_vPosZ.y < vPos.z && vPos.z < m_vPosZ.x))
 		{
-			m_iCurrentCellIndex = i;
+			m_iCurrentCellIndex = i + 1;
 			break;
 		}
 	}
@@ -336,8 +334,6 @@ void CNavigation::Free()
 		Safe_Release(pCell);
 
 	m_Cells.clear();
-
-	Safe_Release(m_pOriginTransform);
 
 	__super::Free();
 }
