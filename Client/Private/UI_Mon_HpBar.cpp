@@ -27,10 +27,10 @@ HRESULT CUI_Mon_HpBar::Initialize(void* pArg)
 		return E_FAIL;
 
 	UI_DESC* Desc = static_cast<UI_DESC*>(pArg);
-	m_pTargetTransform = Desc->pTransform;
+	m_pOriginTransform = Desc->pTransform;
 	m_pMonster = dynamic_cast<CMonster*>(Desc->pGameObject);
 
-	Safe_AddRef(m_pTargetTransform);
+	Safe_AddRef(m_pOriginTransform);
 	Safe_AddRef(m_pMonster);
 
 	if (FAILED(Ready_Components()))
@@ -55,10 +55,10 @@ void CUI_Mon_HpBar::Priority_Update(_float fTimeDelta)
 
 void CUI_Mon_HpBar::Update(_float fTimeDelta)
 {
-	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetY(m_pTargetTransform->Get_State(CTransform::STATE_POSITION), 3.f));
+	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetY(m_pOriginTransform->Get_State(CTransform::STATE_POSITION), 3.f));
 
 	_float3 vPos = {};
-	XMStoreFloat3(&vPos, m_pTargetTransform->Get_State(CTransform::STATE_POSITION));
+	XMStoreFloat3(&vPos, m_pOriginTransform->Get_State(CTransform::STATE_POSITION));
 
 	fHpRatio = static_cast<float>(m_pMonster->Get_MonDesc().iHp) / static_cast<float>(m_pMonster->Get_MonDesc().iMaxHp);
 
@@ -171,7 +171,7 @@ CGameObject* CUI_Mon_HpBar::Clone(void* pArg)
 
 void CUI_Mon_HpBar::Free()
 {
-	Safe_Release(m_pTargetTransform);
+	Safe_Release(m_pOriginTransform);
 	Safe_Release(m_pMonster);
 
 	__super::Free();

@@ -27,8 +27,8 @@ HRESULT CUI_Mon_HpBlankBar::Initialize(void* pArg)
 		return E_FAIL;
 
 	UI_DESC* Desc = static_cast<UI_DESC*>(pArg);
-	m_pTargetTransform = Desc->pTransform;
-	Safe_AddRef(m_pTargetTransform);
+	m_pOriginTransform = Desc->pTransform;
+	Safe_AddRef(m_pOriginTransform);
 
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
@@ -46,7 +46,7 @@ void CUI_Mon_HpBlankBar::Priority_Update(_float fTimeDelta)
 
 void CUI_Mon_HpBlankBar::Update(_float fTimeDelta)
 {
-	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetY(m_pTargetTransform->Get_State(CTransform::STATE_POSITION), 3.f));
+	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetY(m_pOriginTransform->Get_State(CTransform::STATE_POSITION), 3.f));
 }
 
 void CUI_Mon_HpBlankBar::Late_Update(_float fTimeDelta)
@@ -113,7 +113,7 @@ CGameObject* CUI_Mon_HpBlankBar::Clone(void* pArg)
 
 void CUI_Mon_HpBlankBar::Free()
 {
-	Safe_Release(m_pTargetTransform);
+	Safe_Release(m_pOriginTransform);
 
 	__super::Free();
 }

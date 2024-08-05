@@ -10,7 +10,7 @@ public:
 	typedef struct
 	{
 		_int		iCurrentCellIndex{ -1 };
-		class CTransform* pTargetTransform = {};
+		class CTransform* pOriginTransform = {};
 	}NAVIGATION_DESC;
 private:
 	CNavigation(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
@@ -35,7 +35,7 @@ private:
 	vector<class CCell*>				m_Cells;
 	_int								m_iCurrentCellIndex = { -1 };
 	_float3								m_vPos = {};
-	class CTransform*					m_pTargetTransform = {};
+	class CTransform*					m_pOriginTransform = {};
 
 	static _float4x4					m_WorldMatrix;
 

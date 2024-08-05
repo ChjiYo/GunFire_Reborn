@@ -32,13 +32,13 @@ HRESULT CSkill_Pistol_Bullet::Initialize(void* pArg)
         return E_FAIL;
 
     SKILL_DESC* Desc = static_cast<SKILL_DESC*>(pArg);
-    m_pTargetTransform = Desc->pTargetTransform;
+    m_pOriginTransform = Desc->pOriginTransform;
    
-    Safe_AddRef(m_pTargetTransform);
+    Safe_AddRef(m_pOriginTransform);
 
-    m_pTransformCom->Set_State(CTransform::STATE_POSITION, m_pTargetTransform->Get_State(CTransform::STATE_POSITION));
+    m_pTransformCom->Set_State(CTransform::STATE_POSITION, m_pOriginTransform->Get_State(CTransform::STATE_POSITION));
 
-    m_vTargetLook = m_pTargetTransform->Get_State(CTransform::STATE_LOOK);
+    m_vTargetLook = m_pOriginTransform->Get_State(CTransform::STATE_LOOK);
         
     m_pTransformCom->Set_Scaled(3.f, 0.25f, 0.25f);
 
@@ -188,7 +188,7 @@ CGameObject* CSkill_Pistol_Bullet::Clone(void* pArg)
 
 void CSkill_Pistol_Bullet::Free()
 {
-    Safe_Release(m_pTargetTransform);
+    Safe_Release(m_pOriginTransform);
     Safe_Release(m_pShaderCom);
     Safe_Release(m_pVIBufferCom);
     Safe_Release(m_pTextureCom);

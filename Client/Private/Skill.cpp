@@ -26,13 +26,13 @@ HRESULT CSkill::Initialize(void* pArg)
 		return E_FAIL;
 
 	SKILL_DESC* Desc = static_cast<SKILL_DESC*>(pArg);
-	m_pTargetTransform = Desc->pTargetTransform;
+	m_pOriginTransform = Desc->pOriginTransform;
 
-	m_pTransformCom->Set_State(CTransform::STATE_POSITION, m_pTargetTransform->Get_State(CTransform::STATE_POSITION));
+	m_pTransformCom->Set_State(CTransform::STATE_POSITION, m_pOriginTransform->Get_State(CTransform::STATE_POSITION));
 
-	_vector vTargetLook = m_pTargetTransform->Get_State(CTransform::STATE_LOOK);
-	_vector vTargetUp = m_pTargetTransform->Get_State(CTransform::STATE_UP);
-	_vector vTargetRight = m_pTargetTransform->Get_State(CTransform::STATE_RIGHT);
+	_vector vTargetLook = m_pOriginTransform->Get_State(CTransform::STATE_LOOK);
+	_vector vTargetUp = m_pOriginTransform->Get_State(CTransform::STATE_UP);
+	_vector vTargetRight = m_pOriginTransform->Get_State(CTransform::STATE_RIGHT);
 
 	m_pTransformCom->Set_State(CTransform::STATE_LOOK, vTargetLook);
 	m_pTransformCom->Set_State(CTransform::STATE_UP, vTargetUp);

@@ -8,7 +8,7 @@ class CSkill abstract:public CGameObject
 public:
 	typedef struct : public CGameObject::GAMEOBJECT_DESC
 	{
-		CTransform* pTargetTransform = {};
+		CTransform* pOriginTransform = {};
 		_uint		iSkillDamage = {};
 
 	}SKILL_DESC;
@@ -27,7 +27,7 @@ public:
 	virtual HRESULT Render() override;
 
 protected:
-	CTransform* m_pTargetTransform = {};
+	CTransform* m_pOriginTransform = {};
 	_uint		m_iSkillDamage = {};
 
 public:

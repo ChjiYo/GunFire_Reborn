@@ -32,10 +32,10 @@ HRESULT CSkill_Archer_Bullet::Initialize(void* pArg)
         return E_FAIL;
 
     SKILL_DESC* Desc = static_cast<SKILL_DESC*>(pArg);
-    m_pTargetTransform = Desc->pTargetTransform;
+    m_pOriginTransform = Desc->pOriginTransform;
     m_iSkillDamage = Desc->iSkillDamage;
 
-    Safe_AddRef(m_pTargetTransform);
+    Safe_AddRef(m_pOriginTransform);
 
     m_pTransformCom->Set_Scaled(3.f, 0.25f, 0.25f);
 
@@ -48,7 +48,8 @@ HRESULT CSkill_Archer_Bullet::Initialize(void* pArg)
 
     m_vPlayerPos = pPlayerTransform->Get_State(CTransform::STATE_POSITION);
     m_vPlayerPos += m_vOffsetRandomPos;
-        //XMVectorSetX(pPlayerTransform->Get_State(CTransform::STATE_POSITION) , m_vOffsetRandomPos.x);
+
+    //XMVectorSetX(pPlayerTransform->Get_State(CTransform::STATE_POSITION) , m_vOffsetRandomPos.x);
     
     //네비게이션 메쉬 밖으로 나가면 delete? good 
     return S_OK;
@@ -192,7 +193,7 @@ CGameObject* CSkill_Archer_Bullet::Clone(void* pArg)
 
 void CSkill_Archer_Bullet::Free()
 {
-    Safe_Release(m_pTargetTransform);
+    Safe_Release(m_pOriginTransform);
     Safe_Release(m_pShaderCom);
     Safe_Release(m_pVIBufferCom);
     Safe_Release(m_pTextureCom);

@@ -72,10 +72,10 @@ HRESULT CNavigation::Initialize(void * pArg)
 	{
 		NAVIGATION_DESC*		pDesc = static_cast<NAVIGATION_DESC*>(pArg);
 		m_iCurrentCellIndex = pDesc->iCurrentCellIndex;
-		m_pTargetTransform = pDesc->pTargetTransform;
+		m_pOriginTransform = pDesc->pOriginTransform;
 
-		Safe_AddRef(m_pTargetTransform);
-		XMStoreFloat3(&m_vPos, m_pTargetTransform->Get_State(CTransform::STATE_POSITION));
+		Safe_AddRef(m_pOriginTransform);
+		XMStoreFloat3(&m_vPos, m_pOriginTransform->Get_State(CTransform::STATE_POSITION));
 		
 		Init_Index();
 	}
@@ -337,7 +337,7 @@ void CNavigation::Free()
 
 	m_Cells.clear();
 
-	Safe_Release(m_pTargetTransform);
+	Safe_Release(m_pOriginTransform);
 
 	__super::Free();
 }

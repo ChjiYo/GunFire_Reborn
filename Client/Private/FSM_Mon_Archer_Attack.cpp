@@ -68,7 +68,7 @@ void CFSM_Mon_Archer_Attack::Create_Bullet()
 {
 	CSkill::SKILL_DESC	Desc = {};
 	
-	Desc.pTargetTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Monster"), TEXT("Com_Transform")));
+	Desc.pOriginTransform = m_tDesc.pTransform;
 	Desc.fSpeedPerSec = 10.f;
 	Desc.fRotationPerSec = XMConvertToRadians(90.0f);
 	Desc.iSkillDamage = 5.f;

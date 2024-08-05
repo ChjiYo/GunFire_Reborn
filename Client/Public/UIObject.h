@@ -59,7 +59,7 @@ protected:
 	_float m_fPosX = { 0.f };
 	_float m_fPosY = { 0.f };
 
-	CTransform* m_pTargetTransform = {};
+	CTransform* m_pOriginTransform = {};
 
 public:
 	virtual CGameObject* Clone(void* pArg) = 0;
