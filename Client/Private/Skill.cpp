@@ -25,21 +25,6 @@ HRESULT CSkill::Initialize(void* pArg)
 	if (FAILED(__super::Initialize(pArg)))
 		return E_FAIL;
 
-	SKILL_DESC* Desc = static_cast<SKILL_DESC*>(pArg);
-	m_pOriginTransform = Desc->pOriginTransform;
-
-	m_pTransformCom->Set_State(CTransform::STATE_POSITION, m_pOriginTransform->Get_State(CTransform::STATE_POSITION));
-
-	_vector vTargetLook = m_pOriginTransform->Get_State(CTransform::STATE_LOOK);
-	_vector vTargetUp = m_pOriginTransform->Get_State(CTransform::STATE_UP);
-	_vector vTargetRight = m_pOriginTransform->Get_State(CTransform::STATE_RIGHT);
-
-	m_pTransformCom->Set_State(CTransform::STATE_LOOK, vTargetLook);
-	m_pTransformCom->Set_State(CTransform::STATE_UP, vTargetUp);
-	m_pTransformCom->Set_State(CTransform::STATE_RIGHT, vTargetRight);
-
-	m_pTransformCom->Radian_Turn(m_pTransformCom->Get_State(CTransform::STATE_UP), XMConvertToRadians(270.f));
-
 	return S_OK;
 }
 
