@@ -38,7 +38,6 @@ private:
 	CCollider* m_pColliderCom = { nullptr };
 
 private:
-	_vector		m_vPlayerPos = {};
 	_vector		m_vPos = {};
 
 	_vector		m_vOffsetRandomPos = {};

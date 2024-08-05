@@ -21,6 +21,11 @@ protected:
 	_float Get_RandomNormalize();
 	_float Get_Random(_float fMin, _float fMax);
 
+	void Offset_Rotation(_vector vOffsetRandomPos);
+
+protected:
+	_vector		m_vPlayerPos = {};
+
 public:
 	virtual CGameObject* Clone(void* pArg) = 0;
 	virtual void Free() override;
