@@ -139,8 +139,11 @@ HRESULT CPlayer::Ready_Components()
     /* For.Com_Collider */
    CBounding_AABB::BOUNDING_AABB_DESC	BoundingDesc{};
    
+
    BoundingDesc.vExtents = _float3(0.5f, 0.5f, 0.5f);
    BoundingDesc.vCenter = _float3(0.f, BoundingDesc.vExtents.y / 2.f, 0.f);  
+   BoundingDesc.pObject = this;
+
    if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Collider_AABB"),
        TEXT("Com_Collider"), reinterpret_cast<CComponent**>(&m_pColliderCom), &BoundingDesc)))
        return E_FAIL;

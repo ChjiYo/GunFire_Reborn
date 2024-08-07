@@ -10,6 +10,7 @@ public:
 	typedef struct
 	{
 		_float3			vCenter;
+		class CGameObject* pObject = {};
 	}BOUNDING_DESC;
 
 protected:

@@ -51,6 +51,9 @@ HRESULT CCollider::Initialize_Prototype(TYPE eColliderType)
 HRESULT CCollider::Initialize(void* pArg)
 {
 	/* 타입에 맞는 충돌체를 위한 데이터를 생성하낟. */
+	CBounding::BOUNDING_DESC* Desc = static_cast<CBounding::BOUNDING_DESC*>(pArg);
+	m_pObject = Desc->pObject;
+
 	switch (m_eColliderType)
 	{
 	case TYPE_SPHERE:
@@ -63,6 +66,9 @@ HRESULT CCollider::Initialize(void* pArg)
 		m_pBounding = CBounding_OBB::Create(m_pDevice, m_pContext, static_cast<CBounding::BOUNDING_DESC*>(pArg));
 		break;
 	}
+
+	
+
 
 	if (nullptr == m_pBounding)
 		return E_FAIL;

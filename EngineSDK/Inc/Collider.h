@@ -22,6 +22,7 @@ public:
 
 public:
 	_bool		isCollision(CCollider* pTargetCollider);
+	class CGameObject* Get_Object() { return m_pObject; }
 
 private:
 	TYPE		m_eColliderType = { TYPE_END };
@@ -34,6 +35,9 @@ private:
 	BasicEffect* m_pEffect = { nullptr };
 	ID3D11InputLayout* m_pInputLayout = { nullptr };
 #endif
+
+private:
+	class CGameObject* m_pObject = {};
 
 public:
 	static CCollider* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, TYPE eColliderType);
