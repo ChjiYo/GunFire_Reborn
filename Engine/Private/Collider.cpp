@@ -67,9 +67,6 @@ HRESULT CCollider::Initialize(void* pArg)
 		break;
 	}
 
-	
-
-
 	if (nullptr == m_pBounding)
 		return E_FAIL;
 
