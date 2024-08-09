@@ -40,6 +40,9 @@ HRESULT CLevel_GamePlay::Initialize()
 	if (FAILED(Ready_CrossHair()))
 		return E_FAIL;
 
+	if (ParseInitialize())
+		return E_FAIL;
+
 	return S_OK;
 }
 
