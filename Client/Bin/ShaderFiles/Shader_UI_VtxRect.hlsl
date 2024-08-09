@@ -9,14 +9,12 @@ struct VS_IN
 {
     float3 vPosition : POSITION;
     float2 vTexcoord : TEXCOORD0;
-    float3 vScale : TEXCOORD1;
 };
 
 struct VS_OUT
 {
     float4 vPosition : SV_POSITION;
     float2 vTexcoord : TEXCOORD0;
-    float3 vScale : TEXCOORD1;
 };
 
 VS_OUT VS_MAIN(VS_IN In)
@@ -30,7 +28,6 @@ VS_OUT VS_MAIN(VS_IN In)
 
     Out.vPosition = vPosition;
     Out.vTexcoord = In.vTexcoord;
-    Out.vScale = In.vScale;
 
     return Out;
 }
@@ -39,7 +36,6 @@ struct PS_IN
 {
     float4 vPosition : SV_POSITION;
     float2 vTexcoord : TEXCOORD0;
-    float3 vScale : TEXCOORD1;
 };
 
 struct PS_OUT

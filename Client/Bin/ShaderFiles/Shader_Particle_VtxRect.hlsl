@@ -2,7 +2,7 @@
 #include "Engine_Shader_Defines.hlsli"
 
 float4x4 g_WorldMatrix, g_ViewMatrix, g_ProjMatrix;
-texture2D g_Texture;
+texture2D       g_Texture;
 float4			g_vColor = vector(1.f, 1.f, 1.f, 1.f);
 
 struct VS_IN
@@ -64,7 +64,6 @@ PS_OUT PS_MAIN(PS_IN In)
     PS_OUT			Out;
 
     Out.vColor = g_Texture.Sample(LinearSampler, In.vTexcoord);
-
 
     if (In.vLifeTime.y >= In.vLifeTime.x || Out.vColor.a < 0.1f)
         discard;

@@ -19,6 +19,7 @@ public:
 
 public:
 	HRESULT Initialize(_uint iWidth, _uint iHeight, DXGI_FORMAT ePixelFormat, _fvector vClearColor);
+	HRESULT Bind_ShaderResource(class CShader* pShader, const _char* pConstantName);
 	void Clear();
 
 #ifdef _DEBUG
@@ -29,17 +30,17 @@ public:
 #endif
 
 private:
-	ID3D11Device* m_pDevice = { nullptr };
-	ID3D11DeviceContext* m_pContext = { nullptr };
+	ID3D11Device*						m_pDevice = { nullptr };
+	ID3D11DeviceContext*				m_pContext = { nullptr };
 
-	ID3D11Texture2D* m_pTexture2D = { nullptr };
-	ID3D11RenderTargetView* m_pRTV = { nullptr };
-	ID3D11ShaderResourceView* m_pSRV = { nullptr };
-	_float4						m_vClearColor = {};
+	ID3D11Texture2D*					m_pTexture2D = { nullptr };
+	ID3D11RenderTargetView*				m_pRTV = { nullptr };
+	ID3D11ShaderResourceView*			m_pSRV = { nullptr };
+	_float4								m_vClearColor = {};
 
 #ifdef _DEBUG
 private:
-	_float4x4					m_WorldMatrix;
+	_float4x4							m_WorldMatrix;
 #endif
 
 public:

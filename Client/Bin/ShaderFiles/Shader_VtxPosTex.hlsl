@@ -4,10 +4,6 @@
 float4x4		g_WorldMatrix, g_ViewMatrix, g_ProjMatrix;
 texture2D		g_Texture;
 
-// m_pGraphic_Device->SetSamplerState(0, D3DSAMP_MINFILTER, D3DTEXF_LINEAR);
-
-// D3D11_SAMPLER_DESC
-
 struct VS_IN
 {
 	float3 vPosition : POSITION;

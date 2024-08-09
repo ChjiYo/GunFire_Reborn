@@ -3,16 +3,7 @@
 
 float4x4		g_WorldMatrix, g_ViewMatrix, g_ProjMatrix;
 
-float4			g_vLightDir = float4(1.f, -1.f, 1.f, 0.f);
-float4			g_vLightDiffuse = float4(1.f, 1.f, 1.f, 1.f);
-float4			g_vLightAmbient = float4(1.f, 1.f, 1.f, 1.f);
-float4			g_vLightSpecular = float4(1.f, 1.f, 1.f, 1.f);
-
 texture2D		g_DiffuseTexture;
-float4			g_vMtrlAmbient = float4(0.3f, 0.3f, 0.3f, 1.f);
-float4			g_vMtrlSpecular = float4(1.f, 1.f, 1.f, 1.f);
-
-vector			g_vCamPosition;
 
 /* 모델 전체의 뼈(x), 메시에게 영향을 주는 뼈(o)*/
 float4x4		g_BoneMatrices[512];
@@ -60,7 +51,7 @@ VS_OUT VS_MAIN(VS_IN In)
 	vPosition = mul(vPosition, g_ProjMatrix);
 
 	Out.vPosition = vPosition;
-    Out.vNormal = mul(vNormal, g_WorldMatrix);
+    Out.vNormal = normalize(mul(vNormal, g_WorldMatrix));
 	Out.vTexcoord = In.vTexcoord;
 	Out.vWorldPos = mul(vector(In.vPosition, 1.f), g_WorldMatrix);
 
@@ -77,7 +68,7 @@ struct PS_IN
 
 struct PS_OUT
 {
-	float4	vColor : SV_TARGET0;
+	float4 vDiffuse : SV_TARGET0;
     float4 vNormal : SV_TARGET1;
 };
 
@@ -89,22 +80,9 @@ PS_OUT PS_MAIN(PS_IN In)
 	if (vMtrlDiffuse.a < 0.1f)
 		discard;
 
-	/* 0.0f ~ 1.f */
-	float		fShade = max(dot(normalize(g_vLightDir) * -1.f, normalize(In.vNormal)), 0.f);
-
-	/* 0.3f ~ 1.f */
-	vector		vShade = saturate(fShade + g_vLightAmbient * g_vMtrlAmbient);
-
-	vector		vReflect = reflect(normalize(g_vLightDir), normalize(In.vNormal));
-	vector		vLook = In.vWorldPos - g_vCamPosition;
-
-	float		fSpecular = pow(max(dot(normalize(vReflect) * -1.f, normalize(vLook)), 0.f), 30.f);
-	vector		vSpecular = g_vLightSpecular * g_vMtrlSpecular * fSpecular;
-
+    Out.vDiffuse = vMtrlDiffuse;
+	
     Out.vNormal = vector(In.vNormal.xyz * 0.5f + 0.5f, 0.f);
-	Out.vColor = (g_vLightDiffuse * vMtrlDiffuse) * vShade + vSpecular;
-
-    Out.vColor.a = 0.5f;
 	
 	return Out;
 }
@@ -118,6 +96,9 @@ technique11		DefaultTechnique
         SetBlendState(BS_Default, float4(0.f, 0.f, 0.f, 0.f), 0xffffffff);
 
         VertexShader = compile vs_5_0 VS_MAIN();
+        GeometryShader = NULL;
+        HullShader = NULL;
+        DomainShader = NULL;
         PixelShader = compile ps_5_0 PS_MAIN();
     }
 }

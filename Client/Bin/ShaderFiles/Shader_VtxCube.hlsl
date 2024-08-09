@@ -31,15 +31,6 @@ VS_OUT VS_MAIN(VS_IN In)
 	return Out;
 }
 
-
-/* w나누기연산을수행한다. 투영변환. */
-/* 뷰포트 변환. */
-/* 래스타라이즈 -> 픽셀을 만들어준다. */
-//float4 PS_MAIN(PS_IN In) : SV_TARGET0
-//{
-//
-//}
-
 struct PS_IN
 {
 	float4 vPosition : SV_POSITION;
@@ -49,7 +40,6 @@ struct PS_IN
 struct PS_OUT
 {
 	float4	vColor : SV_TARGET0;
-	float4	vColor1 : SV_TARGET1;
 };
 
 PS_OUT PS_MAIN(PS_IN In)
@@ -57,7 +47,6 @@ PS_OUT PS_MAIN(PS_IN In)
 	PS_OUT			Out;	
 
 	Out.vColor = g_Texture.Sample(LinearSampler, In.vTexcoord);
-	Out.vColor1 = g_Texture.Sample(LinearSampler, In.vTexcoord);
 
 	return Out;
 }
@@ -72,9 +61,12 @@ technique11		DefaultTechnique
 		SetDepthStencilState(DSS_None, 0);
 		SetBlendState(BS_Default, float4(0.f, 0.f, 0.f, 0.f), 0xffffffff);	
 
-		VertexShader = compile vs_5_0 VS_MAIN();
-		PixelShader = compile ps_5_0 PS_MAIN();
-	}
+        VertexShader = compile vs_5_0 VS_MAIN();
+        GeometryShader = NULL;
+        HullShader = NULL;
+        DomainShader = NULL;
+        PixelShader = compile ps_5_0 PS_MAIN();
+    }
 }
 
 
