@@ -42,8 +42,8 @@ HRESULT CMainApp::Initialize()
 	if (FAILED(Ready_Prototoype_Resource_ForStatic()))
 		return E_FAIL;
 
-	//if (FAILED(Ready_Gara()))
-	//	return E_FAIL;
+	if (FAILED(Ready_Gara()))
+		return E_FAIL;
 
 	//LOGO 먼저 (실수 2스택!!)
 	if (FAILED(Open_Level(LEVEL_LOGO)))
@@ -243,39 +243,59 @@ HRESULT CMainApp::Ready_Prototoype_Resource_ForStatic()
 
 HRESULT CMainApp::Ready_Gara()
 {
-	_ulong			dwByte = { 0 };
-
-	HANDLE			hFile = CreateFile(TEXT("../Bin/DataFiles/Navigation.dat"), GENERIC_WRITE, 0, nullptr, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, 0);
-	if (0 == hFile)
-		return E_FAIL;
-
-	_float3			vPoints[3];
-
-	vPoints[0] = _float3(0.0f, 0.f, 10.f);
-	vPoints[1] = _float3(10.f, 0.f, 0.f);
-	vPoints[2] = _float3(0.0f, 0.f, 0.f);
-
-	WriteFile(hFile, vPoints, sizeof(_float3) * 3, &dwByte, nullptr);
-
-	vPoints[0] = _float3(0.0f, 0.f, 10.f);
-	vPoints[1] = _float3(10.f, 0.f, 10.f);
-	vPoints[2] = _float3(10.f, 0.f, 0.f);
-
-	WriteFile(hFile, vPoints, sizeof(_float3) * 3, &dwByte, nullptr);
-
-	vPoints[0] = _float3(0.0f, 0.f, 20.f);
-	vPoints[1] = _float3(10.f, 0.f, 10.f);
-	vPoints[2] = _float3(0.0f, 0.f, 10.f);
-
-	WriteFile(hFile, vPoints, sizeof(_float3) * 3, &dwByte, nullptr);
-
-	vPoints[0] = _float3(10.f, 0.f, 10.f);
-	vPoints[1] = _float3(20.f, 0.f, 0.f);
-	vPoints[2] = _float3(10.f, 0.f, 0.f);
-
-	WriteFile(hFile, vPoints, sizeof(_float3) * 3, &dwByte, nullptr);
-
-	CloseHandle(hFile);
+	//ID3D11Texture2D* pMaskTexture = { nullptr };
+	//
+	//D3D11_TEXTURE2D_DESC	TextureDesc;
+	//ZeroMemory(&TextureDesc, sizeof(D3D11_TEXTURE2D_DESC));
+	//
+	//TextureDesc.Width = 256;
+	//TextureDesc.Height = 256;
+	//TextureDesc.MipLevels = 1;
+	//TextureDesc.ArraySize = 1;
+	//TextureDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+	//
+	//TextureDesc.SampleDesc.Quality = 0;
+	//TextureDesc.SampleDesc.Count = 1;
+	//
+	//TextureDesc.Usage = D3D11_USAGE_STAGING;
+	//TextureDesc.BindFlags = 0;
+	//TextureDesc.CPUAccessFlags = D3D11_CPU_ACCESS_READ | D3D11_CPU_ACCESS_WRITE;
+	//TextureDesc.MiscFlags = 0;
+	//
+	//_uint* pPixel = new _uint[TextureDesc.Width * TextureDesc.Height];
+	//ZeroMemory(pPixel, sizeof(_uint) * TextureDesc.Width * TextureDesc.Height);
+	//
+	//pPixel[0] = 0xff00ffff;
+	//
+	//D3D11_SUBRESOURCE_DATA		InitialData{};
+	//InitialData.pSysMem = pPixel;
+	//InitialData.SysMemPitch = TextureDesc.Width * sizeof(_uint);
+	//
+	//if (FAILED(m_pDevice->CreateTexture2D(&TextureDesc, &InitialData, &pMaskTexture)))
+	//	return E_FAIL;
+	//
+	//D3D11_MAPPED_SUBRESOURCE	SubResource{};
+	//
+	//m_pContext->Map(pMaskTexture, 0, D3D11_MAP_READ_WRITE, 0, &SubResource);
+	//
+	//for (size_t i = 0; i < 256; i++)
+	//{
+	//	for (size_t j = 0; j < 256; j++)
+	//	{
+	//		_uint	iIndex = i * 256 + j;
+	//
+	//		if (j > 128)
+	//			((_uint*)SubResource.pData)[iIndex] = 0xffffffff;
+	//		else
+	//			((_uint*)SubResource.pData)[iIndex] = 0xff000000;
+	//	}
+	//}
+	//
+	//m_pContext->Unmap(pMaskTexture, 0);
+	//
+	//DirectX::SaveDDSTextureToFile(m_pContext, pMaskTexture, TEXT("../Bin/Resources/Textures/Terrain/Mask.dds"));
+	//
+	//Safe_Release(pMaskTexture);
 
 	return S_OK;
 }

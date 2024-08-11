@@ -389,7 +389,7 @@ HRESULT CGameInstance::Add_Light(const LIGHT_DESC & LightDesc)
 
 HRESULT CGameInstance::Render_Lights(CShader* pShader, CVIBuffer_Rect* pVIBuffer)
 {
-	return S_OK;
+	return m_pLight_Manager->Render_Lights(pShader, pVIBuffer);
 }
 
 HRESULT CGameInstance::Add_RenderTarget(const _wstring& strTargetTag, _uint iWidth, _uint iHeight, DXGI_FORMAT ePixelFormat, _fvector vClearColor)
