@@ -25,3 +25,5 @@ Client/Bin/assimp-vc140-mtd.dll
 *.idb
 .vs/Framework/v17/.suo
 Engine/Bin/Engine.dll
+Client/Private/Body_Player.cpp
+Client/Public/Body_Player.h
