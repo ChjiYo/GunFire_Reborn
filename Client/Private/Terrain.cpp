@@ -38,19 +38,6 @@ void CTerrain::Priority_Update(_float fTimeDelta)
 void CTerrain::Update(_float fTimeDelta)
 {
 	m_pNavigationCom->Update(m_pTransformCom->Get_WorldMatrix());
-
-	/*
-	if (m_pGameInstance->Key_Down(VK_LBUTTON))
-	{
-		_vector		vPos{};
-		m_pVIBufferCom->Picked(m_pTransformCom, &vPos);
-
-		m_vPicking = {};
-		XMStoreFloat3(&m_vPicking, vPos);
-
-		
-		Add_NaviMesh(m_vPicking);
-	}*/
 }
 
 void CTerrain::Late_Update(_float fTimeDelta)
