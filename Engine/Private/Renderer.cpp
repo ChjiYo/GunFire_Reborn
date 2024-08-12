@@ -135,6 +135,9 @@ HRESULT CRenderer::Render_NonBlend()
 
 	m_RenderObjects[RG_NONBLEND].clear();
 
+	if (FAILED(m_pGameInstance->End_MRT()))
+		return E_FAIL;
+
 	return S_OK;
 }
 HRESULT CRenderer::Render_Lights()
