@@ -60,6 +60,14 @@ HRESULT CSkill_Player::Render()
 	return S_OK;
 }
 
+HRESULT CSkill_Player::Ready_Components()
+{
+	if (FAILED(__super::Ready_Components()))
+		return E_FAIL;
+
+	return S_OK;
+}
+
 void CSkill_Player::Free()
 {
 	__super::Free();

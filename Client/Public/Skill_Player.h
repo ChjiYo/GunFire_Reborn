@@ -17,6 +17,9 @@ public:
 	virtual void Late_Update(_float fTimeDelta) override;
 	virtual HRESULT Render() override;
 
+protected:
+	HRESULT Ready_Components();
+
 public:
 	virtual CGameObject* Clone(void* pArg) = 0;
 	virtual void Free() override;

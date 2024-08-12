@@ -10,6 +10,7 @@ class CBinModel;
 class CKeyState;
 class CCollider;
 class CState_Machine;
+class CNavigation;
 END
 
 BEGIN(Client)

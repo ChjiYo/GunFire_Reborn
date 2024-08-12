@@ -3,6 +3,12 @@
 #include "Client_Defines.h"
 #include "GameObject.h"
 
+BEGIN(Engine)
+class CNavigation;
+END
+
+BEGIN(Client)
+
 class CSkill abstract:public CGameObject
 {
 public:
@@ -27,7 +33,12 @@ public:
 	virtual HRESULT Render() override;
 
 protected:
+	HRESULT Ready_Components();
+
+protected:
 	CTransform* m_pOriginTransform = {};
+	CNavigation* m_pNavigationCom = {};
+
 	_uint		m_iSkillDamage = {};
 
 public:
@@ -35,4 +46,6 @@ public:
 	virtual void Free() override;
 
 };
+
+END
 

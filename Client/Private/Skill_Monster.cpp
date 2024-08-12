@@ -50,6 +50,14 @@ HRESULT CSkill_Monster::Render()
 	return S_OK;
 }
 
+HRESULT CSkill_Monster::Ready_Components()
+{
+	if (FAILED(__super::Ready_Components()))
+		return E_FAIL;
+
+	return S_OK;
+}
+
 
 _float CSkill_Monster::Get_RandomNormalize()
 {
