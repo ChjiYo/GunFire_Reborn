@@ -60,7 +60,7 @@ void CSkill_Pistol_Bullet::Update(_float fTimeDelta)
     vPosition += m_vTargetLook * 50.f * fTimeDelta;
     m_pTransformCom->Set_State(CTransform::STATE_POSITION, vPosition);
 
-    Destroy(fTimeDelta);
+    Destroy(fTimeDelta, vPosition);
 }
 
 void CSkill_Pistol_Bullet::Late_Update(_float fTimeDelta)
@@ -103,6 +103,9 @@ HRESULT CSkill_Pistol_Bullet::Render()
 
 HRESULT CSkill_Pistol_Bullet::Ready_Components()
 {
+    if (FAILED(__super::Ready_Components()))
+        return E_FAIL;
+
     /* For.Com_Shader */
     if (FAILED(__super::Add_Component(LEVEL_STATIC, TEXT("Prototype_Component_Shader_VtxPosTex"),
         TEXT("Com_Shader"), reinterpret_cast<CComponent**>(&m_pShaderCom))))
@@ -148,11 +151,14 @@ HRESULT CSkill_Pistol_Bullet::Bind_ShaderResources()
     return S_OK;
 }
 
-void CSkill_Pistol_Bullet::Destroy(_float fTimeDelta)
+void CSkill_Pistol_Bullet::Destroy(_float fTimeDelta, _vector vPos)
 {
     m_fDestroyTimer += fTimeDelta;
 
     if(m_fDestroyTimer > 5.f)
+        m_bDead = true;
+
+    if(m_pNavigationCom->is_Move(vPos))
         m_bDead = true;
   
 }
@@ -206,6 +212,7 @@ void CSkill_Pistol_Bullet::Free()
     Safe_Release(m_pVIBufferCom);
     Safe_Release(m_pTextureCom);
     Safe_Release(m_pColliderCom);
+    Safe_Release(m_pNavigationCom);
 
 	__super::Free();
 }

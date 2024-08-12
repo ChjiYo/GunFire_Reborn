@@ -29,7 +29,7 @@ private:
 	HRESULT Bind_ShaderResources();
 
 private:
-	void Destroy(_float fTimeDelta);
+	void Destroy(_float fTimeDelta ,_vector vPos);
 	void Add_Collider();
 
 private:
