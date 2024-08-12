@@ -34,15 +34,12 @@ HRESULT CComponent::Initialize(void * pArg)
 	return S_OK;
 }
 
-
 void CComponent::Free()
 {
-
-
 	Safe_Release(m_pGameInstance);
 
 	Safe_Release(m_pContext);
 	Safe_Release(m_pDevice);
+
 	__super::Free();
-	
 }

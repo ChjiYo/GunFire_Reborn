@@ -285,6 +285,14 @@ HRESULT CGameInstance::Add_RenderObject(CRenderer::RENDERGROUP eRenderGroup, CGa
 	return m_pRenderer->Add_RenderObject(eRenderGroup, pRenderObject);	
 }
 
+HRESULT CGameInstance::Add_DebugComponent(CComponent* pDebugComponent)
+{
+	if (nullptr == m_pRenderer)
+		return E_FAIL;
+
+	return m_pRenderer->Add_DebugComponent(pDebugComponent);
+}
+
 _matrix CGameInstance::Get_Transform_Matrix(CPipeLine::D3DTRANSFORMSTATE eState) const
 {
 	return m_pPipeLine->Get_Transform_Matrix(eState);

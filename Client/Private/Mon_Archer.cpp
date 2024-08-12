@@ -95,17 +95,18 @@ void CMon_Archer::Late_Update(_float fTimeDelta)
 	m_pGameInstance->Add_RenderObject(CRenderer::RG_NONBLEND, this);
 
 	m_pStateCom->Late_Update(fTimeDelta);
+
+#ifdef _DEBUG
+	for (size_t i = 0; i < COLL_END; i++)
+	{
+		m_pGameInstance->Add_DebugComponent(m_pColliderCom[i]);
+	}
+	m_pGameInstance->Add_DebugComponent(m_pRangeCom);
+#endif
 }
 
 HRESULT CMon_Archer::Render()
 {
-#ifdef _DEBUG
-	for(int i = 0 ; i < COLL_END ; ++i)
-		m_pColliderCom[i]->Render();
-
-	m_pRangeCom->Render();
-#endif
-
 	if (FAILED(Bind_ShaderResources()))
 		return E_FAIL;
 

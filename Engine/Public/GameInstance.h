@@ -60,6 +60,7 @@ public: /* For.Component_Manager */
 
 public: /* For.Renderer */
 	HRESULT Add_RenderObject(CRenderer::RENDERGROUP eRenderGroup, class CGameObject* pRenderObject);
+	HRESULT Add_DebugComponent(class CComponent* pDebugComponent);
 
 public: /* For.PipeLine */
 	_matrix Get_Transform_Matrix(CPipeLine::D3DTRANSFORMSTATE eState) const;

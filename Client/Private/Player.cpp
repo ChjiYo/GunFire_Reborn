@@ -45,7 +45,6 @@ HRESULT CPlayer::Initialize(void* pArg)
     Player_Desc.iShield = Desc->iShield;
     Player_Desc.iMaxShield = Desc->iMaxShield;
 
-
     if (FAILED(Ready_PartObjects()))
         return E_FAIL;
 
@@ -93,15 +92,15 @@ void CPlayer::Late_Update(_float fTimeDelta)
 
     Key_State(fTimeDelta);
     m_pGameInstance->Add_RenderObject(CRenderer::RG_NONBLEND, this);
+
+#ifdef _DEBUG
+    m_pGameInstance->Add_DebugComponent(m_pColliderCom);
+    m_pGameInstance->Add_DebugComponent(m_pNavigationCom);
+#endif
 }
 
-HRESULT CPlayer::Render()
+HRESULT CPlayer::Render() 
 {
-#ifdef _DEBUG
-    m_pColliderCom->Render();
-    m_pNavigationCom->Render();
-#endif
-
     return S_OK;
 }
 
@@ -258,7 +257,7 @@ void CPlayer::Player_Weapon_Change()
         switch (m_eWeaponID)
         {
         case PISTOL:
-            Desc.iNumBullet = 30;
+            Desc.iNumBullet = 8;
             Desc.fAttackSpeed = 0.25f;
             __super::Add_PartObject(PART_WEAPON, TEXT("Prototype_GameObject_Weapon_Player_Pistol"), &Desc);
             break;

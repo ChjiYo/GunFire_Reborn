@@ -43,6 +43,10 @@ void CTerrain::Update(_float fTimeDelta)
 void CTerrain::Late_Update(_float fTimeDelta)
 {
 	m_pGameInstance->Add_RenderObject(CRenderer::RG_NONBLEND, this);
+
+#ifdef _DEBUG
+	//m_pGameInstance->Add_DebugComponent(m_pNavigationCom);
+#endif
 }
 
 HRESULT CTerrain::Render()
@@ -59,11 +63,6 @@ HRESULT CTerrain::Render()
 	if (FAILED(m_pVIBufferCom->Render()))
 		return E_FAIL;
 
-#ifdef _DEBUG
-	m_pNavigationCom->Render();
-
-#endif
-
 	return S_OK;
 }
 
@@ -71,8 +70,6 @@ void CTerrain::Add_NaviMesh(_float3 vPos)
 {
 	if (vPos.x == 0 && vPos.y == 0 && vPos.z == 0)
 		return;
-
-	//m_pNavigationCom->
 
 	switch (m_iNumNaviPicking)
 	{
@@ -90,14 +87,11 @@ void CTerrain::Add_NaviMesh(_float3 vPos)
 		break;
 	}
 
-
-
-	
-if (m_iNumNaviPicking == 3)
-{
-	m_pNavigationCom->Add_Sell(vPoints);
-	m_iNumNaviPicking = 0;
-}
+	if (m_iNumNaviPicking == 3)
+	{
+		m_pNavigationCom->Add_Sell(vPoints);
+		m_iNumNaviPicking = 0;
+	}
 
 }
 

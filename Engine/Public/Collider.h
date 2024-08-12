@@ -18,7 +18,7 @@ public:
 	virtual HRESULT Initialize_Prototype(TYPE eColliderType);
 	virtual HRESULT Initialize(void* pArg);
 	virtual void Update(_fmatrix TransformMatrix);
-	virtual HRESULT Render();
+	virtual HRESULT Render() override;
 
 public:
 	_bool		isCollision(CCollider* pTargetCollider);

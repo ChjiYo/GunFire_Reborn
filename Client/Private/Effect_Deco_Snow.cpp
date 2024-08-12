@@ -42,7 +42,7 @@ void CEffect_Deco_Snow::Update(_float fTimeDelta)
 
 void CEffect_Deco_Snow::Late_Update(_float fTimeDelta)
 {
-	m_pGameInstance->Add_RenderObject(CRenderer::RG_NONBLEND, this);
+	m_pGameInstance->Add_RenderObject(CRenderer::RG_NONLIGHT, this);
 }
 
 HRESULT CEffect_Deco_Snow::Render()
@@ -128,9 +128,9 @@ CGameObject* CEffect_Deco_Snow::Clone(void* pArg)
 
 void CEffect_Deco_Snow::Free()
 {
-	__super::Free();
-
 	Safe_Release(m_pTextureCom);
 	Safe_Release(m_pShaderCom);
 	Safe_Release(m_pVIBufferCom);
+
+	__super::Free();
 }

@@ -79,6 +79,15 @@ HRESULT CRenderer::Add_RenderObject(RENDERGROUP eRenderGroup, CGameObject * pRen
 	return S_OK;
 }
 
+HRESULT CRenderer::Add_DebugComponent(CComponent* pDebugComponent)
+{
+	m_DebugComponent.emplace_back(pDebugComponent);
+
+	Safe_AddRef(pDebugComponent);
+
+	return S_OK;
+}
+
 HRESULT CRenderer::Draw()
 {
 	if (FAILED(Render_Priority()))
@@ -235,6 +244,14 @@ HRESULT CRenderer::Render_UI()
 
 HRESULT CRenderer::Render_Debug()
 {
+	for (auto& pComponent : m_DebugComponent)
+	{
+		pComponent->Render();
+
+		Safe_Release(pComponent);
+	}
+	m_DebugComponent.clear();
+
 	if (FAILED(m_pShader->Bind_Matrix("g_ViewMatrix", &m_ViewMatrix)))
 		return E_FAIL;
 	if (FAILED(m_pShader->Bind_Matrix("g_ProjMatrix", &m_ProjMatrix)))
