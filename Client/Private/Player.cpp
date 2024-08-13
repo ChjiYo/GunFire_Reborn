@@ -216,6 +216,12 @@ void CPlayer::Player_Move(_float fTimeDelta)
         m_eWeaponID = PISTOL;
         m_bWeaponChange = true;
     }
+
+    if (m_pGameInstance->Key_Down('4'))
+    {
+        m_eWeaponID = BOOMGUN;
+        m_bWeaponChange = true;
+    }
 }
 
 void CPlayer::Player_Jump(_float fTimeDelta)
@@ -258,6 +264,10 @@ void CPlayer::Player_Weapon_Change()
 
         case SNIPER:
             __super::Add_PartObject(PART_WEAPON, TEXT("Prototype_GameObject_Weapon_Player_Sniper"), &Desc);
+            break;
+
+        case BOOMGUN:
+            __super::Add_PartObject(PART_WEAPON, TEXT("Prototype_GameObject_Weapon_Player_BoomGun"), &Desc);
             break;
         }
 

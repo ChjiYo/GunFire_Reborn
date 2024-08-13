@@ -19,7 +19,7 @@ class CPlayer final : public CContainerObject
 {
 public:
 	enum PARTID {  PART_WEAPON, PART_EFFECT, PART_END };
-	enum WEAPONID { PISTOL , SNIPER ,SHURIKEN , WEAPON_END };
+	enum WEAPONID { PISTOL , SNIPER ,SHURIKEN ,BOOMGUN, WEAPON_END };
 public:
 	typedef struct :public CContainerObject::CONTAINEROBJECT_DESC
 	{

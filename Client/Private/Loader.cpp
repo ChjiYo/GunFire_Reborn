@@ -29,6 +29,7 @@
 #include "Weapon_Player_Pistol.h"
 #include "Weapon_Player_Sniper.h"
 #include "Weapon_Player_Shuriken.h"
+#include "Weapon_Player_BoomGun.h"
 
 #include "Skill_Pistol_Bullet.h"
 #include "Skill_Shuriken_Bullet.h"
@@ -320,6 +321,11 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_ANIM, TEXT("../Bin/DataFiles/Player_Shuriken.dat"), PreTransformMatrix))))
 		return E_FAIL;
 
+	/* For.Prototype_Component_Model_Weapon_Player_BoomGun */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Weapon_Player_BoomGun"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_ANIM, TEXT("../Bin/DataFiles/Player_BoomGun.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
 	/* For.Prototype_Component_Model_Fiona*/
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Fiona"),
 		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_ANIM, TEXT("../Bin/DataFiles/Fiona.dat"), PreTransformMatrix))))
@@ -488,6 +494,10 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Weapon_Player_Shuriken"),
 		CWeapon_Player_Shuriken::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Weapon_Player_BoomGun"),
+		CWeapon_Player_BoomGun::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
 	/* For.Prototype_GameObject_Skill_Pistol_Bullet */

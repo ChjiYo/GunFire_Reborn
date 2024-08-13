@@ -40,6 +40,8 @@ HRESULT CWeapon_Player_BoomGun::Initialize(void* pArg)
     if (FAILED(Ready_Components()))
         return E_FAIL;
 
+    m_pTransformCom->Set_State(CTransform::STATE_POSITION, {0.5f, -0.35f , 0.35f, 1.f });
+
     return S_OK;
 }
 
@@ -108,7 +110,7 @@ HRESULT CWeapon_Player_BoomGun::Ready_Components()
         return E_FAIL;
 
     /* For.Com_Model */
-    if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Weapon_Player_Pistol"),
+    if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Weapon_Player_BoomGun"),
         TEXT("Com_Model"), reinterpret_cast<CComponent**>(&m_pModelCom))))
         return E_FAIL;
 
