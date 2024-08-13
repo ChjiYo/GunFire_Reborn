@@ -33,9 +33,11 @@ HRESULT CWeapon_Player_BoomGun::Initialize(void* pArg)
         return E_FAIL;
 
     PLAYER_WEAPON_DESC* Desc = static_cast<PLAYER_WEAPON_DESC*>(pArg);
-    m_iNumMaxBullet = Desc->iNumBullet;
-    m_iNumBullet = m_iNumMaxBullet;
+    m_iNumMaxBullet = Desc->iMaxBullet;
+    m_iNumBullet = Desc->iNumBullet;
     m_fAttackSpeed = Desc->fAttackSpeed;
+
+    m_iOriginBullet = m_iNumBullet;
 
     if (FAILED(Ready_Components()))
         return E_FAIL;
@@ -132,7 +134,7 @@ HRESULT CWeapon_Player_BoomGun::Bind_ShaderResources()
 
 void CWeapon_Player_BoomGun::Key_State()
 {
-    if (m_pGameInstance->Key_Down(VK_LBUTTON) && m_iNumBullet > 0 && m_fAttackTimer > m_fAttackSpeed)
+    if (m_pGameInstance->Key_Pressing(VK_LBUTTON) && m_iNumBullet > 0 && m_fAttackTimer > m_fAttackSpeed)
     {
         m_iNumBullet--;
         m_pModelCom->SetUp_Animation(0, false);
@@ -142,7 +144,14 @@ void CWeapon_Player_BoomGun::Key_State()
 
     if (m_pGameInstance->Key_Down('R'))
     {
-        m_iNumBullet = m_iNumMaxBullet;
+        if (m_iNumMaxBullet <= 0)
+            return;
+
+        _uint iNumReload = m_iOriginBullet - m_iNumBullet;
+
+        m_iNumMaxBullet >= iNumReload ? (m_iNumBullet += iNumReload, m_iNumMaxBullet -= iNumReload) : (m_iNumBullet += m_iNumMaxBullet, m_iNumMaxBullet = 0);
+        
+
         m_pModelCom->SetUp_Animation(2, false);
     }
 }

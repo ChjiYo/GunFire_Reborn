@@ -31,14 +31,15 @@ HRESULT CSkill_BoomGun_Bullet::Initialize(void* pArg)
     if (FAILED(Ready_Components()))
         return E_FAIL;
 
-    SKILL_DESC* Desc = static_cast<SKILL_DESC*>(pArg);
-    m_pOriginTransform = Desc->pOriginTransform;
-
     Safe_AddRef(m_pOriginTransform);
 
-    _float3 vPos = {};
-    XMStoreFloat3(&vPos ,m_pTransformCom->Get_State(CTransform::STATE_POSITION));
-    m_pTransformCom->Set_State(CTransform::STATE_POSITION, { vPos.x + 0.5f , vPos.y + 0.15f , vPos.z + 0.35f, 1.f});
+    _vector vOriginRight = m_pOriginTransform->Get_State(CTransform::STATE_RIGHT);
+    _vector vOriginUp = m_pOriginTransform->Get_State(CTransform::STATE_UP);
+    _vector vOriginLook = m_pOriginTransform->Get_State(CTransform::STATE_LOOK);
+
+    _vector vSetPos = m_pOriginTransform->Get_State(CTransform::STATE_POSITION) + vOriginRight * 0.5f + vOriginUp * 0.15f + vOriginLook * -0.35f;
+
+    m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetW(vSetPos,1.f ));
 
     m_vTargetLook = m_pOriginTransform->Get_State(CTransform::STATE_LOOK);
 

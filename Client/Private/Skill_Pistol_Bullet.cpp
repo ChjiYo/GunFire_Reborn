@@ -30,9 +30,6 @@ HRESULT CSkill_Pistol_Bullet::Initialize(void* pArg)
 
     if (FAILED(Ready_Components()))
         return E_FAIL;
-
-    SKILL_DESC* Desc = static_cast<SKILL_DESC*>(pArg);
-    m_pOriginTransform = Desc->pOriginTransform;
    
     Safe_AddRef(m_pOriginTransform);
 

@@ -33,6 +33,7 @@ public:
 	virtual HRESULT Render()	override;
 
 protected:
+	_uint m_iOriginBullet = { 0 };
 	_uint m_iNumBullet = { 0 };
 	_uint m_iNumMaxBullet = { 0 };
 	_float m_fAttackSpeed = { 0.f };
