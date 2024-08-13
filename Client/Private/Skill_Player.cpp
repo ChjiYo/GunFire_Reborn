@@ -28,18 +28,6 @@ HRESULT CSkill_Player::Initialize(void* pArg)
 	SKILL_DESC* Desc = static_cast<SKILL_DESC*>(pArg);
 	m_pOriginTransform = Desc->pOriginTransform;
 
-	m_pTransformCom->Set_State(CTransform::STATE_POSITION, m_pOriginTransform->Get_State(CTransform::STATE_POSITION));
-
-	_vector vTargetLook = m_pOriginTransform->Get_State(CTransform::STATE_LOOK);
-	_vector vTargetUp = m_pOriginTransform->Get_State(CTransform::STATE_UP);
-	_vector vTargetRight = m_pOriginTransform->Get_State(CTransform::STATE_RIGHT);
-
-	m_pTransformCom->Set_State(CTransform::STATE_LOOK, vTargetLook);
-	m_pTransformCom->Set_State(CTransform::STATE_UP, vTargetUp);
-	m_pTransformCom->Set_State(CTransform::STATE_RIGHT, vTargetRight);
-
-	m_pTransformCom->Radian_Turn(m_pTransformCom->Get_State(CTransform::STATE_UP), XMConvertToRadians(270.f));
-
 	return S_OK;
 }
 
@@ -66,6 +54,22 @@ HRESULT CSkill_Player::Ready_Components()
 		return E_FAIL;
 
 	return S_OK;
+}
+
+void CSkill_Player::Set_Position(_float3 vOffSet)
+{
+	_vector vTargetRight = m_pOriginTransform->Get_State(CTransform::STATE_RIGHT);
+	_vector vTargetUp = m_pOriginTransform->Get_State(CTransform::STATE_UP);
+	_vector vTargetLook = m_pOriginTransform->Get_State(CTransform::STATE_LOOK);
+
+	m_pTransformCom->Set_State(CTransform::STATE_LOOK, vTargetLook);
+	m_pTransformCom->Set_State(CTransform::STATE_UP, vTargetUp);
+	m_pTransformCom->Set_State(CTransform::STATE_RIGHT, vTargetRight);
+
+	_vector vSetPos = m_pOriginTransform->Get_State(CTransform::STATE_POSITION) + vTargetRight * vOffSet.x + vTargetUp * vOffSet.y + vTargetLook * vOffSet.z;
+	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetW(vSetPos,1.f));
+
+	m_pTransformCom->Radian_Turn(m_pTransformCom->Get_State(CTransform::STATE_UP), XMConvertToRadians(270.f));
 }
 
 void CSkill_Player::Free()

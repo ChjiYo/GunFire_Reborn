@@ -33,10 +33,9 @@ HRESULT CSkill_Pistol_Bullet::Initialize(void* pArg)
    
     Safe_AddRef(m_pOriginTransform);
 
-    m_pTransformCom->Set_State(CTransform::STATE_POSITION, m_pOriginTransform->Get_State(CTransform::STATE_POSITION));
+    Set_Position({ 0.f , 0.25f, 1.f });
 
     m_vTargetLook = m_pOriginTransform->Get_State(CTransform::STATE_LOOK);
-        
     m_pTransformCom->Set_Scaled(3.f, 0.25f, 0.25f);
 
     //네비게이션 메쉬 밖으로 나가면 delete? good 

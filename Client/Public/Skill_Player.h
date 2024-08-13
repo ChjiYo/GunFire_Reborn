@@ -19,6 +19,7 @@ public:
 
 protected:
 	HRESULT Ready_Components();
+	void Set_Position(_float3 vOffSet);
 
 public:
 	virtual CGameObject* Clone(void* pArg) = 0;
