@@ -136,7 +136,7 @@ void CWeapon_Player_BoomGun::Key_State()
     if (m_pGameInstance->Key_Down(VK_LBUTTON) && m_iNumBullet > 0 && m_fAttackTimer > m_fAttackSpeed)
     {
         m_iNumBullet--;
-        m_pModelCom->SetUp_Animation(1, false);
+        m_pModelCom->SetUp_Animation(0, false);
         Create_Bullet();
         m_fAttackTimer = 0.f;
     }
@@ -144,6 +144,7 @@ void CWeapon_Player_BoomGun::Key_State()
     if (m_pGameInstance->Key_Down('R'))
     {
         m_iNumBullet = m_iNumMaxBullet;
+        m_pModelCom->SetUp_Animation(2, false);
     }
 }
 

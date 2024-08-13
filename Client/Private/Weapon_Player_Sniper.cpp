@@ -35,8 +35,7 @@ HRESULT CWeapon_Player_Sniper::Initialize(void* pArg)
     if (FAILED(Ready_Components()))
         return E_FAIL;
 
-    m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 0.3f , -0.1f , -0.15f , 1.f });
-    
+    m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 0.25f , -0.15f , -0.15f , 1.f });
 
     return S_OK;
 }
@@ -123,8 +122,14 @@ void CWeapon_Player_Sniper::Key_State()
 {
     if (m_pGameInstance->Key_Down(VK_LBUTTON))
     {
-        m_pModelCom->SetUp_Animation(1, false);
+        m_pModelCom->SetUp_Animation(0, false);
         Create_Bullet();
+    }
+
+    if (m_pGameInstance->Key_Down('R'))
+    {
+        m_pModelCom->SetUp_Animation(2, false);
+        m_iNumBullet = m_iNumMaxBullet;
     }
 }
 
