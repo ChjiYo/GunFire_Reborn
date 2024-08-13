@@ -19,7 +19,7 @@ class CPlayer final : public CContainerObject
 {
 public:
 	enum PARTID {  PART_WEAPON, PART_EFFECT, PART_END };
-	enum WEAPONID { PISTOL , SHURIKEN , WEAPON_END };
+	enum WEAPONID { PISTOL , SNIPER ,SHURIKEN , WEAPON_END };
 public:
 	typedef struct :public CContainerObject::CONTAINEROBJECT_DESC
 	{
@@ -68,14 +68,13 @@ private:
 private:
 	PLAYER_DESC			Player_Desc = {};
 	_bool				m_bJump = { false };
-	_bool				m_bWeaponChange = { false };
+	_bool				m_bWeaponChange = { true };
 
 	_float				m_fShieldRecoveryTimer = { 0.f };
 	WEAPONID m_eWeaponID = { WEAPON_END };
 	
 
 private:
-	HRESULT Ready_PartObjects();
 	HRESULT Ready_Components();
 	HRESULT Ready_State();
 

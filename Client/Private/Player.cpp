@@ -45,9 +45,6 @@ HRESULT CPlayer::Initialize(void* pArg)
     Player_Desc.iShield = Desc->iShield;
     Player_Desc.iMaxShield = Desc->iMaxShield;
 
-    if (FAILED(Ready_PartObjects()))
-        return E_FAIL;
-
     if (FAILED(Ready_Components()))
         return E_FAIL;
 
@@ -110,14 +107,6 @@ void CPlayer::ShieldRecovery()
     {
         Player_Desc.iShield++;
     }
-}
-
-HRESULT CPlayer::Ready_PartObjects()
-{
-    m_eWeaponID = PISTOL;
-    m_bWeaponChange = true;
-
-    return S_OK;
 }
 
 HRESULT CPlayer::Ready_Components()
