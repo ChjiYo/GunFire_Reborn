@@ -207,6 +207,7 @@ void CPlayer::Player_Move(_float fTimeDelta)
 
     if (m_pGameInstance->Key_Down('2'))
     {
+        m_eWeaponID = SNIPER;
         m_bWeaponChange = true;
     }
 
@@ -253,6 +254,10 @@ void CPlayer::Player_Weapon_Change()
 
         case SHURIKEN:
             __super::Add_PartObject(PART_WEAPON, TEXT("Prototype_GameObject_Weapon_Player_Shuriken"), &Desc);
+            break;
+
+        case SNIPER:
+            __super::Add_PartObject(PART_WEAPON, TEXT("Prototype_GameObject_Weapon_Player_Sniper"), &Desc);
             break;
         }
 
