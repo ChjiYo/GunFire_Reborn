@@ -118,8 +118,8 @@ void CCamera_Free::Position()
 	_vector vPlayerPosition = m_pPlayerTransform->Get_State(CTransform::STATE_POSITION);
 
 	_vector vWeaponRight = vRight * -0.3f;
-	_vector vWeaponUp = vUp * 0.45f;
-	_vector vWeaponLook = vLook * -0.5f;
+	_vector vWeaponUp = vUp * 0.35f;
+	_vector vWeaponLook = vLook * -0.35f;
 	_vector vWeaponPosition = vPlayerPosition + vWeaponRight + vWeaponUp + vWeaponLook;
 
 	m_pTransformCom->Set_State(CTransform::STATE_POSITION, vWeaponPosition);

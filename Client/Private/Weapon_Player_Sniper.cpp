@@ -32,9 +32,11 @@ HRESULT CWeapon_Player_Sniper::Initialize(void* pArg)
     if (FAILED(__super::Initialize(pArg)))
         return E_FAIL;
 
-
     if (FAILED(Ready_Components()))
         return E_FAIL;
+
+    m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 0.3f , -0.1f , -0.15f , 1.f });
+    
 
     return S_OK;
 }
@@ -70,14 +72,11 @@ HRESULT CWeapon_Player_Sniper::Render()
 
     _uint	iNumMeshes = m_pModelCom->Get_NumMeshes();
 
+    if (FAILED(m_pModelCom->Bind_MaterialSRV(m_pShaderCom, aiTextureType_DIFFUSE, "g_DiffuseTexture", 0)))
+        return E_FAIL;
+
     for (size_t i = 0; i < iNumMeshes; i++)
     {
-        if (FAILED(m_pModelCom->Bind_MaterialSRV(m_pShaderCom, aiTextureType_DIFFUSE, "g_DiffuseTexture", i)))
-            return E_FAIL;
-
-        //if (FAILED(m_pModelCom->Bind_Material(m_pShaderCom, "g_NormalTexture", i, aiTextureType_NORMALS)))
-        //	return E_FAIL;
-
         if (FAILED(m_pModelCom->Bind_BoneMatrices(m_pShaderCom, "g_BoneMatrices", (_uint)i)))
             return E_FAIL;
 
