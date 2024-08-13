@@ -130,6 +130,10 @@ HRESULT CLoader::Loading_For_BinaryFile()
 		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_ANIM, "../Bin/GunFire_Resources/Models/Gun/Weapon_Shuriken/Shuriken.fbx", TEXT("../Bin/DataFiles/Player_Shuriken.dat"), PreTransformMatrix))))
 		return E_FAIL;
 
+	/*if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Weapon_Player_BoomGun"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_ANIM, "../Bin/GunFire_Resources/Models/Gun/Weapon_Shuriken/Shuriken.fbx", TEXT("../Bin/DataFiles/Player_Shuriken.dat"), PreTransformMatrix))))
+		return E_FAIL;*/
+
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Fiona"),
 		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_ANIM, "../Bin/Resources/Models/Fiona/Fiona.fbx", TEXT("../Bin/DataFiles/Fiona.dat"), PreTransformMatrix))))
 		return E_FAIL;

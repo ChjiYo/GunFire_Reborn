@@ -44,6 +44,8 @@ HRESULT CSkill_Pistol_Bullet::Initialize(void* pArg)
 
     //네비게이션 메쉬 밖으로 나가면 delete? good 
     Add_Collider();
+
+    m_pNavigationCom->Init_Index(m_pTransformCom);
     return S_OK;
 }
 
@@ -158,9 +160,8 @@ void CSkill_Pistol_Bullet::Destroy(_float fTimeDelta, _vector vPos)
     if(m_fDestroyTimer > 5.f)
         m_bDead = true;
 
-    if(m_pNavigationCom->is_Move(vPos))
+    if(!m_pNavigationCom->is_Move(vPos))
         m_bDead = true;
-  
 }
 
 void CSkill_Pistol_Bullet::Add_Collider()

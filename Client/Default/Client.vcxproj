@@ -239,6 +239,9 @@
     <ClInclude Include="..\Public\UI_Player_ShieldBlankBar.h" />
     <ClInclude Include="..\public\Wall_Stage1.h" />
     <ClInclude Include="..\public\Weapon_Player.h" />
+    <ClInclude Include="..\public\Weapon_Player_BoomGun.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="..\public\Weapon_Player_Pistol.h" />
     <ClInclude Include="..\public\Weapon_Player_Shuriken.h" />
     <ClInclude Include="..\public\Weapon_Player_Sniper.h" />
@@ -310,6 +313,9 @@
     <ClCompile Include="..\Private\UI_Player_ShieldBlankBar.cpp" />
     <ClCompile Include="..\private\Wall_Stage1.cpp" />
     <ClCompile Include="..\private\Weapon_Player.cpp" />
+    <ClCompile Include="..\private\Weapon_Player_BoomGun.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\private\Weapon_Player_Pistol.cpp" />
     <ClCompile Include="..\private\Weapon_Player_Shuriken.cpp" />
     <ClCompile Include="..\private\Weapon_Player_Sniper.cpp" />

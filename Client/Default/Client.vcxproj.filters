@@ -247,6 +247,9 @@
     <Filter Include="02.GameObjects\UI\UI_Monster_State\UI_Mon_HpBlankBar">
       <UniqueIdentifier>{994f5467-087b-439e-9c4b-981a1e76f0d7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObjects\Player\Weapon\BoomGun">
+      <UniqueIdentifier>{11a6d017-5789-46d7-a14f-714381eb8eb2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -480,6 +483,9 @@
     <ClInclude Include="..\public\UI_Mon_HpBlankBar.h">
       <Filter>02.GameObjects\UI\UI_Monster_State\UI_Mon_HpBlankBar</Filter>
     </ClInclude>
+    <ClInclude Include="..\public\Weapon_Player_BoomGun.h">
+      <Filter>02.GameObjects\Player\Weapon\BoomGun</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -697,6 +703,9 @@
     </ClCompile>
     <ClCompile Include="..\private\UI_Mon_HpBlankBar.cpp">
       <Filter>02.GameObjects\UI\UI_Monster_State\UI_Mon_HpBlankBar</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Weapon_Player_BoomGun.cpp">
+      <Filter>02.GameObjects\Player\Weapon\BoomGun</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
