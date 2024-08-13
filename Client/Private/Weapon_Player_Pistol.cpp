@@ -32,13 +32,13 @@ HRESULT CWeapon_Player_Pistol::Initialize(void* pArg)
     if (FAILED(__super::Initialize(pArg)))
         return E_FAIL;
 
-    PLAYER_WEAPON_DESC* Desc = static_cast<PLAYER_WEAPON_DESC*>(pArg);
-    m_iNumMaxBullet = Desc->iNumBullet;
-    m_iNumBullet = m_iNumMaxBullet;
-    m_fAttackSpeed = Desc->fAttackSpeed;
-
     if (FAILED(Ready_Components()))
         return E_FAIL;
+
+    PLAYER_WEAPON_DESC* Desc = static_cast<PLAYER_WEAPON_DESC*>(pArg);
+    m_iNumMaxBullet = Desc->iMaxBullet;
+    m_iNumBullet = Desc->iNumBullet;
+    m_fAttackSpeed = Desc->fAttackSpeed;
 
     return S_OK;
 }
@@ -94,8 +94,7 @@ HRESULT CWeapon_Player_Pistol::Render()
     wstring strNumMaxBullet = to_wstring(m_iNumMaxBullet);
 
     m_pGameInstance->Draw_Font(TEXT("Font_Nexon"), strNumBullet, _float2(1300.f ,  800.f), XMVectorSet(0.7f, 1.f, 0.3f, 1.f), XMConvertToRadians(-5.f), 0.8f);
-    m_pGameInstance->Draw_Font(TEXT("Font_Nexon"), strNumMaxBullet, _float2(1450.f, 800.f), XMVectorSet(0.7f, 1.f, 0.3f, 1.f), XMConvertToRadians(-5.f), 0.8f);
-
+    m_pGameInstance->Draw_Font(TEXT("Font_Nexon"), TEXT("00"), _float2(1450.f, 800.f), XMVectorSet(0.7f, 1.f, 0.3f, 1.f), XMConvertToRadians(-5.f), 0.8f);
 
     return S_OK;
 }
@@ -141,7 +140,7 @@ void CWeapon_Player_Pistol::Key_State()
 
     if (m_pGameInstance->Key_Down('R'))
     {
-        m_iNumBullet = m_iNumMaxBullet;
+        m_iNumBullet = 8;
     }
 }
 

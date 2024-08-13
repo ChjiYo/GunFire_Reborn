@@ -14,6 +14,7 @@ public:
 		CTransform* pTargetTransform = { nullptr };
 
 		_uint iNumBullet = {};
+		_uint iMaxBullet = {};
 		_float fAttackSpeed = {};
 	}PLAYER_WEAPON_DESC;
 

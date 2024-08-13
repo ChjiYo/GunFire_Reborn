@@ -254,19 +254,29 @@ void CPlayer::Player_Weapon_Change()
         {
         case PISTOL:
             Desc.iNumBullet = 8;
+            Desc.iMaxBullet = 999999999;
             Desc.fAttackSpeed = 0.25f;
             __super::Add_PartObject(PART_WEAPON, TEXT("Prototype_GameObject_Weapon_Player_Pistol"), &Desc);
             break;
 
         case SHURIKEN:
+            Desc.iNumBullet = 1;
+            Desc.iNumBullet = 60;
+            Desc.fAttackSpeed = 0.25f;
             __super::Add_PartObject(PART_WEAPON, TEXT("Prototype_GameObject_Weapon_Player_Shuriken"), &Desc);
             break;
 
         case SNIPER:
+            Desc.iNumBullet = 8;
+            Desc.iMaxBullet = 80;
+            Desc.fAttackSpeed = 0.25f;
             __super::Add_PartObject(PART_WEAPON, TEXT("Prototype_GameObject_Weapon_Player_Sniper"), &Desc);
             break;
 
         case BOOMGUN:
+            Desc.iNumBullet = 30;
+            Desc.iMaxBullet = 120;
+            Desc.fAttackSpeed = 0.25f;
             __super::Add_PartObject(PART_WEAPON, TEXT("Prototype_GameObject_Weapon_Player_BoomGun"), &Desc);
             break;
         }
