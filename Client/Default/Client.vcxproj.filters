@@ -250,6 +250,12 @@
     <Filter Include="02.GameObjects\Player\Weapon\BoomGun">
       <UniqueIdentifier>{11a6d017-5789-46d7-a14f-714381eb8eb2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObjects\Skill\Player_Skill\Sniper_Bullet">
+      <UniqueIdentifier>{277ac684-fae0-4930-adb1-2a2425e3e2c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Skill\Player_Skill\BoomGun_Bullet">
+      <UniqueIdentifier>{10fae7f5-1545-4ccd-bb2a-d18716622f50}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -486,6 +492,9 @@
     <ClInclude Include="..\public\Weapon_Player_BoomGun.h">
       <Filter>02.GameObjects\Player\Weapon\BoomGun</Filter>
     </ClInclude>
+    <ClInclude Include="..\public\Skill_BoomGun_Bullet.h">
+      <Filter>02.GameObjects\Skill\Player_Skill\BoomGun_Bullet</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -706,6 +715,9 @@
     </ClCompile>
     <ClCompile Include="..\private\Weapon_Player_BoomGun.cpp">
       <Filter>02.GameObjects\Player\Weapon\BoomGun</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Skill_BoomGun_Bullet.cpp">
+      <Filter>02.GameObjects\Skill\Player_Skill\BoomGun_Bullet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
