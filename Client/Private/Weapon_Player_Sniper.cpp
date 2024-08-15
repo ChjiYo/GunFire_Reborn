@@ -131,6 +131,11 @@ void CWeapon_Player_Sniper::Key_State()
         m_pModelCom->SetUp_Animation(2, false);
         m_iNumBullet = m_iNumMaxBullet;
     }
+    
+    if (m_pGameInstance->Key_Down(VK_RBUTTON))
+    {
+
+    }
 }
 
 void CWeapon_Player_Sniper::Create_Bullet()

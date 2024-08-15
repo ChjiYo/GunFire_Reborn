@@ -31,7 +31,8 @@ HRESULT CSkill_Shuriken_Bullet::Initialize(void* pArg)
 
     Safe_AddRef(m_pOriginTransform);
 
-    m_pTransformCom->Set_State(CTransform::STATE_POSITION, m_pOriginTransform->Get_State(CTransform::STATE_POSITION));
+    Set_Position({ 0.f , 0.25f, 1.f });
+
     m_vTargetLook = m_pOriginTransform->Get_State(CTransform::STATE_LOOK);
     m_pTransformCom->Set_Scaled(3.f, 0.25f, 1.f);
 
@@ -49,7 +50,7 @@ void CSkill_Shuriken_Bullet::Update(_float fTimeDelta)
 
     _vector	vPosition = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
 
-    vPosition += m_vTargetLook * 5.f * fTimeDelta;
+    vPosition += m_vTargetLook * 50.f * fTimeDelta;
     m_pTransformCom->Set_State(CTransform::STATE_POSITION, vPosition);
 
     Destroy(fTimeDelta);

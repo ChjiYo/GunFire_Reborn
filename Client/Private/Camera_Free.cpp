@@ -127,6 +127,11 @@ void CCamera_Free::Position()
 	m_pTransformCom->LookAt(vPlayerPosition + vLook * 15.f);
 }
 
+void CCamera_Free::Scope_Camera(_float fTimeDelta, _float fMul)
+{
+	
+}
+
 CCamera_Free * CCamera_Free::Create(ID3D11Device * pDevice, ID3D11DeviceContext * pContext)
 {
 	CCamera_Free*		pInstance = new CCamera_Free(pDevice, pContext);

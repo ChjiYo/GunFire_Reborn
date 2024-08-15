@@ -32,8 +32,6 @@ HRESULT CWeapon_Player_Shuriken::Initialize(void* pArg)
     if (FAILED(__super::Initialize(pArg)))
         return E_FAIL;
 
-    WEAPON_DESC* Desc = static_cast<WEAPON_DESC*>(pArg);
-
     if (FAILED(Ready_Components()))
         return E_FAIL;
 

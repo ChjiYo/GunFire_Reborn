@@ -15,6 +15,9 @@ BEGIN(Client)
 class CCamera_Free final : public CCamera
 {	
 public:
+	enum CAMERA_TYPE {PLAYER , FREE , SCOPE , CAMERA_END};
+
+public:
 	typedef struct : public CCamera::CAMERA_DESC
 	{
 		_float		fSensor = {};
@@ -45,6 +48,7 @@ private:
 private:
 	void FreeView_Camera(_float fTimeDelta);
 	void Position();
+	void Scope_Camera(_float fTimeDelta, _float fMul);
 
 public:
 	static CCamera_Free* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);

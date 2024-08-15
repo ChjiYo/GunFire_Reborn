@@ -33,13 +33,7 @@ HRESULT CSkill_BoomGun_Bullet::Initialize(void* pArg)
 
     Safe_AddRef(m_pOriginTransform);
 
-    _vector vOriginRight = m_pOriginTransform->Get_State(CTransform::STATE_RIGHT);
-    _vector vOriginUp = m_pOriginTransform->Get_State(CTransform::STATE_UP);
-    _vector vOriginLook = m_pOriginTransform->Get_State(CTransform::STATE_LOOK);
-
-    _vector vSetPos = m_pOriginTransform->Get_State(CTransform::STATE_POSITION) + vOriginRight * 0.5f + vOriginUp * 0.15f + vOriginLook * -0.35f;
-
-    m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetW(vSetPos,1.f ));
+    Set_Position({ 0.f , 0.25f, 1.f });
 
     m_vTargetLook = m_pOriginTransform->Get_State(CTransform::STATE_LOOK);
 
