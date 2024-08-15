@@ -34,8 +34,14 @@ HRESULT CLevel_GamePlay::Initialize()
 	if (FAILED(Ready_Layer_Effect(TEXT("Layer_Effect"))))
 		return E_FAIL;
 	
-	if (FAILED(Ready_PlayerBar()))
+	if (FAILED(Ready_UI_PlayerState()))
 		return E_FAIL;
+
+	if (FAILED(Ready_UI_WeaponState()))
+		return E_FAIL;
+
+	//if (FAILED(Ready_UI_SkillState()))
+	//	return E_FAIL;
 	
 	if (FAILED(Ready_CrossHair()))
 		return E_FAIL;
@@ -125,7 +131,7 @@ HRESULT CLevel_GamePlay::Ready_LandObjects()
 
 	return S_OK;
 }
-HRESULT CLevel_GamePlay::Ready_PlayerBar()
+HRESULT CLevel_GamePlay::Ready_UI_PlayerState()
 {
 	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Player_BarPanel"), TEXT("Layer_UI_Player_ABarPanel"))))
 		return E_FAIL;
@@ -147,6 +153,40 @@ HRESULT CLevel_GamePlay::Ready_PlayerBar()
 
 	return S_OK;
 }
+HRESULT CLevel_GamePlay::Ready_UI_WeaponState()
+{
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Weapon_Panel"), TEXT("Layer_UI_AWeapon_Panel"))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Weapon_NumPanel"), TEXT("Layer_UI_AWeapon_NumPanel"))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Weapon_BlueBullet"), TEXT("Layer_UI_Weapon_BlueBullet"))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Weapon_GreenBullet"), TEXT("Layer_UI_Weapon_GreenBullet"))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Weapon_YellowBullet"), TEXT("Layer_UI_Weapon_YellowBullet"))))
+		return E_FAIL;
+
+	return S_OK;
+}
+
+HRESULT CLevel_GamePlay::Ready_UI_SkillState()
+{
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_SKill_Panel"), TEXT("Layer_UI_Weapon_SKill_Panel"))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_SKill_Dash"), TEXT("Layer_UI_Weapon_SKill_Dash"))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_SKill_Aiming"), TEXT("Layer_UI_Weapon_SKill_Aiming"))))
+		return E_FAIL;
+
+	return S_OK;
+}
+
 HRESULT CLevel_GamePlay::Ready_CrossHair()
 {
 	CUI_Cross_Hair::CROSS_HAIR_DESC Desc = {  };
