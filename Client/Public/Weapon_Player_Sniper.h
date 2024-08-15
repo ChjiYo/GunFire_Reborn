@@ -36,14 +36,18 @@ private:
 	CCollider* m_pColliderCom = { nullptr };
 
 private:
+	_bool				m_bZoomCheck = { false };
 	_uint				m_pAnimFrame = { 0 };
+	_float				m_fZoomTimer = { 0.f };
 
 private:
 	HRESULT Ready_Components();
 	HRESULT Bind_ShaderResources();
 
-	void Key_State();
+	void Key_State(_float fTimeDelta);
 	void Create_Bullet();
+
+	void Zoom();
 
 public:
 	static CWeapon_Player_Sniper* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);

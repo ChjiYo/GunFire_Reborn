@@ -2,7 +2,7 @@
 
 #include "Weapon_Player_Sniper.h"
 #include "GameInstance.h"
-#include "Camera.h"
+#include "Camera_Free.h"
 
 #include "FSM_Player_Attack.h"
 #include "FSM_Player_Dash.h"
@@ -36,6 +36,7 @@ HRESULT CWeapon_Player_Sniper::Initialize(void* pArg)
         return E_FAIL;
 
     m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 0.25f , -0.15f , -0.15f , 1.f });
+    
 
     return S_OK;
 }
@@ -45,7 +46,7 @@ void CWeapon_Player_Sniper::Priority_Update(_float fTimeDelta)
     if (fTimeDelta == 0.f)
         return;
 
-    Key_State();
+    Key_State(fTimeDelta);
 
     m_pModelCom->Play_Animation(fTimeDelta);
 
@@ -118,7 +119,7 @@ HRESULT CWeapon_Player_Sniper::Bind_ShaderResources()
     return S_OK;
 }
 
-void CWeapon_Player_Sniper::Key_State()
+void CWeapon_Player_Sniper::Key_State(_float fTimeDelta)
 {
     if (m_pGameInstance->Key_Down(VK_LBUTTON))
     {
@@ -132,10 +133,42 @@ void CWeapon_Player_Sniper::Key_State()
         m_iNumBullet = m_iNumMaxBullet;
     }
     
-    if (m_pGameInstance->Key_Down(VK_RBUTTON))
+    _float fLastTime = 0.25f;
+    if (m_fZoomTimer <= fLastTime && (m_pGameInstance->Key_Down(VK_RBUTTON) || m_bZoomCheck) )
     {
+        m_fZoomTimer += fTimeDelta;
 
+        if (!m_bZoomCheck)
+            m_pModelCom->SetUp_Animation(4, false);
+
+        m_bZoomCheck = true;
+
+        _vector vOriginPos = { 0.25f , -0.15f , -0.15f , 1.f };
+        _vector vLastPos = { 0.125f ,-0.2f ,-0.35f , 1.f };
+        _vector vDistance = vLastPos - vOriginPos;
+
+        _vector vZoomSpeed = vDistance / fLastTime;
+
+        _vector vPos = { XMVectorGetX(vZoomSpeed) * m_fZoomTimer,XMVectorGetY(vZoomSpeed) * m_fZoomTimer,XMVectorGetZ(vZoomSpeed) * m_fZoomTimer, 1.f };
+
+        m_pTransformCom->Set_State(CTransform::STATE_POSITION, vPos);
     }
+
+    if (m_fZoomTimer > fLastTime)
+    {
+        CCamera_Free* pCamera = dynamic_cast<CCamera_Free*>(m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Camera")).back());
+        pCamera->Set_CameraType(CCamera_Free::SCOPE);
+
+        if (m_pGameInstance->Key_Down(VK_RBUTTON))
+        {
+            pCamera->Set_CameraType(CCamera_Free::PLAYER);
+            m_bZoomCheck = false;
+            m_fZoomTimer = 0.f;
+
+            m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 0.25f , -0.15f , -0.15f , 1.f });
+        }
+    }
+  
 }
 
 void CWeapon_Player_Sniper::Create_Bullet()
@@ -147,6 +180,11 @@ void CWeapon_Player_Sniper::Create_Bullet()
     Desc.fRotationPerSec = XMConvertToRadians(90.0f);
 
     m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Skill_Pistol_Bullet"), TEXT("Layer_Skill_Player_Bullet"), &Desc);
+}
+
+void CWeapon_Player_Sniper::Zoom()
+{
+    
 }
 
 CWeapon_Player_Sniper* CWeapon_Player_Sniper::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)

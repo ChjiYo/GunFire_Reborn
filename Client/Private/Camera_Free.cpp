@@ -41,16 +41,7 @@ HRESULT CCamera_Free::Initialize(void * pArg)
 
 void CCamera_Free::Priority_Update(_float fTimeDelta)
 {
-	if (m_bCameraMode)
-	{
-		m_pTransformCom->Set_Speed(5.f);
-		Position();
-	}
-	else
-	{
-		m_pTransformCom->Set_Speed(10.f);
-		FreeView_Camera(fTimeDelta);
-	}
+	Camera_State(fTimeDelta);
 
 	__super::Priority_Update(fTimeDelta);
 }
@@ -70,8 +61,29 @@ HRESULT CCamera_Free::Render()
 	return S_OK;
 }
 
+void CCamera_Free::Camera_State(_float fTimeDelta , _float fMul)
+{
+	//Position({ -0.3f , 0.35f, -0.35f});
+	switch (m_eCameraType)
+	{
+	case PLAYER:
+		Position({ -0.3f , 0.35f, -0.35f });
+		break;
+
+	case FREE:
+		FreeView_Camera(fTimeDelta);
+		break;
+
+	case SCOPE:
+		Scope_Camera(fTimeDelta, fMul);
+		break;
+	}
+}
+
 void CCamera_Free::FreeView_Camera(_float fTimeDelta)
 {
+	m_pTransformCom->Set_Speed(10.f);
+
 	//¸¶¿ì½º
 	if (m_pGameInstance->Get_DIKeyState(DIK_LSHIFT) & 0x80)
 	{
@@ -110,26 +122,28 @@ void CCamera_Free::FreeView_Camera(_float fTimeDelta)
 	}
 }
 
-void CCamera_Free::Position()
+void CCamera_Free::Position(_float3 vOffSet)
 {
+	m_pTransformCom->Set_Speed(5.f);
+
 	_vector vRight = m_pPlayerTransform->Get_State(CTransform::STATE_RIGHT);
 	_vector vUp = m_pPlayerTransform->Get_State(CTransform::STATE_UP);
 	_vector vLook = m_pPlayerTransform->Get_State(CTransform::STATE_LOOK);
 	_vector vPlayerPosition = m_pPlayerTransform->Get_State(CTransform::STATE_POSITION);
 
-	_vector vWeaponRight = vRight * -0.3f;
-	_vector vWeaponUp = vUp * 0.35f;
-	_vector vWeaponLook = vLook * -0.35f;
+	_vector vWeaponRight = vRight * vOffSet.x;
+	_vector vWeaponUp = vUp * vOffSet.y;
+	_vector vWeaponLook = vLook * vOffSet.z;
 	_vector vWeaponPosition = vPlayerPosition + vWeaponRight + vWeaponUp + vWeaponLook;
 
 	m_pTransformCom->Set_State(CTransform::STATE_POSITION, vWeaponPosition);
 
-	m_pTransformCom->LookAt(vPlayerPosition + vLook * 15.f);
+	m_pTransformCom->LookAt(vPlayerPosition + vLook * 300.f);
 }
 
 void CCamera_Free::Scope_Camera(_float fTimeDelta, _float fMul)
 {
-	
+	Position({ -0.3f , 0.35f, 10.35f });
 }
 
 CCamera_Free * CCamera_Free::Create(ID3D11Device * pDevice, ID3D11DeviceContext * pContext)

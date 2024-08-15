@@ -38,16 +38,19 @@ public:
 	virtual HRESULT Render() override;
 
 public:
-	void Set_FreeView(_bool bCheck) { m_bCameraMode = bCheck; }
+	void Set_CameraType(CAMERA_TYPE eType) { m_eCameraType = eType; }
 
 private:
 	CTransform*			m_pPlayerTransform = { nullptr };
 
 	_float				m_fMouseSensor = {};
-	_bool				m_bCameraMode = { true };
+	_float				m_fZoomTimer = {};
+	CAMERA_TYPE			m_eCameraType = { PLAYER };
 private:
+	void Camera_State(_float fTimeDelta, _float fMul = 1.f);
+
 	void FreeView_Camera(_float fTimeDelta);
-	void Position();
+	void Position(_float3 vOffSet);
 	void Scope_Camera(_float fTimeDelta, _float fMul);
 
 public:

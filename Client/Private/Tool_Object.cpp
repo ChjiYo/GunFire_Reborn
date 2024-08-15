@@ -535,7 +535,7 @@ HRESULT CTool_Object::Show_LayerObjects()
 HRESULT CTool_Object::Click_Camera_FreeView(_bool bColliderToggle)
 {
 	CCamera_Free* pCamera = dynamic_cast<CCamera_Free*>(m_pGameInstance->Get_Layer(LEVELID::LEVEL_GAMEPLAY, TEXT("Layer_Camera")).back());
-	pCamera->Set_FreeView(bColliderToggle);
+	bColliderToggle ? pCamera->Set_CameraType(CCamera_Free::PLAYER) : pCamera->Set_CameraType(CCamera_Free::FREE);
 
 	return S_OK;
 }
