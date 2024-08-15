@@ -262,6 +262,33 @@
     <Filter Include="02.GameObjects\UI\UI_Weapon_State">
       <UniqueIdentifier>{094668ba-d085-4fdd-a687-9eff3f7f552c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Weapon_State\UI_Weapon_Panel">
+      <UniqueIdentifier>{838c6b0c-0c64-45fb-a49f-6dc4955ac31d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Weapon_State\UI_Weapon_NumPanel">
+      <UniqueIdentifier>{b1ea079c-be1e-402e-b371-78d9d40b7ad4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Weapon_State\UI_Weapon_BBullet">
+      <UniqueIdentifier>{d1186c3a-ef7c-43b4-9311-1647cd5c7c34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Weapon_State\UI_Weapon_GBullet">
+      <UniqueIdentifier>{9c5bcf15-f877-4a3c-af45-01ea10316c96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Weapon_State\UI_Weapon_YBullet">
+      <UniqueIdentifier>{c355fe51-64ac-4e0c-a818-cd2737e4e315}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Skill_State">
+      <UniqueIdentifier>{6925c58d-8bfc-467e-bb9e-10a39060afae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Skill_State\UI_Skill_Panel">
+      <UniqueIdentifier>{23e8d906-ce22-416d-963f-90cd0289dd6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Skill_State\UI_Skill_Aiming">
+      <UniqueIdentifier>{583a24b2-ca5c-47aa-bba4-10a8b3fb7d4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Skill_State\UI_Skill_Dash">
+      <UniqueIdentifier>{9264444f-e48e-4c17-ab4c-41159fefaa3d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -504,6 +531,30 @@
     <ClInclude Include="..\public\UI_Bullet_Font.h">
       <Filter>02.GameObjects\UI\UI_Bullet_Font</Filter>
     </ClInclude>
+    <ClInclude Include="..\Public\UI_Skill_Aiming.h">
+      <Filter>02.GameObjects\UI\UI_Skill_State\UI_Skill_Aiming</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\UI_Skill_Dash.h">
+      <Filter>02.GameObjects\UI\UI_Skill_State\UI_Skill_Dash</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\UI_Skill_Panel.h">
+      <Filter>02.GameObjects\UI\UI_Skill_State\UI_Skill_Panel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\UI_Weapon_BBullet.h">
+      <Filter>02.GameObjects\UI\UI_Weapon_State\UI_Weapon_BBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\UI_Weapon_GBullet.h">
+      <Filter>02.GameObjects\UI\UI_Weapon_State\UI_Weapon_GBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\UI_Weapon_NumPanel.h">
+      <Filter>02.GameObjects\UI\UI_Weapon_State\UI_Weapon_NumPanel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\UI_Weapon_Panel.h">
+      <Filter>02.GameObjects\UI\UI_Weapon_State\UI_Weapon_Panel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\UI_Weapon_YBullet.h">
+      <Filter>02.GameObjects\UI\UI_Weapon_State\UI_Weapon_YBullet</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -730,6 +781,30 @@
     </ClCompile>
     <ClCompile Include="..\private\UI_Bullet_Font.cpp">
       <Filter>02.GameObjects\UI\UI_Bullet_Font</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\UI_Weapon_BBullet.cpp">
+      <Filter>02.GameObjects\UI\UI_Weapon_State\UI_Weapon_BBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\UI_Weapon_GBullet.cpp">
+      <Filter>02.GameObjects\UI\UI_Weapon_State\UI_Weapon_GBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\UI_Weapon_YBullet.cpp">
+      <Filter>02.GameObjects\UI\UI_Weapon_State\UI_Weapon_YBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\UI_Weapon_Panel.cpp">
+      <Filter>02.GameObjects\UI\UI_Weapon_State\UI_Weapon_Panel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\UI_Weapon_NumPanel.cpp">
+      <Filter>02.GameObjects\UI\UI_Weapon_State\UI_Weapon_NumPanel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\UI_Skill_Aiming.cpp">
+      <Filter>02.GameObjects\UI\UI_Skill_State\UI_Skill_Aiming</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\UI_Skill_Dash.cpp">
+      <Filter>02.GameObjects\UI\UI_Skill_State\UI_Skill_Dash</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\UI_Skill_Panel.cpp">
+      <Filter>02.GameObjects\UI\UI_Skill_State\UI_Skill_Panel</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
