@@ -256,6 +256,12 @@
     <Filter Include="02.GameObjects\Skill\Player_Skill\BoomGun_Bullet">
       <UniqueIdentifier>{10fae7f5-1545-4ccd-bb2a-d18716622f50}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Bullet_Font">
+      <UniqueIdentifier>{2fd6174a-200b-4fd9-ba4e-382993884319}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Weapon_State">
+      <UniqueIdentifier>{094668ba-d085-4fdd-a687-9eff3f7f552c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -495,6 +501,9 @@
     <ClInclude Include="..\public\Skill_BoomGun_Bullet.h">
       <Filter>02.GameObjects\Skill\Player_Skill\BoomGun_Bullet</Filter>
     </ClInclude>
+    <ClInclude Include="..\public\UI_Bullet_Font.h">
+      <Filter>02.GameObjects\UI\UI_Bullet_Font</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -718,6 +727,9 @@
     </ClCompile>
     <ClCompile Include="..\private\Skill_BoomGun_Bullet.cpp">
       <Filter>02.GameObjects\Skill\Player_Skill\BoomGun_Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\UI_Bullet_Font.cpp">
+      <Filter>02.GameObjects\UI\UI_Bullet_Font</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
