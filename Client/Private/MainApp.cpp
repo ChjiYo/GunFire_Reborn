@@ -195,7 +195,7 @@ HRESULT CMainApp::Ready_Prototoype_Resource_ForStatic()
 
 	//Prototype_Component_Texture_UI_Weapon_Panel
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Weapon_Panel"),
-		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Weapon/UI_Weapon_Panel.dds")))))
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Weapon/UI_Weapon_Panel.png")))))
 		return E_FAIL;
 
 	//Prototype_Component_Texture_UI_Weapon_NumPanel
@@ -216,6 +216,12 @@ HRESULT CMainApp::Ready_Prototoype_Resource_ForStatic()
 	//Prototype_Component_Texture_UI_Weapon_YellowBullet
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Weapon_YellowBullet"),
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Weapon/UI_Weapon_YellowBullet.png")))))
+		return E_FAIL;
+
+	//Prototype_Component_Texture_UI_Weapon_Icon
+
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Weapon_Icon"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Weapon/UI_Weapon_Icon_%d.png"),4))))
 		return E_FAIL;
 
 	//Skill
@@ -309,18 +315,23 @@ HRESULT CMainApp::Ready_Prototoype_Resource_ForStatic()
 		CUI_Weapon_NumPanel::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
-	/* For.Prototype_GameObject_UI_Monster_HpBlankBar */
+	/* For.Prototype_GameObject_UI_Weapon_BlueBullet */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_Weapon_BlueBullet"),
 		CUI_Weapon_BBullet::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
-	/* For.Prototype_GameObject_UI_Monster_HpBlankBar */
+	/* For.Prototype_GameObject_UI_Weapon_GreenBullet */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_Weapon_GreenBullet"),
 		CUI_Weapon_GBullet::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
-	/* For.Prototype_GameObject_UI_Monster_HpBlankBar */
+	/* For.Prototype_GameObject_UI_Weapon_YellowBullet */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_Weapon_YellowBullet"),
+		CUI_Weapon_YBullet::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_UI_Weapon_Icon */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_Weapon_Icon"),
 		CUI_Weapon_YBullet::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 

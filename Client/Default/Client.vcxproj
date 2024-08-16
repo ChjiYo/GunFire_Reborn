@@ -171,6 +171,7 @@
     <ClInclude Include="..\public\BackGround.h" />
     <ClInclude Include="..\public\Camera_Free.h" />
     <ClInclude Include="..\Public\Client_Defines.h" />
+    <ClInclude Include="..\public\Mon_Bug.h" />
     <ClInclude Include="..\public\Skill_Archer_Bullet.h" />
     <ClInclude Include="..\Public\Cube.h" />
     <ClInclude Include="..\public\Effect_Deco_Snow.h" />
@@ -244,6 +245,7 @@
     <ClInclude Include="..\Public\UI_Skill_Panel.h" />
     <ClInclude Include="..\Public\UI_Weapon_BBullet.h" />
     <ClInclude Include="..\Public\UI_Weapon_GBullet.h" />
+    <ClInclude Include="..\public\UI_Weapon_Icon.h" />
     <ClInclude Include="..\Public\UI_Weapon_NumPanel.h" />
     <ClInclude Include="..\Public\UI_Weapon_Panel.h" />
     <ClInclude Include="..\Public\UI_Weapon_YBullet.h" />
@@ -263,6 +265,7 @@
   <ItemGroup>
     <ClCompile Include="..\private\BackGround.cpp" />
     <ClCompile Include="..\private\Camera_Free.cpp" />
+    <ClCompile Include="..\private\Mon_Bug.cpp" />
     <ClCompile Include="..\private\Skill_Archer_Bullet.cpp" />
     <ClCompile Include="..\Private\Cube.cpp" />
     <ClCompile Include="..\private\Effect_Deco_Snow.cpp" />
@@ -328,6 +331,7 @@
     <ClCompile Include="..\Private\UI_Skill_Panel.cpp" />
     <ClCompile Include="..\Private\UI_Weapon_BBullet.cpp" />
     <ClCompile Include="..\Private\UI_Weapon_GBullet.cpp" />
+    <ClCompile Include="..\private\UI_Weapon_Icon.cpp" />
     <ClCompile Include="..\Private\UI_Weapon_NumPanel.cpp" />
     <ClCompile Include="..\Private\UI_Weapon_Panel.cpp" />
     <ClCompile Include="..\Private\UI_Weapon_YBullet.cpp" />

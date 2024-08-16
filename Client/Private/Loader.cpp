@@ -37,6 +37,14 @@
 
 #include "Monster.h"
 #include "Mon_Archer.h"
+#include "Mon_Bug.h"
+//#include "Mon_Knight.h"
+//#include "Mon_Shield_Kinght.h"
+//#include "Mon_Spear.h"
+//#include "Mon_Boom.h"
+//#include "Mon_Deash_Boom.h"
+
+
 #include "Skill_Archer_Bullet.h"
 
 CLoader::CLoader(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
@@ -142,6 +150,30 @@ HRESULT CLoader::Loading_For_BinaryFile()
 
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Monster_Archer"),
 		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_ANIM, "../Bin/GunFire_Resources/Models/Monster/Mon_Archer/Archer.fbx", TEXT("../Bin/DataFiles/Monster_Archer.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Monster_Bug"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_ANIM, "../Bin/GunFire_Resources/Models/Monster/Mon_Bug/Bug.fbx", TEXT("../Bin/DataFiles/Monster_Bug.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Monster_Boom"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_ANIM, "../Bin/GunFire_Resources/Models/Monster/Mon_Boom/Boom.fbx", TEXT("../Bin/DataFiles/Monster_Boom.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Monster_Knight"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_ANIM, "../Bin/GunFire_Resources/Models/Monster/Mon_Knight/Knight.fbx", TEXT("../Bin/DataFiles/Monster_Knight.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Monster_Shield_Knight"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_ANIM, "../Bin/GunFire_Resources/Models/Monster/Mon_Shield_Knight/Shield_Knight.fbx", TEXT("../Bin/DataFiles/Monster_Shielded_Knight.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Monster_Spear"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_ANIM, "../Bin/GunFire_Resources/Models/Monster/Mon_Spear/Spear.fbx", TEXT("../Bin/DataFiles/Monster_Spear.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Monster_Deash_Boom"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_ANIM, "../Bin/GunFire_Resources/Models/Monster/Mon_Deash_Boom/Deash_Boom.fbx", TEXT("../Bin/DataFiles/Monster_Deash_Boom.dat"), PreTransformMatrix))))
 		return E_FAIL;
 
 	//NonAnim 모델을 로드합니다.
@@ -337,6 +369,36 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_ANIM, TEXT("../Bin/DataFiles/Monster_Archer.dat"), PreTransformMatrix))))
 		return E_FAIL;
 
+	/* For.Prototype_Component_Model_Monster_Archer*/
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Monster_Bug"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_ANIM, TEXT("../Bin/DataFiles/Monster_Bug.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Model_Monster_Knight*/
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Monster_Knight"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_ANIM, TEXT("../Bin/DataFiles/Monster_Knight.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Model_Archer*/
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Monster_Shield_Knight"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_ANIM, TEXT("../Bin/DataFiles/Monster_Shielded_Knight.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Model_Archer*/
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Monster_Spear"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_ANIM, TEXT("../Bin/DataFiles/Monster_Spear.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Model_Archer*/
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Monster_Boom"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_ANIM, TEXT("../Bin/DataFiles/Monster_Boom.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Model_Archer*/
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Monster_Deash_Boom"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_ANIM, TEXT("../Bin/DataFiles/Monster_Deash_Boom.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
 
 	PreTransformMatrix = XMMatrixScaling(0.01f, 0.01f, 0.01f) * XMMatrixRotationY(XMConvertToRadians(180.0f));
 
@@ -478,6 +540,11 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 	/* For.Prototype_GameObject_Mon_Archer */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Mon_Archer"),
 		CMon_Archer::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Mon_Bug */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Mon_Bug"),
+		CMon_Bug::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
 	/* For.Prototype_GameObject_Player */
