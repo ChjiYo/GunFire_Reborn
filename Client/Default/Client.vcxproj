@@ -171,6 +171,7 @@
     <ClInclude Include="..\public\BackGround.h" />
     <ClInclude Include="..\public\Camera_Free.h" />
     <ClInclude Include="..\Public\Client_Defines.h" />
+    <ClInclude Include="..\Public\Door.h" />
     <ClInclude Include="..\public\Mon_Bug.h" />
     <ClInclude Include="..\public\Skill_Archer_Bullet.h" />
     <ClInclude Include="..\Public\Cube.h" />
@@ -265,6 +266,7 @@
   <ItemGroup>
     <ClCompile Include="..\private\BackGround.cpp" />
     <ClCompile Include="..\private\Camera_Free.cpp" />
+    <ClCompile Include="..\Private\Door.cpp" />
     <ClCompile Include="..\private\Mon_Bug.cpp" />
     <ClCompile Include="..\private\Skill_Archer_Bullet.cpp" />
     <ClCompile Include="..\Private\Cube.cpp" />

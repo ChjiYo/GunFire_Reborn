@@ -23,6 +23,8 @@
 #include "Floor_112.h"
 #include "Floor_114.h"
 
+#include "Door.h"
+
 #include "Effect_Deco_Snow.h"
 
 #include "Player.h"
@@ -174,6 +176,10 @@ HRESULT CLoader::Loading_For_BinaryFile()
 
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Monster_Deash_Boom"),
 		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_ANIM, "../Bin/GunFire_Resources/Models/Monster/Mon_Deash_Boom/Deash_Boom.fbx", TEXT("../Bin/DataFiles/Monster_Deash_Boom.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Door"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_ANIM, "../Bin/GunFire_Resources/Models/Element/Door/Door.fbx", TEXT("../Bin/DataFiles/Door.dat"), PreTransformMatrix))))
 		return E_FAIL;
 
 	//NonAnim 모델을 로드합니다.
@@ -397,6 +403,11 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 	/* For.Prototype_Component_Model_Archer*/
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Monster_Deash_Boom"),
 		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_ANIM, TEXT("../Bin/DataFiles/Monster_Deash_Boom.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Model_Door */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Door"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_ANIM, TEXT("../Bin/DataFiles/Door.dat"), PreTransformMatrix))))
 		return E_FAIL;
 
 
@@ -656,6 +667,11 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 	/* For.Prototype_GameObject_Floor_114 */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Floor_114"),
 		CFloor_114::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Door*/
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Door"),
+		CDoor::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
 	/* For.Prototype_GameObject_Effect_Deco_Snow */

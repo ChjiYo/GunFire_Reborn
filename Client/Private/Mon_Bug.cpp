@@ -71,16 +71,16 @@ void CMon_Bug::Update(_float fTimeDelta)
 
 	m_pRangeCom->Update(m_pTransformCom->Get_WorldMatrix());
 
-	if (m_pGameInstance->Key_Down('N'))
-	{
-		m_iAnimFrame--;
-		m_pModelCom->SetUp_Animation(m_iAnimFrame, false);
-	}
-	if (m_pGameInstance->Key_Down('M'))
-	{
-		m_iAnimFrame++;
-		m_pModelCom->SetUp_Animation(m_iAnimFrame, false);
-	}
+	//if (m_pGameInstance->Key_Down('N'))
+	//{
+	//	m_iAnimFrame--;
+	//	m_pModelCom->SetUp_Animation(m_iAnimFrame, false);
+	//}
+	//if (m_pGameInstance->Key_Down('M'))
+	//{
+	//	m_iAnimFrame++;
+	//	m_pModelCom->SetUp_Animation(m_iAnimFrame, false);
+	//}
 	//m_pStateCom->Update(fTimeDelta);
 
 	Destroy();

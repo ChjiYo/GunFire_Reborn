@@ -295,6 +295,9 @@
     <Filter Include="02.GameObjects\Monster\Mon_Bug">
       <UniqueIdentifier>{957c632b-1c40-4b2b-9c25-621a964f0732}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObjects\Element\Door">
+      <UniqueIdentifier>{9da634a4-c331-4dff-938d-8cd001bea142}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -567,6 +570,9 @@
     <ClInclude Include="..\public\Mon_Bug.h">
       <Filter>02.GameObjects\Monster\Mon_Bug</Filter>
     </ClInclude>
+    <ClInclude Include="..\Public\Door.h">
+      <Filter>02.GameObjects\Element\Door</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -823,6 +829,9 @@
     </ClCompile>
     <ClCompile Include="..\private\Mon_Bug.cpp">
       <Filter>02.GameObjects\Monster\Mon_Bug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Door.cpp">
+      <Filter>02.GameObjects\Element\Door</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
