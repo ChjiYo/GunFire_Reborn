@@ -29,7 +29,7 @@ HRESULT CDoor::Initialize(void* pArg)
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
-	m_pModelCom->SetUp_Animation(1, true);
+	m_pTransformCom->Set_Scaled( 0.83f , 0.65, 0.5f );
 
 	return S_OK;
 }
@@ -37,21 +37,11 @@ HRESULT CDoor::Initialize(void* pArg)
 void CDoor::Priority_Update(_float fTimeDelta)
 {
 
-	if (m_pGameInstance->Key_Down('N'))
-	{
-		m_iAnimFrame--; 
-		m_pModelCom->SetUp_Animation(m_iAnimFrame, false);
-	}
-	if (m_pGameInstance->Key_Down('M'))
-	{
-		m_iAnimFrame++;
-		m_pModelCom->SetUp_Animation(m_iAnimFrame, false);
-	}
 }
 
 void CDoor::Update(_float fTimeDelta)
 {
-	//m_pModelCom->Play_Animation(fTimeDelta);
+	m_pModelCom->Play_Animation(fTimeDelta);
 }
 
 void CDoor::Late_Update(_float fTimeDelta)
@@ -74,8 +64,7 @@ HRESULT CDoor::Render()
 		if (FAILED(m_pModelCom->Bind_MaterialSRV(m_pShaderCom, aiTextureType_DIFFUSE, "g_DiffuseTexture", i)))
 			return E_FAIL;
 
-		//if (FAILED(m_pModelCom->Bind_Material(m_pShaderCom, "g_NormalTexture", i, aiTextureType_NORMALS)))
-		//	return E_FAIL;
+		m_pModelCom->Bind_BoneMatrices(m_pShaderCom, "g_BoneMatrices", i);
 
 		m_pShaderCom->Begin(0);
 
@@ -87,14 +76,15 @@ HRESULT CDoor::Render()
 
 HRESULT CDoor::Ready_Components()
 {
-	/* For.Com_Shader */
-	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Shader_VtxAnimMesh"),
-		TEXT("Com_Shader"), reinterpret_cast<CComponent**>(&m_pShaderCom))))
-		return E_FAIL;
 
 	/* For.Com_Model */
 	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Door"),
 		TEXT("Com_Model"), reinterpret_cast<CComponent**>(&m_pModelCom))))
+		return E_FAIL;
+
+	/* For.Com_Shader */
+	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Shader_VtxAnimMesh"),
+		TEXT("Com_Shader"), reinterpret_cast<CComponent**>(&m_pShaderCom))))
 		return E_FAIL;
 
 	return S_OK;

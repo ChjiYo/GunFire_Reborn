@@ -40,11 +40,10 @@
 #include "Monster.h"
 #include "Mon_Archer.h"
 #include "Mon_Bug.h"
-//#include "Mon_Knight.h"
-//#include "Mon_Shield_Kinght.h"
-//#include "Mon_Spear.h"
-//#include "Mon_Boom.h"
-//#include "Mon_Deash_Boom.h"
+#include "Mon_Knight.h"
+#include "Mon_Shield_Knight.h"
+#include "Mon_Spear.h"
+#include "Mon_Deash_Boom.h"
 
 
 #include "Skill_Archer_Bullet.h"
@@ -556,6 +555,26 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 	/* For.Prototype_GameObject_Mon_Bug */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Mon_Bug"),
 		CMon_Bug::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Mon_Deash_Boom */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Mon_Deash_Boom"),
+		CMon_Deash_Boom::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Mon_Knight */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Mon_Knight"),
+		CMon_Knight::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Mon_Spear */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Mon_Spear"),
+		CMon_Spear::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Mon_Shield_Knight */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Mon_Shield_Knight"),
+		CMon_Shield_Knight::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
 	/* For.Prototype_GameObject_Player */

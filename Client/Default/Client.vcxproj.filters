@@ -160,9 +160,6 @@
     <Filter Include="02.GameObjects\Element\Floor\106">
       <UniqueIdentifier>{a8fb802c-31f7-4a5f-b0ba-b8706f1a10be}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02.GameObjects\Element\Floor\107">
-      <UniqueIdentifier>{bbea7eee-94e4-40d0-b45b-cea5b3146413}</UniqueIdentifier>
-    </Filter>
     <Filter Include="02.GameObjects\Element\Floor\108">
       <UniqueIdentifier>{53a4b3de-5f8b-443a-a1f3-f4d2cbd0ddf1}</UniqueIdentifier>
     </Filter>
@@ -292,11 +289,26 @@
     <Filter Include="02.GameObjects\UI\UI_Weapon_State\UI_Weapon_Icon">
       <UniqueIdentifier>{b6a7c1d8-ef1b-40ef-b070-4af90bd09114}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02.GameObjects\Monster\Mon_Bug">
-      <UniqueIdentifier>{957c632b-1c40-4b2b-9c25-621a964f0732}</UniqueIdentifier>
-    </Filter>
     <Filter Include="02.GameObjects\Element\Door">
       <UniqueIdentifier>{9da634a4-c331-4dff-938d-8cd001bea142}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Element\Floor\107">
+      <UniqueIdentifier>{bbea7eee-94e4-40d0-b45b-cea5b3146413}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Monster\Deash_Boom">
+      <UniqueIdentifier>{1552b5e7-ce09-4cdf-94fc-792b8be159b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Monster\Knight">
+      <UniqueIdentifier>{c1e3103e-ae45-4e3c-8144-904dbf624078}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Monster\Shield_Knight">
+      <UniqueIdentifier>{2253854f-455c-4d41-8214-4d4a9aeb9035}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Monster\Spear">
+      <UniqueIdentifier>{4b28cd26-4210-4fce-abf3-6d88cbd0e928}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Monster\Bug">
+      <UniqueIdentifier>{957c632b-1c40-4b2b-9c25-621a964f0732}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -568,10 +580,22 @@
       <Filter>02.GameObjects\UI\UI_Weapon_State\UI_Weapon_Icon</Filter>
     </ClInclude>
     <ClInclude Include="..\public\Mon_Bug.h">
-      <Filter>02.GameObjects\Monster\Mon_Bug</Filter>
+      <Filter>02.GameObjects\Monster\Bug</Filter>
     </ClInclude>
     <ClInclude Include="..\Public\Door.h">
       <Filter>02.GameObjects\Element\Door</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Mon_Deash_Boom.h">
+      <Filter>02.GameObjects\Monster\Deash_Boom</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Mon_Knight.h">
+      <Filter>02.GameObjects\Monster\Knight</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Mon_Shield_Knight.h">
+      <Filter>02.GameObjects\Monster\Shield_Knight</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Mon_Spear.h">
+      <Filter>02.GameObjects\Monster\Spear</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -828,10 +852,22 @@
       <Filter>02.GameObjects\UI\UI_Weapon_State\UI_Weapon_Icon</Filter>
     </ClCompile>
     <ClCompile Include="..\private\Mon_Bug.cpp">
-      <Filter>02.GameObjects\Monster\Mon_Bug</Filter>
+      <Filter>02.GameObjects\Monster\Bug</Filter>
     </ClCompile>
     <ClCompile Include="..\Private\Door.cpp">
       <Filter>02.GameObjects\Element\Door</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Mon_Deash_Boom.cpp">
+      <Filter>02.GameObjects\Monster\Deash_Boom</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Mon_Knight.cpp">
+      <Filter>02.GameObjects\Monster\Knight</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Mon_Shield_Knight.cpp">
+      <Filter>02.GameObjects\Monster\Shield_Knight</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Mon_Spear.cpp">
+      <Filter>02.GameObjects\Monster\Spear</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

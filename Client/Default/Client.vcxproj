@@ -171,8 +171,11 @@
     <ClInclude Include="..\public\BackGround.h" />
     <ClInclude Include="..\public\Camera_Free.h" />
     <ClInclude Include="..\Public\Client_Defines.h" />
+    <ClInclude Include="..\public\Mon_Deash_Boom.h" />
     <ClInclude Include="..\Public\Door.h" />
+    <ClInclude Include="..\public\Mon_Knight.h" />
     <ClInclude Include="..\public\Mon_Bug.h" />
+    <ClInclude Include="..\public\Mon_Shield_Knight.h" />
     <ClInclude Include="..\public\Skill_Archer_Bullet.h" />
     <ClInclude Include="..\Public\Cube.h" />
     <ClInclude Include="..\public\Effect_Deco_Snow.h" />
@@ -223,6 +226,7 @@
     <ClInclude Include="..\Public\Skill_Pistol_Bullet.h" />
     <ClInclude Include="..\public\Skill_Shuriken_Bullet.h" />
     <ClInclude Include="..\public\Sky.h" />
+    <ClInclude Include="..\public\Mon_Spear.h" />
     <ClInclude Include="..\Public\Terrain.h" />
     <ClInclude Include="..\Public\Tool.h" />
     <ClInclude Include="..\Public\Tool_Manager.h" />
@@ -266,8 +270,11 @@
   <ItemGroup>
     <ClCompile Include="..\private\BackGround.cpp" />
     <ClCompile Include="..\private\Camera_Free.cpp" />
+    <ClCompile Include="..\private\Mon_Deash_Boom.cpp" />
     <ClCompile Include="..\Private\Door.cpp" />
+    <ClCompile Include="..\private\Mon_Knight.cpp" />
     <ClCompile Include="..\private\Mon_Bug.cpp" />
+    <ClCompile Include="..\private\Mon_Shield_Knight.cpp" />
     <ClCompile Include="..\private\Skill_Archer_Bullet.cpp" />
     <ClCompile Include="..\Private\Cube.cpp" />
     <ClCompile Include="..\private\Effect_Deco_Snow.cpp" />
@@ -310,6 +317,7 @@
     <ClCompile Include="..\Private\Skill_Pistol_Bullet.cpp" />
     <ClCompile Include="..\private\Skill_Shuriken_Bullet.cpp" />
     <ClCompile Include="..\private\Sky.cpp" />
+    <ClCompile Include="..\private\Mon_Spear.cpp" />
     <ClCompile Include="..\Private\Terrain.cpp" />
     <ClCompile Include="..\Private\Tool.cpp" />
     <ClCompile Include="..\Private\Tool_Manager.cpp" />
