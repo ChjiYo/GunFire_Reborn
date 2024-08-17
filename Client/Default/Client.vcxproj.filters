@@ -310,6 +310,18 @@
     <Filter Include="02.GameObjects\Monster\Bug">
       <UniqueIdentifier>{957c632b-1c40-4b2b-9c25-621a964f0732}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Bug">
+      <UniqueIdentifier>{31b753c8-4f1a-4bdf-86be-194c53d6c3a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Bug\Idle">
+      <UniqueIdentifier>{ac579125-ec96-478d-b16e-a5f8b1387778}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Bug\Attack">
+      <UniqueIdentifier>{bc506796-f814-46d1-85cf-925b54d94aad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Bug\Run">
+      <UniqueIdentifier>{c29465fd-4e43-4b26-8820-c26e7ca54bb7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -513,9 +525,6 @@
     <ClInclude Include="..\public\FSM_Mon_Archer_Attack.h">
       <Filter>03.State_Machine\FSM_Monster\Archer\Attack</Filter>
     </ClInclude>
-    <ClInclude Include="..\public\FSM_Mon_Archer_Hit.h">
-      <Filter>03.State_Machine\FSM_Monster\Archer\Hit</Filter>
-    </ClInclude>
     <ClInclude Include="..\public\FSM_Mon_Archer_Idle.h">
       <Filter>03.State_Machine\FSM_Monster\Archer\Idle</Filter>
     </ClInclude>
@@ -596,6 +605,18 @@
     </ClInclude>
     <ClInclude Include="..\public\Mon_Spear.h">
       <Filter>02.GameObjects\Monster\Spear</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\FSM_Mon_Bug_Idle.h">
+      <Filter>03.State_Machine\FSM_Monster\Bug\Idle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\FSM_Mon_Archer_Hit.h">
+      <Filter>03.State_Machine\FSM_Monster\Archer\Hit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Bug_Attack.h">
+      <Filter>03.State_Machine\FSM_Monster\Bug\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Bug_Run.h">
+      <Filter>03.State_Machine\FSM_Monster\Bug\Run</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -785,9 +806,6 @@
     <ClCompile Include="..\private\FSM_Mon_Archer_Attack.cpp">
       <Filter>03.State_Machine\FSM_Monster\Archer\Attack</Filter>
     </ClCompile>
-    <ClCompile Include="..\private\FSM_Mon_Archer_Hit.cpp">
-      <Filter>03.State_Machine\FSM_Monster\Archer\Hit</Filter>
-    </ClCompile>
     <ClCompile Include="..\private\FSM_Mon_Archer_Idle.cpp">
       <Filter>03.State_Machine\FSM_Monster\Archer\Idle</Filter>
     </ClCompile>
@@ -868,6 +886,18 @@
     </ClCompile>
     <ClCompile Include="..\private\Mon_Spear.cpp">
       <Filter>02.GameObjects\Monster\Spear</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\FSM_Mon_Bug_Idle.cpp">
+      <Filter>03.State_Machine\FSM_Monster\Bug\Idle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\FSM_Mon_Archer_Hit.cpp">
+      <Filter>03.State_Machine\FSM_Monster\Archer\Hit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Bug_Attack.cpp">
+      <Filter>03.State_Machine\FSM_Monster\Bug\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Bug_Run.cpp">
+      <Filter>03.State_Machine\FSM_Monster\Bug\Run</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
