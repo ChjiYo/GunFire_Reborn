@@ -322,6 +322,27 @@
     <Filter Include="03.State_Machine\FSM_Monster\Bug\Run">
       <UniqueIdentifier>{c29465fd-4e43-4b26-8820-c26e7ca54bb7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Knight">
+      <UniqueIdentifier>{0b6cdba1-b731-47ec-b87b-3a58c14d30f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Knight\Idle">
+      <UniqueIdentifier>{01f5cf4b-e22a-49be-8728-d8421f837317}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Knight\Run">
+      <UniqueIdentifier>{9e2cb6e8-2ee5-4282-b71d-3b703072738e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Knight\Attack">
+      <UniqueIdentifier>{ec73a37f-dcb5-4917-96fe-656c2c2541a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Knight\Hit">
+      <UniqueIdentifier>{3609a88a-caa2-41b3-b42d-c2aaae991a73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Knight\Roll">
+      <UniqueIdentifier>{e7ee7878-78cc-461a-a240-60cdd5ba2b1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Knight\RangeAttack">
+      <UniqueIdentifier>{5bd4c858-279f-48f3-bbb4-22eb69357993}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -618,6 +639,24 @@
     <ClInclude Include="..\public\FSM_Mon_Bug_Run.h">
       <Filter>03.State_Machine\FSM_Monster\Bug\Run</Filter>
     </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Knight_Run.h">
+      <Filter>03.State_Machine\FSM_Monster\Knight\Run</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Knight_Attack.h">
+      <Filter>03.State_Machine\FSM_Monster\Knight\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Knight_Hit.h">
+      <Filter>03.State_Machine\FSM_Monster\Knight\Hit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Knight_Idle.h">
+      <Filter>03.State_Machine\FSM_Monster\Knight\Idle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Knight_RangeAttack.h">
+      <Filter>03.State_Machine\FSM_Monster\Knight\RangeAttack</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Knight_Roll.h">
+      <Filter>03.State_Machine\FSM_Monster\Knight\Roll</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -898,6 +937,24 @@
     </ClCompile>
     <ClCompile Include="..\private\FSM_Mon_Bug_Run.cpp">
       <Filter>03.State_Machine\FSM_Monster\Bug\Run</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Knight_Run.cpp">
+      <Filter>03.State_Machine\FSM_Monster\Knight\Run</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Knight_Attack.cpp">
+      <Filter>03.State_Machine\FSM_Monster\Knight\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Knight_Hit.cpp">
+      <Filter>03.State_Machine\FSM_Monster\Knight\Hit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Knight_Idle.cpp">
+      <Filter>03.State_Machine\FSM_Monster\Knight\Idle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Knight_RangeAttack.cpp">
+      <Filter>03.State_Machine\FSM_Monster\Knight\RangeAttack</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Knight_Roll.cpp">
+      <Filter>03.State_Machine\FSM_Monster\Knight\Roll</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

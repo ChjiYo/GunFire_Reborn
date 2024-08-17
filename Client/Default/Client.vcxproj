@@ -175,6 +175,12 @@
     <ClInclude Include="..\public\FSM_Mon_Bug_Attack.h" />
     <ClInclude Include="..\Public\FSM_Mon_Bug_Idle.h" />
     <ClInclude Include="..\public\FSM_Mon_Bug_Run.h" />
+    <ClInclude Include="..\public\FSM_Mon_Knight_Run.h" />
+    <ClInclude Include="..\public\FSM_Mon_Knight_Attack.h" />
+    <ClInclude Include="..\public\FSM_Mon_Knight_Hit.h" />
+    <ClInclude Include="..\public\FSM_Mon_Knight_Idle.h" />
+    <ClInclude Include="..\public\FSM_Mon_Knight_RangeAttack.h" />
+    <ClInclude Include="..\public\FSM_Mon_Knight_Roll.h" />
     <ClInclude Include="..\public\Mon_Deash_Boom.h" />
     <ClInclude Include="..\Public\Door.h" />
     <ClInclude Include="..\public\Mon_Knight.h" />
@@ -277,6 +283,12 @@
     <ClCompile Include="..\private\FSM_Mon_Bug_Attack.cpp" />
     <ClCompile Include="..\Private\FSM_Mon_Bug_Idle.cpp" />
     <ClCompile Include="..\private\FSM_Mon_Bug_Run.cpp" />
+    <ClCompile Include="..\private\FSM_Mon_Knight_Run.cpp" />
+    <ClCompile Include="..\private\FSM_Mon_Knight_Attack.cpp" />
+    <ClCompile Include="..\private\FSM_Mon_Knight_Hit.cpp" />
+    <ClCompile Include="..\private\FSM_Mon_Knight_Idle.cpp" />
+    <ClCompile Include="..\private\FSM_Mon_Knight_RangeAttack.cpp" />
+    <ClCompile Include="..\private\FSM_Mon_Knight_Roll.cpp" />
     <ClCompile Include="..\private\Mon_Deash_Boom.cpp" />
     <ClCompile Include="..\Private\Door.cpp" />
     <ClCompile Include="..\private\Mon_Knight.cpp" />

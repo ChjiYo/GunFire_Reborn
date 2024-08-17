@@ -29,7 +29,22 @@ HRESULT CDoor::Initialize(void* pArg)
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
-	m_pTransformCom->Set_Scaled( 0.83f , 0.65, 0.5f );
+	DECO_DESC* Desc = static_cast<DECO_DESC*>(pArg);
+
+	_float3 vOffSet = { 6.f  , -9.5f , 44.f };
+
+	switch (Desc->iNumDeco)
+	{
+	case 0:
+		m_pTransformCom->Rotation({ 0.f , 1.f ,0.f }, 90.f);
+		m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 38.f+ vOffSet.x, 0.f+ vOffSet.y, 25.3f + vOffSet.z, 1.f });
+		break;
+	}
+
+	
+	
+	m_pModelCom->SetUp_Animation(1, true);
+	m_pTransformCom->Set_Scaled( 0.9f , 0.65, 0.5f );
 
 	return S_OK;
 }
@@ -66,9 +81,11 @@ HRESULT CDoor::Render()
 
 		m_pModelCom->Bind_BoneMatrices(m_pShaderCom, "g_BoneMatrices", i);
 
-		m_pShaderCom->Begin(0);
+		if (FAILED(m_pShaderCom->Begin(1)))
+			return E_FAIL;
 
-		m_pModelCom->Render(i);
+		if (FAILED(m_pModelCom->Render(i)))
+			return E_FAIL;
 	}
 
 	return S_OK;

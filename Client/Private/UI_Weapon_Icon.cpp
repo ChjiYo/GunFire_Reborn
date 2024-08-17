@@ -28,7 +28,7 @@ HRESULT CUI_Weapon_Icon::Initialize(void* pArg)
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
-	__super::Set_UI_Setting(200.f, 200.f, 1400.f, 750.f);
+	__super::Set_UI_Setting(200.f, 200.f, 1450.f, 750.f);
 
 	return S_OK;
 }

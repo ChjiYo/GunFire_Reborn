@@ -28,7 +28,7 @@ HRESULT CUI_Weapon_GBullet::Initialize(void* pArg)
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
-	__super::Set_UI_Setting(35.f, 35.f, 1300.f, 750.f);
+	__super::Set_UI_Setting(35.f, 35.f, 1365.f, 675.f);
 
 	return S_OK;
 }

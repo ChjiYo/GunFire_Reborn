@@ -28,7 +28,8 @@ HRESULT CUI_Weapon_Panel::Initialize(void* pArg)
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
-	__super::Set_UI_Setting(512.f, 162.f, 1300.f, 750.f);
+	//256  , 81
+	__super::Set_UI_Setting(384.f, 121.5f, 1400.f, 750.f);
 
 	return S_OK;
 }

@@ -3,6 +3,7 @@
 
 #include "GameInstance.h"
 #include "Camera_Free.h"
+#include "Element.h"
 
 #include "UI_Cross_Hair.h"
 #include "Player.h"
@@ -246,8 +247,18 @@ HRESULT CLevel_GamePlay::Ready_Layer_Monster(const _wstring & strLayerTag)
 
 HRESULT CLevel_GamePlay::Ready_Layer_DecoObject(const _wstring& strLayerTag)
 {
-	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Door"), strLayerTag)))
-		return E_FAIL;
+
+	CElement::DECO_DESC Desc = {};
+
+	_uint m_iNumDeco = { 1 };
+
+	for (int i = 0; i < m_iNumDeco; ++i)
+	{
+		Desc.iNumDeco = i;
+
+		if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Door"), strLayerTag , &Desc)))
+			return E_FAIL;
+	}
 
 	return S_OK;
 }
