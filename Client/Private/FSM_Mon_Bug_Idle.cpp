@@ -30,6 +30,9 @@ HRESULT CFSM_Mon_Bug_Idle::Initialize(FSM_MON_DESC Desc)
 
 wstring CFSM_Mon_Bug_Idle::Priority_Update(_float fTimeDelta)
 {
+	m_fAttackDelay += fTimeDelta;
+
+
 	return TEXT("Monster_Bug_State_Idle");
 }
 
@@ -49,8 +52,11 @@ wstring CFSM_Mon_Bug_Idle::Late_Update(_float fTimeDelta)
 	XMVector4Length(vDistance);
 	_float fLength = XMVectorGetX(vDistance);
 
-	if (abs(fLength) < 10.f)
+	if (abs(fLength) < 10.f && m_fAttackDelay > 0.5f)
+	{
+		m_fAttackDelay = 0.f;
 		return TEXT("Monster_Bug_State_Run");
+	}
 
 	return TEXT("Monster_Bug_State_Idle");
 }

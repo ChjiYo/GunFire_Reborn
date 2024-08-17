@@ -69,8 +69,6 @@ void CMon_Deash_Boom::Update(_float fTimeDelta)
 	for (int i = 0; i < COLL_END; ++i)
 		m_pColliderCom[i]->Update(m_pTransformCom->Get_WorldMatrix());
 
-	m_pRangeCom->Update(m_pTransformCom->Get_WorldMatrix());
-
 	Destroy();
 }
 
@@ -88,7 +86,6 @@ void CMon_Deash_Boom::Late_Update(_float fTimeDelta)
 	{
 		m_pGameInstance->Add_DebugComponent(m_pColliderCom[i]);
 	}
-	m_pGameInstance->Add_DebugComponent(m_pRangeCom);
 #endif
 }
 

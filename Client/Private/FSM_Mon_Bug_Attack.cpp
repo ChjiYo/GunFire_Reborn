@@ -59,7 +59,7 @@ wstring CFSM_Mon_Bug_Attack::Late_Update(_float fTimeDelta)
 			return TEXT("Monster_Bug_State_Run");
 		}
 		else
-			return TEXT("Monster_Bug_State_Attack");
+			return TEXT("Monster_Bug_State_Idle");
 	}
 
 	return TEXT("Monster_Bug_State_Attack");

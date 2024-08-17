@@ -64,11 +64,9 @@ void CMon_Bug::Priority_Update(_float fTimeDelta)
 
 void CMon_Bug::Update(_float fTimeDelta)
 {
-	for (int i = 0; i < COLL_END; ++i)
-		m_pColliderCom[i]->Update(m_pTransformCom->Get_WorldMatrix());
 	
-	m_pRangeCom->Update(m_pTransformCom->Get_WorldMatrix());
-
+	m_pColliderCom[COLL_AABB]->Update(m_pTransformCom->Get_WorldMatrix());
+	
 	Destroy();
 
 	m_pStateCom->Update(fTimeDelta);
@@ -84,11 +82,8 @@ void CMon_Bug::Late_Update(_float fTimeDelta)
 	m_pStateCom->Late_Update(fTimeDelta);
 
 #ifdef _DEBUG
-	for (size_t i = 0; i < COLL_END; i++)
-	{
-		m_pGameInstance->Add_DebugComponent(m_pColliderCom[i]);
-	}
-	m_pGameInstance->Add_DebugComponent(m_pRangeCom);
+	m_pGameInstance->Add_DebugComponent(m_pColliderCom[COLL_AABB]);
+	
 #endif
 }
 
@@ -156,6 +151,17 @@ HRESULT CMon_Bug::Ready_Components()
 	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_State"),
 		TEXT("Com_State"), reinterpret_cast<CComponent**>(&m_pStateCom))))
 		return E_FAIL; 
+
+	/* For.Com_Collider */
+	CBounding_AABB::BOUNDING_AABB_DESC	BoundingDesc{};
+
+	BoundingDesc.vExtents = _float3(0.5f, 0.5f, 0.5f);
+	BoundingDesc.vCenter = _float3(0.f, BoundingDesc.vExtents.y, 0.f);
+	BoundingDesc.pObject = this;
+
+	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Collider_AABB"),
+		TEXT("Com_ColliderAABB"), reinterpret_cast<CComponent**>(&m_pColliderCom[COLL_AABB]), &BoundingDesc)))
+		return E_FAIL;
 
 	return S_OK;
 }

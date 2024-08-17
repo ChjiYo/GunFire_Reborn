@@ -55,7 +55,7 @@ wstring CFSM_Mon_Bug_Run::Late_Update(_float fTimeDelta)
 	XMVector4Length(vDistance);
 	_float fLength = XMVectorGetX(vDistance);
 
-	if (abs(fLength) < 2.5f)
+	if (abs(fLength) < 1.5f)
 		return TEXT("Monster_Bug_State_Attack");
 
 	return TEXT("Monster_Bug_State_Run");

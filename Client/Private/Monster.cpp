@@ -58,39 +58,6 @@ HRESULT CMonster::Ready_Components()
 		TEXT("Com_Navigation"), reinterpret_cast<CComponent**>(&m_pNavigationCom), &NavigationDesc)))
 		return E_FAIL;
 
-	/* For.Com_Collider */
-	CBounding_AABB::BOUNDING_AABB_DESC	BoundingDesc{};
-
-	BoundingDesc.vExtents = _float3(0.5f, 0.5f, 0.5f);
-	BoundingDesc.vCenter = _float3(0.f, BoundingDesc.vExtents.y, 0.f);
-	BoundingDesc.pObject = this;
-
-	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Collider_AABB"),
-		TEXT("Com_ColliderAABB"), reinterpret_cast<CComponent**>(&m_pColliderCom[COLL_AABB]), &BoundingDesc)))
-		return E_FAIL;
-
-	CBounding_Sphere::BOUNDING_SPHERE_DESC	BoundingSphereDesc{};
-
-	BoundingSphereDesc.fRadius = 0.5f;
-	BoundingSphereDesc.vCenter = _float3(0.f, BoundingSphereDesc.fRadius + 1.f, 0.f);
-	BoundingSphereDesc.pObject = this;
-
-	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Collider_Sphere"),
-		TEXT("Com_Collider_Sphere"), reinterpret_cast<CComponent**>(&m_pColliderCom[COLL_SPHERE]), &BoundingSphereDesc)))
-		return E_FAIL;
-
-
-	//Range
-
-	CBounding_Sphere::BOUNDING_SPHERE_DESC	RangeDesc{};
-
-	RangeDesc.fRadius = 10.f;
-	RangeDesc.vCenter = _float3(0.f, RangeDesc.fRadius / 2.f + 0.2f, 0.f);
-	RangeDesc.pObject = this;
-
-	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Collider_Sphere"),
-		TEXT("Com_Collider_Range"), reinterpret_cast<CComponent**>(&m_pRangeCom), &RangeDesc)))
-		return E_FAIL;
 	
 	return S_OK;
 }
@@ -112,7 +79,5 @@ HRESULT CMonster::Ready_UI()
 
 void CMonster::Free()
 {
-	Safe_Release(m_pRangeCom);
-
 	__super::Free();
 }
