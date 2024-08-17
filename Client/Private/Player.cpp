@@ -10,6 +10,8 @@
 #include "Weapon_Player.h"
 #include "Weapon_Player_Pistol.h"
 
+#include "UI_Weapon_Icon.h"
+
 CPlayer::CPlayer(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
     :CContainerObject{ pDevice  , pContext }
 {
@@ -249,6 +251,8 @@ void CPlayer::Player_Weapon_Change()
         Desc.pParentMatrix = m_pTransformCom->Get_WorldMatrixPtr();
         Desc.pParentState = 0x00000000;
         
+        CUI_Weapon_Icon::WEAPON_ICON_DESC WeaponDesc = {};
+        WeaponDesc.eWeaponID;
 
         switch (m_eWeaponID)
         {
@@ -257,6 +261,8 @@ void CPlayer::Player_Weapon_Change()
             Desc.iMaxBullet = 999999999;
             Desc.fAttackSpeed = 0.25f;
             __super::Add_PartObject(PART_WEAPON, TEXT("Prototype_GameObject_Weapon_Player_Pistol"), &Desc);
+
+            m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Weapon_Icon"), TEXT("Layer_Weapon_Icon"), &Desc);
             break;
 
         case SHURIKEN:
@@ -264,13 +270,20 @@ void CPlayer::Player_Weapon_Change()
             Desc.iNumBullet = 60;
             Desc.fAttackSpeed = 0.25f;
             __super::Add_PartObject(PART_WEAPON, TEXT("Prototype_GameObject_Weapon_Player_Shuriken"), &Desc);
+
+            m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Weapon_Icon"), TEXT("Layer_Weapon_Icon"), &Desc);
+            
             break;
 
         case SNIPER:
+            
             Desc.iNumBullet = 8;
             Desc.iMaxBullet = 80;
             Desc.fAttackSpeed = 0.25f;
             __super::Add_PartObject(PART_WEAPON, TEXT("Prototype_GameObject_Weapon_Player_Sniper"), &Desc);
+
+            m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Weapon_Icon"), TEXT("Layer_Weapon_Icon"), &Desc);
+            
             break;
 
         case BOOMGUN:
@@ -278,6 +291,9 @@ void CPlayer::Player_Weapon_Change()
             Desc.iMaxBullet = 120;
             Desc.fAttackSpeed = 0.125f;
             __super::Add_PartObject(PART_WEAPON, TEXT("Prototype_GameObject_Weapon_Player_BoomGun"), &Desc);
+
+           m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Weapon_Icon"), TEXT("Layer_Weapon_Icon"), &Desc);
+            
             break;
         }
 

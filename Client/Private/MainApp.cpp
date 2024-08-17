@@ -28,6 +28,8 @@
 #include "UI_Weapon_YBullet.h"
 #include "UI_Weapon_Panel.h"
 #include "UI_Weapon_NumPanel.h"
+#include "UI_Weapon_Icon.h"
+
 
 #include "UI_Skill_Panel.h"
 #include "UI_Skill_Dash.h"
@@ -332,7 +334,7 @@ HRESULT CMainApp::Ready_Prototoype_Resource_ForStatic()
 
 	/* For.Prototype_GameObject_UI_Weapon_Icon */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_Weapon_Icon"),
-		CUI_Weapon_YBullet::Create(m_pDevice, m_pContext))))
+		CUI_Weapon_Icon::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
 	//UI_Skill_State

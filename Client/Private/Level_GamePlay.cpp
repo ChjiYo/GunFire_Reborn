@@ -175,8 +175,8 @@ HRESULT CLevel_GamePlay::Ready_UI_WeaponState()
 	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Weapon_YellowBullet"), TEXT("Layer_UI_Weapon_YellowBullet"))))
 		return E_FAIL;
 
-	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Weapon_Icon"), TEXT("Layer_UI_Weapon_Icon"))))
-		return E_FAIL;
+	//if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Weapon_Icon"), TEXT("Layer_UI_Weapon_Icon"))))
+	//	return E_FAIL;
 
 	return S_OK;
 }
