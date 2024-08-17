@@ -56,6 +56,8 @@ public:
 		m_fShieldRecoveryTimer = 0.f;
 	}
 
+	WEAPONID	Get_WeaponID() { return m_eWeaponID; }
+
 private:
 	void ShieldRecovery();
 
@@ -71,7 +73,7 @@ private:
 	_bool				m_bWeaponChange = { true };
 
 	_float				m_fShieldRecoveryTimer = { 0.f };
-	WEAPONID m_eWeaponID = { WEAPON_END };
+	WEAPONID			m_eWeaponID = { WEAPON_END };
 	
 
 private:

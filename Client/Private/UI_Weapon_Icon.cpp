@@ -27,16 +27,8 @@ HRESULT CUI_Weapon_Icon::Initialize(void* pArg)
 
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
-	
-	CUI_Weapon_Icon* pWeapon_Icon = dynamic_cast<CUI_Weapon_Icon*>(m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY,TEXT("Layer_Weapon_Icon")).back());
 
-	if(pWeapon_Icon != nullptr)
-		pWeapon_Icon->m_bDead = true;
-
-	WEAPON_ICON_DESC* pDesc  = static_cast<WEAPON_ICON_DESC*>(pArg);
-	m_eWeaponID = pDesc->eWeaponID;
-
-	__super::Set_UI_Setting(512.f, 162.f, 1300.f, 750.f);
+	__super::Set_UI_Setting(200.f, 200.f, 1400.f, 750.f);
 
 	return S_OK;
 }
@@ -60,7 +52,9 @@ HRESULT CUI_Weapon_Icon::Render()
 	if (FAILED(__super::Bind_ShaderResources()))
 		return E_FAIL;
 
-	if (FAILED(m_pTextureCom->Bind_ShaderResource(m_pShaderCom, "g_Texture", m_eWeaponID)))
+	CPlayer* pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Player")).back());
+
+	if (FAILED(m_pTextureCom->Bind_ShaderResource(m_pShaderCom, "g_Texture", pPlayer->Get_WeaponID())))
 		return E_FAIL;
 
 	if (FAILED(m_pShaderCom->Begin(0)))
