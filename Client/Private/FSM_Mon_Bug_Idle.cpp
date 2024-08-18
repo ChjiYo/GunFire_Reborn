@@ -40,7 +40,7 @@ wstring CFSM_Mon_Bug_Idle::Update(_float fTimeDelta)
 {
 	
 
-	return TEXT("");
+	return TEXT("Monster_Bug_State_Idle");
 }
 
 wstring CFSM_Mon_Bug_Idle::Late_Update(_float fTimeDelta)

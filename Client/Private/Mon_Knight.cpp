@@ -159,7 +159,7 @@ HRESULT CMon_Knight::Ready_Components()
 		TEXT("Com_State"), reinterpret_cast<CComponent**>(&m_pStateCom))))
 		return E_FAIL;
 
-		/* For.Com_Collider */
+	/* For.Com_Collider */
 	CBounding_AABB::BOUNDING_AABB_DESC	AABBBoundingDesc{};
 
 	AABBBoundingDesc.vExtents = _float3(0.5f, 0.5f, 0.5f);
