@@ -7,6 +7,7 @@ class CShader;
 class CTexture;
 class CVIBuffer_Rect;
 class CCollider;
+class CNavigation;
 END
 
 class CSkill_Shuriken_Bullet final :public CSkill_Player

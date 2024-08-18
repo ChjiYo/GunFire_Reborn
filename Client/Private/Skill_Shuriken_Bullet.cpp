@@ -42,6 +42,7 @@ HRESULT CSkill_Shuriken_Bullet::Initialize(void* pArg)
 
 void CSkill_Shuriken_Bullet::Priority_Update(_float fTimeDelta)
 {
+    
 }
 
 void CSkill_Shuriken_Bullet::Update(_float fTimeDelta)
