@@ -2,6 +2,7 @@
 
 #include "FSM_Mon_Knight_Attack.h"
 #include "GameInstance.h"
+#include "Animation.h"
 
 #include "Skill.h"
 #include "Player.h"
@@ -56,7 +57,7 @@ wstring CFSM_Mon_Knight_Attack::Late_Update(_float fTimeDelta)
 	XMVector4Length(vDistance);
 	_float fLength = XMVectorGetX(vDistance);
 
-	if (m_fAttackEndTime >= 1.4666f)
+	if (m_fAttackEndTime >= m_tDesc.pModel->Get_Anim(13)->Get_Duration())
 	{
 		m_fAttackEndTime = 0.f;
 

@@ -36,6 +36,8 @@ public:
 public:
 	ANIM_DESC Get_Desc() { return Desc; }
 	vector<CChannel::CHANNEL_DESC> Get_ChDesc() { return vecChDesc; }
+	_float Get_Duration() { return m_fDuration;}
+
 private:
 	_char			m_szName[MAX_PATH] = {};
 	_float			m_fDuration = {};
