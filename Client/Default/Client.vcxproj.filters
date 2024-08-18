@@ -343,6 +343,30 @@
     <Filter Include="03.State_Machine\FSM_Monster\Knight\RangeAttack">
       <UniqueIdentifier>{5bd4c858-279f-48f3-bbb4-22eb69357993}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Spear">
+      <UniqueIdentifier>{538415e3-aa46-40ce-88ab-121c3ada4628}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Spear\Idle">
+      <UniqueIdentifier>{80b2cbbc-2d10-49d6-a23c-890bb39387d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Spear\Walk">
+      <UniqueIdentifier>{36bee85c-c47c-4451-9e65-d5b9ee1a8126}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Spear\Hit">
+      <UniqueIdentifier>{b4f8b1c4-d0be-4fbf-a29c-c020f245f8a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Spear\Run">
+      <UniqueIdentifier>{8894d3ee-7d85-406b-b354-969a38272220}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Spear\Roll">
+      <UniqueIdentifier>{65fc4558-12c6-4c1a-915e-0cff63caaa42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Spear\Dash">
+      <UniqueIdentifier>{1963e31e-27fb-491d-a885-09ad9996e123}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Spear\Attack">
+      <UniqueIdentifier>{343c5dbf-2162-49ac-a45f-0edf854142a5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -657,6 +681,27 @@
     <ClInclude Include="..\public\FSM_Mon_Knight_Roll.h">
       <Filter>03.State_Machine\FSM_Monster\Knight\Roll</Filter>
     </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Spear_Dash.h">
+      <Filter>03.State_Machine\FSM_Monster\Spear\Dash</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Spear_Hit.h">
+      <Filter>03.State_Machine\FSM_Monster\Spear\Hit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Spear_Idle.h">
+      <Filter>03.State_Machine\FSM_Monster\Spear\Idle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Spear_Roll.h">
+      <Filter>03.State_Machine\FSM_Monster\Spear\Roll</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Spear_Run.h">
+      <Filter>03.State_Machine\FSM_Monster\Spear\Run</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Spear_Walk.h">
+      <Filter>03.State_Machine\FSM_Monster\Spear\Walk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Spear_Attack.h">
+      <Filter>03.State_Machine\FSM_Monster\Spear\Attack</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -955,6 +1000,27 @@
     </ClCompile>
     <ClCompile Include="..\private\FSM_Mon_Knight_Roll.cpp">
       <Filter>03.State_Machine\FSM_Monster\Knight\Roll</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Spear_Dash.cpp">
+      <Filter>03.State_Machine\FSM_Monster\Spear\Dash</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Spear_Hit.cpp">
+      <Filter>03.State_Machine\FSM_Monster\Spear\Hit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Spear_Idle.cpp">
+      <Filter>03.State_Machine\FSM_Monster\Spear\Idle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Spear_Roll.cpp">
+      <Filter>03.State_Machine\FSM_Monster\Spear\Roll</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Spear_Run.cpp">
+      <Filter>03.State_Machine\FSM_Monster\Spear\Run</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Spear_Walk.cpp">
+      <Filter>03.State_Machine\FSM_Monster\Spear\Walk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Spear_Attack.cpp">
+      <Filter>03.State_Machine\FSM_Monster\Spear\Attack</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -49,12 +49,12 @@ HRESULT CMon_Spear::Initialize(void* pArg)
 	if (FAILED(Ready_UI()))
 		return E_FAIL;
 
-	//m_pStateCom->Set_State(TEXT("Monster_Archer_State_Idle"));
+	m_pStateCom->Set_State(TEXT("Monster_Archer_State_Idle"));
 
 	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSet(20.f, 1.f, 20.f, 1.f));
 	m_pNavigationCom->Init_Index(m_pTransformCom);
 
-	m_pModelCom->SetUp_Animation(1, true);
+	m_pModelCom->SetUp_Animation(3, true);
 
 	return S_OK;
 }
@@ -65,7 +65,7 @@ void CMon_Spear::Priority_Update(_float fTimeDelta)
 }
 
 void CMon_Spear::Update(_float fTimeDelta)
-{
+{ 
 	for (int i = 0; i < COLL_END; ++i)
 		m_pColliderCom[i]->Update(m_pTransformCom->Get_WorldMatrix());
 
