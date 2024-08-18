@@ -58,7 +58,7 @@ HRESULT CMainApp::Initialize()
 		return E_FAIL;
 
 	//LOGO 먼저 (실수 2스택!!)
-	if (FAILED(Open_Level(LEVEL_LOGO)))
+	if (FAILED(Open_Level(LEVEL_BIN)))
 		return E_FAIL;	
 
 	if (FAILED(m_pGameInstance->Add_Font(m_pDevice, m_pContext,TEXT("Font_Nexon"), TEXT("../Bin/Resources/Fonts/144ex.spriteFont"))))

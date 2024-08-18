@@ -236,6 +236,10 @@ HRESULT CLoader::Loading_For_BinaryFile()
 		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Floor/Floor_114/Floor_114.fbx", TEXT("../Bin/DataFiles/Floor_114.dat"), PreTransformMatrix))))
 		return E_FAIL;
 
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Item_Weapon_Sniper"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Item/Weapon/Sniper/Item_Sniper.fbx", TEXT("../Bin/DataFiles/Item_Sniper.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
 	lstrcpy(m_szLoadingText, TEXT("바이러리 파일 로드가 완료되었습니다."));
 
 	return S_OK;
