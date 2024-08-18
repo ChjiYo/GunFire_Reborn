@@ -28,7 +28,7 @@ HRESULT CUI_Weapon_NumPanel::Initialize(void* pArg)
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
-	__super::Set_UI_Setting(50.f, 50.f, 1500.f, 750.f);
+	__super::Set_UI_Setting(154.f, 70.f, 1300.f, 850.f);
 
 	return S_OK;
 }

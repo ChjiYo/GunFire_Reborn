@@ -63,6 +63,7 @@ private: /* For.Bones */
 private: /* For.Animation */
 	_float						m_fCurrentAnimPosition = {};
 	_uint						m_iCurrentAnimationIndex = {};
+	_uint						m_iPrevAnimationIndex = {};
 	_bool						m_isLoopAnim = { false };
 	_uint						m_iNumAnimations = {};
 	vector<class CAnimation*>	m_Animations;

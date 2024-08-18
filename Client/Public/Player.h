@@ -74,6 +74,8 @@ private:
 
 	_float				m_fShieldRecoveryTimer = { 0.f };
 	WEAPONID			m_eWeaponID = { WEAPON_END };
+
+	_float				m_fDashTimer = { 0.f };
 	
 
 private:

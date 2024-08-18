@@ -62,9 +62,7 @@ void CSkill_Pistol_Bullet::Update(_float fTimeDelta)
 }
 
 void CSkill_Pistol_Bullet::Late_Update(_float fTimeDelta)
-{
-   list<CGameObject*> ObjList = m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY,TEXT("Layer_Monster"));     
-
+{ 
        for (auto ColliderIter : HeadColliderList)
        {
            if (m_pColliderCom->isCollision(ColliderIter))
@@ -165,7 +163,7 @@ void CSkill_Pistol_Bullet::Add_Collider()
     int i = 0; 
     while (true)
     {
-        CCollider* pTargetCollider = dynamic_cast<CCollider*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Monster"), TEXT("Com_Collider_Sphere"), i));
+        CCollider* pTargetCollider = dynamic_cast<CCollider*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Monster"), TEXT("Com_ColliderSphere"), i));
 
         if (pTargetCollider == nullptr)
             return;

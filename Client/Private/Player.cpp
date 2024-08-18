@@ -157,6 +157,7 @@ void CPlayer::Key_State(_float fTimeDelta)
 void CPlayer::Player_Move(_float fTimeDelta)
 {
     _long		MouseMove = {};
+    
 
     if (MouseMove = m_pGameInstance->Get_DIMouseMove(DIMM_X))
     {
@@ -173,7 +174,7 @@ void CPlayer::Player_Move(_float fTimeDelta)
         m_pTransformCom->Go_Left(fTimeDelta, m_pNavigationCom);
 
         if (m_pGameInstance->Key_Down(VK_LSHIFT))
-            m_pTransformCom->Go_Left(fTimeDelta + 0.5f, m_pNavigationCom);
+            m_pTransformCom->Go_Left(fTimeDelta * 15.5f, m_pNavigationCom);
     }
 
     if (m_pGameInstance->Get_DIKeyState(DIK_D) & 0x80)
@@ -181,7 +182,7 @@ void CPlayer::Player_Move(_float fTimeDelta)
         m_pTransformCom->Go_Right(fTimeDelta, m_pNavigationCom);
 
         if (m_pGameInstance->Key_Down(VK_LSHIFT))
-            m_pTransformCom->Go_Right(fTimeDelta + 0.5f, m_pNavigationCom);
+            m_pTransformCom->Go_Right(fTimeDelta * 15.5f, m_pNavigationCom);
     }
 
     if (m_pGameInstance->Get_DIKeyState(DIK_W) & 0x80)
@@ -189,7 +190,7 @@ void CPlayer::Player_Move(_float fTimeDelta)
         m_pTransformCom->Go_StraightY(fTimeDelta, m_pNavigationCom);
 
         if (m_pGameInstance->Key_Down(VK_LSHIFT))
-            m_pTransformCom->Go_StraightY(fTimeDelta + 0.5f, m_pNavigationCom);
+            m_pTransformCom->Go_StraightY(fTimeDelta * 15.5f, m_pNavigationCom);
         
     }
 
@@ -198,7 +199,7 @@ void CPlayer::Player_Move(_float fTimeDelta)
         m_pTransformCom->Go_BackwardY(fTimeDelta, m_pNavigationCom);
 
         if (m_pGameInstance->Key_Down(VK_LSHIFT))
-            m_pTransformCom->Go_BackwardY(fTimeDelta + 0.5f, m_pNavigationCom);
+            m_pTransformCom->Go_BackwardY(fTimeDelta * 15.5f, m_pNavigationCom);
     }
 
     if (m_pGameInstance->Key_Down('1'))
