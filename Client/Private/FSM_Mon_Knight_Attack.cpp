@@ -57,11 +57,19 @@ wstring CFSM_Mon_Knight_Attack::Late_Update(_float fTimeDelta)
 	XMVector4Length(vDistance);
 	_float fLength = XMVectorGetX(vDistance);
 
+	if (m_fAttackEndTime >= 0.65f && abs(fLength) < 2.f && m_bAttackEnd)
+	{
+		CPlayer* pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Player")).back());
+		pPlayer->Set_Damage(-5.f);
+		m_bAttackEnd = false;
+	}
+
 	if (m_fAttackEndTime >= m_tDesc.pModel->Get_Anim(13)->Get_Duration())
 	{
 		m_fAttackEndTime = 0.f;
+		m_bAttackEnd = true;
 
-		if (abs(fLength) > 3.f)
+		if (abs(fLength) > 2.f)
 		{
 			return TEXT("Monster_Knight_State_Run");
 		}

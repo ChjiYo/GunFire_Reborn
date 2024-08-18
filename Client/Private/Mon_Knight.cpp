@@ -55,8 +55,6 @@ HRESULT CMon_Knight::Initialize(void* pArg)
 	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSet(20.f, 1.f, 20.f, 1.f));
 	m_pNavigationCom->Init_Index(m_pTransformCom);
 
-	m_pModelCom->SetUp_Animation(0, true);
-
 	return S_OK;
 }
 

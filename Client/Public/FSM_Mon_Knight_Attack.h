@@ -23,6 +23,7 @@ public:
 
 private:
 	_float m_fAttackEndTime = { 0.f };
+	_bool	m_bAttackEnd = { true };
 
 public:
 	static CFSM_Mon_Knight_Attack* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, FSM_MON_DESC Desc);
