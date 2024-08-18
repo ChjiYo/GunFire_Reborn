@@ -29,7 +29,7 @@ public:
 	virtual void Late_Update(_float fTimeDelta) override;
 	virtual HRESULT Render() override;
 
-private:
+protected:
 	_float3					m_vEye{}, m_vAt{};
 	_float					m_fFovy{}, m_fNear{}, m_fFar{};
 

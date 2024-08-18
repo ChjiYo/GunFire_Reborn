@@ -30,11 +30,17 @@ HRESULT CCamera_Free::Initialize(void * pArg)
 	if (FAILED(__super::Initialize(pArg)))
 		return E_FAIL;
 
+	if (FAILED(Ready_Components()))
+		return E_FAIL;
+
 	CAMERA_FREE_DESC* Desc = static_cast<CAMERA_FREE_DESC*>(pArg);
 	m_pPlayerTransform = Desc->pPlayerTransform;
 	Safe_Release(m_pPlayerTransform);
 
 	m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 5.f , 5.5f , 0.f, 1.f });
+	m_pNavigationCom->Init_Index(m_pTransformCom);
+
+	m_fScopeLevel = 10.35f;
 
 	return S_OK;
 }
@@ -43,7 +49,9 @@ void CCamera_Free::Priority_Update(_float fTimeDelta)
 {
 	Camera_State(fTimeDelta);
 
-	__super::Priority_Update(fTimeDelta);
+	//__super::Priority_Update(fTimeDelta);
+	m_pGameInstance->Set_Transform(CPipeLine::D3DTS_VIEW, m_pTransformCom->Get_WorldMatrix_Inverse());
+	m_pGameInstance->Set_Transform(CPipeLine::D3DTS_PROJ, XMMatrixPerspectiveFovLH(m_fFovy, m_fViewportWidth / m_fViewportHeight, m_fNear, m_fFar));
 }
 
 void CCamera_Free::Update(_float fTimeDelta)
@@ -61,12 +69,27 @@ HRESULT CCamera_Free::Render()
 	return S_OK;
 }
 
+HRESULT CCamera_Free::Ready_Components()
+{
+	CNavigation::NAVIGATION_DESC		NavigationDesc{};
+	NavigationDesc.iCurrentCellIndex = 0;
+
+	/* Com_Navigation */
+	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Navigation"),
+		TEXT("Com_Navigation"), reinterpret_cast<CComponent**>(&m_pNavigationCom), &NavigationDesc)))
+		return E_FAIL;
+
+
+	return S_OK;
+}
+
 void CCamera_Free::Camera_State(_float fTimeDelta , _float fMul)
 {
 	//Position({ -0.3f , 0.35f, -0.35f});
 	switch (m_eCameraType)
 	{
 	case PLAYER:
+		m_fFovy = XMConvertToRadians(60.0f);
 		Position({ -0.3f , 0.35f, -0.35f });
 		break;
 
@@ -143,7 +166,9 @@ void CCamera_Free::Position(_float3 vOffSet)
 
 void CCamera_Free::Scope_Camera(_float fTimeDelta, _float fMul)
 {
-	Position({ -0.3f , 0.35f, 10.35f });
+	m_fFovy = XMConvertToRadians(30.0f);
+
+	Position({ -0.3f , 0.35f,  1.35f });
 }
 
 CCamera_Free * CCamera_Free::Create(ID3D11Device * pDevice, ID3D11DeviceContext * pContext)
@@ -175,6 +200,7 @@ CGameObject * CCamera_Free::Clone(void * pArg)
 void CCamera_Free::Free()
 {
 	Safe_Release(m_pPlayerTransform);
+	Safe_Release(m_pNavigationCom);
 
 	__super::Free();
 }

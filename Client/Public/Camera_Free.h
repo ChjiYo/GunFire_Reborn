@@ -37,15 +37,20 @@ public:
 	virtual void Late_Update(_float fTimeDelta) override;
 	virtual HRESULT Render() override;
 
+private:
+	HRESULT	Ready_Components();
+
 public:
 	void Set_CameraType(CAMERA_TYPE eType) { m_eCameraType = eType; }
 
 private:
 	CTransform*			m_pPlayerTransform = { nullptr };
+	CNavigation*		m_pNavigationCom = { nullptr };
 
 	_float				m_fMouseSensor = {};
-	_float				m_fZoomTimer = {};
+	_float				m_fScopeLevel = { 0.f };
 	CAMERA_TYPE			m_eCameraType = { PLAYER };
+	
 private:
 	void Camera_State(_float fTimeDelta, _float fMul = 1.f);
 
