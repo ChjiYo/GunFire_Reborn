@@ -63,17 +63,17 @@ void CSkill_Pistol_Bullet::Update(_float fTimeDelta)
 
 void CSkill_Pistol_Bullet::Late_Update(_float fTimeDelta)
 {
-   list<CGameObject*> ObjList = m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY,TEXT("Layer_Monster"));
-        
-    for (auto ColliderIter : HeadColliderList)
-    {
-        if (m_pColliderCom->isCollision(ColliderIter))
-        {    
-            dynamic_cast<CMonster*>(ColliderIter->Get_Object())->Set_Damage(-5.f);
-            m_bDead = true;
-        }
-    }
+   list<CGameObject*> ObjList = m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY,TEXT("Layer_Monster"));     
 
+       for (auto ColliderIter : HeadColliderList)
+       {
+           if (m_pColliderCom->isCollision(ColliderIter))
+           {
+               dynamic_cast<CMonster*>(ColliderIter->Get_Object())->Set_Damage(-5.f);
+               m_bDead = true;
+           }
+       }
+   
     m_pGameInstance->Add_RenderObject(CRenderer::RG_BLEND, this);
 }
 
