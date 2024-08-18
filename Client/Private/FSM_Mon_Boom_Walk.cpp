@@ -30,22 +30,24 @@ HRESULT CFSM_Mon_Boom_Walk::Initialize(FSM_MON_DESC Desc)
 
 wstring CFSM_Mon_Boom_Walk::Priority_Update(_float fTimeDelta)
 {
-	return TEXT("");
+	return TEXT("Monster_Boom_State_Walk");
 }
 
 wstring CFSM_Mon_Boom_Walk::Update(_float fTimeDelta)
 {
-	return TEXT("");
+	return TEXT("Monster_Boom_State_Walk");
 }
 
 wstring CFSM_Mon_Boom_Walk::Late_Update(_float fTimeDelta)
 {
-	return TEXT("");
+	return TEXT("Monster_Boom_State_Walk");
 }
 
 void CFSM_Mon_Boom_Walk::Enter()
 {
 	__super::Enter();
+
+	m_strName = TEXT("Monster_Boom_State_Walk");
 
 }
 

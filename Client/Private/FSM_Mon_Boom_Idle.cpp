@@ -30,23 +30,36 @@ HRESULT CFSM_Mon_Boom_Idle::Initialize(FSM_MON_DESC Desc)
 
 wstring CFSM_Mon_Boom_Idle::Priority_Update(_float fTimeDelta)
 {
-	return TEXT("");
+	return TEXT("Monster_Boom_State_Idle");
 }
 
 wstring CFSM_Mon_Boom_Idle::Update(_float fTimeDelta)
 {
-	return TEXT("");
+	return TEXT("Monster_Boom_State_Idle");
 }
 
 wstring CFSM_Mon_Boom_Idle::Late_Update(_float fTimeDelta)
 {
-	return TEXT("");
+	_vector vTargetPos = m_pPlayerTransform->Get_State(CTransform::STATE_POSITION);
+	_vector vPos = m_tDesc.pTransform->Get_State(CTransform::STATE_POSITION);
+
+	_vector vDistance = vTargetPos - vPos;
+	XMVector4Length(vDistance);
+	_float fLength = XMVectorGetX(vDistance);
+
+	if (abs(fLength) < 10.f)
+	{
+		return TEXT("Monster_Boom_State_Run");
+	}
+
+	return TEXT("Monster_Boom_State_Idle");
 }
 
 void CFSM_Mon_Boom_Idle::Enter()
 {
 	__super::Enter();
 
+	m_strName = TEXT("Monster_Boom_State_Idle");
 }
 
 void CFSM_Mon_Boom_Idle::Exit()

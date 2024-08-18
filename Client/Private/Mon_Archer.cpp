@@ -55,8 +55,6 @@ HRESULT CMon_Archer::Initialize(void* pArg)
 	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSet(20.f, 1.f, 20.f, 1.f));
 	m_pNavigationCom->Init_Index(m_pTransformCom);
 
-	m_pModelCom->SetUp_Animation(1, true);
-
 	return S_OK;
 }
 
@@ -157,6 +155,28 @@ HRESULT CMon_Archer::Ready_Components()
 	/* Com_State */
 	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_State"),
 		TEXT("Com_State"), reinterpret_cast<CComponent**>(&m_pStateCom))))
+		return E_FAIL;
+
+	/* For.Com_Collider */
+	CBounding_AABB::BOUNDING_AABB_DESC	AABBBoundingDesc{};
+
+	AABBBoundingDesc.vExtents = _float3(0.5f, 0.5f, 0.5f);
+	AABBBoundingDesc.vCenter = _float3(0.f, AABBBoundingDesc.vExtents.y, 0.f);
+	AABBBoundingDesc.pObject = this;
+
+	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Collider_AABB"),
+		TEXT("Com_ColliderAABB"), reinterpret_cast<CComponent**>(&m_pColliderCom[COLL_AABB]), &AABBBoundingDesc)))
+		return E_FAIL;
+
+	/* For.Com_Collider */
+	CBounding_Sphere::BOUNDING_SPHERE_DESC		SphereBoundingDesc{};
+
+	SphereBoundingDesc.fRadius = 0.5f;
+	SphereBoundingDesc.vCenter = _float3(0.f, SphereBoundingDesc.fRadius + 1.f, 0.f);
+	SphereBoundingDesc.pObject = this;
+
+	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Collider_Sphere"),
+		TEXT("Com_ColliderSphere"), reinterpret_cast<CComponent**>(&m_pColliderCom[COLL_SPHERE]), &SphereBoundingDesc)))
 		return E_FAIL;
 
 	return S_OK;

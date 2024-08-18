@@ -8,6 +8,7 @@ BEGIN(Engine)
 class CTransform;
 class CNavigation;
 class CBinModel;
+class CGameObject;
 
 END
 
@@ -24,6 +25,7 @@ public:
 		class CTransform* pTransform = { nullptr };
 		class CNavigation* pNavigation = { nullptr };
 		class CBinModel* pModel = { nullptr };
+		class CGameObject* pOriginObj = { nullptr };
 	}FSM_MON_DESC;
 
 protected:

@@ -2,6 +2,7 @@
 
 #include "FSM_Mon_Boom_Attack.h"
 #include "GameInstance.h"
+#include "Animation.h"
 
 #include "Skill.h"
 #include "Player.h"
@@ -24,28 +25,39 @@ HRESULT CFSM_Mon_Boom_Attack::Initialize(FSM_MON_DESC Desc)
 	m_tDesc.pTransform = Desc.pTransform;
 	m_tDesc.pNavigation = Desc.pNavigation;
 	m_tDesc.pModel = Desc.pModel;
+	m_tDesc.pOriginObj = Desc.pOriginObj;
 
 	return S_OK;
 }
 
 wstring CFSM_Mon_Boom_Attack::Priority_Update(_float fTimeDelta)
 {
-	return TEXT("");
+	m_fAttackEndTime += fTimeDelta;
+
+	return TEXT("Monster_Boom_State_Attack");
 }
 
 wstring CFSM_Mon_Boom_Attack::Update(_float fTimeDelta)
 {
-	return TEXT("");
+	if (m_fAttackEndTime >= m_tDesc.pModel->Get_Anim(3)->Get_Duration())
+	{
+		m_tDesc.pOriginObj->Set_Dead();
+	}
+	
+	return TEXT("Monster_Boom_State_Attack");
 }
 
 wstring CFSM_Mon_Boom_Attack::Late_Update(_float fTimeDelta)
 {
-	return TEXT("");
+	return TEXT("Monster_Boom_State_Attack");
 }
 
 void CFSM_Mon_Boom_Attack::Enter()
 {
 	__super::Enter();
+
+	m_strName = TEXT("Monster_Boom_State_Attack");
+	m_tDesc.pModel->SetUp_Animation(3, false);
 
 }
 

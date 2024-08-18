@@ -89,7 +89,7 @@ HRESULT CUI_Mon_BarPanel::Ready_Components()
 
 void CUI_Mon_BarPanel::Destroy()
 {
-	if (m_pMonster->Get_MonDesc().iHp <= 0)
+	if (m_pMonster->Get_Dead())
 		m_bDead = true;
 }
 

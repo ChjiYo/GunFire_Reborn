@@ -30,8 +30,6 @@ HRESULT CFSM_Mon_Knight_Run::Initialize(FSM_MON_DESC Desc)
 
 wstring CFSM_Mon_Knight_Run::Priority_Update(_float fTimeDelta)
 {
-	
-
 	return TEXT("Monster_Knight_State_Run");
 }
 

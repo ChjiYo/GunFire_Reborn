@@ -30,23 +30,43 @@ HRESULT CFSM_Mon_Boom_Run::Initialize(FSM_MON_DESC Desc)
 
 wstring CFSM_Mon_Boom_Run::Priority_Update(_float fTimeDelta)
 {
-	return TEXT("");
+	return TEXT("Monster_Boom_State_Run");
 }
 
 wstring CFSM_Mon_Boom_Run::Update(_float fTimeDelta)
 {
-	return TEXT("");
+	_vector vTargetPos = m_pPlayerTransform->Get_State(CTransform::STATE_POSITION);
+	_float4 vFloatPos = {};
+	XMStoreFloat4(&vFloatPos, vTargetPos);
+
+	vFloatPos.y = 0.25f;
+	m_tDesc.pTransform->LookAt(XMLoadFloat4(&vFloatPos));
+	m_tDesc.pTransform->Go_StraightY(fTimeDelta, m_tDesc.pNavigation);
+
+	return TEXT("Monster_Boom_State_Run");
 }
 
 wstring CFSM_Mon_Boom_Run::Late_Update(_float fTimeDelta)
 {
-	return TEXT("");
+	_vector vTargetPos = m_pPlayerTransform->Get_State(CTransform::STATE_POSITION);
+	_vector vPos = m_tDesc.pTransform->Get_State(CTransform::STATE_POSITION);
+
+	_vector vDistance = vTargetPos - vPos;
+	XMVector4Length(vDistance);
+	_float fLength = XMVectorGetX(vDistance);
+
+	if (abs(fLength) < 1.5f)
+		return TEXT("Monster_Boom_State_Attack");
+
+	return TEXT("Monster_Boom_State_Run");
 }
 
 void CFSM_Mon_Boom_Run::Enter()
 {
 	__super::Enter();
 
+	m_strName = TEXT("Monster_Boom_State_Run");
+	m_tDesc.pModel->SetUp_Animation(5, true);
 }
 
 void CFSM_Mon_Boom_Run::Exit()
