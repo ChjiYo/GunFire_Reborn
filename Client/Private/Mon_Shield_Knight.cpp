@@ -3,11 +3,11 @@
 
 #include "GameInstance.h"
 
-#include "FSM_Mon_Archer_Idle.h"
-#include "FSM_Mon_Archer_Hit.h"
-#include "FSM_Mon_Archer_Run.h"
-#include "FSM_Mon_Archer_Walk.h"
-#include "FSM_Mon_Archer_Attack.h"
+#include "FSM_Mon_Shield_Idle.h"
+#include "FSM_Mon_Shield_Hit.h"
+#include "FSM_Mon_Shield_Walk.h"
+#include "FSM_Mon_Shield_Run.h"
+#include "FSM_Mon_Shield_Attack.h"
 
 CMon_Shield_Knight::CMon_Shield_Knight(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	: CMonster{ pDevice, pContext }
@@ -49,19 +49,17 @@ HRESULT CMon_Shield_Knight::Initialize(void* pArg)
 	if (FAILED(Ready_UI()))
 		return E_FAIL;
 
-	//m_pStateCom->Set_State(TEXT("Monster_Archer_State_Idle"));
+	m_pStateCom->Set_State(TEXT("Monster_Shield_State_Idle"));
 
 	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSet(20.f, 1.f, 20.f, 1.f));
 	m_pNavigationCom->Init_Index(m_pTransformCom);
-
-	m_pModelCom->SetUp_Animation(1, true);
 
 	return S_OK;
 }
 
 void CMon_Shield_Knight::Priority_Update(_float fTimeDelta)
 {
-	//m_pStateCom->Priority_Update(fTimeDelta);
+	m_pStateCom->Priority_Update(fTimeDelta);
 }
 
 void CMon_Shield_Knight::Update(_float fTimeDelta)
@@ -69,8 +67,9 @@ void CMon_Shield_Knight::Update(_float fTimeDelta)
 	for (int i = 0; i < COLL_END; ++i)
 		m_pColliderCom[i]->Update(m_pTransformCom->Get_WorldMatrix());
 
-
 	Destroy();
+
+	m_pStateCom->Update(fTimeDelta);
 }
 
 void CMon_Shield_Knight::Late_Update(_float fTimeDelta)
@@ -80,7 +79,7 @@ void CMon_Shield_Knight::Late_Update(_float fTimeDelta)
 	m_pModelCom->Play_Animation(fTimeDelta);
 	m_pGameInstance->Add_RenderObject(CRenderer::RG_NONBLEND, this);
 
-	//m_pStateCom->Late_Update(fTimeDelta);
+	m_pStateCom->Late_Update(fTimeDelta);
 
 #ifdef _DEBUG
 	for (size_t i = 0; i < COLL_END; i++)
@@ -131,11 +130,11 @@ HRESULT CMon_Shield_Knight::Ready_State()
 	Desc.pNavigation = m_pNavigationCom;
 	Desc.pModel = m_pModelCom;
 
-	//m_pStateCom->Add_State(CFSM_Mon_Archer_Idle::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Archer_State_Idle"));
-	//m_pStateCom->Add_State(CFSM_Mon_Archer_Hit::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Archer_State_Hit"));
-	//m_pStateCom->Add_State(CFSM_Mon_Archer_Walk::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Archer_State_Walk"));
-	//m_pStateCom->Add_State(CFSM_Mon_Archer_Run::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Archer_State_Run"));
-	//m_pStateCom->Add_State(CFSM_Mon_Archer_Attack::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Archer_State_Attack"));
+	m_pStateCom->Add_State(CFSM_Mon_Shield_Idle::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Shield_State_Idle"));
+	m_pStateCom->Add_State(CFSM_Mon_Shield_Hit::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Shield_State_Hit"));
+	m_pStateCom->Add_State(CFSM_Mon_Shield_Walk::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Shield_State_Walk"));
+	m_pStateCom->Add_State(CFSM_Mon_Shield_Run::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Shield_State_Run"));
+	m_pStateCom->Add_State(CFSM_Mon_Shield_Attack::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Shield_State_Attack"));
 
 	return S_OK;
 }
@@ -156,9 +155,31 @@ HRESULT CMon_Shield_Knight::Ready_Components()
 		return E_FAIL;
 
 	/* Com_State */
-	/*if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_State"),
+	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_State"),
 		TEXT("Com_State"), reinterpret_cast<CComponent**>(&m_pStateCom))))
-		return E_FAIL;*/
+		return E_FAIL;
+
+	/* For.Com_Collider */
+	CBounding_AABB::BOUNDING_AABB_DESC	AABBBoundingDesc{};
+
+	AABBBoundingDesc.vExtents = _float3(0.5f, 0.5f, 0.5f);
+	AABBBoundingDesc.vCenter = _float3(0.f, AABBBoundingDesc.vExtents.y, 0.f);
+	AABBBoundingDesc.pObject = this;
+
+	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Collider_AABB"),
+		TEXT("Com_ColliderAABB"), reinterpret_cast<CComponent**>(&m_pColliderCom[COLL_AABB]), &AABBBoundingDesc)))
+		return E_FAIL;
+
+	/* For.Com_Collider */
+	CBounding_Sphere::BOUNDING_SPHERE_DESC		SphereBoundingDesc{};
+
+	SphereBoundingDesc.fRadius = 0.5f;
+	SphereBoundingDesc.vCenter = _float3(0.f, SphereBoundingDesc.fRadius + 1.f, 0.f);
+	SphereBoundingDesc.pObject = this;
+
+	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Collider_Sphere"),
+		TEXT("Com_ColliderSphere"), reinterpret_cast<CComponent**>(&m_pColliderCom[COLL_SPHERE]), &SphereBoundingDesc)))
+		return E_FAIL;
 
 	return S_OK;
 }
@@ -206,7 +227,7 @@ CGameObject* CMon_Shield_Knight::Clone(void* pArg)
 void CMon_Shield_Knight::Free()
 {
 	Safe_Release(m_pShaderCom);
-	//Safe_Release(m_pStateCom);
+	Safe_Release(m_pStateCom);
 	Safe_Release(m_pModelCom);
 	Safe_Release(m_pNavigationCom);
 

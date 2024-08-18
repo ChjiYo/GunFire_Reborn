@@ -385,6 +385,21 @@
     <Filter Include="03.State_Machine\FSM_Monster\Boom\Attack">
       <UniqueIdentifier>{20a2442e-b00b-42f9-87ba-72f5fcf66a4e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Shield\Idle">
+      <UniqueIdentifier>{257a8486-d673-4362-8615-265e72cc1753}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Shield\Walk">
+      <UniqueIdentifier>{5e32980a-4bd3-4e7c-9816-2d8c5cda5065}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Shield\Hit">
+      <UniqueIdentifier>{7a12bd8a-48a0-40b8-9d8f-9f13bb559e3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Shield\Attack">
+      <UniqueIdentifier>{90df3716-ddd2-4cc9-b0cd-5f89e12a5828}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Shield\Run">
+      <UniqueIdentifier>{74e784bc-4535-4e42-b9a2-bbe56e42cbba}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -732,6 +747,21 @@
     <ClInclude Include="..\public\FSM_Mon_Boom_Walk.h">
       <Filter>03.State_Machine\FSM_Monster\Boom\Walk</Filter>
     </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Shield_Idle.h">
+      <Filter>03.State_Machine\FSM_Monster\Shield\Idle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Shield_Attack.h">
+      <Filter>03.State_Machine\FSM_Monster\Shield\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Shield_Hit.h">
+      <Filter>03.State_Machine\FSM_Monster\Shield\Hit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Shield_Walk.h">
+      <Filter>03.State_Machine\FSM_Monster\Shield\Walk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Shield_Run.h">
+      <Filter>03.State_Machine\FSM_Monster\Shield\Run</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -1063,6 +1093,21 @@
     </ClCompile>
     <ClCompile Include="..\private\FSM_Mon_Boom_Walk.cpp">
       <Filter>03.State_Machine\FSM_Monster\Boom\Walk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Shield_Idle.cpp">
+      <Filter>03.State_Machine\FSM_Monster\Shield\Idle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Shield_Attack.cpp">
+      <Filter>03.State_Machine\FSM_Monster\Shield\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Shield_Hit.cpp">
+      <Filter>03.State_Machine\FSM_Monster\Shield\Hit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Shield_Walk.cpp">
+      <Filter>03.State_Machine\FSM_Monster\Shield\Walk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Shield_Run.cpp">
+      <Filter>03.State_Machine\FSM_Monster\Shield\Run</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
