@@ -53,6 +53,9 @@ HRESULT CLevel_GamePlay::Initialize()
 	if (FAILED(ParseInitialize()))
 		return E_FAIL;
 
+	if (FAILED(Ready_Layer_Item(TEXT("Layer_Item"))))
+		return E_FAIL;
+
 	
 
 	return S_OK;
@@ -134,6 +137,13 @@ HRESULT CLevel_GamePlay::Ready_LandObjects()
 	if (FAILED(Ready_Layer_Monster(TEXT("Layer_Monster"))))
 		return E_FAIL;
 
+
+	return S_OK;
+}
+HRESULT CLevel_GamePlay::Ready_Layer_Item(const wstring& strLayerTag)
+{
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Item_Sniper"), strLayerTag)))
+		return E_FAIL;
 
 	return S_OK;
 }

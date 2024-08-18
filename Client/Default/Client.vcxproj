@@ -197,6 +197,9 @@
     <ClInclude Include="..\public\FSM_Mon_Spear_Roll.h" />
     <ClInclude Include="..\public\FSM_Mon_Spear_Run.h" />
     <ClInclude Include="..\public\FSM_Mon_Spear_Walk.h" />
+    <ClInclude Include="..\public\Item.h" />
+    <ClInclude Include="..\public\Item_Sniper.h" />
+    <ClInclude Include="..\public\Item_Weapon.h" />
     <ClInclude Include="..\public\Mon_Deash_Boom.h" />
     <ClInclude Include="..\Public\Door.h" />
     <ClInclude Include="..\public\Mon_Knight.h" />
@@ -321,6 +324,9 @@
     <ClCompile Include="..\private\FSM_Mon_Spear_Roll.cpp" />
     <ClCompile Include="..\private\FSM_Mon_Spear_Run.cpp" />
     <ClCompile Include="..\private\FSM_Mon_Spear_Walk.cpp" />
+    <ClCompile Include="..\private\Item.cpp" />
+    <ClCompile Include="..\private\Item_Sniper.cpp" />
+    <ClCompile Include="..\private\Item_Weapon.cpp" />
     <ClCompile Include="..\private\Mon_Deash_Boom.cpp" />
     <ClCompile Include="..\Private\Door.cpp" />
     <ClCompile Include="..\private\Mon_Knight.cpp" />

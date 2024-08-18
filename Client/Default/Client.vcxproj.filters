@@ -400,6 +400,15 @@
     <Filter Include="03.State_Machine\FSM_Monster\Shield\Run">
       <UniqueIdentifier>{74e784bc-4535-4e42-b9a2-bbe56e42cbba}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObjects\Item">
+      <UniqueIdentifier>{5b0bb900-a1e9-45fc-b67a-13ea52145057}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Item\Weapon">
+      <UniqueIdentifier>{455d3229-88ff-44a5-8565-8d26c1a76a27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Item\Weapon\Sniper">
+      <UniqueIdentifier>{b5962ef7-ea90-4a4f-bbb7-cc459b119fac}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -762,6 +771,15 @@
     <ClInclude Include="..\public\FSM_Mon_Shield_Run.h">
       <Filter>03.State_Machine\FSM_Monster\Shield\Run</Filter>
     </ClInclude>
+    <ClInclude Include="..\public\Item_Weapon.h">
+      <Filter>02.GameObjects\Item\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Item.h">
+      <Filter>02.GameObjects\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Item_Sniper.h">
+      <Filter>02.GameObjects\Item\Weapon\Sniper</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -1108,6 +1126,15 @@
     </ClCompile>
     <ClCompile Include="..\private\FSM_Mon_Shield_Run.cpp">
       <Filter>03.State_Machine\FSM_Monster\Shield\Run</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Item_Weapon.cpp">
+      <Filter>02.GameObjects\Item\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Item.cpp">
+      <Filter>02.GameObjects\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Item_Sniper.cpp">
+      <Filter>02.GameObjects\Item\Weapon\Sniper</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
