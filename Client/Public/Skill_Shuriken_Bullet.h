@@ -32,6 +32,7 @@ private:
 private:
 	void Destroy(_float fTimeDelta);
 
+
 private:
 	CShader* m_pShaderCom = { nullptr };
 	CTexture* m_pTextureCom = { nullptr };

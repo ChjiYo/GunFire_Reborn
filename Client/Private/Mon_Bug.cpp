@@ -7,6 +7,8 @@
 #include "FSM_Mon_Bug_Run.h"
 #include "FSM_Mon_Bug_Attack.h"
 
+#include "Player.h"
+
 CMon_Bug::CMon_Bug(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	: CMonster{ pDevice, pContext }
 {
@@ -50,9 +52,9 @@ HRESULT CMon_Bug::Initialize(void* pArg)
 	m_pStateCom->Set_State(TEXT("Monster_Bug_State_Idle"));
 
 	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSet(20.f, 1.f, 20.f, 1.f));
-	m_pNavigationCom->Init_Index(m_pTransformCom);
 
-	m_pModelCom->SetUp_Animation(1, true);
+	m_pTransformCom->Set_State(CTransform::STATE_POSITION, { (_float)(rand() % 10 + 1) , 0.f ,(_float)(rand() % 10 + 1) , 1.f });
+	m_pNavigationCom->Init_Index(m_pTransformCom);
 
 	return S_OK;
 }
@@ -60,6 +62,7 @@ HRESULT CMon_Bug::Initialize(void* pArg)
 void CMon_Bug::Priority_Update(_float fTimeDelta)
 {
 	m_pStateCom->Priority_Update(fTimeDelta);
+	m_pModelCom->Play_Animation(fTimeDelta);
 }
 
 void CMon_Bug::Update(_float fTimeDelta)
@@ -76,7 +79,6 @@ void CMon_Bug::Late_Update(_float fTimeDelta)
 {
 	__super::Late_Update(fTimeDelta);
 
-	m_pModelCom->Play_Animation(fTimeDelta);
 	m_pGameInstance->Add_RenderObject(CRenderer::RG_NONBLEND, this);
 
 	m_pStateCom->Late_Update(fTimeDelta);

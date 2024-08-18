@@ -42,7 +42,8 @@ HRESULT CSkill_Shuriken_Bullet::Initialize(void* pArg)
 
 void CSkill_Shuriken_Bullet::Priority_Update(_float fTimeDelta)
 {
-    
+    //_vector vPos = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
+  
 }
 
 void CSkill_Shuriken_Bullet::Update(_float fTimeDelta)

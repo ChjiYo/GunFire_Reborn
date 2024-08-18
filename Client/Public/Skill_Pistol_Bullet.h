@@ -30,7 +30,6 @@ private:
 
 private:
 	void Destroy(_float fTimeDelta ,_vector vPos);
-	void Add_Collider();
 
 private:
 	CShader* m_pShaderCom = { nullptr };
@@ -43,9 +42,6 @@ private:
 
 	_float m_fDestroyTimer = {};
 	_uint m_iTextureIndex = { 0 };
-
-private:
-	list<CCollider*> HeadColliderList = {};
 
 public:
 	static CSkill_Pistol_Bullet* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);

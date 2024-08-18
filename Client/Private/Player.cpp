@@ -11,6 +11,7 @@
 #include "Weapon_Player_Pistol.h"
 
 #include "UI_Weapon_Icon.h"
+#include "Monster.h"
 
 CPlayer::CPlayer(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
     :CContainerObject{ pDevice  , pContext }
@@ -71,6 +72,8 @@ void CPlayer::Priority_Update(_float fTimeDelta)
         m_fShieldRecoveryTimer += fTimeDelta;
     else
         m_fShieldRecoveryTimer = 0.f;
+
+    m_fInvincibleTime += fTimeDelta;
     
     Player_Weapon_Change();
 
@@ -91,12 +94,25 @@ void CPlayer::Late_Update(_float fTimeDelta)
     __super::Late_Update(fTimeDelta);
 
     Key_State(fTimeDelta);
+
+    list<CGameObject*> ObjList = m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Monster"));
+
+    for (auto& Monsteriter : ObjList)
+    {
+        if ((m_pColliderCom->isCollision(dynamic_cast<CMonster*>(Monsteriter)->Get_Collider())) && m_fInvincibleTime > 1.f)
+        {
+            Set_Damage(-5.f);
+            m_fInvincibleTime = 0.f;
+        }
+    }
+
     m_pGameInstance->Add_RenderObject(CRenderer::RG_NONBLEND, this);
 
 #ifdef _DEBUG
     m_pGameInstance->Add_DebugComponent(m_pColliderCom);
     m_pGameInstance->Add_DebugComponent(m_pNavigationCom);
 #endif
+
 }
 
 HRESULT CPlayer::Render() 
@@ -132,7 +148,7 @@ HRESULT CPlayer::Ready_Components()
    
 
    BoundingDesc.vExtents = _float3(0.5f, 0.5f, 0.5f);
-   BoundingDesc.vCenter = _float3(0.f, BoundingDesc.vExtents.y / 2.f, 0.f);  
+   BoundingDesc.vCenter = _float3(0.f, BoundingDesc.vExtents.y / 2.f - 0.5f , 0.f);  
    BoundingDesc.pObject = this;
 
    if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Collider_AABB"),

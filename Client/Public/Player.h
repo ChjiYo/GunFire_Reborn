@@ -61,7 +61,6 @@ public:
 private:
 	void ShieldRecovery();
 
-
 private:
 	CState_Machine*		m_pState = { nullptr };
 	CNavigation*		m_pNavigationCom = { nullptr };
@@ -72,13 +71,13 @@ private:
 	_bool				m_bJump = { false };
 	_bool				m_bWeaponChange = { true };
 
-	_float				m_fShieldRecoveryTimer = { 0.f };
 	WEAPONID			m_eWeaponID = { WEAPON_END };
 
+	_float				m_fShieldRecoveryTimer = { 0.f };
 	_float				m_fDashTimer = { 0.f };
+	_float				m_fInvincibleTime = { 0.f };
 
 	WEAPONID			m_eWeaponIDArray[3] = {};
-	
 
 private:
 	HRESULT Ready_Components();

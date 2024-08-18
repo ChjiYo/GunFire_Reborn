@@ -2,6 +2,7 @@
 
 #include "FSM_Mon_Bug_Attack.h"
 #include "GameInstance.h"
+#include "Animation.h"
 
 #include "Skill.h"
 #include "Player.h"
@@ -50,7 +51,7 @@ wstring CFSM_Mon_Bug_Attack::Late_Update(_float fTimeDelta)
 	XMVector4Length(vDistance);
 	_float fLength = XMVectorGetX(vDistance);
 
-	if (m_fAttackTime >= 1.f)
+	if (m_fAttackTime >= m_tDesc.pModel->Get_Anim(4)->Get_Duration())
 	{
 		m_fAttackTime = 0.f;
 

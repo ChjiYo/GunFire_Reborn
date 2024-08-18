@@ -38,6 +38,8 @@ public:
 		m_tMonDesc.iHp += iDamage;
 	}
 
+	CCollider* Get_Collider() { return m_pColliderCom[COLL_AABB]; }
+
 public:
 	virtual HRESULT Initialize_Prototype() override;
 	virtual HRESULT Initialize(void* pArg) override;
