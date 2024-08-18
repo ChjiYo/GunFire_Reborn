@@ -367,6 +367,24 @@
     <Filter Include="03.State_Machine\FSM_Monster\Spear\Attack">
       <UniqueIdentifier>{343c5dbf-2162-49ac-a45f-0edf854142a5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Boom">
+      <UniqueIdentifier>{0064a392-bbcc-4a01-a29d-ff3877bcb26f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Shield">
+      <UniqueIdentifier>{5af052cd-e924-4b94-b9cc-807a9d17f361}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Boom\Idle">
+      <UniqueIdentifier>{3f9f913c-d4bf-4d5f-acf2-c2d7c680b29d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Boom\Run">
+      <UniqueIdentifier>{72c0d95f-3c89-4bdd-8bc2-6c2952d3ba30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Boom\Walk">
+      <UniqueIdentifier>{936ac229-e022-4dbe-b561-717b4933f428}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Boom\Attack">
+      <UniqueIdentifier>{20a2442e-b00b-42f9-87ba-72f5fcf66a4e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -702,6 +720,18 @@
     <ClInclude Include="..\public\FSM_Mon_Spear_Attack.h">
       <Filter>03.State_Machine\FSM_Monster\Spear\Attack</Filter>
     </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Boom_Idle.h">
+      <Filter>03.State_Machine\FSM_Monster\Boom\Idle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Boom_Attack.h">
+      <Filter>03.State_Machine\FSM_Monster\Boom\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Boom_Run.h">
+      <Filter>03.State_Machine\FSM_Monster\Boom\Run</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Boom_Walk.h">
+      <Filter>03.State_Machine\FSM_Monster\Boom\Walk</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -1021,6 +1051,18 @@
     </ClCompile>
     <ClCompile Include="..\private\FSM_Mon_Spear_Attack.cpp">
       <Filter>03.State_Machine\FSM_Monster\Spear\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Boom_Idle.cpp">
+      <Filter>03.State_Machine\FSM_Monster\Boom\Idle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Boom_Attack.cpp">
+      <Filter>03.State_Machine\FSM_Monster\Boom\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Boom_Run.cpp">
+      <Filter>03.State_Machine\FSM_Monster\Boom\Run</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Boom_Walk.cpp">
+      <Filter>03.State_Machine\FSM_Monster\Boom\Walk</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

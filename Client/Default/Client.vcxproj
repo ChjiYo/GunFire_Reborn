@@ -172,6 +172,10 @@
     <ClInclude Include="..\public\Camera_Free.h" />
     <ClInclude Include="..\Public\Client_Defines.h" />
     <ClInclude Include="..\Public\FSM_Mon_Archer_Hit.h" />
+    <ClInclude Include="..\public\FSM_Mon_Boom_Attack.h" />
+    <ClInclude Include="..\public\FSM_Mon_Boom_Idle.h" />
+    <ClInclude Include="..\public\FSM_Mon_Boom_Run.h" />
+    <ClInclude Include="..\public\FSM_Mon_Boom_Walk.h" />
     <ClInclude Include="..\public\FSM_Mon_Bug_Attack.h" />
     <ClInclude Include="..\Public\FSM_Mon_Bug_Idle.h" />
     <ClInclude Include="..\public\FSM_Mon_Bug_Run.h" />
@@ -287,6 +291,10 @@
     <ClCompile Include="..\private\BackGround.cpp" />
     <ClCompile Include="..\private\Camera_Free.cpp" />
     <ClCompile Include="..\Private\FSM_Mon_Archer_Hit.cpp" />
+    <ClCompile Include="..\private\FSM_Mon_Boom_Attack.cpp" />
+    <ClCompile Include="..\private\FSM_Mon_Boom_Idle.cpp" />
+    <ClCompile Include="..\private\FSM_Mon_Boom_Run.cpp" />
+    <ClCompile Include="..\private\FSM_Mon_Boom_Walk.cpp" />
     <ClCompile Include="..\private\FSM_Mon_Bug_Attack.cpp" />
     <ClCompile Include="..\Private\FSM_Mon_Bug_Idle.cpp" />
     <ClCompile Include="..\private\FSM_Mon_Bug_Run.cpp" />
