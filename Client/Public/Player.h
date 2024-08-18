@@ -76,6 +76,8 @@ private:
 	WEAPONID			m_eWeaponID = { WEAPON_END };
 
 	_float				m_fDashTimer = { 0.f };
+
+	WEAPONID			m_eWeaponIDArray[3] = {};
 	
 
 private:
