@@ -3,11 +3,13 @@
 
 #include "GameInstance.h"
 
-#include "FSM_Mon_Archer_Idle.h"
-#include "FSM_Mon_Archer_Hit.h"
-#include "FSM_Mon_Archer_Run.h"
-#include "FSM_Mon_Archer_Walk.h"
-#include "FSM_Mon_Archer_Attack.h"
+#include "FSM_Mon_Spear_Idle.h"
+#include "FSM_Mon_Spear_Hit.h"
+#include "FSM_Mon_Spear_Run.h"
+#include "FSM_Mon_Spear_Walk.h"
+#include "FSM_Mon_Spear_Attack.h"
+#include "FSM_Mon_Spear_Roll.h"
+#include "FSM_Mon_Spear_Dash.h"
 
 CMon_Spear::CMon_Spear(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	: CMonster{ pDevice, pContext }
@@ -61,7 +63,7 @@ HRESULT CMon_Spear::Initialize(void* pArg)
 
 void CMon_Spear::Priority_Update(_float fTimeDelta)
 {
-	//m_pStateCom->Priority_Update(fTimeDelta);
+	m_pStateCom->Priority_Update(fTimeDelta);
 }
 
 void CMon_Spear::Update(_float fTimeDelta)
@@ -71,6 +73,8 @@ void CMon_Spear::Update(_float fTimeDelta)
 
 
 	Destroy();
+
+	m_pStateCom->Update(fTimeDelta);
 }
 
 void CMon_Spear::Late_Update(_float fTimeDelta)
@@ -80,7 +84,7 @@ void CMon_Spear::Late_Update(_float fTimeDelta)
 	m_pModelCom->Play_Animation(fTimeDelta);
 	m_pGameInstance->Add_RenderObject(CRenderer::RG_NONBLEND, this);
 
-	//m_pStateCom->Late_Update(fTimeDelta);
+	m_pStateCom->Late_Update(fTimeDelta);
 
 #ifdef _DEBUG
 	for (size_t i = 0; i < COLL_END; i++)
@@ -131,11 +135,13 @@ HRESULT CMon_Spear::Ready_State()
 	Desc.pNavigation = m_pNavigationCom;
 	Desc.pModel = m_pModelCom;
 
-	//m_pStateCom->Add_State(CFSM_Mon_Archer_Idle::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Archer_State_Idle"));
-	//m_pStateCom->Add_State(CFSM_Mon_Archer_Hit::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Archer_State_Hit"));
-	//m_pStateCom->Add_State(CFSM_Mon_Archer_Walk::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Archer_State_Walk"));
-	//m_pStateCom->Add_State(CFSM_Mon_Archer_Run::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Archer_State_Run"));
-	//m_pStateCom->Add_State(CFSM_Mon_Archer_Attack::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Archer_State_Attack"));
+	m_pStateCom->Add_State(CFSM_Mon_Spear_Idle::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Spear_State_Idle"));
+	m_pStateCom->Add_State(CFSM_Mon_Spear_Hit::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Spear_State_Hit"));
+	m_pStateCom->Add_State(CFSM_Mon_Spear_Walk::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Spear_State_Walk"));
+	m_pStateCom->Add_State(CFSM_Mon_Spear_Run::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Spear_State_Run"));
+	m_pStateCom->Add_State(CFSM_Mon_Spear_Attack::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Spear_State_Attack"));
+	m_pStateCom->Add_State(CFSM_Mon_Spear_Roll::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Spear_State_Roll"));
+	m_pStateCom->Add_State(CFSM_Mon_Spear_Dash::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Spear_State_Dash"));
 
 	return S_OK;
 }
@@ -156,9 +162,9 @@ HRESULT CMon_Spear::Ready_Components()
 		return E_FAIL;
 
 	/* Com_State */
-	/*if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_State"),
+	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_State"),
 		TEXT("Com_State"), reinterpret_cast<CComponent**>(&m_pStateCom))))
-		return E_FAIL;*/
+		return E_FAIL;
 
 		/* For.Com_Collider */
 	CBounding_AABB::BOUNDING_AABB_DESC	AABBBoundingDesc{};
@@ -228,7 +234,7 @@ CGameObject* CMon_Spear::Clone(void* pArg)
 void CMon_Spear::Free()
 {
 	Safe_Release(m_pShaderCom);
-	//Safe_Release(m_pStateCom);
+	Safe_Release(m_pStateCom);
 	Safe_Release(m_pModelCom);
 	Safe_Release(m_pNavigationCom);
 
