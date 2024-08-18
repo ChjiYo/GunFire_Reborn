@@ -91,8 +91,6 @@ HRESULT CWeapon_Player_Pistol::Render()
             return E_FAIL;  
     }
 
-   m_pGameInstance->Draw_Font(TEXT("Font_Nexon"), TEXT("담배 둘 피자"), _float2(1300.f, 800.f), XMVectorSet(1.f, 1.f, 1.f, 1.f)); //XMVectorSet(0.7f, 1.f, 0.3f, 1.f)
-
     wstring strNumBullet = to_wstring(m_iNumBullet);
     wstring strNumMaxBullet = to_wstring(m_iNumMaxBullet);
 

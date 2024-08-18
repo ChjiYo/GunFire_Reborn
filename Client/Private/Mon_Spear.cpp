@@ -51,12 +51,10 @@ HRESULT CMon_Spear::Initialize(void* pArg)
 	if (FAILED(Ready_UI()))
 		return E_FAIL;
 
-	m_pStateCom->Set_State(TEXT("Monster_Archer_State_Idle"));
+	m_pStateCom->Set_State(TEXT("Monster_Spear_State_Idle"));
 
 	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSet(20.f, 1.f, 20.f, 1.f));
 	m_pNavigationCom->Init_Index(m_pTransformCom);
-
-	m_pModelCom->SetUp_Animation(3, true);
 
 	return S_OK;
 }
@@ -114,9 +112,6 @@ HRESULT CMon_Spear::Render()
 		if (FAILED(m_pModelCom->Render(i)))
 			return E_FAIL;
 	}
-
-	wstring m_strMaxHp = to_wstring(m_iAnimFrame);
-	m_pGameInstance->Draw_Font(TEXT("Font_Nexon"), m_strMaxHp, _float2(1200.f, 100.f), XMVectorSet(0.7f, 1.f, 0.3f, 1.f), XMConvertToRadians(-5.f), 0.8f);
 
 	return S_OK;
 }

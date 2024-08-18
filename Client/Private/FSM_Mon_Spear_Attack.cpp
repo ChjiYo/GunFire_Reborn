@@ -39,12 +39,12 @@ wstring CFSM_Mon_Spear_Attack::Priority_Update(_float fTimeDelta)
 	vFloatPos.y = 0.25f;
 	m_tDesc.pTransform->LookAt(XMLoadFloat4(&vFloatPos));
 
-	return TEXT("Monster_Knight_State_Attack");
+	return TEXT("Monster_Spear_State_Attack");
 }
 
 wstring CFSM_Mon_Spear_Attack::Update(_float fTimeDelta)
 {
-	return TEXT("Monster_Knight_State_Attack");
+	return TEXT("Monster_Spear_State_Attack");
 }
 
 wstring CFSM_Mon_Spear_Attack::Late_Update(_float fTimeDelta)
@@ -62,19 +62,19 @@ wstring CFSM_Mon_Spear_Attack::Late_Update(_float fTimeDelta)
 
 		if (abs(fLength) > 3.f)
 		{
-			return TEXT("Monster_Knight_State_Run");
+			return TEXT("Monster_Spear_State_Run");
 		}
 	}
 
-	return TEXT("Monster_Knight_State_Attack");
+	return TEXT("Monster_Spear_State_Attack");
 }
 
 void CFSM_Mon_Spear_Attack::Enter()
 {
 	__super::Enter();
 
-	m_tDesc.pModel->SetUp_Animation(13, true);
-	m_strName = TEXT("Monster_Knight_State_Attack");
+	m_tDesc.pModel->SetUp_Animation(17, true);
+	m_strName = TEXT("Monster_Spear_State_Attack");
 }
 
 void CFSM_Mon_Spear_Attack::Exit()

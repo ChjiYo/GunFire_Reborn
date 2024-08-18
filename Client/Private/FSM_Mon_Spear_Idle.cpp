@@ -32,12 +32,12 @@ wstring CFSM_Mon_Spear_Idle::Priority_Update(_float fTimeDelta)
 {
 	m_fAttackDelay += fTimeDelta;
 
-	return TEXT("Monster_Knight_State_Idle");
+	return TEXT("Monster_Spear_State_Idle");
 }
 
 wstring CFSM_Mon_Spear_Idle::Update(_float fTimeDelta)
 {
-	return TEXT("Monster_Knight_State_Idle");
+	return TEXT("Monster_Spear_State_Idle");
 }
 
 wstring CFSM_Mon_Spear_Idle::Late_Update(_float fTimeDelta)
@@ -52,17 +52,17 @@ wstring CFSM_Mon_Spear_Idle::Late_Update(_float fTimeDelta)
 	if (abs(fLength) < 5.f && m_fAttackDelay > 1.5f)
 	{
 		m_fAttackDelay = 0.f;
-		return TEXT("Monster_Knight_State_Run");
+		return TEXT("Monster_Spear_State_Run");
 	}
-	return TEXT("Monster_Knight_State_Idle");
+	return TEXT("Monster_Spear_State_Idle");
 }
 
 void CFSM_Mon_Spear_Idle::Enter()
 {
 	__super::Enter();
 
-	m_strName = TEXT("Monster_Knight_State_Idle");
-	m_tDesc.pModel->SetUp_Animation(0, true);
+	m_strName = TEXT("Monster_Spear_State_Idle");
+	m_tDesc.pModel->SetUp_Animation(2, true);
 
 }
 
