@@ -22,6 +22,7 @@ public:
 	{
 		class CTransform* pTransform = {};
 		CGameObject* pGameObject = {};
+		_uint		iNumUI = {};
 	}UI_DESC;
 
 protected:

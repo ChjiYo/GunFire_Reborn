@@ -163,9 +163,15 @@ HRESULT CLevel_GamePlay::Ready_UI_WeaponState()
 {
 	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Weapon_Panel"), TEXT("Layer_UI_AWeapon_Panel"))))
 		return E_FAIL;
-
-	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Weapon_NumPanel"), TEXT("Layer_UI_AWeapon_NumPanel"))))
-		return E_FAIL;
+	
+	CUIObject::UI_DESC		UIDesc = {};
+	
+	for (int i = 0; i < 3; ++i)
+	{
+		UIDesc.iNumUI = i;
+		if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Weapon_NumPanel"), TEXT("Layer_UI_AWeapon_NumPanel"), &UIDesc)))
+			return E_FAIL;
+	}
 
 	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Weapon_BlueBullet"), TEXT("Layer_UI_Weapon_BlueBullet"))))
 		return E_FAIL;

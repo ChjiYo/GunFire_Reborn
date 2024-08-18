@@ -197,12 +197,12 @@ HRESULT CMainApp::Ready_Prototoype_Resource_ForStatic()
 
 	//Prototype_Component_Texture_UI_Weapon_Panel
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Weapon_Panel"),
-		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Weapon/UI_Weapon_Panel.png")))))
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Weapon/UI_Weapon_Panel.dds")))))
 		return E_FAIL;
 
 	//Prototype_Component_Texture_UI_Weapon_NumPanel
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Weapon_NumPanel"),
-		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Weapon/UI_Weapon_NumPanel.png")))))
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Weapon/UI_Weapon_NumPanel.dds")))))
 		return E_FAIL;
 
 	//Prototype_Component_Texture_UI_Weapon_BlueBullet

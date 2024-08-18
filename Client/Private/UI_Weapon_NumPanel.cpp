@@ -28,7 +28,27 @@ HRESULT CUI_Weapon_NumPanel::Initialize(void* pArg)
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
-	__super::Set_UI_Setting(154.f, 70.f, 1300.f, 850.f);
+	UI_DESC* Desc = static_cast<UI_DESC*>(pArg);
+	m_iCloneIndex = Desc->iNumUI;
+
+	switch (m_iCloneIndex)
+	{
+	case 0:
+		__super::Set_UI_Setting(154.f, 70.f, 1300.f, 850.f);
+		break;
+
+	case 1:
+		__super::Set_UI_Setting(154.f, 70.f, 1400.f, 850.f);
+		break;
+
+	case 2:
+		__super::Set_UI_Setting(154.f, 70.f, 1500.f, 850.f);
+		break;
+
+	}
+
+
+	
 
 	return S_OK;
 }
