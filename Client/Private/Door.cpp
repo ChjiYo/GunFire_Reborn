@@ -37,12 +37,10 @@ HRESULT CDoor::Initialize(void* pArg)
 	{
 	case 0:
 		m_pTransformCom->Rotation({ 0.f , 1.f ,0.f }, 90.f);
-		m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 38.f+ vOffSet.x, 0.f+ vOffSet.y, 25.3f + vOffSet.z, 1.f });
+		m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 5.f+ vOffSet.x, 0.f+ vOffSet.y, 5.3f + vOffSet.z, 1.f });
 		break;
 	}
 
-	
-	
 	m_pModelCom->SetUp_Animation(1, true);
 	m_pTransformCom->Set_Scaled( 0.9f , 0.65, 0.5f );
 

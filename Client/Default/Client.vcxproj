@@ -253,6 +253,7 @@
     <ClInclude Include="..\Public\Skill_Player.h" />
     <ClInclude Include="..\Public\Skill_Pistol_Bullet.h" />
     <ClInclude Include="..\public\Skill_Shuriken_Bullet.h" />
+    <ClInclude Include="..\public\Skill_Sniper_Bullet.h" />
     <ClInclude Include="..\public\Sky.h" />
     <ClInclude Include="..\public\Mon_Spear.h" />
     <ClInclude Include="..\Public\Terrain.h" />
@@ -372,6 +373,7 @@
     <ClCompile Include="..\Private\Skill_Player.cpp" />
     <ClCompile Include="..\Private\Skill_Pistol_Bullet.cpp" />
     <ClCompile Include="..\private\Skill_Shuriken_Bullet.cpp" />
+    <ClCompile Include="..\private\Skill_Sniper_Bullet.cpp" />
     <ClCompile Include="..\private\Sky.cpp" />
     <ClCompile Include="..\private\Mon_Spear.cpp" />
     <ClCompile Include="..\Private\Terrain.cpp" />
