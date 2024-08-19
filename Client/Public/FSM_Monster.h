@@ -2,6 +2,7 @@
 
 #include "Client_Defines.h"
 #include "FSM_State.h"
+#include "Monster.h"
 
 BEGIN(Engine)
 
@@ -26,6 +27,7 @@ public:
 		class CNavigation* pNavigation = { nullptr };
 		class CBinModel* pModel = { nullptr };
 		class CGameObject* pOriginObj = { nullptr };
+		CMonster::MON_DESC tMonDesc = {};
 	}FSM_MON_DESC;
 
 protected:

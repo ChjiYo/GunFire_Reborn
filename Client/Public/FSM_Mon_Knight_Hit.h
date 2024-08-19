@@ -21,6 +21,9 @@ public:
 	virtual void Enter() override;
 	virtual void Exit()	 override;
 
+private:
+	_float m_fHitMotionTime = { 0.f };
+
 public:
 	static CFSM_Mon_Knight_Hit* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, FSM_MON_DESC Desc);
 	virtual void Free() override;

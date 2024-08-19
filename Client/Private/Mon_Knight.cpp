@@ -125,7 +125,9 @@ HRESULT CMon_Knight::Ready_State()
 	CFSM_Monster::FSM_MON_DESC Desc = {};
 	Desc.pTransform = m_pTransformCom;
 	Desc.pNavigation = m_pNavigationCom;
+	Desc.pOriginObj = this;
 	Desc.pModel = m_pModelCom;
+	Desc.tMonDesc = m_tMonDesc;
 
 	m_pStateCom->Add_State(CFSM_Mon_Knight_Idle::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Knight_State_Idle"));
 	m_pStateCom->Add_State(CFSM_Mon_Knight_Run::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Knight_State_Run"));

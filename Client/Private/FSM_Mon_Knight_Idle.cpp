@@ -24,6 +24,7 @@ HRESULT CFSM_Mon_Knight_Idle::Initialize(FSM_MON_DESC Desc)
 	m_tDesc.pTransform = Desc.pTransform;
 	m_tDesc.pNavigation = Desc.pNavigation;
 	m_tDesc.pModel = Desc.pModel;
+	m_tDesc.pOriginObj = Desc.pOriginObj;
 
 	return S_OK;
 }
@@ -42,6 +43,11 @@ wstring CFSM_Mon_Knight_Idle::Update(_float fTimeDelta)
 
 wstring CFSM_Mon_Knight_Idle::Late_Update(_float fTimeDelta)
 {
+	CMonster* pMonster = dynamic_cast<CMonster*>(m_tDesc.pOriginObj);
+
+	if (pMonster->Get_MonDesc().iMaxHp > pMonster->Get_MonDesc().iHp)
+		return TEXT("Monster_Knight_State_Hit");
+
 	_vector vTargetPos = m_pPlayerTransform->Get_State(CTransform::STATE_POSITION);
 	_vector vPos = m_tDesc.pTransform->Get_State(CTransform::STATE_POSITION);
 

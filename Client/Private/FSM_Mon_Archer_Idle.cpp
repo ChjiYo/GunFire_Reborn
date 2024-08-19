@@ -49,8 +49,7 @@ wstring CFSM_Mon_Archer_Idle::Late_Update(_float fTimeDelta)
 
 	if (abs(fLength) < 10.f)
 		return TEXT("Monster_Archer_State_Run");
-
-
+	
 
 	return TEXT("Monster_Archer_State_Idle");
 }
