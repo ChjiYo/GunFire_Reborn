@@ -1,12 +1,1 @@
-﻿  Object_Manager.cpp
-C:\Users\ya960\OneDrive\바탕 화면\GunFire\Main\Engine\Public\Engine_Struct.h(36,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
-C:\Users\ya960\OneDrive\바탕 화면\GunFire\Main\Engine\Public\Engine_Struct.h(45,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
-C:\Users\ya960\OneDrive\바탕 화면\GunFire\Main\Engine\Public\Engine_Struct.h(56,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
-C:\Users\ya960\OneDrive\바탕 화면\GunFire\Main\Engine\Public\Engine_Struct.h(70,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
-C:\Users\ya960\OneDrive\바탕 화면\GunFire\Main\Engine\Public\Engine_Struct.h(80,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
-C:\Users\ya960\OneDrive\바탕 화면\GunFire\Main\Engine\Public\Engine_Struct.h(92,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
-C:\Users\ya960\OneDrive\바탕 화면\GunFire\Main\Engine\Public\Engine_Struct.h(115,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
-C:\Users\ya960\OneDrive\바탕 화면\GunFire\Main\Engine\Public\Engine_Struct.h(126,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
-C:\Users\ya960\OneDrive\바탕 화면\GunFire\Main\Engine\Public\Engine_Struct.h(132,2): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
-C:\Users\ya960\OneDrive\바탕 화면\GunFire\Main\Engine\Public\GameObject.h(11,17): warning C5208: typedef 이름에 사용되는 명명되지 않은 클래스가 비정적 데이터 멤버, 멤버 열거형 또는 멤버 클래스 이외의 멤버를 선언할 수 없습니다.
-  Engine.vcxproj -> C:\Users\ya960\OneDrive\바탕 화면\GunFire\Main\Engine\Bin\Engine.dll
+﻿  Engine.vcxproj -> C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Engine\Bin\Engine.dll

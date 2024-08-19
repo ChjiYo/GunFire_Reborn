@@ -52,7 +52,7 @@ HRESULT CMon_Archer::Initialize(void* pArg)
 
 	m_pStateCom->Set_State(TEXT("Monster_Archer_State_Idle"));
 
-	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSet(20.f, 1.f, 20.f, 1.f));
+	m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 30.f, 1.f, 20.f , 1.f });
 	m_pNavigationCom->Init_Index(m_pTransformCom);
 
 	return S_OK;

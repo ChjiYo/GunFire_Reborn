@@ -74,7 +74,7 @@ void CFSM_Mon_Shield_Attack::Enter()
 {
 	__super::Enter();
 
-	m_tDesc.pModel->SetUp_Animation(13, true);
+	m_tDesc.pModel->SetUp_Animation(18, true);
 	m_strName = TEXT("Monster_Shield_State_Attack");
 }
 
