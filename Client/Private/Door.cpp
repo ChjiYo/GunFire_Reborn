@@ -31,13 +31,11 @@ HRESULT CDoor::Initialize(void* pArg)
 
 	DECO_DESC* Desc = static_cast<DECO_DESC*>(pArg);
 
-	_float3 vOffSet = { 6.f  , -9.5f , 44.f };
-
 	switch (Desc->iNumDeco)
 	{
 	case 0:
-		m_pTransformCom->Rotation({ 0.f , 1.f ,0.f }, 90.f);
-		m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 5.f+ vOffSet.x, 0.f+ vOffSet.y, 5.3f + vOffSet.z, 1.f });
+		m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 0.f, 0.f, 0.f, 1.f });
+		m_pTransformCom->Rotation({0.f ,1.f , 0.f}, XMConvertToRadians(90.f));
 		break;
 	}
 

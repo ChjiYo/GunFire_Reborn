@@ -178,6 +178,7 @@ HRESULT CLoader::Loading_For_BinaryFile()
 		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_ANIM, "../Bin/GunFire_Resources/Models/Monster/Mon_Deash_Boom/Deash_Boom.fbx", TEXT("../Bin/DataFiles/Monster_Deash_Boom.dat"), PreTransformMatrix))))
 		return E_FAIL;
 
+	PreTransformMatrix = XMMatrixScaling(0.01f, 0.01f, 0.01f) * XMMatrixRotationY(XMConvertToRadians(180.0f))* XMMatrixTranslation( 6.f  , 19.5f , -72.f );
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Door"),
 		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_ANIM, "../Bin/GunFire_Resources/Models/Element/Door/Door.fbx", TEXT("../Bin/DataFiles/Door.dat"), PreTransformMatrix))))
 		return E_FAIL;
@@ -409,6 +410,8 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_ANIM, TEXT("../Bin/DataFiles/Monster_Deash_Boom.dat"), PreTransformMatrix))))
 		return E_FAIL;
 
+	PreTransformMatrix = XMMatrixRotationY(XMConvertToRadians(180.0f)) * XMMatrixTranslation(-5.8f, 19.2f, -87.8f);
+	//17.1f, 22.8f, -64.2f
 	/* For.Prototype_Component_Model_Door */
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Door"),
 		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_ANIM, TEXT("../Bin/DataFiles/Door.dat"), PreTransformMatrix))))
