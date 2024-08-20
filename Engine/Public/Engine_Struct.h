@@ -25,6 +25,8 @@ namespace Engine
 
 		TYPE			eType;
 		XMFLOAT4		vDirection;
+		XMFLOAT4		vPosition; /* In.WorldSpace*/
+		float			fRange;
 
 		/* 난반사를 정의하기위한 빛의 색상. */
 		XMFLOAT4		vDiffuse;
