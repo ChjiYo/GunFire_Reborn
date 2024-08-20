@@ -30,7 +30,7 @@ HRESULT CDoor::Initialize(void* pArg)
 		return E_FAIL;
 
 	DECO_DESC* Desc = static_cast<DECO_DESC*>(pArg);
-	m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 0.f, 0.f, 0.f, 1.f });
+	m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 39.1f, 2.9f, 0.49f, 1.f });
 
 	switch (Desc->iNumDeco)
 	{
@@ -40,7 +40,7 @@ HRESULT CDoor::Initialize(void* pArg)
 	}
 
 	m_pModelCom->SetUp_Animation(1, true);
-	m_pTransformCom->Set_Scaled( 0.9f , 0.65, 0.5f );
+	m_pTransformCom->Set_Scaled( 0.83f , 0.68f, 0.5f );
 
 	return S_OK;
 }

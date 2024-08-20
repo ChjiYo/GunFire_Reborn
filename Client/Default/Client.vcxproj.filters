@@ -409,6 +409,9 @@
     <Filter Include="02.GameObjects\Item\Weapon\Sniper">
       <UniqueIdentifier>{b5962ef7-ea90-4a4f-bbb7-cc459b119fac}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObjects\Element\Wall_State\Stage2">
+      <UniqueIdentifier>{68d26e6a-66d2-4d86-842f-1fe30712b1c6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -783,6 +786,9 @@
     <ClInclude Include="..\public\Skill_Sniper_Bullet.h">
       <Filter>02.GameObjects\Skill\Player_Skill\Sniper_Bullet</Filter>
     </ClInclude>
+    <ClInclude Include="..\public\Wall_Stage2.h">
+      <Filter>02.GameObjects\Element\Wall_State\Stage2</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -1141,6 +1147,9 @@
     </ClCompile>
     <ClCompile Include="..\private\Skill_Sniper_Bullet.cpp">
       <Filter>02.GameObjects\Skill\Player_Skill\Sniper_Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Wall_Stage2.cpp">
+      <Filter>02.GameObjects\Element\Wall_State\Stage2</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

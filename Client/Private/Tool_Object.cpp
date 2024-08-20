@@ -109,7 +109,33 @@ HRESULT CTool_Object::Setting_Tab()
 				pTerrain->Add_NaviMesh(PickingPos());
 			}
 		}
-		
+
+		static bool bLightMode = false;
+		if(ImGui::Checkbox("LightMode", &bLightMode))
+		{
+ 			if (bLightMode)
+			{
+				LIGHT_DESC			LightDesc{};
+
+				ZeroMemory(&LightDesc, sizeof(LIGHT_DESC));
+				LightDesc.eType = LIGHT_DESC::TYPE_DIRECTIONAL;
+				LightDesc.vDirection = _float4(1.f, -1.f, 1.f, 0.f);
+				LightDesc.vDiffuse = _float4(0.6f, 0.6f, 0.6f, 1.f);
+				LightDesc.vAmbient = _float4(0.2f, 0.2f, 0.2f, 1.f);
+				LightDesc.vSpecular = _float4(1.f, 1.f, 1.f, 1.f);
+
+				if (FAILED(m_pGameInstance->Add_Light(LightDesc)))
+					return E_FAIL;
+			}
+			else
+			{
+				if (FAILED(m_pGameInstance->Delete_Light()))
+					return E_FAIL;
+			}
+		}
+
+		//2개로
+
 		ImGui::EndTabItem(); // "ObjectList" 탭 아이템 종료
 	}
 
@@ -377,7 +403,13 @@ HRESULT CTool_Object::Show_LayerObjects()
 		ImGui::PushItemWidth(sliderWidth);
 
 		// 스케일 X 축 조정
-		if (ImGui::Button("-SX")) averageScale.x -= 0.01f;
+		if (ImGui::Button("-SX"))
+		{
+			averageScale.x -= 0.01f;
+
+			if (averageScale.x <= 0)
+				averageScale.x = 0.01f;
+		}
 		ImGui::SameLine();
 		ImGui::SliderFloat("##ScaleX", &averageScale.x, 0.1f, 10.0f, "%.3f", sliderPower);
 
@@ -390,7 +422,12 @@ HRESULT CTool_Object::Show_LayerObjects()
 			ImGui::PopItemWidth();
 
 		// 스케일 Y 축 조정
-		if (ImGui::Button("-SY")) averageScale.y -= 0.01f;
+		if (ImGui::Button("-SY"))
+		{
+			averageScale.y -= 0.01f;
+			if (averageScale.y <= 0)
+				averageScale.y = 0.01f;
+		}
 		ImGui::SameLine();
 		ImGui::SliderFloat("##ScaleY", &averageScale.y, 0.1f, 10.0f, "%.3f", sliderPower);
 		ImGui::SameLine();
@@ -401,8 +438,12 @@ HRESULT CTool_Object::Show_LayerObjects()
 		ImGui::PopItemWidth();
 
 		// 스케일 Z 축 조정
-		if (ImGui::Button("-SZ")) averageScale.z -= 0.01f;
-
+		if (ImGui::Button("-SZ"))
+		{
+			averageScale.z -= 0.01f;
+			if (averageScale.z <= 0)
+				averageScale.z = 0.01f;
+		}
 		ImGui::SameLine();
 		ImGui::SliderFloat("##ScaleZ", &averageScale.z, 0.1f, 10.0f, "%.3f", sliderPower);
 		ImGui::SameLine();
@@ -537,6 +578,11 @@ HRESULT CTool_Object::Click_Camera_FreeView(_bool bColliderToggle)
 	CCamera_Free* pCamera = dynamic_cast<CCamera_Free*>(m_pGameInstance->Get_Layer(LEVELID::LEVEL_GAMEPLAY, TEXT("Layer_Camera")).back());
 	bColliderToggle ? pCamera->Set_CameraType(CCamera_Free::PLAYER) : pCamera->Set_CameraType(CCamera_Free::FREE);
 
+	return S_OK;
+}
+
+HRESULT CTool_Object::Light_Mode()
+{
 	return S_OK;
 }
 

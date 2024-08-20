@@ -284,6 +284,7 @@
     <ClInclude Include="..\Public\UI_Weapon_Panel.h" />
     <ClInclude Include="..\Public\UI_Weapon_YBullet.h" />
     <ClInclude Include="..\public\Wall_Stage1.h" />
+    <ClInclude Include="..\public\Wall_Stage2.h" />
     <ClInclude Include="..\public\Weapon_Player.h" />
     <ClInclude Include="..\public\Weapon_Player_BoomGun.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -404,6 +405,7 @@
     <ClCompile Include="..\Private\UI_Weapon_Panel.cpp" />
     <ClCompile Include="..\Private\UI_Weapon_YBullet.cpp" />
     <ClCompile Include="..\private\Wall_Stage1.cpp" />
+    <ClCompile Include="..\private\Wall_Stage2.cpp" />
     <ClCompile Include="..\private\Weapon_Player.cpp" />
     <ClCompile Include="..\private\Weapon_Player_BoomGun.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
