@@ -47,20 +47,34 @@ HRESULT CDoor::Initialize(void* pArg)
 
 void CDoor::Priority_Update(_float fTimeDelta)
 {
+	m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Monster")).empty() ? m_isEnable = true : m_isEnable = false;
+	m_isEnable ? m_fAnimFrame = fTimeDelta : m_fAnimFrame = 0.f;
 
+	CCollider* pPlayerCollider = dynamic_cast<CCollider*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Player"), TEXT("Com_Collider")));
+
+	if (m_pColliderCom->isCollision(pPlayerCollider))
+		m_isEnable ? m_isMove = true : m_isMove = false;
+	else
+		m_isMove = true;
 }
 
 void CDoor::Update(_float fTimeDelta)
 {
-	m_pModelCom->Play_Animation(fTimeDelta);
+	m_pColliderCom->Update(m_pTransformCom->Get_WorldMatrix());
+	m_pModelCom->Play_Animation(m_fAnimFrame);
 }
 
 void CDoor::Late_Update(_float fTimeDelta)
 {
 	__super::Late_Update(fTimeDelta);
 
-
 	m_pGameInstance->Add_RenderObject(CRenderer::RG_NONBLEND, this);
+
+
+#ifdef _DEBUG
+	m_pGameInstance->Add_DebugComponent(m_pColliderCom);
+#endif
+
 }
 
 HRESULT CDoor::Render()
@@ -98,6 +112,18 @@ HRESULT CDoor::Ready_Components()
 	/* For.Com_Shader */
 	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Shader_VtxAnimMesh"),
 		TEXT("Com_Shader"), reinterpret_cast<CComponent**>(&m_pShaderCom))))
+		return E_FAIL;
+
+	/* For.Com_Collider */
+	CBounding_AABB::BOUNDING_AABB_DESC	BoundingDesc{};
+
+
+	BoundingDesc.vExtents = _float3(0.5f, 0.5f, 0.5f);
+	BoundingDesc.vCenter = _float3(0.f, BoundingDesc.vExtents.y / 2.f - 0.5f, 0.f);
+	BoundingDesc.pObject = this;
+
+	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Collider_AABB"),
+		TEXT("Com_Collider"), reinterpret_cast<CComponent**>(&m_pColliderCom), &BoundingDesc)))
 		return E_FAIL;
 
 	return S_OK;
@@ -147,6 +173,7 @@ void CDoor::Free()
 {
 	Safe_Release(m_pShaderCom);
 	Safe_Release(m_pModelCom);
+	Safe_Release(m_pColliderCom);
 
 	__super::Free();
 }

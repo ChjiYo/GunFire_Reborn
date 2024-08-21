@@ -4,8 +4,8 @@
 
 BEGIN(Engine)
 class CShader;
-class CModel;
 class CBinModel;
+class CCollider;
 END
 
 
@@ -26,12 +26,18 @@ public:
 	virtual void Late_Update(_float fTimeDelta);
 	virtual HRESULT Render();
 
+public:
+	_bool IsMove() { return m_isMove; }
+
 private:
 	CShader* m_pShaderCom = { nullptr };
 	CBinModel* m_pModelCom = { nullptr };
+	CCollider* m_pColliderCom = { nullptr };
 
 private:
-	_uint m_iAnimFrame = {0};
+	_float m_fAnimFrame = { 0.f };
+	_bool  m_isEnable = { false };
+	_bool  m_isMove = { false };
 
 private:
 	HRESULT Ready_Components();

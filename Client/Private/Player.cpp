@@ -13,6 +13,8 @@
 #include "UI_Weapon_Icon.h"
 #include "Monster.h"
 
+#include "Door.h"
+
 CPlayer::CPlayer(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
     :CContainerObject{ pDevice  , pContext }
 {
@@ -175,6 +177,7 @@ void CPlayer::Player_Move(_float fTimeDelta)
 {
     _long		MouseMove = {};
     
+    _bool isMove = dynamic_cast<CDoor*>(m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Door")).back())->IsMove();
 
     if (MouseMove = m_pGameInstance->Get_DIMouseMove(DIMM_X))
     {
@@ -188,35 +191,35 @@ void CPlayer::Player_Move(_float fTimeDelta)
 
     if (m_pGameInstance->Get_DIKeyState(DIK_A) & 0x80)
     {
-        m_pTransformCom->Go_Left(fTimeDelta, m_pNavigationCom);
+        m_pTransformCom->Go_Left(fTimeDelta, m_pNavigationCom, isMove);
 
         if (m_pGameInstance->Key_Down(VK_LSHIFT))
-            m_pTransformCom->Go_Left(fTimeDelta * 15.5f, m_pNavigationCom);
+            m_pTransformCom->Go_Left(fTimeDelta * 15.5f, m_pNavigationCom, isMove);
     }
 
     if (m_pGameInstance->Get_DIKeyState(DIK_D) & 0x80)
     {
-        m_pTransformCom->Go_Right(fTimeDelta, m_pNavigationCom);
+        m_pTransformCom->Go_Right(fTimeDelta, m_pNavigationCom, isMove);
 
         if (m_pGameInstance->Key_Down(VK_LSHIFT))
-            m_pTransformCom->Go_Right(fTimeDelta * 15.5f, m_pNavigationCom);
+            m_pTransformCom->Go_Right(fTimeDelta * 15.5f, m_pNavigationCom, isMove);
     }
 
     if (m_pGameInstance->Get_DIKeyState(DIK_W) & 0x80)
     {
-        m_pTransformCom->Go_StraightY(fTimeDelta, m_pNavigationCom);
+        m_pTransformCom->Go_StraightY(fTimeDelta, m_pNavigationCom, isMove);
 
         if (m_pGameInstance->Key_Down(VK_LSHIFT))
-            m_pTransformCom->Go_StraightY(fTimeDelta * 15.5f, m_pNavigationCom);
+            m_pTransformCom->Go_StraightY(fTimeDelta * 15.5f, m_pNavigationCom, isMove);
         
     }
 
     if (m_pGameInstance->Get_DIKeyState(DIK_S) & 0x80)
     {
-        m_pTransformCom->Go_BackwardY(fTimeDelta, m_pNavigationCom);
+        m_pTransformCom->Go_BackwardY(fTimeDelta, m_pNavigationCom, isMove);
 
         if (m_pGameInstance->Key_Down(VK_LSHIFT))
-            m_pTransformCom->Go_BackwardY(fTimeDelta * 15.5f, m_pNavigationCom);
+            m_pTransformCom->Go_BackwardY(fTimeDelta * 15.5f, m_pNavigationCom, isMove);
     }
 
     if (m_pGameInstance->Key_Down('1'))

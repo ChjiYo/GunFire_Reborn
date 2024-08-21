@@ -29,8 +29,6 @@ HRESULT CWall_Stage2::Initialize(void* pArg)
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
-
-	m_pTransformCom->Rotation({ 0.f, 1.f, 0.f }, XMConvertToRadians(180.f));
 	m_pTransformCom->Set_Scaled(1.f ,1.f, 1.f);
 	m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 49.f ,  0.f, 44.2f,1.f});
 
