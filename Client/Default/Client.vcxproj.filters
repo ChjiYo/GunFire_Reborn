@@ -412,6 +412,24 @@
     <Filter Include="02.GameObjects\Element\Wall_State\Stage2">
       <UniqueIdentifier>{68d26e6a-66d2-4d86-842f-1fe30712b1c6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObjects\Monster\Dragon">
+      <UniqueIdentifier>{f25bbb92-79c0-4603-a582-51b497714e6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Element\Stair">
+      <UniqueIdentifier>{239219dd-fb3a-46c4-aaa5-187fb98c1135}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Element\Stair\Stair1">
+      <UniqueIdentifier>{57ced10b-91e5-49ea-918f-4c9d5e665bf0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Element\Stair\Stair2">
+      <UniqueIdentifier>{54bc56c4-78be-4780-9a08-5d3455684d3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Cross_Hair\UI_Sniper_Hair">
+      <UniqueIdentifier>{79d0019a-05b0-4e50-9b33-cf9fdbbe41c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Cross_Hair\UI_Sniper_Ring">
+      <UniqueIdentifier>{025c030c-35f9-4fb7-b5dc-824ac62b1eb6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -789,6 +807,21 @@
     <ClInclude Include="..\public\Wall_Stage2.h">
       <Filter>02.GameObjects\Element\Wall_State\Stage2</Filter>
     </ClInclude>
+    <ClInclude Include="..\public\Mon_Dragon.h">
+      <Filter>02.GameObjects\Monster\Dragon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Stair1.h">
+      <Filter>02.GameObjects\Element\Stair\Stair1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Stair2.h">
+      <Filter>02.GameObjects\Element\Stair\Stair2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\UI_Sniper_Hair.h">
+      <Filter>02.GameObjects\UI\UI_Cross_Hair\UI_Sniper_Hair</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\UI_Sniper_Ring.h">
+      <Filter>02.GameObjects\UI\UI_Cross_Hair\UI_Sniper_Ring</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -1151,6 +1184,21 @@
     <ClCompile Include="..\private\Wall_Stage2.cpp">
       <Filter>02.GameObjects\Element\Wall_State\Stage2</Filter>
     </ClCompile>
+    <ClCompile Include="..\private\Mon_Dragon.cpp">
+      <Filter>02.GameObjects\Monster\Dragon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Stair1.cpp">
+      <Filter>02.GameObjects\Element\Stair\Stair1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Stair2.cpp">
+      <Filter>02.GameObjects\Element\Stair\Stair2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\UI_Sniper_Hair.cpp">
+      <Filter>02.GameObjects\UI\UI_Cross_Hair\UI_Sniper_Hair</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\UI_Sniper_Ring.cpp">
+      <Filter>02.GameObjects\UI\UI_Cross_Hair\UI_Sniper_Ring</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -1190,5 +1238,8 @@
     <FxCompile Include="..\Bin\ShaderFiles\Shader_UI_VtxRect.hlsl">
       <Filter>97.ShaderFiles</Filter>
     </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
   </ItemGroup>
 </Project>

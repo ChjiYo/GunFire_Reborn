@@ -152,6 +152,8 @@ void CWeapon_Player_Sniper::Key_State(_float fTimeDelta)
         _vector vPos = { XMVectorGetX(vZoomSpeed) * m_fZoomTimer,XMVectorGetY(vZoomSpeed) * m_fZoomTimer,XMVectorGetZ(vZoomSpeed) * m_fZoomTimer, 1.f };
 
         m_pTransformCom->Set_State(CTransform::STATE_POSITION, vPos);
+
+        //m_pGameInstance->Add_GameObject_ToLayer(LEVE)
     }
 
     if (m_fZoomTimer > fLastTime)

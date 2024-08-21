@@ -202,6 +202,7 @@
     <ClInclude Include="..\public\Item_Weapon.h" />
     <ClInclude Include="..\public\Mon_Deash_Boom.h" />
     <ClInclude Include="..\Public\Door.h" />
+    <ClInclude Include="..\public\Mon_Dragon.h" />
     <ClInclude Include="..\public\Mon_Knight.h" />
     <ClInclude Include="..\public\Mon_Bug.h" />
     <ClInclude Include="..\public\Mon_Shield_Knight.h" />
@@ -256,6 +257,8 @@
     <ClInclude Include="..\public\Skill_Sniper_Bullet.h" />
     <ClInclude Include="..\public\Sky.h" />
     <ClInclude Include="..\public\Mon_Spear.h" />
+    <ClInclude Include="..\public\Stair1.h" />
+    <ClInclude Include="..\public\Stair2.h" />
     <ClInclude Include="..\Public\Terrain.h" />
     <ClInclude Include="..\Public\Tool.h" />
     <ClInclude Include="..\Public\Tool_Manager.h" />
@@ -277,6 +280,8 @@
     <ClInclude Include="..\Public\UI_Skill_Aiming.h" />
     <ClInclude Include="..\Public\UI_Skill_Dash.h" />
     <ClInclude Include="..\Public\UI_Skill_Panel.h" />
+    <ClInclude Include="..\public\UI_Sniper_Hair.h" />
+    <ClInclude Include="..\public\UI_Sniper_Ring.h" />
     <ClInclude Include="..\Public\UI_Weapon_BBullet.h" />
     <ClInclude Include="..\Public\UI_Weapon_GBullet.h" />
     <ClInclude Include="..\public\UI_Weapon_Icon.h" />
@@ -331,6 +336,7 @@
     <ClCompile Include="..\private\Item_Weapon.cpp" />
     <ClCompile Include="..\private\Mon_Deash_Boom.cpp" />
     <ClCompile Include="..\Private\Door.cpp" />
+    <ClCompile Include="..\private\Mon_Dragon.cpp" />
     <ClCompile Include="..\private\Mon_Knight.cpp" />
     <ClCompile Include="..\private\Mon_Bug.cpp" />
     <ClCompile Include="..\private\Mon_Shield_Knight.cpp" />
@@ -377,6 +383,8 @@
     <ClCompile Include="..\private\Skill_Sniper_Bullet.cpp" />
     <ClCompile Include="..\private\Sky.cpp" />
     <ClCompile Include="..\private\Mon_Spear.cpp" />
+    <ClCompile Include="..\private\Stair1.cpp" />
+    <ClCompile Include="..\private\Stair2.cpp" />
     <ClCompile Include="..\Private\Terrain.cpp" />
     <ClCompile Include="..\Private\Tool.cpp" />
     <ClCompile Include="..\Private\Tool_Manager.cpp" />
@@ -398,6 +406,8 @@
     <ClCompile Include="..\Private\UI_Skill_Aiming.cpp" />
     <ClCompile Include="..\Private\UI_Skill_Dash.cpp" />
     <ClCompile Include="..\Private\UI_Skill_Panel.cpp" />
+    <ClCompile Include="..\private\UI_Sniper_Hair.cpp" />
+    <ClCompile Include="..\private\UI_Sniper_Ring.cpp" />
     <ClCompile Include="..\Private\UI_Weapon_BBullet.cpp" />
     <ClCompile Include="..\Private\UI_Weapon_GBullet.cpp" />
     <ClCompile Include="..\private\UI_Weapon_Icon.cpp" />
@@ -456,6 +466,9 @@
     <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxMesh.hlsl" />
     <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxNorTex.hlsl" />
     <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxPosTex.hlsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

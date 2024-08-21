@@ -18,6 +18,8 @@
 #include  "UI_Player_ShieldBar.h"
 
 #include "UI_Cross_Hair.h"
+#include "UI_Sniper_Hair.h"
+#include "UI_Sniper_Ring.h"
 
 #include "UI_Mon_BarPanel.h"
 #include "UI_Mon_HpBar.h"
@@ -286,6 +288,16 @@ HRESULT CMainApp::Ready_Prototoype_Resource_ForStatic()
 	/* For.Prototype_GameObject_UI_CrossHair */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_Cross_Hair"),
 		CUI_Cross_Hair::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_UI_SniperCrossHair */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_SniperCrossHair"),
+		CUI_Sniper_Hair::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_UI_SniperRing */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_SniperRing"),
+		CUI_Sniper_Ring::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
 	// UI_Monster_State
