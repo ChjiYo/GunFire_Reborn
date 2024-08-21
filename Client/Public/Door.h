@@ -37,7 +37,7 @@ private:
 private:
 	_float m_fAnimFrame = { 0.f };
 	_bool  m_isEnable = { false };
-	_bool  m_isMove = { false };
+	_bool  m_isMove = { true };
 
 private:
 	HRESULT Ready_Components();
