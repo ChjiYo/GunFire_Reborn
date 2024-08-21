@@ -166,20 +166,30 @@ HRESULT CMainApp::Ready_Prototoype_Resource_ForStatic()
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Bar/UI_Player_HpBlankBar.png")))))
 		return E_FAIL;
 
+	// UI_CrossHair 
+
 	/* For.Prototype_Component_Texture_UI_Cross_Hair */
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Cross_Hair"),
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/CrossHair/CrossHair.png")))))
 		return E_FAIL;
 
-	// UI_CrossHair 
+	/* For.Prototype_Component_Texture_UI_Sniper_Hair */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Sniper_Hair"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/CrossHair/Sniper.png")))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Texture_UI_Sniper_Ring*/
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Sniper_Ring"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/CrossHair/Sniper_Ring.png")))))
+		return E_FAIL;
+
+	//UI_Monster_Bar
 
 		/* For.Prototype_Component_Texture_UI_Player_ShieldBlankBar */
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Player_ShieldBlankBar"),
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Bar/UI_Player_ShieldBlankBar.png")))))
 		return E_FAIL;
 
-	//UI_Monster_Bar
-	
 	/* For.Prototype_Component_Texture_UI_Monster_BarPanel */
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Monster_BarPanel"),
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Bar/UI_Monster_Panel.png")))))

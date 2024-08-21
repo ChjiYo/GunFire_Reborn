@@ -28,6 +28,15 @@ HRESULT CUI_Sniper_Hair::Initialize(void* pArg)
 
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
+
+	m_fMidPosX = Client::g_iWinSizeX * 0.5f;
+	m_fMidPosY = Client::g_iWinSizeY * 0.5f;
+
+	m_fAddPos = 24.f;
+
+	__super::Set_UI_Setting(24.f, 7.f, m_fMidPosX + m_fAddPos, m_fMidPosY);
+	m_pTransformCom->Rotation({ 0.f, 0.f, 1.f }, XMConvertToRadians(0.f));
+
 	return S_OK;
 }
 
@@ -52,6 +61,12 @@ HRESULT CUI_Sniper_Hair::Render()
 	if (FAILED(__super::Bind_ShaderResources()))
 		return E_FAIL;
 
+	for (int i = 1; i <= 4; ++i)
+	{
+		if (FAILED(m_pShaderCom->Bind_RawValue("g_Num", &i, sizeof(_uint))))
+			return E_FAIL;
+	}
+
 	if (FAILED(m_pTextureCom->Bind_ShaderResource(m_pShaderCom, "g_Texture", 0)))
 		return E_FAIL;
 
@@ -73,7 +88,7 @@ HRESULT CUI_Sniper_Hair::Ready_Components()
 		return E_FAIL;
 
 	/* For.Com_Texture */
-	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Cross_Hair"),
+	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Sniper_Hair"),
 		TEXT("Com_Texture"), reinterpret_cast<CComponent**>(&m_pTextureCom))))
 		return E_FAIL;
 }

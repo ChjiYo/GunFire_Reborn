@@ -4,6 +4,7 @@
 float4x4 g_WorldMatrix, g_ViewMatrix, g_ProjMatrix;
 texture2D g_Texture;
 float g_Ratio;
+float g_Num;
 
 struct VS_IN
 {

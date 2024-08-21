@@ -9,6 +9,9 @@
 
 #include "Skill.h"
 
+#include "UI_Sniper_Hair.h"
+#include "UI_Sniper_Ring.h"
+
 CWeapon_Player_Sniper::CWeapon_Player_Sniper(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
     :CWeapon_Player{ pDevice  , pContext }
 {
@@ -36,6 +39,8 @@ HRESULT CWeapon_Player_Sniper::Initialize(void* pArg)
         return E_FAIL;
 
     m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 0.25f , -0.15f , -0.15f , 1.f });
+
+    m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Sniper_Hair"), TEXT("Layer_UI_Sniper"));
     
 
     return S_OK;
@@ -153,7 +158,6 @@ void CWeapon_Player_Sniper::Key_State(_float fTimeDelta)
 
         m_pTransformCom->Set_State(CTransform::STATE_POSITION, vPos);
 
-        //m_pGameInstance->Add_GameObject_ToLayer(LEVE)
     }
 
     if (m_fZoomTimer > fLastTime)

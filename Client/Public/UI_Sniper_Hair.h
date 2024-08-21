@@ -6,6 +6,12 @@ BEGIN(Client)
 
 class CUI_Sniper_Hair final :public CUIObject
 {
+public:
+	typedef struct :public CTransform::TRANSFORM_DESC
+	{
+		_uint iNum = {};
+	}SNIPER_HAIR_DESC;
+
 private:
 	CUI_Sniper_Hair(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	CUI_Sniper_Hair(const CUI_Sniper_Hair& Prototype);
