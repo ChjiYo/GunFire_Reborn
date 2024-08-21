@@ -47,6 +47,8 @@ public:
 		return XMMatrixInverse(nullptr, XMLoadFloat4x4(&m_WorldMatrix));
 	}
 
+	_float Get_RotationYValue() { return m_fRotationY; }
+
 public:
 
 	void Set_Scaled(_float fScaleX, _float fScaleY, _float fScaleZ) {
@@ -78,6 +80,7 @@ public:
 	void Go_Up(_float fTimeDelta);
 
 	void Set_Speed(_float fSpeed) { m_fSpeedPerSec = fSpeed; }
+	_float Get_Speed() { return m_fSpeedPerSec; }
 	_bool CTransform::Gravity(_float fWeight, _float fLandPosY, _float fTimeDelta);
 public:
 	/* Transform_Rotation */

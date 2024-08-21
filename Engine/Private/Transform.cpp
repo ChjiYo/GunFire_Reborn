@@ -172,6 +172,8 @@ void CTransform::Turn(_fvector vAxis, _float fTimeDelta)
 
 void CTransform::Rotation(_fvector vAxis, _float fRadian)
 {
+	m_fRotationY = fRadian;
+
 	_float3		vScale = Get_Scaled();
 
 	_vector		vRight = XMVectorSet(1.f, 0.f, 0.f, 0.f) * vScale.x;

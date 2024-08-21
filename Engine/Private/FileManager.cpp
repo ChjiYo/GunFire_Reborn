@@ -30,6 +30,7 @@ HRESULT CFile_Manager::SaveObjects(const wstring& filename, void* pArg)
 		file << L"LevelIndex: " << data.levelIndex << L"\n";
 		file << L"Position: " << vSaveData.x << L" " << vSaveData.y << L" " << vSaveData.z << L"\n";
 		file << L"Scale: " << data.scale.x << L" " << data.scale.y << L" " << data.scale.z << L"\n";
+		file << L"Rotation: " << data.fRotation << L"\n";
 		file << L"IsParsing: " << data.isParsing << L"\n\n";
 	}
 
@@ -107,6 +108,14 @@ HRESULT CFile_Manager::ParseLine(const wstring& line, FILEDATA& obj) {
 			_float3 vScale = { a,b,c};
 
 			obj.scale = vScale;
+		}
+		else if (key == L"Rotation")
+		{
+			wistringstream vals(value);
+			_float fRotation;
+			vals >> fRotation;
+
+			obj.fRotation = fRotation;
 		}
 		else if (key == L"IsParsing") {
 			obj.isParsing = (value == L"true" || value == L"1");

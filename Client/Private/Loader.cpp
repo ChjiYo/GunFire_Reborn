@@ -179,7 +179,7 @@ HRESULT CLoader::Loading_For_BinaryFile()
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Monster_Deash_Boom"),
 		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_ANIM, "../Bin/GunFire_Resources/Models/Monster/Mon_Deash_Boom/Deash_Boom.fbx", TEXT("../Bin/DataFiles/Monster_Deash_Boom.dat"), PreTransformMatrix))))
 		return E_FAIL;
-
+	
 	PreTransformMatrix = XMMatrixScaling(0.01f, 0.01f, 0.01f) * XMMatrixRotationY(XMConvertToRadians(180.0f))* XMMatrixTranslation( 6.f  , 19.5f , -72.f );
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Door"),
 		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_ANIM, "../Bin/GunFire_Resources/Models/Element/Door/Door.fbx", TEXT("../Bin/DataFiles/Door.dat"), PreTransformMatrix))))

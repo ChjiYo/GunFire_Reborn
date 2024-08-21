@@ -30,6 +30,7 @@ HRESULT CElement::Initialize(void* pArg)
 		FILEDATA* fileData = static_cast<FILEDATA*>(pArg);
 		m_pTransformCom->Set_Scaled(fileData->scale.x, fileData->scale.y, fileData->scale.z);
 		m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetW(fileData->position, 1.f));
+		m_pTransformCom->Rotation({ 0.f, 1.f, 0.f }, fileData->fRotation);
 	}
 
 	if (pArg != nullptr)
@@ -44,6 +45,7 @@ HRESULT CElement::Initialize(void* pArg)
 
 			transform->Set_State(CTransform::STATE_POSITION, pFileData->position);
 			transform->Set_Scaled(pFileData->scale.x, pFileData->scale.y, pFileData->scale.z);
+			m_pTransformCom->Rotation({ 0.f, 1.f, 0.f }, pFileData->fRotation);
 			return S_OK;
 		}
 	}

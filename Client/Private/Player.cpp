@@ -176,8 +176,10 @@ void CPlayer::Key_State(_float fTimeDelta)
 void CPlayer::Player_Move(_float fTimeDelta)
 {
     _long		MouseMove = {};
-    
-    _bool isMove = dynamic_cast<CDoor*>(m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Door")).back())->IsMove();
+    _bool isMove = true;
+
+    //if(!m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Door")).empty())
+        isMove = dynamic_cast<CDoor*>(m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Door")).back())->IsMove();
 
     if (MouseMove = m_pGameInstance->Get_DIMouseMove(DIMM_X))
     {

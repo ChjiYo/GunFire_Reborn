@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "Door.h"
+#include "Player.h"
 #include "GameInstance.h"
 
 CDoor::CDoor(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
@@ -30,7 +31,6 @@ HRESULT CDoor::Initialize(void* pArg)
 		return E_FAIL;
 
 	DECO_DESC* Desc = static_cast<DECO_DESC*>(pArg);
-	m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 39.1f, 2.9f, 0.49f, 1.f });
 
 	switch (Desc->iNumDeco)
 	{
@@ -39,8 +39,11 @@ HRESULT CDoor::Initialize(void* pArg)
 		break;
 	}
 
-	m_pModelCom->SetUp_Animation(1, true);
-	m_pTransformCom->Set_Scaled( 0.83f , 0.68f, 0.5f );
+	//m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 39.861f, 2.9f, 26.036f , 1.f });
+	//m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 0.f, 2.9f, 0.f , 1.f });
+	m_pTransformCom->Set_Scaled(0.799965f, 0.68f, 0.499f);
+		
+	m_pModelCom->SetUp_Animation(0, false);
 
 	return S_OK;
 }
@@ -49,19 +52,31 @@ void CDoor::Priority_Update(_float fTimeDelta)
 {
 	m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Monster")).empty() ? m_isEnable = true : m_isEnable = false;
 	m_isEnable ? m_fAnimFrame = fTimeDelta : m_fAnimFrame = 0.f;
-
-	CCollider* pPlayerCollider = dynamic_cast<CCollider*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Player"), TEXT("Com_Collider")));
-
-	if (m_pColliderCom->isCollision(pPlayerCollider))
-		m_isEnable ? m_isMove = true : m_isMove = false;
-	else
-		m_isMove = true;
+	
 }
 
 void CDoor::Update(_float fTimeDelta)
 {
 	m_pColliderCom->Update(m_pTransformCom->Get_WorldMatrix());
 	m_pModelCom->Play_Animation(m_fAnimFrame);
+
+	CCollider* pPlayerCollider = dynamic_cast<CCollider*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Player"), TEXT("Com_Collider")));
+	CTransform* pPayerTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Player"), TEXT("Com_Transform")));
+
+	if (m_pColliderCom->isCollision(pPlayerCollider))
+	{
+		if (!m_isEnable)
+		{
+			_vector vPlayerPos = pPayerTransform->Get_State(CTransform::STATE_POSITION);
+			_vector vPos = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
+			_vector vDir = -XMVector3Normalize(m_pTransformCom->Get_State(CTransform::STATE_LOOK));
+
+			_vector vMovePos = vPlayerPos + vDir * pPayerTransform->Get_Speed() * fTimeDelta;
+			pPayerTransform->Set_State(CTransform::STATE_POSITION, XMVectorSetY(vMovePos, XMVectorGetY(vPlayerPos)));
+		}
+	}
+	
+	 
 }
 
 void CDoor::Late_Update(_float fTimeDelta)
@@ -118,8 +133,8 @@ HRESULT CDoor::Ready_Components()
 	CBounding_AABB::BOUNDING_AABB_DESC	BoundingDesc{};
 
 
-	BoundingDesc.vExtents = _float3(0.5f, 0.5f, 0.5f);
-	BoundingDesc.vCenter = _float3(0.f, BoundingDesc.vExtents.y / 2.f - 0.5f, 0.f);
+	BoundingDesc.vExtents = _float3(0.5f, 4.5f, 5.f);
+	BoundingDesc.vCenter = _float3(0.f, BoundingDesc.vExtents.y / 2.f - 2.f, -2.f);
 	BoundingDesc.pObject = this;
 
 	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Collider_AABB"),
