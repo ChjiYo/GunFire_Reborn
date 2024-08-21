@@ -76,6 +76,8 @@ public: /* For.Font_Manager */
 	HRESULT Draw_Font(const _wstring& strFontTag, const _wstring& strText, const _float2& vPosition, _fvector vColor = XMVectorSet(0.f, 0.f, 0.f, 1.f), _float fRotation = 0.f, _float fScale = 1.f);
 
 public: /* For.Picking */
+	_float4 Picked_Position(_bool* pPick);
+
 	void Transform_ToLocalSpace(const _matrix* pWorldMatrix);
 	_bool Picked_InLocalSpace(const _vector* pPointA, const _vector* pPointB, const _vector* pPointC, _vector* pPickPos);
 	_bool Picked_InWorldSpace(_vector pPointA, _vector pPointB, _vector pPointC, _vector* pPickPos);
@@ -100,6 +102,7 @@ public: /* For.Target_Manager */
 	HRESULT Add_MRT(const _wstring& strMRTTag, const _wstring& strTargetTag);
 	HRESULT Begin_MRT(const _wstring& strMRTTag);
 	HRESULT End_MRT();
+	HRESULT Copy_RenderTarget(const _wstring& strTargetTag, ID3D11Texture2D* pTexture2D);
 	HRESULT Bind_RT_ShaderResource(class CShader* pShader, const _char* pConstantName, const _wstring& strTargetTag);
 
 #ifdef _DEBUG

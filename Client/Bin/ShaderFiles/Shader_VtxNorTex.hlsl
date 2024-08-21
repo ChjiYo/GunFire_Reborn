@@ -56,6 +56,7 @@ struct PS_OUT
 	float4	vDiffuse : SV_TARGET0;
     float4 vNormal   : SV_TARGET1;
     float4 vDepth : SV_TARGET2;
+    float4 vPickDepth : SV_TARGET3;
 };
 
 PS_OUT PS_MAIN(PS_IN In)
@@ -65,6 +66,7 @@ PS_OUT PS_MAIN(PS_IN In)
     Out.vDiffuse = g_DiffuseTexture.Sample(LinearSampler, In.vTexcoord * 30.f);
     Out.vNormal = vector(In.vNormal.xyz * 0.5f + 0.5f, 0.f);
     Out.vDepth = vector(In.vProjPos.w / 1000.f, In.vProjPos.z / In.vProjPos.w, 0.f, 0.f);
+    Out.vPickDepth = vector(In.vProjPos.w / 1000.f, In.vProjPos.z / In.vProjPos.w, 0.f, 0.f);
 	
 	return Out;
 }
@@ -77,9 +79,12 @@ technique11		DefaultTechnique
         SetDepthStencilState(DSS_Default, 0);
         SetBlendState(BS_Default, float4(0.f, 0.f, 0.f, 0.f), 0xffffffff);
 
-		VertexShader = compile vs_5_0 VS_MAIN();
-		PixelShader = compile ps_5_0 PS_MAIN();
-	}
+        VertexShader = compile vs_5_0 VS_MAIN();
+        GeometryShader = NULL;
+        HullShader = NULL;
+        DomainShader = NULL;
+        PixelShader = compile ps_5_0 PS_MAIN();
+    }
 }
 
 

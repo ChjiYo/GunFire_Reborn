@@ -338,6 +338,11 @@ HRESULT CGameInstance::Draw_Font(const _wstring& strFontTag, const _wstring& str
 	return m_pFont_Manager->Render(strFontTag, strText, vPosition, vColor, fRotation, fScale);
 }
 
+_float4 CGameInstance::Picked_Position(_bool* pPick)
+{
+	return m_pPicking->Picked_Position(pPick);
+}
+
 void CGameInstance::Transform_ToLocalSpace(const _matrix* pWorldMatrix)
 {
 	return m_pPicking->Transform_ToLocalSpace(pWorldMatrix);
@@ -423,6 +428,12 @@ HRESULT CGameInstance::Begin_MRT(const _wstring& strMRTTag)
 HRESULT CGameInstance::End_MRT()
 {
 	return m_pTarget_Manager->End_MRT();
+}
+
+HRESULT CGameInstance::Copy_RenderTarget(const _wstring& strTargetTag, ID3D11Texture2D* pTexture2D)
+{
+	m_pTarget_Manager->Copy_RenderTarget(strTargetTag, pTexture2D);
+	return S_OK;
 }
 
 HRESULT CGameInstance::Bind_RT_ShaderResource(CShader* pShader, const _char* pConstantName, const _wstring& strTargetTag)

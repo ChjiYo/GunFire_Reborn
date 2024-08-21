@@ -165,7 +165,7 @@ void CCamera_Free::Position(_float3 vOffSet)
 }
 
 void CCamera_Free::Scope_Camera(_float fTimeDelta, _float fMul)
-{
+{ 
 	m_fFovy = XMConvertToRadians(30.0f);
 
 	Position({ -0.3f , 0.35f,  1.35f });

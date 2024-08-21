@@ -29,6 +29,8 @@ HRESULT CRenderer::Initialize(ID3D11Device * pDevice, ID3D11DeviceContext * pCon
 	 	return E_FAIL;
 	 if (FAILED(m_pGameInstance->Add_RenderTarget(TEXT("Target_Depth"), ViewportDesc.Width, ViewportDesc.Height, DXGI_FORMAT_R32G32B32A32_FLOAT, XMVectorSet(1.f, 1.f, 1.f, 1.f))))
 		 return E_FAIL;
+	 if (FAILED(m_pGameInstance->Add_RenderTarget(TEXT("Target_PickDepth"), ViewportDesc.Width, ViewportDesc.Height, DXGI_FORMAT_R32G32B32A32_FLOAT, XMVectorSet(1.f, 1.f, 1.f, 1.f))))
+		 return E_FAIL;
 
 	 if (FAILED(m_pGameInstance->Add_RenderTarget(TEXT("Target_Shade"), ViewportDesc.Width, ViewportDesc.Height, DXGI_FORMAT_R16G16B16A16_UNORM, XMVectorSet(0.f, 0.f, 0.f, 1.f))))
 	 	return E_FAIL;
@@ -43,6 +45,8 @@ HRESULT CRenderer::Initialize(ID3D11Device * pDevice, ID3D11DeviceContext * pCon
 	 if (FAILED(m_pGameInstance->Add_MRT(TEXT("MRT_GameObjects"), TEXT("Target_Normal"))))
 	 	return E_FAIL;
 	 if (FAILED(m_pGameInstance->Add_MRT(TEXT("MRT_GameObjects"), TEXT("Target_Depth"))))
+		 return E_FAIL;
+	 if (FAILED(m_pGameInstance->Add_MRT(TEXT("MRT_GameObjects"), TEXT("Target_PickDepth"))))
 		 return E_FAIL;
 	 
 	 //빛연산의 결과를 저장하기 위한 값
@@ -71,9 +75,11 @@ HRESULT CRenderer::Initialize(ID3D11Device * pDevice, ID3D11DeviceContext * pCon
 		 return E_FAIL;
 	 if (FAILED(m_pGameInstance->Ready_RT_Debug(TEXT("Target_Depth"), 100.f, 500.f, 200.0f, 200.0f)))
 		 return E_FAIL;
-	 if (FAILED(m_pGameInstance->Ready_RT_Debug(TEXT("Target_Shade"), 450.f, 150.f, 300.f, 300.f)))
+	 if (FAILED(m_pGameInstance->Ready_RT_Debug(TEXT("Target_PickDepth"), 300.f, 100.f, 200.0f, 200.0f)))
 		 return E_FAIL;
-	 if (FAILED(m_pGameInstance->Ready_RT_Debug(TEXT("Target_Specular"), 450.f, 450.f, 300.f, 300.f)))
+	 if (FAILED(m_pGameInstance->Ready_RT_Debug(TEXT("Target_Shade"), 300.f, 300.f, 200.f, 200.f)))
+		 return E_FAIL;
+	 if (FAILED(m_pGameInstance->Ready_RT_Debug(TEXT("Target_Specular"), 300.f, 500.f, 200.f, 200.f)))
 		 return E_FAIL;
 #endif
 

@@ -67,7 +67,14 @@ void CMon_Bug::Priority_Update(_float fTimeDelta)
 
 void CMon_Bug::Update(_float fTimeDelta)
 {
+	if (GetKeyState(VK_LBUTTON) & 0x8000)
+{
+	_bool		isPick = { false };
+	_float4		vPickedPos = m_pGameInstance->Picked_Position(&isPick);
 	
+	if(true == isPick)
+		m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMLoadFloat4(&vPickedPos));
+}
 	m_pColliderCom[COLL_AABB]->Update(m_pTransformCom->Get_WorldMatrix());
 	
 	Destroy();
