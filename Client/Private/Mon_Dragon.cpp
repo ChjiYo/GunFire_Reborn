@@ -3,9 +3,19 @@
 
 #include "GameInstance.h"
 
-#include "FSM_Mon_Bug_Idle.h"
-#include "FSM_Mon_Bug_Run.h"
-#include "FSM_Mon_Bug_Attack.h"
+#include "FSM_Mon_Dragon_Idle.h"
+#include "FSM_Mon_Dragon_Attack.h"
+#include "FSM_Mon_Dragon_Death.h"
+
+#include "FSM_Mon_DragonHead_Idle.h"
+#include "FSM_Mon_DragonHead_Attack.h"
+#include "FSM_Mon_DragonHead_In.h"
+#include "FSM_Mon_DragonHead_Out.h"
+
+#include "FSM_Mon_DragonTail_Idle.h"
+#include "FSM_Mon_DragonTail_Attack.h"
+#include "FSM_Mon_DragonTail_In.h"
+#include "FSM_Mon_DragonTail_Out.h"
 
 #include "Player.h"
 
@@ -49,7 +59,7 @@ HRESULT CMon_Dragon::Initialize(void* pArg)
 	if (FAILED(Ready_UI()))
 		return E_FAIL;
 
-	//m_pStateCom->Set_State(TEXT("Monster_Bug_State_Idle"));
+	m_pStateCom->Set_State(TEXT("Monster_Dragon_State_Idle"));
 
 	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSet(20.f, 1.f, 20.f, 1.f));
 
@@ -61,7 +71,7 @@ HRESULT CMon_Dragon::Initialize(void* pArg)
 
 void CMon_Dragon::Priority_Update(_float fTimeDelta)
 {
-	//m_pStateCom->Priority_Update(fTimeDelta);
+	m_pStateCom->Priority_Update(fTimeDelta);
 	m_pModelCom->Play_Animation(fTimeDelta);
 }
 
@@ -72,7 +82,7 @@ void CMon_Dragon::Update(_float fTimeDelta)
 
 	Destroy();
 
-	//m_pStateCom->Update(fTimeDelta);
+	m_pStateCom->Update(fTimeDelta);
 }
 
 void CMon_Dragon::Late_Update(_float fTimeDelta)
@@ -81,19 +91,7 @@ void CMon_Dragon::Late_Update(_float fTimeDelta)
 
 	m_pGameInstance->Add_RenderObject(CRenderer::RG_NONBLEND, this);
 
-	//m_pStateCom->Late_Update(fTimeDelta);
-
-	if (m_pGameInstance->Key_Down(VK_UP))
-	{
-		m_iAnimFrame++;
-		m_pModelCom->SetUp_Animation(m_iAnimFrame, true);
-	}
-
-	if (m_pGameInstance->Key_Down(VK_DOWN))
-	{
-		m_iAnimFrame--;
-		m_pModelCom->SetUp_Animation(m_iAnimFrame, true);
-	}
+	m_pStateCom->Late_Update(fTimeDelta);
 
 #ifdef _DEBUG
 	m_pGameInstance->Add_DebugComponent(m_pColliderCom[COLL_AABB]);
@@ -122,9 +120,6 @@ HRESULT CMon_Dragon::Render()
 			return E_FAIL;
 	}
 
-	wstring m_strMaxHp = to_wstring(m_iAnimFrame);
-	m_pGameInstance->Draw_Font(TEXT("Font_Nexon"), m_strMaxHp, _float2(1200.f, 100.f), XMVectorSet(0.7f, 1.f, 0.3f, 1.f), XMConvertToRadians(-5.f), 0.8f);
-
 	return S_OK;
 }
 
@@ -142,22 +137,19 @@ HRESULT CMon_Dragon::Ready_State()
 	Desc.pNavigation = m_pNavigationCom;
 	Desc.pModel = m_pModelCom;
 
-	m_pStateCom->Add_State(CFSM_Mon_Bug_Idle::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Dragon_State_Idle"));
-	m_pStateCom->Add_State(CFSM_Mon_Bug_Run::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Dragon_State_Idle"));
-	m_pStateCom->Add_State(CFSM_Mon_Bug_Attack::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Dragon_State_Idle"));
-
-	m_pStateCom->Add_State(CFSM_Mon_Bug_Idle::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Bug_State_Idle"));
-	m_pStateCom->Add_State(CFSM_Mon_Bug_Run::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Bug_State_Run"));
-	m_pStateCom->Add_State(CFSM_Mon_Bug_Attack::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Bug_State_Attack"));
-
-	m_pStateCom->Add_State(CFSM_Mon_Bug_Idle::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Bug_State_Idle"));
-	m_pStateCom->Add_State(CFSM_Mon_Bug_Run::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Bug_State_Run"));
-	m_pStateCom->Add_State(CFSM_Mon_Bug_Attack::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Bug_State_Attack"));
-
-	m_pStateCom->Add_State(CFSM_Mon_Bug_Idle::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Bug_State_Idle"));
-	m_pStateCom->Add_State(CFSM_Mon_Bug_Run::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Bug_State_Run"));
-	m_pStateCom->Add_State(CFSM_Mon_Bug_Attack::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Bug_State_Attack"));
-
+	m_pStateCom->Add_State(CFSM_Mon_Dragon_Idle::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Dragon_State_Idle"));
+	m_pStateCom->Add_State(CFSM_Mon_Dragon_Attack::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Dragon_State_Attack"));
+	m_pStateCom->Add_State(CFSM_Mon_Dragon_Death::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Dragon_State_Death"));
+						   
+	m_pStateCom->Add_State(CFSM_Mon_DragonHead_Idle::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_DragonHead_State_Idle"));
+	m_pStateCom->Add_State(CFSM_Mon_DragonHead_Attack::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_DragonHead_State_Attack"));
+	m_pStateCom->Add_State(CFSM_Mon_DragonHead_In::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_DragonHead_State_In"));
+	m_pStateCom->Add_State(CFSM_Mon_DragonHead_Out::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_DragonHead_State_Out"));
+						   
+	m_pStateCom->Add_State(CFSM_Mon_DragonTail_Idle::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_DragonTail_State_Idle"));
+	m_pStateCom->Add_State(CFSM_Mon_DragonTail_Attack::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_DragonTail_State_Attack"));
+	m_pStateCom->Add_State(CFSM_Mon_DragonTail_In::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_DragonTail_State_In"));
+	m_pStateCom->Add_State(CFSM_Mon_DragonTail_Out::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_DragonTail_State_Out"));
 
 	return S_OK;
 }

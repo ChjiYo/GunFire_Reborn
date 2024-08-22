@@ -442,6 +442,39 @@
     <Filter Include="03.State_Machine\FSM_Monster\Dragon\Tail">
       <UniqueIdentifier>{6a5fd7f4-77a6-41a0-bf0e-94d1c3583cef}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Dragon\Default\Attack">
+      <UniqueIdentifier>{6ca01aa3-aa0a-4bcb-8192-83c520cf3cfc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Dragon\Default\Death">
+      <UniqueIdentifier>{6ddb7a99-54b0-480b-935f-a177cccbf15c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Dragon\Default\Idle">
+      <UniqueIdentifier>{b9d50f78-2340-43b4-8366-34e2ad3cf51f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Dragon\Head\Attack">
+      <UniqueIdentifier>{b9be46d2-9a0f-4d3b-a67a-7899e580c958}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Dragon\Head\Idle">
+      <UniqueIdentifier>{721570e6-1105-47b6-a81f-dd183bbb9583}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Dragon\Head\In">
+      <UniqueIdentifier>{080b3c17-19fd-49fb-98f4-942f909c2929}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Dragon\Head\Out">
+      <UniqueIdentifier>{eedb7afd-d3ff-44f2-aa12-35483a624bf6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Dragon\Tail\Attack">
+      <UniqueIdentifier>{dc5207e8-f40f-434b-93d1-160bed83ec44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Dragon\Tail\Idle">
+      <UniqueIdentifier>{0ecace9c-24e7-408c-8858-6647e8e94533}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Dragon\Tail\In">
+      <UniqueIdentifier>{eb3ca0ef-59ee-47fa-8f60-e531ada73d28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Dragon\Tail\Out">
+      <UniqueIdentifier>{b5971d5c-eb6b-41f1-8ce4-5dc3f65dc082}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -835,34 +868,37 @@
       <Filter>02.GameObjects\UI\UI_Cross_Hair\UI_Sniper_Ring</Filter>
     </ClInclude>
     <ClInclude Include="..\public\FSM_Mon_Dragon_Attack.h">
-      <Filter>03.State_Machine\FSM_Monster\Dragon\Default</Filter>
+      <Filter>03.State_Machine\FSM_Monster\Dragon\Default\Attack</Filter>
     </ClInclude>
     <ClInclude Include="..\public\FSM_Mon_Dragon_Death.h">
-      <Filter>03.State_Machine\FSM_Monster\Dragon\Default</Filter>
+      <Filter>03.State_Machine\FSM_Monster\Dragon\Default\Death</Filter>
     </ClInclude>
     <ClInclude Include="..\Public\FSM_Mon_Dragon_Idle.h">
-      <Filter>03.State_Machine\FSM_Monster\Dragon\Default</Filter>
+      <Filter>03.State_Machine\FSM_Monster\Dragon\Default\Idle</Filter>
     </ClInclude>
     <ClInclude Include="..\public\FSM_Mon_DragonHead_Attack.h">
-      <Filter>03.State_Machine\FSM_Monster\Dragon\Head</Filter>
+      <Filter>03.State_Machine\FSM_Monster\Dragon\Head\Attack</Filter>
     </ClInclude>
     <ClInclude Include="..\public\FSM_Mon_DragonHead_Idle.h">
-      <Filter>03.State_Machine\FSM_Monster\Dragon\Head</Filter>
+      <Filter>03.State_Machine\FSM_Monster\Dragon\Head\Idle</Filter>
     </ClInclude>
     <ClInclude Include="..\public\FSM_Mon_DragonHead_In.h">
-      <Filter>03.State_Machine\FSM_Monster\Dragon\Head</Filter>
+      <Filter>03.State_Machine\FSM_Monster\Dragon\Head\In</Filter>
     </ClInclude>
-    <ClInclude Include="FSM_Mon_DragonTail_Attack.h">
-      <Filter>03.State_Machine\FSM_Monster\Dragon\Tail</Filter>
+    <ClInclude Include="..\public\FSM_Mon_DragonHead_Out.h">
+      <Filter>03.State_Machine\FSM_Monster\Dragon\Head\Out</Filter>
     </ClInclude>
     <ClInclude Include="..\public\FSM_Mon_DragonTail_Idle.h">
-      <Filter>03.State_Machine\FSM_Monster\Dragon\Tail</Filter>
+      <Filter>03.State_Machine\FSM_Monster\Dragon\Tail\Idle</Filter>
     </ClInclude>
     <ClInclude Include="..\public\FSM_Mon_DragonTail_In.h">
-      <Filter>03.State_Machine\FSM_Monster\Dragon\Tail</Filter>
+      <Filter>03.State_Machine\FSM_Monster\Dragon\Tail\In</Filter>
     </ClInclude>
     <ClInclude Include="..\public\FSM_Mon_DragonTail_Out.h">
-      <Filter>03.State_Machine\FSM_Monster\Dragon\Tail</Filter>
+      <Filter>03.State_Machine\FSM_Monster\Dragon\Tail\Out</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\FSM_Mon_DragonTail_Attack.h">
+      <Filter>03.State_Machine\FSM_Monster\Dragon\Tail\Attack</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1242,34 +1278,37 @@
       <Filter>02.GameObjects\UI\UI_Cross_Hair\UI_Sniper_Ring</Filter>
     </ClCompile>
     <ClCompile Include="..\private\FSM_Mon_Dragon_Attack.cpp">
-      <Filter>03.State_Machine\FSM_Monster\Dragon\Default</Filter>
+      <Filter>03.State_Machine\FSM_Monster\Dragon\Default\Attack</Filter>
     </ClCompile>
     <ClCompile Include="..\private\FSM_Mon_Dragon_Death.cpp">
-      <Filter>03.State_Machine\FSM_Monster\Dragon\Default</Filter>
+      <Filter>03.State_Machine\FSM_Monster\Dragon\Default\Death</Filter>
     </ClCompile>
     <ClCompile Include="..\Private\FSM_Mon_Dragon_Idle.cpp">
-      <Filter>03.State_Machine\FSM_Monster\Dragon\Default</Filter>
+      <Filter>03.State_Machine\FSM_Monster\Dragon\Default\Idle</Filter>
     </ClCompile>
     <ClCompile Include="..\private\FSM_Mon_DragonHead_Attack.cpp">
-      <Filter>03.State_Machine\FSM_Monster\Dragon\Head</Filter>
+      <Filter>03.State_Machine\FSM_Monster\Dragon\Head\Attack</Filter>
     </ClCompile>
     <ClCompile Include="..\private\FSM_Mon_DragonHead_Idle.cpp">
-      <Filter>03.State_Machine\FSM_Monster\Dragon\Head</Filter>
+      <Filter>03.State_Machine\FSM_Monster\Dragon\Head\Idle</Filter>
     </ClCompile>
     <ClCompile Include="..\private\FSM_Mon_DragonHead_In.cpp">
-      <Filter>03.State_Machine\FSM_Monster\Dragon\Head</Filter>
+      <Filter>03.State_Machine\FSM_Monster\Dragon\Head\In</Filter>
     </ClCompile>
-    <ClCompile Include="FSM_Mon_DragonTail_Attack.cpp">
-      <Filter>03.State_Machine\FSM_Monster\Dragon\Tail</Filter>
+    <ClCompile Include="..\private\FSM_Mon_DragonHead_Out.cpp">
+      <Filter>03.State_Machine\FSM_Monster\Dragon\Head\Out</Filter>
     </ClCompile>
     <ClCompile Include="..\private\FSM_Mon_DragonTail_Idle.cpp">
-      <Filter>03.State_Machine\FSM_Monster\Dragon\Tail</Filter>
+      <Filter>03.State_Machine\FSM_Monster\Dragon\Tail\Idle</Filter>
     </ClCompile>
     <ClCompile Include="..\private\FSM_Mon_DragonTail_In.cpp">
-      <Filter>03.State_Machine\FSM_Monster\Dragon\Tail</Filter>
+      <Filter>03.State_Machine\FSM_Monster\Dragon\Tail\In</Filter>
     </ClCompile>
     <ClCompile Include="..\private\FSM_Mon_DragonTail_Out.cpp">
-      <Filter>03.State_Machine\FSM_Monster\Dragon\Tail</Filter>
+      <Filter>03.State_Machine\FSM_Monster\Dragon\Tail\Out</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\FSM_Mon_DragonTail_Attack.cpp">
+      <Filter>03.State_Machine\FSM_Monster\Dragon\Tail\Attack</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

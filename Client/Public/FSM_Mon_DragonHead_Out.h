@@ -4,12 +4,12 @@
 
 BEGIN(Client)
 
-class CFSM_Mon_DragonHead_In final : public CFSM_Monster
+class CFSM_Mon_DragonHead_Out final : public CFSM_Monster
 {
 private:
-	CFSM_Mon_DragonHead_In(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
-	CFSM_Mon_DragonHead_In(const CFSM_Mon_DragonHead_In& pPrototype);
-	virtual ~CFSM_Mon_DragonHead_In() = default;
+	CFSM_Mon_DragonHead_Out(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
+	CFSM_Mon_DragonHead_Out(const CFSM_Mon_DragonHead_Out& pPrototype);
+	virtual ~CFSM_Mon_DragonHead_Out() = default;
 
 public:
 	virtual HRESULT Initialize(FSM_MON_DESC Desc);
@@ -25,7 +25,7 @@ private:
 	_float m_fHitMotionTime = { 0.f };
 
 public:
-	static CFSM_Mon_DragonHead_In* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, FSM_MON_DESC Desc);
+	static CFSM_Mon_DragonHead_Out* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, FSM_MON_DESC Desc);
 	virtual void Free() override;
 };
 
