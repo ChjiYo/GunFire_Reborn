@@ -2,14 +2,6 @@
 
 #include "Skill_Player.h"
 
-BEGIN(Engine)
-class CShader;
-class CTexture;
-class CVIBuffer_Rect;
-class CCollider;
-class CNavigation;
-END
-
 class CSkill_Sniper_Bullet final :public CSkill_Player
 {
 protected:
@@ -31,13 +23,6 @@ private:
 
 private:
 	void Destroy(_float fTimeDelta);
-
-
-private:
-	CShader* m_pShaderCom = { nullptr };
-	CTexture* m_pTextureCom = { nullptr };
-	CVIBuffer_Rect* m_pVIBufferCom = { nullptr };
-	CCollider* m_pColliderCom = { nullptr };
 
 private:
 	_vector m_vTargetLook = {};

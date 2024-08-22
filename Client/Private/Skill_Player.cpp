@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "Skill_Player.h"
+#include "Monster.h"
 
 CSkill_Player::CSkill_Player(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	:CSkill{ pDevice  , pContext }
@@ -41,6 +42,18 @@ void CSkill_Player::Update(_float fTimeDelta)
 
 void CSkill_Player::Late_Update(_float fTimeDelta)
 {
+	list<class CGameObject*> MonList = m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Monster"));
+
+	for (auto& ColliderIter : MonList)
+	{
+		CMonster* pMonster = dynamic_cast<CMonster*>(ColliderIter);
+
+		if (m_pColliderCom->isCollision(pMonster->Get_Collider()))
+		{
+			pMonster->Set_Damage(-5.f);
+			m_bDead = true;
+		}
+	}
 }
 
 HRESULT CSkill_Player::Render()

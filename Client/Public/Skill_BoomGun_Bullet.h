@@ -2,13 +2,6 @@
 
 #include "Skill_Player.h"
 
-BEGIN(Engine)
-class CShader;
-class CTexture;
-class CVIBuffer_Rect;
-class CCollider;
-END
-
 class CSkill_BoomGun_Bullet final :public CSkill_Player
 {
 protected:
@@ -33,19 +26,11 @@ private:
 	void Add_Collider();
 
 private:
-	CShader* m_pShaderCom = { nullptr };
-	CTexture* m_pTextureCom = { nullptr };
-	CVIBuffer_Rect* m_pVIBufferCom = { nullptr };
-	CCollider* m_pColliderCom = { nullptr };
-
-private:
 	_vector m_vTargetLook = {};
 
 	_float m_fDestroyTimer = {};
 	_uint m_iTextureIndex = { 0 };
 
-private:
-	list<CCollider*> HeadColliderList = {};
 
 public:
 	static CSkill_BoomGun_Bullet* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);

@@ -226,13 +226,21 @@ void CPlayer::Player_Move(_float fTimeDelta)
 
     if (m_pGameInstance->Key_Down('1'))
     {
-        m_eWeaponID = SHURIKEN;
+        if (m_eWeaponIDArray[ONE] == WEAPON_END)
+            return;
+
+        m_eWeaponID = m_eWeaponIDArray[ONE];
+        m_eSlotID = ONE;
         m_bWeaponChange = true;
     }
 
     if (m_pGameInstance->Key_Down('2'))
     {
-        m_eWeaponID = SNIPER;
+        if (m_eWeaponIDArray[TWO] == WEAPON_END)
+            return;
+
+        m_eWeaponID = m_eWeaponIDArray[TWO];
+        m_eSlotID = TWO;
         m_bWeaponChange = true;
     }
 
@@ -273,8 +281,7 @@ void CPlayer::Player_Weapon_Change()
         CWeapon_Player::PLAYER_WEAPON_DESC Desc{};
         Desc.pParentMatrix = m_pTransformCom->Get_WorldMatrixPtr();
         Desc.pParentState = 0x00000000;
-      
-
+  
         switch (m_eWeaponID)
         {
         case PISTOL:
@@ -307,7 +314,9 @@ void CPlayer::Player_Weapon_Change()
             Desc.iMaxBullet = 120;
             Desc.fAttackSpeed = 0.125f;
             __super::Add_PartObject(PART_WEAPON, TEXT("Prototype_GameObject_Weapon_Player_BoomGun"), &Desc);
+            break;
 
+        default:
             break;
         }
 

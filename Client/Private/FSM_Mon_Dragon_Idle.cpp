@@ -34,12 +34,12 @@ wstring CFSM_Mon_Dragon_Idle::Priority_Update(_float fTimeDelta)
 {
 	m_fHitMotionTime += fTimeDelta;
 
-	return TEXT("Monster_Knight_State_Hit");
+	return TEXT("Monster_Dragin_State_Idle");
 }
 
 wstring CFSM_Mon_Dragon_Idle::Update(_float fTimeDelta)
 {
-	return TEXT("Monster_Knight_State_Hit");
+	return TEXT("Monster_Dragin_State_Idle");
 }
 
 wstring CFSM_Mon_Dragon_Idle::Late_Update(_float fTimeDelta)
@@ -48,7 +48,7 @@ wstring CFSM_Mon_Dragon_Idle::Late_Update(_float fTimeDelta)
 	{
 		return TEXT("Monster_Knight_State_Run");
 	}
-	return TEXT("Monster_Knight_State_Hit");
+	return TEXT("Monster_Dragin_State_Idle");
 }
 
 void CFSM_Mon_Dragon_Idle::Enter()
@@ -58,7 +58,7 @@ void CFSM_Mon_Dragon_Idle::Enter()
 	m_tDesc.pTransform->LookAt(m_pPlayerTransform->Get_State(CTransform::STATE_POSITION));
 
 	m_tDesc.pModel->SetUp_Animation(4, false);
-	m_strName = TEXT("Monster_Knight_State_Hit");
+	m_strName = TEXT("Monster_Dragin_State_Idle");
 }
 
 void CFSM_Mon_Dragon_Idle::Exit()

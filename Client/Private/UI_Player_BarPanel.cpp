@@ -29,6 +29,7 @@ HRESULT CUI_Player_BarPanel::Initialize(void* pArg)
 		return E_FAIL;
 
 	__super::Set_UI_Setting(425.f, 75.f, 250.f, 800.f);
+	m_pTransformCom->Rotation({ 0.f , 0.f, 1.f }, XMConvertToRadians(5.f));
 	return S_OK;
 }
 

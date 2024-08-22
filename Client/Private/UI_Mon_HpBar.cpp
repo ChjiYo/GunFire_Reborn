@@ -109,7 +109,7 @@ HRESULT CUI_Mon_HpBar::Ready_Components()
 
 HRESULT CUI_Mon_HpBar::Bind_ShaderResources()
 {
-	if(FAILED(Bind_Perspective()))
+	if(FAILED(__super::Bind_Perspective()))
 		return E_FAIL;
 
 	if (FAILED(m_pShaderCom->Bind_RawValue("g_Ratio", &fHpRatio,sizeof(_float))))

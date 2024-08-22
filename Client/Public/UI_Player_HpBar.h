@@ -29,6 +29,8 @@ private:
 	wstring m_strHp = {};
 	wstring m_strMaxHp = {};
 
+	_float m_fHpRatio = { 0.f };
+
 public:
 	static CUI_Player_HpBar* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	virtual CGameObject* Clone(void* pArg);

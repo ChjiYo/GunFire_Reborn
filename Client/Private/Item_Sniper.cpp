@@ -30,20 +30,24 @@ HRESULT CItem_Sniper::Initialize(void* pArg)
 		return E_FAIL;
 
 	m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 10.f, 0.5f , 10.f , 1.f });
+	m_eWeaponID = SNIPER;
 
 	return S_OK;
 }
 
 void CItem_Sniper::Priority_Update(_float fTimeDelta)
 {
+	__super::Priority_Update(fTimeDelta);
 }
 
 void CItem_Sniper::Update(_float fTimeDelta)
 {
+	__super::Update(fTimeDelta);
 }
 
 void CItem_Sniper::Late_Update(_float fTimeDelta)
 {
+	__super::Late_Update(fTimeDelta);
 	m_pGameInstance->Add_RenderObject(CRenderer::RG_NONBLEND, this);
 }
 

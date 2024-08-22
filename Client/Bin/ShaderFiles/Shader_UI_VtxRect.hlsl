@@ -57,8 +57,8 @@ PS_OUT PS_MAIN(PS_IN In)
     if (Out.vColor.a <= 0.1f)
         discard;
     
-    if (In.vTexcoord.x > g_Ratio)
-        Out.vColor.gb = Out.vColor.r;
+    if (In.vTexcoord.x >= g_Ratio)
+        Out.vColor.rgb = float3(0.5f, 0.5f, 0.5f);
         
     return Out;
 }

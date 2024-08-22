@@ -39,9 +39,6 @@ HRESULT CSkill_BoomGun_Bullet::Initialize(void* pArg)
 
     m_pTransformCom->Set_Scaled(3.f, 0.25f, 0.25f);
 
-    //네비게이션 메쉬 밖으로 나가면 delete? good 
-    Add_Collider();
-
     m_pNavigationCom->Init_Index(m_pTransformCom);
     return S_OK;
 }
@@ -63,18 +60,8 @@ void CSkill_BoomGun_Bullet::Update(_float fTimeDelta)
 }
 
 void CSkill_BoomGun_Bullet::Late_Update(_float fTimeDelta)
-{
-    list<CGameObject*> ObjList = m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Monster"));
-
-    for (auto ColliderIter : HeadColliderList)
-    {
-        if (m_pColliderCom->isCollision(ColliderIter))
-        {
-            dynamic_cast<CMonster*>(ColliderIter->Get_Object())->Set_Damage(-5.f);
-            m_bDead = true;
-        }
-    }
-
+{   
+    __super::Late_Update(fTimeDelta);
     m_pGameInstance->Add_RenderObject(CRenderer::RG_BLEND, this);
 }
 
@@ -159,22 +146,6 @@ void CSkill_BoomGun_Bullet::Destroy(_float fTimeDelta, _vector vPos)
 
     if (!m_pNavigationCom->is_Move(vPos))
         m_bDead = true;
-}
-
-void CSkill_BoomGun_Bullet::Add_Collider()
-{
-    int i = 0;
-    while (true)
-    {
-        CCollider* pTargetCollider = dynamic_cast<CCollider*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Monster"), TEXT("Com_Collider_Sphere"), i));
-
-        if (pTargetCollider == nullptr)
-            return;
-
-        HeadColliderList.push_back(pTargetCollider);
-
-        i++;
-    }
 }
 
 CSkill_BoomGun_Bullet* CSkill_BoomGun_Bullet::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)

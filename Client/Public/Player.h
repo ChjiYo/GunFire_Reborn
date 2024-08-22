@@ -20,6 +20,7 @@ class CPlayer final : public CContainerObject
 public:
 	enum PARTID {  PART_WEAPON, PART_EFFECT, PART_END };
 	enum WEAPONID { PISTOL , SNIPER ,SHURIKEN ,BOOMGUN, WEAPON_END };
+	enum SLOTID {ONE , TWO , THREE , SLOT_END};
 public:
 	typedef struct :public CContainerObject::CONTAINEROBJECT_DESC
 	{
@@ -56,7 +57,27 @@ public:
 		m_fShieldRecoveryTimer = 0.f;
 	}
 
-	WEAPONID	Get_WeaponID() { return m_eWeaponID; }
+	WEAPONID	Get_WeaponID() { 
+
+		int a = 10;
+		return m_eWeaponID; 
+	}
+	void ChangeWeapon(WEAPONID eWeaponID)
+	{
+		m_bWeaponChange = true;
+
+		for (int i = 0; i < 2; ++i)
+		{
+			if (m_eWeaponIDArray[i] == WEAPON_END)
+			{
+				m_eWeaponIDArray[i] = eWeaponID;
+				m_eWeaponID = m_eWeaponIDArray[i];
+				return;
+			}
+		}
+		m_eWeaponIDArray[m_eSlotID] = eWeaponID;
+		m_eWeaponID = m_eWeaponIDArray[m_eSlotID];
+	}
 
 private:
 	void ShieldRecovery();
@@ -77,7 +98,8 @@ private:
 	_float				m_fDashTimer = { 0.f };
 	_float				m_fInvincibleTime = { 0.f };
 
-	WEAPONID			m_eWeaponIDArray[3] = {};
+	WEAPONID			m_eWeaponIDArray[3] = { WEAPON_END ,WEAPON_END ,PISTOL };
+	SLOTID				m_eSlotID = { SLOT_END };
 
 private:
 	HRESULT Ready_Components();
