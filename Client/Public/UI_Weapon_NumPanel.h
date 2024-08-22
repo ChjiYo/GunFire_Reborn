@@ -24,6 +24,7 @@ private:
 
 private:
 	_uint m_iCloneIndex = {};
+	wstring m_strNum = {};
 
 public:
 	static CUI_Weapon_NumPanel* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);

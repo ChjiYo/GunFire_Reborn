@@ -76,19 +76,23 @@ void CPlayer::Priority_Update(_float fTimeDelta)
         m_fShieldRecoveryTimer = 0.f;
 
     m_fInvincibleTime += fTimeDelta;
-    
-    Player_Weapon_Change();
 
     __super::Priority_Update(fTimeDelta);
 }
 
 void CPlayer::Update(_float fTimeDelta)
 {
+    __super::Update(fTimeDelta);
+
     m_pColliderCom->Update(m_pTransformCom->Get_WorldMatrix());
 
     ShieldRecovery();
-        
-    __super::Update(fTimeDelta);
+    Player_Weapon_Change();
+
+    _vector vPos = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
+    int a = 10;
+ 
+
 }
 
 void CPlayer::Late_Update(_float fTimeDelta)
@@ -195,33 +199,32 @@ void CPlayer::Player_Move(_float fTimeDelta)
     {
         m_pTransformCom->Go_Left(fTimeDelta, m_pNavigationCom, isMove);
 
-        if (m_pGameInstance->Key_Down(VK_LSHIFT))
-            m_pTransformCom->Go_Left(fTimeDelta * 15.5f, m_pNavigationCom, isMove);
+        //if (m_pGameInstance->Key_Down(VK_LSHIFT))
+        //    m_pTransformCom->Go_Left(fTimeDelta  * 15.5f, m_pNavigationCom, isMove);
     }
 
     if (m_pGameInstance->Get_DIKeyState(DIK_D) & 0x80)
     {
         m_pTransformCom->Go_Right(fTimeDelta, m_pNavigationCom, isMove);
 
-        if (m_pGameInstance->Key_Down(VK_LSHIFT))
-            m_pTransformCom->Go_Right(fTimeDelta * 15.5f, m_pNavigationCom, isMove);
+        //if (m_pGameInstance->Key_Down(VK_LSHIFT))
+        //    m_pTransformCom->Go_Right(fTimeDelta * 15.5f, m_pNavigationCom, isMove);
     }
 
     if (m_pGameInstance->Get_DIKeyState(DIK_W) & 0x80)
     {
         m_pTransformCom->Go_StraightY(fTimeDelta, m_pNavigationCom, isMove);
 
-        if (m_pGameInstance->Key_Down(VK_LSHIFT))
-            m_pTransformCom->Go_StraightY(fTimeDelta * 15.5f, m_pNavigationCom, isMove);
-        
+        //if (m_pGameInstance->Key_Down(VK_LSHIFT))
+        //    m_pTransformCom->Go_StraightY(fTimeDelta * 15.5f, m_pNavigationCom, isMove);      
     }
 
     if (m_pGameInstance->Get_DIKeyState(DIK_S) & 0x80)
     {
         m_pTransformCom->Go_BackwardY(fTimeDelta, m_pNavigationCom, isMove);
 
-        if (m_pGameInstance->Key_Down(VK_LSHIFT))
-            m_pTransformCom->Go_BackwardY(fTimeDelta * 15.5f, m_pNavigationCom, isMove);
+        //if (m_pGameInstance->Key_Down(VK_LSHIFT))
+        //    m_pTransformCom->Go_BackwardY(fTimeDelta * 15.5f, m_pNavigationCom, isMove);
     }
 
     if (m_pGameInstance->Key_Down('1'))
@@ -254,6 +257,12 @@ void CPlayer::Player_Move(_float fTimeDelta)
     {
         m_eWeaponID = BOOMGUN;
         m_bWeaponChange = true;
+    }
+
+    if (m_pGameInstance->Key_Down(VK_LSHIFT) || m_bDash)
+    {
+        m_bDash = true;
+        Dash(fTimeDelta);
     }
 }
 
@@ -323,6 +332,13 @@ void CPlayer::Player_Weapon_Change()
         
         m_bWeaponChange = false;
     }
+}
+
+void CPlayer::Dash(_float fTimeDelta)
+{
+    //m_pTransformCom->Dash(fTimeDelta);
+    m_pTransformCom->Go_StraightY(fTimeDelta);
+
 }
 
 CPlayer* CPlayer::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)

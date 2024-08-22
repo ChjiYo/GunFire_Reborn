@@ -35,7 +35,7 @@ HRESULT CUI_Mon_BarPanel::Initialize(void* pArg)
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
-	m_pTransformCom->Set_Scaled(2.f , 0.5f, 1.f);
+	m_pTransformCom->Set_Scaled(3.f , 0.5f, 1.f);
 	return S_OK;
 }
 

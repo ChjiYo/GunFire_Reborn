@@ -50,15 +50,11 @@ void CUI_Mon_HpBar::Priority_Update(_float fTimeDelta)
 	XMStoreFloat3(&vPos , pCamTransform->Get_State(CTransform::STATE_POSITION));
 
 	m_pTransformCom->LookAt({ vPos.x ,3.f,  vPos.z , 1.f});
-	m_pTransformCom->Radian_Turn({ 0.f,  1.f, 0.f }, XMConvertToRadians(180.f));
 }
 
 void CUI_Mon_HpBar::Update(_float fTimeDelta)
 {
 	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetY(m_pOriginTransform->Get_State(CTransform::STATE_POSITION), 3.f));
-
-	_float3 vPos = {};
-	XMStoreFloat3(&vPos, m_pOriginTransform->Get_State(CTransform::STATE_POSITION));
 
 	fHpRatio = static_cast<float>(m_pMonster->Get_MonDesc().iHp) / static_cast<float>(m_pMonster->Get_MonDesc().iMaxHp);
 
@@ -144,7 +140,7 @@ CGameObject* CUI_Mon_HpBar::Clone(void* pArg)
 	return pInstatnce;
 }
 
-void CUI_Mon_HpBar::Free()
+void CUI_Mon_HpBar::Free() 
 {
 	Safe_Release(m_pOriginTransform);
 	Safe_Release(m_pMonster);

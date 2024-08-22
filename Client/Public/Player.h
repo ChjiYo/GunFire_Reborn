@@ -101,6 +101,8 @@ private:
 	WEAPONID			m_eWeaponIDArray[3] = { WEAPON_END ,WEAPON_END ,PISTOL };
 	SLOTID				m_eSlotID = { SLOT_END };
 
+	_bool				m_bDash = { false };
+	
 private:
 	HRESULT Ready_Components();
 	HRESULT Ready_State();
@@ -110,6 +112,7 @@ private:
 	void Player_Move(_float fTimeDelta);
 	void Player_Jump(_float fTimeDelta);
 	void Player_Weapon_Change();
+	void Dash(_float fTimeDelta);
 
 public:
 	static CPlayer* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);

@@ -34,27 +34,25 @@ HRESULT CUI_Weapon_NumPanel::Initialize(void* pArg)
 	switch (m_iCloneIndex)
 	{
 	case 0:
-		__super::Set_UI_Setting(154.f, 70.f, 1300.f, 850.f);
+		__super::Set_UI_Setting(154.f, 70.f, 1300.f + m_iCloneIndex * 100.f, 850.f);
 		break;
 
 	case 1:
-		__super::Set_UI_Setting(154.f, 70.f, 1400.f, 850.f);
+		__super::Set_UI_Setting(154.f, 70.f, 1300.f + m_iCloneIndex * 100.f, 850.f);
 		break;
 
 	case 2:
-		__super::Set_UI_Setting(154.f, 70.f, 1500.f, 850.f);
+		__super::Set_UI_Setting(154.f, 70.f, 1300.f + m_iCloneIndex * 100.f, 850.f);
 		break;
 
 	}
-
-
-	
 
 	return S_OK;
 }
 
 void CUI_Weapon_NumPanel::Priority_Update(_float fTimeDelta)
 {
+	m_strNum = to_wstring(m_iCloneIndex + 1);
 }
 
 void CUI_Weapon_NumPanel::Update(_float fTimeDelta)
@@ -82,12 +80,8 @@ HRESULT CUI_Weapon_NumPanel::Render()
 
 	if (FAILED(m_pVIBufferCom->Render()))
 		return E_FAIL;
-
-	//wstring strNumBullet = to_wstring(m_iNumBullet);
-	//wstring strNumMaxBullet = to_wstring(m_iNumMaxBullet);
-	//
-	//m_pGameInstance->Draw_Font(TEXT("Font_Nexon"), strNumBullet, _float2(1300.f ,  800.f), XMVectorSet(0.7f, 1.f, 0.3f, 1.f), XMConvertToRadians(-A.f), 0.8f);
-	//m_pGameInstance->Draw_Font(TEXT("Font_Nexon"), TEXT("00"), _float2(1450.f, 800.f), XMVectorSet(0.7f, 1.f, 0.3f, 1.f), XMConvertToRadians(-5.f), 0.8f);
+	
+	m_pGameInstance->Draw_Font(TEXT("Font_Nexon"), m_strNum, _float2(1290.f + m_iCloneIndex * 100.f, 840.f), XMVectorSet(1.f, 1.f, 1.0f, 1.f), XMConvertToRadians(-5.f), 0.8f);
 
 	return S_OK;
 }
