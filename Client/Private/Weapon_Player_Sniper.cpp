@@ -144,7 +144,19 @@ void CWeapon_Player_Sniper::Key_State(_float fTimeDelta)
         m_fZoomTimer += fTimeDelta;
 
         if (!m_bZoomCheck)
+        {
             m_pModelCom->SetUp_Animation(4, false);
+
+            
+            CUI_Sniper_Hair::SNIPER_HAIR_DESC SniperDesc = {};
+
+            for (int i = 0; i < 4; ++i)
+            {
+                SniperDesc.iNum = i;
+                m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_SniperCrossHair"), TEXT("Layer_UI_Sniper"),&SniperDesc);
+            }
+            m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_SniperRing"), TEXT("Layer_UI_Sniper"), &SniperDesc);
+        }
 
         m_bZoomCheck = true;
 
@@ -172,6 +184,10 @@ void CWeapon_Player_Sniper::Key_State(_float fTimeDelta)
             m_fZoomTimer = 0.f;
 
             m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 0.25f , -0.15f , -0.15f , 1.f });
+
+            for (auto& iter : m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_UI_Sniper")))
+                iter->Set_Dead();
+            
         }
     }
   
@@ -185,7 +201,7 @@ void CWeapon_Player_Sniper::Create_Bullet()
     Desc.fSpeedPerSec = 5.f;
     Desc.fRotationPerSec = XMConvertToRadians(90.0f);
 
-    m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Skill_Pistol_Bullet"), TEXT("Layer_Skill_Player_Bullet"), &Desc);
+    m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Skill_Sniper_Bullet"), TEXT("Layer_Skill_Player_Bullet"), &Desc);
 }
 
 void CWeapon_Player_Sniper::Zoom()

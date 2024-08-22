@@ -39,6 +39,7 @@
 #include "Weapon_Player_BoomGun.h"
 
 #include "Skill_Pistol_Bullet.h"
+#include "Skill_Sniper_Bullet.h"
 #include "Skill_Shuriken_Bullet.h"
 #include "Skill_BoomGun_Bullet.h"
 
@@ -670,6 +671,11 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 	/* For.Prototype_GameObject_Skill_BoomGun_Bullet */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Skill_BoomGun_Bullet"),
 		CSkill_BoomGun_Bullet::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Skill_Sniper_Bullet */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Skill_Sniper_Bullet"),
+		CSkill_Sniper_Bullet::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
 	/* For.Prototype_GameObject_Skill_Shuriken_Bullet */

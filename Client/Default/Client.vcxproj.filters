@@ -430,6 +430,18 @@
     <Filter Include="02.GameObjects\UI\UI_Cross_Hair\UI_Sniper_Ring">
       <UniqueIdentifier>{025c030c-35f9-4fb7-b5dc-824ac62b1eb6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Dragon">
+      <UniqueIdentifier>{514cef00-d2e5-418e-bfcc-a0a4ae1d77cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Dragon\Default">
+      <UniqueIdentifier>{fab01da6-15b7-4cd6-bdcd-e6d969f35246}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Dragon\Head">
+      <UniqueIdentifier>{78da04eb-df05-4c78-bfb6-c1ec6178eef7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Dragon\Tail">
+      <UniqueIdentifier>{6a5fd7f4-77a6-41a0-bf0e-94d1c3583cef}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -822,6 +834,36 @@
     <ClInclude Include="..\public\UI_Sniper_Ring.h">
       <Filter>02.GameObjects\UI\UI_Cross_Hair\UI_Sniper_Ring</Filter>
     </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Dragon_Attack.h">
+      <Filter>03.State_Machine\FSM_Monster\Dragon\Default</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Dragon_Death.h">
+      <Filter>03.State_Machine\FSM_Monster\Dragon\Default</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\FSM_Mon_Dragon_Idle.h">
+      <Filter>03.State_Machine\FSM_Monster\Dragon\Default</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_DragonHead_Attack.h">
+      <Filter>03.State_Machine\FSM_Monster\Dragon\Head</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_DragonHead_Idle.h">
+      <Filter>03.State_Machine\FSM_Monster\Dragon\Head</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_DragonHead_In.h">
+      <Filter>03.State_Machine\FSM_Monster\Dragon\Head</Filter>
+    </ClInclude>
+    <ClInclude Include="FSM_Mon_DragonTail_Attack.h">
+      <Filter>03.State_Machine\FSM_Monster\Dragon\Tail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_DragonTail_Idle.h">
+      <Filter>03.State_Machine\FSM_Monster\Dragon\Tail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_DragonTail_In.h">
+      <Filter>03.State_Machine\FSM_Monster\Dragon\Tail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_DragonTail_Out.h">
+      <Filter>03.State_Machine\FSM_Monster\Dragon\Tail</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -1198,6 +1240,36 @@
     </ClCompile>
     <ClCompile Include="..\private\UI_Sniper_Ring.cpp">
       <Filter>02.GameObjects\UI\UI_Cross_Hair\UI_Sniper_Ring</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Dragon_Attack.cpp">
+      <Filter>03.State_Machine\FSM_Monster\Dragon\Default</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Dragon_Death.cpp">
+      <Filter>03.State_Machine\FSM_Monster\Dragon\Default</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\FSM_Mon_Dragon_Idle.cpp">
+      <Filter>03.State_Machine\FSM_Monster\Dragon\Default</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_DragonHead_Attack.cpp">
+      <Filter>03.State_Machine\FSM_Monster\Dragon\Head</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_DragonHead_Idle.cpp">
+      <Filter>03.State_Machine\FSM_Monster\Dragon\Head</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_DragonHead_In.cpp">
+      <Filter>03.State_Machine\FSM_Monster\Dragon\Head</Filter>
+    </ClCompile>
+    <ClCompile Include="FSM_Mon_DragonTail_Attack.cpp">
+      <Filter>03.State_Machine\FSM_Monster\Dragon\Tail</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_DragonTail_Idle.cpp">
+      <Filter>03.State_Machine\FSM_Monster\Dragon\Tail</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_DragonTail_In.cpp">
+      <Filter>03.State_Machine\FSM_Monster\Dragon\Tail</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_DragonTail_Out.cpp">
+      <Filter>03.State_Machine\FSM_Monster\Dragon\Tail</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

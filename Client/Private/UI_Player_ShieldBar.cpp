@@ -74,6 +74,8 @@ HRESULT CUI_Player_ShieldBar::Render()
 	if (FAILED(__super::Bind_ShaderResources()))
 		return E_FAIL;
 
+
+
 	if (FAILED(m_pTextureCom->Bind_ShaderResource(m_pShaderCom, "g_Texture", 0)))
 		return E_FAIL;
 

@@ -26,24 +26,53 @@ HRESULT CUI_Sniper_Hair::Initialize(void* pArg)
 	if (FAILED(__super::Initialize(pArg)))
 		return E_FAIL;
 
+
+	SNIPER_HAIR_DESC* Desc = static_cast<SNIPER_HAIR_DESC*>(pArg);
+	_uint iCnt = Desc->iNum;
+
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
 	m_fMidPosX = Client::g_iWinSizeX * 0.5f;
 	m_fMidPosY = Client::g_iWinSizeY * 0.5f;
 
-	m_fAddPos = 24.f;
+	m_fAddPos = 200.f;
+	//640  360
+	switch (iCnt)
+	{
+	case 0:
+		//Right
+		__super::Set_UI_Setting(110.f, 155.f, m_fMidPosX + m_fAddPos, m_fMidPosY + m_fAddPos);
+		m_pTransformCom->Rotation({ 0.f, 0.f, 1.f }, XMConvertToRadians(180.f));
+		m_iTextureIndex = 0;
+		break;
 
-	__super::Set_UI_Setting(24.f, 7.f, m_fMidPosX + m_fAddPos, m_fMidPosY);
-	m_pTransformCom->Rotation({ 0.f, 0.f, 1.f }, XMConvertToRadians(0.f));
+	case 1:
+		//Left
+		__super::Set_UI_Setting(110.f, 155.f, m_fMidPosX - m_fAddPos, m_fMidPosY - m_fAddPos);
+		m_pTransformCom->Rotation({ 0.f, 0.f, 1.f }, XMConvertToRadians(00.f));
+		m_iTextureIndex = 0;
+		break;
 
+	case 2:
+		//Up
+		__super::Set_UI_Setting(110.f, 155.f, m_fMidPosX - m_fAddPos, m_fMidPosY + m_fAddPos);
+		m_pTransformCom->Rotation({ 0.f, 0.f, 1.f }, XMConvertToRadians(180.f));
+		m_iTextureIndex = 1;
+		break;
+
+	case 3:
+		//Down
+		__super::Set_UI_Setting(110.f, 155.f, m_fMidPosX + m_fAddPos, m_fMidPosY - m_fAddPos);
+		m_pTransformCom->Rotation({ 0.f, 0.f, 1.f }, XMConvertToRadians(0.f));
+		m_iTextureIndex = 1;
+		break;
+	}
 	return S_OK;
 }
 
 void CUI_Sniper_Hair::Priority_Update(_float fTimeDelta)
 {
-	if (GetAsyncKeyState(VK_LBUTTON) & 0x8000)
-		m_bMoveStop = false;
 
 }
 
@@ -61,13 +90,13 @@ HRESULT CUI_Sniper_Hair::Render()
 	if (FAILED(__super::Bind_ShaderResources()))
 		return E_FAIL;
 
-	for (int i = 1; i <= 4; ++i)
+	/*for (int i = 1; i <= 4; ++i)
 	{
 		if (FAILED(m_pShaderCom->Bind_RawValue("g_Num", &i, sizeof(_uint))))
 			return E_FAIL;
-	}
+	}*/
 
-	if (FAILED(m_pTextureCom->Bind_ShaderResource(m_pShaderCom, "g_Texture", 0)))
+	if (FAILED(m_pTextureCom->Bind_ShaderResource(m_pShaderCom, "g_Texture", m_iTextureIndex)))
 		return E_FAIL;
 
 	if (FAILED(m_pShaderCom->Begin(0)))

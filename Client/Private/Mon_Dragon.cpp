@@ -67,14 +67,7 @@ void CMon_Dragon::Priority_Update(_float fTimeDelta)
 
 void CMon_Dragon::Update(_float fTimeDelta)
 {
-	//if (GetKeyState(VK_LBUTTON) & 0x8000)
-	//{
-	//	_bool		isPick = { false };
-	//	_float4		vPickedPos = m_pGameInstance->Picked_Position(&isPick);
-	//
-	//	if (true == isPick)
-	//		m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMLoadFloat4(&vPickedPos));
-	//}
+
 	m_pColliderCom[COLL_AABB]->Update(m_pTransformCom->Get_WorldMatrix());
 
 	Destroy();
@@ -89,6 +82,18 @@ void CMon_Dragon::Late_Update(_float fTimeDelta)
 	m_pGameInstance->Add_RenderObject(CRenderer::RG_NONBLEND, this);
 
 	//m_pStateCom->Late_Update(fTimeDelta);
+
+	if (m_pGameInstance->Key_Down(VK_UP))
+	{
+		m_iAnimFrame++;
+		m_pModelCom->SetUp_Animation(m_iAnimFrame, true);
+	}
+
+	if (m_pGameInstance->Key_Down(VK_DOWN))
+	{
+		m_iAnimFrame--;
+		m_pModelCom->SetUp_Animation(m_iAnimFrame, true);
+	}
 
 #ifdef _DEBUG
 	m_pGameInstance->Add_DebugComponent(m_pColliderCom[COLL_AABB]);
@@ -117,6 +122,9 @@ HRESULT CMon_Dragon::Render()
 			return E_FAIL;
 	}
 
+	wstring m_strMaxHp = to_wstring(m_iAnimFrame);
+	m_pGameInstance->Draw_Font(TEXT("Font_Nexon"), m_strMaxHp, _float2(1200.f, 100.f), XMVectorSet(0.7f, 1.f, 0.3f, 1.f), XMConvertToRadians(-5.f), 0.8f);
+
 	return S_OK;
 }
 
@@ -134,9 +142,22 @@ HRESULT CMon_Dragon::Ready_State()
 	Desc.pNavigation = m_pNavigationCom;
 	Desc.pModel = m_pModelCom;
 
-	//m_pStateCom->Add_State(CFSM_Mon_Bug_Idle::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Bug_State_Idle"));
-	//m_pStateCom->Add_State(CFSM_Mon_Bug_Run::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Bug_State_Run"));
-	//m_pStateCom->Add_State(CFSM_Mon_Bug_Attack::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Bug_State_Attack"));
+	m_pStateCom->Add_State(CFSM_Mon_Bug_Idle::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Dragon_State_Idle"));
+	m_pStateCom->Add_State(CFSM_Mon_Bug_Run::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Dragon_State_Idle"));
+	m_pStateCom->Add_State(CFSM_Mon_Bug_Attack::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Dragon_State_Idle"));
+
+	m_pStateCom->Add_State(CFSM_Mon_Bug_Idle::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Bug_State_Idle"));
+	m_pStateCom->Add_State(CFSM_Mon_Bug_Run::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Bug_State_Run"));
+	m_pStateCom->Add_State(CFSM_Mon_Bug_Attack::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Bug_State_Attack"));
+
+	m_pStateCom->Add_State(CFSM_Mon_Bug_Idle::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Bug_State_Idle"));
+	m_pStateCom->Add_State(CFSM_Mon_Bug_Run::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Bug_State_Run"));
+	m_pStateCom->Add_State(CFSM_Mon_Bug_Attack::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Bug_State_Attack"));
+
+	m_pStateCom->Add_State(CFSM_Mon_Bug_Idle::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Bug_State_Idle"));
+	m_pStateCom->Add_State(CFSM_Mon_Bug_Run::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Bug_State_Run"));
+	m_pStateCom->Add_State(CFSM_Mon_Bug_Attack::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Bug_State_Attack"));
+
 
 	return S_OK;
 }

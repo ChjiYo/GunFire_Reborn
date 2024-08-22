@@ -29,45 +29,14 @@ HRESULT CUI_Sniper_Ring::Initialize(void* pArg)
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
-	m_fMidPosX = Client::g_iWinSizeX * 0.5f;
-	m_fMidPosY = Client::g_iWinSizeY * 0.5f;
+	__super::Set_UI_Setting(900.f, 900.f, g_iWinSizeX * 0.5f, g_iWinSizeY * 0.5f);
 
-	m_fAddPos = 24.f;
-	//640  360
-	//switch (iCnt)
-	//{
-	//case 0:
-	//	//Right
-	//	__super::Set_UI_Setting(24.f, 7.f, m_fMidPosX + m_fAddPos, m_fMidPosY);
-	//	m_pTransformCom->Rotation({ 0.f, 0.f, 1.f }, XMConvertToRadians(0.f));
-	//	break;
-	//
-	//case 1:
-	//	//Left
-	//	__super::Set_UI_Setting(24.f, 7.f, m_fMidPosX - m_fAddPos, m_fMidPosY);
-	//	m_pTransformCom->Rotation({ 0.f, 0.f, 1.f }, XMConvertToRadians(180.f));
-	//	break;
-	//
-	//case 2:
-	//	//Up
-	//	__super::Set_UI_Setting(24.f, 7.f, m_fMidPosX, m_fMidPosY + m_fAddPos);
-	//	m_pTransformCom->Rotation({ 0.f, 0.f, 1.f }, XMConvertToRadians(270.f));
-	//	break;
-	//
-	//case 3:
-	//	//Down
-	//	__super::Set_UI_Setting(24.f, 7.f, m_fMidPosX, m_fMidPosY - m_fAddPos);
-	//	m_pTransformCom->Rotation({ 0.f, 0.f, 1.f }, XMConvertToRadians(90.f));
-	//	break;
-	//}
 	return S_OK;
 }
 
 void CUI_Sniper_Ring::Priority_Update(_float fTimeDelta)
 {
-	if (GetAsyncKeyState(VK_LBUTTON) & 0x8000)
-		m_bMoveStop = false;
-
+	
 }
 
 void CUI_Sniper_Ring::Update(_float fTimeDelta)
@@ -105,7 +74,7 @@ HRESULT CUI_Sniper_Ring::Ready_Components()
 		return E_FAIL;
 
 	/* For.Com_Texture */
-	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Cross_Hair"),
+	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Sniper_Ring"),
 		TEXT("Com_Texture"), reinterpret_cast<CComponent**>(&m_pTextureCom))))
 		return E_FAIL;
 }

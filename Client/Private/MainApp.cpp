@@ -175,7 +175,7 @@ HRESULT CMainApp::Ready_Prototoype_Resource_ForStatic()
 
 	/* For.Prototype_Component_Texture_UI_Sniper_Hair */
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Sniper_Hair"),
-		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/CrossHair/Sniper.png")))))
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/CrossHair/Sniper%d.png"),2))))
 		return E_FAIL;
 
 	/* For.Prototype_Component_Texture_UI_Sniper_Ring*/

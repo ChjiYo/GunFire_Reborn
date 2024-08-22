@@ -29,12 +29,10 @@ private:
 	virtual HRESULT Ready_Components();
 
 private:
-	_float m_fMoveTimer = {};
-	_bool m_bMoveStop = { true };
-
 	_float  m_fMidPosX = {};
 	_float  m_fMidPosY = {};
 	_float	m_fAddPos = {};
+	_uint	m_iTextureIndex = { 0 };
 
 public:
 	static CUI_Sniper_Hair* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);

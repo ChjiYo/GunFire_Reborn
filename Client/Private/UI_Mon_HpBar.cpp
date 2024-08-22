@@ -72,22 +72,13 @@ void CUI_Mon_HpBar::Late_Update(_float fTimeDelta)
 
 HRESULT CUI_Mon_HpBar::Render()
 {
-	if (FAILED(m_pTransformCom->Bind_ShaderResource(m_pShaderCom, "g_WorldMatrix")))
-		return E_FAIL;
-
-	if (FAILED(m_pShaderCom->Bind_Matrix("g_ViewMatrix", &m_pGameInstance->Get_Transform_Float4x4(CPipeLine::D3DTS_VIEW))))
-		return E_FAIL;
-
-	if (FAILED(m_pShaderCom->Bind_Matrix("g_ProjMatrix", &m_pGameInstance->Get_Transform_Float4x4(CPipeLine::D3DTS_PROJ))))
-		return E_FAIL;
-
-	if (FAILED(m_pShaderCom->Bind_RawValue("g_Ratio", &fHpRatio,sizeof(_float))))
+	if(FAILED(Bind_ShaderResources()))
 		return E_FAIL;
 
 	if (FAILED(m_pTextureCom->Bind_ShaderResource(m_pShaderCom, "g_Texture", 0)))
 		return E_FAIL;
 
-	if (FAILED(m_pShaderCom->Begin(0)))
+	if (FAILED(m_pShaderCom->Begin(2)))
 		return E_FAIL;
 
 	if (FAILED(m_pVIBufferCom->Bind_Buffers()))
@@ -107,17 +98,7 @@ void CUI_Mon_HpBar::Destroy()
 
 HRESULT CUI_Mon_HpBar::Ready_Components()
 {
-	/*if (FAILED(__super::Ready_Components()))
-		return E_FAIL;*/
-
-		/* For.Com_VIBuffer */
-	if (FAILED(__super::Add_Component(LEVEL_STATIC, TEXT("Prototype_Component_VIBuffer_Rect"),
-		TEXT("Com_VIBuffer"), reinterpret_cast<CComponent**>(&m_pVIBufferCom))))
-		return E_FAIL;
-
-	/* For.Com_Shader */
-	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Shader_UI_VtxRect"),
-		TEXT("Com_Shader"), reinterpret_cast<CComponent**>(&m_pShaderCom))))
+	if (FAILED(__super::Ready_Components()))
 		return E_FAIL;
 
 	/* For.Com_Texture */
@@ -128,17 +109,11 @@ HRESULT CUI_Mon_HpBar::Ready_Components()
 
 HRESULT CUI_Mon_HpBar::Bind_ShaderResources()
 {
-	if (FAILED(m_pTransformCom->Bind_ShaderResource(m_pShaderCom, "g_WorldMatrix")))
+	if(FAILED(Bind_Perspective()))
 		return E_FAIL;
 
-	if (FAILED(m_pShaderCom->Bind_Matrix("g_ViewMatrix", &m_pGameInstance->Get_Transform_Float4x4(CPipeLine::D3DTS_VIEW))))
+	if (FAILED(m_pShaderCom->Bind_RawValue("g_Ratio", &fHpRatio,sizeof(_float))))
 		return E_FAIL;
-
-	if (FAILED(m_pShaderCom->Bind_Matrix("g_ProjMatrix", &m_pGameInstance->Get_Transform_Float4x4(CPipeLine::D3DTS_PROJ))))
-		return E_FAIL;
-
-	//if (FAILED(m_pShaderCom->Bind_RawValue("g_Ratio", &fHpRatio,sizeof(_float))))
-	//	return E_FAIL;
 
 	return S_OK;
 }

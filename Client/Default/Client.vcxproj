@@ -179,6 +179,15 @@
     <ClInclude Include="..\public\FSM_Mon_Bug_Attack.h" />
     <ClInclude Include="..\Public\FSM_Mon_Bug_Idle.h" />
     <ClInclude Include="..\public\FSM_Mon_Bug_Run.h" />
+    <ClInclude Include="..\public\FSM_Mon_DragonHead_Attack.h" />
+    <ClInclude Include="..\public\FSM_Mon_DragonHead_Idle.h" />
+    <ClInclude Include="..\public\FSM_Mon_DragonHead_In.h" />
+    <ClInclude Include="..\public\FSM_Mon_DragonTail_Idle.h" />
+    <ClInclude Include="..\public\FSM_Mon_DragonTail_In.h" />
+    <ClInclude Include="..\public\FSM_Mon_DragonTail_Out.h" />
+    <ClInclude Include="..\public\FSM_Mon_Dragon_Attack.h" />
+    <ClInclude Include="..\public\FSM_Mon_Dragon_Death.h" />
+    <ClInclude Include="..\Public\FSM_Mon_Dragon_Idle.h" />
     <ClInclude Include="..\public\FSM_Mon_Knight_Run.h" />
     <ClInclude Include="..\public\FSM_Mon_Knight_Attack.h" />
     <ClInclude Include="..\public\FSM_Mon_Knight_Hit.h" />
@@ -298,6 +307,7 @@
     <ClInclude Include="..\public\Weapon_Player_Shuriken.h" />
     <ClInclude Include="..\public\Weapon_Player_Sniper.h" />
     <ClInclude Include="Client.h" />
+    <ClInclude Include="FSM_Mon_DragonTail_Attack.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -313,6 +323,15 @@
     <ClCompile Include="..\private\FSM_Mon_Bug_Attack.cpp" />
     <ClCompile Include="..\Private\FSM_Mon_Bug_Idle.cpp" />
     <ClCompile Include="..\private\FSM_Mon_Bug_Run.cpp" />
+    <ClCompile Include="..\private\FSM_Mon_DragonHead_Attack.cpp" />
+    <ClCompile Include="..\private\FSM_Mon_DragonHead_Idle.cpp" />
+    <ClCompile Include="..\private\FSM_Mon_DragonHead_In.cpp" />
+    <ClCompile Include="..\private\FSM_Mon_DragonTail_Idle.cpp" />
+    <ClCompile Include="..\private\FSM_Mon_DragonTail_In.cpp" />
+    <ClCompile Include="..\private\FSM_Mon_DragonTail_Out.cpp" />
+    <ClCompile Include="..\private\FSM_Mon_Dragon_Attack.cpp" />
+    <ClCompile Include="..\private\FSM_Mon_Dragon_Death.cpp" />
+    <ClCompile Include="..\Private\FSM_Mon_Dragon_Idle.cpp" />
     <ClCompile Include="..\private\FSM_Mon_Knight_Run.cpp" />
     <ClCompile Include="..\private\FSM_Mon_Knight_Attack.cpp" />
     <ClCompile Include="..\private\FSM_Mon_Knight_Hit.cpp" />
@@ -431,6 +450,7 @@
     <ClCompile Include="..\Public\Imgui\imgui_tables.cpp" />
     <ClCompile Include="..\Public\Imgui\imgui_widgets.cpp" />
     <ClCompile Include="Client.cpp" />
+    <ClCompile Include="FSM_Mon_DragonTail_Attack.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
