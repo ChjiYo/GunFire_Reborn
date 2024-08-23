@@ -106,7 +106,11 @@ HRESULT CTool_Object::Setting_Tab()
 		{
 			if (m_pGameInstance->Key_Down(VK_LBUTTON))
 			{
-				pTerrain->Add_NaviMesh(PickingPos());
+				_bool		isPick = { false };
+				_float4		vPickedPos = m_pGameInstance->Picked_Position(&isPick);
+
+				if(vPickedPos.x > 0.f && vPickedPos.z > 0.f)
+					pTerrain->Add_NaviMesh({ vPickedPos.x , vPickedPos.y ,vPickedPos.z});
 			}
 		}
 

@@ -270,8 +270,8 @@ HRESULT CLevel_GamePlay::Ready_Layer_Monster(const _wstring & strLayerTag)
 	Desc.iMaxHp = 30.f;
 	Desc.iHp = 30.f;
 
-	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Mon_Dragon"), strLayerTag, &Desc)))
-			return E_FAIL;
+	//if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Mon_Dragon"), strLayerTag, &Desc)))
+	//		return E_FAIL;
 
 	//if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Mon_Archer"), strLayerTag, &Desc)))
 	//	return E_FAIL;
@@ -301,15 +301,15 @@ HRESULT CLevel_GamePlay::Ready_Layer_DecoObject(const _wstring& strLayerTag)
 
 	_uint m_iNumDeco = { 1 };
 
-	for (int i = 0; i < m_iNumDeco; ++i)
+	/*for (int i = 0; i < m_iNumDeco; ++i)
 	{
 		Desc.iNumDeco = i;
 
 		if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Door"), TEXT("Layer_Door"), &Desc)))
 			return E_FAIL;
-	}
+	}*/
 
-	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Wall_Stage2"), TEXT("Layer_Wall_Stage2"), &Desc)))
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Stair1"), TEXT("Layer_Wall_Stage2"), &Desc)))
 
 	return S_OK;
 }

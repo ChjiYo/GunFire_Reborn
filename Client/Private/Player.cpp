@@ -14,6 +14,7 @@
 #include "Monster.h"
 
 #include "Door.h"
+#include "Cell.h"
 
 CPlayer::CPlayer(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
     :CContainerObject{ pDevice  , pContext }
@@ -59,7 +60,7 @@ HRESULT CPlayer::Initialize(void* pArg)
     m_eWeaponID = PISTOL;
     m_eWeaponIDArray[2] = PISTOL;
 
-    m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 10.f , 1.3f , 10.f, 1.f });
+    m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 3.f , 1.3f , 3.f, 1.f });
     m_pNavigationCom->Init_Index(m_pTransformCom);
     
     return S_OK;
@@ -134,29 +135,6 @@ void CPlayer::ShieldRecovery()
     }
 }
 
-float CPlayer::CalculateYOnTriangle(XMVECTOR vPosA, XMVECTOR vPosB, XMVECTOR vPosC)
-{
-    _float fPosX = XMVectorGetX(m_pTransformCom->Get_State(CTransform::STATE_POSITION));
-    _float fPosZ = XMVectorGetZ(m_pTransformCom->Get_State(CTransform::STATE_POSITION));
-
-    XMVECTOR v1 = vPosB - vPosA;
-    XMVECTOR v2 = vPosC - vPosA;
-    XMVECTOR normal = XMVector3Cross(v1, v2);
-
-    // 평면 방정식의 계수 계산
-    float a = XMVectorGetX(normal);
-    float b = XMVectorGetY(normal);
-    float c = XMVectorGetZ(normal);
-
-    // 절편 d 계산
-    float d = -(a * XMVectorGetX(vPosA) + b * XMVectorGetY(vPosA) + c * XMVectorGetZ(vPosA));
-
-    // 주어진 x, z 위치에서 y 계산
-    float y = -(a * fPosX + c * fPosZ + d) / b;
-
-    return y;
-}
-
 HRESULT CPlayer::Ready_Components()
 {
     CNavigation::NAVIGATION_DESC		NavigationDesc{};
@@ -206,7 +184,7 @@ void CPlayer::Player_Move(_float fTimeDelta)
     _bool isMove = true;
 
     //if(!m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Door")).empty())
-        isMove = dynamic_cast<CDoor*>(m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Door")).back())->IsMove();
+       // isMove = dynamic_cast<CDoor*>(m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Door")).back())->IsMove();
 
     if (MouseMove = m_pGameInstance->Get_DIMouseMove(DIMM_X))
     {
@@ -291,26 +269,21 @@ void CPlayer::Player_Move(_float fTimeDelta)
 
 void CPlayer::Player_Jump(_float fTimeDelta)
 {
-    XMVECTOR vPosA = XMVectorSet(0.f, 0.f, 0.f, 0.f);
-    XMVECTOR vPosB = XMVectorSet(100.f, 100.f, 0.f, 0.f);
-    XMVECTOR vPosC = XMVectorSet(0.f, 100.f, 100.f, 0.f);
+    _float fHeight = m_pNavigationCom->Navi_Height(m_pTransformCom);
 
-    _float fHight = CalculateYOnTriangle(vPosA, vPosB, vPosC);
+    if (!m_bJump)
+        m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetY(m_pTransformCom->Get_State(CTransform::STATE_POSITION), fHeight + 1.3f));
     
-    m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetY(m_pTransformCom->Get_State(CTransform::STATE_POSITION), fHight));
-
-//(-Plane.a * vPosition.x - Plane.c * vPosition.z - Plane.d) / Plane.b;
-
-    //if (m_pGameInstance->Key_Down(VK_SPACE)|| m_bJump)
-    //{
-    //    m_pTransformCom->Go_Up(fTimeDelta);
-    //    m_bJump = true;
-    //}
-    //
-    //if (m_pTransformCom->Gravity(0.2f, 1.3f, fTimeDelta) && m_bJump)
-    //{
-    //    m_bJump = false;
-    //}
+    if (m_pGameInstance->Key_Down(VK_SPACE)|| m_bJump)
+    {
+        m_pTransformCom->Go_Up(fTimeDelta);
+        m_bJump = true;
+    }
+    
+    if (m_pTransformCom->Gravity(0.2f, fHeight + 1.3f, fTimeDelta) && m_bJump)
+    {
+        m_bJump = false;
+    }
 }
 
 void CPlayer::Player_Weapon_Change()
