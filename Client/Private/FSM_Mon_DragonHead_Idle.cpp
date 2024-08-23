@@ -32,33 +32,35 @@ HRESULT CFSM_Mon_DragonHead_Idle::Initialize(FSM_MON_DESC Desc)
 
 wstring CFSM_Mon_DragonHead_Idle::Priority_Update(_float fTimeDelta)
 {
-	m_fHitMotionTime += fTimeDelta;
+	m_fAttackDelay += fTimeDelta;
 
-	return TEXT("Monster_Knight_State_Hit");
+	return TEXT("Monster_DragonHead_State_Idle");
 }
 
 wstring CFSM_Mon_DragonHead_Idle::Update(_float fTimeDelta)
 {
-	return TEXT("Monster_Knight_State_Hit");
+	m_tDesc.pTransform->LookAt(m_pPlayerTransform->Get_State(CTransform::STATE_POSITION));
+
+	return TEXT("Monster_DragonHead_State_Idle");
 }
 
 wstring CFSM_Mon_DragonHead_Idle::Late_Update(_float fTimeDelta)
 {
-	if (m_fHitMotionTime >= m_tDesc.pModel->Get_Anim(4)->Get_Duration())
+	if (m_fAttackDelay >= 2.f)
 	{
-		return TEXT("Monster_Knight_State_Run");
+		m_fAttackDelay = 0.f;
+		return TEXT("Monster_DragonHead_State_Attack");
 	}
-	return TEXT("Monster_Knight_State_Hit");
+
+	return TEXT("Monster_DragonHead_State_Idle");
 }
 
 void CFSM_Mon_DragonHead_Idle::Enter()
 {
 	__super::Enter();
 
-	m_tDesc.pTransform->LookAt(m_pPlayerTransform->Get_State(CTransform::STATE_POSITION));
-
-	m_tDesc.pModel->SetUp_Animation(4, false);
-	m_strName = TEXT("Monster_Knight_State_Hit");
+	m_tDesc.pModel->SetUp_Animation(5, true);
+	m_strName = TEXT("Monster_DragonHead_State_Idle");
 }
 
 void CFSM_Mon_DragonHead_Idle::Exit()

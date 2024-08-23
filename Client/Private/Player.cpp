@@ -197,34 +197,34 @@ void CPlayer::Player_Move(_float fTimeDelta)
 
     if (m_pGameInstance->Get_DIKeyState(DIK_A) & 0x80)
     {
-        m_pTransformCom->Go_Left(fTimeDelta, m_pNavigationCom, isMove);
+        m_pTransformCom->Go_Left(fTimeDelta, m_pNavigationCom);
 
-        //if (m_pGameInstance->Key_Down(VK_LSHIFT))
-        //    m_pTransformCom->Go_Left(fTimeDelta  * 15.5f, m_pNavigationCom, isMove);
+        if (m_pGameInstance->Key_Down(VK_LSHIFT))
+            m_pTransformCom->Go_Left(fTimeDelta  * 15.5f, m_pNavigationCom);
     }
 
     if (m_pGameInstance->Get_DIKeyState(DIK_D) & 0x80)
     {
-        m_pTransformCom->Go_Right(fTimeDelta, m_pNavigationCom, isMove);
+        m_pTransformCom->Go_Right(fTimeDelta, m_pNavigationCom);
 
-        //if (m_pGameInstance->Key_Down(VK_LSHIFT))
-        //    m_pTransformCom->Go_Right(fTimeDelta * 15.5f, m_pNavigationCom, isMove);
+        if (m_pGameInstance->Key_Down(VK_LSHIFT))
+            m_pTransformCom->Go_Right(fTimeDelta * 15.5f, m_pNavigationCom);
     }
 
     if (m_pGameInstance->Get_DIKeyState(DIK_W) & 0x80)
     {
-        m_pTransformCom->Go_StraightY(fTimeDelta, m_pNavigationCom, isMove);
+        m_pTransformCom->Go_StraightY(fTimeDelta, m_pNavigationCom);
 
-        //if (m_pGameInstance->Key_Down(VK_LSHIFT))
-        //    m_pTransformCom->Go_StraightY(fTimeDelta * 15.5f, m_pNavigationCom, isMove);      
+        if (m_pGameInstance->Key_Down(VK_LSHIFT))
+            m_pTransformCom->Go_StraightY(fTimeDelta * 15.5f, m_pNavigationCom);      
     }
 
     if (m_pGameInstance->Get_DIKeyState(DIK_S) & 0x80)
     {
-        m_pTransformCom->Go_BackwardY(fTimeDelta, m_pNavigationCom, isMove);
+        m_pTransformCom->Go_BackwardY(fTimeDelta, m_pNavigationCom);
 
-        //if (m_pGameInstance->Key_Down(VK_LSHIFT))
-        //    m_pTransformCom->Go_BackwardY(fTimeDelta * 15.5f, m_pNavigationCom, isMove);
+        if (m_pGameInstance->Key_Down(VK_LSHIFT))
+            m_pTransformCom->Go_BackwardY(fTimeDelta * 15.5f, m_pNavigationCom);
     }
 
     if (m_pGameInstance->Key_Down('1'))
@@ -259,11 +259,11 @@ void CPlayer::Player_Move(_float fTimeDelta)
         m_bWeaponChange = true;
     }
 
-    if (m_pGameInstance->Key_Down(VK_LSHIFT) || m_bDash)
-    {
-        m_bDash = true;
-        Dash(fTimeDelta);
-    }
+    //if (m_pGameInstance->Key_Down(VK_LSHIFT) || m_bDash)
+    //{
+    //    m_bDash = true;
+    //    Dash(fTimeDelta);
+    //}
 }
 
 void CPlayer::Player_Jump(_float fTimeDelta)

@@ -22,8 +22,8 @@ public:
 	virtual void Exit()	 override;
 
 private:
-	_float m_fHitMotionTime = { 0.f };
-
+	_float m_fAttackEndTimer = { 0.f };
+	_float m_fDegree = { 0.f };
 public:
 	static CFSM_Mon_DragonHead_Attack* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, FSM_MON_DESC Desc);
 	virtual void Free() override;

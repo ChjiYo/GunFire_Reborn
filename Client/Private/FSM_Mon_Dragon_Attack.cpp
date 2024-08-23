@@ -32,7 +32,7 @@ HRESULT CFSM_Mon_Dragon_Attack::Initialize(FSM_MON_DESC Desc)
 
 wstring CFSM_Mon_Dragon_Attack::Priority_Update(_float fTimeDelta)
 {
-	m_fHitMotionTime += fTimeDelta;
+	//m_fHitMotionTime += fTimeDelta;
 
 	return TEXT("Monster_Knight_State_Hit");
 }
@@ -44,10 +44,7 @@ wstring CFSM_Mon_Dragon_Attack::Update(_float fTimeDelta)
 
 wstring CFSM_Mon_Dragon_Attack::Late_Update(_float fTimeDelta)
 {
-	if (m_fHitMotionTime >= m_tDesc.pModel->Get_Anim(4)->Get_Duration())
-	{
-		return TEXT("Monster_Knight_State_Run");
-	}
+
 	return TEXT("Monster_Knight_State_Hit");
 }
 

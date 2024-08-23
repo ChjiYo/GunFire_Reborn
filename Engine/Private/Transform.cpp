@@ -253,22 +253,22 @@ _float CTransform::Look_Degree()
 	return fAngle;
 }
 
-_float CTransform::Up_Degree()
+_float CTransform::Target_Look_Degree(const _vector& vTargetPos)
 {
-	_vector		vUp = Get_State(STATE_UP);
-	XMVector3Normalize(vUp);
+	_vector vPosition = Get_State(STATE_POSITION);
+	_vector vLook = vTargetPos - vPosition;
 
-	_vector		vAxis{ 0.f, 1.f, 0.f };
+	vLook = XMVector3Normalize(vLook);
 
-	_vector vAngle = XMVector3Dot(vUp, vAxis);
+	_vector	vAxis{ 0.f, 0.f, 1.f };
+
+	_vector vAngle =  XMVector3Dot(vLook, vAxis);
 	_float fAngle = {};
 	XMStoreFloat(&fAngle, vAngle);
 	fAngle = acos(fAngle);
 
-	_float3 vStoreUp = {};
-	XMStoreFloat3(&vStoreUp, vUp);
-	if (vStoreUp.x < 0.f)
-		fAngle = XM_2PI - fAngle;
+	if (XMVectorGetX(vLook) < 0.f)
+		fAngle = 3.14f * 2 - fAngle;
 
 	fAngle = XMConvertToDegrees(fAngle);
 

@@ -32,33 +32,39 @@ HRESULT CFSM_Mon_DragonHead_Attack::Initialize(FSM_MON_DESC Desc)
 
 wstring CFSM_Mon_DragonHead_Attack::Priority_Update(_float fTimeDelta)
 {
-	m_fHitMotionTime += fTimeDelta;
-
-	return TEXT("Monster_Knight_State_Hit");
+	m_fAttackEndTimer += fTimeDelta;
+	
+	return TEXT("Monster_DragonHead_State_Attack");
 }
 
 wstring CFSM_Mon_DragonHead_Attack::Update(_float fTimeDelta)
 {
-	return TEXT("Monster_Knight_State_Hit");
+	if(m_tDesc.pModel->Get_Anim(11)->Get_Duration() >= m_fAttackEndTimer)
+		m_tDesc.pTransform->Turn({0.f, 1.f ,0.f}, fTimeDelta);
+	else
+	{
+		m_fAttackEndTimer = 0.f;
+	}
+
+	return TEXT("Monster_DragonHead_State_Attack");
 }
 
 wstring CFSM_Mon_DragonHead_Attack::Late_Update(_float fTimeDelta)
 {
-	if (m_fHitMotionTime >= m_tDesc.pModel->Get_Anim(4)->Get_Duration())
-	{
-		return TEXT("Monster_Knight_State_Run");
-	}
-	return TEXT("Monster_Knight_State_Hit");
+
+
+	return TEXT("Monster_DragonHead_State_Attack");
 }
 
 void CFSM_Mon_DragonHead_Attack::Enter()
 {
 	__super::Enter();
 
-	m_tDesc.pTransform->LookAt(m_pPlayerTransform->Get_State(CTransform::STATE_POSITION));
+	//m_tDesc.pTransform->Radian_Turn({ 0.f , 1.f ,0.f }, XMConvertToRadians(45.f));
+	//m_fDegree = m_tDesc.pTransform->Look_Degree();
 
-	m_tDesc.pModel->SetUp_Animation(4, false);
-	m_strName = TEXT("Monster_Knight_State_Hit");
+	m_tDesc.pModel->SetUp_Animation(11, false);
+	m_strName = TEXT("Monster_DragonHead_State_Attack");
 }
 
 void CFSM_Mon_DragonHead_Attack::Exit()

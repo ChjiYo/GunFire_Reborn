@@ -39,7 +39,7 @@ HRESULT CMon_Dragon::Initialize_Prototype()
 HRESULT CMon_Dragon::Initialize(void* pArg)
 {
 	CContainerObject::CONTAINEROBJECT_DESC		ContainerDesc{};
-	ContainerDesc.fRotationPerSec = XMConvertToRadians(90.0f);
+	ContainerDesc.fRotationPerSec = XMConvertToRadians(45.0f);
 	ContainerDesc.fSpeedPerSec = 2.5f;
 	ContainerDesc.iNumParts = PART_HEAD;
 
@@ -59,7 +59,7 @@ HRESULT CMon_Dragon::Initialize(void* pArg)
 	if (FAILED(Ready_UI()))
 		return E_FAIL;
 
-	m_pStateCom->Set_State(TEXT("Monster_Dragon_State_Idle"));
+	m_pStateCom->Set_State(TEXT("Monster_DragonHead_State_Out"));
 
 	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSet(20.f, 1.f, 20.f, 1.f));
 
