@@ -6,6 +6,38 @@ Scale: 0.799965 0.68 0.499
 Rotation: 1.5708
 IsParsing: 1
 
+LayerName: Layer_Floor_101
+PrototypeTag: Prototype_GameObject_Floor_101
+LevelIndex: 4
+Position: 11.058 0 17.387
+Scale: 1 1 1.09
+Rotation: 0
+IsParsing: 1
+
+LayerName: Layer_Floor_102
+PrototypeTag: Prototype_GameObject_Floor_102
+LevelIndex: 4
+Position: 11.455 0 11.321
+Scale: 0.75 1 0.54
+Rotation: 0
+IsParsing: 1
+
+LayerName: Layer_Floor_102
+PrototypeTag: Prototype_GameObject_Floor_102
+LevelIndex: 4
+Position: 7.755 0 11.321
+Scale: 0.75 1 0.54
+Rotation: 0
+IsParsing: 1
+
+LayerName: Layer_Floor_102
+PrototypeTag: Prototype_GameObject_Floor_102
+LevelIndex: 4
+Position: 14.052 0 23.196
+Scale: 0.8 1 0.310001
+Rotation: 0
+IsParsing: 1
+
 LayerName: Layer_Floor_103
 PrototypeTag: Prototype_GameObject_Floor_103
 LevelIndex: 4
@@ -147,6 +179,102 @@ PrototypeTag: Prototype_GameObject_Floor_103
 LevelIndex: 4
 Position: 10.393 1.37 23.494
 Scale: 1.395 1 1
+Rotation: 0
+IsParsing: 1
+
+LayerName: Layer_Floor_114
+PrototypeTag: Prototype_GameObject_Floor_114
+LevelIndex: 4
+Position: 1.585 0 9.455
+Scale: 1 1 0.95
+Rotation: 0
+IsParsing: 1
+
+LayerName: Layer_Floor_114
+PrototypeTag: Prototype_GameObject_Floor_114
+LevelIndex: 4
+Position: 1.585 0 7.155
+Scale: 1 1 0.95
+Rotation: 0
+IsParsing: 1
+
+LayerName: Layer_Floor_114
+PrototypeTag: Prototype_GameObject_Floor_114
+LevelIndex: 4
+Position: 3.985 0 9.455
+Scale: 1 1 0.95
+Rotation: 0
+IsParsing: 1
+
+LayerName: Layer_Floor_114
+PrototypeTag: Prototype_GameObject_Floor_114
+LevelIndex: 4
+Position: 3.985 0 7.155
+Scale: 1 1 0.95
+Rotation: 0
+IsParsing: 1
+
+LayerName: Layer_Floor_114
+PrototypeTag: Prototype_GameObject_Floor_114
+LevelIndex: 4
+Position: 6.385 0 7.155
+Scale: 1 1 0.95
+Rotation: 0
+IsParsing: 1
+
+LayerName: Layer_Floor_114
+PrototypeTag: Prototype_GameObject_Floor_114
+LevelIndex: 4
+Position: 6.385 0 9.455
+Scale: 1 1 0.95
+Rotation: 0
+IsParsing: 1
+
+LayerName: Layer_Floor_114
+PrototypeTag: Prototype_GameObject_Floor_114
+LevelIndex: 4
+Position: 8.785 0 9.455
+Scale: 1 1 0.95
+Rotation: 0
+IsParsing: 1
+
+LayerName: Layer_Floor_114
+PrototypeTag: Prototype_GameObject_Floor_114
+LevelIndex: 4
+Position: 8.785 0 7.155
+Scale: 1 1 0.95
+Rotation: 0
+IsParsing: 1
+
+LayerName: Layer_Floor_114
+PrototypeTag: Prototype_GameObject_Floor_114
+LevelIndex: 4
+Position: 11.185 0 7.155
+Scale: 1 1 0.95
+Rotation: 0
+IsParsing: 1
+
+LayerName: Layer_Floor_114
+PrototypeTag: Prototype_GameObject_Floor_114
+LevelIndex: 4
+Position: 11.185 0 9.455
+Scale: 1 1 0.95
+Rotation: 0
+IsParsing: 1
+
+LayerName: Layer_Floor_114
+PrototypeTag: Prototype_GameObject_Floor_114
+LevelIndex: 4
+Position: 13.585 0 7.155
+Scale: 1 1 0.95
+Rotation: 0
+IsParsing: 1
+
+LayerName: Layer_Floor_114
+PrototypeTag: Prototype_GameObject_Floor_114
+LevelIndex: 4
+Position: 13.585 0 9.455
+Scale: 1 1 0.95
 Rotation: 0
 IsParsing: 1
 
