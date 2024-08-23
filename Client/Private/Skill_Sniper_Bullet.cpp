@@ -50,10 +50,7 @@ void CSkill_Sniper_Bullet::Update(_float fTimeDelta)
 {
     m_pColliderCom->Update(m_pTransformCom->Get_WorldMatrix());
 
-    _vector	vPosition = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
-
-    vPosition += m_vTargetLook * 50.f * fTimeDelta;
-    m_pTransformCom->Set_State(CTransform::STATE_POSITION, vPosition);
+    
 
     Destroy(fTimeDelta);
 }
@@ -61,6 +58,13 @@ void CSkill_Sniper_Bullet::Update(_float fTimeDelta)
 void CSkill_Sniper_Bullet::Late_Update(_float fTimeDelta)
 {
     __super::Late_Update(fTimeDelta);
+
+   // if (m_pColliderCom->isCollision(m_pOriginTransform->Get_State(CTransform::STATE_POSITION), m_pOriginTransform->Get_State(CTransform::STATE_LOOK), 15.f))
+   // {
+   //     pPlayer->Set_Damage(-5.f);
+   //     m_bDead = true;
+   // }
+
     m_pGameInstance->Add_RenderObject(CRenderer::RG_BLEND, this);
 }
 
@@ -104,13 +108,19 @@ HRESULT CSkill_Sniper_Bullet::Ready_Components()
         return E_FAIL;
 
     /* For.Com_ColliderSphere */
-    CBounding_Sphere::BOUNDING_SPHERE_DESC   BoundingDesc{};
+    CBounding_OBB::RAY_DESC   BoundingDesc{};
 
-    BoundingDesc.fRadius = 0.05f;
-    BoundingDesc.vCenter = _float3(0.5f, BoundingDesc.fRadius, 0.0f);
+    BoundingDesc.pObject = this;
+    BoundingDesc.vExtents = _float3(0.5f, 0.5f, 0.5f);
+    BoundingDesc.vCenter = _float3(0.f, BoundingDesc.vExtents.y, 0.f);
+    BoundingDesc.vRotation = _float3(0.f, 0.f, 0.f);
 
-    if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Collider_Sphere"),
-        TEXT("Com_ColliderSphere"), reinterpret_cast<CComponent**>(&m_pColliderCom), &BoundingDesc)))
+    BoundingDesc.vOrigin = m_pOriginTransform->Get_State(CTransform::STATE_POSITION);
+    BoundingDesc.vDir = m_pOriginTransform->Get_State(CTransform::STATE_LOOK);
+    BoundingDesc.fDist = 15.f;
+
+    if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Collider_OBB"),
+        TEXT("Com_ColliderOBB"), reinterpret_cast<CComponent**>(&m_pColliderCom), &BoundingDesc)))
         return E_FAIL;
 
     return S_OK;

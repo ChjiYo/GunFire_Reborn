@@ -92,7 +92,7 @@ public:
 	void LookAt(_fvector vAt);
 
 	_float Look_Degree();
-	_float Up_Degree();
+	_float Target_Look_Degree(const _vector& vTargetPos);
 
 private:
 	_float4x4				m_WorldMatrix = {};

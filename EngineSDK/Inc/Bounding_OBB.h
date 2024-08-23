@@ -13,6 +13,13 @@ public:
 		_float3		vRotation;
 	}BOUNDING_OBB_DESC;
 
+	typedef struct : public BOUNDING_OBB_DESC
+	{
+		_vector vOrigin = {};
+		_vector vDir = {};
+		_float fDist = {};
+	}RAY_DESC;
+
 	typedef struct
 	{
 		_float3		vCenter;
@@ -29,11 +36,16 @@ public:
 		return *m_pDesc;
 	}
 
+	RAY_DESC Get_Ray() {
+		return m_tRayDesc;
+	}
+
 public:
 	virtual HRESULT Initialize(CBounding::BOUNDING_DESC* pDesc);
 	virtual void Update(_fmatrix TransformMatrix) override;
 	virtual HRESULT Render(PrimitiveBatch<VertexPositionColor>* pBatch, _fvector vColor) override;
 	virtual _bool isCollision(CCollider::TYPE eTargetColliderType, CBounding* pTargetBounding) override;
+	virtual _bool isCollisions(RAY_DESC tRay);
 
 private:
 	BoundingOrientedBox* m_pOriginalDesc = { nullptr };
@@ -41,6 +53,9 @@ private:
 private:
 	_bool Collision_OBB(CBounding_OBB* pTargetDesc);
 	OBB_DESC Compute_OBB();
+
+private:
+	RAY_DESC m_tRayDesc = {};
 
 public:
 	static CBounding_OBB* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, CBounding::BOUNDING_DESC* pDesc);

@@ -1,4 +1,4 @@
-#include "Collider.h"
+ #include "Collider.h"
 
 #include "Bounding_AABB.h"
 #include "Bounding_OBB.h"
@@ -34,7 +34,7 @@ HRESULT CCollider::Initialize_Prototype(TYPE eColliderType)
 	m_pEffect = new BasicEffect(m_pDevice);
 
 	m_pEffect->SetVertexColorEnabled(true);
-
+	
 	const void* pShaderByteCode = { nullptr };
 	size_t		iShaderByteCodeLength = {};
 
@@ -106,7 +106,7 @@ _bool CCollider::isCollision(CCollider* pTargetCollider)
 	m_isColl = false;
 
 	m_isColl = m_pBounding->isCollision(pTargetCollider->m_eColliderType, pTargetCollider->m_pBounding);
-
+	
 	return m_isColl;
 }
 

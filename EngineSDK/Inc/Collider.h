@@ -7,7 +7,7 @@ BEGIN(Engine)
 class ENGINE_DLL CCollider final : public CComponent
 {
 public:
-	enum TYPE { TYPE_AABB , TYPE_OBB , TYPE_SPHERE , TYPE_END};
+	enum TYPE { TYPE_AABB , TYPE_OBB , TYPE_SPHERE , TYPE_RAY , TYPE_END};
 
 private:
 	CCollider(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
