@@ -81,6 +81,7 @@ public:
 
 private:
 	void ShieldRecovery();
+	float CalculateYOnTriangle(XMVECTOR vPosA, XMVECTOR vPosB, XMVECTOR vPosC);
 
 private:
 	CState_Machine*		m_pState = { nullptr };

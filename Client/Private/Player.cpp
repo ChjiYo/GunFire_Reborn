@@ -134,6 +134,29 @@ void CPlayer::ShieldRecovery()
     }
 }
 
+float CPlayer::CalculateYOnTriangle(XMVECTOR vPosA, XMVECTOR vPosB, XMVECTOR vPosC)
+{
+    _float fPosX = XMVectorGetX(m_pTransformCom->Get_State(CTransform::STATE_POSITION));
+    _float fPosZ = XMVectorGetZ(m_pTransformCom->Get_State(CTransform::STATE_POSITION));
+
+    XMVECTOR v1 = vPosB - vPosA;
+    XMVECTOR v2 = vPosC - vPosA;
+    XMVECTOR normal = XMVector3Cross(v1, v2);
+
+    // 평면 방정식의 계수 계산
+    float a = XMVectorGetX(normal);
+    float b = XMVectorGetY(normal);
+    float c = XMVectorGetZ(normal);
+
+    // 절편 d 계산
+    float d = -(a * XMVectorGetX(vPosA) + b * XMVectorGetY(vPosA) + c * XMVectorGetZ(vPosA));
+
+    // 주어진 x, z 위치에서 y 계산
+    float y = -(a * fPosX + c * fPosZ + d) / b;
+
+    return y;
+}
+
 HRESULT CPlayer::Ready_Components()
 {
     CNavigation::NAVIGATION_DESC		NavigationDesc{};
@@ -268,16 +291,26 @@ void CPlayer::Player_Move(_float fTimeDelta)
 
 void CPlayer::Player_Jump(_float fTimeDelta)
 {
-    if (m_pGameInstance->Key_Down(VK_SPACE)|| m_bJump)
-    {
-        m_pTransformCom->Go_Up(fTimeDelta);
-        m_bJump = true;
-    }
+    XMVECTOR vPosA = XMVectorSet(0.f, 0.f, 0.f, 0.f);
+    XMVECTOR vPosB = XMVectorSet(100.f, 100.f, 0.f, 0.f);
+    XMVECTOR vPosC = XMVectorSet(0.f, 100.f, 100.f, 0.f);
 
-    if (m_pTransformCom->Gravity(0.2f, 1.3f, fTimeDelta) && m_bJump)
-    {
-        m_bJump = false;
-    }
+    _float fHight = CalculateYOnTriangle(vPosA, vPosB, vPosC);
+    
+    m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetY(m_pTransformCom->Get_State(CTransform::STATE_POSITION), fHight));
+
+//(-Plane.a * vPosition.x - Plane.c * vPosition.z - Plane.d) / Plane.b;
+
+    //if (m_pGameInstance->Key_Down(VK_SPACE)|| m_bJump)
+    //{
+    //    m_pTransformCom->Go_Up(fTimeDelta);
+    //    m_bJump = true;
+    //}
+    //
+    //if (m_pTransformCom->Gravity(0.2f, 1.3f, fTimeDelta) && m_bJump)
+    //{
+    //    m_bJump = false;
+    //}
 }
 
 void CPlayer::Player_Weapon_Change()
