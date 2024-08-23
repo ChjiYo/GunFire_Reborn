@@ -170,6 +170,10 @@
   <ItemGroup>
     <ClInclude Include="..\public\BackGround.h" />
     <ClInclude Include="..\public\Camera_Free.h" />
+    <ClInclude Include="..\public\Ceiling_101.h" />
+    <ClInclude Include="..\public\Ceiling_103.h" />
+    <ClInclude Include="..\public\Ceiling_104.h" />
+    <ClInclude Include="..\public\Ceiling_105.h" />
     <ClInclude Include="..\Public\Client_Defines.h" />
     <ClInclude Include="..\Public\FSM_Mon_Archer_Hit.h" />
     <ClInclude Include="..\public\FSM_Mon_Boom_Attack.h" />
@@ -316,6 +320,10 @@
   <ItemGroup>
     <ClCompile Include="..\private\BackGround.cpp" />
     <ClCompile Include="..\private\Camera_Free.cpp" />
+    <ClCompile Include="..\private\Ceiling_101.cpp" />
+    <ClCompile Include="..\private\Ceiling_103.cpp" />
+    <ClCompile Include="..\private\Ceiling_104.cpp" />
+    <ClCompile Include="..\private\Ceiling_105.cpp" />
     <ClCompile Include="..\Private\FSM_Mon_Archer_Hit.cpp" />
     <ClCompile Include="..\private\FSM_Mon_Boom_Attack.cpp" />
     <ClCompile Include="..\private\FSM_Mon_Boom_Idle.cpp" />

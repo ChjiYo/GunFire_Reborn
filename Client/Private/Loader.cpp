@@ -30,6 +30,11 @@
 
 #include "Door.h"
 
+#include "Ceiling_101.h"
+#include "Ceiling_103.h"
+#include "Ceiling_104.h"
+#include "Ceiling_105.h"
+
 #include "Effect_Deco_Snow.h"
 
 #include "Player.h"
@@ -259,6 +264,22 @@ HRESULT CLoader::Loading_For_BinaryFile()
 
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Stair_2"),
 		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Stair/Stair2/Stair_2.fbx", TEXT("../Bin/DataFiles/Stair_2.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Ceiling_101"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Ceiling/101/Ceiling_101.fbx", TEXT("../Bin/DataFiles/Ceiling_101.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Ceiling_103"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Ceiling/103/Ceiling_103.fbx", TEXT("../Bin/DataFiles/Ceiling_103.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Ceiling_104"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Ceiling/104/Ceiling_104.fbx", TEXT("../Bin/DataFiles/Ceiling_104.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Ceiling_105"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Ceiling/105/Ceiling_105.fbx", TEXT("../Bin/DataFiles/Ceiling_105.dat"), PreTransformMatrix))))
 		return E_FAIL;
 
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Item_Weapon_Sniper"),
@@ -533,6 +554,41 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Stair_2.dat"), PreTransformMatrix))))
 		return E_FAIL;
 
+	/* For.Prototype_Component_Model_Ceiling_101 */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Ceiling_101"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Ceiling_101.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Model_Ceiling_103 */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Ceiling_103"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Ceiling_103.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Model_Ceiling_104 */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Ceiling_104"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Ceiling_104.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Model_Ceiling_105 */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Ceiling_105"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Ceiling_105.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Model_Stair2 */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Stair2"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Stair_2.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Model_Stair2 */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Stair2"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Stair_2.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Model_Stair2 */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Stair2"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Stair_2.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
 	/* For.Prototype_Component_Model_Item_Weapon_Sniper */
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Item_Weapon_Sniper"),
 		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Item_Sniper.dat"), PreTransformMatrix))))
@@ -764,14 +820,34 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 		CFloor_114::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
-	/* For.Prototype_GameObject_Floor_114 */
+	/* For.Prototype_GameObject_Stair1 */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Stair1"),
 		CStair1::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
-	/* For.Prototype_GameObject_Floor_114 */
+	/* For.Prototype_GameObject_Stair2 */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Stair2"),
 		CStair2::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Ceiling_101 */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Ceiling_101"),
+		CCeiling_101::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Ceiling_103 */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Ceiling_103"),
+		CCeiling_103::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Ceiling_104 */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Ceiling_104"),
+		CCeiling_104::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Ceiling_105 */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Ceiling_105"),
+		CCeiling_105::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
 	/* For.Prototype_GameObject_Door*/

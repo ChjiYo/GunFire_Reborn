@@ -475,6 +475,21 @@
     <Filter Include="03.State_Machine\FSM_Monster\Dragon\Tail\Out">
       <UniqueIdentifier>{b5971d5c-eb6b-41f1-8ce4-5dc3f65dc082}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObjects\Element\Ceiling">
+      <UniqueIdentifier>{4d009f80-d2ee-410b-bda6-7e77f2829c2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Element\Ceiling\101">
+      <UniqueIdentifier>{bdc3e84d-d126-4e57-ac67-f5f6ea0aa055}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Element\Ceiling\103">
+      <UniqueIdentifier>{5cbf4bc5-591c-4fcf-950a-814111d99d5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Element\Ceiling\104">
+      <UniqueIdentifier>{5b9c8f03-2089-4973-92ae-3e2e79436965}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Element\Ceiling\105">
+      <UniqueIdentifier>{24dbb4a3-6ae5-4f2b-9429-bdcd083012f9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -900,6 +915,18 @@
     <ClInclude Include="..\Public\FSM_Mon_DragonTail_Attack.h">
       <Filter>03.State_Machine\FSM_Monster\Dragon\Tail\Attack</Filter>
     </ClInclude>
+    <ClInclude Include="..\public\Ceiling_101.h">
+      <Filter>02.GameObjects\Element\Ceiling\101</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Ceiling_103.h">
+      <Filter>02.GameObjects\Element\Ceiling\103</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Ceiling_104.h">
+      <Filter>02.GameObjects\Element\Ceiling\104</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Ceiling_105.h">
+      <Filter>02.GameObjects\Element\Ceiling\105</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -1309,6 +1336,18 @@
     </ClCompile>
     <ClCompile Include="..\Private\FSM_Mon_DragonTail_Attack.cpp">
       <Filter>03.State_Machine\FSM_Monster\Dragon\Tail\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Ceiling_101.cpp">
+      <Filter>02.GameObjects\Element\Ceiling\101</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Ceiling_103.cpp">
+      <Filter>02.GameObjects\Element\Ceiling\103</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Ceiling_104.cpp">
+      <Filter>02.GameObjects\Element\Ceiling\104</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Ceiling_105.cpp">
+      <Filter>02.GameObjects\Element\Ceiling\105</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
