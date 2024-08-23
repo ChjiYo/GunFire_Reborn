@@ -61,9 +61,8 @@ HRESULT CMon_Dragon::Initialize(void* pArg)
 
 	m_pStateCom->Set_State(TEXT("Monster_DragonHead_State_Out"));
 
-	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSet(20.f, 1.f, 20.f, 1.f));
-
 	m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 25.f, 1.f, 20.f , 1.f });
+	m_pTransformCom->Set_Scaled(2.5f, 2.5f, 2.5f);
 	m_pNavigationCom->Init_Index(m_pTransformCom);
 
 	return S_OK;
@@ -136,6 +135,7 @@ HRESULT CMon_Dragon::Ready_State()
 	Desc.pTransform = m_pTransformCom;
 	Desc.pNavigation = m_pNavigationCom;
 	Desc.pModel = m_pModelCom;
+	Desc.pOriginObj = this;
 
 	m_pStateCom->Add_State(CFSM_Mon_Dragon_Idle::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Dragon_State_Idle"));
 	m_pStateCom->Add_State(CFSM_Mon_Dragon_Attack::Create(m_pDevice, m_pContext, Desc), TEXT("Monster_Dragon_State_Attack"));

@@ -25,7 +25,7 @@ HRESULT CFSM_Mon_DragonHead_Idle::Initialize(FSM_MON_DESC Desc)
 	m_tDesc.pTransform = Desc.pTransform;
 	m_tDesc.pNavigation = Desc.pNavigation;
 	m_tDesc.pModel = Desc.pModel;
-	m_tDesc.tMonDesc = Desc.tMonDesc;
+	m_tDesc.pOriginObj = Desc.pOriginObj;
 
 	return S_OK;
 }
@@ -51,6 +51,11 @@ wstring CFSM_Mon_DragonHead_Idle::Late_Update(_float fTimeDelta)
 		m_fAttackDelay = 0.f;
 		return TEXT("Monster_DragonHead_State_Attack");
 	}
+
+	CMonster* pMoster = dynamic_cast<CMonster*>(m_tDesc.pOriginObj);
+
+ 	if(pMoster->Get_MonDesc().iHp / pMoster->Get_MonDesc().iMaxHp <= 0.5f)
+		return TEXT("Monster_DragonHead_State_In");
 
 	return TEXT("Monster_DragonHead_State_Idle");
 }

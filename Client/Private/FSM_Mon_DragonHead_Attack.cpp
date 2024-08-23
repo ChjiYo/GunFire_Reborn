@@ -39,13 +39,25 @@ wstring CFSM_Mon_DragonHead_Attack::Priority_Update(_float fTimeDelta)
 
 wstring CFSM_Mon_DragonHead_Attack::Update(_float fTimeDelta)
 {
+	if (!m_bSeccondAttack && m_tDesc.pModel->Get_Anim(11)->Get_Duration() <= m_fAttackEndTimer)
+	{
+		m_fAttackEndTimer = 0.f;
+		m_bSeccondAttack = true;
+		m_tDesc.pModel->SetUp_Animation(12, false);
+	}
 
 	return TEXT("Monster_DragonHead_State_Attack");
 }
 
 wstring CFSM_Mon_DragonHead_Attack::Late_Update(_float fTimeDelta)
 {
-
+	if (m_bSeccondAttack && m_tDesc.pModel->Get_Anim(12)->Get_Duration() <= m_fAttackEndTimer)
+	{
+		m_fAttackEndTimer = 0.f;
+		m_bSeccondAttack = false;
+		m_tDesc.pModel->SetUp_Animation(11, false);
+		return TEXT("Monster_DragonHead_State_Idle");
+	}
 
 	return TEXT("Monster_DragonHead_State_Attack");
 }
