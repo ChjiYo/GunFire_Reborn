@@ -272,8 +272,9 @@ void CPlayer::Player_Jump(_float fTimeDelta)
     _float fHeight = m_pNavigationCom->Navi_Height(m_pTransformCom);
 
     if (!m_bJump)
+    {
         m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetY(m_pTransformCom->Get_State(CTransform::STATE_POSITION), fHeight + 1.3f));
-    
+    }
     if (m_pGameInstance->Key_Down(VK_SPACE)|| m_bJump)
     {
         m_pTransformCom->Go_Up(fTimeDelta);
