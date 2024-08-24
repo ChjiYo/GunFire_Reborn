@@ -32,23 +32,25 @@ HRESULT CFSM_Mon_DragonHead_In::Initialize(FSM_MON_DESC Desc)
 
 wstring CFSM_Mon_DragonHead_In::Priority_Update(_float fTimeDelta)
 {
-	m_fHitMotionTime += fTimeDelta;
+	m_fDelayTimer += fTimeDelta;
 
-	return TEXT("Monster_Knight_State_Hit");
+	return TEXT("Monster_DragonHead_State_In");
 }
 
 wstring CFSM_Mon_DragonHead_In::Update(_float fTimeDelta)
 {
-	return TEXT("Monster_Knight_State_Hit");
+	return TEXT("Monster_DragonHead_State_In");
 }
 
 wstring CFSM_Mon_DragonHead_In::Late_Update(_float fTimeDelta)
 {
-	if (m_fHitMotionTime >= m_tDesc.pModel->Get_Anim(4)->Get_Duration())
+	if (m_fDelayTimer >= m_tDesc.pModel->Get_Anim(4)->Get_Duration())
 	{
-		return TEXT("Monster_Knight_State_Run");
+		m_fDelayTimer = 0.f;
+		return TEXT("Monster_Dragon_State_Idle");
 	}
-	return TEXT("Monster_Knight_State_Hit");
+
+	return TEXT("Monster_DragonHead_State_In");
 }
 
 void CFSM_Mon_DragonHead_In::Enter()
@@ -58,7 +60,7 @@ void CFSM_Mon_DragonHead_In::Enter()
 	m_tDesc.pTransform->LookAt(m_pPlayerTransform->Get_State(CTransform::STATE_POSITION));
 
 	m_tDesc.pModel->SetUp_Animation(4, false);
-	m_strName = TEXT("Monster_Knight_State_Hit");
+	m_strName = TEXT("Monster_DragonHead_State_In");
 }
 
 void CFSM_Mon_DragonHead_In::Exit()
@@ -71,7 +73,7 @@ CFSM_Mon_DragonHead_In* CFSM_Mon_DragonHead_In::Create(ID3D11Device* pDevice, ID
 
 	if (FAILED(pInstance->Initialize(Desc)))
 	{
-		MSG_BOX(TEXT("Failed to Created : CFSM_Mon_DragonHead_In "));
+		MSG_BOX(TEXT("Failed to Created : CFSM_Mon_DragonHead_In"));
 		Safe_Release(pInstance);
 	}
 

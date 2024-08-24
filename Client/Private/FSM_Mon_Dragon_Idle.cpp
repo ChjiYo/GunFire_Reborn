@@ -26,35 +26,47 @@ HRESULT CFSM_Mon_Dragon_Idle::Initialize(FSM_MON_DESC Desc)
 	m_tDesc.pNavigation = Desc.pNavigation;
 	m_tDesc.pModel = Desc.pModel;
 	m_tDesc.tMonDesc = Desc.tMonDesc;
-
+	
 	return S_OK;
 }
 
 wstring CFSM_Mon_Dragon_Idle::Priority_Update(_float fTimeDelta)
 {
-	m_fHitMotionTime += fTimeDelta;
+	m_fStartAnimTimer += fTimeDelta;
 
-	return TEXT("Monster_Dragin_State_Idle");
+	return TEXT("Monster_Dragon_State_Idle");
 }
 
 wstring CFSM_Mon_Dragon_Idle::Update(_float fTimeDelta)
 {
-	return TEXT("Monster_Dragin_State_Idle");
+	if (m_bStartAnimEnd)
+	{
+
+	}
+	return TEXT("Monster_Dragon_State_Idle");
 }
 
 wstring CFSM_Mon_Dragon_Idle::Late_Update(_float fTimeDelta)
 {
-	return TEXT("Monster_Dragin_State_Idle");
+	if (!m_bStartAnimEnd && m_tDesc.pModel->Get_Anim(1)->Get_Duration() <= m_fStartAnimTimer)
+	{
+		m_fStartAnimTimer = 0.f;
+		m_bStartAnimEnd = true;
+		m_tDesc.pModel->SetUp_Animation(0, true);
+	}
+
+	return TEXT("Monster_Dragon_State_Idle");
 }
 
 void CFSM_Mon_Dragon_Idle::Enter()
 {
 	__super::Enter();
-
+	
+	m_bStartAnimEnd = false;
 	m_tDesc.pTransform->LookAt(m_pPlayerTransform->Get_State(CTransform::STATE_POSITION));
 
-	m_tDesc.pModel->SetUp_Animation(0, true);
-	m_strName = TEXT("Monster_Dragin_State_Idle");
+	m_tDesc.pModel->SetUp_Animation(1, false);
+	m_strName = TEXT("Monster_Dragon_State_Idle");
 }
 
 void CFSM_Mon_Dragon_Idle::Exit()
