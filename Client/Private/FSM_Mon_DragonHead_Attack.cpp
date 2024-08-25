@@ -55,7 +55,7 @@ wstring CFSM_Mon_DragonHead_Attack::Late_Update(_float fTimeDelta)
 	{
 		m_fAttackEndTimer = 0.f;
 		m_bSeccondAttack = false;
-		m_tDesc.pModel->SetUp_Animation(11, false);
+		//m_tDesc.pModel->SetUp_Animation(11, false);
 		return TEXT("Monster_DragonHead_State_Idle");
 	}
 

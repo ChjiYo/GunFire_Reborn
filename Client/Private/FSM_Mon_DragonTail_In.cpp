@@ -71,7 +71,7 @@ CFSM_Mon_DragonTail_In* CFSM_Mon_DragonTail_In::Create(ID3D11Device* pDevice, ID
 
 	if (FAILED(pInstance->Initialize(Desc)))
 	{
-		MSG_BOX(TEXT("Failed to Created : CFSM_Mon_DragonTail_In "));
+		MSG_BOX(TEXT("Failed to Created : CFSM_Mon_DragonTail_In"));
 		Safe_Release(pInstance);
 	}
 
