@@ -32,23 +32,40 @@ HRESULT CFSM_Mon_DragonTail_In::Initialize(FSM_MON_DESC Desc)
 
 wstring CFSM_Mon_DragonTail_In::Priority_Update(_float fTimeDelta)
 {
-	m_fHitMotionTime += fTimeDelta;
+	m_fAnimEndTimer += fTimeDelta;
+	m_fAngle++;
 
-	return TEXT("Monster_Knight_State_Hit");
+	if (m_fAngle >= 360.f)
+		m_fAngle = 0.f;
+
+	return TEXT("Monster_DragonTail_State_In");
 }
 
 wstring CFSM_Mon_DragonTail_In::Update(_float fTimeDelta)
 {
-	return TEXT("Monster_Knight_State_Hit");
+	return TEXT("Monster_DragonTail_State_In");
 }
 
 wstring CFSM_Mon_DragonTail_In::Late_Update(_float fTimeDelta)
 {
-	if (m_fHitMotionTime >= m_tDesc.pModel->Get_Anim(4)->Get_Duration())
+	if (m_fAnimEndTimer >= m_tDesc.pModel->Get_Anim(4)->Get_Duration())
 	{
-		return TEXT("Monster_Knight_State_Run");
+		Warf(10.f, m_fAngle);
+		m_fAnimEndTimer = 0.f;
+
+		return TEXT("Monster_DragonTail_State_Out");
 	}
-	return TEXT("Monster_Knight_State_Hit");
+
+
+	return TEXT("Monster_DragonTail_State_In");
+}
+
+void CFSM_Mon_DragonTail_In::Warf(_float fDistance, _float fAngle)
+{
+	_float WarfPosX = XMVectorGetX(m_tDesc.pTransform->Get_State(CTransform::STATE_POSITION)) + fDistance * cos(fAngle * (3.14f / 180.f));
+	_float WarfPosZ = XMVectorGetZ(m_tDesc.pTransform->Get_State(CTransform::STATE_POSITION)) - fDistance * sin(fAngle * (3.14f / 180.f));
+
+	m_tDesc.pTransform->Set_State(CTransform::STATE_POSITION, { WarfPosX  , 0.f, WarfPosZ,1.f});
 }
 
 void CFSM_Mon_DragonTail_In::Enter()
@@ -58,7 +75,7 @@ void CFSM_Mon_DragonTail_In::Enter()
 	m_tDesc.pTransform->LookAt(m_pPlayerTransform->Get_State(CTransform::STATE_POSITION));
 
 	m_tDesc.pModel->SetUp_Animation(4, false);
-	m_strName = TEXT("Monster_Knight_State_Hit");
+	m_strName = TEXT("Monster_DragonTail_State_In");
 }
 
 void CFSM_Mon_DragonTail_In::Exit()

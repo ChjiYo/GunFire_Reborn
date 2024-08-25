@@ -33,7 +33,7 @@ HRESULT CFSM_Mon_DragonTail_Out::Initialize(FSM_MON_DESC Desc)
 wstring CFSM_Mon_DragonTail_Out::Priority_Update(_float fTimeDelta)
 {
 	m_fAnimEndTimer += fTimeDelta;
-
+	
 	return TEXT("Monster_DragonTail_State_Out");
 }
 
@@ -46,6 +46,7 @@ wstring CFSM_Mon_DragonTail_Out::Late_Update(_float fTimeDelta)
 {
 	if (m_fAnimEndTimer >= m_tDesc.pModel->Get_Anim(3)->Get_Duration())
 	{
+		m_fAnimEndTimer = 0.f;
 		return TEXT("Monster_DragonTail_State_Attack");
 	}
 

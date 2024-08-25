@@ -65,6 +65,7 @@ wstring CFSM_Mon_DragonTail_Attack::Late_Update(_float fTimeDelta)
 {
 	if (m_iAttackCnt >= 2)
 	{
+		m_iAttackCnt = 0;
 		return TEXT("Monster_DragonTail_State_In");
 	}
 	return TEXT("Monster_DragonTail_State_Attack");
