@@ -32,14 +32,14 @@ HRESULT CFSM_Mon_DragonTail_Attack::Initialize(FSM_MON_DESC Desc)
 
 wstring CFSM_Mon_DragonTail_Attack::Priority_Update(_float fTimeDelta)
 {
-	//m_tDesc.pTransform->LookAt(m_pPlayerTransform->Get_State(CTransform::STATE_POSITION));
+	m_fAttackDelay += fTimeDelta;
 
 	return TEXT("Monster_DragonTail_State_Attack");
 }
 
 wstring CFSM_Mon_DragonTail_Attack::Update(_float fTimeDelta)
 {
-	if (m_pGameInstance->Key_Down('J'))
+	if(m_tDesc.pModel->Get_Anim(10)->Get_Duration() <= m_fAttackDelay)
 	{
 		CSkill::SKILL_DESC	BubbleDesc = {};
 
@@ -54,6 +54,8 @@ wstring CFSM_Mon_DragonTail_Attack::Update(_float fTimeDelta)
 			BubbleDesc.iNumSkill = i;
 			m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Skill_Dragon_Bubble"), TEXT("Layer_Skill_Dragon_Bubble"), &BubbleDesc);
 		}
+		m_iAttackCnt++;
+		m_fAttackDelay = 0.f;
 	}
 
 	return TEXT("Monster_DragonTail_State_Attack");
@@ -61,22 +63,10 @@ wstring CFSM_Mon_DragonTail_Attack::Update(_float fTimeDelta)
 
 wstring CFSM_Mon_DragonTail_Attack::Late_Update(_float fTimeDelta)
 {
-	/*if (m_iAttackType == 0)
+	if (m_iAttackCnt >= 2)
 	{
-		
+		return TEXT("Monster_DragonTail_State_In");
 	}
-	else if (m_iAttackType == 1)
-	{
-		CSkill::SKILL_DESC	BubbleDesc = {};
-
-		BubbleDesc.pOriginTransform = m_tDesc.pTransform;
-		BubbleDesc.fSpeedPerSec = 10.f;
-		BubbleDesc.fRotationPerSec = XMConvertToRadians(90.0f);
-		BubbleDesc.iSkillDamage = 5.f;
-		BubbleDesc.iNumSkill = rand() % 6 + 6;
-
-		m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Skill_Dragon_Bubble"), TEXT("Layer_Skill_Dragon_Bubble"), &BubbleDesc);
-	}*/
 	return TEXT("Monster_DragonTail_State_Attack");
 }
 
@@ -85,6 +75,8 @@ void CFSM_Mon_DragonTail_Attack::Enter()
 	__super::Enter();
 
 	m_strName = TEXT("Monster_DragonTail_State_Attack");
+
+	m_tDesc.pTransform->LookAt(m_pPlayerTransform->Get_State(CTransform::STATE_POSITION));
 
 	m_iAttackType = rand() % 2;
 

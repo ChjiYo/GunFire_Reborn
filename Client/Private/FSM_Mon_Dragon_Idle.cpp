@@ -53,17 +53,11 @@ wstring CFSM_Mon_Dragon_Idle::Update(_float fTimeDelta)
 		m_tDesc.pTransform->Set_State(CTransform::STATE_POSITION, vMovePos);
 		m_tDesc.pTransform->LookAt(vPlayerPos);
 
-
   		_float  vDistance = XMVectorGetX(XMVector3Length(vPlayerPos - vPos));
 
 		if (fabs(vDistance) <= 10.0f)
 		{
-			m_tDesc.pModel->SetUp_Animation(8, false);
-			m_fEndAnimTimer += fTimeDelta;
-
-			if (m_fEndAnimTimer >= m_tDesc.pModel->Get_Anim(8)->Get_Duration())
-				return TEXT("Monster_DragonTail_State_Out");
-			
+			m_bNextState = true;
 		}
 	}
 
@@ -79,6 +73,11 @@ wstring CFSM_Mon_Dragon_Idle::Late_Update(_float fTimeDelta)
 		m_fStartAnimTimer = 0.f;
 		m_bStartAnimEnd = true;
 		m_tDesc.pModel->SetUp_Animation(0, true);
+	}
+
+	if (m_bNextState)
+	{
+		return TEXT("Monster_DragonTail_State_Out");
 	}
 
 

@@ -25,6 +25,7 @@ private:
 	_float m_fStartAnimTimer = { 0.f };
 	_float m_fEndAnimTimer = { 0.f };
 	_bool m_bStartAnimEnd = {false };
+	_bool m_bNextState = {false };
 
 public:
 	static CFSM_Mon_Dragon_Idle* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, FSM_MON_DESC Desc);

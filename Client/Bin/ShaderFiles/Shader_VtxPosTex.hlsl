@@ -64,6 +64,34 @@ PS_OUT PS_MAIN(PS_IN In)
 	return Out;
 }
 
+PS_OUT PS_Effect(PS_IN In)
+{
+    PS_OUT Out;
+	
+    float2 center = float2(0.5, 0.5);
+    float distance = length(In.vTexcoord - center);
+
+    // 거리 기반으로 알파값 계산 (중심에서 가까울수록 알파값이 큼)
+    float alpha = saturate(1.0 - distance * 2.0);
+
+    // 바깥쪽으로 갈수록 어둡게 하기 위해 컬러를 조정
+    float brightness = saturate(1.0 - distance * 1.5);
+
+    // 최종 색상 (예: 빨간색 바탕에 알파값을 적용)
+    Out.vColor = float4(1.0, 0.0, 0.0, alpha);
+
+    // 밝기를 조정하여 바깥쪽을 어둡게 만듦
+    Out.vColor.rgb *= brightness;
+	
+    Out.vColor = g_Texture.Sample(LinearSampler, In.vTexcoord);
+
+	//Out.vColor.gb = Out.vColor.r;
+    if (Out.vColor.a <= 0.1f)
+        discard;
+
+    return Out;
+}
+
 technique11		DefaultTechnique
 {
 	/* PASS의 기준 : 셰이더 기법의 캡슐화. */
@@ -77,7 +105,7 @@ technique11		DefaultTechnique
 		PixelShader = compile ps_5_0 PS_MAIN();
 	}
 
-    pass 
+    pass None
     {
         SetRasterizerState(RS_Cull_NONE);
         SetDepthStencilState(DSS_None, 0);
@@ -85,6 +113,17 @@ technique11		DefaultTechnique
 
         VertexShader = compile vs_5_0 VS_MAIN();
         PixelShader = compile ps_5_0 PS_MAIN();
+    }
+
+    pass Effect
+    {
+        SetRasterizerState(RS_Cull_NONE);
+        SetDepthStencilState(DSS_None, 0);
+        SetBlendState(BS_Default, float4(0.f, 0.f, 0.f, 0.f), 0xffffffff);
+
+        VertexShader = compile vs_5_0 VS_MAIN();
+        PixelShader = compile ps_5_0 PS_Effect();
+
     }
 
 }

@@ -37,6 +37,9 @@ private:
 	CVIBuffer_Rect* m_pVIBufferCom = { nullptr };
 	CCollider* m_pColliderCom = { nullptr };
 
+private:
+	_float m_fDestoryTimer = { 0.f };
+
 public:
 	static CSkill_Dragon_Floor* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	virtual CGameObject* Clone(void* pArg);

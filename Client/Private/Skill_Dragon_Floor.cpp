@@ -32,18 +32,24 @@ HRESULT CSkill_Dragon_Floor::Initialize(void* pArg)
         return E_FAIL;
 
     Safe_AddRef(m_pOriginTransform);
+    
+    m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetY(m_pOriginTransform->Get_State(CTransform::STATE_POSITION),0.f));
+    m_pTransformCom->Set_Scaled(5.f, 5.f, 1.f);
+    m_pTransformCom->Rotation({ 1.f, 0.f , 0.f }, XMConvertToRadians(90.f));
 
     return S_OK;
 }
 
 void CSkill_Dragon_Floor::Priority_Update(_float fTimeDelta)
 {
-
+    m_fDestoryTimer += fTimeDelta;
 }
 
 void CSkill_Dragon_Floor::Update(_float fTimeDelta)
 {
     m_pColliderCom->Update(m_pTransformCom->Get_WorldMatrix());
+
+    Destroy(fTimeDelta);
 }
 
 void CSkill_Dragon_Floor::Late_Update(_float fTimeDelta)
@@ -67,7 +73,7 @@ HRESULT CSkill_Dragon_Floor::Render()
     if (FAILED(Bind_ShaderResources()))
         return E_FAIL;
 
-    if (FAILED(m_pShaderCom->Begin(1)))
+    if (FAILED(m_pShaderCom->Begin(2)))
         return E_FAIL;
 
     if (FAILED(m_pVIBufferCom->Bind_Buffers()))
@@ -88,7 +94,7 @@ HRESULT CSkill_Dragon_Floor::Ready_Components()
         return E_FAIL;
 
     /* For.Com_Model */
-    if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_Skill_Dragon_Bubble"),
+    if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_Skill_Dragon_Floor"),
         TEXT("Com_Texture"), reinterpret_cast<CComponent**>(&m_pTextureCom))))
         return E_FAIL;
 
@@ -129,7 +135,11 @@ HRESULT CSkill_Dragon_Floor::Bind_ShaderResources()
 
 void CSkill_Dragon_Floor::Destroy(_float fTimeDelta)
 {
-
+    if (m_fDestoryTimer >= 2.f)
+    {
+        m_fDestoryTimer = 0.f;
+        m_bDead = true;
+    }
 
 }
 
