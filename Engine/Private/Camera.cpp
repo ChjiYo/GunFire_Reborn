@@ -21,7 +21,7 @@ HRESULT CCamera::Initialize_Prototype()
 
 	m_pContext->RSGetViewports(&iNumViewports, &ViewPortDesc);
 
-	m_fViewportWidth = ViewPortDesc.Width;
+ 	m_fViewportWidth = ViewPortDesc.Width;
 	m_fViewportHeight = ViewPortDesc.Height;
 
 	return S_OK;

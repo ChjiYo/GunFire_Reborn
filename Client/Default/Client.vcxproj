@@ -265,6 +265,8 @@
     </ClInclude>
     <ClInclude Include="..\Public\Skill.h" />
     <ClInclude Include="..\public\Skill_BoomGun_Bullet.h" />
+    <ClInclude Include="..\public\Skill_Dragon_Bubble.h" />
+    <ClInclude Include="..\public\Skill_Dragon_Floor.h" />
     <ClInclude Include="..\public\Skill_Monster.h" />
     <ClInclude Include="..\Public\Skill_Player.h" />
     <ClInclude Include="..\Public\Skill_Pistol_Bullet.h" />
@@ -406,6 +408,8 @@
     </ClCompile>
     <ClCompile Include="..\Private\Skill.cpp" />
     <ClCompile Include="..\private\Skill_BoomGun_Bullet.cpp" />
+    <ClCompile Include="..\private\Skill_Dragon_Bubble.cpp" />
+    <ClCompile Include="..\private\Skill_Dragon_Floor.cpp" />
     <ClCompile Include="..\private\Skill_Monster.cpp" />
     <ClCompile Include="..\Private\Skill_Player.cpp" />
     <ClCompile Include="..\Private\Skill_Pistol_Bullet.cpp" />

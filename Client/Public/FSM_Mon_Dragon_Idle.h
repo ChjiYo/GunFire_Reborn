@@ -23,6 +23,7 @@ public:
 
 private:
 	_float m_fStartAnimTimer = { 0.f };
+	_float m_fEndAnimTimer = { 0.f };
 	_bool m_bStartAnimEnd = {false };
 
 public:

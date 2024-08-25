@@ -150,6 +150,10 @@ void CWeapon_Player_Pistol::Create_Bullet()
 	Desc.fSpeedPerSec = 10.f;
 	Desc.fRotationPerSec = XMConvertToRadians(90.0f);
 
+    _bool		isPick = { false };
+
+    Desc.vDestoryPos = m_pGameInstance->Picked_Position(&isPick);
+
 	m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Skill_Pistol_Bullet"),TEXT("Layer_Skill_Player_Bullet"), &Desc);
 }
 

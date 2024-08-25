@@ -16,7 +16,8 @@ public:
 	{
 		CTransform* pOriginTransform = {};
 		_uint		iSkillDamage = {};
-
+		_float4		vDestoryPos = {};
+		_uint		iNumSkill = {};
 	}SKILL_DESC;
 
 protected:

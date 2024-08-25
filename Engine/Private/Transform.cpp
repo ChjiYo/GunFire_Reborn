@@ -234,9 +234,9 @@ void CTransform::LookAt(_fvector vAt)
 _float CTransform::Look_Degree()
 {
 	_vector		vLook = Get_State(STATE_LOOK);
-	XMVector3Normalize(vLook);
+	vLook = XMVector3Normalize(vLook);
 
-	_vector		vAxis{ 0.f, 0.f, 1.f };
+	_vector		vAxis{ 0.f, 0.f, 1.f,1.0f };
 
 	_vector vAngle = XMVector3Dot(vLook, vAxis);
 	_float fAngle = {};

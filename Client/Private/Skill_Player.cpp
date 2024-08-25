@@ -28,6 +28,7 @@ HRESULT CSkill_Player::Initialize(void* pArg)
 
 	SKILL_DESC* Desc = static_cast<SKILL_DESC*>(pArg);
 	m_pOriginTransform = Desc->pOriginTransform;
+	m_vDestoryPos = Desc->vDestoryPos;
 
 	return S_OK;
 }

@@ -32,33 +32,67 @@ HRESULT CFSM_Mon_DragonTail_Attack::Initialize(FSM_MON_DESC Desc)
 
 wstring CFSM_Mon_DragonTail_Attack::Priority_Update(_float fTimeDelta)
 {
-	m_fHitMotionTime += fTimeDelta;
+	//m_tDesc.pTransform->LookAt(m_pPlayerTransform->Get_State(CTransform::STATE_POSITION));
 
-	return TEXT("Monster_Knight_State_Hit");
+	return TEXT("Monster_DragonTail_State_Attack");
 }
 
 wstring CFSM_Mon_DragonTail_Attack::Update(_float fTimeDelta)
 {
-	return TEXT("Monster_Knight_State_Hit");
+	if (m_pGameInstance->Key_Down('J'))
+	{
+		CSkill::SKILL_DESC	BubbleDesc = {};
+
+		BubbleDesc.pOriginTransform = m_tDesc.pTransform;
+		BubbleDesc.fSpeedPerSec = 10.f;
+		BubbleDesc.fRotationPerSec = XMConvertToRadians(90.0f);
+		BubbleDesc.iSkillDamage = 5.f;		
+		m_tDesc.pTransform->LookAt(m_pPlayerTransform->Get_State(CTransform::STATE_POSITION));
+
+		for (int i = 1; i <= rand() % 6 + 6;  ++i)
+		{
+			BubbleDesc.iNumSkill = i;
+			m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Skill_Dragon_Bubble"), TEXT("Layer_Skill_Dragon_Bubble"), &BubbleDesc);
+		}
+	}
+
+	return TEXT("Monster_DragonTail_State_Attack");
 }
 
 wstring CFSM_Mon_DragonTail_Attack::Late_Update(_float fTimeDelta)
 {
-	if (m_fHitMotionTime >= m_tDesc.pModel->Get_Anim(4)->Get_Duration())
+	/*if (m_iAttackType == 0)
 	{
-		return TEXT("Monster_Knight_State_Run");
+		
 	}
-	return TEXT("Monster_Knight_State_Hit");
+	else if (m_iAttackType == 1)
+	{
+		CSkill::SKILL_DESC	BubbleDesc = {};
+
+		BubbleDesc.pOriginTransform = m_tDesc.pTransform;
+		BubbleDesc.fSpeedPerSec = 10.f;
+		BubbleDesc.fRotationPerSec = XMConvertToRadians(90.0f);
+		BubbleDesc.iSkillDamage = 5.f;
+		BubbleDesc.iNumSkill = rand() % 6 + 6;
+
+		m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Skill_Dragon_Bubble"), TEXT("Layer_Skill_Dragon_Bubble"), &BubbleDesc);
+	}*/
+	return TEXT("Monster_DragonTail_State_Attack");
 }
 
 void CFSM_Mon_DragonTail_Attack::Enter()
 {
 	__super::Enter();
 
-	m_tDesc.pTransform->LookAt(m_pPlayerTransform->Get_State(CTransform::STATE_POSITION));
+	m_strName = TEXT("Monster_DragonTail_State_Attack");
 
-	m_tDesc.pModel->SetUp_Animation(4, false);
-	m_strName = TEXT("Monster_Knight_State_Hit");
+	m_iAttackType = rand() % 2;
+
+	/*if (m_iAttackType == 0)
+		m_tDesc.pModel->SetUp_Animation(9, true );
+	else if (m_iAttackType == 1)*/
+		m_tDesc.pModel->SetUp_Animation(10, true );
+	
 }
 
 void CFSM_Mon_DragonTail_Attack::Exit()

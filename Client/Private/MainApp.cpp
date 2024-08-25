@@ -72,7 +72,19 @@ HRESULT CMainApp::Initialize()
 }
 
 void CMainApp::Update(_float fTimeDelta)
-{
+{	
+	
+	if (!m_bShowTool)
+	{
+		POINT pt;
+		pt.x = g_iWinSizeX * 0.5f;
+		pt.y = g_iWinSizeY * 0.5f;
+
+		ClientToScreen(g_hWnd, &pt);
+		SetCursorPos(pt.x, pt.y);
+	}
+	
+
 	if (m_pGameInstance->Key_Down('O'))
 		m_bShowTool ? m_bShowTool = false : (m_bShowTool = true );
 

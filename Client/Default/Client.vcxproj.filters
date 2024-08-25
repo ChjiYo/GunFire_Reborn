@@ -490,6 +490,12 @@
     <Filter Include="02.GameObjects\Element\Ceiling\105">
       <UniqueIdentifier>{24dbb4a3-6ae5-4f2b-9429-bdcd083012f9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObjects\Skill\Monster_Skill\Skill_Dragon_Floor">
+      <UniqueIdentifier>{bfcf2825-f423-4c22-9578-787f8b5694bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Skill\Monster_Skill\Skill_Dragon_Bubble">
+      <UniqueIdentifier>{1e60afc0-f910-40e4-bd28-32beafa449f2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -927,6 +933,12 @@
     <ClInclude Include="..\public\Ceiling_105.h">
       <Filter>02.GameObjects\Element\Ceiling\105</Filter>
     </ClInclude>
+    <ClInclude Include="..\public\Skill_Dragon_Bubble.h">
+      <Filter>02.GameObjects\Skill\Monster_Skill\Skill_Dragon_Bubble</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Skill_Dragon_Floor.h">
+      <Filter>02.GameObjects\Skill\Monster_Skill\Skill_Dragon_Floor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -1348,6 +1360,12 @@
     </ClCompile>
     <ClCompile Include="..\private\Ceiling_105.cpp">
       <Filter>02.GameObjects\Element\Ceiling\105</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Skill_Dragon_Bubble.cpp">
+      <Filter>02.GameObjects\Skill\Monster_Skill\Skill_Dragon_Bubble</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Skill_Dragon_Floor.cpp">
+      <Filter>02.GameObjects\Skill\Monster_Skill\Skill_Dragon_Floor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

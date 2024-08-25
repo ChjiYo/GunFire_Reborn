@@ -59,7 +59,7 @@ HRESULT CMon_Dragon::Initialize(void* pArg)
 	if (FAILED(Ready_UI()))
 		return E_FAIL;
 
-	m_pStateCom->Set_State(TEXT("Monster_DragonHead_State_Out"));
+	m_pStateCom->Set_State(TEXT("Monster_DragonTail_State_Attack"));
 
 	m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 25.f, 1.f, 20.f , 1.f });
 	m_pTransformCom->Set_Scaled(2.5f, 2.5f, 2.5f);

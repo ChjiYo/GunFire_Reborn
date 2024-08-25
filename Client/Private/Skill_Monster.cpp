@@ -29,7 +29,7 @@ HRESULT CSkill_Monster::Initialize(void* pArg)
 	SKILL_DESC* Desc = static_cast<SKILL_DESC*>(pArg);
 	m_pOriginTransform = Desc->pOriginTransform;
 	m_iSkillDamage = Desc->iSkillDamage;
-
+	m_iNumSkill = Desc->iNumSkill;
 	return S_OK;
 }
 

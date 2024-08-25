@@ -37,12 +37,38 @@ wstring CFSM_Mon_Dragon_Idle::Priority_Update(_float fTimeDelta)
 	return TEXT("Monster_Dragon_State_Idle");
 }
 
+
+
+
 wstring CFSM_Mon_Dragon_Idle::Update(_float fTimeDelta)
 {
+	_vector vPlayerPos =  m_pPlayerTransform->Get_State(CTransform::STATE_POSITION);
+	_vector vPos = m_tDesc.pTransform->Get_State(CTransform::STATE_POSITION);
+
+	_vector vDir = XMVector3Normalize(vPlayerPos - vPos);
+
 	if (m_bStartAnimEnd)
 	{
+		_vector vMovePos = vPos + vDir * 5.f * fTimeDelta;
+		m_tDesc.pTransform->Set_State(CTransform::STATE_POSITION, vMovePos);
+		m_tDesc.pTransform->LookAt(vPlayerPos);
 
+
+  		_float  vDistance = XMVectorGetX(XMVector3Length(vPlayerPos - vPos));
+
+		if (fabs(vDistance) <= 10.0f)
+		{
+			m_tDesc.pModel->SetUp_Animation(8, false);
+			m_fEndAnimTimer += fTimeDelta;
+
+			if (m_fEndAnimTimer >= m_tDesc.pModel->Get_Anim(8)->Get_Duration())
+				return TEXT("Monster_DragonTail_State_Out");
+			
+		}
 	}
+
+
+
 	return TEXT("Monster_Dragon_State_Idle");
 }
 
@@ -54,6 +80,7 @@ wstring CFSM_Mon_Dragon_Idle::Late_Update(_float fTimeDelta)
 		m_bStartAnimEnd = true;
 		m_tDesc.pModel->SetUp_Animation(0, true);
 	}
+
 
 	return TEXT("Monster_Dragon_State_Idle");
 }

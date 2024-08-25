@@ -58,6 +58,7 @@
 #include "Mon_Dragon.h"
 
 #include "Skill_Archer_Bullet.h"
+#include "Skill_Dragon_Bubble.h"
 
 #include "Item_Sniper.h"
 
@@ -377,6 +378,16 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 	/* For.Prototype_Component_Texture_Bullet_Red */
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_Skill_Bullet_Red"),
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/Skill/Player/Bullet/Bullet_%d.dds"), 4))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Texture_Mon_Dragon_Bubble*/
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_Skill_Dragon_Bubble"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/Skill/Monster/Dragon/Bubble/Skill_Bubble%d.png"), 4))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Texture_Mon_Dragon_Floor*/
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_Mon_Dragon_Floor"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/Skill/Monster/Dragon/Floor/Floor.png")))))
 		return E_FAIL;
 
 	/* 모델을 로드한다. */
@@ -728,6 +739,11 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 	/* For.Prototype_GameObject_Skill_Shuriken_Bullet */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Skill_Archer_Bullet"),
 		CSkill_Archer_Bullet::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Skill_Dragon_Bubble*/
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Skill_Dragon_Bubble"),
+		CSkill_Dragon_Bubble::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
 	/* For.Prototype_GameObject_Cube */

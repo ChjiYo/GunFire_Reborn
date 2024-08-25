@@ -34,6 +34,9 @@ protected:
 	CVIBuffer_Rect* m_pVIBufferCom = { nullptr };
 	CCollider* m_pColliderCom = { nullptr };
 
+protected:
+	_float4 m_vDestoryPos = {};
+
 public:
 	virtual CGameObject* Clone(void* pArg) = 0;
 	virtual void Free() override;

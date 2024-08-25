@@ -23,6 +23,7 @@ public:
 
 private:
 	_float m_fHitMotionTime = { 0.f };
+	_uint m_iAttackType = { 0 };
 
 public:
 	static CFSM_Mon_DragonTail_Attack* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, FSM_MON_DESC Desc);

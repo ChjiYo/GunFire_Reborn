@@ -142,11 +142,15 @@ void CSkill_Pistol_Bullet::Destroy(_float fTimeDelta, _vector vPos)
 {
     m_fDestroyTimer += fTimeDelta;
 
-    if(m_fDestroyTimer > 5.f)
+    if(m_fDestroyTimer > 15.f)
         m_bDead = true;
 
-    if(!m_pNavigationCom->is_Move(vPos))
+    //m_vDestoryPos
+    _float fDistance = XMVectorGetX(XMVector3Length(vPos - XMLoadFloat4(&m_vDestoryPos)));
+    
+    if(fabs(fDistance) <2.25f)
         m_bDead = true;
+
 }
 
 CSkill_Pistol_Bullet* CSkill_Pistol_Bullet::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
