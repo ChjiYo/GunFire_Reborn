@@ -36,13 +36,12 @@ HRESULT CSkill_Sniper_Bullet::Initialize(void* pArg)
     m_vTargetLook = m_pOriginTransform->Get_State(CTransform::STATE_LOOK);
     m_pTransformCom->Set_Scaled(3.f, 0.25f, 1.f);
 
-    //네비게이션 메쉬 밖으로 나가면 delete? good 
     return S_OK;
 }
 
 void CSkill_Sniper_Bullet::Priority_Update(_float fTimeDelta)
 {
-    //_vector vPos = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
+
 
 }
 
@@ -50,20 +49,12 @@ void CSkill_Sniper_Bullet::Update(_float fTimeDelta)
 {
     m_pColliderCom->Update(m_pTransformCom->Get_WorldMatrix());
 
-    
-
     Destroy(fTimeDelta);
 }
 
 void CSkill_Sniper_Bullet::Late_Update(_float fTimeDelta)
 {
     __super::Late_Update(fTimeDelta);
-
-   // if (m_pColliderCom->isCollision(m_pOriginTransform->Get_State(CTransform::STATE_POSITION), m_pOriginTransform->Get_State(CTransform::STATE_LOOK), 15.f))
-   // {
-   //     pPlayer->Set_Damage(-5.f);
-   //     m_bDead = true;
-   // }
 
     m_pGameInstance->Add_RenderObject(CRenderer::RG_BLEND, this);
 }

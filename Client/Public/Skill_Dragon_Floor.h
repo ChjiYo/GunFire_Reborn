@@ -39,7 +39,7 @@ private:
 
 private:
 	_float m_fDestoryTimer = { 0.f };
-
+	_float m_fTickDamageTimer = { 0.f };
 public:
 	static CSkill_Dragon_Floor* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	virtual CGameObject* Clone(void* pArg);

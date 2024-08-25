@@ -60,6 +60,7 @@
 #include "Skill_Archer_Bullet.h"
 #include "Skill_Dragon_Bubble.h"
 #include "Skill_Dragon_Floor.h"
+#include "Skill_Dragon_Breath.h"
 
 #include "Item_Sniper.h"
 
@@ -750,6 +751,11 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 	/* For.Prototype_GameObject_Skill_Dragon_Floor*/
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Skill_Dragon_Floor"),
 		CSkill_Dragon_Floor::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Skill_Dragon_Breath*/
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Skill_Dragon_Breath"),
+		CSkill_Dragon_Breath::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
 	/* For.Prototype_GameObject_Cube */
