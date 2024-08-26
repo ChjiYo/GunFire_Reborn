@@ -44,7 +44,6 @@ wstring CFSM_Mon_DragonHead_Attack::Update(_float fTimeDelta)
 	{
 		m_fAttackEndTimer = 0.f;
 		m_bSeccondAttack = true;
-		//m_tDesc.pOriginObj->Set_Dead();
 		m_tDesc.pModel->SetUp_Animation(12, false);
 	}
 
@@ -86,7 +85,6 @@ void CFSM_Mon_DragonHead_Attack::Enter()
 	__super::Enter();
 
 
-	
 	m_tDesc.pModel->SetUp_Animation(11, false);
 	m_strName = TEXT("Monster_DragonHead_State_Attack");
 }

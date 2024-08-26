@@ -61,8 +61,7 @@ HRESULT CMon_Dragon::Initialize(void* pArg)
 
 	m_pStateCom->Set_State(TEXT("Monster_DragonHead_State_Idle"));
 
-	m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 25.f, 1.f, 20.f , 1.f });
-	m_pTransformCom->Set_Scaled(2.5f, 2.5f, 2.5f);
+	m_pTransformCom->Set_Scaled(3.f, 3.f, 3.0f);
 	m_pNavigationCom->Init_Index(m_pTransformCom);
 
 	return S_OK;

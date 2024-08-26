@@ -499,6 +499,9 @@
     <Filter Include="02.GameObjects\Skill\Monster_Skill\Skill_Dragon_Breath">
       <UniqueIdentifier>{7fdfc806-f422-4b7f-887b-9cbaf5453f49}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObjects\Skill\Monster_Skill\Skill_Dragon_Dush">
+      <UniqueIdentifier>{8935f81f-740a-4a44-9ce4-1351c8a875a3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -945,6 +948,9 @@
     <ClInclude Include="..\public\Skill_Dragon_Breath.h">
       <Filter>02.GameObjects\Skill\Monster_Skill\Skill_Dragon_Breath</Filter>
     </ClInclude>
+    <ClInclude Include="..\public\Skill_Dragon_Dust.h">
+      <Filter>02.GameObjects\Skill\Monster_Skill\Skill_Dragon_Dush</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -1375,6 +1381,9 @@
     </ClCompile>
     <ClCompile Include="..\private\Skill_Dragon_Breath.cpp">
       <Filter>02.GameObjects\Skill\Monster_Skill\Skill_Dragon_Breath</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Skill_Dragon_Dust.cpp">
+      <Filter>02.GameObjects\Skill\Monster_Skill\Skill_Dragon_Dush</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

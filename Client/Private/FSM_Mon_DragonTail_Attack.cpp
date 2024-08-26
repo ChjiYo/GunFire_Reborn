@@ -39,23 +39,44 @@ wstring CFSM_Mon_DragonTail_Attack::Priority_Update(_float fTimeDelta)
 
 wstring CFSM_Mon_DragonTail_Attack::Update(_float fTimeDelta)
 {
-	if(m_tDesc.pModel->Get_Anim(10)->Get_Duration() <= m_fAttackDelay)
+	if (m_iAttackType == 0)
 	{
-		CSkill::SKILL_DESC	BubbleDesc = {};
-
-		BubbleDesc.pOriginTransform = m_tDesc.pTransform;
-		BubbleDesc.fSpeedPerSec = 10.f;
-		BubbleDesc.fRotationPerSec = XMConvertToRadians(90.0f);
-		BubbleDesc.iSkillDamage = 5.f;		
-		m_tDesc.pTransform->LookAt(m_pPlayerTransform->Get_State(CTransform::STATE_POSITION));
-
-		for (int i = 1; i <= rand() % 6 + 6;  ++i)
+		if (m_tDesc.pModel->Get_Anim(10)->Get_Duration() <= m_fAttackDelay)
 		{
-			BubbleDesc.iNumSkill = i;
-			m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Skill_Dragon_Bubble"), TEXT("Layer_Skill_Dragon_Bubble"), &BubbleDesc);
+			CSkill::SKILL_DESC	BubbleDesc = {};
+
+			BubbleDesc.pOriginTransform = m_tDesc.pTransform;
+			BubbleDesc.fSpeedPerSec = 10.f;
+			BubbleDesc.fRotationPerSec = XMConvertToRadians(90.0f);
+			BubbleDesc.iSkillDamage = 5.f;
+			m_tDesc.pTransform->LookAt(m_pPlayerTransform->Get_State(CTransform::STATE_POSITION));
+
+			for (int i = 1; i <= rand() % 6 + 6; ++i)
+			{
+				BubbleDesc.iNumSkill = i;
+				m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Skill_Dragon_Bubble"), TEXT("Layer_Skill_Dragon_Bubble"), &BubbleDesc);
+			}
+			m_iAttackCnt++;
+			m_fAttackDelay = 0.f;
 		}
-		m_iAttackCnt++;
-		m_fAttackDelay = 0.f;
+	}
+	else if (m_iAttackType == 1)
+	{
+		if (m_tDesc.pModel->Get_Anim(9)->Get_Duration() <= m_fAttackDelay)
+		{
+			CSkill::SKILL_DESC	DustDesc = {};
+
+			DustDesc.pOriginTransform = m_tDesc.pTransform;
+			DustDesc.fSpeedPerSec = 10.f;
+			DustDesc.fRotationPerSec = XMConvertToRadians(90.0f);
+			DustDesc.iSkillDamage = 5.f;
+			m_tDesc.pTransform->LookAt(m_pPlayerTransform->Get_State(CTransform::STATE_POSITION));
+
+			m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Skill_Dragon_Dust"), TEXT("Layer_Skill_Dragon_Dust"), &DustDesc);
+
+			m_fAttackDelay = 0.f;
+			m_iAttackCnt++;
+		}
 	}
 
 	return TEXT("Monster_DragonTail_State_Attack");
@@ -81,10 +102,14 @@ void CFSM_Mon_DragonTail_Attack::Enter()
 
 	m_iAttackType = rand() % 2;
 
-	/*if (m_iAttackType == 0)
+	_vector vUpdatePos = XMVectorSetY(m_tDesc.pTransform->Get_State(CTransform::STATE_POSITION), -1.8f);
+	m_tDesc.pTransform->Set_State(CTransform::STATE_POSITION, vUpdatePos);
+
+	if (m_iAttackType == 0)
+	m_tDesc.pModel->SetUp_Animation(10, true);
+
+	else if (m_iAttackType == 1)
 		m_tDesc.pModel->SetUp_Animation(9, true );
-	else if (m_iAttackType == 1)*/
-		m_tDesc.pModel->SetUp_Animation(10, true );
 	
 }
 

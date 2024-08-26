@@ -13,6 +13,7 @@ CSkill_Dragon_Breath::CSkill_Dragon_Breath(ID3D11Device* pDevice, ID3D11DeviceCo
 CSkill_Dragon_Breath::CSkill_Dragon_Breath(const CSkill_Dragon_Breath& Prototype)
     :CSkill_Monster{ Prototype }
 {
+    
 }
 
 HRESULT CSkill_Dragon_Breath::Initialize_Prototype()
@@ -46,7 +47,7 @@ void CSkill_Dragon_Breath::Priority_Update(_float fTimeDelta)
 void CSkill_Dragon_Breath::Update(_float fTimeDelta)
 {
     m_pColliderCom->Update(m_pTransformCom->Get_WorldMatrix());
-
+    Destroy(fTimeDelta);
 }
 
 void CSkill_Dragon_Breath::Late_Update(_float fTimeDelta)
@@ -141,10 +142,10 @@ HRESULT CSkill_Dragon_Breath::Bind_ShaderResources()
 
 void CSkill_Dragon_Breath::Destroy(_float fTimeDelta)
 {
-    //m_fDestroyTimer += fTimeDelta;
-    //
-    //if (m_fDestroyTimer > 5.f)
-    //    m_bDead = true;
+    m_fDestroyTimer += fTimeDelta;
+    
+    if (m_fDestroyTimer > 3.5f)
+        m_bDead = true;
 
 }
 

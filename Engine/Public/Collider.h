@@ -23,6 +23,7 @@ public:
 public:
 	_bool		isCollision(CCollider* pTargetCollider);
 	class CGameObject* Get_Object() { return m_pObject; }
+	class CBounding* Get_Bounding() { return m_pBounding; }
 
 private:
 	TYPE		m_eColliderType = { TYPE_END };
