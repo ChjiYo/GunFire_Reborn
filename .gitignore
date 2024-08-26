@@ -36,3 +36,7 @@ Client/Public/Body_Player.h
 >>>>>>> origin/Add
 /Client/Default/x64/Debug/Client.pch.orig
 *.orig
+*.cso
+*.cso
+*.cso
+*cso

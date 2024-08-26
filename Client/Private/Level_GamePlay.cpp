@@ -47,11 +47,7 @@ HRESULT CLevel_GamePlay::Initialize()
 	if (FAILED(Ready_CrossHair()))
 		return E_FAIL;
 
-<<<<<<< HEAD
-	if (ParseInitialize())
-		return E_FAIL;
 
-=======
 	//if (FAILED(Ready_Layer_DecoObject(TEXT("Layer_Deco"))))
 	//	return E_FAIL;
 
@@ -61,9 +57,6 @@ HRESULT CLevel_GamePlay::Initialize()
 	if (FAILED(Ready_Layer_Item(TEXT("Layer_Item"))))
 		return E_FAIL;
 
-	
-
->>>>>>> origin/Add
 	return S_OK;
 }
 
