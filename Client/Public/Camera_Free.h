@@ -15,6 +15,9 @@ BEGIN(Client)
 class CCamera_Free final : public CCamera
 {	
 public:
+	enum CAMERA_TYPE {PLAYER , FREE , SCOPE , CAMERA_END};
+
+public:
 	typedef struct : public CCamera::CAMERA_DESC
 	{
 		_float		fSensor = {};
@@ -34,17 +37,26 @@ public:
 	virtual void Late_Update(_float fTimeDelta) override;
 	virtual HRESULT Render() override;
 
+private:
+	HRESULT	Ready_Components();
+
 public:
-	void Set_FreeView(_bool bCheck) { m_bCameraMode = bCheck; }
+	void Set_CameraType(CAMERA_TYPE eType) { m_eCameraType = eType; }
 
 private:
 	CTransform*			m_pPlayerTransform = { nullptr };
+	CNavigation*		m_pNavigationCom = { nullptr };
 
 	_float				m_fMouseSensor = {};
-	_bool				m_bCameraMode = { true };
+	_float				m_fScopeLevel = { 0.f };
+	CAMERA_TYPE			m_eCameraType = { PLAYER };
+	
 private:
+	void Camera_State(_float fTimeDelta, _float fMul = 1.f);
+
 	void FreeView_Camera(_float fTimeDelta);
-	void Position();
+	void Position(_float3 vOffSet);
+	void Scope_Camera(_float fTimeDelta, _float fMul);
 
 public:
 	static CCamera_Free* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);

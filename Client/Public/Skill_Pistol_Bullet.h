@@ -2,13 +2,6 @@
 
 #include "Skill_Player.h"
 
-BEGIN(Engine)
-class CShader;
-class CTexture;
-class CVIBuffer_Rect;
-class CCollider;
-END
-
 class CSkill_Pistol_Bullet final :public CSkill_Player
 {
 protected:
@@ -29,23 +22,13 @@ private:
 	HRESULT Bind_ShaderResources();
 
 private:
-	void Destroy(_float fTimeDelta);
-	void Add_Collider();
-
-private:
-	CShader* m_pShaderCom = { nullptr };
-	CTexture* m_pTextureCom = { nullptr };
-	CVIBuffer_Rect* m_pVIBufferCom = { nullptr };
-	CCollider* m_pColliderCom = { nullptr };
+	void Destroy(_float fTimeDelta ,_vector vPos);
 
 private:
 	_vector m_vTargetLook = {};
 
 	_float m_fDestroyTimer = {};
 	_uint m_iTextureIndex = { 0 };
-
-private:
-	list<CCollider*> HeadColliderList = {};
 
 public:
 	static CSkill_Pistol_Bullet* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);

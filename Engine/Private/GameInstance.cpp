@@ -285,6 +285,14 @@ HRESULT CGameInstance::Add_RenderObject(CRenderer::RENDERGROUP eRenderGroup, CGa
 	return m_pRenderer->Add_RenderObject(eRenderGroup, pRenderObject);	
 }
 
+HRESULT CGameInstance::Add_DebugComponent(CComponent* pDebugComponent)
+{
+	if (nullptr == m_pRenderer)
+		return E_FAIL;
+
+	return m_pRenderer->Add_DebugComponent(pDebugComponent);
+}
+
 _matrix CGameInstance::Get_Transform_Matrix(CPipeLine::D3DTRANSFORMSTATE eState) const
 {
 	return m_pPipeLine->Get_Transform_Matrix(eState);
@@ -328,6 +336,11 @@ HRESULT CGameInstance::Add_Font(ID3D11Device* pDevice, ID3D11DeviceContext* pCon
 HRESULT CGameInstance::Draw_Font(const _wstring& strFontTag, const _wstring& strText, const _float2& vPosition, _fvector vColor, _float fRotation, _float fScale)
 {
 	return m_pFont_Manager->Render(strFontTag, strText, vPosition, vColor, fRotation, fScale);
+}
+
+_float4 CGameInstance::Picked_Position(_bool* pPick)
+{
+	return m_pPicking->Picked_Position(pPick);
 }
 
 void CGameInstance::Transform_ToLocalSpace(const _matrix* pWorldMatrix)
@@ -387,6 +400,16 @@ HRESULT CGameInstance::Add_Light(const LIGHT_DESC & LightDesc)
 	return m_pLight_Manager->Add_Light(LightDesc);
 }
 
+HRESULT CGameInstance::Delete_Light()
+{
+	return m_pLight_Manager->Delete_Light();
+}
+
+HRESULT CGameInstance::Render_Lights(CShader* pShader, CVIBuffer_Rect* pVIBuffer)
+{
+	return m_pLight_Manager->Render_Lights(pShader, pVIBuffer);
+}
+
 HRESULT CGameInstance::Add_RenderTarget(const _wstring& strTargetTag, _uint iWidth, _uint iHeight, DXGI_FORMAT ePixelFormat, _fvector vClearColor)
 {
 	return m_pTarget_Manager->Add_RenderTarget(strTargetTag, iWidth, iHeight, ePixelFormat, vClearColor);
@@ -405,6 +428,17 @@ HRESULT CGameInstance::Begin_MRT(const _wstring& strMRTTag)
 HRESULT CGameInstance::End_MRT()
 {
 	return m_pTarget_Manager->End_MRT();
+}
+
+HRESULT CGameInstance::Copy_RenderTarget(const _wstring& strTargetTag, ID3D11Texture2D* pTexture2D)
+{
+	m_pTarget_Manager->Copy_RenderTarget(strTargetTag, pTexture2D);
+	return S_OK;
+}
+
+HRESULT CGameInstance::Bind_RT_ShaderResource(CShader* pShader, const _char* pConstantName, const _wstring& strTargetTag)
+{
+	return m_pTarget_Manager->Bind_ShaderResource(pShader, pConstantName, strTargetTag);
 }
 
 #ifdef _DEBUG

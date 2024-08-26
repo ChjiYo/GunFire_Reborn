@@ -3,6 +3,7 @@
 
 #include "GameInstance.h"
 #include "Camera_Free.h"
+#include "Element.h"
 
 #include "UI_Cross_Hair.h"
 #include "Player.h"
@@ -34,15 +35,35 @@ HRESULT CLevel_GamePlay::Initialize()
 	if (FAILED(Ready_Layer_Effect(TEXT("Layer_Effect"))))
 		return E_FAIL;
 	
-	if (FAILED(Ready_PlayerBar()))
+	if (FAILED(Ready_UI_PlayerState()))
 		return E_FAIL;
+
+	if (FAILED(Ready_UI_WeaponState()))
+		return E_FAIL;
+
+	//if (FAILED(Ready_UI_SkillState()))
+	//	return E_FAIL;
 	
 	if (FAILED(Ready_CrossHair()))
 		return E_FAIL;
 
+<<<<<<< HEAD
 	if (ParseInitialize())
 		return E_FAIL;
 
+=======
+	//if (FAILED(Ready_Layer_DecoObject(TEXT("Layer_Deco"))))
+	//	return E_FAIL;
+
+	if (FAILED(ParseInitialize()))
+		return E_FAIL;
+
+	if (FAILED(Ready_Layer_Item(TEXT("Layer_Item"))))
+		return E_FAIL;
+
+	
+
+>>>>>>> origin/Add
 	return S_OK;
 }
 
@@ -61,9 +82,33 @@ HRESULT CLevel_GamePlay::Ready_Lights()
 {
 	LIGHT_DESC			LightDesc{};
 
+	ZeroMemory(&LightDesc, sizeof(LIGHT_DESC));
+	LightDesc.eType = LIGHT_DESC::TYPE_DIRECTIONAL;
 	LightDesc.vDirection = _float4(1.f, -1.f, 1.f, 0.f);
-	LightDesc.vDiffuse = _float4(1.f, 1.f, 1.f, 1.f);
-	LightDesc.vAmbient = _float4(1.f, 1.f, 1.f, 1.f);
+	LightDesc.vDiffuse = _float4(0.6f, 0.6f, 0.6f, 1.f);
+	LightDesc.vAmbient = _float4(0.2f, 0.2f, 0.2f, 1.f);
+	LightDesc.vSpecular = _float4(1.f, 1.f, 1.f, 1.f);
+
+	if (FAILED(m_pGameInstance->Add_Light(LightDesc)))
+		return E_FAIL;
+
+	ZeroMemory(&LightDesc, sizeof(LIGHT_DESC));
+	LightDesc.eType = LIGHT_DESC::TYPE_POINT;
+	LightDesc.vPosition = _float4(10.f, 5.f, 10.f, 1.f);
+	LightDesc.fRange = 10.f;
+	LightDesc.vDiffuse = _float4(1.f, 0.0f, 0.f, 1.f);
+	LightDesc.vAmbient = _float4(0.3f, 0.f, 0.f, 1.f);
+	LightDesc.vSpecular = _float4(1.f, 0.f, 0.f, 1.f);
+
+	if (FAILED(m_pGameInstance->Add_Light(LightDesc)))
+		return E_FAIL;
+
+	ZeroMemory(&LightDesc, sizeof(LIGHT_DESC));
+	LightDesc.eType = LIGHT_DESC::TYPE_POINT;
+	LightDesc.vPosition = _float4(20.f, 5.f, 10.f, 1.f);
+	LightDesc.fRange = 10.f;
+	LightDesc.vDiffuse = _float4(0.0f, 1.f, 0.f, 1.f);
+	LightDesc.vAmbient = _float4(0.f, 0.3f, 0.f, 1.f);
 	LightDesc.vSpecular = _float4(0.f, 1.f, 0.f, 1.f);
 
 	if (FAILED(m_pGameInstance->Add_Light(LightDesc)))
@@ -114,17 +159,22 @@ HRESULT CLevel_GamePlay::Ready_Layer_Effect(const _wstring & strLayerTag)
 
 HRESULT CLevel_GamePlay::Ready_LandObjects()
 {
-	
 	if (FAILED(Ready_Layer_Player(TEXT("Layer_Player"))))
 		return E_FAIL;
 
 	if (FAILED(Ready_Layer_Monster(TEXT("Layer_Monster"))))
-		return E_FAIL;
-
+		return E_FAIL; 
 
 	return S_OK;
 }
-HRESULT CLevel_GamePlay::Ready_PlayerBar()
+HRESULT CLevel_GamePlay::Ready_Layer_Item(const wstring& strLayerTag)
+{
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Item_Sniper"), strLayerTag)))
+		return E_FAIL;
+
+	return S_OK;
+}
+HRESULT CLevel_GamePlay::Ready_UI_PlayerState()
 {
 	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Player_BarPanel"), TEXT("Layer_UI_Player_ABarPanel"))))
 		return E_FAIL;
@@ -138,14 +188,57 @@ HRESULT CLevel_GamePlay::Ready_PlayerBar()
 	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Player_ShieldBar"), TEXT("Layer_UI_Player_UI_Player_ShieldBar"))))
 		return E_FAIL;
 
-	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Player_HpBlankBar"), TEXT("Layer_UI_Player_BHpBlankBar"))))
+	//if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Player_HpBlankBar"), TEXT("Layer_UI_Player_BHpBlankBar"))))
+	//	return E_FAIL;
+
+	//if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Player_ShieldBlankBar"), TEXT("Layer_UI_Player_BShieldBlankBar"))))
+	//	return E_FAIL;
+
+	return S_OK;
+}
+HRESULT CLevel_GamePlay::Ready_UI_WeaponState()
+{
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Weapon_Panel"), TEXT("Layer_UI_AWeapon_Panel"))))
+		return E_FAIL;
+	
+	CUIObject::UI_DESC		UIDesc = {};
+	
+	for (int i = 0; i < 3; ++i)
+	{
+		UIDesc.iNumUI = i;
+		if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Weapon_NumPanel"), TEXT("Layer_UI_AWeapon_NumPanel"), &UIDesc)))
+			return E_FAIL;
+	}
+
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Weapon_BlueBullet"), TEXT("Layer_UI_Weapon_BlueBullet"))))
 		return E_FAIL;
 
-	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Player_ShieldBlankBar"), TEXT("Layer_UI_Player_BShieldBlankBar"))))
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Weapon_GreenBullet"), TEXT("Layer_UI_Weapon_GreenBullet"))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Weapon_YellowBullet"), TEXT("Layer_UI_Weapon_YellowBullet"))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Weapon_Icon"), TEXT("Layer_UI_Weapon_Icon"))))
 		return E_FAIL;
 
 	return S_OK;
 }
+
+HRESULT CLevel_GamePlay::Ready_UI_SkillState()
+{
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_SKill_Panel"), TEXT("Layer_UI_Weapon_SKill_Panel"))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_SKill_Dash"), TEXT("Layer_UI_Weapon_SKill_Dash"))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_SKill_Aiming"), TEXT("Layer_UI_Weapon_SKill_Aiming"))))
+		return E_FAIL;
+
+	return S_OK;
+}
+
 HRESULT CLevel_GamePlay::Ready_CrossHair()
 {
 	CUI_Cross_Hair::CROSS_HAIR_DESC Desc = {  };
@@ -183,19 +276,46 @@ HRESULT CLevel_GamePlay::Ready_Layer_Monster(const _wstring & strLayerTag)
 	Desc.iMaxHp = 30.f;
 	Desc.iHp = 30.f;
 
-	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Mon_Archer"), strLayerTag, &Desc)))
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Mon_Dragon"), strLayerTag, &Desc)))
 		return E_FAIL;
 
-	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Mon_Archer"), strLayerTag, &Desc)))
-		return E_FAIL;
+	//if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Mon_Archer"), strLayerTag, &Desc)))
+	//	return E_FAIL;
 
-	return S_OK;
+	//if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Mon_Bug"), strLayerTag, &Desc)))
+	//	return E_FAIL;
+	//
+	//if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Mon_Knight"), strLayerTag, &Desc)))
+	//	return E_FAIL;
+	//
+	//if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Mon_Spear"), strLayerTag, &Desc)))
+	//	return E_FAIL; 
+	//
+	//if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Mon_Deash_Boom"), strLayerTag, &Desc)))
+	//	return E_FAIL; 
+	//
+	//if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Mon_Shield_Knight"), strLayerTag, &Desc)))
+	//	return E_FAIL; 
+
+return S_OK;
 }
 
-HRESULT CLevel_GamePlay::Ready_Layer_WallStage(const _wstring& strLayerTag)
+HRESULT CLevel_GamePlay::Ready_Layer_DecoObject(const _wstring& strLayerTag)
 {
-	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Wall_Stage"), strLayerTag)))
-		return E_FAIL;
+
+	CElement::DECO_DESC Desc = {};
+
+	_uint m_iNumDeco = { 1 };
+
+	/*for (int i = 0; i < m_iNumDeco; ++i)
+	{
+		Desc.iNumDeco = i;
+
+		if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Door"), TEXT("Layer_Door"), &Desc)))
+			return E_FAIL;
+	}*/
+
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Stair1"), TEXT("Layer_Wall_Stage2"), &Desc)))
 
 	return S_OK;
 }

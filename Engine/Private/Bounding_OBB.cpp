@@ -3,6 +3,7 @@
 
 #include "Bounding_AABB.h"
 #include "Bounding_Sphere.h"
+#include "Bounding_Ray.h"
 
 CBounding_OBB::CBounding_OBB(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	: CBounding{ pDevice, pContext }
@@ -18,6 +19,11 @@ HRESULT CBounding_OBB::Initialize(CBounding::BOUNDING_DESC* pDesc)
 
 	m_pOriginalDesc = new BoundingOrientedBox(pBoundingDesc->vCenter, pBoundingDesc->vExtents, vRotation);
 	m_pDesc = new BoundingOrientedBox(*m_pOriginalDesc);
+
+	RAY_DESC* pRay = static_cast<RAY_DESC*>(pDesc);
+	m_tRayDesc.vOrigin = pRay->vOrigin;
+	m_tRayDesc.vDir = pRay->vDir;
+	m_tRayDesc.fDist = pRay->fDist;
 
 	return S_OK; 
 }
@@ -49,7 +55,11 @@ _bool CBounding_OBB::isCollision(CCollider::TYPE eTargetColliderType, CBounding*
 	case CCollider::TYPE_SPHERE:
 		isColl = m_pDesc->Intersects(static_cast<CBounding_Sphere*>(pTargetBounding)->Get_Desc());
 		break;
+	case CCollider::TYPE_RAY:
+		isColl = m_pDesc->Intersects(static_cast<CBounding_Ray*>(pTargetBounding)->Get_Desc());
+		break;
 	}
+	
 
 	return isColl;
 }

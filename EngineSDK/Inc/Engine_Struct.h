@@ -21,7 +21,12 @@ namespace Engine
 
 	typedef struct
 	{
+		enum TYPE { TYPE_DIRECTIONAL, TYPE_POINT, TYPE_END };
+
+		TYPE			eType;
 		XMFLOAT4		vDirection;
+		XMFLOAT4		vPosition; /* In.WorldSpace*/
+		float			fRange;
 
 		/* 난반사를 정의하기위한 빛의 색상. */
 		XMFLOAT4		vDiffuse;

@@ -38,24 +38,16 @@ void CTerrain::Priority_Update(_float fTimeDelta)
 void CTerrain::Update(_float fTimeDelta)
 {
 	m_pNavigationCom->Update(m_pTransformCom->Get_WorldMatrix());
-
-	/*
-	if (m_pGameInstance->Key_Down(VK_LBUTTON))
-	{
-		_vector		vPos{};
-		m_pVIBufferCom->Picked(m_pTransformCom, &vPos);
-
-		m_vPicking = {};
-		XMStoreFloat3(&m_vPicking, vPos);
-
-		
-		Add_NaviMesh(m_vPicking);
-	}*/
 }
 
 void CTerrain::Late_Update(_float fTimeDelta)
 {
 	m_pGameInstance->Add_RenderObject(CRenderer::RG_NONBLEND, this);
+
+
+#ifdef _DEBUG
+	m_pGameInstance->Add_DebugComponent(m_pNavigationCom);
+#endif
 }
 
 HRESULT CTerrain::Render()
@@ -72,11 +64,6 @@ HRESULT CTerrain::Render()
 	if (FAILED(m_pVIBufferCom->Render()))
 		return E_FAIL;
 
-#ifdef _DEBUG
-	m_pNavigationCom->Render();
-
-#endif
-
 	return S_OK;
 }
 
@@ -84,8 +71,6 @@ void CTerrain::Add_NaviMesh(_float3 vPos)
 {
 	if (vPos.x == 0 && vPos.y == 0 && vPos.z == 0)
 		return;
-
-	//m_pNavigationCom->
 
 	switch (m_iNumNaviPicking)
 	{
@@ -103,14 +88,11 @@ void CTerrain::Add_NaviMesh(_float3 vPos)
 		break;
 	}
 
-
-
-	
-if (m_iNumNaviPicking == 3)
-{
-	m_pNavigationCom->Add_Sell(vPoints);
-	m_iNumNaviPicking = 0;
-}
+	if (m_iNumNaviPicking == 3)
+	{
+		m_pNavigationCom->Add_Sell(vPoints);
+		m_iNumNaviPicking = 0;
+	}
 
 }
 
@@ -152,28 +134,6 @@ HRESULT CTerrain::Bind_ShaderResources()
 
 	if (FAILED(m_pTextureCom[TEX_DIFFUSE]->Bind_ShaderResource(m_pShaderCom, "g_DiffuseTexture", 0)))
 		return E_FAIL;	
-
-	//if (FAILED(m_pTextureCom[TEX_MASK]->Bind_ShaderResource(m_pShaderCom, "g_MaskTexture", 0)))
-	//	return E_FAIL;
-	//
-	//if (FAILED(m_pTextureCom[TEX_BRUSH]->Bind_ShaderResource(m_pShaderCom, "g_BrushTexture", 0)))
-	//	return E_FAIL;
-
-	if (FAILED(m_pShaderCom->Bind_RawValue("g_vCamPosition", &m_pGameInstance->Get_CamPosition_Float4(), sizeof(_float4))))
-		return E_FAIL;
-
-	const LIGHT_DESC*	pLightDesc = m_pGameInstance->Get_LightDesc(0);
-	if (nullptr == pLightDesc)
-		return E_FAIL;
-
-	if (FAILED(m_pShaderCom->Bind_RawValue("g_vLightDir", &pLightDesc->vDirection, sizeof(_float4))))
-		return E_FAIL;
-	if (FAILED(m_pShaderCom->Bind_RawValue("g_vLightDiffuse", &pLightDesc->vDiffuse, sizeof(_float4))))
-		return E_FAIL;
-	if (FAILED(m_pShaderCom->Bind_RawValue("g_vLightAmbient", &pLightDesc->vDiffuse, sizeof(_float4))))
-		return E_FAIL;
-	if (FAILED(m_pShaderCom->Bind_RawValue("g_vLightSpecular", &pLightDesc->vSpecular, sizeof(_float4))))
-		return E_FAIL;
 
 	return S_OK;
 }

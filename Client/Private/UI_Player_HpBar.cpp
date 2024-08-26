@@ -28,12 +28,13 @@ HRESULT CUI_Player_HpBar::Initialize(void* pArg)
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
-	m_fSizeX = 200.f;
-	m_fSizeY = 15.f;
+	m_fSizeX = 251.f;
+	m_fSizeY = 11.f;
 	m_fPosX = 290.f;
 	m_fPosY = 810.f;
 
 	__super::Set_UI_Setting(m_fSizeX, m_fSizeY, m_fPosX, m_fPosY);
+	m_pTransformCom->Rotation({ 0.f , 0.f, 1.f }, XMConvertToRadians(5.f));
 
 	m_pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Player")).back());
 	Safe_AddRef(m_pPlayer);
@@ -46,18 +47,7 @@ void CUI_Player_HpBar::Priority_Update(_float fTimeDelta)
 	m_strHp = to_wstring(m_pPlayer->Get_Player_Desc().iHp);
 	m_strMaxHp = to_wstring(m_pPlayer->Get_Player_Desc().iMaxHp);
 
-	_float fHpRatio = static_cast<_float>(m_pPlayer->Get_Player_Desc().iHp) / static_cast<_float>(m_pPlayer->Get_Player_Desc().iMaxHp);
-
-	 _float fSclaeX =  fHpRatio * m_fSizeX;
-	 _float fMiusScale = m_fSizeX - fSclaeX;
-
-	 if (fSclaeX < 1.0f)
-	 {
-		 fSclaeX = 1.0f;
-		 fMiusScale = m_fPosX * 0.5f + 45.f;
-	 }
-
-	__super::Set_UI_Setting(fSclaeX, m_fSizeY, m_fPosX - fMiusScale * 0.5f, m_fPosY);
+	m_fHpRatio = static_cast<_float>(m_pPlayer->Get_Player_Desc().iHp) / static_cast<_float>(m_pPlayer->Get_Player_Desc().iMaxHp);
 }
 
 void CUI_Player_HpBar::Update(_float fTimeDelta)
@@ -74,10 +64,13 @@ HRESULT CUI_Player_HpBar::Render()
 	if (FAILED(__super::Bind_ShaderResources()))
 		return E_FAIL;
 
+	if (FAILED(m_pShaderCom->Bind_RawValue("g_Ratio", &m_fHpRatio, sizeof(_float))))
+		return E_FAIL;
+
 	if (FAILED(m_pTextureCom->Bind_ShaderResource(m_pShaderCom, "g_Texture", 0)))
 		return E_FAIL;
 
-	if (FAILED(m_pShaderCom->Begin(0)))
+	if (FAILED(m_pShaderCom->Begin(2)))
 		return E_FAIL;
 
 	if (FAILED(m_pVIBufferCom->Bind_Buffers()))
@@ -86,7 +79,7 @@ HRESULT CUI_Player_HpBar::Render()
 	if (FAILED(m_pVIBufferCom->Render()))
 		return E_FAIL;
 
-	m_pGameInstance->Draw_Font(TEXT("Font_Nexon"), m_strHp + TEXT(" / ") + m_strMaxHp, _float2(m_fPosX + 100.f, m_fPosY), XMVectorSet(0.7f, 1.f, 0.3f, 1.f), XMConvertToRadians(-5.f), 0.8f);
+	m_pGameInstance->Draw_Font(TEXT("Font_Nexon"), m_strHp + TEXT(" / ") + m_strMaxHp, _float2(m_fPosX + 130.f, m_fPosY - 25.f), XMVectorSet(0.7f, 1.f, 0.3f, 1.f), XMConvertToRadians(-5.f), 0.8f);
 	
 	return S_OK;
 }

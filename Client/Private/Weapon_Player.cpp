@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "Weapon_Player.h"
+#include "GameInstance.h"
 
 CWeapon_Player::CWeapon_Player(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	:CPartObject{ pDevice, pContext }
@@ -36,6 +37,7 @@ void CWeapon_Player::Priority_Update(_float fTimeDelta)
 void CWeapon_Player::Update(_float fTimeDelta)
 {
 	__super::Update(fTimeDelta);
+
 }
 
 void CWeapon_Player::Late_Update(_float fTimeDelta)

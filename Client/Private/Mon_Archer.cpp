@@ -52,10 +52,8 @@ HRESULT CMon_Archer::Initialize(void* pArg)
 
 	m_pStateCom->Set_State(TEXT("Monster_Archer_State_Idle"));
 
-	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSet(20.f, 1.f, 20.f, 1.f));
+	m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 30.f, 1.f, 20.f , 1.f });
 	m_pNavigationCom->Init_Index(m_pTransformCom);
-
-	m_pModelCom->SetUp_Animation(1, true);
 
 	return S_OK;
 }
@@ -70,18 +68,6 @@ void CMon_Archer::Update(_float fTimeDelta)
 	for(int i = 0 ; i < COLL_END ; ++i)
 		m_pColliderCom[i]->Update(m_pTransformCom->Get_WorldMatrix());
 
-	m_pRangeCom->Update(m_pTransformCom->Get_WorldMatrix());
-
-	if (m_pGameInstance->Key_Down('N'))
-	{
-		m_iAnimFrame--;
-		m_pModelCom->SetUp_Animation(m_iAnimFrame, false);
-	}
-	if (m_pGameInstance->Key_Down('M'))
-	{
-		m_iAnimFrame++;
-		m_pModelCom->SetUp_Animation(m_iAnimFrame, false);
-	}
 	m_pStateCom->Update(fTimeDelta);
 
 	Destroy();
@@ -95,17 +81,17 @@ void CMon_Archer::Late_Update(_float fTimeDelta)
 	m_pGameInstance->Add_RenderObject(CRenderer::RG_NONBLEND, this);
 
 	m_pStateCom->Late_Update(fTimeDelta);
+
+#ifdef _DEBUG
+	for (size_t i = 0; i < COLL_END; i++)
+	{
+		m_pGameInstance->Add_DebugComponent(m_pColliderCom[i]);
+	}
+#endif
 }
 
 HRESULT CMon_Archer::Render()
 {
-#ifdef _DEBUG
-	for(int i = 0 ; i < COLL_END ; ++i)
-		m_pColliderCom[i]->Render();
-
-	m_pRangeCom->Render();
-#endif
-
 	if (FAILED(Bind_ShaderResources()))
 		return E_FAIL;
 
@@ -124,9 +110,6 @@ HRESULT CMon_Archer::Render()
 		if (FAILED(m_pModelCom->Render(i)))
 			return E_FAIL;
 	}
-
-	wstring m_strMaxHp = to_wstring(m_iAnimFrame);
-	m_pGameInstance->Draw_Font(TEXT("Font_Nexon"), m_strMaxHp, _float2(1200.f, 100.f), XMVectorSet(0.7f, 1.f, 0.3f, 1.f), XMConvertToRadians(-5.f), 0.8f);
 
 	return S_OK;
 }
@@ -174,6 +157,28 @@ HRESULT CMon_Archer::Ready_Components()
 		TEXT("Com_State"), reinterpret_cast<CComponent**>(&m_pStateCom))))
 		return E_FAIL;
 
+	/* For.Com_Collider */
+	CBounding_AABB::BOUNDING_AABB_DESC	AABBBoundingDesc{};
+
+	AABBBoundingDesc.vExtents = _float3(0.5f, 0.5f, 0.5f);
+	AABBBoundingDesc.vCenter = _float3(0.f, AABBBoundingDesc.vExtents.y, 0.f);
+	AABBBoundingDesc.pObject = this;
+
+	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Collider_AABB"),
+		TEXT("Com_ColliderAABB"), reinterpret_cast<CComponent**>(&m_pColliderCom[COLL_AABB]), &AABBBoundingDesc)))
+		return E_FAIL;
+
+	/* For.Com_Collider */
+	CBounding_Sphere::BOUNDING_SPHERE_DESC		SphereBoundingDesc{};
+
+	SphereBoundingDesc.fRadius = 0.5f;
+	SphereBoundingDesc.vCenter = _float3(0.f, SphereBoundingDesc.fRadius + 1.f, 0.f);
+	SphereBoundingDesc.pObject = this;
+
+	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Collider_Sphere"),
+		TEXT("Com_ColliderSphere"), reinterpret_cast<CComponent**>(&m_pColliderCom[COLL_SPHERE]), &SphereBoundingDesc)))
+		return E_FAIL;
+
 	return S_OK;
 }
 
@@ -186,22 +191,6 @@ HRESULT CMon_Archer::Bind_ShaderResources()
 		return E_FAIL;
 
 	if (FAILED(m_pShaderCom->Bind_Matrix("g_ProjMatrix", &m_pGameInstance->Get_Transform_Float4x4(CPipeLine::D3DTS_PROJ))))
-		return E_FAIL;
-
-	if (FAILED(m_pShaderCom->Bind_RawValue("g_vCamPosition", &m_pGameInstance->Get_CamPosition_Float4(), sizeof(_float4))))
-		return E_FAIL;
-
-	const LIGHT_DESC* pLightDesc = m_pGameInstance->Get_LightDesc(0);
-	if (nullptr == pLightDesc)
-		return E_FAIL;
-
-	if (FAILED(m_pShaderCom->Bind_RawValue("g_vLightDir", &pLightDesc->vDirection, sizeof(_float4))))
-		return E_FAIL;
-	if (FAILED(m_pShaderCom->Bind_RawValue("g_vLightDiffuse", &pLightDesc->vDiffuse, sizeof(_float4))))
-		return E_FAIL;
-	if (FAILED(m_pShaderCom->Bind_RawValue("g_vLightAmbient", &pLightDesc->vDiffuse, sizeof(_float4))))
-		return E_FAIL;
-	if (FAILED(m_pShaderCom->Bind_RawValue("g_vLightSpecular", &pLightDesc->vSpecular, sizeof(_float4))))
 		return E_FAIL;
 
 	return S_OK;

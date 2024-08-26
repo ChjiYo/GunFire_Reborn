@@ -28,7 +28,7 @@ HRESULT CMesh::Initialize_Prototype(CModel::TYPE eModelType, const aiMesh * pAIM
 	m_BufferDesc.CPUAccessFlags = 0;
 	m_BufferDesc.MiscFlags = 0;
 	m_BufferDesc.StructureByteStride = m_iVertexStride;
-
+	
 	/* 장치가 할당해주는 공간에 채워넣어야할 값들을 내가 미리 준비한다. */
 
 	void*			pVertices = 

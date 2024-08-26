@@ -189,7 +189,6 @@ CComponent * CShader::Clone(void * pArg)
 
 void CShader::Free()
 {
-
 	Safe_Release(m_pEffect);
 
 	for (auto& pInputLayout : m_InputLayouts)

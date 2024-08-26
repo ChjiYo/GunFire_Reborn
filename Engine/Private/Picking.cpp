@@ -19,7 +19,82 @@ CPicking::CPicking(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 HRESULT CPicking::Initialize(HWND hWnd)
 {
 	m_hWnd = hWnd;
+
+	D3D11_VIEWPORT			ViewportDesc{};
+	_uint					iNumViewport = { 1 };
+	m_pContext->RSGetViewports(&iNumViewport, &ViewportDesc);
+
+
+	D3D11_TEXTURE2D_DESC	TextureDesc;
+	ZeroMemory(&TextureDesc, sizeof(D3D11_TEXTURE2D_DESC));
+
+	TextureDesc.Width = ViewportDesc.Width;
+	TextureDesc.Height = ViewportDesc.Height;
+	m_iWidth = TextureDesc.Width;
+	m_iHeight = TextureDesc.Height;
+	TextureDesc.MipLevels = 1;
+	TextureDesc.ArraySize = 1;
+	TextureDesc.Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
+
+	TextureDesc.SampleDesc.Quality = 0;
+	TextureDesc.SampleDesc.Count = 1;
+
+	TextureDesc.Usage = D3D11_USAGE_STAGING;
+	TextureDesc.BindFlags = 0;
+	TextureDesc.CPUAccessFlags = D3D11_CPU_ACCESS_READ;
+	TextureDesc.MiscFlags = 0;
+
+	if (FAILED(m_pDevice->CreateTexture2D(&TextureDesc, nullptr, &m_pTexture2D)))
+		return E_FAIL;
+
 	return S_OK;
+}
+
+_float4 CPicking::Picked_Position(_bool* pPicked)
+{
+	_float4		vWorldPosition{};
+
+	POINT		ptMouse{};
+
+	GetCursorPos(&ptMouse);
+
+	ScreenToClient(m_hWnd, &ptMouse);
+
+	/* Target_PickDepth렌더타겟을 미리 만들어놓은 텍스쳐에 복사한다. */
+	m_pGameInstance->Copy_RenderTarget(TEXT("Target_PickDepth"), m_pTexture2D);
+
+	D3D11_MAPPED_SUBRESOURCE		SubResource{};
+
+	m_pContext->Map(m_pTexture2D, 0, D3D11_MAP_READ, 0, &SubResource);
+
+	_float4* pPickDepth = static_cast<_float4*>(SubResource.pData);
+
+	_uint		iIndex = (float)ptMouse.y * m_iWidth + (float)ptMouse.x;
+
+	_float4		vProjPos;
+
+	/* 투영공간상의 픽셀의 위치를 구한다. */
+	vProjPos.x = ptMouse.x / (m_iWidth * 0.5f) - 1.f;
+	vProjPos.y = ptMouse.y / (m_iHeight * -0.5f) + 1.f;
+	vProjPos.z = pPickDepth[iIndex].y;
+	vProjPos.w = 1.f;
+
+	/* 뷰공간상의 픽셀의 위치를 구한다. */
+	_vector		vViewPos = XMVector3TransformCoord(XMLoadFloat4(&vProjPos), m_pGameInstance->Get_Transform_Inverse_Matrix(CPipeLine::D3DTS_PROJ));
+
+	/* 월드공간상의 픽셀의 위치를 구한다. */
+	_vector		vWorldPos = XMVector3TransformCoord(vViewPos, m_pGameInstance->Get_Transform_Inverse_Matrix(CPipeLine::D3DTS_VIEW));
+
+	XMStoreFloat4(&vWorldPosition, vWorldPos);
+
+	m_pContext->Unmap(m_pTexture2D, 0);
+
+	if (1.f == pPickDepth[iIndex].w)
+		*pPicked = false;
+	else
+		*pPicked = true;
+
+	return vWorldPosition;
 }
 
 void CPicking::Update()
@@ -71,8 +146,6 @@ void CPicking::Update()
 	XMVECTOR vRayPosVector = XMLoadFloat3(&m_vRayPos);
 	vRayPosVector = XMVector3TransformCoord(vRayPosVector, ViewMatrixInv);
 	XMStoreFloat3(&m_vRayPos,vRayPosVector);
-
-	_float vbs = 13;
 }
 
 void CPicking::Transform_ToLocalSpace(const XMMATRIX* pWorldMatrix)
@@ -147,6 +220,7 @@ void CPicking::Free()
 	Safe_Release(m_pDevice);
 	Safe_Release(m_pContext);
 	Safe_Release(m_pGameInstance);
+	Safe_Release(m_pTexture2D);
 
 	__super::Free();
 }

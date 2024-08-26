@@ -30,20 +30,17 @@ HRESULT CSkill_Pistol_Bullet::Initialize(void* pArg)
 
     if (FAILED(Ready_Components()))
         return E_FAIL;
-
-    SKILL_DESC* Desc = static_cast<SKILL_DESC*>(pArg);
-    m_pOriginTransform = Desc->pOriginTransform;
    
     Safe_AddRef(m_pOriginTransform);
 
-    m_pTransformCom->Set_State(CTransform::STATE_POSITION, m_pOriginTransform->Get_State(CTransform::STATE_POSITION));
+    Set_Position({ 0.f , 0.25f, 1.f });
 
     m_vTargetLook = m_pOriginTransform->Get_State(CTransform::STATE_LOOK);
-        
     m_pTransformCom->Set_Scaled(3.f, 0.25f, 0.25f);
 
     //네비게이션 메쉬 밖으로 나가면 delete? good 
-    Add_Collider();
+
+    m_pNavigationCom->Init_Index(m_pTransformCom);
     return S_OK;
 }
 
@@ -60,22 +57,12 @@ void CSkill_Pistol_Bullet::Update(_float fTimeDelta)
     vPosition += m_vTargetLook * 50.f * fTimeDelta;
     m_pTransformCom->Set_State(CTransform::STATE_POSITION, vPosition);
 
-    Destroy(fTimeDelta);
+    Destroy(fTimeDelta, vPosition);
 }
 
 void CSkill_Pistol_Bullet::Late_Update(_float fTimeDelta)
-{
-   list<CGameObject*> ObjList = m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY,TEXT("Layer_Monster"));
-        
-    for (auto ColliderIter : HeadColliderList)
-    {
-        if (m_pColliderCom->isCollision(ColliderIter))
-        {    
-            dynamic_cast<CMonster*>(ColliderIter->Get_Object())->Set_Damage(-5.f);
-            m_bDead = true;
-        }
-    }
-
+{ 
+    __super::Late_Update(fTimeDelta);
     m_pGameInstance->Add_RenderObject(CRenderer::RG_BLEND, this);
 }
 
@@ -103,6 +90,9 @@ HRESULT CSkill_Pistol_Bullet::Render()
 
 HRESULT CSkill_Pistol_Bullet::Ready_Components()
 {
+    if (FAILED(__super::Ready_Components()))
+        return E_FAIL;
+
     /* For.Com_Shader */
     if (FAILED(__super::Add_Component(LEVEL_STATIC, TEXT("Prototype_Component_Shader_VtxPosTex"),
         TEXT("Com_Shader"), reinterpret_cast<CComponent**>(&m_pShaderCom))))
@@ -148,29 +138,19 @@ HRESULT CSkill_Pistol_Bullet::Bind_ShaderResources()
     return S_OK;
 }
 
-void CSkill_Pistol_Bullet::Destroy(_float fTimeDelta)
+void CSkill_Pistol_Bullet::Destroy(_float fTimeDelta, _vector vPos)
 {
     m_fDestroyTimer += fTimeDelta;
 
-    if(m_fDestroyTimer > 5.f)
+    if(m_fDestroyTimer > 15.f)
         m_bDead = true;
-  
-}
 
-void CSkill_Pistol_Bullet::Add_Collider()
-{
-    int i = 0; 
-    while (true)
-    {
-        CCollider* pTargetCollider = dynamic_cast<CCollider*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Monster"), TEXT("Com_Collider_Sphere"), i));
+    //m_vDestoryPos
+    _float fDistance = XMVectorGetX(XMVector3Length(vPos - XMLoadFloat4(&m_vDestoryPos)));
+    
+    if(fabs(fDistance) <2.25f)
+        m_bDead = true;
 
-        if (pTargetCollider == nullptr)
-            return;
-
-        HeadColliderList.push_back(pTargetCollider);
-
-        i++;
-    }
 }
 
 CSkill_Pistol_Bullet* CSkill_Pistol_Bullet::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
@@ -206,6 +186,7 @@ void CSkill_Pistol_Bullet::Free()
     Safe_Release(m_pVIBufferCom);
     Safe_Release(m_pTextureCom);
     Safe_Release(m_pColliderCom);
+    Safe_Release(m_pNavigationCom);
 
 	__super::Free();
 }

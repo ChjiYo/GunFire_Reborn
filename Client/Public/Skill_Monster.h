@@ -18,6 +18,9 @@ public:
 	virtual HRESULT Render() override;
 
 protected:
+	HRESULT Ready_Components();
+
+protected:
 	_float Get_RandomNormalize();
 	_float Get_Random(_float fMin, _float fMax);
 
@@ -25,7 +28,7 @@ protected:
 
 protected:
 	_vector		m_vPlayerPos = {};
-
+	_uint		m_iNumSkill = {};
 public:
 	virtual CGameObject* Clone(void* pArg) = 0;
 	virtual void Free() override;

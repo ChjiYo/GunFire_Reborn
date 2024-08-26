@@ -13,6 +13,13 @@ public:
 		_float3		vRotation;
 	}BOUNDING_OBB_DESC;
 
+	typedef struct : public BOUNDING_OBB_DESC
+	{
+		_vector vOrigin = {};
+		_vector vDir = {};
+		_float fDist = {};
+	}RAY_DESC;
+
 	typedef struct
 	{
 		_float3		vCenter;
@@ -38,9 +45,12 @@ public:
 private:
 	BoundingOrientedBox* m_pOriginalDesc = { nullptr };
 	BoundingOrientedBox* m_pDesc = { nullptr };
+
+	RAY_DESC m_tRayDesc = {};
 private:
 	_bool Collision_OBB(CBounding_OBB* pTargetDesc);
 	OBB_DESC Compute_OBB();
+
 
 public:
 	static CBounding_OBB* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, CBounding::BOUNDING_DESC* pDesc);

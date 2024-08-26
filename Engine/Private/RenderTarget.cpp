@@ -43,10 +43,25 @@ HRESULT CRenderTarget::Initialize(_uint iWidth, _uint iHeight, DXGI_FORMAT ePixe
 	return S_OK;
 }
 
+HRESULT CRenderTarget::Bind_ShaderResource(CShader* pShader, const _char* pConstantName)
+{
+	return pShader->Bind_ShaderResourceView(pConstantName, m_pSRV);
+}
+
 void CRenderTarget::Clear()
 {
 	m_pContext->ClearRenderTargetView(m_pRTV, (_float*)&m_vClearColor);
 }
+
+HRESULT CRenderTarget::Copy_RenderTarget(ID3D11Texture2D* pTexture2D)
+{
+	m_pContext->CopyResource(pTexture2D, m_pTexture2D);
+
+	return S_OK;
+}
+
+
+#ifdef _DEBUG
 
 HRESULT CRenderTarget::Ready_Debug(_float fCenterX, _float fCenterY, _float fSizeX, _float fSizeY)
 {
@@ -81,6 +96,7 @@ HRESULT CRenderTarget::Render_Debug(CShader* pShader, CVIBuffer_Rect* pVIBuffer)
 
 	return S_OK;
 }
+#endif
 
 CRenderTarget* CRenderTarget::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, _uint iWidth, _uint iHeight, DXGI_FORMAT ePixelFormat, _fvector vClearColor)
 {
@@ -97,8 +113,6 @@ CRenderTarget* CRenderTarget::Create(ID3D11Device* pDevice, ID3D11DeviceContext*
 
 void CRenderTarget::Free()
 {
-	//SaveDDSTextureToFile(m_pContext, m_pTexture2D, TEXT("../Bin/Tmp.dds"));
-
 	Safe_Release(m_pSRV);
 	Safe_Release(m_pRTV);
 	Safe_Release(m_pTexture2D);

@@ -3,6 +3,12 @@
 #include "Client_Defines.h"
 #include "GameObject.h"
 
+BEGIN(Engine)
+class CNavigation;
+END
+
+BEGIN(Client)
+
 class CSkill abstract:public CGameObject
 {
 public:
@@ -10,9 +16,10 @@ public:
 	{
 		CTransform* pOriginTransform = {};
 		_uint		iSkillDamage = {};
-
+		_float4		vDestoryPos = {};
+		_uint		iNumSkill = {};
 	}SKILL_DESC;
-
+	
 protected:
 	CSkill(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	CSkill(const CSkill& Prototype);
@@ -27,7 +34,12 @@ public:
 	virtual HRESULT Render() override;
 
 protected:
+	HRESULT Ready_Components();
+
+protected:
 	CTransform* m_pOriginTransform = {};
+	CNavigation* m_pNavigationCom = {};
+
 	_uint		m_iSkillDamage = {};
 
 public:
@@ -35,4 +47,6 @@ public:
 	virtual void Free() override;
 
 };
+
+END
 

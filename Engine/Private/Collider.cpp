@@ -1,8 +1,9 @@
-#include "Collider.h"
+ #include "Collider.h"
 
 #include "Bounding_AABB.h"
 #include "Bounding_OBB.h"
 #include "Bounding_Sphere.h"
+#include "Bounding_Ray.h"
 
 #include "GameInstance.h"
 
@@ -34,7 +35,7 @@ HRESULT CCollider::Initialize_Prototype(TYPE eColliderType)
 	m_pEffect = new BasicEffect(m_pDevice);
 
 	m_pEffect->SetVertexColorEnabled(true);
-
+	
 	const void* pShaderByteCode = { nullptr };
 	size_t		iShaderByteCodeLength = {};
 
@@ -65,6 +66,9 @@ HRESULT CCollider::Initialize(void* pArg)
 	case TYPE_OBB:
 		m_pBounding = CBounding_OBB::Create(m_pDevice, m_pContext, static_cast<CBounding::BOUNDING_DESC*>(pArg));
 		break;
+	case TYPE_RAY:
+		m_pBounding = CBounding_Ray::Create(m_pDevice, m_pContext, static_cast<CBounding::BOUNDING_DESC*>(pArg));
+		break;
 	}
 
 	if (nullptr == m_pBounding)
@@ -81,6 +85,8 @@ void CCollider::Update(_fmatrix TransformMatrix)
 HRESULT CCollider::Render()
 {
 #ifdef _DEBUG
+	m_pContext->GSSetShader(nullptr, nullptr, 0);
+
 	m_pEffect->SetWorld(XMMatrixIdentity());
 	m_pEffect->SetView(m_pGameInstance->Get_Transform_Matrix(CPipeLine::D3DTS_VIEW));
 	m_pEffect->SetProjection(m_pGameInstance->Get_Transform_Matrix(CPipeLine::D3DTS_PROJ));
@@ -104,7 +110,7 @@ _bool CCollider::isCollision(CCollider* pTargetCollider)
 	m_isColl = false;
 
 	m_isColl = m_pBounding->isCollision(pTargetCollider->m_eColliderType, pTargetCollider->m_pBounding);
-
+	
 	return m_isColl;
 }
 

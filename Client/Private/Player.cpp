@@ -10,6 +10,12 @@
 #include "Weapon_Player.h"
 #include "Weapon_Player_Pistol.h"
 
+#include "UI_Weapon_Icon.h"
+#include "Monster.h"
+
+#include "Door.h"
+#include "Cell.h"
+
 CPlayer::CPlayer(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
     :CContainerObject{ pDevice  , pContext }
 {
@@ -45,10 +51,6 @@ HRESULT CPlayer::Initialize(void* pArg)
     Player_Desc.iShield = Desc->iShield;
     Player_Desc.iMaxShield = Desc->iMaxShield;
 
-
-    if (FAILED(Ready_PartObjects()))
-        return E_FAIL;
-
     if (FAILED(Ready_Components()))
         return E_FAIL;
 
@@ -56,8 +58,9 @@ HRESULT CPlayer::Initialize(void* pArg)
         return E_FAIL;
 
     m_eWeaponID = PISTOL;
+    m_eWeaponIDArray[2] = PISTOL;
 
-    m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 10.f , 1.3f , 10.f, 1.f });
+    m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 3.f , 1.3f , 3.f, 1.f });
     m_pNavigationCom->Init_Index(m_pTransformCom);
     
     return S_OK;
@@ -72,19 +75,25 @@ void CPlayer::Priority_Update(_float fTimeDelta)
         m_fShieldRecoveryTimer += fTimeDelta;
     else
         m_fShieldRecoveryTimer = 0.f;
-    
-    Player_Weapon_Change();
+
+    m_fInvincibleTime += fTimeDelta;
 
     __super::Priority_Update(fTimeDelta);
 }
 
 void CPlayer::Update(_float fTimeDelta)
 {
+    __super::Update(fTimeDelta);
+
     m_pColliderCom->Update(m_pTransformCom->Get_WorldMatrix());
 
     ShieldRecovery();
-        
-    __super::Update(fTimeDelta);
+    Player_Weapon_Change();
+
+    _vector vPos = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
+    int a = 10;
+ 
+
 }
 
 void CPlayer::Late_Update(_float fTimeDelta)
@@ -92,16 +101,29 @@ void CPlayer::Late_Update(_float fTimeDelta)
     __super::Late_Update(fTimeDelta);
 
     Key_State(fTimeDelta);
-    m_pGameInstance->Add_RenderObject(CRenderer::RG_NONBLEND, this);
-}
 
-HRESULT CPlayer::Render()
-{
+    list<CGameObject*> ObjList = m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Monster"));
+
+    for (auto& Monsteriter : ObjList)
+    {
+        if ((m_pColliderCom->isCollision(dynamic_cast<CMonster*>(Monsteriter)->Get_Collider())) && m_fInvincibleTime > 1.f)
+        {
+            Set_Damage(-5.f);
+            m_fInvincibleTime = 0.f;
+        }
+    }
+
+    m_pGameInstance->Add_RenderObject(CRenderer::RG_NONBLEND, this);
+
 #ifdef _DEBUG
-    m_pColliderCom->Render();
-    m_pNavigationCom->Render();
+    m_pGameInstance->Add_DebugComponent(m_pColliderCom);
+    m_pGameInstance->Add_DebugComponent(m_pNavigationCom);
 #endif
 
+}
+
+HRESULT CPlayer::Render() 
+{
     return S_OK;
 }
 
@@ -111,14 +133,6 @@ void CPlayer::ShieldRecovery()
     {
         Player_Desc.iShield++;
     }
-}
-
-HRESULT CPlayer::Ready_PartObjects()
-{
-    m_eWeaponID = PISTOL;
-    m_bWeaponChange = true;
-
-    return S_OK;
 }
 
 HRESULT CPlayer::Ready_Components()
@@ -141,7 +155,7 @@ HRESULT CPlayer::Ready_Components()
    
 
    BoundingDesc.vExtents = _float3(0.5f, 0.5f, 0.5f);
-   BoundingDesc.vCenter = _float3(0.f, BoundingDesc.vExtents.y / 2.f, 0.f);  
+   BoundingDesc.vCenter = _float3(0.f, BoundingDesc.vExtents.y / 2.f - 0.5f , 0.f);  
    BoundingDesc.pObject = this;
 
    if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Collider_AABB"),
@@ -167,6 +181,10 @@ void CPlayer::Key_State(_float fTimeDelta)
 void CPlayer::Player_Move(_float fTimeDelta)
 {
     _long		MouseMove = {};
+    _bool isMove = true;
+
+    //if(!m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Door")).empty())
+       // isMove = dynamic_cast<CDoor*>(m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Door")).back())->IsMove();
 
     if (MouseMove = m_pGameInstance->Get_DIMouseMove(DIMM_X))
     {
@@ -180,45 +198,53 @@ void CPlayer::Player_Move(_float fTimeDelta)
 
     if (m_pGameInstance->Get_DIKeyState(DIK_A) & 0x80)
     {
-        m_pTransformCom->Go_Left(fTimeDelta, m_pNavigationCom);
+        m_pTransformCom->Go_Left(fTimeDelta, m_pNavigationCom , m_bJump);
 
         if (m_pGameInstance->Key_Down(VK_LSHIFT))
-            m_pTransformCom->Go_Left(fTimeDelta + 0.5f, m_pNavigationCom);
+            m_pTransformCom->Go_Left(fTimeDelta  * 15.5f, m_pNavigationCom);
     }
 
     if (m_pGameInstance->Get_DIKeyState(DIK_D) & 0x80)
     {
-        m_pTransformCom->Go_Right(fTimeDelta, m_pNavigationCom);
+        m_pTransformCom->Go_Right(fTimeDelta, m_pNavigationCom, m_bJump);
 
         if (m_pGameInstance->Key_Down(VK_LSHIFT))
-            m_pTransformCom->Go_Right(fTimeDelta + 0.5f, m_pNavigationCom);
+            m_pTransformCom->Go_Right(fTimeDelta * 15.5f, m_pNavigationCom);
     }
 
     if (m_pGameInstance->Get_DIKeyState(DIK_W) & 0x80)
     {
-        m_pTransformCom->Go_StraightY(fTimeDelta, m_pNavigationCom);
+        m_pTransformCom->Go_StraightY(fTimeDelta, m_pNavigationCom, m_bJump);
 
         if (m_pGameInstance->Key_Down(VK_LSHIFT))
-            m_pTransformCom->Go_StraightY(fTimeDelta + 0.5f, m_pNavigationCom);
-        
+            m_pTransformCom->Go_StraightY(fTimeDelta * 15.5f, m_pNavigationCom);      
     }
 
     if (m_pGameInstance->Get_DIKeyState(DIK_S) & 0x80)
     {
-        m_pTransformCom->Go_BackwardY(fTimeDelta, m_pNavigationCom);
+        m_pTransformCom->Go_BackwardY(fTimeDelta, m_pNavigationCom, m_bJump);
 
         if (m_pGameInstance->Key_Down(VK_LSHIFT))
-            m_pTransformCom->Go_BackwardY(fTimeDelta + 0.5f, m_pNavigationCom);
+            m_pTransformCom->Go_BackwardY(fTimeDelta * 15.5f, m_pNavigationCom);
     }
 
     if (m_pGameInstance->Key_Down('1'))
     {
-        m_eWeaponID = SHURIKEN;
+        if (m_eWeaponIDArray[ONE] == WEAPON_END)
+            return;
+
+        m_eWeaponID = m_eWeaponIDArray[ONE];
+        m_eSlotID = ONE;
         m_bWeaponChange = true;
     }
 
     if (m_pGameInstance->Key_Down('2'))
     {
+        if (m_eWeaponIDArray[TWO] == WEAPON_END)
+            return;
+
+        m_eWeaponID = m_eWeaponIDArray[TWO];
+        m_eSlotID = TWO;
         m_bWeaponChange = true;
     }
 
@@ -227,17 +253,37 @@ void CPlayer::Player_Move(_float fTimeDelta)
         m_eWeaponID = PISTOL;
         m_bWeaponChange = true;
     }
+
+    if (m_pGameInstance->Key_Down('4'))
+    {
+        m_eWeaponID = BOOMGUN;
+        m_bWeaponChange = true;
+    }
+
+    //if (m_pGameInstance->Key_Down(VK_LSHIFT) || m_bDash)
+    //{
+    //    m_bDash = true;
+    //    Dash(fTimeDelta);
+    //}
 }
 
 void CPlayer::Player_Jump(_float fTimeDelta)
 {
+    _float fHeight = m_pNavigationCom->Navi_Height(m_pTransformCom);
+
+    if (!m_bJump)
+    {
+        m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetY(m_pTransformCom->Get_State(CTransform::STATE_POSITION), fHeight + 1.3f));
+    }
+
     if (m_pGameInstance->Key_Down(VK_SPACE)|| m_bJump)
     {
         m_pTransformCom->Go_Up(fTimeDelta);
+        m_pNavigationCom->Init_Index(m_pTransformCom);
         m_bJump = true;
     }
-
-    if (m_pTransformCom->Gravity(0.2f, 1.3f, fTimeDelta) && m_bJump)
+    
+    if (m_pTransformCom->Gravity(0.2f, fHeight + 1.3f, fTimeDelta) && m_bJump)
     {
         m_bJump = false;
     }
@@ -253,23 +299,55 @@ void CPlayer::Player_Weapon_Change()
         CWeapon_Player::PLAYER_WEAPON_DESC Desc{};
         Desc.pParentMatrix = m_pTransformCom->Get_WorldMatrixPtr();
         Desc.pParentState = 0x00000000;
-        
-
+  
         switch (m_eWeaponID)
         {
         case PISTOL:
-            Desc.iNumBullet = 30;
+            Desc.iNumBullet = 8;
+            Desc.iMaxBullet = 999999999;
             Desc.fAttackSpeed = 0.25f;
             __super::Add_PartObject(PART_WEAPON, TEXT("Prototype_GameObject_Weapon_Player_Pistol"), &Desc);
+
             break;
 
         case SHURIKEN:
+            Desc.iNumBullet = 1;
+            Desc.iNumBullet = 60;
+            Desc.fAttackSpeed = 0.25f;
             __super::Add_PartObject(PART_WEAPON, TEXT("Prototype_GameObject_Weapon_Player_Shuriken"), &Desc);
+
+            break;
+
+        case SNIPER:
+            
+            Desc.iNumBullet = 8;
+            Desc.iMaxBullet = 80;
+            Desc.fAttackSpeed = 0.25f;
+            __super::Add_PartObject(PART_WEAPON, TEXT("Prototype_GameObject_Weapon_Player_Sniper"), &Desc);
+
+            break;
+
+        case BOOMGUN:
+            Desc.iNumBullet = 30;
+            Desc.iMaxBullet = 120;
+            Desc.fAttackSpeed = 0.125f;
+            __super::Add_PartObject(PART_WEAPON, TEXT("Prototype_GameObject_Weapon_Player_BoomGun"), &Desc);
+            break;
+
+        default:
             break;
         }
 
+        
         m_bWeaponChange = false;
     }
+}
+
+void CPlayer::Dash(_float fTimeDelta)
+{
+    //m_pTransformCom->Dash(fTimeDelta);
+    m_pTransformCom->Go_StraightY(fTimeDelta);
+
 }
 
 CPlayer* CPlayer::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)

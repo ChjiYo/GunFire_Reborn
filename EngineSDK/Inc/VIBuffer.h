@@ -15,7 +15,7 @@ public:
 	virtual HRESULT Initialize_Prototype() override;
 	virtual HRESULT Initialize(void* pArg) override;
 	virtual HRESULT Bind_Buffers();
-	virtual HRESULT Render();
+	virtual HRESULT Render() override;
 
 protected:
 	ID3D11Buffer*				m_pVB = { nullptr };

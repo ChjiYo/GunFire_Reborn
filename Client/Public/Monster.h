@@ -38,6 +38,8 @@ public:
 		m_tMonDesc.iHp += iDamage;
 	}
 
+	CCollider* Get_Collider() { return m_pColliderCom[COLL_AABB]; }
+
 public:
 	virtual HRESULT Initialize_Prototype() override;
 	virtual HRESULT Initialize(void* pArg) override;
@@ -53,7 +55,6 @@ public:
 protected:
 	CNavigation* m_pNavigationCom	= { nullptr };
 	CCollider*	m_pColliderCom[COLL_END] = { nullptr , nullptr };
-	CCollider* m_pRangeCom = { nullptr };
 
 	MON_DESC	m_tMonDesc = {};
 

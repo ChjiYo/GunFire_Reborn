@@ -1,0 +1,86 @@
+#include "stdafx.h"
+
+#include "FSM_Mon_DragonTail_Out.h"
+#include "GameInstance.h"
+#include "Animation.h"
+
+#include "Skill.h"
+#include "Player.h"
+
+CFSM_Mon_DragonTail_Out::CFSM_Mon_DragonTail_Out(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
+	:CFSM_Monster{ pDevice , pContext }
+{
+}
+
+CFSM_Mon_DragonTail_Out::CFSM_Mon_DragonTail_Out(const CFSM_Mon_DragonTail_Out& pPrototype)
+	:CFSM_Monster{ pPrototype }
+{
+}
+
+HRESULT CFSM_Mon_DragonTail_Out::Initialize(FSM_MON_DESC Desc)
+{
+	if (FAILED(__super::Initialize()))
+		return E_FAIL;
+
+	m_tDesc.pTransform = Desc.pTransform;
+	m_tDesc.pNavigation = Desc.pNavigation;
+	m_tDesc.pModel = Desc.pModel;
+	m_tDesc.tMonDesc = Desc.tMonDesc;
+
+	return S_OK;
+}
+
+wstring CFSM_Mon_DragonTail_Out::Priority_Update(_float fTimeDelta)
+{
+	m_fAnimEndTimer += fTimeDelta;
+	
+	return TEXT("Monster_DragonTail_State_Out");
+}
+
+wstring CFSM_Mon_DragonTail_Out::Update(_float fTimeDelta)
+{
+	return TEXT("Monster_DragonTail_State_Out");
+}
+
+wstring CFSM_Mon_DragonTail_Out::Late_Update(_float fTimeDelta)
+{
+	if (m_fAnimEndTimer >= m_tDesc.pModel->Get_Anim(3)->Get_Duration())
+	{
+		m_fAnimEndTimer = 0.f;
+		return TEXT("Monster_DragonTail_State_Attack");
+	}
+
+	return TEXT("Monster_DragonTail_State_Out");
+}
+
+void CFSM_Mon_DragonTail_Out::Enter()
+{
+	__super::Enter();
+
+	m_tDesc.pTransform->LookAt(m_pPlayerTransform->Get_State(CTransform::STATE_POSITION));
+
+	m_tDesc.pModel->SetUp_Animation(3, false);
+	m_strName = TEXT("Monster_DragonTail_State_Out");
+}
+
+void CFSM_Mon_DragonTail_Out::Exit()
+{
+}
+
+CFSM_Mon_DragonTail_Out* CFSM_Mon_DragonTail_Out::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, FSM_MON_DESC Desc)
+{
+	CFSM_Mon_DragonTail_Out* pInstance = new CFSM_Mon_DragonTail_Out(pDevice, pContext);
+
+	if (FAILED(pInstance->Initialize(Desc)))
+	{
+		MSG_BOX(TEXT("Failed to Created : CFSM_Mon_DragonTail_Out "));
+		Safe_Release(pInstance);
+	}
+
+	return pInstance;
+}
+
+void CFSM_Mon_DragonTail_Out::Free()
+{
+	__super::Free();
+}

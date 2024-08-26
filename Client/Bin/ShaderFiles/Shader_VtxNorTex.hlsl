@@ -3,16 +3,10 @@
 
 float4x4		g_WorldMatrix, g_ViewMatrix, g_ProjMatrix;
 
-float4			g_vLightDir = float4(1.f, -1.f, 1.f, 0.f);
-float4			g_vLightDiffuse = float4(1.f, 1.f, 1.f, 1.f);
-float4			g_vLightAmbient = float4(1.f, 1.f, 1.f, 1.f);
-float4			g_vLightSpecular = float4(1.f, 1.f, 1.f, 1.f);
-
 texture2D		g_DiffuseTexture;
-float4			g_vMtrlAmbient = float4(0.3f, 0.3f, 0.3f, 1.f);
-float4			g_vMtrlSpecular = float4(1.f, 1.f, 1.f, 1.f);
 
-vector			g_vCamPosition;
+float4 g_vBrushPos = float4(20.f, 0.f, 20.f, 1.f);
+float g_fBrushRange = 5.f;
 
 struct VS_IN
 {
@@ -27,6 +21,7 @@ struct VS_OUT
 	float4 vNormal : NORMAL;
 	float2 vTexcoord : TEXCOORD0;
 	float4 vWorldPos : TEXCOORD1;
+    float4 vProjPos : TEXCOORD2;
 };
 
 VS_OUT VS_MAIN(VS_IN In)
@@ -39,9 +34,10 @@ VS_OUT VS_MAIN(VS_IN In)
 	vPosition = mul(vPosition, g_ProjMatrix);
 
 	Out.vPosition = vPosition;
-	Out.vNormal = mul(vector(In.vNormal, 0.f), g_WorldMatrix);
+    Out.vNormal = normalize(mul(vector(In.vNormal, 0.f), g_WorldMatrix));
 	Out.vTexcoord = In.vTexcoord;
 	Out.vWorldPos = mul(vector(In.vPosition, 1.f), g_WorldMatrix);
+    Out.vProjPos = vPosition;
 
 	return Out;
 }
@@ -52,68 +48,43 @@ struct PS_IN
 	float4 vNormal : NORMAL;
 	float2 vTexcoord : TEXCOORD0;
 	float4 vWorldPos : TEXCOORD1;
+    float4 vProjPos : TEXCOORD2;
 };
 
 struct PS_OUT
 {
-	float4	vColor : SV_TARGET0;
+	float4	vDiffuse : SV_TARGET0;
+    float4 vNormal   : SV_TARGET1;
+    float4 vDepth : SV_TARGET2;
+    float4 vPickDepth : SV_TARGET3;
 };
 
 PS_OUT PS_MAIN(PS_IN In)
 {
 	PS_OUT			Out;	
+
+    Out.vDiffuse = g_DiffuseTexture.Sample(LinearSampler, In.vTexcoord * 30.f);
+    Out.vNormal = vector(In.vNormal.xyz * 0.5f + 0.5f, 0.f);
+    Out.vDepth = vector(In.vProjPos.w / 1000.f, In.vProjPos.z / In.vProjPos.w, 0.f, 0.f);
+    Out.vPickDepth = vector(In.vProjPos.w / 1000.f, In.vProjPos.z / In.vProjPos.w, 0.f, 0.f);
 	
-	/*
-	
-	vector		vSourDiffuse = g_DiffuseTexture[0].Sample(LinearSampler, In.vTexcoord * 30.f);
-	vector		vDestDiffuse = g_DiffuseTexture[1].Sample(LinearSampler, In.vTexcoord * 30.f);
-	
-	vector		vBrush = (vector)0;
-	vector		vMask = g_MaskTexture.Sample(LinearSampler, In.vTexcoord);
-
-	if (g_vBrushPos.x - g_fBrushRange < In.vWorldPos.x && In.vWorldPos.x <= g_vBrushPos.x + g_fBrushRange && 
-		g_vBrushPos.z - g_fBrushRange < In.vWorldPos.z && In.vWorldPos.z <= g_vBrushPos.z + g_fBrushRange)
-	{
-		float2		vTexcoord;
-
-		vTexcoord.x = (In.vWorldPos.x - (g_vBrushPos.x - g_fBrushRange)) / (2.f * g_fBrushRange);
-		vTexcoord.y = ((g_vBrushPos.z + g_fBrushRange) - In.vWorldPos.z) / (2.f * g_fBrushRange);
-
-		vBrush = g_BrushTexture.Sample(LinearSampler, vTexcoord);
-	}
-	
-	*/
-
-	vector		vMtrlDiffuse = g_DiffuseTexture.Sample(LinearSampler, In.vTexcoord * 30.f);
-
-	/* 0.0f ~ 1.f */
-	float		fShade = max(dot(normalize(g_vLightDir) * -1.f, normalize(In.vNormal)), 0.f);
-
-	/* 0.3f ~ 1.f */
-	vector		vShade = saturate(fShade + g_vLightAmbient * g_vMtrlAmbient);
-
-	vector		vReflect = reflect(normalize(g_vLightDir), normalize(In.vNormal));
-	vector		vLook = In.vWorldPos - g_vCamPosition;
-
-	float		fSpecular = pow(max(dot(normalize(vReflect) * -1.f, normalize(vLook)), 0.f), 30.f);
-	vector		vSpecular = g_vLightSpecular * g_vMtrlSpecular * fSpecular;
-
-	Out.vColor = (g_vLightDiffuse * vMtrlDiffuse) * vShade + vSpecular;
-
 	return Out;
 }
 
 technique11		DefaultTechnique
 {	
 	pass Default
-    {
+    { 
         SetRasterizerState(RS_Default);
         SetDepthStencilState(DSS_Default, 0);
         SetBlendState(BS_Default, float4(0.f, 0.f, 0.f, 0.f), 0xffffffff);
 
-		VertexShader = compile vs_5_0 VS_MAIN();
-		PixelShader = compile ps_5_0 PS_MAIN();
-	}
+        VertexShader = compile vs_5_0 VS_MAIN();
+        GeometryShader = NULL;
+        HullShader = NULL;
+        DomainShader = NULL;
+        PixelShader = compile ps_5_0 PS_MAIN();
+    }
 }
 
 

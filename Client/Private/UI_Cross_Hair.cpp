@@ -138,28 +138,28 @@ void CUI_Cross_Hair::Move(_float fTimeDelta)
 
 CUI_Cross_Hair* CUI_Cross_Hair::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 {
-	CUI_Cross_Hair* pInstatnce = new CUI_Cross_Hair(pDevice, pContext);
+	CUI_Cross_Hair* pInstance = new CUI_Cross_Hair(pDevice, pContext);
 
-	if (FAILED(pInstatnce->Initialize_Prototype()))
+	if (FAILED(pInstance->Initialize_Prototype()))
 	{
 		MSG_BOX(TEXT("Failed to Created : CUI_Cross_Hair"));
-		Safe_Release(pInstatnce);
+		Safe_Release(pInstance);
 	}
 
-	return pInstatnce;
+	return pInstance;
 }
 
 CGameObject* CUI_Cross_Hair::Clone(void* pArg)
 {
-	CUI_Cross_Hair* pInstatnce = new CUI_Cross_Hair(*this);
+	CUI_Cross_Hair* pInstance = new CUI_Cross_Hair(*this);
 
-	if (FAILED(pInstatnce->Initialize(pArg)))
+	if (FAILED(pInstance->Initialize(pArg)))
 	{
 		MSG_BOX(TEXT("Failed to Cloend : CUI_Cross_Hair"));
-		Safe_Release(pInstatnce);
+		Safe_Release(pInstance);
 	}
 
-	return pInstatnce;
+	return pInstance;
 }
 
 void CUI_Cross_Hair::Free()

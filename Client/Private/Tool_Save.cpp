@@ -88,7 +88,7 @@ HRESULT CTool_Save::Save_Button_Pressed(bool* bShowSaveSuccessMessage, bool* bSh
 
 	// 여기에 스킵할 레이어 이름을 정의
 	unordered_set<wstring> skipLayers =
-	{ L"Layer_BackGround", L"Layer_Camera",L"Layer_Monster" ,L"Layer_Player",L"Layer_Skill_Player_Bullet"};
+	{ L"Layer_BackGround", L"Layer_Camera",L"Layer_Monster" ,L"Layer_Player",L"Layer_Skill_Player_Bullet",L"Layer_Item",L"Layer_Effect"};
 
 	// "Layer_UI"로 시작하는 모든 레이어를 스킵할 레이어에 추가
 	for (const auto& object : objectLayersVector)
@@ -124,7 +124,7 @@ HRESULT CTool_Save::Save_Button_Pressed(bool* bShowSaveSuccessMessage, bool* bSh
 				wstring newPrefix = L"Prototype_GameObject_" + suffix;
 
 				// 이 새로운 문자열을 vecFileData에 추가
-				FILEDATA tData = { newPrefix, object.first, currentLevel, transform->Get_State(CTransform::STATE_POSITION), transform->Get_Scaled(), true };
+				FILEDATA tData = { newPrefix, object.first, currentLevel, transform->Get_State(CTransform::STATE_POSITION), transform->Get_Scaled(),transform->Get_RotationYValue() ,true };
 				vecFileData.emplace_back(tData);
 			}
 		}

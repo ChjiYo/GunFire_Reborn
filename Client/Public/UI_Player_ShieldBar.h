@@ -29,6 +29,8 @@ private:
 	wstring m_strShield = { 0 };
 	wstring  m_strMaxShield = { 0 };
 
+	_float m_fShieldRatio = { 0.f };
+
 public:
 	static CUI_Player_ShieldBar* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	virtual CGameObject* Clone(void* pArg);

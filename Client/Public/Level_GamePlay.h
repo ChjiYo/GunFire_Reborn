@@ -24,15 +24,16 @@ private:
 	HRESULT Ready_Layer_Camera(const _wstring& strLayerTag);
 	HRESULT Ready_Layer_Effect(const _wstring& strLayerTag);
 
-	HRESULT Ready_LandObjects();
-	HRESULT Ready_PlayerBar();
+	HRESULT Ready_UI_PlayerState();
+	HRESULT Ready_UI_WeaponState();
+	HRESULT Ready_UI_SkillState();
 	HRESULT Ready_CrossHair();
 
-	/*HRESULT Ready_Layer_Player(const _wstring& strLayerTag, CLandObject::LANDOBJECT_DESC& Desc);
-	HRESULT Ready_Layer_Monster(const _wstring& strLayerTag, CLandObject::LANDOBJECT_DESC& Desc);*/
+	HRESULT Ready_LandObjects();
+	HRESULT Ready_Layer_Item(const wstring& strLayerTag);
 	HRESULT Ready_Layer_Player(const wstring& strLayerTag);
 	HRESULT Ready_Layer_Monster(const _wstring& strLayerTag);
-	HRESULT Ready_Layer_WallStage(const _wstring& strLayerTag);
+	HRESULT Ready_Layer_DecoObject(const _wstring& strLayerTag);
 
 
 public:

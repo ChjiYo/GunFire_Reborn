@@ -111,7 +111,7 @@ HRESULT CNavigation::Render()
 	else
 	{
 		_float4x4		WorldMatrix = m_WorldMatrix;
-		WorldMatrix.m[3][1] += 0.1f;
+		WorldMatrix.m[3][1] += 0.5f;
 		if (FAILED(m_pShader->Bind_Matrix("g_WorldMatrix", &WorldMatrix)))
 			return E_FAIL;
 
@@ -166,8 +166,6 @@ _bool CNavigation::is_Move(_fvector vPosition)
 
 HRESULT CNavigation::Add_Sell(_float3 fPoint[3])
 {
-	//XMVector3Length()
-
 	for (auto& iter : m_Cells)
 	{
 		for (int i = 0; i < 3; ++i)
@@ -205,8 +203,6 @@ HRESULT CNavigation::Add_Sell(_float3 fPoint[3])
 
 	m_Cells.emplace_back(pCell);
 
-	//Make_Neighbors();
-
 	return S_OK;
 }
 
@@ -231,7 +227,7 @@ void CNavigation::Make_Neighbors()
 	}
 }
 
-void CNavigation::Init_Index(class CTransform* pTransform)
+_uint CNavigation::Init_Index(class CTransform* pTransform)
 {
 	_float3 vPos = {};
 	XMStoreFloat3(&vPos, pTransform->Get_State(CTransform::STATE_POSITION));
@@ -258,9 +254,37 @@ void CNavigation::Init_Index(class CTransform* pTransform)
 		if ((m_vPosX.y < vPos.x && vPos.x < m_vPosX.x) && (m_vPosZ.y < vPos.z && vPos.z < m_vPosZ.x))
 		{
 			m_iCurrentCellIndex = i + 1;
-			break;
+			return m_iCurrentCellIndex;
 		}
 	}
+}
+
+_float CNavigation::Navi_Height(class CTransform* pTransform)
+{
+
+	_float fPosX = XMVectorGetX(pTransform->Get_State(CTransform::STATE_POSITION));
+	_float fPosZ = XMVectorGetZ(pTransform->Get_State(CTransform::STATE_POSITION));
+
+	_vector vPosA = XMLoadFloat3(&m_Cells.at(m_iCurrentCellIndex)->Get_Point(0));
+	_vector vPosB = XMLoadFloat3(&m_Cells.at(m_iCurrentCellIndex)->Get_Point(1));
+	_vector vPosC = XMLoadFloat3(&m_Cells.at(m_iCurrentCellIndex)->Get_Point(2));
+
+	_vector v1 = vPosB - vPosA;
+	_vector v2 = vPosC - vPosA;
+	_vector vNormal = XMVector3Cross(v1, v2);
+
+	// 평면 방정식의 계수 계산
+	float fPlaneX = XMVectorGetX(vNormal);
+	float fPlaneY = XMVectorGetY(vNormal);
+	float fPlaneZ = XMVectorGetZ(vNormal);
+
+	// 절편 d 계산
+	float fPlaneW = -(fPlaneX * XMVectorGetX(vPosA) + fPlaneY * XMVectorGetY(vPosA) + fPlaneZ * XMVectorGetZ(vPosA));
+
+	// 주어진 x, z 위치에서 y 계산
+	float fHeight = -(fPlaneX * fPosX + fPlaneZ * fPosZ + fPlaneW) / fPlaneY;
+
+	return fHeight;
 }
 
 HRESULT CNavigation::Save_Navi()

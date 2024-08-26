@@ -172,6 +172,9 @@
     <Filter Include="01.Utility\11.RenderTargets\Manager">
       <UniqueIdentifier>{d5f97aed-2c7e-4eb6-8a2c-c84752c7bc6d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Utility\03.Components\Collider\Bounding\Ray">
+      <UniqueIdentifier>{994e6caf-3b49-41ac-9acd-c63edaab93e3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\private\GameInstance.cpp">
@@ -335,6 +338,9 @@
     </ClCompile>
     <ClCompile Include="..\private\RenderTarget.cpp">
       <Filter>01.Utility\11.RenderTargets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Bounding_Ray.cpp">
+      <Filter>01.Utility\03.Components\Collider\Bounding\Ray</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -511,6 +517,9 @@
     </ClInclude>
     <ClInclude Include="..\public\RenderTarget.h">
       <Filter>01.Utility\11.RenderTargets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Bounding_Ray.h">
+      <Filter>01.Utility\03.Components\Collider\Bounding\Ray</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

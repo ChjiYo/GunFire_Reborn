@@ -10,7 +10,7 @@ BEGIN(Engine)
 class CRenderer final : public CBase
 {
 public:
-	enum RENDERGROUP { RG_PRIORITY, RG_NONBLEND, RG_BLEND, RG_UI, RG_END };
+	enum RENDERGROUP { RG_PRIORITY, RG_NONBLEND, RG_NONLIGHT, RG_BLEND, RG_UI, RG_END };
 private:
 	CRenderer(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	virtual ~CRenderer() = default;
@@ -18,25 +18,30 @@ private:
 public:
 	HRESULT Initialize(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	HRESULT Add_RenderObject(RENDERGROUP eRenderGroup, class CGameObject* pRenderObject);
+	HRESULT Add_DebugComponent(class CComponent* pDebugComponent);
 	HRESULT Draw();
 
 private:
-	ID3D11Device*			m_pDevice = { nullptr };
-	ID3D11DeviceContext*	m_pContext = { nullptr };
-
+	ID3D11Device*						m_pDevice = { nullptr };
+	ID3D11DeviceContext*				m_pContext = { nullptr };
 	list<class CGameObject*>			m_RenderObjects[RG_END];
+	list<class CComponent*>				m_DebugComponent;
 
-	class CGameInstance* m_pGameInstance = { nullptr };
+	class CGameInstance*				m_pGameInstance = { nullptr };
 
 	class CShader*						m_pShader = { nullptr };
 	class CVIBuffer_Rect*				m_pVIBuffer = { nullptr };
 
+	_float4x4							m_WorldMatrix = {};
 	_float4x4							m_ViewMatrix = { };
 	_float4x4							m_ProjMatrix = { };
 
 private:
 	HRESULT Render_Priority();
 	HRESULT Render_NonBlend();
+	HRESULT Render_Lights();
+	HRESULT Render_Deferred();
+	HRESULT Render_NonLight();
 	HRESULT Render_Blend();
 	HRESULT Render_UI();
 

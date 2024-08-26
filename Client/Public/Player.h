@@ -10,6 +10,7 @@ class CBinModel;
 class CKeyState;
 class CCollider;
 class CState_Machine;
+class CNavigation;
 END
 
 BEGIN(Client)
@@ -18,7 +19,8 @@ class CPlayer final : public CContainerObject
 {
 public:
 	enum PARTID {  PART_WEAPON, PART_EFFECT, PART_END };
-	enum WEAPONID { PISTOL , SHURIKEN , WEAPON_END };
+	enum WEAPONID { PISTOL , SNIPER ,SHURIKEN ,BOOMGUN, WEAPON_END };
+	enum SLOTID {ONE , TWO , THREE , SLOT_END};
 public:
 	typedef struct :public CContainerObject::CONTAINEROBJECT_DESC
 	{
@@ -55,9 +57,30 @@ public:
 		m_fShieldRecoveryTimer = 0.f;
 	}
 
+	WEAPONID	Get_WeaponID() { 
+
+		int a = 10;
+		return m_eWeaponID; 
+	}
+	void ChangeWeapon(WEAPONID eWeaponID)
+	{
+		m_bWeaponChange = true;
+
+		for (int i = 0; i < 2; ++i)
+		{
+			if (m_eWeaponIDArray[i] == WEAPON_END)
+			{
+				m_eWeaponIDArray[i] = eWeaponID;
+				m_eWeaponID = m_eWeaponIDArray[i];
+				return;
+			}
+		}
+		m_eWeaponIDArray[m_eSlotID] = eWeaponID;
+		m_eWeaponID = m_eWeaponIDArray[m_eSlotID];
+	}
+
 private:
 	void ShieldRecovery();
-
 
 private:
 	CState_Machine*		m_pState = { nullptr };
@@ -67,14 +90,20 @@ private:
 private:
 	PLAYER_DESC			Player_Desc = {};
 	_bool				m_bJump = { false };
-	_bool				m_bWeaponChange = { false };
+	_bool				m_bWeaponChange = { true };
+
+	WEAPONID			m_eWeaponID = { WEAPON_END };
 
 	_float				m_fShieldRecoveryTimer = { 0.f };
-	WEAPONID m_eWeaponID = { WEAPON_END };
-	
+	_float				m_fDashTimer = { 0.f };
+	_float				m_fInvincibleTime = { 0.f };
 
+	WEAPONID			m_eWeaponIDArray[3] = { WEAPON_END ,WEAPON_END ,PISTOL };
+	SLOTID				m_eSlotID = { SLOT_END };
+
+	_bool				m_bDash = { false };
+	
 private:
-	HRESULT Ready_PartObjects();
 	HRESULT Ready_Components();
 	HRESULT Ready_State();
 
@@ -83,6 +112,7 @@ private:
 	void Player_Move(_float fTimeDelta);
 	void Player_Jump(_float fTimeDelta);
 	void Player_Weapon_Change();
+	void Dash(_float fTimeDelta);
 
 public:
 	static CPlayer* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);

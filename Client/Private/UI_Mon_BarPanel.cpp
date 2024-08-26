@@ -35,7 +35,7 @@ HRESULT CUI_Mon_BarPanel::Initialize(void* pArg)
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
-	m_pTransformCom->Set_Scaled(2.f , 0.5f, 1.f);
+	m_pTransformCom->Set_Scaled(3.f , 0.5f, 1.f);
 	return S_OK;
 }
 
@@ -64,7 +64,7 @@ HRESULT CUI_Mon_BarPanel::Render()
 	if (FAILED(m_pTextureCom->Bind_ShaderResource(m_pShaderCom, "g_Texture", 0)))
 		return E_FAIL;
 
-	if (FAILED(m_pShaderCom->Begin(0)))
+	if (FAILED(m_pShaderCom->Begin(1)))
 		return E_FAIL;
 
 	if (FAILED(m_pVIBufferCom->Bind_Buffers()))
@@ -89,7 +89,7 @@ HRESULT CUI_Mon_BarPanel::Ready_Components()
 
 void CUI_Mon_BarPanel::Destroy()
 {
-	if (m_pMonster->Get_MonDesc().iHp <= 0)
+	if (m_pMonster->Get_Dead())
 		m_bDead = true;
 }
 

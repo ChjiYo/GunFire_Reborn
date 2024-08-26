@@ -32,13 +32,13 @@ HRESULT CWeapon_Player_Pistol::Initialize(void* pArg)
     if (FAILED(__super::Initialize(pArg)))
         return E_FAIL;
 
-    PLAYER_WEAPON_DESC* Desc = static_cast<PLAYER_WEAPON_DESC*>(pArg);
-    m_iNumMaxBullet = Desc->iNumBullet;
-    m_iNumBullet = m_iNumMaxBullet;
-    m_fAttackSpeed = Desc->fAttackSpeed;
-
     if (FAILED(Ready_Components()))
         return E_FAIL;
+
+    PLAYER_WEAPON_DESC* Desc = static_cast<PLAYER_WEAPON_DESC*>(pArg);
+    m_iNumMaxBullet = Desc->iMaxBullet;
+    m_iNumBullet = Desc->iNumBullet;
+    m_fAttackSpeed = Desc->fAttackSpeed;
 
     return S_OK;
 }
@@ -88,15 +88,12 @@ HRESULT CWeapon_Player_Pistol::Render()
             return E_FAIL;
 
         if (FAILED(m_pModelCom->Render(i)))
-            return E_FAIL;
+            return E_FAIL;  
     }
+
     wstring strNumBullet = to_wstring(m_iNumBullet);
     wstring strNumMaxBullet = to_wstring(m_iNumMaxBullet);
-
-    m_pGameInstance->Draw_Font(TEXT("Font_Nexon"), strNumBullet, _float2(1300.f ,  800.f), XMVectorSet(0.7f, 1.f, 0.3f, 1.f), XMConvertToRadians(-5.f), 0.8f);
-    m_pGameInstance->Draw_Font(TEXT("Font_Nexon"), strNumMaxBullet, _float2(1450.f, 800.f), XMVectorSet(0.7f, 1.f, 0.3f, 1.f), XMConvertToRadians(-5.f), 0.8f);
-
-
+    
     return S_OK;
 }
 
@@ -126,22 +123,6 @@ HRESULT CWeapon_Player_Pistol::Bind_ShaderResources()
     if (FAILED(m_pShaderCom->Bind_Matrix("g_ProjMatrix", &m_pGameInstance->Get_Transform_Float4x4(CPipeLine::D3DTS_PROJ))))
         return E_FAIL;
 
-    if (FAILED(m_pShaderCom->Bind_RawValue("g_vCamPosition", &m_pGameInstance->Get_CamPosition_Float4(), sizeof(_float4))))
-        return E_FAIL;
-
-    const LIGHT_DESC* pLightDesc = m_pGameInstance->Get_LightDesc(0);
-    if (nullptr == pLightDesc)
-        return E_FAIL;
-
-    if (FAILED(m_pShaderCom->Bind_RawValue("g_vLightDir", &pLightDesc->vDirection, sizeof(_float4))))
-        return E_FAIL;
-    if (FAILED(m_pShaderCom->Bind_RawValue("g_vLightDiffuse", &pLightDesc->vDiffuse, sizeof(_float4))))
-        return E_FAIL;
-    if (FAILED(m_pShaderCom->Bind_RawValue("g_vLightAmbient", &pLightDesc->vDiffuse, sizeof(_float4))))
-        return E_FAIL;
-    if (FAILED(m_pShaderCom->Bind_RawValue("g_vLightSpecular", &pLightDesc->vSpecular, sizeof(_float4))))
-        return E_FAIL;
-
     return S_OK;
 }
 
@@ -157,7 +138,7 @@ void CWeapon_Player_Pistol::Key_State()
 
     if (m_pGameInstance->Key_Down('R'))
     {
-        m_iNumBullet = m_iNumMaxBullet;
+        m_iNumBullet = 8;
     }
 }
 
@@ -168,6 +149,10 @@ void CWeapon_Player_Pistol::Create_Bullet()
 	Desc.pOriginTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Player"), TEXT("Com_Transform")));
 	Desc.fSpeedPerSec = 10.f;
 	Desc.fRotationPerSec = XMConvertToRadians(90.0f);
+
+    _bool		isPick = { false };
+
+    Desc.vDestoryPos = m_pGameInstance->Picked_Position(&isPick);
 
 	m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Skill_Pistol_Bullet"),TEXT("Layer_Skill_Player_Bullet"), &Desc);
 }

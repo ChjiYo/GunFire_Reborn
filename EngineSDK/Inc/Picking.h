@@ -12,6 +12,8 @@ private:
 
 public:
 	HRESULT Initialize(HWND hWnd);
+	_float4 Picked_Position(_bool* pPicked);
+	
 	void Update();
 	void Transform_ToLocalSpace(const XMMATRIX* pWorldMatrix);
 	_bool Picked_InLocalSpace(const _vector* pPointA, const _vector* pPointB, const _vector* pPointC,_vector* pPickPos);
@@ -24,6 +26,11 @@ private:
 	class CGameInstance* m_pGameInstance = { nullptr };
 
 	HWND						m_hWnd = {};
+
+	_uint							m_iWidth, m_iHeight;
+
+	ID3D11Texture2D* m_pTexture2D = { nullptr };
+
 	_float3						m_vRayDir = {};
 	_float3						m_vRayPos = {};
 

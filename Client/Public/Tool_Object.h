@@ -25,6 +25,7 @@ private:
 	HRESULT Show_PrototypeObjects();
 	HRESULT Show_LayerObjects();
 	HRESULT Click_Camera_FreeView(_bool bColliderToggle);
+	HRESULT Light_Mode();
 
 private:
 	HRESULT SpawnObjectAtZero(const std::string& type);

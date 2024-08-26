@@ -45,7 +45,9 @@ private:
 private:
 	void Make_Neighbors();
 public:
-	void Init_Index(class CTransform* pTransform);
+	_uint Init_Index(class CTransform* pTransform);
+	_float Navi_Height(class CTransform* pTransform);
+
 public:
 	static CNavigation* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, const _tchar* pNavigationDataFilePath);
 	virtual CComponent* Clone(void* pArg) override;

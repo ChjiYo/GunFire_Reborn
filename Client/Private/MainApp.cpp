@@ -18,10 +18,24 @@
 #include  "UI_Player_ShieldBar.h"
 
 #include "UI_Cross_Hair.h"
+#include "UI_Sniper_Hair.h"
+#include "UI_Sniper_Ring.h"
 
 #include "UI_Mon_BarPanel.h"
 #include "UI_Mon_HpBar.h"
 #include "UI_Mon_HpBlankBar.h"
+
+#include "UI_Weapon_BBullet.h"
+#include "UI_Weapon_GBullet.h"
+#include "UI_Weapon_YBullet.h"
+#include "UI_Weapon_Panel.h"
+#include "UI_Weapon_NumPanel.h"
+#include "UI_Weapon_Icon.h"
+
+
+#include "UI_Skill_Panel.h"
+#include "UI_Skill_Dash.h"
+#include "UI_Skill_Aiming.h"
 
 CMainApp::CMainApp()
 	: m_pGameInstance { CGameInstance::Get_Instance() }
@@ -42,8 +56,8 @@ HRESULT CMainApp::Initialize()
 	if (FAILED(Ready_Prototoype_Resource_ForStatic()))
 		return E_FAIL;
 
-	//if (FAILED(Ready_Gara()))
-	//	return E_FAIL;
+	if (FAILED(Ready_Gara()))
+		return E_FAIL;
 
 	//LOGO 먼저 (실수 2스택!!)
 	if (FAILED(Open_Level(LEVEL_LOGO)))
@@ -58,7 +72,19 @@ HRESULT CMainApp::Initialize()
 }
 
 void CMainApp::Update(_float fTimeDelta)
-{
+{	
+	
+	if (!m_bShowTool)
+	{
+		POINT pt;
+		pt.x = g_iWinSizeX * 0.5f;
+		pt.y = g_iWinSizeY * 0.5f;
+
+		ClientToScreen(g_hWnd, &pt);
+		SetCursorPos(pt.x, pt.y);
+	}
+	
+
 	if (m_pGameInstance->Key_Down('O'))
 		m_bShowTool ? m_bShowTool = false : (m_bShowTool = true );
 
@@ -122,64 +148,125 @@ HRESULT CMainApp::Ready_Prototoype_Resource_ForStatic()
 
 	// UI_Player_Bar 
 
-	/* For.Prototype_Component_Player_BarPanel*/
+	/* For.Prototype_Component_Texture_UI_Player_BarPanel*/
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Player_BarPanel"),
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Bar/UI_Player_Panel.png")))))
 		return E_FAIL;
 	  
-	/* For.Prototype_Component_Player_Icon */
+	/* For.Prototype_Component_Texture_UI_Player_Icon */
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Player_Icon"),
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Bar/UI_Player_Icon.png")))))
 		return E_FAIL;
 
-	/* For.Prototype_Component_Player_Bar */
+	/* For.Prototype_Component_Texture_UI_Player_Bar */
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Player_Bar"),
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Bar/UI_Player_Bar.png")))))
 		return E_FAIL;
 
-	/* For.Prototype_Component_Player_HpBar */
+	/* For.Prototype_Component_Texture_UI_Player_HpBar */
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Player_HpBar"),
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Bar/UI_Player_HpBar.png")))))
 		return E_FAIL;
 
-	/* For.Prototype_Component_Player_ShieldBar */
+	/* For.Prototype_Component_Texture_UI_Player_ShieldBar */
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Player_ShieldBar"),
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Bar/UI_Player_ShieldBar.png")))))
 		return E_FAIL;
 
-	/* For.Prototype_Component_Player_HpBlankBar */
+	/* For.Prototype_Component_Texture_UI_Player_HpBlankBar */
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Player_HpBlankBar"),
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Bar/UI_Player_HpBlankBar.png")))))
 		return E_FAIL;
 
-	/* For.Prototype_Component_Player_ShieldBlankBar */
+	// UI_CrossHair 
+
+	/* For.Prototype_Component_Texture_UI_Cross_Hair */
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Cross_Hair"),
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/CrossHair/CrossHair.png")))))
 		return E_FAIL;
 
-	// UI_CrossHair 
+	/* For.Prototype_Component_Texture_UI_Sniper_Hair */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Sniper_Hair"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/CrossHair/Sniper%d.png"),2))))
+		return E_FAIL;
 
-		/* For.Prototype_Component_Cross_Hair */
+	/* For.Prototype_Component_Texture_UI_Sniper_Ring*/
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Sniper_Ring"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/CrossHair/Sniper_Ring.png")))))
+		return E_FAIL;
+
+	//UI_Monster_Bar
+
+		/* For.Prototype_Component_Texture_UI_Player_ShieldBlankBar */
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Player_ShieldBlankBar"),
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Bar/UI_Player_ShieldBlankBar.png")))))
 		return E_FAIL;
 
-	//UI_Monster_Bar
-	
-	/* For.Prototype_Component_Monster_Bar */
+	/* For.Prototype_Component_Texture_UI_Monster_BarPanel */
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Monster_BarPanel"),
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Bar/UI_Monster_Panel.png")))))
 		return E_FAIL;
 
-	/* For.Prototype_Component_Monster_Hp */
+	/* For.Prototype_Component_Texture_UI_Monster_HpBar */
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Monster_HpBar"),
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Bar/UI_Monster_HpBar.png")))))
 		return E_FAIL;
 
-	/* For.Prototype_Component_Monster_HpBlankBar */
+	/* For.Prototype_Component_Texture_UI_Monster_HpBlankBar */
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Monster_HpBlankBar"),
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Bar/UI_Monster_HpBlankBar.png")))))
 		return E_FAIL;
+
+	//Weapon
+
+	//Prototype_Component_Texture_UI_Weapon_Panel
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Weapon_Panel"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Weapon/UI_Weapon_Panel.dds")))))
+		return E_FAIL;
+
+	//Prototype_Component_Texture_UI_Weapon_NumPanel
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Weapon_NumPanel"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Weapon/UI_Weapon_NumPanel.dds")))))
+		return E_FAIL;
+
+	//Prototype_Component_Texture_UI_Weapon_BlueBullet
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Weapon_BlueBullet"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Weapon/UI_Weapon_BlueBullet.png")))))
+		return E_FAIL;
+
+	//Prototype_Component_Texture_UI_Weapon_GreenBullet
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Weapon_GreenBullet"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Weapon/UI_Weapon_GreenBullet.png")))))
+		return E_FAIL;
+
+	//Prototype_Component_Texture_UI_Weapon_YellowBullet
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Weapon_YellowBullet"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Weapon/UI_Weapon_YellowBullet.png")))))
+		return E_FAIL;
+
+	//Prototype_Component_Texture_UI_Weapon_Icon
+
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Weapon_Icon"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Weapon/UI_Weapon_Icon_%d.png"),4))))
+		return E_FAIL;
+
+	//Skill
+
+	//Prototype_Component_Texture_UI_Skill_Panel
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Skill_Panel"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Skill/UI_Skill_Panel.png")))))
+		return E_FAIL;
+
+	//Prototype_Component_Texture_UI_Skill_Aiming
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Skill_Aiming"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Skill/UI_Skill_Dash.png")))))
+		return E_FAIL;
+
+	//Prototype_Component_Texture_UI_Skill_Dash
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Skill_Dash"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Skill/UI_Skill_Dash.png")))))
+		return E_FAIL;
+
 
 	/* Prototype Load */
 
@@ -225,17 +312,80 @@ HRESULT CMainApp::Ready_Prototoype_Resource_ForStatic()
 		CUI_Cross_Hair::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
+	/* For.Prototype_GameObject_UI_SniperCrossHair */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_SniperCrossHair"),
+		CUI_Sniper_Hair::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_UI_SniperRing */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_SniperRing"),
+		CUI_Sniper_Ring::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
 	// UI_Monster_State
+
+	/* For.Prototype_GameObject_UI_Monster_BarPanel */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_Monster_BarPanel"),
 		CUI_Mon_BarPanel::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
+	/* For.Prototype_GameObject_UI_Monster_HpBar */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_Monster_HpBar"),
 		CUI_Mon_HpBar::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
+	/* For.Prototype_GameObject_UI_Monster_HpBlankBar */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_Monster_HpBlankBar"),
 		CUI_Mon_HpBlankBar::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	//UI_Weapon_State
+
+		/* For.Prototype_GameObject_UI_Weapon_Panel */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_Weapon_Panel"),
+		CUI_Weapon_Panel::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_UI_Weapon_NumPanel */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_Weapon_NumPanel"),
+		CUI_Weapon_NumPanel::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_UI_Weapon_BlueBullet */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_Weapon_BlueBullet"),
+		CUI_Weapon_BBullet::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_UI_Weapon_GreenBullet */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_Weapon_GreenBullet"),
+		CUI_Weapon_GBullet::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_UI_Weapon_YellowBullet */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_Weapon_YellowBullet"),
+		CUI_Weapon_YBullet::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_UI_Weapon_Icon */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_Weapon_Icon"),
+		CUI_Weapon_Icon::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	//UI_Skill_State
+
+	/* For.Prototype_GameObject_UI_SKill_Panel */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_SKill_Panel"),
+		CUI_Skill_Panel::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_UI_SKill_Dash */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_SKill_Dash"),
+		CUI_Skill_Dash::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_UI_SKill_Aiming */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_SKill_Aiming"),
+		CUI_Skill_Aiming::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
 	return S_OK;
@@ -243,40 +393,6 @@ HRESULT CMainApp::Ready_Prototoype_Resource_ForStatic()
 
 HRESULT CMainApp::Ready_Gara()
 {
-	_ulong			dwByte = { 0 };
-
-	HANDLE			hFile = CreateFile(TEXT("../Bin/DataFiles/Navigation.dat"), GENERIC_WRITE, 0, nullptr, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, 0);
-	if (0 == hFile)
-		return E_FAIL;
-
-	_float3			vPoints[3];
-
-	vPoints[0] = _float3(0.0f, 0.f, 10.f);
-	vPoints[1] = _float3(10.f, 0.f, 0.f);
-	vPoints[2] = _float3(0.0f, 0.f, 0.f);
-
-	WriteFile(hFile, vPoints, sizeof(_float3) * 3, &dwByte, nullptr);
-
-	vPoints[0] = _float3(0.0f, 0.f, 10.f);
-	vPoints[1] = _float3(10.f, 0.f, 10.f);
-	vPoints[2] = _float3(10.f, 0.f, 0.f);
-
-	WriteFile(hFile, vPoints, sizeof(_float3) * 3, &dwByte, nullptr);
-
-	vPoints[0] = _float3(0.0f, 0.f, 20.f);
-	vPoints[1] = _float3(10.f, 0.f, 10.f);
-	vPoints[2] = _float3(0.0f, 0.f, 10.f);
-
-	WriteFile(hFile, vPoints, sizeof(_float3) * 3, &dwByte, nullptr);
-
-	vPoints[0] = _float3(10.f, 0.f, 10.f);
-	vPoints[1] = _float3(20.f, 0.f, 0.f);
-	vPoints[2] = _float3(10.f, 0.f, 0.f);
-
-	WriteFile(hFile, vPoints, sizeof(_float3) * 3, &dwByte, nullptr);
-
-	CloseHandle(hFile);
-
 	return S_OK;
 }
 

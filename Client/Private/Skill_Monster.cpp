@@ -29,7 +29,7 @@ HRESULT CSkill_Monster::Initialize(void* pArg)
 	SKILL_DESC* Desc = static_cast<SKILL_DESC*>(pArg);
 	m_pOriginTransform = Desc->pOriginTransform;
 	m_iSkillDamage = Desc->iSkillDamage;
-
+	m_iNumSkill = Desc->iNumSkill;
 	return S_OK;
 }
 
@@ -47,6 +47,14 @@ void CSkill_Monster::Late_Update(_float fTimeDelta)
 
 HRESULT CSkill_Monster::Render()
 {
+	return S_OK;
+}
+
+HRESULT CSkill_Monster::Ready_Components()
+{
+	if (FAILED(__super::Ready_Components()))
+		return E_FAIL;
+
 	return S_OK;
 }
 

@@ -47,6 +47,8 @@ public:
 		return XMMatrixInverse(nullptr, XMLoadFloat4x4(&m_WorldMatrix));
 	}
 
+	_float Get_RotationYValue() { return m_fRotationY; }
+
 public:
 
 	void Set_Scaled(_float fScaleX, _float fScaleY, _float fScaleZ) {
@@ -67,17 +69,19 @@ public:
 
 public:
 	/* Transform_Position */
-	void Go_Straight(_float fTimeDelta, class CNavigation* pNavigation = nullptr);
-	void Go_Backward(_float fTimeDelta, class CNavigation* pNavigation = nullptr);
-	void Go_Left(_float fTimeDelta, class CNavigation* pNavigation = nullptr);
-	void Go_Right(_float fTimeDelta, class CNavigation* pNavigation = nullptr);
+	void Go_Straight(_float fTimeDelta, class CNavigation* pNavigation = nullptr, _bool bMove = false);
+	void Go_Backward(_float fTimeDelta, class CNavigation* pNavigation = nullptr, _bool bMove = false);
+	void Go_Left(_float fTimeDelta, class CNavigation* pNavigation = nullptr, _bool bMove = false);
+	void Go_Right(_float fTimeDelta, class CNavigation* pNavigation = nullptr, _bool bMove = false);
 
-	void Go_StraightY(_float fTimeDelta, class  CNavigation* pNavigation = nullptr);
-	void Go_BackwardY(_float fTimeDelta, class  CNavigation* pNavigation = nullptr);
+	void Go_StraightY(_float fTimeDelta, class  CNavigation* pNavigation = nullptr, _bool bMove = false);
+	void Go_BackwardY(_float fTimeDelta, class  CNavigation* pNavigation = nullptr, _bool bMove = false);
 
 	void Go_Up(_float fTimeDelta);
 
 	void Set_Speed(_float fSpeed) { m_fSpeedPerSec = fSpeed; }
+	_float Get_Speed() { return m_fSpeedPerSec; }
+
 	_bool CTransform::Gravity(_float fWeight, _float fLandPosY, _float fTimeDelta);
 public:
 	/* Transform_Rotation */
@@ -88,7 +92,7 @@ public:
 	void LookAt(_fvector vAt);
 
 	_float Look_Degree();
-	_float Up_Degree();
+	_float Target_Look_Degree(const _vector& vTargetPos);
 
 private:
 	_float4x4				m_WorldMatrix = {};
@@ -96,6 +100,7 @@ private:
 	_float					m_fRotationPerSec = {};
 	_float					m_fGravity_Weight = {};
 	_float					m_fRotationY = {};
+   
 public:
 	static CTransform* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	virtual CComponent* Clone(void* pArg) override;
