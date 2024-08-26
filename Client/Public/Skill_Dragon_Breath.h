@@ -9,12 +9,12 @@ class CVIBuffer_Rect;
 class CCollider;
 END
 
-class CSkill_Dragon_Bubble final :public CSkill_Monster
+class CSkill_Dragon_Breath final :public CSkill_Monster
 {
 protected:
-	CSkill_Dragon_Bubble(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
-	CSkill_Dragon_Bubble(const CSkill_Dragon_Bubble& Prototype);
-	virtual ~CSkill_Dragon_Bubble() = default;
+	CSkill_Dragon_Breath(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
+	CSkill_Dragon_Breath(const CSkill_Dragon_Breath& Prototype);
+	virtual ~CSkill_Dragon_Breath() = default;
 
 public:
 	virtual HRESULT Initialize_Prototype() override;
@@ -46,8 +46,11 @@ private:
 	_float m_fAnimFrame = { 0.f };
 
 	_uint m_iTextureIndex = { 0 };
+	_float m_fTickDamageTimer = { 0.f };
+
+
 public:
-	static CSkill_Dragon_Bubble* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
+	static CSkill_Dragon_Breath* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	virtual CGameObject* Clone(void* pArg);
 	virtual void Free() override;
 };

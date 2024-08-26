@@ -26,13 +26,14 @@ HRESULT CFSM_Mon_DragonHead_Attack::Initialize(FSM_MON_DESC Desc)
 	m_tDesc.pNavigation = Desc.pNavigation;
 	m_tDesc.pModel = Desc.pModel;
 	m_tDesc.tMonDesc = Desc.tMonDesc;
-
+	m_tDesc.pOriginObj = Desc.pOriginObj;
 	return S_OK;
 }
 
 wstring CFSM_Mon_DragonHead_Attack::Priority_Update(_float fTimeDelta)
 {
 	m_fAttackEndTimer += fTimeDelta;
+	m_fSkillCreateTimer += fTimeDelta;
 	
 	return TEXT("Monster_DragonHead_State_Attack");
 }
@@ -43,8 +44,26 @@ wstring CFSM_Mon_DragonHead_Attack::Update(_float fTimeDelta)
 	{
 		m_fAttackEndTimer = 0.f;
 		m_bSeccondAttack = true;
+		//m_tDesc.pOriginObj->Set_Dead();
 		m_tDesc.pModel->SetUp_Animation(12, false);
 	}
+
+	if (!m_bAttackEnd && m_fSkillCreateTimer >= 1.5)
+	{
+		m_fSkillCreateTimer = 0.f;
+		m_bAttackEnd = true;
+
+		CSkill::SKILL_DESC	BubbleDesc = {};
+
+		BubbleDesc.pOriginTransform = m_tDesc.pTransform;
+		BubbleDesc.fSpeedPerSec = 10.f;
+		BubbleDesc.fRotationPerSec = XMConvertToRadians(90.0f);
+		BubbleDesc.iSkillDamage = 5.f;
+
+		m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Skill_Dragon_Breath"), TEXT("Layer_Skill_Dragon_Breath"), &BubbleDesc);
+	}
+
+
 
 	return TEXT("Monster_DragonHead_State_Attack");
 }
@@ -55,7 +74,7 @@ wstring CFSM_Mon_DragonHead_Attack::Late_Update(_float fTimeDelta)
 	{
 		m_fAttackEndTimer = 0.f;
 		m_bSeccondAttack = false;
-		//m_tDesc.pModel->SetUp_Animation(11, false);
+
 		return TEXT("Monster_DragonHead_State_Idle");
 	}
 
@@ -65,6 +84,8 @@ wstring CFSM_Mon_DragonHead_Attack::Late_Update(_float fTimeDelta)
 void CFSM_Mon_DragonHead_Attack::Enter()
 {
 	__super::Enter();
+
+
 	
 	m_tDesc.pModel->SetUp_Animation(11, false);
 	m_strName = TEXT("Monster_DragonHead_State_Attack");

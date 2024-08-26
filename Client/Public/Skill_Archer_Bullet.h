@@ -44,6 +44,7 @@ private:
 
 	_float m_fDestroyTimer = {};
 	_uint m_iTextureIndex = { 0 };
+
 public:
 	static CSkill_Archer_Bullet* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	virtual CGameObject* Clone(void* pArg);

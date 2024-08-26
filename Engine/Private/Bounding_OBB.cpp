@@ -46,7 +46,7 @@ _bool CBounding_OBB::isCollision(CCollider::TYPE eTargetColliderType, CBounding*
 	switch (eTargetColliderType)
 	{
 	case CCollider::TYPE_AABB:
-		isColl = static_cast<CBounding_AABB*>(pTargetBounding)->Get_Desc().Intersects(m_tRayDesc.vOrigin, m_tRayDesc.vDir, m_tRayDesc.fDist);
+		isColl = static_cast<CBounding_AABB*>(pTargetBounding)->Get_Desc().Intersects(m_tRayDesc.vOrigin, XMVector3Normalize(m_tRayDesc.vDir), m_tRayDesc.fDist);
 		break;
 	case CCollider::TYPE_OBB:
 		isColl = Collision_OBB(static_cast<CBounding_OBB*>(pTargetBounding));
