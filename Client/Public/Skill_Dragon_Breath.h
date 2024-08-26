@@ -11,6 +11,12 @@ END
 
 class CSkill_Dragon_Breath final :public CSkill_Monster
 {
+public:
+	typedef struct :public CSkill::SKILL_DESC
+	{
+		_float fAngle = {};
+	}SKILL_BREATH_DESC;
+
 protected:
 	CSkill_Dragon_Breath(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	CSkill_Dragon_Breath(const CSkill_Dragon_Breath& Prototype);
@@ -30,6 +36,7 @@ private:
 
 private:
 	void Destroy(_float fTimeDelta);
+	_bool IsCollider(_float fOriginX , _float fOriginZ ,_float fTargetX , _float fTargetZ , _float fDistance);
 
 private:
 	CShader* m_pShaderCom = { nullptr };
@@ -38,16 +45,13 @@ private:
 	CCollider* m_pColliderCom = { nullptr };
 
 private:
-	_vector		m_vPos = {};
-
-	_vector		m_vOffsetRandomPos = {};
-
 	_float m_fDestroyTimer = {};
-	_float m_fAnimFrame = { 0.f };
-
-	_uint m_iTextureIndex = { 0 };
 	_float m_fTickDamageTimer = { 0.f };
 
+	_float m_fAngle = { 0.f };
+	_float m_fAnimFrame = { 0.f };
+
+	SKILL_BREATH_DESC Breath_Desc = {};
 
 public:
 	static CSkill_Dragon_Breath* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);

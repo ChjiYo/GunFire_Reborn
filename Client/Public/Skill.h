@@ -19,7 +19,7 @@ public:
 		_float4		vDestoryPos = {};
 		_uint		iNumSkill = {};
 	}SKILL_DESC;
-
+	
 protected:
 	CSkill(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	CSkill(const CSkill& Prototype);

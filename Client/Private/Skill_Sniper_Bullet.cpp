@@ -3,6 +3,9 @@
 #include "Skill_Sniper_Bullet.h"
 #include "GameInstance.h"   
 
+#include "Monster.h"
+#include "Bounding_OBB.h"
+
 CSkill_Sniper_Bullet::CSkill_Sniper_Bullet(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
     :CSkill_Player{ pDevice , pContext }
 {
@@ -101,16 +104,11 @@ HRESULT CSkill_Sniper_Bullet::Ready_Components()
     /* For.Com_ColliderSphere */
     CBounding_OBB::RAY_DESC   BoundingDesc{};
 
-    BoundingDesc.pObject = this;
-    BoundingDesc.vExtents = _float3(0.5f, 0.5f, 0.5f);
-    BoundingDesc.vCenter = _float3(0.f, BoundingDesc.vExtents.y, 0.f);
-    BoundingDesc.vRotation = _float3(0.f, 0.f, 0.f);
-
     BoundingDesc.vOrigin = m_pOriginTransform->Get_State(CTransform::STATE_POSITION);
     BoundingDesc.vDir = m_pOriginTransform->Get_State(CTransform::STATE_LOOK);
     BoundingDesc.fDist = 15.f;
 
-    if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Collider_OBB"),
+    if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Collider_Ray"),
         TEXT("Com_ColliderOBB"), reinterpret_cast<CComponent**>(&m_pColliderCom), &BoundingDesc)))
         return E_FAIL;
 

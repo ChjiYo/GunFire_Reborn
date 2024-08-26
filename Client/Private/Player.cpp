@@ -198,7 +198,7 @@ void CPlayer::Player_Move(_float fTimeDelta)
 
     if (m_pGameInstance->Get_DIKeyState(DIK_A) & 0x80)
     {
-        m_pTransformCom->Go_Left(fTimeDelta, m_pNavigationCom);
+        m_pTransformCom->Go_Left(fTimeDelta, m_pNavigationCom , m_bJump);
 
         if (m_pGameInstance->Key_Down(VK_LSHIFT))
             m_pTransformCom->Go_Left(fTimeDelta  * 15.5f, m_pNavigationCom);
@@ -206,7 +206,7 @@ void CPlayer::Player_Move(_float fTimeDelta)
 
     if (m_pGameInstance->Get_DIKeyState(DIK_D) & 0x80)
     {
-        m_pTransformCom->Go_Right(fTimeDelta, m_pNavigationCom);
+        m_pTransformCom->Go_Right(fTimeDelta, m_pNavigationCom, m_bJump);
 
         if (m_pGameInstance->Key_Down(VK_LSHIFT))
             m_pTransformCom->Go_Right(fTimeDelta * 15.5f, m_pNavigationCom);
@@ -214,7 +214,7 @@ void CPlayer::Player_Move(_float fTimeDelta)
 
     if (m_pGameInstance->Get_DIKeyState(DIK_W) & 0x80)
     {
-        m_pTransformCom->Go_StraightY(fTimeDelta, m_pNavigationCom);
+        m_pTransformCom->Go_StraightY(fTimeDelta, m_pNavigationCom, m_bJump);
 
         if (m_pGameInstance->Key_Down(VK_LSHIFT))
             m_pTransformCom->Go_StraightY(fTimeDelta * 15.5f, m_pNavigationCom);      
@@ -222,7 +222,7 @@ void CPlayer::Player_Move(_float fTimeDelta)
 
     if (m_pGameInstance->Get_DIKeyState(DIK_S) & 0x80)
     {
-        m_pTransformCom->Go_BackwardY(fTimeDelta, m_pNavigationCom);
+        m_pTransformCom->Go_BackwardY(fTimeDelta, m_pNavigationCom, m_bJump);
 
         if (m_pGameInstance->Key_Down(VK_LSHIFT))
             m_pTransformCom->Go_BackwardY(fTimeDelta * 15.5f, m_pNavigationCom);
@@ -275,9 +275,11 @@ void CPlayer::Player_Jump(_float fTimeDelta)
     {
         m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetY(m_pTransformCom->Get_State(CTransform::STATE_POSITION), fHeight + 1.3f));
     }
+
     if (m_pGameInstance->Key_Down(VK_SPACE)|| m_bJump)
     {
         m_pTransformCom->Go_Up(fTimeDelta);
+        m_pNavigationCom->Init_Index(m_pTransformCom);
         m_bJump = true;
     }
     

@@ -3,6 +3,7 @@
 #include "Bounding_AABB.h"
 #include "Bounding_OBB.h"
 #include "Bounding_Sphere.h"
+#include "Bounding_Ray.h"
 
 #include "GameInstance.h"
 
@@ -64,6 +65,9 @@ HRESULT CCollider::Initialize(void* pArg)
 		break;
 	case TYPE_OBB:
 		m_pBounding = CBounding_OBB::Create(m_pDevice, m_pContext, static_cast<CBounding::BOUNDING_DESC*>(pArg));
+		break;
+	case TYPE_RAY:
+		m_pBounding = CBounding_Ray::Create(m_pDevice, m_pContext, static_cast<CBounding::BOUNDING_DESC*>(pArg));
 		break;
 	}
 

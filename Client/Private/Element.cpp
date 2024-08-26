@@ -27,10 +27,10 @@ HRESULT CElement::Initialize(void* pArg)
 
 	if (m_bIsPasingObject)
 	{
-		FILEDATA* fileData = static_cast<FILEDATA*>(pArg);
-		m_pTransformCom->Set_Scaled(fileData->scale.x, fileData->scale.y, fileData->scale.z);
-		m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetW(fileData->position, 1.f));
-		m_pTransformCom->Rotation({ 0.f, 1.f, 0.f }, fileData->fRotation);
+		m_tFileData = static_cast<FILEDATA*>(pArg);
+		m_pTransformCom->Set_Scaled(m_tFileData->scale.x, m_tFileData->scale.y, m_tFileData->scale.z);
+		m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetW(m_tFileData->position, 1.f));
+		m_pTransformCom->Rotation({ 0.f, 1.f, 0.f }, m_tFileData->fRotation);
 	}
 
 	if (pArg != nullptr)

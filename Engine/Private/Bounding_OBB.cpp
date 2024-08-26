@@ -3,6 +3,7 @@
 
 #include "Bounding_AABB.h"
 #include "Bounding_Sphere.h"
+#include "Bounding_Ray.h"
 
 CBounding_OBB::CBounding_OBB(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	: CBounding{ pDevice, pContext }
@@ -42,11 +43,11 @@ HRESULT CBounding_OBB::Render(PrimitiveBatch<VertexPositionColor>* pBatch, _fvec
 _bool CBounding_OBB::isCollision(CCollider::TYPE eTargetColliderType, CBounding* pTargetBounding)
 {
 	_bool		isColl = { false };
-	//BoundingOrientedBox
+
 	switch (eTargetColliderType)
 	{
 	case CCollider::TYPE_AABB:
-		isColl = static_cast<CBounding_AABB*>(pTargetBounding)->Get_Desc().Intersects(m_tRayDesc.vOrigin, XMVector3Normalize(m_tRayDesc.vDir), m_tRayDesc.fDist);
+		isColl = m_pDesc->Intersects(static_cast<CBounding_AABB*>(pTargetBounding)->Get_Desc());
 		break;
 	case CCollider::TYPE_OBB:
 		isColl = Collision_OBB(static_cast<CBounding_OBB*>(pTargetBounding));
@@ -55,16 +56,12 @@ _bool CBounding_OBB::isCollision(CCollider::TYPE eTargetColliderType, CBounding*
 		isColl = m_pDesc->Intersects(static_cast<CBounding_Sphere*>(pTargetBounding)->Get_Desc());
 		break;
 	case CCollider::TYPE_RAY:
-		isColl = m_pDesc->Intersects(m_tRayDesc.vOrigin , m_tRayDesc.vDir, m_tRayDesc.fDist);
+		isColl = m_pDesc->Intersects(static_cast<CBounding_Ray*>(pTargetBounding)->Get_Desc());
 		break;
 	}
+	
 
 	return isColl;
-}
-
-_bool CBounding_OBB::isCollisions(class CBounding_OBB::RAY_DESC tRay)
-{
-	return  m_pDesc->Intersects(tRay.vOrigin, tRay.vDir, tRay.fDist);
 }
 
 _bool CBounding_OBB::Collision_OBB(CBounding_OBB* pTargetDesc)

@@ -69,13 +69,13 @@ public:
 
 public:
 	/* Transform_Position */
-	void Go_Straight(_float fTimeDelta, class CNavigation* pNavigation = nullptr);
-	void Go_Backward(_float fTimeDelta, class CNavigation* pNavigation = nullptr);
-	void Go_Left(_float fTimeDelta, class CNavigation* pNavigation = nullptr);
-	void Go_Right(_float fTimeDelta, class CNavigation* pNavigation = nullptr);
+	void Go_Straight(_float fTimeDelta, class CNavigation* pNavigation = nullptr, _bool bMove = false);
+	void Go_Backward(_float fTimeDelta, class CNavigation* pNavigation = nullptr, _bool bMove = false);
+	void Go_Left(_float fTimeDelta, class CNavigation* pNavigation = nullptr, _bool bMove = false);
+	void Go_Right(_float fTimeDelta, class CNavigation* pNavigation = nullptr, _bool bMove = false);
 
-	void Go_StraightY(_float fTimeDelta, class  CNavigation* pNavigation = nullptr);
-	void Go_BackwardY(_float fTimeDelta, class  CNavigation* pNavigation = nullptr);
+	void Go_StraightY(_float fTimeDelta, class  CNavigation* pNavigation = nullptr, _bool bMove = false);
+	void Go_BackwardY(_float fTimeDelta, class  CNavigation* pNavigation = nullptr, _bool bMove = false);
 
 	void Go_Up(_float fTimeDelta);
 
