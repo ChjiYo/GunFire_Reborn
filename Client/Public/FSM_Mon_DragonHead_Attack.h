@@ -23,11 +23,12 @@ public:
 
 private:
 	_bool	m_bSeccondAttack = { false };
-	_bool	m_bAttackEnable = { false };
+	_bool	m_bAttackEnable = { true };
 
 	_float m_fAttackEndTimer = { 0.f };
-	_float  m_fSkillCreateTimer = { 0.f };
-	_float m_fAngle = { 0.f };
+	_float  m_fSkillDelay = { 0.f };
+
+	_uint	m_iNumSkill = { 0 };
 
 public:
 	static CFSM_Mon_DragonHead_Attack* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, FSM_MON_DESC Desc);

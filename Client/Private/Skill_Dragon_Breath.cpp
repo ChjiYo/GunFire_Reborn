@@ -34,14 +34,13 @@ HRESULT CSkill_Dragon_Breath::Initialize(void* pArg)
     if (FAILED(Ready_Components()))
         return E_FAIL;
 
-    SKILL_BREATH_DESC* Desc = static_cast<SKILL_BREATH_DESC*>(pArg);
-    Breath_Desc.fAngle =  Desc->fAngle;
-    
+    SKILL_DESC* Desc = static_cast<SKILL_DESC*>(pArg);
+   
     Safe_AddRef(m_pOriginTransform);
 
     Offset_Rotation({ 0.f, 0.f, 0.f });
     
-    m_pTransformCom->Rotation({ 0.f, 1.f, 0.f }, XMConvertToRadians(m_pOriginTransform->Look_Degree()));
+    m_pTransformCom->Rotation({ 0.f, 1.f, 0.f }, XMConvertToRadians(m_pOriginTransform->Look_Degree() - Desc->iNumSkill * 10.f));
 
     return S_OK;
 }
@@ -49,14 +48,10 @@ HRESULT CSkill_Dragon_Breath::Initialize(void* pArg)
 void CSkill_Dragon_Breath::Priority_Update(_float fTimeDelta)
 {
     m_fTickDamageTimer += fTimeDelta;
-    m_fAngle += fTimeDelta * 15.f;
     m_fAnimFrame += fTimeDelta * 8.f * 2.f;
 
     if (m_fAnimFrame > 8.f)
         m_fAnimFrame = 0.f;
-
-    if (m_fAngle > 45.f)
-        m_fAngle = 0.f;
 }
 
 void CSkill_Dragon_Breath::Update(_float fTimeDelta)
@@ -71,10 +66,6 @@ void CSkill_Dragon_Breath::Late_Update(_float fTimeDelta)
 #ifdef _DEBUG
     m_pGameInstance->Add_DebugComponent(m_pColliderCom);
 #endif
-
-    _vector vTmp = m_pOriginTransform->Get_State(CTransform::STATE_POSITION);
-    _vector vSrc = m_pOriginTransform->Get_State(CTransform::STATE_LOOK);;
-    _float fDist = 15.f;
 
     m_pGameInstance->Add_RenderObject(CRenderer::RG_BLEND, this);
 }
@@ -155,9 +146,6 @@ void CSkill_Dragon_Breath::Destroy(_float fTimeDelta)
 
 _bool CSkill_Dragon_Breath::IsCollider(_float fOriginX, _float fOriginZ, _float fTargetX, _float fTargetZ, _float fDistance)
 {
-    _float PosX = fOriginX + fDistance * cos(m_fAngle * (3.14f / 180.f));
-    _float PosZ = fOriginZ - fDistance * sin(m_fAngle * (3.14f / 180.f));
-
     return _bool();
 }
 

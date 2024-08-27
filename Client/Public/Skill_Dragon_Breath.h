@@ -11,12 +11,6 @@ END
 
 class CSkill_Dragon_Breath final :public CSkill_Monster
 {
-public:
-	typedef struct :public CSkill::SKILL_DESC
-	{
-		_float fAngle = {};
-	}SKILL_BREATH_DESC;
-
 protected:
 	CSkill_Dragon_Breath(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	CSkill_Dragon_Breath(const CSkill_Dragon_Breath& Prototype);
@@ -48,10 +42,7 @@ private:
 	_float m_fDestroyTimer = {};
 	_float m_fTickDamageTimer = { 0.f };
 
-	_float m_fAngle = { 0.f };
 	_float m_fAnimFrame = { 0.f };
-
-	SKILL_BREATH_DESC Breath_Desc = {};
 
 public:
 	static CSkill_Dragon_Breath* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);

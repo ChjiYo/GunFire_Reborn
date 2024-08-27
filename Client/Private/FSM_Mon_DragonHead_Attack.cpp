@@ -35,13 +35,7 @@ HRESULT CFSM_Mon_DragonHead_Attack::Initialize(FSM_MON_DESC Desc)
 wstring CFSM_Mon_DragonHead_Attack::Priority_Update(_float fTimeDelta)
 {
 	m_fAttackEndTimer += fTimeDelta;
-	m_fSkillCreateTimer += fTimeDelta;
-
-	m_bSeccondAttack ? m_fAngle += fTimeDelta * 10.f : m_fAngle += -fTimeDelta * 10.f;
-	
-
-	if (m_fAngle > 15.f)
-		m_fAngle = 0.f;
+	m_fSkillDelay += fTimeDelta;
 
 
 	return TEXT("Monster_DragonHead_State_Attack");
@@ -49,48 +43,54 @@ wstring CFSM_Mon_DragonHead_Attack::Priority_Update(_float fTimeDelta)
 
 wstring CFSM_Mon_DragonHead_Attack::Update(_float fTimeDelta)
 {
-	if (!m_bSeccondAttack && m_tDesc.pModel->Get_Anim(11)->Get_Duration() <= m_fAttackEndTimer)
+	if (!m_bSeccondAttack && m_fSkillDelay >= 0.5f && m_tDesc.pModel->Get_Anim(11)->Get_Duration() >= m_fAttackEndTimer)
 	{
-		m_fAttackEndTimer = 0.f;
+		m_fSkillDelay = 0.0f;
+		m_iNumSkill++;
+
+		CSkill::SKILL_DESC Skill_Desc = {};
+		Skill_Desc.fSpeedPerSec = 5.f;
+		Skill_Desc.fRotationPerSec = XMConvertToRadians(45.f);
+		Skill_Desc.pOriginTransform = m_tDesc.pTransform;
+		Skill_Desc.iSkillDamage = 5.f;
+		Skill_Desc.iNumSkill = m_iNumSkill;
+		
+		m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Skill_Dragon_Breath"), TEXT("Layer_Skill_Breath") , &Skill_Desc);
+
+	}
+	else if (m_tDesc.pModel->Get_Anim(11)->Get_Duration() < m_fAttackEndTimer)
+	{
 		m_bSeccondAttack = true;
-		m_bAttackEnable = false;
-		m_fSkillCreateTimer = 0.f;
+		m_fAttackEndTimer = 0.f;
+
 		m_tDesc.pModel->SetUp_Animation(12, false);
 	}
-	else if (!m_bSeccondAttack && m_tDesc.pModel->Get_Anim(11)->Get_Duration() - 1.5f <= m_fAttackEndTimer)
-	{
-		m_bAttackEnable = true;
-		m_fSkillCreateTimer = 0.f;
-	}
-
-	if (!m_bAttackEnable && m_fSkillCreateTimer >= 0.5f)
-	{
-		m_fSkillCreateTimer = 0.f;
-
-		CSkill_Dragon_Breath::SKILL_BREATH_DESC	BubbleDesc = {};
-
-		BubbleDesc.pOriginTransform = m_tDesc.pTransform;
-		BubbleDesc.fSpeedPerSec = 10.f;
-		BubbleDesc.fRotationPerSec = XMConvertToRadians(90.0f);
-		BubbleDesc.iSkillDamage = 5.f;
-		BubbleDesc.fAngle = m_fAngle;
-
-		m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Skill_Dragon_Breath"), TEXT("Layer_Skill_Dragon_Breath"), &BubbleDesc);
-	}
-
-
 
 	return TEXT("Monster_DragonHead_State_Attack");
 }
 
 wstring CFSM_Mon_DragonHead_Attack::Late_Update(_float fTimeDelta)
 {
-	if (m_bSeccondAttack && m_tDesc.pModel->Get_Anim(12)->Get_Duration() <= m_fAttackEndTimer)
+	if (m_bSeccondAttack && m_fSkillDelay >= 0.5f && m_tDesc.pModel->Get_Anim(11)->Get_Duration() >= m_fAttackEndTimer)
 	{
-		m_fAttackEndTimer = 0.f;
-		m_bSeccondAttack = false;
+		m_fSkillDelay = 0.f;
+		m_iNumSkill--;
 
-		return TEXT("Monster_DragonHead_State_Idle");
+		CSkill::SKILL_DESC Skill_Desc = {};
+		Skill_Desc.fSpeedPerSec = 5.f;
+		Skill_Desc.fRotationPerSec = XMConvertToRadians(45.f);
+		Skill_Desc.pOriginTransform = m_tDesc.pTransform;
+		Skill_Desc.iSkillDamage = 5.f;
+		Skill_Desc.iNumSkill = m_iNumSkill;
+
+		m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Skill_Dragon_Breath"), TEXT("Layer_Skill_Breath"), &Skill_Desc);
+	}
+	else if (m_tDesc.pModel->Get_Anim(11)->Get_Duration() < m_fAttackEndTimer)
+	{
+		m_bSeccondAttack = false;
+		m_fAttackEndTimer = 0.f;
+
+		return TEXT("Monster_DragonHead_State_In");
 	}
 
 	return TEXT("Monster_DragonHead_State_Attack");
