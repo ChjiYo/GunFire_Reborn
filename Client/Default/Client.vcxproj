@@ -484,6 +484,7 @@
     <Image Include="small.ico" />
   </ItemGroup>
   <ItemGroup>
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_Effect_MaskTex.hlsl" />
     <FxCompile Include="..\Bin\ShaderFiles\Shader_Particle_VtxPoint.hlsl">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </FxCompile>
