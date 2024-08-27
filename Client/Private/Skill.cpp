@@ -4,12 +4,12 @@
 #include "Navigation.h"
 
 CSkill::CSkill(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
-	:CGameObject{ pDevice ,pContext }
+	:CContainerObject{ pDevice ,pContext }
 {
 }
 
 CSkill::CSkill(const CSkill& Prototype)
-	:CGameObject{ Prototype }
+	:CContainerObject{ Prototype }
 {
 }
 
@@ -23,7 +23,6 @@ HRESULT CSkill::Initialize_Prototype()
 
 HRESULT CSkill::Initialize(void* pArg)
 {
-
 	if (FAILED(__super::Initialize(pArg)))
 		return E_FAIL;
 
@@ -32,14 +31,17 @@ HRESULT CSkill::Initialize(void* pArg)
 
 void CSkill::Priority_Update(_float fTimeDelta)
 {
+	__super::Priority_Update(fTimeDelta);
 }
 
 void CSkill::Update(_float fTimeDelta)
 {
+	__super::Update(fTimeDelta);
 }
 
 void CSkill::Late_Update(_float fTimeDelta)
 {
+	__super::Late_Update(fTimeDelta);
 }
 
 HRESULT CSkill::Render()

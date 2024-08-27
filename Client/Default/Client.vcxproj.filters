@@ -394,9 +394,6 @@
     <Filter Include="03.State_Machine\FSM_Monster\Dragon\Head\Idle">
       <UniqueIdentifier>{721570e6-1105-47b6-a81f-dd183bbb9583}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.State_Machine\FSM_Monster\Dragon\Head\In">
-      <UniqueIdentifier>{080b3c17-19fd-49fb-98f4-942f909c2929}</UniqueIdentifier>
-    </Filter>
     <Filter Include="03.State_Machine\FSM_Monster\Dragon\Head\Out">
       <UniqueIdentifier>{eedb7afd-d3ff-44f2-aa12-35483a624bf6}</UniqueIdentifier>
     </Filter>
@@ -504,6 +501,9 @@
     </Filter>
     <Filter Include="02.GameObjects\Effect\Monster_Effect\VFX_Breath">
       <UniqueIdentifier>{9c8e56ba-357f-4f1c-85c7-831cabd39943}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.State_Machine\FSM_Monster\Dragon\Head\Idle\In">
+      <UniqueIdentifier>{080b3c17-19fd-49fb-98f4-942f909c2929}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -913,7 +913,7 @@
       <Filter>03.State_Machine\FSM_Monster\Dragon\Head\Idle</Filter>
     </ClInclude>
     <ClInclude Include="..\public\FSM_Mon_DragonHead_In.h">
-      <Filter>03.State_Machine\FSM_Monster\Dragon\Head\In</Filter>
+      <Filter>03.State_Machine\FSM_Monster\Dragon\Head\Idle\In</Filter>
     </ClInclude>
     <ClInclude Include="..\public\FSM_Mon_DragonHead_Out.h">
       <Filter>03.State_Machine\FSM_Monster\Dragon\Head\Out</Filter>
@@ -948,9 +948,6 @@
     <ClInclude Include="..\public\Skill_Dragon_Floor.h">
       <Filter>02.GameObjects\Skill\Monster_Skill\Skill_Dragon_Floor</Filter>
     </ClInclude>
-    <ClInclude Include="..\public\Skill_Dragon_Breath.h">
-      <Filter>02.GameObjects\Skill\Monster_Skill\Skill_Dragon_Breath</Filter>
-    </ClInclude>
     <ClInclude Include="..\public\Skill_Dragon_Dust.h">
       <Filter>02.GameObjects\Skill\Monster_Skill\Skill_Dragon_Dush</Filter>
     </ClInclude>
@@ -962,6 +959,9 @@
     </ClInclude>
     <ClInclude Include="..\public\VFX_Monster.h">
       <Filter>02.GameObjects\Effect\Monster_Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Skill_Dragon_Breath.h">
+      <Filter>02.GameObjects\Skill\Monster_Skill\Skill_Dragon_Breath</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1356,7 +1356,7 @@
       <Filter>03.State_Machine\FSM_Monster\Dragon\Head\Idle</Filter>
     </ClCompile>
     <ClCompile Include="..\private\FSM_Mon_DragonHead_In.cpp">
-      <Filter>03.State_Machine\FSM_Monster\Dragon\Head\In</Filter>
+      <Filter>03.State_Machine\FSM_Monster\Dragon\Head\Idle\In</Filter>
     </ClCompile>
     <ClCompile Include="..\private\FSM_Mon_DragonHead_Out.cpp">
       <Filter>03.State_Machine\FSM_Monster\Dragon\Head\Out</Filter>
@@ -1391,9 +1391,6 @@
     <ClCompile Include="..\private\Skill_Dragon_Floor.cpp">
       <Filter>02.GameObjects\Skill\Monster_Skill\Skill_Dragon_Floor</Filter>
     </ClCompile>
-    <ClCompile Include="..\private\Skill_Dragon_Breath.cpp">
-      <Filter>02.GameObjects\Skill\Monster_Skill\Skill_Dragon_Breath</Filter>
-    </ClCompile>
     <ClCompile Include="..\private\Skill_Dragon_Dust.cpp">
       <Filter>02.GameObjects\Skill\Monster_Skill\Skill_Dragon_Dush</Filter>
     </ClCompile>
@@ -1405,6 +1402,9 @@
     </ClCompile>
     <ClCompile Include="..\private\VFX_Monster.cpp">
       <Filter>02.GameObjects\Effect\Monster_Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Skill_Dragon_Breath.cpp">
+      <Filter>02.GameObjects\Skill\Monster_Skill\Skill_Dragon_Breath</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

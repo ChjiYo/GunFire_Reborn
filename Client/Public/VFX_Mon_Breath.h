@@ -13,6 +13,9 @@ BEGIN(Client)
 
 class CVFX_Mon_Breath final :public CVFX_Monster
 {
+public:
+	enum TEXTURETEX { TEX_DIFFUSE, TEX_MASK , TEX_END };
+
 protected:
 	CVFX_Mon_Breath(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	CVFX_Mon_Breath(const CVFX_Mon_Breath& Prototype);
@@ -34,7 +37,8 @@ private:
 	CTexture* m_pTextureCom = { nullptr };
 	CVIBuffer_Rect* m_pVIBufferCom = { nullptr };
 
-	CTransform* m_pOriginTransform = {};
+private:
+	_float m_fTimer = {0.f};
 
 public:
 	static CVFX_Mon_Breath* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);

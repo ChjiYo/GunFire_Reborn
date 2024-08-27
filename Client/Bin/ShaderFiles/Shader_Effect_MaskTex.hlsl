@@ -4,6 +4,8 @@
 float4x4 g_WorldMatrix, g_ViewMatrix, g_ProjMatrix;
 texture2D g_Texture;
 
+float g_Timer;
+
 struct VS_IN
 {
     float3 vPosition : POSITION;
@@ -46,13 +48,20 @@ PS_OUT PS_MAIN(PS_IN In)
 {
     PS_OUT Out;
 
-    
-    
-    Out.vColor = g_Texture.Sample(LinearSampler, In.vTexcoord);
+    float2 offset = float2(0.f, g_Timer); // x축으로 0.1의 속도로 이동
+    float2 newTexcoord = In.vTexcoord + offset;
+
+   
+    Out.vColor = g_Texture.Sample(LinearSampler, newTexcoord);
 
 	//Out.vColor.gb = Out.vColor.r;
-    if (Out.vColor.a <= 0.1f)
+    if (Out.vColor.a >= 0.5f)
         discard;
+    
+    float4 sandColor = float4(1.f, 0.82f, 0.7f, 0.55f);
+    
+    // 알파 값을 유지하며 황토색으로 변환
+    Out.vColor.argb = sandColor * Out.vColor.argb;
 
     return Out;
 }

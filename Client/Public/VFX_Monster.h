@@ -27,9 +27,6 @@ public:
 protected:
 	HRESULT Ready_Components();
 
-protected:
-	CTransform* m_pOriginTransform = {};
-
 public:
 	virtual CGameObject* Clone(void* pArg) = 0;
 	virtual void Free() override;

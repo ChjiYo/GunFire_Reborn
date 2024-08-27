@@ -9,13 +9,13 @@ END
 
 BEGIN(Client)
 
-class CSkill abstract:public CGameObject
+class CSkill abstract:public CContainerObject
 {
 public:
 	enum PARTID { PART_EFFECT, PART_END };
 
 public:
-	typedef struct : public CGameObject::GAMEOBJECT_DESC
+	typedef struct : public CContainerObject::CONTAINEROBJECT_DESC
 	{
 		CTransform* pOriginTransform = {};
 		_uint		iSkillDamage = {};

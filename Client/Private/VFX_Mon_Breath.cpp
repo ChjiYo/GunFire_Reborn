@@ -26,11 +26,22 @@ HRESULT CVFX_Mon_Breath::Initialize(void* pArg)
 	if (FAILED(__super::Initialize(pArg)))
 		return E_FAIL;
 
+    if (FAILED(Ready_Components()))
+        return E_FAIL;
+
+    m_pTransformCom->Set_Scaled(1.f, 5.f,1.f);
+    m_pTransformCom->Rotation({ 1.f, 0.f, 0.f }, XMConvertToRadians(90.f));
+    m_pTransformCom->Radian_Turn(m_pTransformCom->Get_State(CTransform::STATE_UP), XMConvertToRadians(90.f));
+    m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 0.f,2.f, 8.f, 1.f });
 	return S_OK;
 }
 
 void CVFX_Mon_Breath::Priority_Update(_float fTimeDelta)
 {
+    m_fTimer += fTimeDelta;
+    if (m_fTimer >= 1.f)
+        m_fTimer = 0.f;
+
     __super::Priority_Update(fTimeDelta);
 }
 
@@ -51,7 +62,7 @@ HRESULT CVFX_Mon_Breath::Render()
     if (FAILED(Bind_ShaderResources()))
         return E_FAIL;
 
-    if (FAILED(m_pShaderCom->Begin(1)))
+    if (FAILED(m_pShaderCom->Begin(0)))
         return E_FAIL;
 
     if (FAILED(m_pVIBufferCom->Bind_Buffers()))
@@ -65,7 +76,7 @@ HRESULT CVFX_Mon_Breath::Render()
 
 HRESULT CVFX_Mon_Breath::Ready_Components()
 { /* For.Com_Shader */
-    if (FAILED(__super::Add_Component(LEVEL_STATIC, TEXT("Prototype_Component_Shader_VtxPosTex"),
+    if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Shader_Effect_MaskTex"),
         TEXT("Com_Shader"), reinterpret_cast<CComponent**>(&m_pShaderCom))))
         return E_FAIL;
 
@@ -84,7 +95,7 @@ HRESULT CVFX_Mon_Breath::Ready_Components()
 
 HRESULT CVFX_Mon_Breath::Bind_ShaderResources()
 {
-    if (FAILED(m_pTransformCom->Bind_ShaderResource(m_pShaderCom, "g_WorldMatrix")))
+    if (FAILED(__super::Bind_WorldMatrix(m_pShaderCom, "g_WorldMatrix")))
         return E_FAIL;
 
     if (FAILED(m_pShaderCom->Bind_Matrix("g_ViewMatrix", &m_pGameInstance->Get_Transform_Float4x4(CPipeLine::D3DTS_VIEW))))
@@ -94,6 +105,9 @@ HRESULT CVFX_Mon_Breath::Bind_ShaderResources()
         return E_FAIL;
 
      if (FAILED(m_pTextureCom->Bind_ShaderResource(m_pShaderCom, "g_Texture", 0)))
+         return E_FAIL;
+
+     if (FAILED(m_pShaderCom->Bind_RawValue("g_Timer", &m_fTimer, sizeof(_float))))
          return E_FAIL;
 
     return S_OK;
@@ -128,5 +142,9 @@ CGameObject* CVFX_Mon_Breath::Clone(void* pArg)
 
 void CVFX_Mon_Breath::Free()
 {
+    Safe_Release(m_pShaderCom);
+    Safe_Release(m_pTextureCom);
+    Safe_Release(m_pVIBufferCom);
+
 	__super::Free();
 }

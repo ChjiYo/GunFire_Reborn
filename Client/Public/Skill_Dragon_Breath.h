@@ -31,7 +31,6 @@ private:
 
 private:
 	void Destroy(_float fTimeDelta);
-	_bool IsCollider(_float fOriginX , _float fOriginZ ,_float fTargetX , _float fTargetZ , _float fDistance);
 
 private:
 	CShader* m_pShaderCom = { nullptr };
