@@ -23,6 +23,7 @@ HRESULT CSkill::Initialize_Prototype()
 
 HRESULT CSkill::Initialize(void* pArg)
 {
+
 	if (FAILED(__super::Initialize(pArg)))
 		return E_FAIL;
 

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Client_Defines.h"
-#include "GameObject.h"
+#include "ContainerObject.h"
 
 BEGIN(Engine)
 class CNavigation;
@@ -11,6 +11,9 @@ BEGIN(Client)
 
 class CSkill abstract:public CGameObject
 {
+public:
+	enum PARTID { PART_EFFECT, PART_END };
+
 public:
 	typedef struct : public CGameObject::GAMEOBJECT_DESC
 	{

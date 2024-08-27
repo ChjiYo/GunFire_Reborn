@@ -63,6 +63,8 @@
 #include "Skill_Dragon_Breath.h"
 #include "Skill_Dragon_Dust.h"
 
+#include "VFX_Mon_Breath.h"
+
 #include "Item_Sniper.h"
 
 CLoader::CLoader(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
@@ -396,6 +398,11 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 	/* For.Prototype_Component_Texture_Skill_Dragon_Breath*/
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_Skill_Dragon_Breath"),
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/Skill/Monster/Dragon/Breath/Breath%d.png"), 8))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Texture_VFX_Dragon_Breath*/
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_VFX_Dragon_Breath"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/Skill/Monster/Dragon/Breath/Breath_Mask.png")))))
 		return E_FAIL;
 
 	/* 모델을 로드한다. */
@@ -767,6 +774,11 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 	/* For.Prototype_GameObject_Skill_Dragon_Dust */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Skill_Dragon_Dust"),
 		CSkill_Dragon_Dust::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_VFX_Dragon_Breath */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_VFX_Dragon_Breath"),
+		CVFX_Mon_Breath::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
 	/* For.Prototype_GameObject_Cube */

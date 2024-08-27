@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "Skill_Dragon_Breath.h"
+#include "PartObject.h"
 #include "GameInstance.h"
 
 #include "Bounding_AABB.h"
@@ -32,6 +33,9 @@ HRESULT CSkill_Dragon_Breath::Initialize(void* pArg)
         return E_FAIL;
 
     if (FAILED(Ready_Components()))
+        return E_FAIL;
+
+    if (FAILED(Ready_PartsObject()))
         return E_FAIL;
 
     SKILL_DESC* Desc = static_cast<SKILL_DESC*>(pArg);
@@ -94,7 +98,7 @@ HRESULT CSkill_Dragon_Breath::Ready_Components()
         return E_FAIL;
 
     /* For.Com_Model */
-    if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_Skill_Dragon_Breath"),
+    if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_VFX_Dragon_Breath"),
         TEXT("Com_Texture"), reinterpret_cast<CComponent**>(&m_pTextureCom))))
         return E_FAIL;
 
@@ -115,6 +119,18 @@ HRESULT CSkill_Dragon_Breath::Ready_Components()
         TEXT("Com_Collider"), reinterpret_cast<CComponent**>(&m_pColliderCom), &BoundingDesc)))
         return E_FAIL;
     
+    return S_OK;
+}
+
+HRESULT CSkill_Dragon_Breath::Ready_PartsObject()
+{
+    /* 바디객체를 추가하자 */
+   // CPartObject::PARTOBJECT_DESC			BodyDesc{};
+   // BodyDesc.pParentMatrix = m_pTransformCom->Get_WorldMatrixPtr();
+   // 
+   // if (FAILED(__super::Add_PartObject(PART_EFFECT, TEXT("Prototype_GameObject_VFX_Dragon_Breath"), &BodyDesc)))
+   //     return E_FAIL;
+
     return S_OK;
 }
 

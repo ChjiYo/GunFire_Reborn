@@ -26,6 +26,7 @@ public:
 
 private:
 	HRESULT Ready_Components();
+	HRESULT Ready_PartsObject();
 	HRESULT Bind_ShaderResources();
 
 private:

@@ -175,6 +175,7 @@
     <ClInclude Include="..\public\Ceiling_104.h" />
     <ClInclude Include="..\public\Ceiling_105.h" />
     <ClInclude Include="..\Public\Client_Defines.h" />
+    <ClInclude Include="..\public\Effect.h" />
     <ClInclude Include="..\Public\FSM_Mon_Archer_Hit.h" />
     <ClInclude Include="..\public\FSM_Mon_Boom_Attack.h" />
     <ClInclude Include="..\public\FSM_Mon_Boom_Idle.h" />
@@ -307,6 +308,8 @@
     <ClInclude Include="..\Public\UI_Weapon_NumPanel.h" />
     <ClInclude Include="..\Public\UI_Weapon_Panel.h" />
     <ClInclude Include="..\Public\UI_Weapon_YBullet.h" />
+    <ClInclude Include="..\public\VFX_Monster.h" />
+    <ClInclude Include="..\public\VFX_Mon_Breath.h" />
     <ClInclude Include="..\public\Wall_Stage1.h" />
     <ClInclude Include="..\public\Wall_Stage2.h" />
     <ClInclude Include="..\public\Weapon_Player.h" />
@@ -328,6 +331,7 @@
     <ClCompile Include="..\private\Ceiling_103.cpp" />
     <ClCompile Include="..\private\Ceiling_104.cpp" />
     <ClCompile Include="..\private\Ceiling_105.cpp" />
+    <ClCompile Include="..\private\Effect.cpp" />
     <ClCompile Include="..\Private\FSM_Mon_Archer_Hit.cpp" />
     <ClCompile Include="..\private\FSM_Mon_Boom_Attack.cpp" />
     <ClCompile Include="..\private\FSM_Mon_Boom_Idle.cpp" />
@@ -452,6 +456,8 @@
     <ClCompile Include="..\Private\UI_Weapon_NumPanel.cpp" />
     <ClCompile Include="..\Private\UI_Weapon_Panel.cpp" />
     <ClCompile Include="..\Private\UI_Weapon_YBullet.cpp" />
+    <ClCompile Include="..\private\VFX_Monster.cpp" />
+    <ClCompile Include="..\private\VFX_Mon_Breath.cpp" />
     <ClCompile Include="..\private\Wall_Stage1.cpp" />
     <ClCompile Include="..\private\Wall_Stage2.cpp" />
     <ClCompile Include="..\private\Weapon_Player.cpp" />
