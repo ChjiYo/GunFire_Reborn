@@ -175,6 +175,9 @@
     <Filter Include="01.Utility\03.Components\Collider\Bounding\Ray">
       <UniqueIdentifier>{994e6caf-3b49-41ac-9acd-c63edaab93e3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Utility\03.Components\VIBuffer\Instancing\Point">
+      <UniqueIdentifier>{a53a2588-603a-40ed-b8b5-7641d86b9277}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\private\GameInstance.cpp">
@@ -341,6 +344,9 @@
     </ClCompile>
     <ClCompile Include="..\private\Bounding_Ray.cpp">
       <Filter>01.Utility\03.Components\Collider\Bounding\Ray</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\VIBuffer_Point_Instancing.cpp">
+      <Filter>01.Utility\03.Components\VIBuffer\Instancing\Point</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -520,6 +526,9 @@
     </ClInclude>
     <ClInclude Include="..\public\Bounding_Ray.h">
       <Filter>01.Utility\03.Components\Collider\Bounding\Ray</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\VIBuffer_Point_Instancing.h">
+      <Filter>01.Utility\03.Components\VIBuffer\Instancing\Point</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

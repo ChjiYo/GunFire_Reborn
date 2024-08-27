@@ -6,12 +6,12 @@
 BEGIN(Engine)
 class CShader;
 class CTexture;
-class CVIBuffer_Rect;
+class CVIBuffer_Point_Instancing;
 END
 
 BEGIN(Client)
 
-class CVFX_Mon_Dust final :public CVFX_Monster
+class CVFX_Mon_Dust final :public CGameObject
 {
 public:
 	enum TEXTURETEX { TEX_DIFFUSE, TEX_MASK, TEX_END };
@@ -35,7 +35,7 @@ protected:
 private:
 	CShader* m_pShaderCom = { nullptr };
 	CTexture* m_pTextureCom = { nullptr };
-	CVIBuffer_Rect* m_pVIBufferCom = { nullptr };
+	CVIBuffer_Point_Instancing* m_pVIBufferCom = { nullptr };
 
 private:
 	_float m_fTimer = { 0.f };

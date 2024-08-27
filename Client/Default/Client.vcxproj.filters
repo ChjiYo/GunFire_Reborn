@@ -505,6 +505,9 @@
     <Filter Include="03.State_Machine\FSM_Monster\Dragon\Head\Idle\In">
       <UniqueIdentifier>{080b3c17-19fd-49fb-98f4-942f909c2929}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObjects\Effect\Monster_Effect\VFX_Dust">
+      <UniqueIdentifier>{9e072b7c-0572-4287-be3d-1231939fc9ba}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -963,6 +966,9 @@
     <ClInclude Include="..\public\Skill_Dragon_Breath.h">
       <Filter>02.GameObjects\Skill\Monster_Skill\Skill_Dragon_Breath</Filter>
     </ClInclude>
+    <ClInclude Include="..\public\VFX_Mon_Dust.h">
+      <Filter>02.GameObjects\Effect\Monster_Effect\VFX_Dust</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -1405,6 +1411,9 @@
     </ClCompile>
     <ClCompile Include="..\private\Skill_Dragon_Breath.cpp">
       <Filter>02.GameObjects\Skill\Monster_Skill\Skill_Dragon_Breath</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\VFX_Mon_Dust.cpp">
+      <Filter>02.GameObjects\Effect\Monster_Effect\VFX_Dust</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

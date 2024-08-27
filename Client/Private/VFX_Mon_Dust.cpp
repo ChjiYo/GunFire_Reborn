@@ -4,12 +4,12 @@
 #include "GameInstance.h"
 
 CVFX_Mon_Dust::CVFX_Mon_Dust(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
-    :CVFX_Monster{ pDevice ,pContext }
+    :CGameObject{ pDevice ,pContext }
 {
 }
 
 CVFX_Mon_Dust::CVFX_Mon_Dust(const CVFX_Mon_Dust& Prototype)
-    :CVFX_Monster{ Prototype }
+    :CGameObject{ Prototype }
 {
 }
 
@@ -29,32 +29,26 @@ HRESULT CVFX_Mon_Dust::Initialize(void* pArg)
     if (FAILED(Ready_Components()))
         return E_FAIL;
 
-    m_pTransformCom->Set_Scaled(1.f, 5.f, 1.f);
-    m_pTransformCom->Rotation({ 1.f, 0.f, 0.f }, XMConvertToRadians(90.f));
-    m_pTransformCom->Radian_Turn(m_pTransformCom->Get_State(CTransform::STATE_UP), XMConvertToRadians(90.f));
-    m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 0.f,2.f, 8.f, 1.f });
     return S_OK;
 }
 
 void CVFX_Mon_Dust::Priority_Update(_float fTimeDelta)
 {
-    m_fTimer += fTimeDelta;
-    if (m_fTimer >= 1.f)
-        m_fTimer = 0.f;
-
     __super::Priority_Update(fTimeDelta);
 }
 
 void CVFX_Mon_Dust::Update(_float fTimeDelta)
 {
     __super::Update(fTimeDelta);
+
+    m_pVIBufferCom->Spread(fTimeDelta);
 }
 
 void CVFX_Mon_Dust::Late_Update(_float fTimeDelta)
 {
     __super::Late_Update(fTimeDelta);
 
-    m_pGameInstance->Add_RenderObject(CRenderer::RG_BLEND, this);
+    m_pGameInstance->Add_RenderObject(CRenderer::RG_NONLIGHT, this);
 }
 
 HRESULT CVFX_Mon_Dust::Render()
@@ -76,7 +70,7 @@ HRESULT CVFX_Mon_Dust::Render()
 
 HRESULT CVFX_Mon_Dust::Ready_Components()
 { /* For.Com_Shader */
-    if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Shader_Effect_MaskTex"),
+    if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Shader_Particle_VtxPoint"),
         TEXT("Com_Shader"), reinterpret_cast<CComponent**>(&m_pShaderCom))))
         return E_FAIL;
 
@@ -86,7 +80,7 @@ HRESULT CVFX_Mon_Dust::Ready_Components()
         return E_FAIL;
 
     /* For.Com_VIBuffer */
-    if (FAILED(__super::Add_Component(LEVEL_STATIC, TEXT("Prototype_Component_VIBuffer_Rect"),
+    if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_VIBuffer_Particle_Dust"),
         TEXT("Com_VIBuffer"), reinterpret_cast<CComponent**>(&m_pVIBufferCom))))
         return E_FAIL;
 
@@ -95,7 +89,7 @@ HRESULT CVFX_Mon_Dust::Ready_Components()
 
 HRESULT CVFX_Mon_Dust::Bind_ShaderResources()
 {
-    if (FAILED(__super::Bind_WorldMatrix(m_pShaderCom, "g_WorldMatrix")))
+    if (FAILED(m_pTransformCom->Bind_ShaderResource(m_pShaderCom, "g_WorldMatrix")))
         return E_FAIL;
 
     if (FAILED(m_pShaderCom->Bind_Matrix("g_ViewMatrix", &m_pGameInstance->Get_Transform_Float4x4(CPipeLine::D3DTS_VIEW))))
@@ -107,8 +101,6 @@ HRESULT CVFX_Mon_Dust::Bind_ShaderResources()
     if (FAILED(m_pTextureCom->Bind_ShaderResource(m_pShaderCom, "g_Texture", 0)))
         return E_FAIL;
 
-    if (FAILED(m_pShaderCom->Bind_RawValue("g_Timer", &m_fTimer, sizeof(_float))))
-        return E_FAIL;
 
     return S_OK;
 }

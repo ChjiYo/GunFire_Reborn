@@ -64,6 +64,7 @@
 #include "Skill_Dragon_Dust.h"
 
 #include "VFX_Mon_Breath.h"
+#include "VFX_Mon_Dust.h"
 
 #include "Item_Sniper.h"
 
@@ -630,6 +631,20 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 		CVIBuffer_Rect_Instancing::Create(m_pDevice, m_pContext, &ParticleDesc))))
 		return E_FAIL;
 
+	/* For.Prototype_Component_VIBuffer_Particle_Dust */
+	ParticleDesc.iNumInstance = 200;
+	ParticleDesc.vRange = _float3(0.1f, 0.1f, 0.1f);
+	ParticleDesc.vCenter = _float3(0.0f, 0.f, 0.0f);
+	ParticleDesc.vPivot = _float3(-2.0f, 0.0f, -5.f);
+	ParticleDesc.vSpeed = _float2(0.4f, 1.f);
+	ParticleDesc.vScale = _float2(0.02f, 0.05f);
+	ParticleDesc.vLifeTime = _float2(0.2f, 0.5f);
+	ParticleDesc.isLoop = true;
+	
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_VIBuffer_Particle_Dust"),
+		CVIBuffer_Point_Instancing::Create(m_pDevice, m_pContext, &ParticleDesc))))
+		return E_FAIL;
+
 	/* 쉐이더를 로드한다. */
 	/* For.Prototype_Component_Shader_VtxNorTex */
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Shader_VtxNorTex"),
@@ -654,6 +669,11 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 	/* For.Prototype_Component_Shader_Particle_VtxRect */
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Shader_Particle_VtxRect"),
 		CShader::Create(m_pDevice, m_pContext, TEXT("../Bin/ShaderFiles/Shader_Particle_VtxRect.hlsl"), VTXPARTICLE_RECT::Elements, VTXPARTICLE_RECT::iNumElements))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Shader_Particle_VtxPoint */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Shader_Particle_VtxPoint"),
+		CShader::Create(m_pDevice, m_pContext, TEXT("../Bin/ShaderFiles/Shader_Particle_VtxPoint.hlsl"), VTXPARTICLE_POINT::Elements, VTXPARTICLE_POINT::iNumElements))))
 		return E_FAIL;
 
 	/* For.Prototype_Component_Shader_UI_VtxRect */
@@ -789,6 +809,11 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 	/* For.Prototype_GameObject_VFX_Dragon_Breath */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_VFX_Dragon_Breath"),
 		CVFX_Mon_Breath::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_VFX_Dragon_Dust */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_VFX_Dragon_Dust"),
+		CVFX_Mon_Dust::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
 	/* For.Prototype_GameObject_Cube */

@@ -11,6 +11,7 @@
 #include "VIBuffer_Cube.h"
 #include "VIBuffer_Terrain.h"
 #include "VIBuffer_Rect_Instancing.h"
+#include "VIBuffer_Point_Instancing.h"
 
 #include "State_Machine.h"
 
