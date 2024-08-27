@@ -55,6 +55,7 @@ void CSkill_Dragon_Dust::Priority_Update(_float fTimeDelta)
 void CSkill_Dragon_Dust::Update(_float fTimeDelta)
 {
     __super::Update(fTimeDelta);
+    Destroy(fTimeDelta);
     m_pColliderCom->Update(m_pTransformCom->Get_WorldMatrix());
 }
 
