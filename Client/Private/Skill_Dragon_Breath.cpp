@@ -39,8 +39,10 @@ HRESULT CSkill_Dragon_Breath::Initialize(void* pArg)
     Safe_AddRef(m_pOriginTransform);
 
     Offset_Rotation({ 0.f, 0.f, 0.f });
+
+    _float fTmp = m_pOriginTransform->Look_Degree() - Desc->iNumSkill * 10.f;
     
-    m_pTransformCom->Rotation({ 0.f, 1.f, 0.f }, XMConvertToRadians(m_pOriginTransform->Look_Degree() - Desc->iNumSkill * 10.f));
+    m_pTransformCom->Rotation({ 0.f, 1.f, 0.f }, XMConvertToRadians(fTmp));
 
     return S_OK;
 }
