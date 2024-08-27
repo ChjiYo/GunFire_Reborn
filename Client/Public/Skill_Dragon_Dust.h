@@ -26,11 +26,12 @@ public:
 
 private:
 	HRESULT Ready_Components();
+	HRESULT Ready_PartObjects();
 	HRESULT Bind_ShaderResources();
 
 private:
 	void Destroy(_float fTimeDelta);
-	bool IsCollider(float objectX, float objectY, float centerX, float centerY, float radius);
+	_bool IsCollider(_vector vCollStartPos  ,_vector  vCollObjPos, _float fDamageDist);
 
 private:
 	CShader* m_pShaderCom = { nullptr };
@@ -48,6 +49,8 @@ private:
 
 	_uint m_iTextureIndex = { 0 };
 	_float m_fDistance = { 0.f };
+
+	_bool m_bAttack = {false};
 public:
 	static CSkill_Dragon_Dust* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	virtual CGameObject* Clone(void* pArg);

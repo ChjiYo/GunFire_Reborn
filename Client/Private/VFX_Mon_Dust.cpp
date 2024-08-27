@@ -4,12 +4,12 @@
 #include "GameInstance.h"
 
 CVFX_Mon_Dust::CVFX_Mon_Dust(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
-    :CGameObject{ pDevice ,pContext }
+    :CVFX_Monster{ pDevice ,pContext }
 {
 }
 
 CVFX_Mon_Dust::CVFX_Mon_Dust(const CVFX_Mon_Dust& Prototype)
-    :CGameObject{ Prototype }
+    :CVFX_Monster{ Prototype }
 {
 }
 
@@ -48,7 +48,7 @@ void CVFX_Mon_Dust::Late_Update(_float fTimeDelta)
 {
     __super::Late_Update(fTimeDelta);
 
-    m_pGameInstance->Add_RenderObject(CRenderer::RG_NONLIGHT, this);
+    m_pGameInstance->Add_RenderObject(CRenderer::RG_BLEND, this);
 }
 
 HRESULT CVFX_Mon_Dust::Render()
@@ -75,7 +75,7 @@ HRESULT CVFX_Mon_Dust::Ready_Components()
         return E_FAIL;
 
     /* For.Com_Model */
-    if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_VFX_Dragon_Breath"),
+    if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_VFX_Dragon_Dust"),
         TEXT("Com_Texture"), reinterpret_cast<CComponent**>(&m_pTextureCom))))
         return E_FAIL;
 
@@ -89,7 +89,8 @@ HRESULT CVFX_Mon_Dust::Ready_Components()
 
 HRESULT CVFX_Mon_Dust::Bind_ShaderResources()
 {
-    if (FAILED(m_pTransformCom->Bind_ShaderResource(m_pShaderCom, "g_WorldMatrix")))
+
+    if (FAILED(__super::Bind_WorldMatrix(m_pShaderCom, "g_WorldMatrix")))
         return E_FAIL;
 
     if (FAILED(m_pShaderCom->Bind_Matrix("g_ViewMatrix", &m_pGameInstance->Get_Transform_Float4x4(CPipeLine::D3DTS_VIEW))))

@@ -70,6 +70,7 @@ wstring CFSM_Mon_DragonTail_Attack::Update(_float fTimeDelta)
 			DustDesc.fSpeedPerSec = 10.f;
 			DustDesc.fRotationPerSec = XMConvertToRadians(90.0f);
 			DustDesc.iSkillDamage = 5.f;
+			DustDesc.iNumParts = CSkill::PART_END;
 			m_tDesc.pTransform->LookAt(m_pPlayerTransform->Get_State(CTransform::STATE_POSITION));
 
 			m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Skill_Dragon_Dust"), TEXT("Layer_Skill_Dragon_Dust"), &DustDesc);
@@ -100,9 +101,10 @@ void CFSM_Mon_DragonTail_Attack::Enter()
 
 	m_tDesc.pTransform->LookAt(m_pPlayerTransform->Get_State(CTransform::STATE_POSITION));
 
-	m_iAttackType = rand() % 2;
+	m_iAttackType = 1;
+		//rand() % 2;
 
-	_vector vUpdatePos = XMVectorSetY(m_tDesc.pTransform->Get_State(CTransform::STATE_POSITION), -1.8f);
+	_vector vUpdatePos = XMVectorSetY(m_tDesc.pTransform->Get_State(CTransform::STATE_POSITION), 0.8f);
 	m_tDesc.pTransform->Set_State(CTransform::STATE_POSITION, vUpdatePos);
 
 	if (m_iAttackType == 0)

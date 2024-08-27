@@ -11,7 +11,7 @@ END
 
 BEGIN(Client)
 
-class CVFX_Mon_Dust final :public CGameObject
+class CVFX_Mon_Dust final :public CVFX_Monster
 {
 public:
 	enum TEXTURETEX { TEX_DIFFUSE, TEX_MASK, TEX_END };

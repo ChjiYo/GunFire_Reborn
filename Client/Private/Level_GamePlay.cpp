@@ -146,11 +146,6 @@ HRESULT CLevel_GamePlay::Ready_Layer_Camera(const _wstring & strLayerTag)
 
 HRESULT CLevel_GamePlay::Ready_Layer_Effect(const _wstring & strLayerTag)
 {
-	
-
-	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_VFX_Dragon_Dust"), strLayerTag)))
-		return E_FAIL;
-
 	return S_OK;
 }
 

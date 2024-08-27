@@ -633,12 +633,12 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 
 	/* For.Prototype_Component_VIBuffer_Particle_Dust */
 	ParticleDesc.iNumInstance = 200;
-	ParticleDesc.vRange = _float3(0.1f, 0.1f, 0.1f);
+	ParticleDesc.vRange = _float3(0.1f, 0.0f, 0.1f);
 	ParticleDesc.vCenter = _float3(0.0f, 0.f, 0.0f);
-	ParticleDesc.vPivot = _float3(-2.0f, 0.0f, -5.f);
-	ParticleDesc.vSpeed = _float2(0.4f, 1.f);
-	ParticleDesc.vScale = _float2(0.02f, 0.05f);
-	ParticleDesc.vLifeTime = _float2(0.2f, 0.5f);
+	ParticleDesc.vPivot = _float3(0.0f, 0.0f, 0.f);
+	ParticleDesc.vSpeed = _float2(15.0f, 15.f);
+	ParticleDesc.vScale = _float2(0.3f, 0.7f);
+	ParticleDesc.vLifeTime = _float2(10.0f, 10.5f);
 	ParticleDesc.isLoop = true;
 	
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_VIBuffer_Particle_Dust"),
