@@ -39,7 +39,6 @@ private:
 	CCollider* m_pColliderCom = { nullptr };
 
 private:
-	_float m_fDestroyTimer = {};
 	_float m_fTickDamageTimer = { 0.f };
 
 	_float m_fAnimFrame = { 0.f };

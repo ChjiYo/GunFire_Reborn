@@ -48,6 +48,12 @@ wstring CFSM_Mon_DragonHead_Attack::Update(_float fTimeDelta)
 
 wstring CFSM_Mon_DragonHead_Attack::Late_Update(_float fTimeDelta)
 {
+	if (m_tDesc.pModel->Get_Anim(11)->Get_Duration() <= m_fAttackEndTimer)
+	{
+		m_fAttackEndTimer = 0.f;
+		return TEXT("Monster_DragonHead_State_Idle");
+	}
+
 	return TEXT("Monster_DragonHead_State_Attack");
 }
 
@@ -55,12 +61,27 @@ void CFSM_Mon_DragonHead_Attack::Enter()
 {
 	__super::Enter();
 
-	m_tDesc.pModel->SetUp_Animation(11, false);
+	m_tDesc.pTransform->LookAt(m_pPlayerTransform->Get_State(CTransform::STATE_POSITION));
+
+	_uint iRand = rand() % 2;
+	m_iNumSkill = (iRand == 0) ? -1 : 1;
+
+
+	CSkill::SKILL_DESC Skill_Desc = {};
+	Skill_Desc.fRotationPerSec = XMConvertToRadians(13.f);
+	Skill_Desc.fSpeedPerSec = 5.f;
+	Skill_Desc.pOriginTransform = m_tDesc.pTransform;
+	Skill_Desc.iNumSkill = m_iNumSkill;
+
+	m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Skill_Dragon_Breath"), TEXT("Layer_Skill_Dragon_Breath"), &Skill_Desc);
+
+	m_tDesc.pModel->SetUp_Animation(11 + iRand, false);
 	m_strName = TEXT("Monster_DragonHead_State_Attack");
 }
 
 void CFSM_Mon_DragonHead_Attack::Exit()
 {
+	m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Skill_Dragon_Breath")).back()->Set_Dead();
 }
 
 CFSM_Mon_DragonHead_Attack* CFSM_Mon_DragonHead_Attack::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, FSM_MON_DESC Desc)

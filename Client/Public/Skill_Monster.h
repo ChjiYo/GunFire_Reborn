@@ -28,7 +28,7 @@ protected:
 
 protected:
 	_vector		m_vPlayerPos = {};
-	_uint		m_iNumSkill = {};
+	_int		m_iNumSkill = {};
 public:
 	virtual CGameObject* Clone(void* pArg) = 0;
 	virtual void Free() override;

@@ -129,7 +129,7 @@ void CChannel::Compute_TransformationMatrix(_float fCurrentPosition, const vecto
 
 	Bones[m_iBoneIndex]->SetUp_TransformationMatrix(TransformationMatrix);
 
-
+	int a = 10;
 }
 
 CChannel * CChannel::Create(const aiNodeAnim * pAIChannel, const vector<CBone*>& Bones)
