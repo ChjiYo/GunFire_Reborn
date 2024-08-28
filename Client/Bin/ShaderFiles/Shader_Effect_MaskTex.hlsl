@@ -55,14 +55,15 @@ PS_OUT PS_MAIN(PS_IN In)
     Out.vColor = g_Texture.Sample(LinearSampler, newTexcoord);
 
 	//Out.vColor.gb = Out.vColor.r;
-    if (Out.vColor.a >= 0.5f)
-        discard;
+    //if (Out.vColor.a >= 0.5f)
+    //    discard;
     
     float4 sandColor = float4(1.f, 0.82f, 0.7f, 0.55f);
     
     // 알파 값을 유지하며 황토색으로 변환
-    Out.vColor.argb = sandColor * Out.vColor.argb;
-
+    Out.vColor.rgb = sandColor * Out.vColor.rgb;
+    Out.vColor.a += 0.1f;
+    
     return Out;
 }
 
@@ -73,7 +74,7 @@ technique11 DefaultTechnique
     {
         SetRasterizerState(RS_Cull_NONE);
         SetDepthStencilState(DSS_Default, 0);
-        SetBlendState(BS_Default, float4(0.f, 0.f, 0.f, 0.f), 0xffffffff);
+        SetBlendState(BS_AlphaBlend, float4(0.f, 0.f, 0.f, 0.f), 0xffffffff);
 
         VertexShader = compile vs_5_0 VS_MAIN();
         PixelShader = compile ps_5_0 PS_MAIN();

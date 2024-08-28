@@ -499,14 +499,20 @@
     <Filter Include="02.GameObjects\Element\Ceiling\105">
       <UniqueIdentifier>{24dbb4a3-6ae5-4f2b-9429-bdcd083012f9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02.GameObjects\Effect\Monster_Effect\VFX_Breath">
-      <UniqueIdentifier>{9c8e56ba-357f-4f1c-85c7-831cabd39943}</UniqueIdentifier>
-    </Filter>
     <Filter Include="03.State_Machine\FSM_Monster\Dragon\Head\Idle\In">
       <UniqueIdentifier>{080b3c17-19fd-49fb-98f4-942f909c2929}</UniqueIdentifier>
     </Filter>
     <Filter Include="02.GameObjects\Effect\Monster_Effect\VFX_Dust">
       <UniqueIdentifier>{9e072b7c-0572-4287-be3d-1231939fc9ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Effect\Monster_Effect\VFX_Dust\VFX_Breath">
+      <UniqueIdentifier>{9c8e56ba-357f-4f1c-85c7-831cabd39943}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Element\Pillars">
+      <UniqueIdentifier>{ee388649-0959-4054-a97c-f04c63018462}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Element\Pillars\101">
+      <UniqueIdentifier>{908a25e2-a6be-41b0-a9dc-faa0352a3427}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -958,7 +964,7 @@
       <Filter>02.GameObjects\Effect</Filter>
     </ClInclude>
     <ClInclude Include="..\public\VFX_Mon_Breath.h">
-      <Filter>02.GameObjects\Effect\Monster_Effect\VFX_Breath</Filter>
+      <Filter>02.GameObjects\Effect\Monster_Effect\VFX_Dust\VFX_Breath</Filter>
     </ClInclude>
     <ClInclude Include="..\public\VFX_Monster.h">
       <Filter>02.GameObjects\Effect\Monster_Effect</Filter>
@@ -968,6 +974,9 @@
     </ClInclude>
     <ClInclude Include="..\public\VFX_Mon_Dust.h">
       <Filter>02.GameObjects\Effect\Monster_Effect\VFX_Dust</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Pillars101.h">
+      <Filter>02.GameObjects\Element\Pillars\101</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1404,7 +1413,7 @@
       <Filter>02.GameObjects\Effect</Filter>
     </ClCompile>
     <ClCompile Include="..\private\VFX_Mon_Breath.cpp">
-      <Filter>02.GameObjects\Effect\Monster_Effect\VFX_Breath</Filter>
+      <Filter>02.GameObjects\Effect\Monster_Effect\VFX_Dust\VFX_Breath</Filter>
     </ClCompile>
     <ClCompile Include="..\private\VFX_Monster.cpp">
       <Filter>02.GameObjects\Effect\Monster_Effect</Filter>
@@ -1414,6 +1423,9 @@
     </ClCompile>
     <ClCompile Include="..\private\VFX_Mon_Dust.cpp">
       <Filter>02.GameObjects\Effect\Monster_Effect\VFX_Dust</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Pillars101.cpp">
+      <Filter>02.GameObjects\Element\Pillars\101</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -222,6 +222,7 @@
     <ClInclude Include="..\public\Mon_Knight.h" />
     <ClInclude Include="..\public\Mon_Bug.h" />
     <ClInclude Include="..\public\Mon_Shield_Knight.h" />
+    <ClInclude Include="..\public\Pillars101.h" />
     <ClInclude Include="..\public\Skill_Archer_Bullet.h" />
     <ClInclude Include="..\Public\Cube.h" />
     <ClInclude Include="..\public\Effect_Deco_Snow.h" />
@@ -379,6 +380,7 @@
     <ClCompile Include="..\private\Mon_Knight.cpp" />
     <ClCompile Include="..\private\Mon_Bug.cpp" />
     <ClCompile Include="..\private\Mon_Shield_Knight.cpp" />
+    <ClCompile Include="..\private\Pillars101.cpp" />
     <ClCompile Include="..\private\Skill_Archer_Bullet.cpp" />
     <ClCompile Include="..\Private\Cube.cpp" />
     <ClCompile Include="..\private\Effect_Deco_Snow.cpp" />
