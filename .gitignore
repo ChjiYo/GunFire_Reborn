@@ -1,13 +1,8 @@
 *.vsidx
 *.ipch
-Client/Bin/Resources/
 *.tlog
-<<<<<<< HEAD
 *.obj
 *.cso
-*.dll
-=======
->>>>>>> origin/Add
 .vs/Framework/v17/Browse.VC.db
 .vs/Framework/v17/Browse.VC.db-shm
 .vs/Framework/v17/Browse.VC.db-wal
@@ -18,8 +13,6 @@ Client/Bin/Resources/
 .vs/Framework/v17/Solution.VC.dbsss
 .vs/Framework/v17/Solution.VC.db-shm
 .vs/Framework/v17/Solution.VC.db-wal
-Client/Bin/assimp-vc140-mt.dll
-Client/Bin/assimp-vc140-mtd.dll
 *.exe
 *.pdb
 *.ini
@@ -28,15 +21,5 @@ Client/Bin/assimp-vc140-mtd.dll
 *.idb
 .vs/Framework/v17/.suo
 Engine/Bin/Engine.dll
-<<<<<<< HEAD
-Client/Private/Body_Player.cpp
-Client/Public/Body_Player.h
-=======
-*.obj
->>>>>>> origin/Add
 /Client/Default/x64/Debug/Client.pch.orig
 *.orig
-*.cso
-*.cso
-*.cso
-*cso
