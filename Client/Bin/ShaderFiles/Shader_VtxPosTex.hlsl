@@ -127,17 +127,3 @@ technique11		DefaultTechnique
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

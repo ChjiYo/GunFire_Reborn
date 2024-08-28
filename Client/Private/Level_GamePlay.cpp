@@ -10,6 +10,7 @@
 #include "Weapon_Player_Pistol.h"
 
 #include "Mon_Archer.h"
+#include "Skill.h"
 
 CLevel_GamePlay::CLevel_GamePlay(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	: CLevel{ pDevice, pContext } 
@@ -51,8 +52,8 @@ HRESULT CLevel_GamePlay::Initialize()
 	//if (FAILED(Ready_Layer_DecoObject(TEXT("Layer_Deco"))))
 	//	return E_FAIL;
 
-	if (FAILED(ParseInitialize()))
-		return E_FAIL;
+	//if (FAILED(ParseInitialize()))
+	//	return E_FAIL;
 
 	if (FAILED(Ready_Layer_Item(TEXT("Layer_Item"))))
 		return E_FAIL;
@@ -144,9 +145,6 @@ HRESULT CLevel_GamePlay::Ready_Layer_Camera(const _wstring & strLayerTag)
 
 HRESULT CLevel_GamePlay::Ready_Layer_Effect(const _wstring & strLayerTag)
 {
-	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Effect_Deco_Snow"), strLayerTag)))
-		return E_FAIL;
-
 	return S_OK;
 }
 

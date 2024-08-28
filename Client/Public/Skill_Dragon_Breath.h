@@ -26,11 +26,11 @@ public:
 
 private:
 	HRESULT Ready_Components();
+	HRESULT Ready_PartsObject();
 	HRESULT Bind_ShaderResources();
 
 private:
 	void Destroy(_float fTimeDelta);
-	_bool IsCollider(_float fOriginX , _float fOriginZ ,_float fTargetX , _float fTargetZ , _float fDistance);
 
 private:
 	CShader* m_pShaderCom = { nullptr };
@@ -39,10 +39,8 @@ private:
 	CCollider* m_pColliderCom = { nullptr };
 
 private:
-	_float m_fDestroyTimer = {};
 	_float m_fTickDamageTimer = { 0.f };
 
-	_float m_fAngle = { 0.f };
 	_float m_fAnimFrame = { 0.f };
 
 public:

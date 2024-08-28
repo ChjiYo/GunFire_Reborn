@@ -63,7 +63,6 @@ void CDoor::Update(_float fTimeDelta)
 			pPayerTransform->Set_State(CTransform::STATE_POSITION, XMVectorSetY(vMovePos, XMVectorGetY(vPlayerPos)));
 		}
 	}
-	
 	 
 }
 
@@ -118,14 +117,21 @@ HRESULT CDoor::Ready_Components()
 		return E_FAIL;
 
 
-	_float fDegree = XMConvertToDegrees(m_tFileData->fRotation);
+	
 	/* For.Com_Collider */
 	CBounding_OBB::BOUNDING_OBB_DESC	BoundingDesc{};
 
+	_float fDegree =  XMConvertToDegrees(m_tFileData->fRotation) + 5.f;
+
+	if (fDegree >= 360.f)
+	{
+		XMConvertToDegrees(m_tFileData->fRotation) + 5.f;
+	}
+
 
 	BoundingDesc.vExtents = _float3(0.5f, 4.5f, 5.f);
-	BoundingDesc.vCenter = _float3(0.f, BoundingDesc.vExtents.y / 2.f - 2.f, -2.f);
-	BoundingDesc.vRotation = _float3(0.f, XMConvertToDegrees(m_tFileData->fRotation), 0.f);
+	BoundingDesc.vCenter = _float3(0.f, BoundingDesc.vExtents.y / 2.f - 2.f, 0.f);
+	BoundingDesc.vRotation = _float3(0.f, fDegree + 5.f, 0.f);
 	BoundingDesc.pObject = this;
 
 	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Collider_OBB"),

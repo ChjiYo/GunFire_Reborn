@@ -1,11 +1,11 @@
 #include "stdafx.h"
 
-#include "Skill_Dragon_Bubble.h"
+#include "Skill_Dragon_Dust.h"
+
 #include "GameInstance.h"
-#include "Bounding_AABB.h"
 
 #include "Player.h"
-#include "Skill_Dragon_Dust.h"
+#include "VFX_Mon_Dust.h"
 
 CSkill_Dragon_Dust::CSkill_Dragon_Dust(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
     :CSkill_Monster{ pDevice , pContext }
@@ -33,39 +33,48 @@ HRESULT CSkill_Dragon_Dust::Initialize(void* pArg)
     if (FAILED(Ready_Components()))
         return E_FAIL;
 
+    if (FAILED(Ready_PartObjects()))
+        return E_FAIL;
+
     Safe_AddRef(m_pOriginTransform);
+
+    m_pTransformCom->Set_State(CTransform::STATE_POSITION, m_pOriginTransform->Get_State(CTransform::STATE_POSITION));
+
+    m_bAttack = false;
 
     return S_OK;
 }
 
 void CSkill_Dragon_Dust::Priority_Update(_float fTimeDelta)
 {
-    m_fDistance += fTimeDelta *15.f;
+    __super::Priority_Update(fTimeDelta);
+    m_fDistance += fTimeDelta *10.f;
+    m_fDestroyTimer += fTimeDelta;
 }
 
 void CSkill_Dragon_Dust::Update(_float fTimeDelta)
 {
+    __super::Update(fTimeDelta);
+    Destroy(fTimeDelta);
     m_pColliderCom->Update(m_pTransformCom->Get_WorldMatrix());
 }
 
 void CSkill_Dragon_Dust::Late_Update(_float fTimeDelta)
 {
-    CPlayer* pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Player")).front());
+    __super::Late_Update(fTimeDelta);
 
-    CTransform* pPlayerTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Player"), TEXT("Com_Transform"), 0));
-    _float3 vPlayerPos = {};
-    XMStoreFloat3(&vPlayerPos,pPlayerTransform->Get_State(CTransform::STATE_POSITION));
+    _vector vPos = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
 
-    _float3 vPos = {};
-    XMStoreFloat3(&vPos, m_pTransformCom->Get_State(CTransform::STATE_POSITION));
-
-    if(IsCollider(vPlayerPos.x, vPlayerPos.z, vPos.x, vPos.z, m_fDistance) && vPlayerPos.y < 1.5f);
+    CPlayer* pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Player")).back());
+    _vector vPlayerPos =  pPlayer->Get_Transform()->Get_State(CTransform::STATE_POSITION);
+  
+    if(IsCollider(vPos, vPlayerPos , m_fDistance) && !m_bAttack && XMVectorGetY(vPlayerPos) <= 1.5f)
     {
         pPlayer->Set_Damage(-5.f);
         m_fDistance = 0.f;
-        m_bDead = true;
+        m_bAttack = true;
     }
-
+    
 #ifdef _DEBUG
     m_pGameInstance->Add_DebugComponent(m_pColliderCom);
 #endif
@@ -121,6 +130,18 @@ HRESULT CSkill_Dragon_Dust::Ready_Components()
     return S_OK;
 }
 
+HRESULT CSkill_Dragon_Dust::Ready_PartObjects()
+{
+    /* 바디객체를 추가하자 */
+    CPartObject::PARTOBJECT_DESC			BodyDesc{};
+    BodyDesc.pParentMatrix = m_pTransformCom->Get_WorldMatrixPtr();
+
+    if (FAILED(__super::Add_PartObject(PART_EFFECT, TEXT("Prototype_GameObject_VFX_Dragon_Dust"), &BodyDesc)))
+        return E_FAIL;
+
+    return S_OK;
+}
+
 HRESULT CSkill_Dragon_Dust::Bind_ShaderResources()
 {
     if (FAILED(m_pTransformCom->Bind_ShaderResource(m_pShaderCom, "g_WorldMatrix")))
@@ -140,18 +161,24 @@ HRESULT CSkill_Dragon_Dust::Bind_ShaderResources()
 
 void CSkill_Dragon_Dust::Destroy(_float fTimeDelta)
 {
-
+    if (m_fDestroyTimer > 2.f)
+    {
+        m_bDead = true;
+    }
 }
 
-bool CSkill_Dragon_Dust::IsCollider(float objectX, float objectY, float centerX, float centerY, float radius)
+_bool CSkill_Dragon_Dust::IsCollider(_vector vCollStartPos, _vector vCollObjPos, _float fDamageDist)
 {
-    float dx = objectX - centerX;
-    float dy = objectY - centerY;
-    float distanceSquared = dx * dx + dy * dy;
-    float radiusSquared = radius * radius;
-    float epsilon = 0.01f; // 오차 허용치
+    _float vDistance =  XMVectorGetX(XMVector3Length(vCollObjPos - vCollStartPos));
+    _float fRange = 1.5f;
 
-    return fabs(distanceSquared - radiusSquared) < epsilon;
+    if (fabs(vDistance) < fDamageDist && fabs(vDistance) >= fDamageDist - fRange)
+    {
+        return true;
+    }
+
+
+    return false;
 }
 
 CSkill_Dragon_Dust* CSkill_Dragon_Dust::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)

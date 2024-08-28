@@ -22,6 +22,7 @@ public:
 	virtual void Exit()	 override;
 
 private:
+<<<<<<< HEAD
 	_bool	m_bSeccondAttack = { false };
 	_bool	m_bAttackEnable = { true };
 
@@ -30,6 +31,15 @@ private:
 	_float m_fAttackDelay = { 0.f };
 
 	_uint m_iNumSkill = { 0 };
+=======
+	_bool	m_bAttackStart = { false };
+
+	_int m_iNumSkill = {0};
+
+	_float m_fAttackEndTimer = { 0.f };
+	_float m_fAttackStartTimer = { 0.f };
+	_float m_fDeleteTimer = { 0.f };
+>>>>>>> origin/Add
 
 public:
 	static CFSM_Mon_DragonHead_Attack* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, FSM_MON_DESC Desc);

@@ -35,14 +35,17 @@ HRESULT CSkill_Monster::Initialize(void* pArg)
 
 void CSkill_Monster::Priority_Update(_float fTimeDelta)
 {
+	__super::Priority_Update(fTimeDelta);
 }
 
 void CSkill_Monster::Update(_float fTimeDelta)
 {
+	__super::Update(fTimeDelta);
 }
 
 void CSkill_Monster::Late_Update(_float fTimeDelta)
 {
+	__super::Late_Update(fTimeDelta);
 }
 
 HRESULT CSkill_Monster::Render()

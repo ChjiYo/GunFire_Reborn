@@ -133,51 +133,6 @@
     <Filter Include="02.GameObjects\Cube">
       <UniqueIdentifier>{9fd9f4f3-7f3f-4bf6-a119-d02189d7a6a2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02.GameObjects\Element">
-      <UniqueIdentifier>{528e55a3-7426-4316-bee3-148c3cae8e6a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02.GameObjects\Element\Wall_State">
-      <UniqueIdentifier>{d235d966-1dab-4af5-a5d0-c4a341a55198}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02.GameObjects\Element\Wall_State\State1">
-      <UniqueIdentifier>{e75f25e7-73d7-4de8-9528-8c4888c01f41}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02.GameObjects\Element\Floor">
-      <UniqueIdentifier>{e6cba343-6b6d-4214-bbc9-2be7e7e107f8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02.GameObjects\Element\Floor\102">
-      <UniqueIdentifier>{99cd78eb-4659-44da-908a-04e0561ca488}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02.GameObjects\Element\Floor\101">
-      <UniqueIdentifier>{7e6b0a8b-9eb4-4759-b8f8-68a32e146699}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02.GameObjects\Element\Floor\103">
-      <UniqueIdentifier>{2d647eef-107c-4a75-b99a-882be8959de5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02.GameObjects\Element\Floor\105">
-      <UniqueIdentifier>{6860049c-f1a2-40e3-b267-7446729ac320}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02.GameObjects\Element\Floor\106">
-      <UniqueIdentifier>{a8fb802c-31f7-4a5f-b0ba-b8706f1a10be}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02.GameObjects\Element\Floor\108">
-      <UniqueIdentifier>{53a4b3de-5f8b-443a-a1f3-f4d2cbd0ddf1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02.GameObjects\Element\Floor\109">
-      <UniqueIdentifier>{1558e512-b5e5-4e90-9465-9b3bca67c532}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02.GameObjects\Element\Floor\110">
-      <UniqueIdentifier>{432b428b-257a-4a85-a967-c2e9ce751577}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02.GameObjects\Element\Floor\111">
-      <UniqueIdentifier>{39856446-70fe-4472-811e-858a890c6a3b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02.GameObjects\Element\Floor\112">
-      <UniqueIdentifier>{617b9673-18b0-47c2-9543-263aa88c9b6c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02.GameObjects\Element\Floor\114">
-      <UniqueIdentifier>{8c8a7dd2-4fd0-4bb7-86c9-5d2c8276a7d2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="02.GameObjects\Sky">
       <UniqueIdentifier>{9f180b86-7db2-4596-959b-2746586d3363}</UniqueIdentifier>
     </Filter>
@@ -288,12 +243,6 @@
     </Filter>
     <Filter Include="02.GameObjects\UI\UI_Weapon_State\UI_Weapon_Icon">
       <UniqueIdentifier>{b6a7c1d8-ef1b-40ef-b070-4af90bd09114}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02.GameObjects\Element\Door">
-      <UniqueIdentifier>{9da634a4-c331-4dff-938d-8cd001bea142}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02.GameObjects\Element\Floor\107">
-      <UniqueIdentifier>{bbea7eee-94e4-40d0-b45b-cea5b3146413}</UniqueIdentifier>
     </Filter>
     <Filter Include="02.GameObjects\Monster\Deash_Boom">
       <UniqueIdentifier>{1552b5e7-ce09-4cdf-94fc-792b8be159b2}</UniqueIdentifier>
@@ -409,20 +358,8 @@
     <Filter Include="02.GameObjects\Item\Weapon\Sniper">
       <UniqueIdentifier>{b5962ef7-ea90-4a4f-bbb7-cc459b119fac}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02.GameObjects\Element\Wall_State\Stage2">
-      <UniqueIdentifier>{68d26e6a-66d2-4d86-842f-1fe30712b1c6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="02.GameObjects\Monster\Dragon">
       <UniqueIdentifier>{f25bbb92-79c0-4603-a582-51b497714e6f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02.GameObjects\Element\Stair">
-      <UniqueIdentifier>{239219dd-fb3a-46c4-aaa5-187fb98c1135}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02.GameObjects\Element\Stair\Stair1">
-      <UniqueIdentifier>{57ced10b-91e5-49ea-918f-4c9d5e665bf0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02.GameObjects\Element\Stair\Stair2">
-      <UniqueIdentifier>{54bc56c4-78be-4780-9a08-5d3455684d3b}</UniqueIdentifier>
     </Filter>
     <Filter Include="02.GameObjects\UI\UI_Cross_Hair\UI_Sniper_Hair">
       <UniqueIdentifier>{79d0019a-05b0-4e50-9b33-cf9fdbbe41c6}</UniqueIdentifier>
@@ -457,9 +394,6 @@
     <Filter Include="03.State_Machine\FSM_Monster\Dragon\Head\Idle">
       <UniqueIdentifier>{721570e6-1105-47b6-a81f-dd183bbb9583}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.State_Machine\FSM_Monster\Dragon\Head\In">
-      <UniqueIdentifier>{080b3c17-19fd-49fb-98f4-942f909c2929}</UniqueIdentifier>
-    </Filter>
     <Filter Include="03.State_Machine\FSM_Monster\Dragon\Head\Out">
       <UniqueIdentifier>{eedb7afd-d3ff-44f2-aa12-35483a624bf6}</UniqueIdentifier>
     </Filter>
@@ -474,6 +408,81 @@
     </Filter>
     <Filter Include="03.State_Machine\FSM_Monster\Dragon\Tail\Out">
       <UniqueIdentifier>{b5971d5c-eb6b-41f1-8ce4-5dc3f65dc082}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Skill\Monster_Skill\Skill_Dragon_Floor">
+      <UniqueIdentifier>{bfcf2825-f423-4c22-9578-787f8b5694bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Skill\Monster_Skill\Skill_Dragon_Bubble">
+      <UniqueIdentifier>{1e60afc0-f910-40e4-bd28-32beafa449f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Skill\Monster_Skill\Skill_Dragon_Breath">
+      <UniqueIdentifier>{7fdfc806-f422-4b7f-887b-9cbaf5453f49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Skill\Monster_Skill\Skill_Dragon_Dush">
+      <UniqueIdentifier>{8935f81f-740a-4a44-9ce4-1351c8a875a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Element">
+      <UniqueIdentifier>{528e55a3-7426-4316-bee3-148c3cae8e6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Element\Wall_State">
+      <UniqueIdentifier>{d235d966-1dab-4af5-a5d0-c4a341a55198}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Element\Wall_State\State1">
+      <UniqueIdentifier>{e75f25e7-73d7-4de8-9528-8c4888c01f41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Element\Wall_State\Stage2">
+      <UniqueIdentifier>{68d26e6a-66d2-4d86-842f-1fe30712b1c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Element\Floor">
+      <UniqueIdentifier>{e6cba343-6b6d-4214-bbc9-2be7e7e107f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Element\Floor\102">
+      <UniqueIdentifier>{99cd78eb-4659-44da-908a-04e0561ca488}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Element\Floor\101">
+      <UniqueIdentifier>{7e6b0a8b-9eb4-4759-b8f8-68a32e146699}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Element\Floor\103">
+      <UniqueIdentifier>{2d647eef-107c-4a75-b99a-882be8959de5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Element\Floor\105">
+      <UniqueIdentifier>{6860049c-f1a2-40e3-b267-7446729ac320}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Element\Floor\106">
+      <UniqueIdentifier>{a8fb802c-31f7-4a5f-b0ba-b8706f1a10be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Element\Floor\108">
+      <UniqueIdentifier>{53a4b3de-5f8b-443a-a1f3-f4d2cbd0ddf1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Element\Floor\109">
+      <UniqueIdentifier>{1558e512-b5e5-4e90-9465-9b3bca67c532}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Element\Floor\110">
+      <UniqueIdentifier>{432b428b-257a-4a85-a967-c2e9ce751577}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Element\Floor\111">
+      <UniqueIdentifier>{39856446-70fe-4472-811e-858a890c6a3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Element\Floor\112">
+      <UniqueIdentifier>{617b9673-18b0-47c2-9543-263aa88c9b6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Element\Floor\114">
+      <UniqueIdentifier>{8c8a7dd2-4fd0-4bb7-86c9-5d2c8276a7d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Element\Floor\107">
+      <UniqueIdentifier>{bbea7eee-94e4-40d0-b45b-cea5b3146413}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Element\Door">
+      <UniqueIdentifier>{9da634a4-c331-4dff-938d-8cd001bea142}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Element\Stair">
+      <UniqueIdentifier>{239219dd-fb3a-46c4-aaa5-187fb98c1135}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Element\Stair\Stair1">
+      <UniqueIdentifier>{57ced10b-91e5-49ea-918f-4c9d5e665bf0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Element\Stair\Stair2">
+      <UniqueIdentifier>{54bc56c4-78be-4780-9a08-5d3455684d3b}</UniqueIdentifier>
     </Filter>
     <Filter Include="02.GameObjects\Element\Ceiling">
       <UniqueIdentifier>{4d009f80-d2ee-410b-bda6-7e77f2829c2d}</UniqueIdentifier>
@@ -490,17 +499,20 @@
     <Filter Include="02.GameObjects\Element\Ceiling\105">
       <UniqueIdentifier>{24dbb4a3-6ae5-4f2b-9429-bdcd083012f9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02.GameObjects\Skill\Monster_Skill\Skill_Dragon_Floor">
-      <UniqueIdentifier>{bfcf2825-f423-4c22-9578-787f8b5694bb}</UniqueIdentifier>
+    <Filter Include="03.State_Machine\FSM_Monster\Dragon\Head\Idle\In">
+      <UniqueIdentifier>{080b3c17-19fd-49fb-98f4-942f909c2929}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02.GameObjects\Skill\Monster_Skill\Skill_Dragon_Bubble">
-      <UniqueIdentifier>{1e60afc0-f910-40e4-bd28-32beafa449f2}</UniqueIdentifier>
+    <Filter Include="02.GameObjects\Effect\Monster_Effect\VFX_Dust">
+      <UniqueIdentifier>{9e072b7c-0572-4287-be3d-1231939fc9ba}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02.GameObjects\Skill\Monster_Skill\Skill_Dragon_Breath">
-      <UniqueIdentifier>{7fdfc806-f422-4b7f-887b-9cbaf5453f49}</UniqueIdentifier>
+    <Filter Include="02.GameObjects\Effect\Monster_Effect\VFX_Dust\VFX_Breath">
+      <UniqueIdentifier>{9c8e56ba-357f-4f1c-85c7-831cabd39943}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02.GameObjects\Skill\Monster_Skill\Skill_Dragon_Dush">
-      <UniqueIdentifier>{8935f81f-740a-4a44-9ce4-1351c8a875a3}</UniqueIdentifier>
+    <Filter Include="02.GameObjects\Element\Pillars">
+      <UniqueIdentifier>{ee388649-0959-4054-a97c-f04c63018462}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Element\Pillars\101">
+      <UniqueIdentifier>{908a25e2-a6be-41b0-a9dc-faa0352a3427}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -910,7 +922,7 @@
       <Filter>03.State_Machine\FSM_Monster\Dragon\Head\Idle</Filter>
     </ClInclude>
     <ClInclude Include="..\public\FSM_Mon_DragonHead_In.h">
-      <Filter>03.State_Machine\FSM_Monster\Dragon\Head\In</Filter>
+      <Filter>03.State_Machine\FSM_Monster\Dragon\Head\Idle\In</Filter>
     </ClInclude>
     <ClInclude Include="..\public\FSM_Mon_DragonHead_Out.h">
       <Filter>03.State_Machine\FSM_Monster\Dragon\Head\Out</Filter>
@@ -945,11 +957,26 @@
     <ClInclude Include="..\public\Skill_Dragon_Floor.h">
       <Filter>02.GameObjects\Skill\Monster_Skill\Skill_Dragon_Floor</Filter>
     </ClInclude>
+    <ClInclude Include="..\public\Skill_Dragon_Dust.h">
+      <Filter>02.GameObjects\Skill\Monster_Skill\Skill_Dragon_Dush</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Effect.h">
+      <Filter>02.GameObjects\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\VFX_Mon_Breath.h">
+      <Filter>02.GameObjects\Effect\Monster_Effect\VFX_Dust\VFX_Breath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\VFX_Monster.h">
+      <Filter>02.GameObjects\Effect\Monster_Effect</Filter>
+    </ClInclude>
     <ClInclude Include="..\public\Skill_Dragon_Breath.h">
       <Filter>02.GameObjects\Skill\Monster_Skill\Skill_Dragon_Breath</Filter>
     </ClInclude>
-    <ClInclude Include="..\public\Skill_Dragon_Dust.h">
-      <Filter>02.GameObjects\Skill\Monster_Skill\Skill_Dragon_Dush</Filter>
+    <ClInclude Include="..\public\VFX_Mon_Dust.h">
+      <Filter>02.GameObjects\Effect\Monster_Effect\VFX_Dust</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Pillars101.h">
+      <Filter>02.GameObjects\Element\Pillars\101</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1344,7 +1371,7 @@
       <Filter>03.State_Machine\FSM_Monster\Dragon\Head\Idle</Filter>
     </ClCompile>
     <ClCompile Include="..\private\FSM_Mon_DragonHead_In.cpp">
-      <Filter>03.State_Machine\FSM_Monster\Dragon\Head\In</Filter>
+      <Filter>03.State_Machine\FSM_Monster\Dragon\Head\Idle\In</Filter>
     </ClCompile>
     <ClCompile Include="..\private\FSM_Mon_DragonHead_Out.cpp">
       <Filter>03.State_Machine\FSM_Monster\Dragon\Head\Out</Filter>
@@ -1379,11 +1406,26 @@
     <ClCompile Include="..\private\Skill_Dragon_Floor.cpp">
       <Filter>02.GameObjects\Skill\Monster_Skill\Skill_Dragon_Floor</Filter>
     </ClCompile>
+    <ClCompile Include="..\private\Skill_Dragon_Dust.cpp">
+      <Filter>02.GameObjects\Skill\Monster_Skill\Skill_Dragon_Dush</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Effect.cpp">
+      <Filter>02.GameObjects\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\VFX_Mon_Breath.cpp">
+      <Filter>02.GameObjects\Effect\Monster_Effect\VFX_Dust\VFX_Breath</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\VFX_Monster.cpp">
+      <Filter>02.GameObjects\Effect\Monster_Effect</Filter>
+    </ClCompile>
     <ClCompile Include="..\private\Skill_Dragon_Breath.cpp">
       <Filter>02.GameObjects\Skill\Monster_Skill\Skill_Dragon_Breath</Filter>
     </ClCompile>
-    <ClCompile Include="..\private\Skill_Dragon_Dust.cpp">
-      <Filter>02.GameObjects\Skill\Monster_Skill\Skill_Dragon_Dush</Filter>
+    <ClCompile Include="..\private\VFX_Mon_Dust.cpp">
+      <Filter>02.GameObjects\Effect\Monster_Effect\VFX_Dust</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Pillars101.cpp">
+      <Filter>02.GameObjects\Element\Pillars\101</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1422,6 +1464,9 @@
       <Filter>97.ShaderFiles</Filter>
     </FxCompile>
     <FxCompile Include="..\Bin\ShaderFiles\Shader_UI_VtxRect.hlsl">
+      <Filter>97.ShaderFiles</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_Effect_MaskTex.hlsl">
       <Filter>97.ShaderFiles</Filter>
     </FxCompile>
   </ItemGroup>

@@ -666,8 +666,8 @@ LayerName: Layer_Floor_110
 PrototypeTag: Prototype_GameObject_Floor_110
 LevelIndex: 4
 Position: 6.8 0 2.6
-Scale: 1.73 0.999991 0.84
-Rotation: 4.71239
+Scale: 1.72998 0.999991 0.839992
+Rotation: 6.28319
 IsParsing: 1
 
 LayerName: Layer_Floor_110
