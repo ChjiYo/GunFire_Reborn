@@ -37,6 +37,8 @@ private:
 
 	CCollider* m_pColliderCom = { nullptr };
 
+	_bool					m_isShadow = { true };
+	_uint					m_iPassIndex = { 0 };
 private:
 	HRESULT Ready_Components();
 	HRESULT Bind_ShaderResources();

@@ -51,8 +51,8 @@ HRESULT CLevel_GamePlay::Initialize()
 	//if (FAILED(Ready_Layer_DecoObject(TEXT("Layer_Deco"))))
 	//	return E_FAIL;
 
-	if (FAILED(ParseInitialize()))
-		return E_FAIL;
+	//if (FAILED(ParseInitialize()))
+	//	return E_FAIL;
 
 	if (FAILED(Ready_Layer_Item(TEXT("Layer_Item"))))
 		return E_FAIL;

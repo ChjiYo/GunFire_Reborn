@@ -67,6 +67,7 @@ void CWeapon_Player_Pistol::Late_Update(_float fTimeDelta)
     __super::Late_Update(fTimeDelta);
 
     m_pGameInstance->Add_RenderObject(CRenderer::RG_NONBLEND, this);
+    m_pGameInstance->Add_RenderObject(CRenderer::RG_SHADOWOBJ, this);
 }
 
 HRESULT CWeapon_Player_Pistol::Render()
@@ -84,7 +85,7 @@ HRESULT CWeapon_Player_Pistol::Render()
         if (FAILED(m_pModelCom->Bind_BoneMatrices(m_pShaderCom, "g_BoneMatrices", (_uint)i)))
             return E_FAIL;
 
-        if (FAILED(m_pShaderCom->Begin(0)))
+        if (FAILED(m_pShaderCom->Begin(m_iPassIndex)))
             return E_FAIL;
 
         if (FAILED(m_pModelCom->Render(i)))
@@ -117,13 +118,34 @@ HRESULT CWeapon_Player_Pistol::Bind_ShaderResources()
     if (FAILED(__super::Bind_WorldMatrix(m_pShaderCom, "g_WorldMatrix")))
         return E_FAIL;
 
-    if (FAILED(m_pShaderCom->Bind_Matrix("g_ViewMatrix", &m_pGameInstance->Get_Transform_Float4x4(CPipeLine::D3DTS_VIEW))))
-        return E_FAIL;
+    if (false == m_isShadow)
+    {
+        if (FAILED(m_pShaderCom->Bind_Matrix("g_ViewMatrix", &m_pGameInstance->Get_Transform_Float4x4(CPipeLine::D3DTS_VIEW))))
+            return E_FAIL;
 
-    if (FAILED(m_pShaderCom->Bind_Matrix("g_ProjMatrix", &m_pGameInstance->Get_Transform_Float4x4(CPipeLine::D3DTS_PROJ))))
-        return E_FAIL;
+        if (FAILED(m_pShaderCom->Bind_Matrix("g_ProjMatrix", &m_pGameInstance->Get_Transform_Float4x4(CPipeLine::D3DTS_PROJ))))
+            return E_FAIL;
 
-    return S_OK;
+        m_isShadow = true;
+        m_iPassIndex = 0;
+    }
+
+    else
+    {
+        _float4x4			LightViewMatrix, LightProjMatrix;
+
+        XMStoreFloat4x4(&LightViewMatrix, XMMatrixLookAtLH(XMVectorSet(0.f, 10.f, 0.f, 1.f), XMVectorSet(1.f, -1.f, 1.f, 0.f), XMVectorSet(0.f, 1.f, 0.f, 0.f)));
+        XMStoreFloat4x4(&LightProjMatrix, XMMatrixPerspectiveFovLH(XMConvertToRadians(120.0f), (_float)g_iWinSizeX / g_iWinSizeY, 0.1f, 1000.f));
+
+        if (FAILED(m_pShaderCom->Bind_Matrix("g_ViewMatrix", &LightViewMatrix)))
+            return E_FAIL;
+
+        if (FAILED(m_pShaderCom->Bind_Matrix("g_ProjMatrix", &LightProjMatrix)))
+            return E_FAIL;
+
+        m_isShadow = false;
+        m_iPassIndex = 1;
+    }
 }
 
 void CWeapon_Player_Pistol::Key_State()
