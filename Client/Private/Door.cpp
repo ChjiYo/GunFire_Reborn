@@ -30,16 +30,13 @@ HRESULT CDoor::Initialize(void* pArg)
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
-	DECO_DESC* Desc = static_cast<DECO_DESC*>(pArg);
-		
-	m_pModelCom->SetUp_Animation(0, false);
-
 	return S_OK;
 }
 
 void CDoor::Priority_Update(_float fTimeDelta)
 {
-	m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Monster")).empty() ? m_isEnable = true : m_isEnable = false;
+
+	m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Monster_Stage1")).empty() ? m_isEnable = true : m_isEnable = false;
 	m_isEnable ? m_fAnimFrame = fTimeDelta : m_fAnimFrame = 0.f;
 }
 

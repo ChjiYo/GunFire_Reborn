@@ -51,9 +51,8 @@ HRESULT CMon_Bug::Initialize(void* pArg)
 
 	m_pStateCom->Set_State(TEXT("Monster_Bug_State_Idle"));
 
-	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSet(20.f, 1.f, 20.f, 1.f));
+	m_pTransformCom->Set_State(CTransform::STATE_POSITION, { (_float)(rand() % 16 + 16), 1.f, (_float)(rand() % 13 + 13), 1.f});
 
-	m_pTransformCom->Set_State(CTransform::STATE_POSITION, {25.f, 1.f, 20.f , 1.f });
 	m_pNavigationCom->Init_Index(m_pTransformCom);
 
 	return S_OK;
