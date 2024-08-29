@@ -36,41 +36,13 @@ wstring CFSM_Mon_DragonHead_Attack::Priority_Update(_float fTimeDelta)
 {
 	m_fAttackStartTimer += fTimeDelta;
 	m_fAttackEndTimer += fTimeDelta;
-<<<<<<< HEAD
-	m_fSkillCreateTimer += fTimeDelta;
-	m_fAttackDelay += fTimeDelta;
-=======
 	m_fDeleteTimer += fTimeDelta;
->>>>>>> origin/Add
 
 	return TEXT("Monster_DragonHead_State_Attack");
 }
 
 wstring CFSM_Mon_DragonHead_Attack::Update(_float fTimeDelta)
 {
-<<<<<<< HEAD
-	if (m_bAttackEnable && m_fAttackDelay > 0.5f)
-	{
-		m_fAttackDelay = 0.f;
-
-		CSkill::SKILL_DESC Skill_Desc = {};
-		Skill_Desc.iNumSkill++;
-		Skill_Desc.iSkillDamage = 5.f;
-		Skill_Desc.pOriginTransform = m_tDesc.pTransform;
-		
-		m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Skill_Dragon_Breath"), TEXT("Layer_Skill_Dragon_Breath"), &Skill_Desc);
-	}
-
-	if (m_tDesc.pModel->Get_Anim(11)->Get_Duration() - 1.5f <= m_fAttackEndTimer)
-	{
-		m_tDesc.pModel->SetUp_Animation(12, false);
-		m_bAttackEnable = false;
-	}
-
-	if (!m_bAttackEnable && m_tDesc.pModel->Get_Anim(12)->Get_Duration() - 1.5f <= m_fAttackEndTimer)
-	{
-		m_bAttackEnable = true;
-=======
 	if (!m_bAttackStart &&  (0.8f <= m_fAttackStartTimer))
 	{
 		m_bAttackStart = true;
@@ -103,7 +75,6 @@ wstring CFSM_Mon_DragonHead_Attack::Late_Update(_float fTimeDelta)
 		m_fDeleteTimer = 0.f;
 		m_bAttackStart = false;
 
->>>>>>> origin/Add
 		return TEXT("Monster_DragonHead_State_Idle");
 	}
 
@@ -118,12 +89,9 @@ wstring CFSM_Mon_DragonHead_Attack::Late_Update(_float fTimeDelta)
 void CFSM_Mon_DragonHead_Attack::Enter()
 {
 	__super::Enter();
-<<<<<<< HEAD
-	m_iNumSkill = 0;
-=======
+
 
 	m_tDesc.pTransform->LookAt(m_pPlayerTransform->Get_State(CTransform::STATE_POSITION));
->>>>>>> origin/Add
 
 	_uint iRand = rand() % 2;
 	m_iNumSkill = (iRand == 0) ? -1 : 1;
