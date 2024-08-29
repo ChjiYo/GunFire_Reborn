@@ -51,8 +51,8 @@ HRESULT CLevel_GamePlay::Initialize()
 	//if (FAILED(Ready_Layer_DecoObject(TEXT("Layer_Deco"))))
 	//	return E_FAIL;
 
-	//if (FAILED(ParseInitialize()))
-	//	return E_FAIL;
+	if (FAILED(ParseInitialize()))
+		return E_FAIL;
 
 	if (FAILED(Ready_Layer_Item(TEXT("Layer_Item"))))
 		return E_FAIL;
@@ -154,8 +154,8 @@ HRESULT CLevel_GamePlay::Ready_LandObjects()
 	if (FAILED(Ready_Layer_Player(TEXT("Layer_Player"))))
 		return E_FAIL;
 
-	if (FAILED(Ready_Layer_Monster(TEXT("Layer_Monster"))))
-		return E_FAIL; 
+	//if (FAILED(Ready_Layer_Monster(TEXT("Layer_Monster"))))
+	//	return E_FAIL; 
 
 	return S_OK;
 }

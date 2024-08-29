@@ -514,6 +514,12 @@
     <Filter Include="02.GameObjects\Element\Pillars\101">
       <UniqueIdentifier>{908a25e2-a6be-41b0-a9dc-faa0352a3427}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObjects\Element\Stair\Stair101">
+      <UniqueIdentifier>{4e208913-fc18-49bc-8f1a-0736fc961fe2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Element\Stair\Stair101\Addon">
+      <UniqueIdentifier>{6b594e75-82d8-4009-aeeb-390923e146be}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -978,6 +984,12 @@
     <ClInclude Include="..\public\Pillars101.h">
       <Filter>02.GameObjects\Element\Pillars\101</Filter>
     </ClInclude>
+    <ClInclude Include="..\public\Stair101.h">
+      <Filter>02.GameObjects\Element\Stair\Stair101</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Stair101_Addon.h">
+      <Filter>02.GameObjects\Element\Stair\Stair101\Addon</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -1426,6 +1438,12 @@
     </ClCompile>
     <ClCompile Include="..\private\Pillars101.cpp">
       <Filter>02.GameObjects\Element\Pillars\101</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Stair101.cpp">
+      <Filter>02.GameObjects\Element\Stair\Stair101</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Stair101_Addon.cpp">
+      <Filter>02.GameObjects\Element\Stair\Stair101\Addon</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

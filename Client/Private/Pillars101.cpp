@@ -57,6 +57,9 @@ HRESULT CPillars101::Render()
 		if (FAILED(m_pModelCom->Bind_MaterialSRV(m_pShaderCom, aiTextureType_DIFFUSE, "g_DiffuseTexture", i)))
 			return E_FAIL;
 
+		if (FAILED(m_pModelCom->Bind_MaterialSRV(m_pShaderCom, aiTextureType_NORMALS, "g_NormalTexture", i)))
+			return E_FAIL;
+
 		m_pShaderCom->Begin(0);
 
 		m_pModelCom->Render(i);
