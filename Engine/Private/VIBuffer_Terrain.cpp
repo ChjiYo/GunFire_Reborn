@@ -309,6 +309,66 @@ _bool CVIBuffer_Terrain::Picked(CTransform* pTransformCom, _vector* pPickedPos)
 	return false;
 }
 
+void CVIBuffer_Terrain::Culling(_fmatrix TerrainWorldMatrix)
+{/* 지형 로컬 상의 평면 여섯개를 모두 구성해놓았다. */
+	m_pGameInstance->Transform_Frustum_ToLocalSpace(XMMatrixInverse(nullptr, TerrainWorldMatrix));
+
+	D3D11_MAPPED_SUBRESOURCE		SubResource{};
+
+	_uint							iNumIndices = { 0 };
+
+	m_pContext->Map(m_pIB, 0, D3D11_MAP_WRITE_DISCARD, 0, &SubResource);
+
+	_uint* pIndices = static_cast<_uint*>(SubResource.pData);
+
+
+	for (size_t i = 0; i < m_iNumVerticesZ - 1; i++)
+	{
+		for (size_t j = 0; j < m_iNumVerticesX - 1; j++)
+		{
+			_uint		iIndex = i * m_iNumVerticesX + j;
+
+			_uint		iIndices[4] = {
+				iIndex + m_iNumVerticesX,
+				iIndex + m_iNumVerticesX + 1,
+				iIndex + 1,
+				iIndex
+			};
+
+			_bool		isIn[4] = {
+				m_pGameInstance->isIn_Frustum_InLocalSpace(XMLoadFloat3(&m_pVertexPositions[iIndices[0]])),
+				m_pGameInstance->isIn_Frustum_InLocalSpace(XMLoadFloat3(&m_pVertexPositions[iIndices[1]])),
+				m_pGameInstance->isIn_Frustum_InLocalSpace(XMLoadFloat3(&m_pVertexPositions[iIndices[2]])),
+				m_pGameInstance->isIn_Frustum_InLocalSpace(XMLoadFloat3(&m_pVertexPositions[iIndices[3]])),
+			};
+
+			if (true == isIn[0] &&
+				true == isIn[1] &&
+				true == isIn[2])
+			{
+				/* 오른쪽 위 삼각형은 그리는 거다. */
+				pIndices[iNumIndices++] = iIndices[0];
+				pIndices[iNumIndices++] = iIndices[1];
+				pIndices[iNumIndices++] = iIndices[2];
+			}
+
+			if (true == isIn[0] &&
+				true == isIn[2] &&
+				true == isIn[3])
+			{
+				/* 왼족 아래 삼각형은 그리는 거다. */
+				pIndices[iNumIndices++] = iIndices[0];
+				pIndices[iNumIndices++] = iIndices[2];
+				pIndices[iNumIndices++] = iIndices[3];
+			}
+		}
+	}
+
+	m_pContext->Unmap(m_pIB, 0);
+
+	m_iNumIndices = iNumIndices;
+}
+
 CVIBuffer_Terrain* CVIBuffer_Terrain::Create(ID3D11Device* pDevice ,ID3D11DeviceContext* pContext, _uint iNumVerticesX, _uint iNumVerticesZ)
 {
 	CVIBuffer_Terrain* pInstance = new CVIBuffer_Terrain(pDevice, pContext);

@@ -105,6 +105,11 @@ public: /* For.Target_Manager */
 	HRESULT Copy_RenderTarget(const _wstring& strTargetTag, ID3D11Texture2D* pTexture2D);
 	HRESULT Bind_RT_ShaderResource(class CShader* pShader, const _char* pConstantName, const _wstring& strTargetTag);
 
+public: /* For.Frustum */
+	_bool isIn_Frustum_InWorldSpace(_fvector vWorldPosition, _float fRadius = 0.f);
+	_bool isIn_Frustum_InLocalSpace(_fvector vLocalPosition, _float fRadius = 0.f);
+	void Transform_Frustum_ToLocalSpace(_fmatrix WorldMatrixInverse);
+
 #ifdef _DEBUG
 public:
 	HRESULT Ready_RT_Debug(const _wstring& strTargetTag, _float fCenterX, _float fCenterY, _float fSizeX, _float fSizeY);
@@ -126,6 +131,7 @@ private:
 	class CFile_Manager*				m_pFileManager = {};
 	class CPicking*						m_pPicking = { nullptr };
 	class CTarget_Manager*				m_pTarget_Manager = { nullptr };
+	class CFrustum*						m_pFrustum = { nullptr };
 
 public:
 	void Release_Engine();

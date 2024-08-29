@@ -3,7 +3,7 @@ PrototypeTag: Prototype_GameObject_Ceiling_101
 LevelIndex: 4
 Position: 10.755 8.282 10.136
 Scale: 1.02 0.999939 1.02
-Rotation: 4.71239
+Rotation: 6.28319
 IsParsing: 1
 
 LayerName: Layer_Ceiling_101
@@ -198,6 +198,198 @@ Scale: 1.10961 0.99991 1.01961
 Rotation: 1.5708
 IsParsing: 1
 
+LayerName: Layer_Ceiling_101
+PrototypeTag: Prototype_GameObject_Ceiling_101
+LevelIndex: 4
+Position: 42.8001 6.631 25.434
+Scale: 0.999999 0.999937 1.41
+Rotation: 6.28319
+IsParsing: 1
+
+LayerName: Layer_Ceiling_101
+PrototypeTag: Prototype_GameObject_Ceiling_101
+LevelIndex: 4
+Position: 47.8 6.631 25.434
+Scale: 0.999999 0.999937 1.41
+Rotation: 6.28319
+IsParsing: 1
+
+LayerName: Layer_Ceiling_101
+PrototypeTag: Prototype_GameObject_Ceiling_101
+LevelIndex: 4
+Position: 52.8 6.631 25.434
+Scale: 0.999999 0.999937 1.41
+Rotation: 6.28319
+IsParsing: 1
+
+LayerName: Layer_Ceiling_101
+PrototypeTag: Prototype_GameObject_Ceiling_101
+LevelIndex: 4
+Position: 57.7999 6.631 25.434
+Scale: 1.21 0.999937 1.56
+Rotation: 6.28319
+IsParsing: 1
+
+LayerName: Layer_Ceiling_101
+PrototypeTag: Prototype_GameObject_Ceiling_101
+LevelIndex: 4
+Position: 41.8001 6.62099 54.2999
+Scale: 1.02 0.999939 1.02
+Rotation: 6.28319
+IsParsing: 1
+
+LayerName: Layer_Ceiling_101
+PrototypeTag: Prototype_GameObject_Ceiling_101
+LevelIndex: 4
+Position: 46.9 6.62099 54.2999
+Scale: 1.02 0.999939 1.02
+Rotation: 6.28319
+IsParsing: 1
+
+LayerName: Layer_Ceiling_101
+PrototypeTag: Prototype_GameObject_Ceiling_101
+LevelIndex: 4
+Position: 52 6.62099 54.2999
+Scale: 1.02 0.999939 1.02
+Rotation: 6.28319
+IsParsing: 1
+
+LayerName: Layer_Ceiling_101
+PrototypeTag: Prototype_GameObject_Ceiling_101
+LevelIndex: 4
+Position: 57.1999 6.62099 54.2999
+Scale: 1.06 0.999939 1.02
+Rotation: 6.28319
+IsParsing: 1
+
+LayerName: Layer_Ceiling_101
+PrototypeTag: Prototype_GameObject_Ceiling_101
+LevelIndex: 4
+Position: 57.1999 6.62099 49.2
+Scale: 1.06 0.999939 1.02
+Rotation: 6.28319
+IsParsing: 1
+
+LayerName: Layer_Ceiling_101
+PrototypeTag: Prototype_GameObject_Ceiling_101
+LevelIndex: 4
+Position: 51.9 6.62099 49.2
+Scale: 1.06 0.999939 1.02
+Rotation: 6.28319
+IsParsing: 1
+
+LayerName: Layer_Ceiling_101
+PrototypeTag: Prototype_GameObject_Ceiling_101
+LevelIndex: 4
+Position: 46.6001 6.62099 49.2
+Scale: 1.06 0.999939 1.02
+Rotation: 6.28319
+IsParsing: 1
+
+LayerName: Layer_Ceiling_101
+PrototypeTag: Prototype_GameObject_Ceiling_101
+LevelIndex: 4
+Position: 41.3001 6.62099 49.2
+Scale: 1.06 0.999939 1.02
+Rotation: 6.28319
+IsParsing: 1
+
+LayerName: Layer_Ceiling_101
+PrototypeTag: Prototype_GameObject_Ceiling_101
+LevelIndex: 4
+Position: 41.3001 6.62099 44.1001
+Scale: 1.06 0.999939 1.02
+Rotation: 6.28319
+IsParsing: 1
+
+LayerName: Layer_Ceiling_101
+PrototypeTag: Prototype_GameObject_Ceiling_101
+LevelIndex: 4
+Position: 46.6001 6.62099 44.1001
+Scale: 1.06 0.999939 1.02
+Rotation: 6.28319
+IsParsing: 1
+
+LayerName: Layer_Ceiling_101
+PrototypeTag: Prototype_GameObject_Ceiling_101
+LevelIndex: 4
+Position: 51.9 6.62099 44.1001
+Scale: 1.06 0.999939 1.02
+Rotation: 6.28319
+IsParsing: 1
+
+LayerName: Layer_Ceiling_101
+PrototypeTag: Prototype_GameObject_Ceiling_101
+LevelIndex: 4
+Position: 57.1999 6.62099 44.1001
+Scale: 1.06 0.999939 1.02
+Rotation: 6.28319
+IsParsing: 1
+
+LayerName: Layer_Ceiling_101
+PrototypeTag: Prototype_GameObject_Ceiling_101
+LevelIndex: 4
+Position: 57.1999 6.62099 39.0002
+Scale: 1.06 0.999939 1.02
+Rotation: 6.28319
+IsParsing: 1
+
+LayerName: Layer_Ceiling_101
+PrototypeTag: Prototype_GameObject_Ceiling_101
+LevelIndex: 4
+Position: 51.9 6.62099 39.0002
+Scale: 1.06 0.999939 1.02
+Rotation: 6.28319
+IsParsing: 1
+
+LayerName: Layer_Ceiling_101
+PrototypeTag: Prototype_GameObject_Ceiling_101
+LevelIndex: 4
+Position: 46.6001 6.62099 39.0002
+Scale: 1.06 0.999939 1.02
+Rotation: 6.28319
+IsParsing: 1
+
+LayerName: Layer_Ceiling_101
+PrototypeTag: Prototype_GameObject_Ceiling_101
+LevelIndex: 4
+Position: 41.3001 6.62099 39.0002
+Scale: 1.06 0.999939 1.02
+Rotation: 6.28319
+IsParsing: 1
+
+LayerName: Layer_Ceiling_101
+PrototypeTag: Prototype_GameObject_Ceiling_101
+LevelIndex: 4
+Position: 41.3001 6.62099 33.6003
+Scale: 1.06 0.999939 1.14
+Rotation: 6.28319
+IsParsing: 1
+
+LayerName: Layer_Ceiling_101
+PrototypeTag: Prototype_GameObject_Ceiling_101
+LevelIndex: 4
+Position: 46.6001 6.62099 33.6003
+Scale: 1.06 0.999939 1.14
+Rotation: 6.28319
+IsParsing: 1
+
+LayerName: Layer_Ceiling_101
+PrototypeTag: Prototype_GameObject_Ceiling_101
+LevelIndex: 4
+Position: 51.9 6.62099 33.6003
+Scale: 1.06 0.999939 1.14
+Rotation: 6.28319
+IsParsing: 1
+
+LayerName: Layer_Ceiling_101
+PrototypeTag: Prototype_GameObject_Ceiling_101
+LevelIndex: 4
+Position: 57.0999 6.62099 32.9003
+Scale: 1.12 0.999939 1.43
+Rotation: 6.28319
+IsParsing: 1
+
 LayerName: Layer_Ceiling_103
 PrototypeTag: Prototype_GameObject_Ceiling_103
 LevelIndex: 4
@@ -307,7 +499,87 @@ PrototypeTag: Prototype_GameObject_Ceiling_103
 LevelIndex: 4
 Position: 30.5201 8.262 12.316
 Scale: 1.07 1 0.350001
-Rotation: 0
+Rotation: 6.28319
+IsParsing: 1
+
+LayerName: Layer_Ceiling_103
+PrototypeTag: Prototype_GameObject_Ceiling_103
+LevelIndex: 4
+Position: 45.32 3.36 54.8999
+Scale: 1.05 1 1.4
+Rotation: 6.28319
+IsParsing: 1
+
+LayerName: Layer_Ceiling_103
+PrototypeTag: Prototype_GameObject_Ceiling_103
+LevelIndex: 4
+Position: 47.92 3.36 54.8999
+Scale: 1.05 1 1.4
+Rotation: 6.28319
+IsParsing: 1
+
+LayerName: Layer_Ceiling_103
+PrototypeTag: Prototype_GameObject_Ceiling_103
+LevelIndex: 4
+Position: 50.5199 3.36 54.8999
+Scale: 1.05 1 1.4
+Rotation: 6.28319
+IsParsing: 1
+
+LayerName: Layer_Ceiling_103
+PrototypeTag: Prototype_GameObject_Ceiling_103
+LevelIndex: 4
+Position: 53.1199 3.36 54.8999
+Scale: 1.05 1 1.4
+Rotation: 6.28319
+IsParsing: 1
+
+LayerName: Layer_Ceiling_103
+PrototypeTag: Prototype_GameObject_Ceiling_103
+LevelIndex: 4
+Position: 55.7198 3.36 54.8999
+Scale: 1.05 1 1.4
+Rotation: 6.28319
+IsParsing: 1
+
+LayerName: Layer_Ceiling_103
+PrototypeTag: Prototype_GameObject_Ceiling_103
+LevelIndex: 4
+Position: 58.3198 3.36 54.8999
+Scale: 1.05 1 1.4
+Rotation: 6.28319
+IsParsing: 1
+
+LayerName: Layer_Ceiling_103
+PrototypeTag: Prototype_GameObject_Ceiling_103
+LevelIndex: 4
+Position: 58.3198 3.49 51.4
+Scale: 1.05 1 1.4
+Rotation: 6.28319
+IsParsing: 1
+
+LayerName: Layer_Ceiling_103
+PrototypeTag: Prototype_GameObject_Ceiling_103
+LevelIndex: 4
+Position: 58.3198 3.49 47.9
+Scale: 1.05 1 1.4
+Rotation: 6.28319
+IsParsing: 1
+
+LayerName: Layer_Ceiling_103
+PrototypeTag: Prototype_GameObject_Ceiling_103
+LevelIndex: 4
+Position: 58.3198 3.49 44.4001
+Scale: 1.05 1 1.4
+Rotation: 6.28319
+IsParsing: 1
+
+LayerName: Layer_Ceiling_103
+PrototypeTag: Prototype_GameObject_Ceiling_103
+LevelIndex: 4
+Position: 58.3198 3.49 40.5001
+Scale: 1.12 1 1.75
+Rotation: 6.28319
 IsParsing: 1
 
 LayerName: Layer_Ceiling_104
@@ -1126,6 +1398,166 @@ Scale: 0.999573 0.999877 0.941318
 Rotation: 1.5708
 IsParsing: 1
 
+LayerName: Layer_Floor_114
+PrototypeTag: Prototype_GameObject_Floor_114
+LevelIndex: 4
+Position: 49.307 3.55 44.6569
+Scale: 1.10957 0.999877 1.03132
+Rotation: 0
+IsParsing: 1
+
+LayerName: Layer_Floor_114
+PrototypeTag: Prototype_GameObject_Floor_114
+LevelIndex: 4
+Position: 49.307 3.55 47.1569
+Scale: 1.10957 0.999877 1.03132
+Rotation: 0
+IsParsing: 1
+
+LayerName: Layer_Floor_114
+PrototypeTag: Prototype_GameObject_Floor_114
+LevelIndex: 4
+Position: 49.307 3.55 49.4569
+Scale: 1.10957 0.999877 1.03132
+Rotation: 0
+IsParsing: 1
+
+LayerName: Layer_Floor_114
+PrototypeTag: Prototype_GameObject_Floor_114
+LevelIndex: 4
+Position: 49.307 3.55 51.9568
+Scale: 1.10957 0.999877 1.03132
+Rotation: 0
+IsParsing: 1
+
+LayerName: Layer_Floor_114
+PrototypeTag: Prototype_GameObject_Floor_114
+LevelIndex: 4
+Position: 45.407 3.55 54.9568
+Scale: 1.06957 0.999877 1.40132
+Rotation: 0
+IsParsing: 1
+
+LayerName: Layer_Floor_114
+PrototypeTag: Prototype_GameObject_Floor_114
+LevelIndex: 4
+Position: 48.007 3.55 54.9568
+Scale: 1.06957 0.999877 1.40132
+Rotation: 0
+IsParsing: 1
+
+LayerName: Layer_Floor_114
+PrototypeTag: Prototype_GameObject_Floor_114
+LevelIndex: 4
+Position: 50.607 3.55 54.9568
+Scale: 1.06957 0.999877 1.40132
+Rotation: 0
+IsParsing: 1
+
+LayerName: Layer_Floor_114
+PrototypeTag: Prototype_GameObject_Floor_114
+LevelIndex: 4
+Position: 53.1069 3.55 54.9568
+Scale: 1.06957 0.999877 1.40132
+Rotation: 0
+IsParsing: 1
+
+LayerName: Layer_Floor_114
+PrototypeTag: Prototype_GameObject_Floor_114
+LevelIndex: 4
+Position: 55.7069 3.55 54.9568
+Scale: 1.06957 0.999877 1.40132
+Rotation: 0
+IsParsing: 1
+
+LayerName: Layer_Floor_114
+PrototypeTag: Prototype_GameObject_Floor_114
+LevelIndex: 4
+Position: 58.4068 3.55 54.9568
+Scale: 1.10957 0.999877 1.40132
+Rotation: 0
+IsParsing: 1
+
+LayerName: Layer_Floor_114
+PrototypeTag: Prototype_GameObject_Floor_114
+LevelIndex: 4
+Position: 58.4068 3.55 51.4568
+Scale: 1.17 0.999877 1.40132
+Rotation: 0
+IsParsing: 1
+
+LayerName: Layer_Floor_114
+PrototypeTag: Prototype_GameObject_Floor_114
+LevelIndex: 4
+Position: 58.4068 3.55 47.9569
+Scale: 1.17 0.999877 1.40132
+Rotation: 0
+IsParsing: 1
+
+LayerName: Layer_Floor_114
+PrototypeTag: Prototype_GameObject_Floor_114
+LevelIndex: 4
+Position: 58.4068 3.55 44.4569
+Scale: 1.17 0.999877 1.40132
+Rotation: 0
+IsParsing: 1
+
+LayerName: Layer_Floor_114
+PrototypeTag: Prototype_GameObject_Floor_114
+LevelIndex: 4
+Position: 58.4068 3.55 40.457
+Scale: 1.16957 0.999877 1.75132
+Rotation: 0
+IsParsing: 1
+
+LayerName: Layer_Pillars_101
+PrototypeTag: Prototype_GameObject_Pillars_101
+LevelIndex: 4
+Position: 45.7001 -1.49012e-08 55.1999
+Scale: 1 0.66 1
+Rotation: 6.28319
+IsParsing: 1
+
+LayerName: Layer_Pillars_101
+PrototypeTag: Prototype_GameObject_Pillars_101
+LevelIndex: 4
+Position: 50.7 -1.49012e-08 55.1999
+Scale: 1 0.66 1
+Rotation: 6.28319
+IsParsing: 1
+
+LayerName: Layer_Pillars_101
+PrototypeTag: Prototype_GameObject_Pillars_101
+LevelIndex: 4
+Position: 57.9999 -1.49012e-08 55.1999
+Scale: 1 0.66 1
+Rotation: 6.28319
+IsParsing: 1
+
+LayerName: Layer_Pillars_101
+PrototypeTag: Prototype_GameObject_Pillars_101
+LevelIndex: 4
+Position: 57.9999 -1.49012e-08 51
+Scale: 1 0.69 1
+Rotation: 6.28319
+IsParsing: 1
+
+LayerName: Layer_Pillars_101
+PrototypeTag: Prototype_GameObject_Pillars_101
+LevelIndex: 4
+Position: 57.9999 -1.49012e-08 46.5001
+Scale: 1 0.69 1
+Rotation: 6.28319
+IsParsing: 1
+
+LayerName: Layer_Pillars_101
+PrototypeTag: Prototype_GameObject_Pillars_101
+LevelIndex: 4
+Position: 57.9999 -1.49012e-08 40.5001
+Scale: 1 0.69 1
+Rotation: 6.28319
+IsParsing: 1
+
 LayerName: Layer_Stair1
 PrototypeTag: Prototype_GameObject_Stair1
 LevelIndex: 4
@@ -1140,6 +1572,86 @@ LevelIndex: 4
 Position: 3.11 0.6 12.8
 Scale: 1.631 1 1
 Rotation: 3.14159
+IsParsing: 1
+
+LayerName: Layer_Stair101
+PrototypeTag: Prototype_GameObject_Stair101
+LevelIndex: 4
+Position: 49.377 0 38.1841
+Scale: 1 1 1
+Rotation: 3.14159
+IsParsing: 1
+
+LayerName: Layer_Stair101
+PrototypeTag: Prototype_GameObject_Stair101
+LevelIndex: 4
+Position: 49.367 0.9 39.751
+Scale: 1 1 1
+Rotation: 3.14159
+IsParsing: 1
+
+LayerName: Layer_Stair101
+PrototypeTag: Prototype_GameObject_Stair101
+LevelIndex: 4
+Position: 49.367 1.8 41.351
+Scale: 1 1 1
+Rotation: 3.14159
+IsParsing: 1
+
+LayerName: Layer_Stair101
+PrototypeTag: Prototype_GameObject_Stair101
+LevelIndex: 4
+Position: 49.317 2.6 42.951
+Scale: 1 1 1
+Rotation: 3.14159
+IsParsing: 1
+
+LayerName: Layer_Stair101_Addon
+PrototypeTag: Prototype_GameObject_Stair101_Addon
+LevelIndex: 4
+Position: 49.38 1 39.75
+Scale: 1 1.11 1
+Rotation: 3.14159
+IsParsing: 1
+
+LayerName: Layer_Stair101_Addon
+PrototypeTag: Prototype_GameObject_Stair101_Addon
+LevelIndex: 4
+Position: 49.32 2.64 42.96
+Scale: 0.99 2.99 1
+Rotation: 3.14159
+IsParsing: 1
+
+LayerName: Layer_Stair101_Addon
+PrototypeTag: Prototype_GameObject_Stair101_Addon
+LevelIndex: 4
+Position: 49.367 1.89 41.35
+Scale: 1 2.13 1
+Rotation: 3.14159
+IsParsing: 1
+
+LayerName: Layer_Stair101_Addon
+PrototypeTag: Prototype_GameObject_Stair101_Addon
+LevelIndex: 4
+Position: 49.275 3.54 48.29
+Scale: 1 0.100002 5.87
+Rotation: 0
+IsParsing: 1
+
+LayerName: Layer_Stair101_Addon
+PrototypeTag: Prototype_GameObject_Stair101_Addon
+LevelIndex: 4
+Position: 51.775 3.54 54.8999
+Scale: 5.603 0.200002 2.165
+Rotation: 0
+IsParsing: 1
+
+LayerName: Layer_Stair101_Addon
+PrototypeTag: Prototype_GameObject_Stair101_Addon
+LevelIndex: 4
+Position: 58.3749 3.54 45.48
+Scale: 1.03 0.0600016 9.23008
+Rotation: 0
 IsParsing: 1
 
 LayerName: Layer_Stair2

@@ -3,6 +3,8 @@
 
 #include "GameInstance.h"
 
+#include "Player.h"
+
 CMonster::CMonster(ID3D11Device * pDevice, ID3D11DeviceContext * pContext)
 	: CContainerObject{ pDevice, pContext }
 {
@@ -30,7 +32,7 @@ HRESULT CMonster::Initialize(void * pArg)
 
 void CMonster::Priority_Update(_float fTimeDelta)
 {
-		
+	m_fDamageDelay += fTimeDelta;
 }
 
 void CMonster::Update(_float fTimeDelta)
@@ -40,6 +42,15 @@ void CMonster::Update(_float fTimeDelta)
 
 void CMonster::Late_Update(_float fTimeDelta)
 {
+	CCollider* pTargetCollider = dynamic_cast<CCollider*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Player"), TEXT("Com_Collider"), 0));
+	CPlayer* pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Player")).front());
+
+	if (m_pColliderCom[COLL_AABB]->isCollision(pTargetCollider) && m_fDamageDelay > 0.5f)
+	{
+		pPlayer->Set_Damage(-5.f);
+		m_fDamageDelay = 0.f;
+	}
+
 	m_pTransformCom->Gravity(0.2f, 0.25f, fTimeDelta);
 }
 

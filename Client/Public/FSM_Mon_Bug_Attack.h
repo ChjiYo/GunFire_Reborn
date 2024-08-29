@@ -23,6 +23,7 @@ public:
 
 private:
 	_float m_fAttackTime = {0.f};
+	_float m_fDamageDelay = { 0.f };
 
 public:
 	static CFSM_Mon_Bug_Attack* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, FSM_MON_DESC Desc);

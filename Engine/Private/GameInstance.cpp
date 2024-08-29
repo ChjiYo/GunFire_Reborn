@@ -13,6 +13,7 @@
 #include "FileManager.h"
 #include "PipeLine.h"
 #include "Target_Manager.h"
+#include "Frustum.h"
 
 IMPLEMENT_SINGLETON(CGameInstance)
 
@@ -79,6 +80,10 @@ HRESULT CGameInstance::Initialize_Engine(HINSTANCE hInst, HWND hWnd, _bool isWin
 	if (nullptr == m_pPicking)
 		return E_FAIL;
 
+	m_pFrustum = CFrustum::Create();
+	if (nullptr == m_pFrustum)
+		return E_FAIL;
+
 	return S_OK;
 }
 
@@ -94,6 +99,8 @@ void CGameInstance::Update_Engine(_float fTimeDelta)
 
 	/* 얘가 들고 있는 뷰랑 투영의 역행렬을 구하고 카메라 위치를 저장한다. */
 	m_pPipeLine->Update();
+
+	m_pFrustum->Update();
 
 	m_pObject_Manager->Update(fTimeDelta);
 
@@ -439,6 +446,19 @@ HRESULT CGameInstance::Copy_RenderTarget(const _wstring& strTargetTag, ID3D11Tex
 HRESULT CGameInstance::Bind_RT_ShaderResource(CShader* pShader, const _char* pConstantName, const _wstring& strTargetTag)
 {
 	return m_pTarget_Manager->Bind_ShaderResource(pShader, pConstantName, strTargetTag);
+}
+
+_bool CGameInstance::isIn_Frustum_InWorldSpace(_fvector vWorldPosition, _float fRadius)
+{
+	return m_pFrustum->isIn_InWorldSpace(vWorldPosition, fRadius);
+}
+_bool CGameInstance::isIn_Frustum_InLocalSpace(_fvector vLocalPosition, _float fRadius)
+{
+	return m_pFrustum->isIn_InLocalSpace(vLocalPosition, fRadius);
+}
+void CGameInstance::Transform_Frustum_ToLocalSpace(_fmatrix WorldMatrixInverse)
+{
+	return m_pFrustum->Transform_ToLocalSpace(WorldMatrixInverse);
 }
 
 #ifdef _DEBUG

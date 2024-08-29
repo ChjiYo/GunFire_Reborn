@@ -279,6 +279,8 @@
     <ClInclude Include="..\public\Sky.h" />
     <ClInclude Include="..\public\Mon_Spear.h" />
     <ClInclude Include="..\public\Stair1.h" />
+    <ClInclude Include="..\public\Stair101.h" />
+    <ClInclude Include="..\public\Stair101_Addon.h" />
     <ClInclude Include="..\public\Stair2.h" />
     <ClInclude Include="..\Public\Terrain.h" />
     <ClInclude Include="..\Public\Tool.h" />
@@ -429,6 +431,8 @@
     <ClCompile Include="..\private\Sky.cpp" />
     <ClCompile Include="..\private\Mon_Spear.cpp" />
     <ClCompile Include="..\private\Stair1.cpp" />
+    <ClCompile Include="..\private\Stair101.cpp" />
+    <ClCompile Include="..\private\Stair101_Addon.cpp" />
     <ClCompile Include="..\private\Stair2.cpp" />
     <ClCompile Include="..\Private\Terrain.cpp" />
     <ClCompile Include="..\Private\Tool.cpp" />

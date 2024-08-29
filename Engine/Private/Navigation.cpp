@@ -239,24 +239,36 @@ _uint CNavigation::Init_Index(class CTransform* pTransform)
 		_float2								m_vPosZ = {};
 
 		m_vPosX.y = m_Cells.at(i)->Get_Point(0).x;
+		_float fCellHeight  = m_Cells.at(i)->Get_Point(0).y;
 		m_vPosZ.y = m_Cells.at(i)->Get_Point(0).z;
+
+		_float fHeightDist = fabs(fCellHeight - vPos.y);
 
 		for (int k = 0; k < 3; ++k)
 		{
 			m_vPosX.x = max(m_vPosX.x, m_Cells.at(i)->Get_Point(k).x);
-			m_vPosX.y = min(m_vPosX.y, m_Cells.at(i)->Get_Point(k).x);
+			m_vPosX.y = min(m_vPosX.y, m_Cells.at(i)->Get_Point(k).x); 
+
 
 			m_vPosZ.x = max(m_vPosZ.x, m_Cells.at(i)->Get_Point(k).z);
 			m_vPosZ.y = min(m_vPosZ.y, m_Cells.at(i)->Get_Point(k).z);
 		}
 
 			
-		if ((m_vPosX.y < vPos.x && vPos.x < m_vPosX.x) && (m_vPosZ.y < vPos.z && vPos.z < m_vPosZ.x))
+		if (((m_vPosX.y < vPos.x && vPos.x < m_vPosX.x) && (m_vPosZ.y < vPos.z && vPos.z < m_vPosZ.x)))
 		{
-			m_iCurrentCellIndex = i + 1;
-			return m_iCurrentCellIndex;
+			m_iCurrentCellIndex = i;
+
+			if (fHeightDist < 1.35f)
+			{
+				m_iCurrentCellIndex = i;
+				return m_iCurrentCellIndex;
+			}
 		}
+
 	}
+
+	return m_iCurrentCellIndex;
 }
 
 _float CNavigation::Navi_Height(class CTransform* pTransform)

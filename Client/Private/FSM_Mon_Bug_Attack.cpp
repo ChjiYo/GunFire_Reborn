@@ -32,12 +32,28 @@ HRESULT CFSM_Mon_Bug_Attack::Initialize(FSM_MON_DESC Desc)
 wstring CFSM_Mon_Bug_Attack::Priority_Update(_float fTimeDelta)
 {
 	m_fAttackTime += fTimeDelta;
+	m_fDamageDelay += fTimeDelta;
 
 	return TEXT("Monster_Bug_State_Attack");
 }
 
 wstring CFSM_Mon_Bug_Attack::Update(_float fTimeDelta)
 {
+	_vector vTargetPos = m_pPlayerTransform->Get_State(CTransform::STATE_POSITION);
+	_vector vPos = m_tDesc.pTransform->Get_State(CTransform::STATE_POSITION);
+
+	_vector vDistance = vTargetPos - vPos;
+	XMVector4Length(vDistance);
+	_float fLength = XMVectorGetX(vDistance);
+
+	CCollider* pTargetCollider = dynamic_cast<CCollider*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Player"), TEXT("Com_Collider"), 0));
+	CPlayer* pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Player")).front());
+
+	if (m_fDamageDelay >= m_tDesc.pModel->Get_Anim(4)->Get_Duration() - 0.25f && abs(fLength) <= 2.f)
+	{
+		pPlayer->Set_Damage(-10);
+		m_fDamageDelay = 0.f;
+	}
 
 	return TEXT("Monster_Bug_State_Attack");
 }
@@ -71,6 +87,7 @@ void CFSM_Mon_Bug_Attack::Enter()
 	__super::Enter();
 
 	m_tDesc.pModel->SetUp_Animation(4,false);
+	m_fDamageDelay = 0.f;
 	m_strName = TEXT("Monster_Bug_State_Attack");
 
 }

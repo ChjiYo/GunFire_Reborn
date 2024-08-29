@@ -125,13 +125,12 @@ HRESULT CDoor::Ready_Components()
 
 	if (fDegree >= 360.f)
 	{
-		XMConvertToDegrees(m_tFileData->fRotation) + 5.f;
+		XMConvertToDegrees(m_tFileData->fRotation);
 	}
 
-
 	BoundingDesc.vExtents = _float3(0.5f, 4.5f, 5.f);
-	BoundingDesc.vCenter = _float3(0.f, BoundingDesc.vExtents.y / 2.f - 2.f, 0.f);
-	BoundingDesc.vRotation = _float3(0.f, fDegree + 5.f, 0.f);
+	BoundingDesc.vCenter = _float3(1.f, BoundingDesc.vExtents.y / 2.f - 2.f, -1.5f);
+	BoundingDesc.vRotation = _float3(0.f, XMConvertToRadians(90.f) , 0.f);
 	BoundingDesc.pObject = this;
 
 	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Collider_OBB"),
