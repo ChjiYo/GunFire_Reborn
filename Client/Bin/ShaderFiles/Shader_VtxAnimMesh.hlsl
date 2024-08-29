@@ -99,27 +99,14 @@ PS_OUT PS_MAIN(PS_IN In)
 
 struct PS_OUT_SHADOW
 {
-<<<<<<< HEAD
-	float4	vLightDepth : SV_TARGET0;
-=======
+
     float4 vLightDepth : SV_TARGET0;
->>>>>>> origin/Add
+
 };
 
 
 PS_OUT_SHADOW PS_MAIN_SHADOW(PS_IN In)
 {
-<<<<<<< HEAD
-	PS_OUT_SHADOW			Out;
-
-	Out.vLightDepth = vector(In.vProjPos.w / 1000.f, 0.f, 0.f, 0.f);
-
-	return Out;
-}
-
-technique11		DefaultTechnique
-{	
-=======
     PS_OUT_SHADOW Out;
 
     Out.vLightDepth = vector(In.vProjPos.w / 1000.f, 0.f, 0.f, 0.f);
@@ -129,7 +116,7 @@ technique11		DefaultTechnique
 
 technique11 DefaultTechnique
 {
->>>>>>> origin/Add
+
     pass Default
     {
         SetRasterizerState(RS_Default);

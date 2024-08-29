@@ -81,11 +81,6 @@ wstring CFSM_Mon_DragonHead_Attack::Late_Update(_float fTimeDelta)
 	return TEXT("Monster_DragonHead_State_Attack");
 }
 
-wstring CFSM_Mon_DragonHead_Attack::Late_Update(_float fTimeDelta)
-{
-	return TEXT("Monster_DragonHead_State_Attack");
-}
-
 void CFSM_Mon_DragonHead_Attack::Enter()
 {
 	__super::Enter();
