@@ -60,7 +60,7 @@ HRESULT CPlayer::Initialize(void* pArg)
     m_eWeaponID = PISTOL;
     m_eWeaponIDArray[2] = PISTOL;
 
-    m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 3.f , 1.3f , 3.f, 1.f });
+    m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 45.f , 1.0f , 35.f, 1.f });
     m_pNavigationCom->Init_Index(m_pTransformCom);
     
     return S_OK;
@@ -273,17 +273,18 @@ void CPlayer::Player_Jump(_float fTimeDelta)
 
     if (!m_bJump)
     {
-        m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetY(m_pTransformCom->Get_State(CTransform::STATE_POSITION), fHeight + 1.3f));
+        m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetY(m_pTransformCom->Get_State(CTransform::STATE_POSITION), fHeight + 1.0f));
     }
 
     if (m_pGameInstance->Key_Down(VK_SPACE)|| m_bJump)
     {
+
         m_pTransformCom->Go_Up(fTimeDelta);
-        m_pNavigationCom->Init_Index(m_pTransformCom);
+        _uint a = m_pNavigationCom->Init_Index(m_pTransformCom);
         m_bJump = true;
     }
     
-    if (m_pTransformCom->Gravity(0.2f, fHeight + 1.3f, fTimeDelta) && m_bJump)
+    if (m_pTransformCom->Gravity(0.2f, fHeight + 1.0f, fTimeDelta) && m_bJump)
     {
         m_bJump = false;
     }
