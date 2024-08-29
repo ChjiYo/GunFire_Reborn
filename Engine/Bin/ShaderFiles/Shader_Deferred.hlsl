@@ -210,11 +210,11 @@ PS_OUT PS_MAIN_DEFERRED(PS_IN In)
     vWorldPos = mul(vWorldPos, g_LightProjMatrix);
 
 
-
+	/* 투영공간상의 좌표로 변환하낟. */
     float2 vTexcoord = vWorldPos.xy / vWorldPos.w;
 
-    vTexcoord.x = vTexcoord.x * 0.5f + 0.5f;
-    vTexcoord.y = vTexcoord.y * -0.5f + 0.5f;
+    vTexcoord.x = saturate(vTexcoord.x * 0.5f + 0.5f);
+    vTexcoord.y = saturate(vTexcoord.y * -0.5f + 0.5f);
 
     vector vOldLightDepth = g_LightDepthTexture.Sample(LinearSampler, vTexcoord);
 	
@@ -282,3 +282,17 @@ technique11 DefaultTechnique
         PixelShader = compile ps_5_0 PS_MAIN_DEFERRED();
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

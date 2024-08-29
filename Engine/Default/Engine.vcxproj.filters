@@ -55,20 +55,11 @@
     <Filter Include="01.Utility\03.Components\Transform">
       <UniqueIdentifier>{700a2e9c-e359-4f5e-9891-56a64c045357}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01.Utility\03.Components\VIBuffer">
-      <UniqueIdentifier>{e6cfc96b-4938-4435-a157-22eaf40fb0b1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="01.Utility\03.Components\VIBuffer\Rect">
-      <UniqueIdentifier>{f7b091dc-0e1b-4d14-9b53-9981103cfc24}</UniqueIdentifier>
-    </Filter>
     <Filter Include="01.Utility\03.Components\Shader">
       <UniqueIdentifier>{e5fb42cf-b83d-4071-ac30-cfecea42d775}</UniqueIdentifier>
     </Filter>
     <Filter Include="01.Utility\03.Components\Texture">
       <UniqueIdentifier>{2f710286-9230-4a36-8dcd-4442c87e3f38}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="01.Utility\03.Components\VIBuffer\Terrain">
-      <UniqueIdentifier>{f9926508-7552-457b-adc4-e83b1209e3b0}</UniqueIdentifier>
     </Filter>
     <Filter Include="01.Utility\02.GameObjects\Camera">
       <UniqueIdentifier>{140c0c63-12e3-45e0-aff7-e073e83ffd14}</UniqueIdentifier>
@@ -115,9 +106,6 @@
     <Filter Include="01.Utility\08.Font\Manager">
       <UniqueIdentifier>{4d283de6-fef7-4081-a5b4-361e1c35b9ca}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01.Utility\03.Components\VIBuffer\Cube">
-      <UniqueIdentifier>{bde514df-cef1-4a7c-b84c-c406ddc33929}</UniqueIdentifier>
-    </Filter>
     <Filter Include="01.Utility\09.Picking">
       <UniqueIdentifier>{9e6aa186-18cf-4d46-9c32-bb596b990731}</UniqueIdentifier>
     </Filter>
@@ -139,9 +127,6 @@
     <Filter Include="01.Utility\03.Components\Navigation\Cell">
       <UniqueIdentifier>{d6cbf370-83ea-4e1b-b5ca-d8584eca3a3d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01.Utility\03.Components\VIBuffer\Cell">
-      <UniqueIdentifier>{0b7a72c1-1ed6-45aa-b0aa-17514d65edf6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="01.Utility\03.Components\BinModel">
       <UniqueIdentifier>{7f6bfe84-04ad-4535-b946-3178302b4bd0}</UniqueIdentifier>
     </Filter>
@@ -160,12 +145,6 @@
     <Filter Include="01.Utility\03.Components\Collider\Bounding\Sphere">
       <UniqueIdentifier>{65b0b0fa-1450-4b72-b2e7-c913cc9a858c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01.Utility\03.Components\VIBuffer\Instancing">
-      <UniqueIdentifier>{18162fe5-6038-4d5d-ab1f-bc727df5c889}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="01.Utility\03.Components\VIBuffer\Instancing\Rect">
-      <UniqueIdentifier>{f2ab809b-11e8-4755-93ad-c30743a1358b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="01.Utility\11.RenderTargets">
       <UniqueIdentifier>{ac1327b7-fd12-4897-9ae2-446b115b3da5}</UniqueIdentifier>
     </Filter>
@@ -175,8 +154,35 @@
     <Filter Include="01.Utility\03.Components\Collider\Bounding\Ray">
       <UniqueIdentifier>{994e6caf-3b49-41ac-9acd-c63edaab93e3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01.Utility\03.Components\VIBuffer\Instancing\Point">
+    <Filter Include="01.Utility\03.Components\Model\VIBuffer">
+      <UniqueIdentifier>{e6cfc96b-4938-4435-a157-22eaf40fb0b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utility\03.Components\Model\VIBuffer\Rect">
+      <UniqueIdentifier>{f7b091dc-0e1b-4d14-9b53-9981103cfc24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utility\03.Components\Model\VIBuffer\Terrain">
+      <UniqueIdentifier>{f9926508-7552-457b-adc4-e83b1209e3b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utility\03.Components\Model\VIBuffer\Terrain\QuadTree">
+      <UniqueIdentifier>{e27003bf-5658-4231-9337-cd31eb02d8ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utility\03.Components\Model\VIBuffer\Cube">
+      <UniqueIdentifier>{bde514df-cef1-4a7c-b84c-c406ddc33929}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utility\03.Components\Model\VIBuffer\Cell">
+      <UniqueIdentifier>{0b7a72c1-1ed6-45aa-b0aa-17514d65edf6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utility\03.Components\Model\VIBuffer\Instancing">
+      <UniqueIdentifier>{18162fe5-6038-4d5d-ab1f-bc727df5c889}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utility\03.Components\Model\VIBuffer\Instancing\Rect">
+      <UniqueIdentifier>{f2ab809b-11e8-4755-93ad-c30743a1358b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utility\03.Components\Model\VIBuffer\Instancing\Point">
       <UniqueIdentifier>{a53a2588-603a-40ed-b8b5-7641d86b9277}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utility\12.Frustum">
+      <UniqueIdentifier>{0122b8be-e1a0-4e3e-a8df-cd447071b626}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -223,10 +229,10 @@
       <Filter>01.Utility\03.Components\Transform</Filter>
     </ClCompile>
     <ClCompile Include="..\private\VIBuffer.cpp">
-      <Filter>01.Utility\03.Components\VIBuffer</Filter>
+      <Filter>01.Utility\03.Components\Model\VIBuffer</Filter>
     </ClCompile>
     <ClCompile Include="..\private\VIBuffer_Rect.cpp">
-      <Filter>01.Utility\03.Components\VIBuffer\Rect</Filter>
+      <Filter>01.Utility\03.Components\Model\VIBuffer\Rect</Filter>
     </ClCompile>
     <ClCompile Include="..\private\Shader.cpp">
       <Filter>01.Utility\03.Components\Shader</Filter>
@@ -235,7 +241,7 @@
       <Filter>01.Utility\03.Components\Texture</Filter>
     </ClCompile>
     <ClCompile Include="..\Private\VIBuffer_Terrain.cpp">
-      <Filter>01.Utility\03.Components\VIBuffer\Terrain</Filter>
+      <Filter>01.Utility\03.Components\Model\VIBuffer\Terrain</Filter>
     </ClCompile>
     <ClCompile Include="..\Private\Engine_Struct.cpp">
       <Filter>99.Defines</Filter>
@@ -286,7 +292,7 @@
       <Filter>01.Utility\06.State</Filter>
     </ClCompile>
     <ClCompile Include="..\Private\VIBuffer_Cube.cpp">
-      <Filter>01.Utility\03.Components\VIBuffer\Cube</Filter>
+      <Filter>01.Utility\03.Components\Model\VIBuffer\Cube</Filter>
     </ClCompile>
     <ClCompile Include="..\Private\Picking.cpp">
       <Filter>01.Utility\09.Picking</Filter>
@@ -307,7 +313,7 @@
       <Filter>01.Utility\03.Components\Navigation</Filter>
     </ClCompile>
     <ClCompile Include="..\Private\VIBuffer_Cell.cpp">
-      <Filter>01.Utility\03.Components\VIBuffer\Cell</Filter>
+      <Filter>01.Utility\03.Components\Model\VIBuffer\Cell</Filter>
     </ClCompile>
     <ClCompile Include="..\private\BinModel.cpp">
       <Filter>01.Utility\03.Components\BinModel</Filter>
@@ -331,10 +337,10 @@
       <Filter>01.Utility\03.Components\Collider</Filter>
     </ClCompile>
     <ClCompile Include="..\private\VIBuffer_Instancing.cpp">
-      <Filter>01.Utility\03.Components\VIBuffer\Instancing</Filter>
+      <Filter>01.Utility\03.Components\Model\VIBuffer\Instancing</Filter>
     </ClCompile>
     <ClCompile Include="..\private\VIBuffer_Rect_Instancing.cpp">
-      <Filter>01.Utility\03.Components\VIBuffer\Instancing\Rect</Filter>
+      <Filter>01.Utility\03.Components\Model\VIBuffer\Instancing\Rect</Filter>
     </ClCompile>
     <ClCompile Include="..\private\Target_Manager.cpp">
       <Filter>01.Utility\11.RenderTargets\Manager</Filter>
@@ -346,7 +352,13 @@
       <Filter>01.Utility\03.Components\Collider\Bounding\Ray</Filter>
     </ClCompile>
     <ClCompile Include="..\private\VIBuffer_Point_Instancing.cpp">
-      <Filter>01.Utility\03.Components\VIBuffer\Instancing\Point</Filter>
+      <Filter>01.Utility\03.Components\Model\VIBuffer\Instancing\Point</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\QuadTree.cpp">
+      <Filter>01.Utility\03.Components\Model\VIBuffer\Terrain\QuadTree</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Frustum.cpp">
+      <Filter>01.Utility\12.Frustum</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -408,10 +420,10 @@
       <Filter>01.Utility\03.Components\Transform</Filter>
     </ClInclude>
     <ClInclude Include="..\public\VIBuffer.h">
-      <Filter>01.Utility\03.Components\VIBuffer</Filter>
+      <Filter>01.Utility\03.Components\Model\VIBuffer</Filter>
     </ClInclude>
     <ClInclude Include="..\public\VIBuffer_Rect.h">
-      <Filter>01.Utility\03.Components\VIBuffer\Rect</Filter>
+      <Filter>01.Utility\03.Components\Model\VIBuffer\Rect</Filter>
     </ClInclude>
     <ClInclude Include="..\public\Shader.h">
       <Filter>01.Utility\03.Components\Shader</Filter>
@@ -420,7 +432,7 @@
       <Filter>01.Utility\03.Components\Texture</Filter>
     </ClInclude>
     <ClInclude Include="..\Public\VIBuffer_Terrain.h">
-      <Filter>01.Utility\03.Components\VIBuffer\Terrain</Filter>
+      <Filter>01.Utility\03.Components\Model\VIBuffer\Terrain</Filter>
     </ClInclude>
     <ClInclude Include="..\public\Camera.h">
       <Filter>01.Utility\02.GameObjects\Camera</Filter>
@@ -468,7 +480,7 @@
       <Filter>01.Utility\06.State</Filter>
     </ClInclude>
     <ClInclude Include="..\Public\VIBuffer_Cube.h">
-      <Filter>01.Utility\03.Components\VIBuffer\Cube</Filter>
+      <Filter>01.Utility\03.Components\Model\VIBuffer\Cube</Filter>
     </ClInclude>
     <ClInclude Include="..\Public\Picking.h">
       <Filter>01.Utility\09.Picking</Filter>
@@ -489,7 +501,7 @@
       <Filter>01.Utility\03.Components\Navigation</Filter>
     </ClInclude>
     <ClInclude Include="..\Public\VIBuffer_Cell.h">
-      <Filter>01.Utility\03.Components\VIBuffer\Cell</Filter>
+      <Filter>01.Utility\03.Components\Model\VIBuffer\Cell</Filter>
     </ClInclude>
     <ClInclude Include="..\public\BinModel.h">
       <Filter>01.Utility\03.Components\BinModel</Filter>
@@ -513,10 +525,10 @@
       <Filter>01.Utility\03.Components\Collider</Filter>
     </ClInclude>
     <ClInclude Include="..\public\VIBuffer_Instancing.h">
-      <Filter>01.Utility\03.Components\VIBuffer\Instancing</Filter>
+      <Filter>01.Utility\03.Components\Model\VIBuffer\Instancing</Filter>
     </ClInclude>
     <ClInclude Include="..\public\VIBuffer_Rect_Instancing.h">
-      <Filter>01.Utility\03.Components\VIBuffer\Instancing\Rect</Filter>
+      <Filter>01.Utility\03.Components\Model\VIBuffer\Instancing\Rect</Filter>
     </ClInclude>
     <ClInclude Include="..\public\Target_Manager.h">
       <Filter>01.Utility\11.RenderTargets\Manager</Filter>
@@ -528,7 +540,13 @@
       <Filter>01.Utility\03.Components\Collider\Bounding\Ray</Filter>
     </ClInclude>
     <ClInclude Include="..\public\VIBuffer_Point_Instancing.h">
-      <Filter>01.Utility\03.Components\VIBuffer\Instancing\Point</Filter>
+      <Filter>01.Utility\03.Components\Model\VIBuffer\Instancing\Point</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\QuadTree.h">
+      <Filter>01.Utility\03.Components\Model\VIBuffer\Terrain\QuadTree</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Frustum.h">
+      <Filter>01.Utility\12.Frustum</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

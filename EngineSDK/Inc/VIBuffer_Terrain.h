@@ -18,7 +18,7 @@ public:
 
 public:
 	_bool Picked(class CTransform* pTransformCom, _vector* pPickedPos);
-
+	void  Culling(_fmatrix TerrainWorldMatrix);
 
 private:
 	_uint				m_iNumVerticesX{}, m_iNumVerticesZ{};
