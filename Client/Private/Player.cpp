@@ -60,7 +60,7 @@ HRESULT CPlayer::Initialize(void* pArg)
     m_eWeaponID = PISTOL;
     m_eWeaponIDArray[2] = PISTOL;
 
-    m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 45.f , 1.0f , 35.f, 1.f });
+    m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 5.f , 1.0f , 5.f, 1.f });
     m_pNavigationCom->Init_Index(m_pTransformCom);
     
     return S_OK;

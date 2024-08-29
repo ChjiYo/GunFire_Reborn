@@ -247,7 +247,8 @@ _uint CNavigation::Init_Index(class CTransform* pTransform)
 		for (int k = 0; k < 3; ++k)
 		{
 			m_vPosX.x = max(m_vPosX.x, m_Cells.at(i)->Get_Point(k).x);
-			m_vPosX.y = min(m_vPosX.y, m_Cells.at(i)->Get_Point(k).x);
+			m_vPosX.y = min(m_vPosX.y, m_Cells.at(i)->Get_Point(k).x); 
+
 
 			m_vPosZ.x = max(m_vPosZ.x, m_Cells.at(i)->Get_Point(k).z);
 			m_vPosZ.y = min(m_vPosZ.y, m_Cells.at(i)->Get_Point(k).z);

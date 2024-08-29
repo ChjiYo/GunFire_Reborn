@@ -519,7 +519,7 @@ HRESULT CTool_Object::Show_LayerObjects()
 					transform->Rotation({ 1.f, 0.f, 0.f ,0.f }, XMConvertToRadians(averageRotation.x));
 
 				if (averageRotation.y > 0.f)
-					transform->Rotation({ 0.f, 1.f, 0.f ,0.f }, XMConvertToRadians(averageRotation.y));
+					transform->Rotation({ 0.f, 1.f, 0.f ,0.f }, XMConvertToRadians(transform->Get_RotationYValue()));
 
 				if (averageRotation.z > 0.f)
 					transform->Rotation({ 0.f, 0.f, 1.f ,0.f }, XMConvertToRadians(averageRotation.z));
@@ -652,6 +652,7 @@ HRESULT CTool_Object::CopySelectedObject(const std::wstring& layerName, CGameObj
 	copy_DESC.layerName = layerName;
 	copy_DESC.position = sourceTransform->Get_State(CTransform::STATE_POSITION);
 	copy_DESC.scale = sourceTransform->Get_Scaled();
+	copy_DESC.fRotation = sourceTransform->Get_RotationYValue();
 	copy_DESC.isParsing = false;
 
 	// Create a new game object using the prototype
@@ -679,6 +680,7 @@ HRESULT CTool_Object::PickingSelectedObject(const wstring& layerName, CGameObjec
 	copy_DESC.layerName = layerName;
 	copy_DESC.scale = sourceTransform->Get_Scaled();
 	copy_DESC.position = { vPos.x , vPos.y + sourceTransform->Get_Scaled().y / 2.f, vPos.z , 1.f};
+	copy_DESC.fRotation = sourceTransform->Get_RotationYValue();
 	copy_DESC.isParsing = false;
 	// Create a new game object using the prototype
 	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(currentLevel, prototypeTag.c_str(), layerName.c_str(), &copy_DESC)))
