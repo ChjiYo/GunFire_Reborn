@@ -57,6 +57,7 @@ protected:
 	CCollider*	m_pColliderCom[COLL_END] = { nullptr , nullptr };
 
 	MON_DESC	m_tMonDesc = {};
+	_float		m_fDamageDelay = { 0.f };
 
 public:
 	virtual void Free() override;
