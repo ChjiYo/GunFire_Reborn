@@ -99,7 +99,9 @@ PS_OUT PS_MAIN(PS_IN In)
 
 struct PS_OUT_SHADOW
 {
+
     float4 vLightDepth : SV_TARGET0;
+
 };
 
 
@@ -114,6 +116,7 @@ PS_OUT_SHADOW PS_MAIN_SHADOW(PS_IN In)
 
 technique11 DefaultTechnique
 {
+
     pass Default
     {
         SetRasterizerState(RS_Default);

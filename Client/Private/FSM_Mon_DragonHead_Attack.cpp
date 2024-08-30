@@ -85,6 +85,7 @@ void CFSM_Mon_DragonHead_Attack::Enter()
 {
 	__super::Enter();
 
+
 	m_tDesc.pTransform->LookAt(m_pPlayerTransform->Get_State(CTransform::STATE_POSITION));
 
 	_uint iRand = rand() % 2;

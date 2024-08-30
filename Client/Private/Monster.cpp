@@ -27,6 +27,8 @@ HRESULT CMonster::Initialize(void * pArg)
 	if (FAILED(__super::Initialize(pArg)))
 		return E_FAIL;
 
+	m_pTransformCom->Set_Scaled(0.75f, 0.75f, 0.75f);
+
 	return S_OK;
 }
 

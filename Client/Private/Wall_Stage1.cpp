@@ -3,6 +3,8 @@
 #include "Wall_Stage1.h"
 #include "GameInstance.h"
 
+#include "Monster.h"
+
 CWall_Stage1::CWall_Stage1(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	:CElement { pDevice , pContext }
 {
@@ -31,7 +33,9 @@ HRESULT CWall_Stage1::Initialize(void* pArg)
 
 
 	m_pTransformCom->Rotation({ 0.f, 1.f, 0.f }, XMConvertToRadians(180.f));
-	//m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 21.269f,  0.f, 16.044  ,1.f});
+	
+	Monster_Create();
+
 
 	return S_OK;
 }
@@ -68,6 +72,28 @@ HRESULT CWall_Stage1::Render()
 
 		m_pModelCom->Render(i);
 	}
+
+	return S_OK;
+}
+
+HRESULT CWall_Stage1::Monster_Create()
+{
+	CMonster::MON_DESC Desc = {};
+	Desc.iMaxHp = 10;
+	Desc.iHp = 10;
+
+	for (int i = 0; i < 5; ++i)
+	{
+		if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Mon_Bug"), TEXT("Layer_Monster_Stage1"),&Desc)))
+			return E_FAIL;
+	}
+	//if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Mon_Archer"), TEXT("Layer_Monster_Stage1"))))
+	//	return E_FAIL;
+	//
+	//if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Mon_Knight"), TEXT("Layer_Monster_Stage1"))))
+	//	return E_FAIL;
+
+
 
 	return S_OK;
 }
