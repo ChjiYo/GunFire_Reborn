@@ -30,9 +30,6 @@ HRESULT CWall_Stage1::Initialize(void* pArg)
 
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
-
-
-	m_pTransformCom->Rotation({ 0.f, 1.f, 0.f }, XMConvertToRadians(180.f));
 	
 	Monster_Create();
 
@@ -46,11 +43,13 @@ void CWall_Stage1::Priority_Update(_float fTimeDelta)
 
 void CWall_Stage1::Update(_float fTimeDelta)
 {
+
 }
 
 void CWall_Stage1::Late_Update(_float fTimeDelta)
 {
 	m_pGameInstance->Add_RenderObject(CRenderer::RG_NONBLEND, this);
+
 }
 
 HRESULT CWall_Stage1::Render()
@@ -84,6 +83,7 @@ HRESULT CWall_Stage1::Monster_Create()
 
 	for (int i = 0; i < 5; ++i)
 	{
+		Desc.vPos = { (_float)(rand() % 28 + 3) , 3.75f , (_float)(rand() % 11 + 14) };
 		if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Mon_Bug"), TEXT("Layer_Monster_Stage1"),&Desc)))
 			return E_FAIL;
 	}
@@ -93,7 +93,8 @@ HRESULT CWall_Stage1::Monster_Create()
 	//if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Mon_Knight"), TEXT("Layer_Monster_Stage1"))))
 	//	return E_FAIL;
 
-
+	
+	
 
 	return S_OK;
 }

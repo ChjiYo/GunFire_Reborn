@@ -4,7 +4,7 @@
 
 BEGIN(Engine)
 class CShader;
-class CModel;
+class CCollider;
 class CBinModel;
 END
 
@@ -31,8 +31,8 @@ private:
 
 private:
 	CShader* m_pShaderCom = { nullptr };
-
 	CBinModel* m_pModelCom = { nullptr };
+
 
 private:
 	HRESULT Ready_Components();

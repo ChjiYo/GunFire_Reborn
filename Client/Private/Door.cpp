@@ -4,6 +4,9 @@
 #include "Player.h"
 #include "GameInstance.h"
 
+#include "Wall_Stage1.h"
+#include "Wall_Stage2.h"
+
 CDoor::CDoor(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	:CElement{ pDevice , pContext }
 {
@@ -54,8 +57,22 @@ HRESULT CDoor::Initialize(void* pArg)
 void CDoor::Priority_Update(_float fTimeDelta)
 {
 
-	m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Monster_Stage1")).empty() ? m_isEnable = true : m_isEnable = false;
-	m_isEnable ? m_fAnimFrame = fTimeDelta : m_fAnimFrame = 0.f;
+
+	switch (m_iNumDeco)
+	{
+	case 0:
+		{
+			m_isEnable = m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Monster_Stage1")).empty();
+			m_isEnable ? m_fAnimFrame = fTimeDelta : m_fAnimFrame = 0.f;
+			break;
+		}
+	case 1:
+		{
+			m_isEnable = m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Monster_Stage2")).empty();
+			m_isEnable ? m_fAnimFrame = fTimeDelta : m_fAnimFrame = 0.f;
+			break;
+		}
+	}
 }
 
 void CDoor::Update(_float fTimeDelta)

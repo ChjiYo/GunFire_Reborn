@@ -299,9 +299,15 @@ HRESULT CLevel_GamePlay::Ready_Layer_DecoObject(const _wstring& strLayerTag)
 	for (int i = 0; i < 2; ++i)
 	{
 		DecoDesc.iNumDeco = i;
-		if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Door"), strLayerTag, &DecoDesc)))
+		if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Door"), TEXT("Layer_Door"), &DecoDesc)))
 			return E_FAIL; 
 	}
+
+	//if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Wall_Stage"), TEXT("Layer_Wall_Stage"))))
+	//	return E_FAIL;
+	//
+	//if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Wall_Stage2"), TEXT("Layer_Wall_Stage2"))))
+	//	return E_FAIL;
 	
 	return S_OK;
 }

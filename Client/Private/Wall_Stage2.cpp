@@ -3,6 +3,8 @@
 #include "Wall_Stage2.h"
 #include "GameInstance.h"
 
+#include "Monster.h"
+
 CWall_Stage2::CWall_Stage2(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	:CElement{ pDevice , pContext }
 {
@@ -29,10 +31,8 @@ HRESULT CWall_Stage2::Initialize(void* pArg)
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
-	m_pTransformCom->Set_Scaled(1.f ,1.f, 1.f);
-	m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 49.f ,  0.f, 44.2f,1.f});
-	m_pTransformCom->Rotation({ 0.f , 1.f,  0.f }, XMConvertToRadians(360.f));
-
+	Monster_Create();
+  
 	return S_OK;
 }
 
@@ -67,6 +67,23 @@ HRESULT CWall_Stage2::Render()
 		m_pShaderCom->Begin(0);
 
 		m_pModelCom->Render(i);
+	}
+
+	return S_OK;
+}
+
+HRESULT CWall_Stage2::Monster_Create()
+{
+	CMonster::MON_DESC Desc = {};
+	Desc.iMaxHp = 10;
+	Desc.iHp = 10;
+
+
+	for (int i = 0; i < 5; ++i)
+	{
+		Desc.vPos = { (_float)(rand() % 17 + 42), 6.2f , (_float)(rand() + 20 + 34) };
+		if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Mon_Bug"), TEXT("Layer_Monster_Stage2"), &Desc)))
+			return E_FAIL;
 	}
 
 	return S_OK;

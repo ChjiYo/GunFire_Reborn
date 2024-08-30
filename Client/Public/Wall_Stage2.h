@@ -4,7 +4,7 @@
 
 BEGIN(Engine)
 class CShader;
-class CModel;
+class CCollider;
 class CBinModel;
 END
 
@@ -27,8 +27,10 @@ public:
 	virtual HRESULT Render();
 
 private:
-	CShader* m_pShaderCom = { nullptr };
+	HRESULT Monster_Create();
 
+private:
+	CShader* m_pShaderCom = { nullptr };
 	CBinModel* m_pModelCom = { nullptr };
 
 private:

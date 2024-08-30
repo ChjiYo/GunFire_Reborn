@@ -26,9 +26,6 @@ public:
 	virtual void Late_Update(_float fTimeDelta);
 	virtual HRESULT Render();
 
-public:
-	_bool IsMove() { return m_isMove; }
-
 private:
 	CShader* m_pShaderCom = { nullptr };
 	CBinModel* m_pModelCom = { nullptr };
@@ -37,9 +34,9 @@ private:
 private:
 	_float m_fAnimFrame = { 0.f };
 	_bool  m_isEnable = { false };
-	_bool  m_isMove = { true };
 
 	_uint m_iNumDeco = {0};
+	_bool	m_bOpen = {};
 
 private:
 	HRESULT Ready_Components();

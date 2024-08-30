@@ -20,6 +20,7 @@ public:
 	{
 		_uint iHp = {};
 		_uint iMaxHp = {};
+		_vector vPos = {};
 	}MON_DESC;
 
 public:
@@ -38,7 +39,7 @@ public:
 		m_tMonDesc.iHp += iDamage;
 	}
 
-	CCollider* Get_Collider() { return m_pColliderCom[COLL_AABB]; }
+	CCollider* Get_Collider(COLLIDERTYPE eColliderType) { return m_pColliderCom[eColliderType]; }
 
 public:
 	virtual HRESULT Initialize_Prototype() override;

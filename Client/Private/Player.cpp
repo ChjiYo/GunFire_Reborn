@@ -106,7 +106,7 @@ void CPlayer::Late_Update(_float fTimeDelta)
 
     for (auto& Monsteriter : ObjList)
     {
-        if ((m_pColliderCom->isCollision(dynamic_cast<CMonster*>(Monsteriter)->Get_Collider())) && m_fInvincibleTime > 1.f)
+        if ((m_pColliderCom->isCollision(dynamic_cast<CMonster*>(Monsteriter)->Get_Collider(CMonster::COLL_AABB))) && m_fInvincibleTime > 1.f)
         {
             Set_Damage(-5.f);
             m_fInvincibleTime = 0.f;
@@ -154,8 +154,8 @@ HRESULT CPlayer::Ready_Components()
    CBounding_AABB::BOUNDING_AABB_DESC	BoundingDesc{};
    
 
-   BoundingDesc.vExtents = _float3(0.5f, 0.5f, 0.5f);
-   BoundingDesc.vCenter = _float3(0.f, BoundingDesc.vExtents.y / 2.f - 0.5f , 0.f);  
+   BoundingDesc.vExtents = _float3(1.0f, 1.0f, 1.0f);
+   BoundingDesc.vCenter = _float3(0.f, BoundingDesc.vExtents.y * 0.5f  , 0.f);  
    BoundingDesc.pObject = this;
 
    if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Collider_AABB"),
