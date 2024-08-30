@@ -2,36 +2,36 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\Users\ya960\OneDrive\바탕 화면\GunFire\Main\Client\Bin\Client.exe</FullPath>
+      <FullPath>C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Client\Bin\Client.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles>
     <ContentFile>
-      <FullPath>C:\Users\ya960\OneDrive\바탕 화면\GunFire\Main\Client\Bin\Shader_Effect_MaskTex.cso</FullPath>
+      <FullPath>C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Client\Bin\Shader_Effect_MaskTex.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\ya960\OneDrive\바탕 화면\GunFire\Main\Client\Bin\Shader_Particle_VtxRect.cso</FullPath>
+      <FullPath>C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Client\Bin\Shader_Particle_VtxRect.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\ya960\OneDrive\바탕 화면\GunFire\Main\Client\Bin\Shader_VtxAnimMesh.cso</FullPath>
+      <FullPath>C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Client\Bin\Shader_VtxAnimMesh.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\ya960\OneDrive\바탕 화면\GunFire\Main\Client\Bin\Shader_VtxCube.cso</FullPath>
+      <FullPath>C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Client\Bin\Shader_VtxCube.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\ya960\OneDrive\바탕 화면\GunFire\Main\Client\Bin\Shader_VtxMesh.cso</FullPath>
+      <FullPath>C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Client\Bin\Shader_VtxMesh.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\ya960\OneDrive\바탕 화면\GunFire\Main\Client\Bin\Shader_VtxNorTex.cso</FullPath>
+      <FullPath>C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Client\Bin\Shader_VtxNorTex.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\ya960\OneDrive\바탕 화면\GunFire\Main\Client\Bin\Shader_VtxPosTex.cso</FullPath>
+      <FullPath>C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Client\Bin\Shader_VtxPosTex.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\ya960\OneDrive\바탕 화면\GunFire\Main\Client\Bin\Shader_Particle_VtxPoint.cso</FullPath>
+      <FullPath>C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Client\Bin\Shader_Particle_VtxPoint.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\ya960\OneDrive\바탕 화면\GunFire\Main\Client\Bin\Shader_UI_VtxRect.cso</FullPath>
+      <FullPath>C:\Users\dkdlt\OneDrive\바탕 화면\GunFire_Reborn_Game\Client\Bin\Shader_UI_VtxRect.cso</FullPath>
     </ContentFile>
   </ContentFiles>
   <SatelliteDlls />

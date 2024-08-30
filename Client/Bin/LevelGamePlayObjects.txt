@@ -598,22 +598,6 @@ Scale: 1 1 1
 Rotation: 3.14159
 IsParsing: 1
 
-LayerName: Layer_Door
-PrototypeTag: Prototype_GameObject_Door
-LevelIndex: 4
-Position: 41.0199 2.9 26.019
-Scale: 0.839382 0.699985 0.528667
-Rotation: 1.5708
-IsParsing: 1
-
-LayerName: Layer_Door
-PrototypeTag: Prototype_GameObject_Door
-LevelIndex: 4
-Position: 40.89 0 57.8999
-Scale: 0.74989 1.06996 0.498963
-Rotation: 6.28319
-IsParsing: 1
-
 LayerName: Layer_Floor_101
 PrototypeTag: Prototype_GameObject_Floor_101
 LevelIndex: 4

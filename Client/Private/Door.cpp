@@ -30,6 +30,24 @@ HRESULT CDoor::Initialize(void* pArg)
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
+	DECO_DESC* Desc = static_cast<DECO_DESC*>(pArg);
+	m_iNumDeco = Desc->iNumDeco;
+
+	switch (m_iNumDeco)
+	{
+	case 0:
+		m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 41.0199f, 2.9f, 26.019f,1.f });
+		m_pTransformCom->Set_Scaled(0.839382f, 0.699985f, 0.528667f);
+		m_pTransformCom->Rotation({ 0 ,1, 0 }, 1.5708f);
+		break;
+
+	case 1:
+		m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 40.89f, 2.600f, 57.8999f,1.f });
+		m_pTransformCom->Set_Scaled(0.74989f, 0.510f, 0.498963f);
+		m_pTransformCom->Rotation({ 0 ,1, 0 }, 6.28319f);
+		break;
+	}
+
 	return S_OK;
 }
 

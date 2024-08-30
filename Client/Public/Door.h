@@ -39,6 +39,8 @@ private:
 	_bool  m_isEnable = { false };
 	_bool  m_isMove = { true };
 
+	_uint m_iNumDeco = {0};
+
 private:
 	HRESULT Ready_Components();
 	HRESULT Bind_ShaderResources();

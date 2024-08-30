@@ -49,8 +49,8 @@ HRESULT CLevel_GamePlay::Initialize()
 		return E_FAIL;
 
 
-	//if (FAILED(Ready_Layer_DecoObject(TEXT("Layer_Deco"))))
-	//	return E_FAIL;
+	if (FAILED(Ready_Layer_DecoObject(TEXT("Layer_Deco"))))
+		return E_FAIL;
 
 	if (FAILED(ParseInitialize()))
 		return E_FAIL;
@@ -294,21 +294,15 @@ return S_OK;
 
 HRESULT CLevel_GamePlay::Ready_Layer_DecoObject(const _wstring& strLayerTag)
 {
+	CElement::DECO_DESC DecoDesc = {};
 
-	CElement::DECO_DESC Desc = {};
-
-	_uint m_iNumDeco = { 1 };
-
-	/*for (int i = 0; i < m_iNumDeco; ++i)
+	for (int i = 0; i < 2; ++i)
 	{
-		Desc.iNumDeco = i;
-
-		if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Door"), TEXT("Layer_Door"), &Desc)))
-			return E_FAIL;
-	}*/
-
-	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Stair1"), TEXT("Layer_Wall_Stage2"), &Desc)))
-
+		DecoDesc.iNumDeco = i;
+		if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Door"), strLayerTag, &DecoDesc)))
+			return E_FAIL; 
+	}
+	
 	return S_OK;
 }
 
