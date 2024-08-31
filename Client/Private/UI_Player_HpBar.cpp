@@ -36,9 +36,9 @@ HRESULT CUI_Player_HpBar::Initialize(void* pArg)
 	__super::Set_UI_Setting(m_fSizeX, m_fSizeY, m_fPosX, m_fPosY);
 	m_pTransformCom->Rotation({ 0.f , 0.f, 1.f }, XMConvertToRadians(5.f));
 
-	m_pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(LEVEL_STATIC, TEXT("Layer_Player")).back());
+	m_pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(m_pGameInstance->GetLoadingLevelIndex() , TEXT("Layer_Player")).back());
 	Safe_AddRef(m_pPlayer);
-
+	
 	return S_OK;
 }
 

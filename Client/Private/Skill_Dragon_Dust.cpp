@@ -65,7 +65,7 @@ void CSkill_Dragon_Dust::Late_Update(_float fTimeDelta)
 
     _vector vPos = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
 
-    CPlayer* pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(LEVEL_STATIC, TEXT("Layer_Player")).back());
+    CPlayer* pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_Player")).back());
     _vector vPlayerPos =  pPlayer->Get_Transform()->Get_State(CTransform::STATE_POSITION);
   
     if(IsCollider(vPos, vPlayerPos , m_fDistance) && !m_bAttack && XMVectorGetY(vPlayerPos) <= 1.5f)

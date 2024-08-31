@@ -22,10 +22,16 @@ public:
 public:
 	HRESULT Change_Level(class CLevel* pNewLevel);
 	_uint GetCurrentLevelIndex();
+	_uint GetLoadingLevelIndex();
+	HRESULT SetLoadingLevelIndex(_uint _level);
 
 private:
 	class CLevel*				m_pCurrentLevel = { nullptr };	
 	class CGameInstance*		m_pGameInstance = { nullptr };
+
+private:
+	_uint m_iloadingLevelIndex = { 0 };
+
 
 public:
 	static CLevel_Manager* Create();

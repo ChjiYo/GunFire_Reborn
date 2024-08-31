@@ -74,7 +74,7 @@ _float CSkill_Monster::Get_Random(_float fMin, _float fMax)
 
 void CSkill_Monster::Offset_Rotation(_vector vOffsetRandomPos)
 {
-	CTransform* pPlayerTransform = static_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_STATIC, TEXT("Layer_Player"), TEXT("Com_Transform")));
+	CTransform* pPlayerTransform = static_cast<CTransform*>(m_pGameInstance->Get_Component(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_Player"), TEXT("Com_Transform")));
 
 	m_vPlayerPos = pPlayerTransform->Get_State(CTransform::STATE_POSITION);
 	m_vPlayerPos += vOffsetRandomPos;

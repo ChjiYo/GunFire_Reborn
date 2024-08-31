@@ -33,7 +33,9 @@ public: /* For.Input_Device */
 
 public: /* For.Level_Manager */
 	HRESULT Change_Level(class CLevel* pNewLevel);
+	_uint GetLoadingLevelIndex();
 	_uint GetCurrentLevelIndex();
+	HRESULT SetLoadingLevelIndex(_uint _level);
 
 public: /* For.Timer_Manager */
 	HRESULT Add_Timer(const _wstring& strTimerTag);

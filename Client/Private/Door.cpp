@@ -80,8 +80,8 @@ void CDoor::Update(_float fTimeDelta)
 	m_pColliderCom->Update(m_pTransformCom->Get_WorldMatrix());
 	m_pModelCom->Play_Animation(m_fAnimFrame);
 
-	CCollider* pPlayerCollider = dynamic_cast<CCollider*>(m_pGameInstance->Get_Component(LEVEL_STATIC, TEXT("Layer_Player"), TEXT("Com_Collider")));
-	CTransform* pPayerTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_STATIC, TEXT("Layer_Player"), TEXT("Com_Transform")));
+	CCollider* pPlayerCollider = dynamic_cast<CCollider*>(m_pGameInstance->Get_Component(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_Player"), TEXT("Com_Collider")));
+	CTransform* pPayerTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_Player"), TEXT("Com_Transform")));
 
 	if (m_pColliderCom->isCollision(pPlayerCollider))
 	{

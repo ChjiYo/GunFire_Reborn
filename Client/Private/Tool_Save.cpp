@@ -55,14 +55,14 @@ HRESULT CTool_Save::Save_Button()
 
 HRESULT CTool_Save::Save_Navi()
 {
-	_uint currentLevel = m_pGameInstance->GetCurrentLevelIndex();
+	_uint currentLevel = m_pGameInstance->GetLoadingLevelIndex();
 
 	CTerrain* pTerrain = dynamic_cast<CTerrain*>(m_pGameInstance->Get_Layer(currentLevel, TEXT("Layer_BackGround")).back());
 	CNavigation* TerrainNavi = dynamic_cast<CNavigation*>(m_pGameInstance->Get_Component(currentLevel, TEXT("Layer_BackGround"), TEXT("Com_Navigation")));
 
 	switch (currentLevel)
 	{
-<<<<<<< HEAD
+
 	case LEVEL_GAMEPLAY:
 		TerrainNavi->Save_Navi();
 		break;
@@ -71,24 +71,14 @@ HRESULT CTool_Save::Save_Navi()
 		TerrainNavi->Save_DesertNavi();
 		break;
 	}
-=======
-	case 4:
-		TerrainNavi->Save_Navi();
-		break;
 
-	case 5:
-		TerrainNavi->Save_DesertNavi();
-		break;
-	}
-
->>>>>>> Main/Add
 
 	return S_OK;
 }
 
 HRESULT CTool_Save::Delete_Navi()
 {
-	_uint currentLevel = m_pGameInstance->GetCurrentLevelIndex();
+	_uint currentLevel = m_pGameInstance->GetLoadingLevelIndex();
 
 	CTerrain* pTerrain = dynamic_cast<CTerrain*>(m_pGameInstance->Get_Layer(currentLevel, TEXT("Layer_BackGround")).back());
 	CNavigation* TerrainNavi = dynamic_cast<CNavigation*>(m_pGameInstance->Get_Component(currentLevel, TEXT("Layer_BackGround"), TEXT("Com_Navigation")));
@@ -103,7 +93,7 @@ HRESULT CTool_Save::Save_Button_Pressed(bool* bShowSaveSuccessMessage, bool* bSh
 	vector<FILEDATA> vecFileData;
 
 	// 레벨 정보 
-	_uint currentLevel = m_pGameInstance->GetCurrentLevelIndex();
+	_uint currentLevel = m_pGameInstance->GetLoadingLevelIndex();
 
 	vector<pair<wstring, list<CGameObject*>>> objectLayersVector;
 	m_pGameInstance->AddObjectLayersVector(currentLevel, &objectLayersVector);

@@ -57,13 +57,9 @@ HRESULT CUI_Weapon_Icon::Render()
 	if (FAILED(__super::Bind_ShaderResources()))
 		return E_FAIL;
 
-<<<<<<< HEAD
-	if (FAILED(m_pTextureCom->Bind_ShaderResource(m_pShaderCom, "g_Texture", m_pPlayer->Get_WeaponID())))
-=======
-	CPlayer* pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(LEVEL_STATIC, TEXT("Layer_Player")).back());
 
-	if (FAILED(m_pTextureCom->Bind_ShaderResource(m_pShaderCom, "g_Texture", pPlayer->Get_WeaponID())))
->>>>>>> Main/Add
+	if (FAILED(m_pTextureCom->Bind_ShaderResource(m_pShaderCom, "g_Texture", m_pPlayer->Get_WeaponID())))
+
 		return E_FAIL;
 
 	if (FAILED(m_pShaderCom->Begin(0)))

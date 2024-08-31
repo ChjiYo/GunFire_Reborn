@@ -183,6 +183,22 @@ _uint CGameInstance::GetCurrentLevelIndex()
 	return m_pLevel_Manager->GetCurrentLevelIndex();
 }
 
+_uint CGameInstance::GetLoadingLevelIndex()
+{
+	if (nullptr == m_pLevel_Manager)
+		return E_FAIL;
+
+	return m_pLevel_Manager->GetLoadingLevelIndex();
+}
+
+HRESULT CGameInstance::SetLoadingLevelIndex(_uint _level)
+{
+	if (nullptr == m_pLevel_Manager)
+		return E_FAIL;
+
+	return m_pLevel_Manager->SetLoadingLevelIndex(_level);
+}
+
 HRESULT CGameInstance::Add_Timer(const _wstring & strTimerTag)
 {
 	return m_pTimer_Manager->Add_Timer(strTimerTag);	

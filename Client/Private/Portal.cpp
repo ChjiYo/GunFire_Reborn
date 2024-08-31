@@ -57,7 +57,7 @@ void CPortal::Late_Update(_float fTimeDelta)
 {
 	__super::Late_Update(fTimeDelta);
 
-	CCollider* pPlayerCollier = dynamic_cast<CCollider*>(m_pGameInstance->Get_Component(LEVEL_STATIC, TEXT("Layer_Player"), TEXT("Com_Collider")));
+	CCollider* pPlayerCollier = dynamic_cast<CCollider*>(m_pGameInstance->Get_Component(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_Player"), TEXT("Com_Collider")));
 
 	if (m_pColliderCom->isCollision(pPlayerCollier))
 	{

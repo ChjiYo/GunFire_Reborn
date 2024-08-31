@@ -39,24 +39,17 @@ void CMonster::Priority_Update(_float fTimeDelta)
 
 void CMonster::Update(_float fTimeDelta)
 {
-<<<<<<< HEAD
 	_float fNNaviHeight = m_pNavigationCom->Navi_Height(m_pTransformCom);
 
 	m_pTransformCom->Gravity(0.2f, fNNaviHeight + 0.25f, fTimeDelta);
-=======
-	_float fHeight = m_pNavigationCom->Navi_Height(m_pTransformCom);
-	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetY(m_pTransformCom->Get_State(CTransform::STATE_POSITION), fHeight + m_pTransformCom->Get_Scaled().y * 0.5f));
-	m_pTransformCom->Gravity(0.2f, fHeight + m_pTransformCom->Get_Scaled().y * 0.5f, fTimeDelta);
 
-	_vector vPos = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
->>>>>>> Main/Add
 }
 
 void CMonster::Late_Update(_float fTimeDelta)
 {
 
-	CCollider* pTargetCollider = dynamic_cast<CCollider*>(m_pGameInstance->Get_Component(LEVEL_STATIC, TEXT("Layer_Player"), TEXT("Com_Collider"), 0));
-	CPlayer* pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(LEVEL_STATIC, TEXT("Layer_Player")).front());
+	CCollider* pTargetCollider = dynamic_cast<CCollider*>(m_pGameInstance->Get_Component(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_Player"), TEXT("Com_Collider"), 0));
+	CPlayer* pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_Player")).front());
 
 	if (m_pColliderCom[COLL_AABB]->isCollision(pTargetCollider) && m_fDamageDelay > 0.5f)
 	{
@@ -64,10 +57,6 @@ void CMonster::Late_Update(_float fTimeDelta)
 		m_fDamageDelay = 0.f;
 	}
 
-<<<<<<< HEAD
-
-=======
->>>>>>> Main/Add
 }
 
 HRESULT CMonster::Render()

@@ -174,7 +174,7 @@ void CWeapon_Player_Sniper::Key_State(_float fTimeDelta)
 
     if (m_fZoomTimer > fLastTime)
     {
-        CCamera_Free* pCamera = dynamic_cast<CCamera_Free*>(m_pGameInstance->Get_Layer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Layer_Camera")).back());
+        CCamera_Free* pCamera = dynamic_cast<CCamera_Free*>(m_pGameInstance->Get_Layer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_Camera")).back());
         pCamera->Set_CameraType(CCamera_Free::SCOPE);
 
         if (m_pGameInstance->Key_Down(VK_RBUTTON))
@@ -197,7 +197,7 @@ void CWeapon_Player_Sniper::Create_Bullet()
 {
     CSkill::SKILL_DESC	Desc = {};
 
-    Desc.pOriginTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_STATIC, TEXT("Layer_Player"), TEXT("Com_Transform")));
+    Desc.pOriginTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_Player"), TEXT("Com_Transform")));
     Desc.fSpeedPerSec = 5.f;
     Desc.fRotationPerSec = XMConvertToRadians(90.0f);
 

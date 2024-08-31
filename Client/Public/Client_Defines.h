@@ -9,11 +9,8 @@ namespace Client
 	const unsigned int	g_iWinSizeX = { 1600 };
 	const unsigned int	g_iWinSizeY = { 900 };	
 
-<<<<<<< HEAD
 	enum LEVELID { LEVEL_STATIC , LEVEL_BIN ,LEVEL_LOADING, LEVEL_LOGO, LEVEL_GAMEPLAY , LEVEL_BOSS , LEVEL_END };
-=======
-	enum LEVELID { LEVEL_STATIC, LEVEL_BIN,LEVEL_LOADING, LEVEL_LOGO, LEVEL_GAMEPLAY , LEVEL_BOSS, LEVEL_END };
->>>>>>> Main/Add
+
 }
 
 extern HINSTANCE	g_hInst;

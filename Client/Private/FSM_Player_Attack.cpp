@@ -41,13 +41,10 @@ void CFSM_Player_Attack::Enter()
 	__super::Enter();
 
 	//CSkill::SKILL_DESC	Desc = {};
-<<<<<<< HEAD
+
 	//Desc.pPlayerTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Player"), TEXT("Com_Transform")));
-	//Desc.pCamTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Layer_Camera"), TEXT("Com_Transform")));
-=======
-	//Desc.pPlayerTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_STATIC, TEXT("Layer_Player"), TEXT("Com_Transform")));
-	//Desc.pCamTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Camera"), TEXT("Com_Transform")));
->>>>>>> Main/Add
+	//Desc.pCamTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_Camera"), TEXT("Com_Transform")));
+
 	//Desc.fSpeedPerSec = 5.f;
 	//Desc.fRotationPerSec = XMConvertToRadians(90.0f);
 	//

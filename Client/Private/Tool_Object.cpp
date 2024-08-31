@@ -82,7 +82,7 @@ HRESULT CTool_Object::Layer_ObjectList_Tab()
 
 HRESULT CTool_Object::Setting_Tab()
 {
-	_uint currentLevel = m_pGameInstance->GetCurrentLevelIndex();
+	_uint currentLevel = m_pGameInstance->GetLoadingLevelIndex();
 
 	if (ImGui::BeginTabItem("Setting")) { // "ObjectList" 탭 아이템 시작
 		//원형 오브젝트 창
@@ -182,7 +182,7 @@ HRESULT CTool_Object::Show_PrototypeObjects()
 
 HRESULT CTool_Object::Show_LayerObjects()
 {
-	_uint currentLevel = m_pGameInstance->GetCurrentLevelIndex();
+	_uint currentLevel = m_pGameInstance->GetLoadingLevelIndex();
 	ImGui::Columns(2, NULL, true); // 두 개의 컬럼 생성
 
 	static int selectedItem = -1; // 초기 선택 항목 없음
@@ -579,7 +579,7 @@ HRESULT CTool_Object::Show_LayerObjects()
 
 HRESULT CTool_Object::Click_Camera_FreeView(_bool bColliderToggle)
 {
-	CCamera_Free* pCamera = dynamic_cast<CCamera_Free*>(m_pGameInstance->Get_Layer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Layer_Camera")).back());
+	CCamera_Free* pCamera = dynamic_cast<CCamera_Free*>(m_pGameInstance->Get_Layer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_Camera")).back());
 	bColliderToggle ? pCamera->Set_CameraType(CCamera_Free::PLAYER) : pCamera->Set_CameraType(CCamera_Free::FREE);
 
 	return S_OK;
@@ -592,7 +592,7 @@ HRESULT CTool_Object::Light_Mode()
 
 HRESULT CTool_Object::SpawnObjectAtZero(const std::string& type)
 {
-	_uint currentLevel = m_pGameInstance->GetCurrentLevelIndex();
+	_uint currentLevel = m_pGameInstance->GetLoadingLevelIndex();
 
 	// 문자열에서 "Prototype_GameObject_" 접두어 제거
 	string prefix = "Prototype_GameObject_";
@@ -635,7 +635,7 @@ HRESULT CTool_Object::Click_Button_Release(std::vector<CGameObject*>& selectedGa
 HRESULT CTool_Object::CopySelectedObject(const std::wstring& layerName, CGameObject* sourceObject)
 {
 	// Get the current level index
-	_uint currentLevel = m_pGameInstance->GetCurrentLevelIndex();
+	_uint currentLevel = m_pGameInstance->GetLoadingLevelIndex();
 
 	// Extract the prototype suffix from the layer name
 	std::wstring prototypeSuffix = layerName.substr(6); // "Layer_" 이후의 문자열 추출
@@ -665,7 +665,7 @@ HRESULT CTool_Object::CopySelectedObject(const std::wstring& layerName, CGameObj
 HRESULT CTool_Object::PickingSelectedObject(const wstring& layerName, CGameObject* sourceObject ,_float3 vPos)
 {
 	// Get the current level index
-	_uint currentLevel = m_pGameInstance->GetCurrentLevelIndex();
+	_uint currentLevel = m_pGameInstance->GetLoadingLevelIndex();
 
 	// Extract the prototype suffix from the layer name
 	std::wstring prototypeSuffix = layerName.substr(6); // "Layer_" 이후의 문자열 추출
@@ -691,7 +691,7 @@ HRESULT CTool_Object::PickingSelectedObject(const wstring& layerName, CGameObjec
 
 _float3 CTool_Object::PickingPos()
 {
-	_uint currentLevel = m_pGameInstance->GetCurrentLevelIndex();
+	_uint currentLevel = m_pGameInstance->GetLoadingLevelIndex();
 
 	CTerrain* pTerrain = dynamic_cast<CTerrain*>(m_pGameInstance->Get_Layer(currentLevel, TEXT("Layer_BackGround")).front());
 	m_vPickingPos = pTerrain->Get_TerrainPicking();

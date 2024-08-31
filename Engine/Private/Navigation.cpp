@@ -330,11 +330,8 @@ HRESULT CNavigation::Save_DesertNavi()
 {
 	_ulong			dwByte = { 0 };
 
-<<<<<<< HEAD
-	HANDLE			hFile = CreateFile(TEXT("../Bin/DataFiles/NavigationDesert.dat"), GENERIC_WRITE, 0, nullptr, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, 0);
-=======
 	HANDLE			hFile = CreateFile(TEXT("../Bin/DataFiles/DesertNavigation.dat"), GENERIC_WRITE, 0, nullptr, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, 0);
->>>>>>> Main/Add
+
 	if (0 == hFile)
 		return E_FAIL;
 

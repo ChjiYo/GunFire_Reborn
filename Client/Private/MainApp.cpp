@@ -93,11 +93,9 @@ void CMainApp::Update(_float fTimeDelta)
 
 	if (m_bShowTool)
 	{
-<<<<<<< HEAD
-		CCamera_Free* pCamera = dynamic_cast<CCamera_Free*>(m_pGameInstance->Get_Layer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Layer_Camera")).back());
-=======
-		CCamera_Free* pCamera = dynamic_cast<CCamera_Free*>(m_pGameInstance->Get_Layer(LEVEL_STATIC, TEXT("Layer_Camera")).back());
->>>>>>> Main/Add
+
+		CCamera_Free* pCamera = dynamic_cast<CCamera_Free*>(m_pGameInstance->Get_Layer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_Camera")).back());
+
 		pCamera->Priority_Update(fTimeDelta);
 
 		fTimeDelta = 0.f;
@@ -233,11 +231,7 @@ HRESULT CMainApp::Ready_Prototype_Component_ForStatic()
 
 	/* For.Prototype_Component_Texture_UI_Sniper_Hair */
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_STATIC, TEXT("Prototype_Component_Texture_UI_Sniper_Hair"),
-<<<<<<< HEAD
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/CrossHair/Sniper%d.png"), 2))))
-=======
-		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/CrossHair/Sniper%d.png"),2))))
->>>>>>> Main/Add
 		return E_FAIL;
 
 	/* For.Prototype_Component_Texture_UI_Sniper_Ring*/
@@ -297,20 +291,16 @@ HRESULT CMainApp::Ready_Prototype_Component_ForStatic()
 	//Prototype_Component_Texture_UI_Weapon_Icon
 
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_STATIC, TEXT("Prototype_Component_Texture_UI_Weapon_Icon"),
-<<<<<<< HEAD
+
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Weapon/UI_Weapon_Icon_%d.png"), 4))))
-=======
-		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Weapon/UI_Weapon_Icon_%d.png"),4))))
->>>>>>> Main/Add
+
 		return E_FAIL;
 
 	//Skill
 
-<<<<<<< HEAD
+
 //Prototype_Component_Texture_UI_Skill_Panel
-=======
-	//Prototype_Component_Texture_UI_Skill_Panel
->>>>>>> Main/Add
+
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_STATIC, TEXT("Prototype_Component_Texture_UI_Skill_Panel"),
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Skill/UI_Skill_Panel.png")))))
 		return E_FAIL;

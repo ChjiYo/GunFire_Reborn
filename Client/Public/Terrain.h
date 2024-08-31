@@ -50,13 +50,9 @@ protected:
 	_uint						m_iNumNaviPicking = { 0 };
 	_float3						vPoints[3] = {};
 
-<<<<<<< HEAD
+
 protected:
-=======
-	_uint						m_iTerrainLevel = {};
-private:
-	HRESULT Ready_Components();
->>>>>>> Main/Add
+
 	HRESULT Bind_ShaderResources();
 
 public:
