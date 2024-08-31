@@ -160,7 +160,7 @@ void CWeapon_Player_BoomGun::Create_Bullet()
 {
     CSkill::SKILL_DESC	Desc = {};
 
-    Desc.pOriginTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_STATIC, TEXT("Layer_Player"), TEXT("Com_Transform")));
+    Desc.pOriginTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Player"), TEXT("Com_Transform")));
     Desc.fSpeedPerSec = 10.f;
     Desc.fRotationPerSec = XMConvertToRadians(90.0f);
 

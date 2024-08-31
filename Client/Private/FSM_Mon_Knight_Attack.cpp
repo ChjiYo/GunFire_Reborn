@@ -59,7 +59,7 @@ wstring CFSM_Mon_Knight_Attack::Late_Update(_float fTimeDelta)
 
 	if (m_fAttackEndTime >= 0.65f && abs(fLength) < 2.f && m_bAttackEnd)
 	{
-		CPlayer* pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(LEVEL_STATIC, TEXT("Layer_Player")).back());
+		CPlayer* pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Player")).back());
 		pPlayer->Set_Damage(-5.f);
 		m_bAttackEnd = false;
 	}

@@ -17,7 +17,7 @@ CFSM_Player_Dash::CFSM_Player_Dash(const CFSM_Player_Dash& pPrototype)
 
 HRESULT CFSM_Player_Dash::Initialize()
 {
-	m_pPlayerTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_STATIC, TEXT("Layer_Player"), TEXT("Com_Transform")));
+	m_pPlayerTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Player"), TEXT("Com_Transform")));
 	Safe_AddRef(m_pPlayerTransform);
 
 	return S_OK;

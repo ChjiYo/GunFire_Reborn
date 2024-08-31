@@ -139,11 +139,12 @@ HRESULT CLevel_GamePlay::Ready_Layer_Camera(const _wstring & strLayerTag)
 	CameraDesc.fFar = 1000.f;
 	CameraDesc.fSpeedPerSec = 5.f;
 	CameraDesc.fRotationPerSec = XMConvertToRadians(90.0f);
+
 	CameraDesc.fSensor = 0.1f;
 
-	CameraDesc.pPlayerTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_STATIC, TEXT("Layer_Player"), TEXT("Com_Transform")));
+	CameraDesc.pPlayerTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Player"), TEXT("Com_Transform")));
 
-	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_STATIC, TEXT("Prototype_GameObject_Camera_Free"), strLayerTag, &CameraDesc)))
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Camera_Free"), strLayerTag, &CameraDesc)))
 		return E_FAIL;
 
 	return S_OK;
@@ -217,7 +218,7 @@ HRESULT CLevel_GamePlay::Ready_UI_WeaponState()
 		return E_FAIL;
 
 	
-	UIDesc.pGameObject = m_pGameInstance->Get_Layer(LEVEL_STATIC, TEXT("Layer_Player")).back();
+	UIDesc.pGameObject = m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Player")).back();
 
 	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Weapon_Icon"), TEXT("Layer_UI_Weapon_Icon"),&UIDesc)))
 		return E_FAIL;
@@ -264,7 +265,7 @@ HRESULT CLevel_GamePlay::Ready_Layer_Player(const wstring& strLayerTag)
 	Desc.fSpeedPerSec = 5.f;
 	Desc.fRotationPerSec = XMConvertToRadians(90.0f);
 
- 	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_STATIC, TEXT("Prototype_GameObject_Player"), strLayerTag, &Desc)))
+ 	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Player"), strLayerTag, &Desc)))
 		return E_FAIL;
 
 	return S_OK;

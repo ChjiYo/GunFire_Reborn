@@ -355,6 +355,7 @@ HRESULT CLoader::Loading_For_StaticLevel()
 		return E_FAIL;
 
 
+
 	lstrcpy(m_szLoadingText, TEXT("객체 원형을 로드하는 중입니다."));
 
 	/* For.Prototype_GameObject_Camera_Free */
