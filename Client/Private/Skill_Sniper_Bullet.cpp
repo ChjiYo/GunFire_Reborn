@@ -108,7 +108,7 @@ HRESULT CSkill_Sniper_Bullet::Ready_Components()
     BoundingDesc.vDir = m_pOriginTransform->Get_State(CTransform::STATE_LOOK);
     BoundingDesc.fDist = 15.f;
 
-    if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Collider_Ray"),
+    if (FAILED(__super::Add_Component(LEVEL_STATIC, TEXT("Prototype_Component_Collider_Ray"),
         TEXT("Com_ColliderOBB"), reinterpret_cast<CComponent**>(&m_pColliderCom), &BoundingDesc)))
         return E_FAIL;
 

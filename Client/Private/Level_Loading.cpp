@@ -4,6 +4,7 @@
 #include "Loader.h"
 #include "Level_Logo.h"
 #include "Level_GamePlay.h"
+#include "Level_Boss.h"
 
 #include "GameInstance.h"
 
@@ -38,6 +39,10 @@ void CLevel_Loading::Update(_float fTimeDelta)
 			break;
 		case LEVEL_GAMEPLAY:
 			pNextLevel = CLevel_GamePlay::Create(m_pDevice, m_pContext);
+			break;
+
+		case LEVEL_BOSS:
+			pNextLevel = CLevel_Boss::Create(m_pDevice, m_pContext);
 			break;
 
 		default:
