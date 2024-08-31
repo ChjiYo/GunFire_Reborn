@@ -2,6 +2,7 @@
 
 #include "Layer.h"
 #include "GameObject.h"
+#include "Navigation.h"
 #include <locale>
 #include <codecvt>
 
@@ -141,6 +142,17 @@ HRESULT CObject_Manager::AddObjectLayersVector(_uint _level, vector<pair < wstri
 	return S_OK;
 }
 
+HRESULT CObject_Manager::Static_Object_Component_Clear()
+{
+	for (auto& iter : m_pLayers[0])
+	{
+		dynamic_cast<CNavigation*>(iter.second->Get_Component(TEXT("Com_Navigation"), 0))->Clear_Navi();
+		
+	}
+
+	return S_OK;
+}
+
 CGameObject* CObject_Manager::GetObjectByIndex(_uint iLevelIndex, const wstring& strLayerTag, _uint index)
 {
 	CLayer* layer = Find_Layer(iLevelIndex, strLayerTag);
@@ -203,7 +215,7 @@ HRESULT CObject_Manager::Clear_Resources(_uint iLevelIndex)
 		Safe_Release(Pair.second);
 
 	m_pLayers[iLevelIndex].clear();
-
+	
 	return S_OK;
 }
 

@@ -25,6 +25,8 @@ public:
 	HRESULT AddObjectPrototypesVector(vector<string>* _pVector);
 	HRESULT AddObjectLayersVector(_uint, vector<pair < string, list<CGameObject*>>>* pVector);
 	HRESULT AddObjectLayersVector(_uint _level, vector<pair < wstring, list<CGameObject*>>>* pVector);
+	HRESULT Static_Object_Component_Clear();
+
 	CGameObject* GetObjectByIndex(_uint iLevelIndex, const wstring& strLayerTag, _uint index);
 	class CGameObject* Clone_GameObject(const wstring& strPrototypeTag, void* pArg = nullptr);
 
@@ -34,6 +36,7 @@ public:
 
 	HRESULT Clear_Resources(_uint iLevelIndex);
 	class list<class CGameObject*> Get_Layer(_uint iLevelIndex, const wstring& strLayerTag);
+	
 private:
 	map<const wstring, class CGameObject*>		m_Prototypes;
 

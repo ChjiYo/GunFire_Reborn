@@ -27,7 +27,9 @@ public:
 	_bool is_Move(_fvector vPosition);
 	HRESULT Add_Sell(_float3 fPoint[3]);
 	HRESULT Save_Navi();
+	HRESULT Save_DesertNavi();
 	HRESULT Delete_Navi();
+	HRESULT Clear_Navi();
 	vector<class CCell*> Get_Cell() { return m_Cells; }
 	
 private:

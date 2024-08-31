@@ -35,6 +35,9 @@ HRESULT CNavigation::Initialize_Prototype(const _tchar * pNavigationDataFilePath
 		return E_FAIL;
 
 	_float3			vPoints[3] = {};
+
+	if (!m_Cells.empty())
+		m_Cells.clear();
 	
 	while (true)
 	{
@@ -323,6 +326,30 @@ HRESULT CNavigation::Save_Navi()
 	return S_OK; 
 }
 
+HRESULT CNavigation::Save_DesertNavi()
+{
+	_ulong			dwByte = { 0 };
+
+	HANDLE			hFile = CreateFile(TEXT("../Bin/DataFiles/NavigationDesert.dat"), GENERIC_WRITE, 0, nullptr, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, 0);
+	if (0 == hFile)
+		return E_FAIL;
+
+	_float3			vPoints[3];
+
+	for (auto& iter : m_Cells)
+	{
+		vPoints[0] = iter->Get_Point(0);
+		vPoints[1] = iter->Get_Point(1);
+		vPoints[2] = iter->Get_Point(2);
+
+		WriteFile(hFile, vPoints, sizeof(_float3) * 3, &dwByte, nullptr);
+	}
+
+	CloseHandle(hFile);
+
+	return S_OK;
+}
+
 HRESULT CNavigation::Delete_Navi()
 {
 	if (m_Cells.size() == 0)
@@ -330,6 +357,19 @@ HRESULT CNavigation::Delete_Navi()
 
 	Safe_Release(m_Cells.back());
 	m_Cells.pop_back();
+
+	return S_OK;
+}
+
+HRESULT CNavigation::Clear_Navi()
+{
+	if (m_Cells.size() == 0)
+		return E_FAIL;
+
+	for (auto& pCell : m_Cells)
+		Safe_Release(pCell);
+
+	m_Cells.clear();
 
 	return S_OK;
 }

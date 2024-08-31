@@ -59,7 +59,17 @@ HRESULT CTool_Save::Save_Navi()
 
 	CTerrain* pTerrain = dynamic_cast<CTerrain*>(m_pGameInstance->Get_Layer(currentLevel, TEXT("Layer_BackGround")).back());
 	CNavigation* TerrainNavi = dynamic_cast<CNavigation*>(m_pGameInstance->Get_Component(currentLevel, TEXT("Layer_BackGround"), TEXT("Com_Navigation")));
-	TerrainNavi->Save_Navi();
+
+	switch (currentLevel)
+	{
+	case LEVEL_GAMEPLAY:
+		TerrainNavi->Save_Navi();
+		break;
+
+	case LEVEL_BOSS:
+		TerrainNavi->Save_DesertNavi();
+		break;
+	}
 
 	return S_OK;
 }

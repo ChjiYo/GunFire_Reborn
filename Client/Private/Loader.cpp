@@ -382,13 +382,7 @@ HRESULT CLoader::Loading_For_LogoLevel()
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_LOGO, TEXT("Prototype_Component_Texture_Logo"),
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Logo/UI_Login_Logo.png")))))
 		return E_FAIL;
-	
 
-	/* 네비게이션을 로드한다. */
-	lstrcpy(m_szLoadingText, TEXT("네비게이션을 로딩 중 입니다."));
-	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Navigation"),
-		CNavigation::Create(m_pDevice, m_pContext, TEXT("../Bin/DataFiles/Navigation.dat")))))
-		return E_FAIL;
 
 	/* 모델을 로드한다. */
 	lstrcpy(m_szLoadingText, TEXT("모델을 로딩 중 입니다."));
@@ -413,6 +407,12 @@ HRESULT CLoader::Loading_For_LogoLevel()
 HRESULT CLoader::Loading_For_GamePlayLevel()
 {
 	/* 게임플레이레벨용 자원을 로드하자. */
+
+		/* 네비게이션을 로드한다. */
+	lstrcpy(m_szLoadingText, TEXT("네비게이션을 로딩 중 입니다."));
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Navigation"),
+		CNavigation::Create(m_pDevice, m_pContext, TEXT("../Bin/DataFiles/Navigation.dat")))))
+		return E_FAIL;
 
 	lstrcpy(m_szLoadingText, TEXT("컴포넌트를 로딩 중 입니다."));
 
@@ -977,10 +977,22 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 
 HRESULT CLoader::Loading_For_BossLevel()
 {
+
+	/* 네비게이션을 로드한다. */
+
+	/* Prototype_Component_Navigation_Desert */
+	lstrcpy(m_szLoadingText, TEXT("네비게이션을 로딩 중 입니다."));
+
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Navigation_Desert"),
+		CNavigation::Create(m_pDevice, m_pContext, TEXT("../Bin/DataFiles/Navigation_Desert.dat")))))
+		return E_FAIL;
+
 	/* For.Prototype_GameObject_Terrain_Boss */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Terrain_Boss"),
 		CTerrain_Boss::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
+
+
 
 
 	m_isFinished = true;
