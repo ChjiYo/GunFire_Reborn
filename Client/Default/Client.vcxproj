@@ -216,6 +216,7 @@
     <ClInclude Include="..\public\Item.h" />
     <ClInclude Include="..\public\Item_Sniper.h" />
     <ClInclude Include="..\public\Item_Weapon.h" />
+    <ClInclude Include="..\public\Level_Boss.h" />
     <ClInclude Include="..\public\Mon_Deash_Boom.h" />
     <ClInclude Include="..\Public\Door.h" />
     <ClInclude Include="..\public\Mon_Dragon.h" />
@@ -376,6 +377,7 @@
     <ClCompile Include="..\private\Item.cpp" />
     <ClCompile Include="..\private\Item_Sniper.cpp" />
     <ClCompile Include="..\private\Item_Weapon.cpp" />
+    <ClCompile Include="..\private\Level_Boss.cpp" />
     <ClCompile Include="..\private\Mon_Deash_Boom.cpp" />
     <ClCompile Include="..\Private\Door.cpp" />
     <ClCompile Include="..\private\Mon_Dragon.cpp" />

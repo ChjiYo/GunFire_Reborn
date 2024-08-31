@@ -39,7 +39,9 @@ void CMonster::Priority_Update(_float fTimeDelta)
 
 void CMonster::Update(_float fTimeDelta)
 {
+	_float fNNaviHeight = m_pNavigationCom->Navi_Height(m_pTransformCom);
 
+	m_pTransformCom->Gravity(0.2f, fNNaviHeight + 0.25f, fTimeDelta);
 }
 
 void CMonster::Late_Update(_float fTimeDelta)
@@ -53,7 +55,7 @@ void CMonster::Late_Update(_float fTimeDelta)
 		m_fDamageDelay = 0.f;
 	}
 
-	m_pTransformCom->Gravity(0.2f, 0.25f, fTimeDelta);
+
 }
 
 HRESULT CMonster::Render()

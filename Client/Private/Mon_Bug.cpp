@@ -67,6 +67,8 @@ void CMon_Bug::Priority_Update(_float fTimeDelta)
 
 void CMon_Bug::Update(_float fTimeDelta)
 {
+	__super::Update(fTimeDelta);
+
 	m_pColliderCom[COLL_AABB]->Update(m_pTransformCom->Get_WorldMatrix());
 	
 	Destroy();

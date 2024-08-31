@@ -520,6 +520,9 @@
     <Filter Include="02.GameObjects\Element\Stair\Stair101\Addon">
       <UniqueIdentifier>{6b594e75-82d8-4009-aeeb-390923e146be}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Level\02.Boss">
+      <UniqueIdentifier>{aa948b1d-125e-4390-92e1-3e88c39bdf4f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -990,6 +993,9 @@
     <ClInclude Include="..\public\Stair101_Addon.h">
       <Filter>02.GameObjects\Element\Stair\Stair101\Addon</Filter>
     </ClInclude>
+    <ClInclude Include="..\public\Level_Boss.h">
+      <Filter>01.Level\02.Boss</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -1444,6 +1450,9 @@
     </ClCompile>
     <ClCompile Include="..\private\Stair101_Addon.cpp">
       <Filter>02.GameObjects\Element\Stair\Stair101\Addon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Level_Boss.cpp">
+      <Filter>01.Level\02.Boss</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
