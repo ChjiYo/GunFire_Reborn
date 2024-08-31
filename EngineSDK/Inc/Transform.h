@@ -69,7 +69,7 @@ public:
 
 public:
 	/* Transform_Position */
-	void Go_Straight(_float fTimeDelta, class CNavigation* pNavigation = nullptr, _bool bMove = false);
+	void Go_Straight(_float fTimeDelta , class CNavigation* pNavigation = nullptr, _bool bMove = false);
 	void Go_Backward(_float fTimeDelta, class CNavigation* pNavigation = nullptr, _bool bMove = false);
 	void Go_Left(_float fTimeDelta, class CNavigation* pNavigation = nullptr, _bool bMove = false);
 	void Go_Right(_float fTimeDelta, class CNavigation* pNavigation = nullptr, _bool bMove = false);

@@ -62,6 +62,7 @@ HRESULT CTool_Save::Save_Navi()
 
 	switch (currentLevel)
 	{
+<<<<<<< HEAD
 	case LEVEL_GAMEPLAY:
 		TerrainNavi->Save_Navi();
 		break;
@@ -70,6 +71,17 @@ HRESULT CTool_Save::Save_Navi()
 		TerrainNavi->Save_DesertNavi();
 		break;
 	}
+=======
+	case 4:
+		TerrainNavi->Save_Navi();
+		break;
+
+	case 5:
+		TerrainNavi->Save_DesertNavi();
+		break;
+	}
+
+>>>>>>> Main/Add
 
 	return S_OK;
 }
@@ -153,6 +165,10 @@ HRESULT CTool_Save::Save_Button_Pressed(bool* bShowSaveSuccessMessage, bool* bSh
 
 	case LEVEL_GAMEPLAY:
 		filePath = L"../Bin/LevelGamePlayObjects.txt";
+		break;
+
+	case LEVEL_BOSS:
+		filePath = L"../Bin/LevelBossObjects.txt";
 		break;
 
 	default:

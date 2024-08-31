@@ -53,7 +53,7 @@ HRESULT CComponent_Manager::Clear_Resources(_uint iLevelIndex)
 
 	m_pPrototypes[iLevelIndex].clear();
 
-	return S_OK;
+ 	return S_OK;
 }
 
 CComponent * CComponent_Manager::Find_Prototype(_uint iLevelIndex, const _wstring & strPrototypeTag)

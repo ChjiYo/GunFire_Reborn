@@ -35,7 +35,7 @@ HRESULT CLevel_Manager::Change_Level(CLevel * pNewLevel)
 	if(nullptr != m_pCurrentLevel)
 		m_pGameInstance->Clear_LevelResources(m_pCurrentLevel->Get_LevelIndex());
 
-	Safe_Release(m_pCurrentLevel);
+  	Safe_Release(m_pCurrentLevel);
 
 
 	m_pCurrentLevel = pNewLevel;

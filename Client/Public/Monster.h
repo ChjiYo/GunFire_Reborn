@@ -59,6 +59,7 @@ protected:
 
 	MON_DESC	m_tMonDesc = {};
 	_float		m_fDamageDelay = { 0.f };
+	_bool		m_isMove = { false };
 
 public:
 	virtual void Free() override;

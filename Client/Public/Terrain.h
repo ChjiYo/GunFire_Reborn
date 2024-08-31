@@ -15,6 +15,12 @@ BEGIN(Client)
 class CTerrain abstract : public CGameObject
 {
 public:
+	typedef struct : public  CGameObject::GAMEOBJECT_DESC
+	{
+		_uint TerrainLevel = {};
+	}TERRAIN_DESC;
+
+public:
 	enum TEXTURETEX { TEX_DIFFUSE, TEX_MASK, TEX_BRUSH, TEX_END };
 
 protected:
@@ -44,7 +50,13 @@ protected:
 	_uint						m_iNumNaviPicking = { 0 };
 	_float3						vPoints[3] = {};
 
+<<<<<<< HEAD
 protected:
+=======
+	_uint						m_iTerrainLevel = {};
+private:
+	HRESULT Ready_Components();
+>>>>>>> Main/Add
 	HRESULT Bind_ShaderResources();
 
 public:

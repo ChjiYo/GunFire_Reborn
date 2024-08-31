@@ -12,6 +12,7 @@
 
 #include "Mon_Archer.h"
 #include "Skill.h"
+#include "Terrain.h"
 
 CLevel_GamePlay::CLevel_GamePlay(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	: CLevel{ pDevice, pContext } 
@@ -21,7 +22,7 @@ CLevel_GamePlay::CLevel_GamePlay(ID3D11Device* pDevice, ID3D11DeviceContext* pCo
 HRESULT CLevel_GamePlay::Initialize()
 {
 	m_iLevelIndex = LEVEL_GAMEPLAY;
-
+	
 	if (FAILED(Ready_Lights()))
 		return E_FAIL;
 
@@ -64,10 +65,17 @@ HRESULT CLevel_GamePlay::Initialize()
 
 void CLevel_GamePlay::Update(_float fTimeDelta)
 {
+<<<<<<< HEAD
 	if (m_pGameInstance->Key_Down('Y'))
 	{
 		if (FAILED(m_pGameInstance->Change_Level(CLevel_Loading::Create(m_pDevice, m_pContext, LEVEL_BOSS))))
 			return;
+=======
+
+	if (m_pGameInstance->Key_Down('Y'))
+	{
+		m_pGameInstance->Change_Level(CLevel_Loading::Create(m_pDevice, m_pContext, LEVEL_BOSS));
+>>>>>>> Main/Add
 	}
 }
 
@@ -119,7 +127,14 @@ HRESULT CLevel_GamePlay::Ready_Lights()
 
 HRESULT CLevel_GamePlay::Ready_Layer_BackGround(const _wstring & strLayerTag)
 {
+<<<<<<< HEAD
 	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Terrain_GamePlay"), strLayerTag)))
+=======
+	CTerrain::TERRAIN_DESC Desc = {};
+	Desc.TerrainLevel = m_iLevelIndex;
+
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Terrain"), strLayerTag, &Desc)))
+>>>>>>> Main/Add
 		return E_FAIL;
 
 	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Sky"), strLayerTag)))
@@ -142,9 +157,9 @@ HRESULT CLevel_GamePlay::Ready_Layer_Camera(const _wstring & strLayerTag)
 
 	CameraDesc.fSensor = 0.1f;
 
-	CameraDesc.pPlayerTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Player"), TEXT("Com_Transform")));
+	CameraDesc.pPlayerTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_STATIC, TEXT("Layer_Player"), TEXT("Com_Transform")));
 
-	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Camera_Free"), strLayerTag, &CameraDesc)))
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_STATIC, TEXT("Prototype_GameObject_Camera_Free"), strLayerTag, &CameraDesc)))
 		return E_FAIL;
 
 	return S_OK;
@@ -265,7 +280,7 @@ HRESULT CLevel_GamePlay::Ready_Layer_Player(const wstring& strLayerTag)
 	Desc.fSpeedPerSec = 5.f;
 	Desc.fRotationPerSec = XMConvertToRadians(90.0f);
 
- 	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Player"), strLayerTag, &Desc)))
+ 	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_STATIC, TEXT("Prototype_GameObject_Player"), strLayerTag, &Desc)))
 		return E_FAIL;
 
 	return S_OK;
@@ -318,6 +333,9 @@ HRESULT CLevel_GamePlay::Ready_Layer_DecoObject(const _wstring& strLayerTag)
 	//
 	//if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Wall_Stage2"), TEXT("Layer_Wall_Stage2"))))
 	//	return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Portal"), TEXT("Layer_Portal"))))
+		return E_FAIL;
 	
 	return S_OK;
 }

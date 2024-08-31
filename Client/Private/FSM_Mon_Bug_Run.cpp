@@ -39,9 +39,12 @@ wstring CFSM_Mon_Bug_Run::Update(_float fTimeDelta)
 	_float4 vFloatPos = {};
 	XMStoreFloat4(&vFloatPos, vTargetPos);
 
+	_vector vPos = m_tDesc.pTransform->Get_State(CTransform::STATE_POSITION);
+
 	vFloatPos.y = 0.25f;
 	m_tDesc.pTransform->LookAt(XMLoadFloat4(&vFloatPos));
-	m_tDesc.pTransform->Go_StraightY(fTimeDelta, m_tDesc.pNavigation);
+
+	m_tDesc.pTransform->Go_Straight(fTimeDelta, m_tDesc.pNavigation, m_bNavi);
 
 	return TEXT("Monster_Bug_State_Run");
 }
@@ -55,7 +58,7 @@ wstring CFSM_Mon_Bug_Run::Late_Update(_float fTimeDelta)
 	XMVector4Length(vDistance);
 	_float fLength = XMVectorGetX(vDistance);
 
-	if (abs(fLength) < 1.5f)
+	if (abs(fLength) < 0.25f)
 		return TEXT("Monster_Bug_State_Attack");
 
 	return TEXT("Monster_Bug_State_Run");

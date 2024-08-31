@@ -61,6 +61,13 @@ HRESULT CLevel_Loading::Render()
 	return S_OK;
 }
 
+HRESULT CLevel_Loading::Ready_Layer_Loading(const _wstring& strLayerTag)
+{
+
+
+	return S_OK;
+}
+
 CLevel_Loading * CLevel_Loading::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, LEVELID eNextLevelID)
 {
 	CLevel_Loading*		pInstance = new CLevel_Loading(pDevice, pContext);

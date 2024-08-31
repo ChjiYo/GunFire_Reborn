@@ -20,6 +20,10 @@ public:
 	virtual void Update(_float fTimeDelta) override;
 	virtual HRESULT Render() override;
 
+
+private:
+	HRESULT Ready_Layer_Loading(const _wstring& strLayerTag);
+
 private:
 	LEVELID				m_eNextLevelID = {};
 	class CLoader*		m_pLoader = { nullptr };

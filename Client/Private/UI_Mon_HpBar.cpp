@@ -45,7 +45,11 @@ HRESULT CUI_Mon_HpBar::Initialize(void* pArg)
 
 void CUI_Mon_HpBar::Priority_Update(_float fTimeDelta)
 {
+<<<<<<< HEAD
 	CTransform* pCamTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Layer_Camera"), TEXT("Com_Transform")));
+=======
+	CTransform* pCamTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_STATIC, TEXT("Layer_Camera"), TEXT("Com_Transform")));
+>>>>>>> Main/Add
 	_float3 vPos = {};
 	XMStoreFloat3(&vPos , pCamTransform->Get_State(CTransform::STATE_POSITION));
 

@@ -33,11 +33,16 @@ void CTransform::Go_Straight(_float fTimeDelta, CNavigation* pNavigation, _bool 
 
 	vPosition += XMVector3Normalize(vLook) * m_fSpeedPerSec * fTimeDelta;
 
-	if ((nullptr == pNavigation || true == pNavigation->is_Move(vPosition) || bMove))
+	if (((nullptr == pNavigation || true == pNavigation->is_Move(vPosition) || bMove)))
 	{
 		Set_State(STATE_POSITION, vPosition);
 		return;
 	}
+	else if (false == pNavigation->is_Move(vPosition))
+	{
+		int a = 10;
+	}
+
 }
 
 void CTransform::Go_Backward(_float fTimeDelta, CNavigation* pNavigation, _bool bMove)
@@ -98,6 +103,7 @@ void CTransform::Go_StraightY(_float fTimeDelta, CNavigation* pNavigation, _bool
 		Set_State(STATE_POSITION, vPosition);
 		return;
 	}
+
 }
 
 void CTransform::Go_BackwardY(_float fTimeDelta, CNavigation* pNavigation, _bool bMove)
