@@ -16,6 +16,8 @@
 #include "Door.h"
 #include "Cell.h"
 
+#include "Level_Loading.h"
+
 CPlayer::CPlayer(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
     :CContainerObject{ pDevice  , pContext }
 {
@@ -91,7 +93,7 @@ void CPlayer::Update(_float fTimeDelta)
     Player_Weapon_Change();
 
     _vector vPos = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
-    int a = 10;
+   
  
 
 }
@@ -114,16 +116,11 @@ void CPlayer::Late_Update(_float fTimeDelta)
     }
 
     m_pGameInstance->Add_RenderObject(CRenderer::RG_NONBLEND, this);
-
-#ifdef _DEBUG
-    m_pGameInstance->Add_DebugComponent(m_pColliderCom);
-    m_pGameInstance->Add_DebugComponent(m_pNavigationCom);
-#endif
-
 }
 
 HRESULT CPlayer::Render() 
 {
+
     return S_OK;
 }
 
@@ -182,9 +179,6 @@ void CPlayer::Player_Move(_float fTimeDelta)
 {
     _long		MouseMove = {};
     _bool isMove = true;
-
-    //if(!m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Door")).empty())
-       // isMove = dynamic_cast<CDoor*>(m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Door")).back())->IsMove();
 
     if (MouseMove = m_pGameInstance->Get_DIMouseMove(DIMM_X))
     {
@@ -259,12 +253,6 @@ void CPlayer::Player_Move(_float fTimeDelta)
         m_eWeaponID = BOOMGUN;
         m_bWeaponChange = true;
     }
-
-    //if (m_pGameInstance->Key_Down(VK_LSHIFT) || m_bDash)
-    //{
-    //    m_bDash = true;
-    //    Dash(fTimeDelta);
-    //}
 }
 
 void CPlayer::Player_Jump(_float fTimeDelta)
@@ -346,7 +334,6 @@ void CPlayer::Player_Weapon_Change()
 
 void CPlayer::Dash(_float fTimeDelta)
 {
-    //m_pTransformCom->Dash(fTimeDelta);
     m_pTransformCom->Go_StraightY(fTimeDelta);
 
 }

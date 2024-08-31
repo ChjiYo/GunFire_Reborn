@@ -4,6 +4,7 @@
 #include "Loader.h"
 #include "Level_Logo.h"
 #include "Level_GamePlay.h"
+#include "Level_Boss.h"
 
 #include "GameInstance.h"
 
@@ -40,6 +41,10 @@ void CLevel_Loading::Update(_float fTimeDelta)
 			pNextLevel = CLevel_GamePlay::Create(m_pDevice, m_pContext);
 			break;
 
+		case LEVEL_BOSS:
+			pNextLevel = CLevel_Boss::Create(m_pDevice, m_pContext);
+			break;
+
 		default:
 			return;
 		}
@@ -52,6 +57,13 @@ void CLevel_Loading::Update(_float fTimeDelta)
 HRESULT CLevel_Loading::Render()
 {
 	m_pLoader->Draw_Text();
+
+	return S_OK;
+}
+
+HRESULT CLevel_Loading::Ready_Layer_Loading(const _wstring& strLayerTag)
+{
+
 
 	return S_OK;
 }

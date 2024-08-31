@@ -68,9 +68,7 @@ void CSkill_Pistol_Bullet::Late_Update(_float fTimeDelta)
 
 HRESULT CSkill_Pistol_Bullet::Render()
 {
-#ifdef _DEBUG
-        m_pColliderCom->Render();
-#endif
+
 
     if(FAILED(Bind_ShaderResources()))
         return E_FAIL;

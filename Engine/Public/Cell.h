@@ -23,6 +23,11 @@ public:
 		m_iNeighborIndices[eLine] = pNeighbor->m_iIndex;
 	}
 
+	_int Get_Neighbor(LINE eLine)
+	{
+		return m_iNeighborIndices[eLine];
+	}
+
 public:
 	_float3 Get_Point(_uint iIndex) { return m_vPoints[iIndex];}
 

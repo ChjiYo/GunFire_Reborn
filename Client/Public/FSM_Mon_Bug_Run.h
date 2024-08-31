@@ -17,6 +17,9 @@ public:
 	virtual wstring Update(_float fTimeDelta);
 	virtual wstring Late_Update(_float fTimeDelta);
 
+private:
+	_bool m_bNavi = { false };
+	
 public:
 	virtual void Enter() override;
 	virtual void Exit()	 override;

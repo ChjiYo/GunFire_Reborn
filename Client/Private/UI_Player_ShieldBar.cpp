@@ -36,7 +36,7 @@ HRESULT CUI_Player_ShieldBar::Initialize(void* pArg)
 	__super::Set_UI_Setting(m_fSizeX, m_fSizeY, m_fPosX, m_fPosY);
 	m_pTransformCom->Rotation({ 0.f , 0.f, 1.f }, XMConvertToRadians(5.f));
 	
-	m_pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Player")).back());
+	m_pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(LEVEL_STATIC, TEXT("Layer_Player")).back());
 	Safe_AddRef(m_pPlayer);
 
 	return S_OK;
@@ -90,7 +90,7 @@ HRESULT CUI_Player_ShieldBar::Ready_Components()
 		return E_FAIL;
 
 	/* For.Com_Texture */
-	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Player_ShieldBar"),
+	if (FAILED(__super::Add_Component(LEVEL_STATIC, TEXT("Prototype_Component_Texture_UI_Player_ShieldBar"),
 		TEXT("Com_Texture"), reinterpret_cast<CComponent**>(&m_pTextureCom))))
 		return E_FAIL;
 }

@@ -175,6 +175,7 @@
     <ClInclude Include="..\public\Ceiling_104.h" />
     <ClInclude Include="..\public\Ceiling_105.h" />
     <ClInclude Include="..\Public\Client_Defines.h" />
+    <ClInclude Include="..\public\Desert_Terrain.h" />
     <ClInclude Include="..\public\Effect.h" />
     <ClInclude Include="..\Public\FSM_Mon_Archer_Hit.h" />
     <ClInclude Include="..\public\FSM_Mon_Boom_Attack.h" />
@@ -216,6 +217,7 @@
     <ClInclude Include="..\public\Item.h" />
     <ClInclude Include="..\public\Item_Sniper.h" />
     <ClInclude Include="..\public\Item_Weapon.h" />
+    <ClInclude Include="..\public\Level_Boss.h" />
     <ClInclude Include="..\public\Mon_Deash_Boom.h" />
     <ClInclude Include="..\Public\Door.h" />
     <ClInclude Include="..\public\Mon_Dragon.h" />
@@ -223,6 +225,7 @@
     <ClInclude Include="..\public\Mon_Bug.h" />
     <ClInclude Include="..\public\Mon_Shield_Knight.h" />
     <ClInclude Include="..\public\Pillars101.h" />
+    <ClInclude Include="..\public\Portal.h" />
     <ClInclude Include="..\public\Skill_Archer_Bullet.h" />
     <ClInclude Include="..\Public\Cube.h" />
     <ClInclude Include="..\public\Effect_Deco_Snow.h" />
@@ -335,6 +338,7 @@
     <ClCompile Include="..\private\Ceiling_103.cpp" />
     <ClCompile Include="..\private\Ceiling_104.cpp" />
     <ClCompile Include="..\private\Ceiling_105.cpp" />
+    <ClCompile Include="..\private\Desert_Terrain.cpp" />
     <ClCompile Include="..\private\Effect.cpp" />
     <ClCompile Include="..\Private\FSM_Mon_Archer_Hit.cpp" />
     <ClCompile Include="..\private\FSM_Mon_Boom_Attack.cpp" />
@@ -376,6 +380,7 @@
     <ClCompile Include="..\private\Item.cpp" />
     <ClCompile Include="..\private\Item_Sniper.cpp" />
     <ClCompile Include="..\private\Item_Weapon.cpp" />
+    <ClCompile Include="..\private\Level_Boss.cpp" />
     <ClCompile Include="..\private\Mon_Deash_Boom.cpp" />
     <ClCompile Include="..\Private\Door.cpp" />
     <ClCompile Include="..\private\Mon_Dragon.cpp" />
@@ -383,6 +388,7 @@
     <ClCompile Include="..\private\Mon_Bug.cpp" />
     <ClCompile Include="..\private\Mon_Shield_Knight.cpp" />
     <ClCompile Include="..\private\Pillars101.cpp" />
+    <ClCompile Include="..\private\Portal.cpp" />
     <ClCompile Include="..\private\Skill_Archer_Bullet.cpp" />
     <ClCompile Include="..\Private\Cube.cpp" />
     <ClCompile Include="..\private\Effect_Deco_Snow.cpp" />

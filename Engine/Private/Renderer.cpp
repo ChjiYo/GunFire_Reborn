@@ -149,6 +149,16 @@ HRESULT CRenderer::Add_DebugComponent(CComponent* pDebugComponent)
 	return S_OK;
 }
 
+HRESULT CRenderer::Clear_DebugComponent()
+{
+	for (auto& iter : m_DebugComponent)
+		Safe_Release(iter);
+
+	m_DebugComponent.clear();
+
+	return S_OK;
+}
+
 HRESULT CRenderer::Draw()
 {
 

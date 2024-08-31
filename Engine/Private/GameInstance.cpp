@@ -111,7 +111,7 @@ void CGameInstance::Update_Engine(_float fTimeDelta)
 
 HRESULT CGameInstance::Render_Engine()
 {
-	/* 엔진에서 관리하는 객체들 중, 반복적인 렌더가 필요한 객체들이 있다면. */
+	/* 엔진에서 관리하는 객체들 중, 반복적인 렌더가 필요한 객체들이 있다면. */ 
 	/* 여기에서 렌더를 수행해준다. */
 
 	if (FAILED(m_pRenderer->Draw()))
@@ -129,6 +129,9 @@ HRESULT CGameInstance::Clear_LevelResources(_uint iLevelIndex)
 		return E_FAIL;
 
 	if(FAILED(m_pComponent_Manager->Clear_Resources(iLevelIndex)))
+		return E_FAIL;
+
+	if (FAILED(m_pRenderer->Clear_DebugComponent()))
 		return E_FAIL;
 
 	return S_OK;

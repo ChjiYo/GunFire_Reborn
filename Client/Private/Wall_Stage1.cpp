@@ -31,7 +31,7 @@ HRESULT CWall_Stage1::Initialize(void* pArg)
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 	
-	Monster_Create();
+	//Monster_Create();
 
 
 	return S_OK;
@@ -87,14 +87,6 @@ HRESULT CWall_Stage1::Monster_Create()
 		if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Mon_Bug"), TEXT("Layer_Monster_Stage1"),&Desc)))
 			return E_FAIL;
 	}
-	//if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Mon_Archer"), TEXT("Layer_Monster_Stage1"))))
-	//	return E_FAIL;
-	//
-	//if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Mon_Knight"), TEXT("Layer_Monster_Stage1"))))
-	//	return E_FAIL;
-
-	
-	
 
 	return S_OK;
 }

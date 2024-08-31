@@ -15,7 +15,7 @@ CFSM_Monster::CFSM_Monster(const CFSM_Monster& pPrototype)
 
 HRESULT CFSM_Monster::Initialize()
 {
-	m_pPlayerTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Player"), TEXT("Com_Transform")));
+	m_pPlayerTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_STATIC, TEXT("Layer_Player"), TEXT("Com_Transform")));
 
 	return S_OK;
 }

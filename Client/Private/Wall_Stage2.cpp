@@ -31,7 +31,7 @@ HRESULT CWall_Stage2::Initialize(void* pArg)
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
-	Monster_Create();
+	//Monster_Create();
   
 	return S_OK;
 }
@@ -81,7 +81,7 @@ HRESULT CWall_Stage2::Monster_Create()
 
 	for (int i = 0; i < 5; ++i)
 	{
-		Desc.vPos = { (_float)(rand() % 17 + 42), 6.2f , (_float)(rand() + 20 + 34) };
+		Desc.vPos = { (_float)(rand() % 17 + 42), 6.2f , (_float)(rand() % 20 + 34) };
 		if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Mon_Bug"), TEXT("Layer_Monster_Stage2"), &Desc)))
 			return E_FAIL;
 	}

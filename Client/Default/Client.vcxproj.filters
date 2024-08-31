@@ -520,6 +520,18 @@
     <Filter Include="02.GameObjects\Element\Stair\Stair101\Addon">
       <UniqueIdentifier>{6b594e75-82d8-4009-aeeb-390923e146be}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObjects\Element\Portal">
+      <UniqueIdentifier>{8bc839fb-5d4b-43bf-b786-bc71ecffbe2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Terrain\Stage1">
+      <UniqueIdentifier>{942834df-9592-4f9e-b885-240ec078c75d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Terrain\Stage2">
+      <UniqueIdentifier>{dab540c6-7bfc-4699-a353-192ff47acb72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Level\02.Boss">
+      <UniqueIdentifier>{f7fb8580-fdcb-4aa3-8838-f963d7324053}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -557,9 +569,6 @@
     </ClInclude>
     <ClInclude Include="..\public\BackGround.h">
       <Filter>02.GameObjects\BackGround</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Public\Terrain.h">
-      <Filter>02.GameObjects\Terrain</Filter>
     </ClInclude>
     <ClInclude Include="..\public\Camera_Free.h">
       <Filter>02.GameObjects\Camera\Free</Filter>
@@ -990,6 +999,18 @@
     <ClInclude Include="..\public\Stair101_Addon.h">
       <Filter>02.GameObjects\Element\Stair\Stair101\Addon</Filter>
     </ClInclude>
+    <ClInclude Include="..\public\Portal.h">
+      <Filter>02.GameObjects\Element\Portal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Terrain.h">
+      <Filter>02.GameObjects\Terrain\Stage1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Desert_Terrain.h">
+      <Filter>02.GameObjects\Terrain\Stage2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Level_Boss.h">
+      <Filter>01.Level\02.Boss</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -1015,9 +1036,6 @@
     </ClCompile>
     <ClCompile Include="..\private\BackGround.cpp">
       <Filter>02.GameObjects\BackGround</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Private\Terrain.cpp">
-      <Filter>02.GameObjects\Terrain</Filter>
     </ClCompile>
     <ClCompile Include="..\private\Camera_Free.cpp">
       <Filter>02.GameObjects\Camera\Free</Filter>
@@ -1444,6 +1462,18 @@
     </ClCompile>
     <ClCompile Include="..\private\Stair101_Addon.cpp">
       <Filter>02.GameObjects\Element\Stair\Stair101\Addon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Portal.cpp">
+      <Filter>02.GameObjects\Element\Portal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Terrain.cpp">
+      <Filter>02.GameObjects\Terrain\Stage1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Desert_Terrain.cpp">
+      <Filter>02.GameObjects\Terrain\Stage2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Level_Boss.cpp">
+      <Filter>01.Level\02.Boss</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
