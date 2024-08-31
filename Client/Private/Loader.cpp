@@ -309,6 +309,8 @@ HRESULT CLoader::Loading_For_BinaryFile()
 		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Item/Weapon/Sniper/Item_Sniper.fbx", TEXT("../Bin/DataFiles/Item_Sniper.dat"), PreTransformMatrix))))
 		return E_FAIL;
 
+
+
 	lstrcpy(m_szLoadingText, TEXT("바이러리 파일 로드가 완료되었습니다."));
 
 	return S_OK;
@@ -336,6 +338,31 @@ HRESULT CLoader::Loading_For_StaticLevel()
 	/* For.Prototype_Component_Collider_Ray */
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_STATIC, TEXT("Prototype_Component_Collider_Ray"),
 		CCollider::Create(m_pDevice, m_pContext, CCollider::TYPE_RAY))))
+		return E_FAIL;
+	
+	lstrcpy(m_szLoadingText, TEXT("텍스처를 로드하는 중입니다."));
+	/* For.Prototype_Component_Texture_Terrain */
+
+ 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_STATIC, TEXT("Prototype_Component_Texture_Terrain"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/Deco/Terrain/Terrain%d.dds"), 2))))
+		return E_FAIL;
+
+
+	lstrcpy(m_szLoadingText, TEXT("객체 원형을 로드하는 중입니다."));
+
+	/* For.Prototype_GameObject_Camera_Free */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Camera_Free"),
+		CCamera_Free::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Player */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Player"),
+		CPlayer::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Terrain */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Terrain"),
+		CTerrain::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
 	return S_OK;
@@ -372,6 +399,8 @@ HRESULT CLoader::Loading_For_LogoLevel()
 		CBackGround::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
+	
+
 	lstrcpy(m_szLoadingText, TEXT("로딩이 완료되었습니다."));
 
 	m_isFinished = true;
@@ -397,10 +426,7 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/Black.png")))))
 		return E_FAIL;
 
-	/* For.Prototype_Component_Texture_Terrain */
-	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_Terrain"),
-		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/Resources/Textures/Terrain/Tile%d.dds"), 2))))
-		return E_FAIL;
+	
 
 	/* For.Prototype_Component_Texture_Skill_Bullet_Red */
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_Skill_Bullet_Red"),
@@ -727,15 +753,9 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 	lstrcpy(m_szLoadingText, TEXT("객체원형을 로딩 중 입니다."));
 
 
-	/* For.Prototype_GameObject_Terrain */
-	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Terrain"),
-		CTerrain::Create(m_pDevice, m_pContext))))
-		return E_FAIL;
 
-	/* For.Prototype_GameObject_Camera_Free */
-	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Camera_Free"),
-		CCamera_Free::Create(m_pDevice, m_pContext))))
-		return E_FAIL;
+
+	
 
 	/* For.Prototype_GameObject_Sky */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Sky"),
@@ -777,10 +797,7 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 		CMon_Dragon::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
-	/* For.Prototype_GameObject_Player */
-	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Player"),
-		CPlayer::Create(m_pDevice, m_pContext))))
-		return E_FAIL;
+
 
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Weapon_Player_Pistol"),
 		CWeapon_Player_Pistol::Create(m_pDevice, m_pContext))))
