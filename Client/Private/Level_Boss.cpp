@@ -17,24 +17,29 @@ HRESULT CLevel_Boss::Initialize()
 {
 	m_iLevelIndex = LEVEL_BOSS;
 
+	if (FAILED(Ready_Layer_BackGround(TEXT("Layer_BackGround"))))
+		return E_FAIL;
 
 	return S_OK;
 }
 
 void CLevel_Boss::Update(_float fTimeDelta)
 {
-	
+
 }
 
 HRESULT CLevel_Boss::Render()
 {
-	SetWindowText(g_hWnd, TEXT("로고레벨"));
+	SetWindowText(g_hWnd, TEXT("보스레벨"));
 
 	return S_OK;
 }
 
 HRESULT CLevel_Boss::Ready_Layer_BackGround(const _wstring& strLayerTag)
 {
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_Terrain_Boss"), strLayerTag)))
+		return E_FAIL;
+
 	return S_OK;
 }
 

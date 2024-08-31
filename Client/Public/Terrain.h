@@ -12,12 +12,12 @@ END
 
 BEGIN(Client)
 
-class CTerrain final : public CGameObject
+class CTerrain abstract : public CGameObject
 {
 public:
 	enum TEXTURETEX { TEX_DIFFUSE, TEX_MASK, TEX_BRUSH, TEX_END };
 
-private:
+protected:
 	CTerrain(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	CTerrain(const CTerrain& Prototype);
 	virtual ~CTerrain() = default;
@@ -34,7 +34,7 @@ public:
 	_float3			Get_TerrainPicking() { return m_vPicking; }
 	void			Add_NaviMesh(_float3 vPos);
 
-private:
+protected:
 	CShader*					m_pShaderCom = { nullptr };
 	CTexture*					m_pTextureCom[TEX_END] = { nullptr };
 	CVIBuffer_Terrain*			m_pVIBufferCom = { nullptr };
@@ -43,13 +43,12 @@ private:
 	_float3						m_vPicking = {};
 	_uint						m_iNumNaviPicking = { 0 };
 	_float3						vPoints[3] = {};
-private:
-	HRESULT Ready_Components();
+
+protected:
 	HRESULT Bind_ShaderResources();
 
 public:
-	static CTerrain* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
-	virtual CGameObject* Clone(void* pArg) override;
+	virtual CGameObject* Clone(void* pArg) = 0;
 	virtual void Free() override;
 };
 

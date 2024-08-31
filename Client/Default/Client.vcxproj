@@ -284,6 +284,8 @@
     <ClInclude Include="..\public\Stair101_Addon.h" />
     <ClInclude Include="..\public\Stair2.h" />
     <ClInclude Include="..\Public\Terrain.h" />
+    <ClInclude Include="..\public\Terrain_Boss.h" />
+    <ClInclude Include="..\public\Terrain_GamePlay.h" />
     <ClInclude Include="..\Public\Tool.h" />
     <ClInclude Include="..\Public\Tool_Manager.h" />
     <ClInclude Include="..\Public\Tool_Object.h" />
@@ -437,6 +439,8 @@
     <ClCompile Include="..\private\Stair101_Addon.cpp" />
     <ClCompile Include="..\private\Stair2.cpp" />
     <ClCompile Include="..\Private\Terrain.cpp" />
+    <ClCompile Include="..\private\Terrain_Boss.cpp" />
+    <ClCompile Include="..\private\Terrain_GamePlay.cpp" />
     <ClCompile Include="..\Private\Tool.cpp" />
     <ClCompile Include="..\Private\Tool_Manager.cpp" />
     <ClCompile Include="..\Private\Tool_Object.cpp" />

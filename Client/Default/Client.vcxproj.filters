@@ -523,6 +523,12 @@
     <Filter Include="01.Level\02.Boss">
       <UniqueIdentifier>{aa948b1d-125e-4390-92e1-3e88c39bdf4f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObjects\Terrain\Boss">
+      <UniqueIdentifier>{8d379998-c8c0-47a9-943c-ac90deadfbf6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Terrain\GamePlay">
+      <UniqueIdentifier>{99ae5b1a-a1cb-4e54-8f30-00d1f4508186}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -996,6 +1002,12 @@
     <ClInclude Include="..\public\Level_Boss.h">
       <Filter>01.Level\02.Boss</Filter>
     </ClInclude>
+    <ClInclude Include="..\public\Terrain_Boss.h">
+      <Filter>02.GameObjects\Terrain\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Terrain_GamePlay.h">
+      <Filter>02.GameObjects\Terrain\GamePlay</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -1453,6 +1465,12 @@
     </ClCompile>
     <ClCompile Include="..\private\Level_Boss.cpp">
       <Filter>01.Level\02.Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Terrain_Boss.cpp">
+      <Filter>02.GameObjects\Terrain\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Terrain_GamePlay.cpp">
+      <Filter>02.GameObjects\Terrain\GamePlay</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

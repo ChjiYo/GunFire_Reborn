@@ -6,6 +6,9 @@
 #include "BackGround.h"
 
 #include "Terrain.h"
+#include "Terrain_GamePlay.h"
+#include "Terrain_Boss.h"
+
 #include "Sky.h"
 #include "Cube.h"
 
@@ -130,6 +133,10 @@ HRESULT CLoader::Loading()
 		break;
 	case LEVEL_GAMEPLAY:
 		hr = Loading_For_GamePlayLevel();
+		break;
+
+	case LEVEL_BOSS:
+		hr = Loading_For_BossLevel();
 		break;
 
 	default:
@@ -359,12 +366,7 @@ HRESULT CLoader::Loading_For_StaticLevel()
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Player"),
 		CPlayer::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
-
-	/* For.Prototype_GameObject_Terrain */
-	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Terrain"),
-		CTerrain::Create(m_pDevice, m_pContext))))
-		return E_FAIL;
-
+	
 	return S_OK;
 }
 
@@ -718,6 +720,11 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 		CSky::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
+	/* For.Prototype_GameObject_Terrain_GamePlay */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Terrain_GamePlay"),
+		CTerrain_GamePlay::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
 	/* For.Prototype_GameObject_Mon_Archer */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Mon_Archer"),
 		CMon_Archer::Create(m_pDevice, m_pContext))))
@@ -970,6 +977,14 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 
 HRESULT CLoader::Loading_For_BossLevel()
 {
+	/* For.Prototype_GameObject_Terrain_Boss */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Terrain_Boss"),
+		CTerrain_Boss::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+
+	m_isFinished = true;
+
 	return S_OK;
 }
 
