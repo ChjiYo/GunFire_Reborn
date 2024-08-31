@@ -25,11 +25,7 @@ HRESULT CLevel_Boss::Initialize()
 
 void CLevel_Boss::Update(_float fTimeDelta)
 {
-	if (GetKeyState(VK_RETURN) & 0x8000)
-	{
-		if (FAILED(m_pGameInstance->Change_Level(CLevel_Loading::Create(m_pDevice, m_pContext, LEVEL_GAMEPLAY))))
-			return;
-	}
+	
 }
 
 HRESULT CLevel_Boss::Render()

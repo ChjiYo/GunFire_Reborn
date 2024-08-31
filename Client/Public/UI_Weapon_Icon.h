@@ -25,6 +25,7 @@ private:
 
 private:
 	_uint m_iTextureIcon = { 0 };
+	CPlayer* m_pPlayer = { nullptr };
 	CPlayer::WEAPONID	m_eWeaponID = {};
 
 public:

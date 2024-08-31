@@ -2,6 +2,7 @@
 #include "..\Public\Level_GamePlay.h"
 
 #include "GameInstance.h"
+#include "Level_Loading.h"
 #include "Camera_Free.h"
 #include "Element.h"
 
@@ -63,6 +64,11 @@ HRESULT CLevel_GamePlay::Initialize()
 
 void CLevel_GamePlay::Update(_float fTimeDelta)
 {
+	if (m_pGameInstance->Key_Down('Y'))
+	{
+		if (FAILED(m_pGameInstance->Change_Level(CLevel_Loading::Create(m_pDevice, m_pContext, LEVEL_BOSS))))
+			return;
+	}
 }
 
 HRESULT CLevel_GamePlay::Render()
@@ -210,7 +216,10 @@ HRESULT CLevel_GamePlay::Ready_UI_WeaponState()
 	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Weapon_YellowBullet"), TEXT("Layer_UI_Weapon_YellowBullet"))))
 		return E_FAIL;
 
-	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Weapon_Icon"), TEXT("Layer_UI_Weapon_Icon"))))
+	
+	UIDesc.pGameObject = m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Player")).back();
+
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Weapon_Icon"), TEXT("Layer_UI_Weapon_Icon"),&UIDesc)))
 		return E_FAIL;
 
 	return S_OK;
