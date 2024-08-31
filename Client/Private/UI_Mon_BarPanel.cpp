@@ -41,7 +41,7 @@ HRESULT CUI_Mon_BarPanel::Initialize(void* pArg)
 
 void CUI_Mon_BarPanel::Priority_Update(_float fTimeDelta)
 {
-	CTransform* pCamTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Camera"), TEXT("Com_Transform")));
+	CTransform* pCamTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_STATIC, TEXT("Layer_Camera"), TEXT("Com_Transform")));
 	m_pTransformCom->LookAt(XMVectorSetY(pCamTransform->Get_State(CTransform::STATE_POSITION), 3.f));
 }
 

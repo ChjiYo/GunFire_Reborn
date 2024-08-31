@@ -93,7 +93,7 @@ void CMainApp::Update(_float fTimeDelta)
 
 	if (m_bShowTool)
 	{
-		CCamera_Free* pCamera = dynamic_cast<CCamera_Free*>(m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Camera")).back());
+		CCamera_Free* pCamera = dynamic_cast<CCamera_Free*>(m_pGameInstance->Get_Layer(LEVEL_STATIC, TEXT("Layer_Camera")).back());
 		pCamera->Priority_Update(fTimeDelta);
 
 		fTimeDelta = 0.f;
@@ -138,6 +138,12 @@ HRESULT CMainApp::Ready_Prototype_Component_ForStatic()
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_STATIC, TEXT("Prototype_Component_VIBuffer_Cube"),
 		CVIBuffer_Cube::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
+
+	/* For.Prototype_Component_VIBuffer_Terrain */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_STATIC, TEXT("Prototype_Component_VIBuffer_Terrain"),
+		CVIBuffer_Terrain::Create(m_pDevice, m_pContext, 100, 100))))
+		return E_FAIL;
+
 
 
 

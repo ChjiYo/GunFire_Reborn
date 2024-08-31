@@ -461,10 +461,6 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 	/* 모델을 로드한다. */
 	lstrcpy(m_szLoadingText, TEXT("모델(정점 -> 폴리곤 -> 메시 -> 모델)을 로딩 중 입니다."));	
 
-	/* For.Prototype_Component_VIBuffer_Terrain */
-	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_VIBuffer_Terrain"),
-		CVIBuffer_Terrain::Create(m_pDevice, m_pContext, 100 , 100))))
-		return E_FAIL;
 
 	/* For.Prototype_Component_Texture_Sky */
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_Sky"),
