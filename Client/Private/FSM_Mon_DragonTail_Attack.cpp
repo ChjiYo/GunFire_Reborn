@@ -39,7 +39,7 @@ wstring CFSM_Mon_DragonTail_Attack::Priority_Update(_float fTimeDelta)
 
 wstring CFSM_Mon_DragonTail_Attack::Update(_float fTimeDelta)
 {
-	if (m_iAttackType == 0)
+	if (m_iAttackType % 2 == 0)
 	{
 		if (m_tDesc.pModel->Get_Anim(10)->Get_Duration() <= m_fAttackDelay)
 		{
@@ -60,7 +60,7 @@ wstring CFSM_Mon_DragonTail_Attack::Update(_float fTimeDelta)
 			m_fAttackDelay = 0.f;
 		}
 	}
-	else if (m_iAttackType == 1)
+	else 
 	{
 		if (m_tDesc.pModel->Get_Anim(9)->Get_Duration() <= m_fAttackDelay)
 		{
@@ -101,16 +101,16 @@ void CFSM_Mon_DragonTail_Attack::Enter()
 
 	m_tDesc.pTransform->LookAt(m_pPlayerTransform->Get_State(CTransform::STATE_POSITION));
 
-	m_iAttackType = 1;
-		//rand() % 2;
+	m_iAttackType++;
 
-	_vector vUpdatePos = XMVectorSetY(m_tDesc.pTransform->Get_State(CTransform::STATE_POSITION), 0.8f);
+		//rand() % 2;
+	_vector vUpdatePos = XMVectorSetY(m_tDesc.pTransform->Get_State(CTransform::STATE_POSITION), 0.0f);
 	m_tDesc.pTransform->Set_State(CTransform::STATE_POSITION, vUpdatePos);
 
-	if (m_iAttackType == 0)
+	if (m_iAttackType % 2 == 0)
 	m_tDesc.pModel->SetUp_Animation(10, true);
 
-	else if (m_iAttackType == 1)
+	else 
 		m_tDesc.pModel->SetUp_Animation(9, true );
 	
 }

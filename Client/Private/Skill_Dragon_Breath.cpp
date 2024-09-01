@@ -53,6 +53,8 @@ HRESULT CSkill_Dragon_Breath::Initialize(void* pArg)
 void CSkill_Dragon_Breath::Priority_Update(_float fTimeDelta)
 {
     __super::Priority_Update(fTimeDelta);
+
+    m_fTickDamageTimer += fTimeDelta;
 }
 
 void CSkill_Dragon_Breath::Update(_float fTimeDelta)
@@ -71,6 +73,15 @@ void CSkill_Dragon_Breath::Late_Update(_float fTimeDelta)
     m_pGameInstance->Add_DebugComponent(m_pColliderCom);
 #endif
     __super::Late_Update(fTimeDelta);
+
+    CPlayer* pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(LEVEL_BOSS, TEXT("Layer_Player")).back());
+    CCollider* pPlayerCollider = dynamic_cast<CCollider*>(m_pGameInstance->Get_Component(LEVEL_BOSS, TEXT("Layer_Player"), TEXT("Com_Collider")));
+    
+    if (m_pColliderCom->isCollision(pPlayerCollider) && m_fTickDamageTimer > 0.25f)
+    {
+        m_fTickDamageTimer = 0.f;
+        pPlayer->Set_Damage(-5);
+    }
 
     m_pGameInstance->Add_RenderObject(CRenderer::RG_BLEND, this);
 }
@@ -101,7 +112,7 @@ HRESULT CSkill_Dragon_Breath::Ready_Components()
         return E_FAIL;
 
     /* For.Com_Model */
-    if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_VFX_Dragon_Breath"),
+    if (FAILED(__super::Add_Component(LEVEL_BOSS, TEXT("Prototype_Component_Texture_VFX_Dragon_Breath"),
         TEXT("Com_Texture"), reinterpret_cast<CComponent**>(&m_pTextureCom))))
         return E_FAIL;
 

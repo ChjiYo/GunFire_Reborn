@@ -48,6 +48,20 @@ HRESULT CLight_Manager::Delete_Light()
 	return S_OK;
 }
 
+HRESULT CLight_Manager::Clear_Light()
+{
+	if (m_Lights.size() == 0)
+		return E_FAIL;
+
+	for (auto& iter : m_Lights)
+	{
+		Safe_Release(iter);
+	}
+	m_Lights.clear();
+
+	return S_OK;
+}
+
 HRESULT CLight_Manager::Render_Lights(CShader* pShader, CVIBuffer_Rect* pVIBuffer)
 {
 	for (auto& pLight : m_Lights)

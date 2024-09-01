@@ -40,9 +40,7 @@ private:
 
 private:
 	_float m_fTickDamageTimer = { 0.f };
-
-	_float m_fAnimFrame = { 0.f };
-
+	
 public:
 	static CSkill_Dragon_Breath* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	virtual CGameObject* Clone(void* pArg);

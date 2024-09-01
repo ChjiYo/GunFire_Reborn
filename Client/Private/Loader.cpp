@@ -720,13 +720,6 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 		CMon_Shield_Knight::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
-	/* For.Prototype_GameObject_Mon_Dragon */
-	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Mon_Dragon"),
-		CMon_Dragon::Create(m_pDevice, m_pContext))))
-		return E_FAIL;
-
-
-
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Weapon_Player_Pistol"),
 		CWeapon_Player_Pistol::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
@@ -768,35 +761,7 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 		CSkill_Archer_Bullet::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
-	/* For.Prototype_GameObject_Skill_Dragon_Bubble*/
-	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Skill_Dragon_Bubble"),
-		CSkill_Dragon_Bubble::Create(m_pDevice, m_pContext))))
-		return E_FAIL;
-
-	/* For.Prototype_GameObject_Skill_Dragon_Floor*/
-	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Skill_Dragon_Floor"),
-		CSkill_Dragon_Floor::Create(m_pDevice, m_pContext))))
-		return E_FAIL;
-
-	/* For.Prototype_GameObject_Skill_Dragon_Breath*/
-	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Skill_Dragon_Breath"),
-		CSkill_Dragon_Breath::Create(m_pDevice, m_pContext))))
-		return E_FAIL;
-
-	/* For.Prototype_GameObject_Skill_Dragon_Dust */
-	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Skill_Dragon_Dust"),
-		CSkill_Dragon_Dust::Create(m_pDevice, m_pContext))))
-		return E_FAIL;
-
-	/* For.Prototype_GameObject_VFX_Dragon_Breath */
-	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_VFX_Dragon_Breath"),
-		CVFX_Mon_Breath::Create(m_pDevice, m_pContext))))
-		return E_FAIL;
-
-	/* For.Prototype_GameObject_VFX_Dragon_Dust */
-	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_VFX_Dragon_Dust"),
-		CVFX_Mon_Dust::Create(m_pDevice, m_pContext))))
-		return E_FAIL;
+	
 
 	/* For.Prototype_GameObject_Cube */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Cube"),
@@ -958,7 +923,7 @@ HRESULT CLoader::Loading_For_BossLevel()
 		return E_FAIL;
 
 
-	lstrcpy(m_szLoadingText, TEXT("버퍼를 로딩 중 입니다."));
+	lstrcpy(m_szLoadingText, TEXT("컴포넌트를 로딩 중 입니다."));
 
 	/* For.Prototype_Component_VIBuffer_Particle_Dust */
 	CVIBuffer_Instancing::VIBUFFER_INSTANCE_DESC	ParticleDesc{};
@@ -972,34 +937,39 @@ HRESULT CLoader::Loading_For_BossLevel()
 	ParticleDesc.vLifeTime = _float2(10.0f, 10.5f);
 	ParticleDesc.isLoop = true;
 
-	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_VIBuffer_Particle_Dust"),
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_VIBuffer_Particle_Dust"),
 		CVIBuffer_Point_Instancing::Create(m_pDevice, m_pContext, &ParticleDesc))))
+		return E_FAIL;
+
+
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_State"),
+		CState_Machine::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
 	lstrcpy(m_szLoadingText, TEXT("텍스처을 로딩 중 입니다."));
 
 	/* For.Prototype_Component_Texture_Skill_Dragon_Bubble*/
-	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_Skill_Dragon_Bubble"),
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Texture_Skill_Dragon_Bubble"),
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/Skill/Monster/Dragon/Bubble/Skill_Bubble%d.png"), 4))))
 		return E_FAIL;
 
 	/* For.Prototype_Component_Texture_Skill_Dragon_Floor*/
-	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_Skill_Dragon_Floor"),
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Texture_Skill_Dragon_Floor"),
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/Skill/Monster/Dragon/Floor/Floor.png")))))
 		return E_FAIL;
 
 	/* For.Prototype_Component_Texture_Skill_Dragon_Breath*/
-	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_Skill_Dragon_Breath"),
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Texture_Skill_Dragon_Breath"),
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/Skill/Monster/Dragon/Breath/Breath%d.png"), 8))))
 		return E_FAIL;
 
 	/* For.Prototype_Component_Texture_VFX_Dragon_Breath*/
-	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_VFX_Dragon_Breath"),
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Texture_VFX_Dragon_Breath"),
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/Skill/Monster/Dragon/Breath/Breath_Mask.png")))))
 		return E_FAIL;
 
 	/* For.Prototype_Component_Texture_VFX_Dragon_Dust*/
-	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_VFX_Dragon_Dust"),
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Texture_VFX_Dragon_Dust"),
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/Skill/Monster/Dragon/Dust/Dust%d.png"), 14))))
 		return E_FAIL;
 
@@ -1009,15 +979,51 @@ HRESULT CLoader::Loading_For_BossLevel()
 	PreTransformMatrix = XMMatrixRotationY(XMConvertToRadians(180.0f));
 
 	/* For.Prototype_Component_Model_Monster_Dragon*/
-	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Monster_Dragon"),
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Model_Monster_Dragon"),
 		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_ANIM, TEXT("../Bin/DataFiles/Dragon.dat"), PreTransformMatrix))))
 		return E_FAIL;
+
 
 	lstrcpy(m_szLoadingText, TEXT("객체원형을 로딩 중 입니다."));
 
 	/* For.Prototype_GameObject_Terrain_Boss */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Terrain_Boss"),
 		CTerrain_Boss::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Mon_Dragon */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Mon_Dragon"),
+		CMon_Dragon::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Skill_Dragon_Bubble*/
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Skill_Dragon_Bubble"),
+		CSkill_Dragon_Bubble::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Skill_Dragon_Floor*/
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Skill_Dragon_Floor"),
+		CSkill_Dragon_Floor::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Skill_Dragon_Breath*/
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Skill_Dragon_Breath"),
+		CSkill_Dragon_Breath::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Skill_Dragon_Dust */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Skill_Dragon_Dust"),
+		CSkill_Dragon_Dust::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_VFX_Dragon_Breath */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_VFX_Dragon_Breath"),
+		CVFX_Mon_Breath::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_VFX_Dragon_Dust */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_VFX_Dragon_Dust"),
+		CVFX_Mon_Dust::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
 

@@ -97,6 +97,7 @@ public: /* For.Light */
 	const LIGHT_DESC* Get_LightDesc(_uint iLightIndex) const;
 	HRESULT Add_Light(const LIGHT_DESC& LightDesc);
 	HRESULT Delete_Light();
+	HRESULT Clear_Light();
 	HRESULT Render_Lights(class CShader* pShader, class CVIBuffer_Rect* pVIBuffer);
 
 public: /* For.Target_Manager */

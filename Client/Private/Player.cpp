@@ -102,6 +102,9 @@ void CPlayer::Update(_float fTimeDelta)
     Player_Weapon_Change();
 
     _vector vPos = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
+
+    if (m_pGameInstance->Key_Down('B'))
+        Set_Damage(-5);
    
 }
 

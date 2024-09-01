@@ -45,6 +45,7 @@ void CSkill_Player::Late_Update(_float fTimeDelta)
 {
 	list<class CGameObject*> MonStageList1 = m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Monster_Stage1"));
 	list<class CGameObject*> MonStageList2 = m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Monster_Stage2"));
+	list<class CGameObject*> MonStageList3 = m_pGameInstance->Get_Layer(LEVEL_BOSS, TEXT("Layer_Monster"));
 
 	for (auto& ColliderIter : MonStageList1)
 	{
@@ -68,6 +69,16 @@ void CSkill_Player::Late_Update(_float fTimeDelta)
 		}
 	}
 
+	for (auto& ColliderIter : MonStageList3)
+	{
+		CMonster* pMonster = dynamic_cast<CMonster*>(ColliderIter);
+
+		if (m_pColliderCom->isCollision(pMonster->Get_Collider(CMonster::COLL_AABB)))
+		{
+			pMonster->Set_Damage(-5.f);
+			m_bDead = true;
+		}
+	}
 
 }
 

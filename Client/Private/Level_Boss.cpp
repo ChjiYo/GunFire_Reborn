@@ -25,10 +25,18 @@ HRESULT CLevel_Boss::Initialize()
 {
 	m_iLevelIndex = LEVEL_BOSS;
 
+	m_pGameInstance->Clear_Light();
+
+	if (FAILED(Ready_Lights()))
+		return E_FAIL;
+
 	if (FAILED(Ready_Layer_Ground(TEXT("Layer_BackGround"))))
 		return E_FAIL;
 
 	if (FAILED(Ready_Layer_Player(TEXT("Layer_Player"))))
+		return E_FAIL;
+
+	if (FAILED(Ready_Layer_Monster(TEXT("Layer_Monster"))))
 		return E_FAIL;
 
 	if (FAILED(Ready_Layer_Camera(TEXT("Layer_Camera"))))
@@ -50,6 +58,23 @@ HRESULT CLevel_Boss::Render()
 	return S_OK;
 }
 
+HRESULT CLevel_Boss::Ready_Lights()
+{
+	LIGHT_DESC			LightDesc{};
+
+	ZeroMemory(&LightDesc, sizeof(LIGHT_DESC));
+	LightDesc.eType = LIGHT_DESC::TYPE_DIRECTIONAL;
+	LightDesc.vDirection = _float4(1.f, -1.f, 1.f, 0.f);
+	LightDesc.vDiffuse = _float4(0.1f, 0.1f, 0.1f, 1.f);
+	LightDesc.vAmbient = _float4(0.2f, 0.2f, 0.2f, 1.f);
+	LightDesc.vSpecular = _float4(1.f, 1.f, 1.f, 1.f);
+
+	if (FAILED(m_pGameInstance->Add_Light(LightDesc)))
+		return E_FAIL;
+
+	return S_OK;
+}
+
 HRESULT CLevel_Boss::Ready_Layer_Ground(const _wstring & strLayerTag)
 {
 	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_Terrain_Boss"), strLayerTag)))
@@ -67,6 +92,18 @@ HRESULT CLevel_Boss::Ready_Layer_Player(const _wstring& strLayerTag)
 	Desc.fRotationPerSec = XMConvertToRadians(90.0f);
 
 	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_Player"), strLayerTag, &Desc)))
+		return E_FAIL;
+
+	return S_OK;
+}
+
+HRESULT CLevel_Boss::Ready_Layer_Monster(const _wstring& strLayerTag)
+{
+	CMonster::MON_DESC MonDesc = {};
+	MonDesc.iMaxHp = 10.f;
+	MonDesc.iHp = 10.f;
+	
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_Mon_Dragon"), strLayerTag, &MonDesc)))
 		return E_FAIL;
 
 	return S_OK;

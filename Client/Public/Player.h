@@ -46,7 +46,7 @@ public:
 
 public:
 	PLAYER_DESC Get_Player_Desc() { return Player_Desc; }
-	void		Set_Damage(_uint iDamage)
+	void		Set_Damage(_int iDamage)
 	{
 		if(Player_Desc.iShield <= 0 )
 			Player_Desc.iHp += iDamage;

@@ -29,7 +29,7 @@ HRESULT CVFX_Mon_Breath::Initialize(void* pArg)
     if (FAILED(Ready_Components()))
         return E_FAIL;
 
-    m_pTransformCom->Set_Scaled(1.f, 5.f,1.f);
+    m_pTransformCom->Set_Scaled(1.f, 30.f,1.f);
     m_pTransformCom->Rotation({ 1.f, 0.f, 0.f }, XMConvertToRadians(90.f));
     m_pTransformCom->Radian_Turn(m_pTransformCom->Get_State(CTransform::STATE_UP), XMConvertToRadians(90.f));
     m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 0.f,2.f, 8.f, 1.f });
@@ -81,7 +81,7 @@ HRESULT CVFX_Mon_Breath::Ready_Components()
         return E_FAIL;
 
     /* For.Com_Model */
-    if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_VFX_Dragon_Breath"),
+    if (FAILED(__super::Add_Component(LEVEL_BOSS, TEXT("Prototype_Component_Texture_VFX_Dragon_Breath"),
         TEXT("Com_Texture"), reinterpret_cast<CComponent**>(&m_pTextureCom))))
         return E_FAIL;
 

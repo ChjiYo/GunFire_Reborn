@@ -53,7 +53,7 @@ void CMonster::Late_Update(_float fTimeDelta)
 
 	if (m_pColliderCom[COLL_AABB]->isCollision(pTargetCollider) && m_fDamageDelay > 0.5f)
 	{
-		pPlayer->Set_Damage(-5.f);
+		pPlayer->Set_Damage(-5);
 		m_fDamageDelay = 0.f;
 	}
 
