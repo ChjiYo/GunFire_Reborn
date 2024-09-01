@@ -84,8 +84,8 @@ HRESULT CMonster::Ready_UI()
 	Desc.pTransform = m_pTransformCom;
 	Desc.pGameObject = this;
 
-	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Monster_BarPanel"), TEXT("Layer_UI_Monster_ABarPanel"), &Desc)))
-		return E_FAIL;
+	//if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Monster_BarPanel"), TEXT("Layer_UI_Monster_ABarPanel"), &Desc)))
+	//	return E_FAIL;
 	
 	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Monster_HpBar"), TEXT("Layer_UI_Monster_CHpBar"),&Desc)))
 		return E_FAIL;

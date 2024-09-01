@@ -38,7 +38,7 @@ HRESULT CUI_Mon_HpBar::Initialize(void* pArg)
 
 	m_fSizeX = 1.5f;
 	m_fPosX = XMVectorGetX(m_pTransformCom->Get_State(CTransform::STATE_POSITION));
-	m_pTransformCom->Set_Scaled(m_fSizeX, 0.125f, 1.f);
+	m_pTransformCom->Set_Scaled(m_fSizeX, 0.1f, 1.f);
 	
 	return S_OK;
 }
@@ -56,7 +56,7 @@ void CUI_Mon_HpBar::Priority_Update(_float fTimeDelta)
 
 void CUI_Mon_HpBar::Update(_float fTimeDelta)
 {
-	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetY(m_pOriginTransform->Get_State(CTransform::STATE_POSITION), 3.f));
+	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetY(m_pOriginTransform->Get_State(CTransform::STATE_POSITION), XMVectorGetY(m_pOriginTransform->Get_State(CTransform::STATE_POSITION))+ 1.0f));
 
 	fHpRatio = static_cast<float>(m_pMonster->Get_MonDesc().iHp) / static_cast<float>(m_pMonster->Get_MonDesc().iMaxHp);
 

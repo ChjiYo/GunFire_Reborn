@@ -51,7 +51,7 @@ HRESULT CMon_Shield_Knight::Initialize(void* pArg)
 
 	m_pStateCom->Set_State(TEXT("Monster_Shield_State_Idle"));
 
-	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSet(18.f, 1.f, 24.f, 1.f));
+	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetW(MonDesc->vPos, 1.f));
 	m_pNavigationCom->Init_Index(m_pTransformCom);
 
 	return S_OK;
@@ -64,6 +64,8 @@ void CMon_Shield_Knight::Priority_Update(_float fTimeDelta)
 
 void CMon_Shield_Knight::Update(_float fTimeDelta)
 {
+	__super::Update(fTimeDelta);
+
 	for (int i = 0; i < COLL_END; ++i)
 		m_pColliderCom[i]->Update(m_pTransformCom->Get_WorldMatrix());
 

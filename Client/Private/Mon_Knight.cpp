@@ -52,7 +52,7 @@ HRESULT CMon_Knight::Initialize(void* pArg)
 
 	m_pStateCom->Set_State(TEXT("Monster_Knight_State_Idle"));
 
-	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSet(20.f, 1.f, 20.f, 1.f));
+	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetW(MonDesc->vPos, 1.f));
 	m_pNavigationCom->Init_Index(m_pTransformCom);
 
 	return S_OK;
@@ -65,6 +65,8 @@ void CMon_Knight::Priority_Update(_float fTimeDelta)
 
 void CMon_Knight::Update(_float fTimeDelta)
 {
+	__super::Update(fTimeDelta);
+
 	for (int i = 0; i < COLL_END; ++i)
 		m_pColliderCom[i]->Update(m_pTransformCom->Get_WorldMatrix());
 
