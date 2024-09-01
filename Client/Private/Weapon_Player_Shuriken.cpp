@@ -133,7 +133,7 @@ void CWeapon_Player_Shuriken::Create_Bullet()
     Desc.fSpeedPerSec = 5.f;
     Desc.fRotationPerSec = XMConvertToRadians(90.0f);
 
-    m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Skill_Shuriken_Bullet"), TEXT("Layer_Skill_Player_Bullet"), &Desc);
+    m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Prototype_GameObject_Skill_Shuriken_Bullet"), TEXT("Layer_Skill_Player_Bullet"), &Desc);
 }
 
 CWeapon_Player_Shuriken* CWeapon_Player_Shuriken::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
