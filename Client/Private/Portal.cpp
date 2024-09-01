@@ -35,8 +35,8 @@ HRESULT CPortal::Initialize(void* pArg)
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
-	m_pTransformCom->Set_Scaled(3.f, 10.f, 1.f);
-	m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 40.f, 10.f * 0.5f, 65.f, 1.f });
+	m_pTransformCom->Set_Scaled(4.18f, 8.f, 1.f);
+	m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 39.25f, 3.9f, 64.88, 1.f });
 	m_pTransformCom->Rotation({ 0.f , 1.f ,0.f }, XMConvertToRadians(90.f));
 
 	return S_OK;
@@ -103,7 +103,7 @@ HRESULT CPortal::Ready_Components()
 
 	CBounding_AABB::BOUNDING_AABB_DESC	BoundingDesc{};
 
-	BoundingDesc.vExtents = _float3(1.0f, 1.0f, 1.0f);
+	BoundingDesc.vExtents = _float3(0.25f, 1.0f, 2.f);
 	BoundingDesc.vCenter = _float3(0.f, BoundingDesc.vExtents.y * 0.5f, 0.f);
 	BoundingDesc.pObject = this;
 
