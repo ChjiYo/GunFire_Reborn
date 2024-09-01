@@ -1,345 +1,1546 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <FxCompile Include="..\Bin\ShaderFiles\Shader_Effect_MaskTex.hlsl" />
-    <FxCompile Include="..\Bin\ShaderFiles\Shader_Particle_VtxPoint.hlsl" />
-    <FxCompile Include="..\Bin\ShaderFiles\Shader_Particle_VtxRect.hlsl" />
-    <FxCompile Include="..\Bin\ShaderFiles\Shader_UI_VtxRect.hlsl" />
-    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxAnimMesh.hlsl" />
-    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxCube.hlsl" />
-    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxMesh.hlsl" />
-    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxNorTex.hlsl" />
-    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxPosTex.hlsl" />
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_Effect_MaskTex.hlsl">
+      <Filter>97.ShaderFiles</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_Particle_VtxPoint.hlsl">
+      <Filter>97.ShaderFiles</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_Particle_VtxRect.hlsl">
+      <Filter>97.ShaderFiles</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_UI_VtxRect.hlsl">
+      <Filter>97.ShaderFiles</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxAnimMesh.hlsl">
+      <Filter>97.ShaderFiles</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxCube.hlsl">
+      <Filter>97.ShaderFiles</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxMesh.hlsl">
+      <Filter>97.ShaderFiles</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxNorTex.hlsl">
+      <Filter>97.ShaderFiles</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxPosTex.hlsl">
+      <Filter>97.ShaderFiles</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\private\BackGround.cpp" />
-    <ClCompile Include="..\private\Camera_Free.cpp" />
-    <ClCompile Include="..\private\Ceiling_101.cpp" />
-    <ClCompile Include="..\private\Ceiling_103.cpp" />
-    <ClCompile Include="..\private\Ceiling_104.cpp" />
-    <ClCompile Include="..\private\Ceiling_105.cpp" />
-    <ClCompile Include="..\private\Effect.cpp" />
-    <ClCompile Include="..\Private\FSM_Mon_Archer_Hit.cpp" />
-    <ClCompile Include="..\private\FSM_Mon_Boom_Attack.cpp" />
-    <ClCompile Include="..\private\FSM_Mon_Boom_Idle.cpp" />
-    <ClCompile Include="..\private\FSM_Mon_Boom_Run.cpp" />
-    <ClCompile Include="..\private\FSM_Mon_Boom_Walk.cpp" />
-    <ClCompile Include="..\private\FSM_Mon_Bug_Attack.cpp" />
-    <ClCompile Include="..\Private\FSM_Mon_Bug_Idle.cpp" />
-    <ClCompile Include="..\private\FSM_Mon_Bug_Run.cpp" />
-    <ClCompile Include="..\private\FSM_Mon_DragonHead_Attack.cpp" />
-    <ClCompile Include="..\private\FSM_Mon_DragonHead_Idle.cpp" />
-    <ClCompile Include="..\private\FSM_Mon_DragonHead_In.cpp" />
-    <ClCompile Include="..\private\FSM_Mon_DragonHead_Out.cpp" />
-    <ClCompile Include="..\Private\FSM_Mon_DragonTail_Attack.cpp" />
-    <ClCompile Include="..\private\FSM_Mon_DragonTail_Idle.cpp" />
-    <ClCompile Include="..\private\FSM_Mon_DragonTail_In.cpp" />
-    <ClCompile Include="..\private\FSM_Mon_DragonTail_Out.cpp" />
-    <ClCompile Include="..\private\FSM_Mon_Dragon_Attack.cpp" />
-    <ClCompile Include="..\private\FSM_Mon_Dragon_Death.cpp" />
-    <ClCompile Include="..\Private\FSM_Mon_Dragon_Idle.cpp" />
-    <ClCompile Include="..\private\FSM_Mon_Knight_Run.cpp" />
-    <ClCompile Include="..\private\FSM_Mon_Knight_Attack.cpp" />
-    <ClCompile Include="..\private\FSM_Mon_Knight_Hit.cpp" />
-    <ClCompile Include="..\private\FSM_Mon_Knight_Idle.cpp" />
-    <ClCompile Include="..\private\FSM_Mon_Knight_RangeAttack.cpp" />
-    <ClCompile Include="..\private\FSM_Mon_Knight_Roll.cpp" />
-    <ClCompile Include="..\private\FSM_Mon_Shield_Idle.cpp" />
-    <ClCompile Include="..\private\FSM_Mon_Shield_Attack.cpp" />
-    <ClCompile Include="..\private\FSM_Mon_Shield_Hit.cpp" />
-    <ClCompile Include="..\private\FSM_Mon_Shield_Run.cpp" />
-    <ClCompile Include="..\private\FSM_Mon_Shield_Walk.cpp" />
-    <ClCompile Include="..\private\FSM_Mon_Spear_Attack.cpp" />
-    <ClCompile Include="..\private\FSM_Mon_Spear_Dash.cpp" />
-    <ClCompile Include="..\private\FSM_Mon_Spear_Hit.cpp" />
-    <ClCompile Include="..\private\FSM_Mon_Spear_Idle.cpp" />
-    <ClCompile Include="..\private\FSM_Mon_Spear_Roll.cpp" />
-    <ClCompile Include="..\private\FSM_Mon_Spear_Run.cpp" />
-    <ClCompile Include="..\private\FSM_Mon_Spear_Walk.cpp" />
-    <ClCompile Include="..\private\Item.cpp" />
-    <ClCompile Include="..\private\Item_Sniper.cpp" />
-    <ClCompile Include="..\private\Item_Weapon.cpp" />
-    <ClCompile Include="..\private\Level_Boss.cpp" />
-    <ClCompile Include="..\private\Mon_Deash_Boom.cpp" />
-    <ClCompile Include="..\Private\Door.cpp" />
-    <ClCompile Include="..\private\Mon_Dragon.cpp" />
-    <ClCompile Include="..\private\Mon_Knight.cpp" />
-    <ClCompile Include="..\private\Mon_Bug.cpp" />
-    <ClCompile Include="..\private\Mon_Shield_Knight.cpp" />
-    <ClCompile Include="..\private\Pillars101.cpp" />
-    <ClCompile Include="..\private\Portal.cpp" />
-    <ClCompile Include="..\private\Skill_Archer_Bullet.cpp" />
-    <ClCompile Include="..\Private\Cube.cpp" />
-    <ClCompile Include="..\private\Effect_Deco_Snow.cpp" />
-    <ClCompile Include="..\private\Element.cpp" />
-    <ClCompile Include="..\private\Floor_101.cpp" />
-    <ClCompile Include="..\Private\Floor_102.cpp" />
-    <ClCompile Include="..\private\Floor_103.cpp" />
-    <ClCompile Include="..\private\Floor_105.cpp" />
-    <ClCompile Include="..\private\Floor_106.cpp" />
-    <ClCompile Include="..\private\Floor_107.cpp" />
-    <ClCompile Include="..\private\Floor_108.cpp" />
-    <ClCompile Include="..\private\Floor_109.cpp" />
-    <ClCompile Include="..\private\Floor_110.cpp" />
-    <ClCompile Include="..\private\Floor_111.cpp" />
-    <ClCompile Include="..\private\Floor_112.cpp" />
-    <ClCompile Include="..\private\Floor_114.cpp" />
-    <ClCompile Include="..\private\FSM_Monster.cpp" />
-    <ClCompile Include="..\private\FSM_Mon_Archer_Attack.cpp" />
-    <ClCompile Include="..\private\FSM_Mon_Archer_Idle.cpp" />
-    <ClCompile Include="..\private\FSM_Mon_Archer_Run.cpp" />
-    <ClCompile Include="..\private\FSM_Mon_Archer_Walk.cpp" />
-    <ClCompile Include="..\Private\FSM_Player.cpp" />
-    <ClCompile Include="..\Private\FSM_Player_Attack.cpp" />
-    <ClCompile Include="..\Private\FSM_Player_Dash.cpp" />
-    <ClCompile Include="..\Private\Level_GamePlay.cpp" />
-    <ClCompile Include="..\Private\Level_Loading.cpp" />
-    <ClCompile Include="..\Private\Level_Logo.cpp" />
-    <ClCompile Include="..\Private\Loader.cpp" />
-    <ClCompile Include="..\private\MainApp.cpp" />
-    <ClCompile Include="..\Private\Monster.cpp" />
-    <ClCompile Include="..\private\Mon_Archer.cpp" />
-    <ClCompile Include="..\Private\Player.cpp" />
-    <ClCompile Include="..\Private\Skill.cpp" />
-    <ClCompile Include="..\private\Skill_BoomGun_Bullet.cpp" />
-    <ClCompile Include="..\private\Skill_Dragon_Breath.cpp" />
-    <ClCompile Include="..\private\Skill_Dragon_Bubble.cpp" />
-    <ClCompile Include="..\private\Skill_Dragon_Dust.cpp" />
-    <ClCompile Include="..\private\Skill_Dragon_Floor.cpp" />
-    <ClCompile Include="..\private\Skill_Monster.cpp" />
-    <ClCompile Include="..\Private\Skill_Player.cpp" />
-    <ClCompile Include="..\Private\Skill_Pistol_Bullet.cpp" />
-    <ClCompile Include="..\private\Skill_Shuriken_Bullet.cpp" />
-    <ClCompile Include="..\private\Skill_Sniper_Bullet.cpp" />
-    <ClCompile Include="..\private\Sky.cpp" />
-    <ClCompile Include="..\private\Mon_Spear.cpp" />
-    <ClCompile Include="..\private\Stair1.cpp" />
-    <ClCompile Include="..\private\Stair101.cpp" />
-    <ClCompile Include="..\private\Stair101_Addon.cpp" />
-    <ClCompile Include="..\private\Stair2.cpp" />
-    <ClCompile Include="..\Private\Terrain.cpp" />
-    <ClCompile Include="..\private\Terrain_Boss.cpp" />
-    <ClCompile Include="..\private\Terrain_GamePlay.cpp" />
-    <ClCompile Include="..\Private\Tool.cpp" />
-    <ClCompile Include="..\Private\Tool_Manager.cpp" />
-    <ClCompile Include="..\Private\Tool_Object.cpp" />
-    <ClCompile Include="..\Private\Tool_Save.cpp" />
-    <ClCompile Include="..\Private\UIObject.cpp" />
-    <ClCompile Include="..\private\UI_Bullet_Font.cpp" />
-    <ClCompile Include="..\Private\UI_Cross_Hair.cpp" />
-    <ClCompile Include="..\private\UI_Mon_BarPanel.cpp" />
-    <ClCompile Include="..\private\UI_Mon_HpBar.cpp" />
-    <ClCompile Include="..\private\UI_Mon_HpBlankBar.cpp" />
-    <ClCompile Include="..\Private\UI_Player_Bar.cpp" />
-    <ClCompile Include="..\Private\UI_Player_BarPanel.cpp" />
-    <ClCompile Include="..\Private\UI_Player_HpBar.cpp" />
-    <ClCompile Include="..\Private\UI_Player_HpBlankBar.cpp" />
-    <ClCompile Include="..\Private\UI_Player_Icon.cpp" />
-    <ClCompile Include="..\Private\UI_Player_ShieldBar.cpp" />
-    <ClCompile Include="..\Private\UI_Player_ShieldBlankBar.cpp" />
-    <ClCompile Include="..\Private\UI_Skill_Aiming.cpp" />
-    <ClCompile Include="..\Private\UI_Skill_Dash.cpp" />
-    <ClCompile Include="..\Private\UI_Skill_Panel.cpp" />
-    <ClCompile Include="..\private\UI_Sniper_Hair.cpp" />
-    <ClCompile Include="..\private\UI_Sniper_Ring.cpp" />
-    <ClCompile Include="..\Private\UI_Weapon_BBullet.cpp" />
-    <ClCompile Include="..\Private\UI_Weapon_GBullet.cpp" />
-    <ClCompile Include="..\private\UI_Weapon_Icon.cpp" />
-    <ClCompile Include="..\Private\UI_Weapon_NumPanel.cpp" />
-    <ClCompile Include="..\Private\UI_Weapon_Panel.cpp" />
-    <ClCompile Include="..\Private\UI_Weapon_YBullet.cpp" />
-    <ClCompile Include="..\private\VFX_Mon_Dust.cpp" />
-    <ClCompile Include="..\private\VFX_Monster.cpp" />
-    <ClCompile Include="..\private\VFX_Mon_Breath.cpp" />
-    <ClCompile Include="..\private\Wall_Stage1.cpp" />
-    <ClCompile Include="..\private\Wall_Stage2.cpp" />
-    <ClCompile Include="..\private\Weapon_Player.cpp" />
-    <ClCompile Include="..\private\Weapon_Player_BoomGun.cpp" />
-    <ClCompile Include="..\private\Weapon_Player_Pistol.cpp" />
-    <ClCompile Include="..\private\Weapon_Player_Shuriken.cpp" />
-    <ClCompile Include="..\private\Weapon_Player_Sniper.cpp" />
-    <ClCompile Include="..\Public\Imgui\imgui.cpp" />
-    <ClCompile Include="..\Public\Imgui\imgui_demo.cpp" />
-    <ClCompile Include="..\Public\Imgui\imgui_draw.cpp" />
-    <ClCompile Include="..\Public\Imgui\imgui_impl_dx11.cpp" />
-    <ClCompile Include="..\Public\Imgui\imgui_impl_win32.cpp" />
-    <ClCompile Include="..\Public\Imgui\imgui_tables.cpp" />
-    <ClCompile Include="..\Public\Imgui\imgui_widgets.cpp" />
-    <ClCompile Include="Client.cpp" />
-    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="..\private\Boss_Logo.cpp">
+      <Filter>01.Level\00.Logo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Level_Logo.cpp">
+      <Filter>01.Level\00.Logo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Level_GamePlay.cpp">
+      <Filter>01.Level\01.GamePlay</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\BackGround.cpp">
+      <Filter>02.GameObjects\BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Camera_Free.cpp">
+      <Filter>02.GameObjects\Camera\Free</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Cube.cpp">
+      <Filter>02.GameObjects\Cube</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Effect_Deco_Snow.cpp">
+      <Filter>02.GameObjects\Effect\Deco_Effect\Snow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\VFX_Mon_Dust.cpp">
+      <Filter>02.GameObjects\Effect\Monster_Effect\Dust</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\VFX_Mon_Breath.cpp">
+      <Filter>02.GameObjects\Effect\Monster_Effect\Breath</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Mon_Archer.cpp">
+      <Filter>02.GameObjects\Monster\Archer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Mon_Bug.cpp">
+      <Filter>02.GameObjects\Monster\Bug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Mon_Deash_Boom.cpp">
+      <Filter>02.GameObjects\Monster\Deash_Boom</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Mon_Knight.cpp">
+      <Filter>02.GameObjects\Monster\Knight</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Mon_Shield_Knight.cpp">
+      <Filter>02.GameObjects\Monster\Shield_Knight</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Mon_Spear.cpp">
+      <Filter>02.GameObjects\Monster\Spear</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Mon_Dragon.cpp">
+      <Filter>02.GameObjects\Monster\Dragon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Door.cpp">
+      <Filter>02.GameObjects\Deco\Door</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Floor_101.cpp">
+      <Filter>02.GameObjects\Deco\Floor\101</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Floor_102.cpp">
+      <Filter>02.GameObjects\Deco\Floor\102</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Floor_103.cpp">
+      <Filter>02.GameObjects\Deco\Floor\103</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Floor_105.cpp">
+      <Filter>02.GameObjects\Deco\Floor\105</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Floor_106.cpp">
+      <Filter>02.GameObjects\Deco\Floor\106</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Floor_107.cpp">
+      <Filter>02.GameObjects\Deco\Floor\107</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Floor_108.cpp">
+      <Filter>02.GameObjects\Deco\Floor\108</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Floor_109.cpp">
+      <Filter>02.GameObjects\Deco\Floor\109</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Floor_110.cpp">
+      <Filter>02.GameObjects\Deco\Floor\110</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Floor_111.cpp">
+      <Filter>02.GameObjects\Deco\Floor\111</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Floor_112.cpp">
+      <Filter>02.GameObjects\Deco\Floor\112</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Floor_114.cpp">
+      <Filter>02.GameObjects\Deco\Floor\114</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Wall_Stage1.cpp">
+      <Filter>02.GameObjects\Deco\Wall_Stage\Stage1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Wall_Stage2.cpp">
+      <Filter>02.GameObjects\Deco\Wall_Stage\Stage2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Ceiling_101.cpp">
+      <Filter>02.GameObjects\Deco\Ceiling\101</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Ceiling_103.cpp">
+      <Filter>02.GameObjects\Deco\Ceiling\103</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Ceiling_104.cpp">
+      <Filter>02.GameObjects\Deco\Ceiling\104</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Ceiling_105.cpp">
+      <Filter>02.GameObjects\Deco\Ceiling\105</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Archer_Attack.cpp">
+      <Filter>03.Stage_Machine\FSM_Monster\Archer\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\FSM_Mon_Archer_Hit.cpp">
+      <Filter>03.Stage_Machine\FSM_Monster\Archer\Hit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Archer_Idle.cpp">
+      <Filter>03.Stage_Machine\FSM_Monster\Archer\Idle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Archer_Run.cpp">
+      <Filter>03.Stage_Machine\FSM_Monster\Archer\Run</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Archer_Walk.cpp">
+      <Filter>03.Stage_Machine\FSM_Monster\Archer\Walk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Boom_Attack.cpp">
+      <Filter>03.Stage_Machine\FSM_Monster\Boom\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Boom_Idle.cpp">
+      <Filter>03.Stage_Machine\FSM_Monster\Boom\Idle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Boom_Run.cpp">
+      <Filter>03.Stage_Machine\FSM_Monster\Boom\Run</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Boom_Walk.cpp">
+      <Filter>03.Stage_Machine\FSM_Monster\Boom\Walk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Bug_Attack.cpp">
+      <Filter>03.Stage_Machine\FSM_Monster\Bug\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\FSM_Mon_Bug_Idle.cpp">
+      <Filter>03.Stage_Machine\FSM_Monster\Bug\Idle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Bug_Run.cpp">
+      <Filter>03.Stage_Machine\FSM_Monster\Bug\Run</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\FSM_Mon_Dragon_Idle.cpp">
+      <Filter>03.Stage_Machine\FSM_Monster\Dragon\Body\Idle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Dragon_Death.cpp">
+      <Filter>03.Stage_Machine\FSM_Monster\Dragon\Body\Death</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Dragon_Attack.cpp">
+      <Filter>03.Stage_Machine\FSM_Monster\Dragon\Body\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_DragonHead_Attack.cpp">
+      <Filter>03.Stage_Machine\FSM_Monster\Dragon\Head\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_DragonHead_Idle.cpp">
+      <Filter>03.Stage_Machine\FSM_Monster\Dragon\Head\Idle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_DragonHead_In.cpp">
+      <Filter>03.Stage_Machine\FSM_Monster\Dragon\Head\In</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_DragonHead_Out.cpp">
+      <Filter>03.Stage_Machine\FSM_Monster\Dragon\Head\Out</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_DragonTail_Out.cpp">
+      <Filter>03.Stage_Machine\FSM_Monster\Dragon\Tail\Out</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_DragonTail_In.cpp">
+      <Filter>03.Stage_Machine\FSM_Monster\Dragon\Tail\In</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_DragonTail_Idle.cpp">
+      <Filter>03.Stage_Machine\FSM_Monster\Dragon\Tail\Idle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\FSM_Mon_DragonTail_Attack.cpp">
+      <Filter>03.Stage_Machine\FSM_Monster\Dragon\Tail\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Knight_Attack.cpp">
+      <Filter>03.Stage_Machine\FSM_Monster\Knight\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Knight_Hit.cpp">
+      <Filter>03.Stage_Machine\FSM_Monster\Knight\Hit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Knight_Idle.cpp">
+      <Filter>03.Stage_Machine\FSM_Monster\Knight\Idle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Knight_RangeAttack.cpp">
+      <Filter>03.Stage_Machine\FSM_Monster\Knight\RangeAttack</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Knight_Roll.cpp">
+      <Filter>03.Stage_Machine\FSM_Monster\Knight\Roll</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Knight_Run.cpp">
+      <Filter>03.Stage_Machine\FSM_Monster\Knight\Run</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Shield_Attack.cpp">
+      <Filter>03.Stage_Machine\FSM_Monster\Shield\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Shield_Hit.cpp">
+      <Filter>03.Stage_Machine\FSM_Monster\Shield\Hit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Shield_Idle.cpp">
+      <Filter>03.Stage_Machine\FSM_Monster\Shield\Idle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Shield_Run.cpp">
+      <Filter>03.Stage_Machine\FSM_Monster\Shield\Run</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Shield_Walk.cpp">
+      <Filter>03.Stage_Machine\FSM_Monster\Shield\Walk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Spear_Attack.cpp">
+      <Filter>03.Stage_Machine\FSM_Monster\Spear\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Spear_Dash.cpp">
+      <Filter>03.Stage_Machine\FSM_Monster\Spear\Dash</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Spear_Hit.cpp">
+      <Filter>03.Stage_Machine\FSM_Monster\Spear\Hit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Spear_Idle.cpp">
+      <Filter>03.Stage_Machine\FSM_Monster\Spear\Idle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Spear_Roll.cpp">
+      <Filter>03.Stage_Machine\FSM_Monster\Spear\Roll</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Spear_Run.cpp">
+      <Filter>03.Stage_Machine\FSM_Monster\Spear\Run</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Mon_Spear_Walk.cpp">
+      <Filter>03.Stage_Machine\FSM_Monster\Spear\Walk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\FSM_Monster.cpp">
+      <Filter>03.Stage_Machine\FSM_Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\FSM_Player.cpp">
+      <Filter>03.Stage_Machine\FSM_Player</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\FSM_Player_Attack.cpp">
+      <Filter>03.Stage_Machine\FSM_Player\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\FSM_Player_Dash.cpp">
+      <Filter>03.Stage_Machine\FSM_Player\Dash</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Terrain_Boss.cpp">
+      <Filter>02.GameObjects\Terrain\Terrain_Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Terrain_GamePlay.cpp">
+      <Filter>02.GameObjects\Terrain\Terrain_GamePlay</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Sky.cpp">
+      <Filter>02.GameObjects\Sky</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Public\Imgui\imgui.cpp">
+      <Filter>96.Imgui\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Public\Imgui\imgui_demo.cpp">
+      <Filter>96.Imgui\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Public\Imgui\imgui_draw.cpp">
+      <Filter>96.Imgui\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Public\Imgui\imgui_impl_dx11.cpp">
+      <Filter>96.Imgui\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Public\Imgui\imgui_impl_win32.cpp">
+      <Filter>96.Imgui\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Public\Imgui\imgui_tables.cpp">
+      <Filter>96.Imgui\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Public\Imgui\imgui_widgets.cpp">
+      <Filter>96.Imgui\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Client.cpp">
+      <Filter>98.Default</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Effect.cpp">
+      <Filter>02.GameObjects\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Element.cpp">
+      <Filter>02.GameObjects\Deco</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Item.cpp">
+      <Filter>02.GameObjects\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Item_Sniper.cpp">
+      <Filter>02.GameObjects\Item\Weapon\Sniper</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Item_Weapon.cpp">
+      <Filter>02.GameObjects\Item\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Level_Boss.cpp">
+      <Filter>01.Level\03.Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Level_Loading.cpp">
+      <Filter>01.Level\99.Loading</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Loader.cpp">
+      <Filter>01.Level\99.Loading\Loader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\MainApp.cpp">
+      <Filter>00.MainApp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Monster.cpp">
+      <Filter>02.GameObjects\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Pillars101.cpp">
+      <Filter>02.GameObjects\Deco\Pillars\101</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Player.cpp">
+      <Filter>02.GameObjects\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Stair1.cpp">
+      <Filter>02.GameObjects\Deco\Stair\1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Stair2.cpp">
+      <Filter>02.GameObjects\Deco\Stair\2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Stair101.cpp">
+      <Filter>02.GameObjects\Deco\Stair\101</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Stair101_Addon.cpp">
+      <Filter>02.GameObjects\Deco\Stair\101\Addon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Portal.cpp">
+      <Filter>02.GameObjects\Deco\Portal</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>98.Default</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\UIObject.cpp">
+      <Filter>02.GameObjects\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Terrain.cpp">
+      <Filter>02.GameObjects\Terrain</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\VFX_Monster.cpp">
+      <Filter>02.GameObjects\Effect\Monster_Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\UI_Mon_BarPanel.cpp">
+      <Filter>02.GameObjects\UI\UI_Monster_State\UI_Mon_BarPanel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\UI_Mon_HpBar.cpp">
+      <Filter>02.GameObjects\UI\UI_Monster_State\UI_Mon_HpBar</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\UI_Mon_HpBlankBar.cpp">
+      <Filter>02.GameObjects\UI\UI_Monster_State\UI_Mon_HpBlankBar</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\UI_Weapon_BBullet.cpp">
+      <Filter>02.GameObjects\UI\UI_Weapon_State\UI_Weapon_BBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\UI_Weapon_GBullet.cpp">
+      <Filter>02.GameObjects\UI\UI_Weapon_State\UI_Weapon_GBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\UI_Weapon_Icon.cpp">
+      <Filter>02.GameObjects\UI\UI_Weapon_State\UI_Weapon_Icon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\UI_Weapon_NumPanel.cpp">
+      <Filter>02.GameObjects\UI\UI_Weapon_State\UI_Weapon_NumPanel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\UI_Weapon_Panel.cpp">
+      <Filter>02.GameObjects\UI\UI_Weapon_State\UI_Weapon_Panel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\UI_Weapon_YBullet.cpp">
+      <Filter>02.GameObjects\UI\UI_Weapon_State\UI_Weapon_YBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\UI_Bullet_Font.cpp">
+      <Filter>02.GameObjects\UI\UI_Bullet_Font</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\UI_Player_Bar.cpp">
+      <Filter>02.GameObjects\UI\UI_Player_State\UI_Player_Bar</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\UI_Player_BarPanel.cpp">
+      <Filter>02.GameObjects\UI\UI_Player_State\UI_Player_BarPanel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\UI_Player_HpBar.cpp">
+      <Filter>02.GameObjects\UI\UI_Player_State\UI_Player_HpBar</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\UI_Player_HpBlankBar.cpp">
+      <Filter>02.GameObjects\UI\UI_Player_State\UI_Player_HpBlankBar</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\UI_Player_Icon.cpp">
+      <Filter>02.GameObjects\UI\UI_Player_State\UI_Player_Icon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\UI_Player_ShieldBar.cpp">
+      <Filter>02.GameObjects\UI\UI_Player_State\UI_Player_ShieldBar</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\UI_Player_ShieldBlankBar.cpp">
+      <Filter>02.GameObjects\UI\UI_Player_State\UI_Player_ShieldBlankBar</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\UI_Skill_Aiming.cpp">
+      <Filter>02.GameObjects\UI\UI_Skill_State\UI_Skill_Aiming</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\UI_Skill_Dash.cpp">
+      <Filter>02.GameObjects\UI\UI_Skill_State\UI_Skill_Dash</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\UI_Skill_Panel.cpp">
+      <Filter>02.GameObjects\UI\UI_Skill_State\UI_Skill_Panel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\UI_Sniper_Hair.cpp">
+      <Filter>02.GameObjects\UI\UI_Cross_Hair\Sniper\Hair</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\UI_Cross_Hair.cpp">
+      <Filter>02.GameObjects\UI\UI_Cross_Hair</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\UI_Sniper_Ring.cpp">
+      <Filter>02.GameObjects\UI\UI_Cross_Hair\Sniper\Ring</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Weapon_Player.cpp">
+      <Filter>02.GameObjects\Player\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Weapon_Player_BoomGun.cpp">
+      <Filter>02.GameObjects\Player\Weapon\BoomGun</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Weapon_Player_Pistol.cpp">
+      <Filter>02.GameObjects\Player\Weapon\Pistol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Weapon_Player_Shuriken.cpp">
+      <Filter>02.GameObjects\Player\Weapon\Shuriken</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Weapon_Player_Sniper.cpp">
+      <Filter>02.GameObjects\Player\Weapon\Sniper</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Tool_Manager.cpp">
+      <Filter>04.Tool\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Tool_Object.cpp">
+      <Filter>04.Tool\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Tool.cpp">
+      <Filter>04.Tool</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Tool_Save.cpp">
+      <Filter>04.Tool\Save</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Skill_Archer_Bullet.cpp">
+      <Filter>02.GameObjects\Skill\Monster_Skill\Skill_Archer_Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Skill_BoomGun_Bullet.cpp">
+      <Filter>02.GameObjects\Skill\Player_Skill\BoomGun_Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Skill_Dragon_Breath.cpp">
+      <Filter>02.GameObjects\Skill\Monster_Skill\Breath</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Skill_Dragon_Bubble.cpp">
+      <Filter>02.GameObjects\Skill\Monster_Skill\Bubble</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Skill_Dragon_Dust.cpp">
+      <Filter>02.GameObjects\Skill\Monster_Skill\Dust</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Skill_Dragon_Floor.cpp">
+      <Filter>02.GameObjects\Skill\Monster_Skill\Floor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Skill.cpp">
+      <Filter>02.GameObjects\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Skill_Monster.cpp">
+      <Filter>02.GameObjects\Skill\Monster_Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Skill_Pistol_Bullet.cpp">
+      <Filter>02.GameObjects\Skill\Player_Skill\Pistol_Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Skill_Player.cpp">
+      <Filter>02.GameObjects\Skill\Player_Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Skill_Shuriken_Bullet.cpp">
+      <Filter>02.GameObjects\Skill\Player_Skill\Shuriken_Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Skill_Sniper_Bullet.cpp">
+      <Filter>02.GameObjects\Skill\Player_Skill\Sniper_Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\public\BackGround.h" />
-    <ClInclude Include="..\public\Camera_Free.h" />
-    <ClInclude Include="..\public\Ceiling_101.h" />
-    <ClInclude Include="..\public\Ceiling_103.h" />
-    <ClInclude Include="..\public\Ceiling_104.h" />
-    <ClInclude Include="..\public\Ceiling_105.h" />
-    <ClInclude Include="..\Public\Client_Defines.h" />
-    <ClInclude Include="..\public\Effect.h" />
-    <ClInclude Include="..\Public\FSM_Mon_Archer_Hit.h" />
-    <ClInclude Include="..\public\FSM_Mon_Boom_Attack.h" />
-    <ClInclude Include="..\public\FSM_Mon_Boom_Idle.h" />
-    <ClInclude Include="..\public\FSM_Mon_Boom_Run.h" />
-    <ClInclude Include="..\public\FSM_Mon_Boom_Walk.h" />
-    <ClInclude Include="..\public\FSM_Mon_Bug_Attack.h" />
-    <ClInclude Include="..\Public\FSM_Mon_Bug_Idle.h" />
-    <ClInclude Include="..\public\FSM_Mon_Bug_Run.h" />
-    <ClInclude Include="..\public\FSM_Mon_DragonHead_Attack.h" />
-    <ClInclude Include="..\public\FSM_Mon_DragonHead_Idle.h" />
-    <ClInclude Include="..\public\FSM_Mon_DragonHead_In.h" />
-    <ClInclude Include="..\public\FSM_Mon_DragonHead_Out.h" />
-    <ClInclude Include="..\Public\FSM_Mon_DragonTail_Attack.h" />
-    <ClInclude Include="..\public\FSM_Mon_DragonTail_Idle.h" />
-    <ClInclude Include="..\public\FSM_Mon_DragonTail_In.h" />
-    <ClInclude Include="..\public\FSM_Mon_DragonTail_Out.h" />
-    <ClInclude Include="..\public\FSM_Mon_Dragon_Attack.h" />
-    <ClInclude Include="..\public\FSM_Mon_Dragon_Death.h" />
-    <ClInclude Include="..\Public\FSM_Mon_Dragon_Idle.h" />
-    <ClInclude Include="..\public\FSM_Mon_Knight_Run.h" />
-    <ClInclude Include="..\public\FSM_Mon_Knight_Attack.h" />
-    <ClInclude Include="..\public\FSM_Mon_Knight_Hit.h" />
-    <ClInclude Include="..\public\FSM_Mon_Knight_Idle.h" />
-    <ClInclude Include="..\public\FSM_Mon_Knight_RangeAttack.h" />
-    <ClInclude Include="..\public\FSM_Mon_Knight_Roll.h" />
-    <ClInclude Include="..\public\FSM_Mon_Shield_Idle.h" />
-    <ClInclude Include="..\public\FSM_Mon_Shield_Attack.h" />
-    <ClInclude Include="..\public\FSM_Mon_Shield_Hit.h" />
-    <ClInclude Include="..\public\FSM_Mon_Shield_Run.h" />
-    <ClInclude Include="..\public\FSM_Mon_Shield_Walk.h" />
-    <ClInclude Include="..\public\FSM_Mon_Spear_Attack.h" />
-    <ClInclude Include="..\public\FSM_Mon_Spear_Dash.h" />
-    <ClInclude Include="..\public\FSM_Mon_Spear_Hit.h" />
-    <ClInclude Include="..\public\FSM_Mon_Spear_Idle.h" />
-    <ClInclude Include="..\public\FSM_Mon_Spear_Roll.h" />
-    <ClInclude Include="..\public\FSM_Mon_Spear_Run.h" />
-    <ClInclude Include="..\public\FSM_Mon_Spear_Walk.h" />
-    <ClInclude Include="..\public\Item.h" />
-    <ClInclude Include="..\public\Item_Sniper.h" />
-    <ClInclude Include="..\public\Item_Weapon.h" />
-    <ClInclude Include="..\public\Level_Boss.h" />
-    <ClInclude Include="..\public\Mon_Deash_Boom.h" />
-    <ClInclude Include="..\Public\Door.h" />
-    <ClInclude Include="..\public\Mon_Dragon.h" />
-    <ClInclude Include="..\public\Mon_Knight.h" />
-    <ClInclude Include="..\public\Mon_Bug.h" />
-    <ClInclude Include="..\public\Mon_Shield_Knight.h" />
-    <ClInclude Include="..\public\Pillars101.h" />
-    <ClInclude Include="..\public\Portal.h" />
-    <ClInclude Include="..\public\Skill_Archer_Bullet.h" />
-    <ClInclude Include="..\Public\Cube.h" />
-    <ClInclude Include="..\public\Effect_Deco_Snow.h" />
-    <ClInclude Include="..\public\Element.h" />
-    <ClInclude Include="..\public\Floor_101.h" />
-    <ClInclude Include="..\Public\Floor_102.h" />
-    <ClInclude Include="..\public\Floor_103.h" />
-    <ClInclude Include="..\public\Floor_105.h" />
-    <ClInclude Include="..\public\Floor_106.h" />
-    <ClInclude Include="..\public\Floor_107.h" />
-    <ClInclude Include="..\public\Floor_108.h" />
-    <ClInclude Include="..\public\Floor_109.h" />
-    <ClInclude Include="..\public\Floor_110.h" />
-    <ClInclude Include="..\public\Floor_111.h" />
-    <ClInclude Include="..\public\Floor_112.h" />
-    <ClInclude Include="..\public\Floor_114.h" />
-    <ClInclude Include="..\public\FSM_Monster.h" />
-    <ClInclude Include="..\public\FSM_Mon_Archer_Attack.h" />
-    <ClInclude Include="..\public\FSM_Mon_Archer_Idle.h" />
-    <ClInclude Include="..\public\FSM_Mon_Archer_Run.h" />
-    <ClInclude Include="..\public\FSM_Mon_Archer_Walk.h" />
-    <ClInclude Include="..\Public\FSM_Player.h" />
-    <ClInclude Include="..\Public\FSM_Player_Attack.h" />
-    <ClInclude Include="..\Public\FSM_Player_Dash.h" />
-    <ClInclude Include="..\Public\Imgui\imconfig.h" />
-    <ClInclude Include="..\Public\Imgui\imgui.h" />
-    <ClInclude Include="..\Public\Imgui\imgui_impl_dx11.h" />
-    <ClInclude Include="..\Public\Imgui\imgui_impl_win32.h" />
-    <ClInclude Include="..\Public\Imgui\imgui_internal.h" />
-    <ClInclude Include="..\Public\Imgui\imstb_rectpack.h" />
-    <ClInclude Include="..\Public\Imgui\imstb_textedit.h" />
-    <ClInclude Include="..\Public\Imgui\imstb_truetype.h" />
-    <ClInclude Include="..\Public\Level_GamePlay.h" />
-    <ClInclude Include="..\Public\Level_Loading.h" />
-    <ClInclude Include="..\Public\Level_Logo.h" />
-    <ClInclude Include="..\Public\Loader.h" />
-    <ClInclude Include="..\public\MainApp.h" />
-    <ClInclude Include="..\Public\Monster.h" />
-    <ClInclude Include="..\public\Mon_Archer.h" />
-    <ClInclude Include="..\Public\Player.h" />
-    <ClInclude Include="..\Public\Skill.h" />
-    <ClInclude Include="..\public\Skill_BoomGun_Bullet.h" />
-    <ClInclude Include="..\public\Skill_Dragon_Breath.h" />
-    <ClInclude Include="..\public\Skill_Dragon_Bubble.h" />
-    <ClInclude Include="..\public\Skill_Dragon_Dust.h" />
-    <ClInclude Include="..\public\Skill_Dragon_Floor.h" />
-    <ClInclude Include="..\public\Skill_Monster.h" />
-    <ClInclude Include="..\Public\Skill_Player.h" />
-    <ClInclude Include="..\Public\Skill_Pistol_Bullet.h" />
-    <ClInclude Include="..\public\Skill_Shuriken_Bullet.h" />
-    <ClInclude Include="..\public\Skill_Sniper_Bullet.h" />
-    <ClInclude Include="..\public\Sky.h" />
-    <ClInclude Include="..\public\Mon_Spear.h" />
-    <ClInclude Include="..\public\Stair1.h" />
-    <ClInclude Include="..\public\Stair101.h" />
-    <ClInclude Include="..\public\Stair101_Addon.h" />
-    <ClInclude Include="..\public\Stair2.h" />
-    <ClInclude Include="..\Public\Terrain.h" />
-    <ClInclude Include="..\public\Terrain_Boss.h" />
-    <ClInclude Include="..\public\Terrain_GamePlay.h" />
-    <ClInclude Include="..\Public\Tool.h" />
-    <ClInclude Include="..\Public\Tool_Manager.h" />
-    <ClInclude Include="..\Public\Tool_Object.h" />
-    <ClInclude Include="..\Public\Tool_Save.h" />
-    <ClInclude Include="..\Public\UIObject.h" />
-    <ClInclude Include="..\public\UI_Bullet_Font.h" />
-    <ClInclude Include="..\Public\UI_Cross_Hair.h" />
-    <ClInclude Include="..\public\UI_Mon_BarPanel.h" />
-    <ClInclude Include="..\public\UI_Mon_HpBar.h" />
-    <ClInclude Include="..\public\UI_Mon_HpBlankBar.h" />
-    <ClInclude Include="..\Public\UI_Player_Bar.h" />
-    <ClInclude Include="..\Public\UI_Player_BarPanel.h" />
-    <ClInclude Include="..\Public\UI_Player_HpBar.h" />
-    <ClInclude Include="..\Public\UI_Player_HpBlankBar.h" />
-    <ClInclude Include="..\Public\UI_Player_Icon.h" />
-    <ClInclude Include="..\Public\UI_Player_ShieldBar.h" />
-    <ClInclude Include="..\Public\UI_Player_ShieldBlankBar.h" />
-    <ClInclude Include="..\Public\UI_Skill_Aiming.h" />
-    <ClInclude Include="..\Public\UI_Skill_Dash.h" />
-    <ClInclude Include="..\Public\UI_Skill_Panel.h" />
-    <ClInclude Include="..\public\UI_Sniper_Hair.h" />
-    <ClInclude Include="..\public\UI_Sniper_Ring.h" />
-    <ClInclude Include="..\Public\UI_Weapon_BBullet.h" />
-    <ClInclude Include="..\Public\UI_Weapon_GBullet.h" />
-    <ClInclude Include="..\public\UI_Weapon_Icon.h" />
-    <ClInclude Include="..\Public\UI_Weapon_NumPanel.h" />
-    <ClInclude Include="..\Public\UI_Weapon_Panel.h" />
-    <ClInclude Include="..\Public\UI_Weapon_YBullet.h" />
-    <ClInclude Include="..\public\VFX_Mon_Dust.h" />
-    <ClInclude Include="..\public\VFX_Monster.h" />
-    <ClInclude Include="..\public\VFX_Mon_Breath.h" />
-    <ClInclude Include="..\public\Wall_Stage1.h" />
-    <ClInclude Include="..\public\Wall_Stage2.h" />
-    <ClInclude Include="..\public\Weapon_Player.h" />
-    <ClInclude Include="..\public\Weapon_Player_BoomGun.h" />
-    <ClInclude Include="..\public\Weapon_Player_Pistol.h" />
-    <ClInclude Include="..\public\Weapon_Player_Shuriken.h" />
-    <ClInclude Include="..\public\Weapon_Player_Sniper.h" />
-    <ClInclude Include="Client.h" />
-    <ClInclude Include="Resource.h" />
-    <ClInclude Include="stdafx.h" />
-    <ClInclude Include="targetver.h" />
+    <ClInclude Include="..\public\Boss_Logo.h">
+      <Filter>01.Level\00.Logo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Level_Logo.h">
+      <Filter>01.Level\00.Logo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Level_GamePlay.h">
+      <Filter>01.Level\01.GamePlay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\BackGround.h">
+      <Filter>02.GameObjects\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Camera_Free.h">
+      <Filter>02.GameObjects\Camera\Free</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Cube.h">
+      <Filter>02.GameObjects\Cube</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Effect_Deco_Snow.h">
+      <Filter>02.GameObjects\Effect\Deco_Effect\Snow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\VFX_Mon_Dust.h">
+      <Filter>02.GameObjects\Effect\Monster_Effect\Dust</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\VFX_Mon_Breath.h">
+      <Filter>02.GameObjects\Effect\Monster_Effect\Breath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Mon_Archer.h">
+      <Filter>02.GameObjects\Monster\Archer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Mon_Bug.h">
+      <Filter>02.GameObjects\Monster\Bug</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Mon_Deash_Boom.h">
+      <Filter>02.GameObjects\Monster\Deash_Boom</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Mon_Knight.h">
+      <Filter>02.GameObjects\Monster\Knight</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Mon_Shield_Knight.h">
+      <Filter>02.GameObjects\Monster\Shield_Knight</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Mon_Spear.h">
+      <Filter>02.GameObjects\Monster\Spear</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Mon_Dragon.h">
+      <Filter>02.GameObjects\Monster\Dragon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Door.h">
+      <Filter>02.GameObjects\Deco\Door</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Floor_101.h">
+      <Filter>02.GameObjects\Deco\Floor\101</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Floor_102.h">
+      <Filter>02.GameObjects\Deco\Floor\102</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Floor_103.h">
+      <Filter>02.GameObjects\Deco\Floor\103</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Floor_105.h">
+      <Filter>02.GameObjects\Deco\Floor\105</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Floor_106.h">
+      <Filter>02.GameObjects\Deco\Floor\106</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Floor_107.h">
+      <Filter>02.GameObjects\Deco\Floor\107</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Floor_108.h">
+      <Filter>02.GameObjects\Deco\Floor\108</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Floor_109.h">
+      <Filter>02.GameObjects\Deco\Floor\109</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Floor_110.h">
+      <Filter>02.GameObjects\Deco\Floor\110</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Floor_111.h">
+      <Filter>02.GameObjects\Deco\Floor\111</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Floor_112.h">
+      <Filter>02.GameObjects\Deco\Floor\112</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Floor_114.h">
+      <Filter>02.GameObjects\Deco\Floor\114</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Wall_Stage1.h">
+      <Filter>02.GameObjects\Deco\Wall_Stage\Stage1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Wall_Stage2.h">
+      <Filter>02.GameObjects\Deco\Wall_Stage\Stage2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Ceiling_101.h">
+      <Filter>02.GameObjects\Deco\Ceiling\101</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Ceiling_103.h">
+      <Filter>02.GameObjects\Deco\Ceiling\103</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Ceiling_104.h">
+      <Filter>02.GameObjects\Deco\Ceiling\104</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Ceiling_105.h">
+      <Filter>02.GameObjects\Deco\Ceiling\105</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Archer_Attack.h">
+      <Filter>03.Stage_Machine\FSM_Monster\Archer\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\FSM_Mon_Archer_Hit.h">
+      <Filter>03.Stage_Machine\FSM_Monster\Archer\Hit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Archer_Idle.h">
+      <Filter>03.Stage_Machine\FSM_Monster\Archer\Idle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Archer_Run.h">
+      <Filter>03.Stage_Machine\FSM_Monster\Archer\Run</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Archer_Walk.h">
+      <Filter>03.Stage_Machine\FSM_Monster\Archer\Walk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Boom_Attack.h">
+      <Filter>03.Stage_Machine\FSM_Monster\Boom\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Boom_Idle.h">
+      <Filter>03.Stage_Machine\FSM_Monster\Boom\Idle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Boom_Run.h">
+      <Filter>03.Stage_Machine\FSM_Monster\Boom\Run</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Boom_Walk.h">
+      <Filter>03.Stage_Machine\FSM_Monster\Boom\Walk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Bug_Attack.h">
+      <Filter>03.Stage_Machine\FSM_Monster\Bug\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\FSM_Mon_Bug_Idle.h">
+      <Filter>03.Stage_Machine\FSM_Monster\Bug\Idle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Bug_Run.h">
+      <Filter>03.Stage_Machine\FSM_Monster\Bug\Run</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\FSM_Mon_Dragon_Idle.h">
+      <Filter>03.Stage_Machine\FSM_Monster\Dragon\Body\Idle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Dragon_Death.h">
+      <Filter>03.Stage_Machine\FSM_Monster\Dragon\Body\Death</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Dragon_Attack.h">
+      <Filter>03.Stage_Machine\FSM_Monster\Dragon\Body\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_DragonHead_Attack.h">
+      <Filter>03.Stage_Machine\FSM_Monster\Dragon\Head\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_DragonHead_Idle.h">
+      <Filter>03.Stage_Machine\FSM_Monster\Dragon\Head\Idle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_DragonHead_In.h">
+      <Filter>03.Stage_Machine\FSM_Monster\Dragon\Head\In</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_DragonHead_Out.h">
+      <Filter>03.Stage_Machine\FSM_Monster\Dragon\Head\Out</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_DragonTail_Out.h">
+      <Filter>03.Stage_Machine\FSM_Monster\Dragon\Tail\Out</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_DragonTail_In.h">
+      <Filter>03.Stage_Machine\FSM_Monster\Dragon\Tail\In</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_DragonTail_Idle.h">
+      <Filter>03.Stage_Machine\FSM_Monster\Dragon\Tail\Idle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\FSM_Mon_DragonTail_Attack.h">
+      <Filter>03.Stage_Machine\FSM_Monster\Dragon\Tail\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Knight_Attack.h">
+      <Filter>03.Stage_Machine\FSM_Monster\Knight\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Knight_Hit.h">
+      <Filter>03.Stage_Machine\FSM_Monster\Knight\Hit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Knight_Idle.h">
+      <Filter>03.Stage_Machine\FSM_Monster\Knight\Idle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Knight_RangeAttack.h">
+      <Filter>03.Stage_Machine\FSM_Monster\Knight\RangeAttack</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Knight_Roll.h">
+      <Filter>03.Stage_Machine\FSM_Monster\Knight\Roll</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Knight_Run.h">
+      <Filter>03.Stage_Machine\FSM_Monster\Knight\Run</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Shield_Attack.h">
+      <Filter>03.Stage_Machine\FSM_Monster\Shield\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Shield_Hit.h">
+      <Filter>03.Stage_Machine\FSM_Monster\Shield\Hit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Shield_Idle.h">
+      <Filter>03.Stage_Machine\FSM_Monster\Shield\Idle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Shield_Run.h">
+      <Filter>03.Stage_Machine\FSM_Monster\Shield\Run</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Shield_Walk.h">
+      <Filter>03.Stage_Machine\FSM_Monster\Shield\Walk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Spear_Attack.h">
+      <Filter>03.Stage_Machine\FSM_Monster\Spear\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Spear_Dash.h">
+      <Filter>03.Stage_Machine\FSM_Monster\Spear\Dash</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Spear_Hit.h">
+      <Filter>03.Stage_Machine\FSM_Monster\Spear\Hit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Spear_Idle.h">
+      <Filter>03.Stage_Machine\FSM_Monster\Spear\Idle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Spear_Roll.h">
+      <Filter>03.Stage_Machine\FSM_Monster\Spear\Roll</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Spear_Run.h">
+      <Filter>03.Stage_Machine\FSM_Monster\Spear\Run</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Mon_Spear_Walk.h">
+      <Filter>03.Stage_Machine\FSM_Monster\Spear\Walk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\FSM_Monster.h">
+      <Filter>03.Stage_Machine\FSM_Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\FSM_Player.h">
+      <Filter>03.Stage_Machine\FSM_Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\FSM_Player_Attack.h">
+      <Filter>03.Stage_Machine\FSM_Player\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\FSM_Player_Dash.h">
+      <Filter>03.Stage_Machine\FSM_Player\Dash</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Terrain_Boss.h">
+      <Filter>02.GameObjects\Terrain\Terrain_Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Terrain_GamePlay.h">
+      <Filter>02.GameObjects\Terrain\Terrain_GamePlay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Sky.h">
+      <Filter>02.GameObjects\Sky</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Imgui\imgui.h">
+      <Filter>96.Imgui\h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Imgui\imgui_impl_dx11.h">
+      <Filter>96.Imgui\h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Imgui\imgui_impl_win32.h">
+      <Filter>96.Imgui\h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Imgui\imgui_internal.h">
+      <Filter>96.Imgui\h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Imgui\imstb_rectpack.h">
+      <Filter>96.Imgui\h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Imgui\imstb_textedit.h">
+      <Filter>96.Imgui\h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Imgui\imstb_truetype.h">
+      <Filter>96.Imgui\h</Filter>
+    </ClInclude>
+    <ClInclude Include="Client.h">
+      <Filter>98.Default</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Effect.h">
+      <Filter>02.GameObjects\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Element.h">
+      <Filter>02.GameObjects\Deco</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Imgui\imconfig.h">
+      <Filter>98.Default</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Item.h">
+      <Filter>02.GameObjects\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Item_Sniper.h">
+      <Filter>02.GameObjects\Item\Weapon\Sniper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Item_Weapon.h">
+      <Filter>02.GameObjects\Item\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Level_Boss.h">
+      <Filter>01.Level\03.Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Level_Loading.h">
+      <Filter>01.Level\99.Loading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Loader.h">
+      <Filter>01.Level\99.Loading\Loader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\MainApp.h">
+      <Filter>00.MainApp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Monster.h">
+      <Filter>02.GameObjects\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Pillars101.h">
+      <Filter>02.GameObjects\Deco\Pillars\101</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Player.h">
+      <Filter>02.GameObjects\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Stair1.h">
+      <Filter>02.GameObjects\Deco\Stair\1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Stair2.h">
+      <Filter>02.GameObjects\Deco\Stair\2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Stair101.h">
+      <Filter>02.GameObjects\Deco\Stair\101</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Stair101_Addon.h">
+      <Filter>02.GameObjects\Deco\Stair\101\Addon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Portal.h">
+      <Filter>02.GameObjects\Deco\Portal</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>98.Default</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>98.Default</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\UIObject.h">
+      <Filter>02.GameObjects\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>98.Default</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Terrain.h">
+      <Filter>02.GameObjects\Terrain</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\VFX_Monster.h">
+      <Filter>02.GameObjects\Effect\Monster_Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\UI_Mon_BarPanel.h">
+      <Filter>02.GameObjects\UI\UI_Monster_State\UI_Mon_BarPanel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\UI_Mon_HpBar.h">
+      <Filter>02.GameObjects\UI\UI_Monster_State\UI_Mon_HpBar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\UI_Mon_HpBlankBar.h">
+      <Filter>02.GameObjects\UI\UI_Monster_State\UI_Mon_HpBlankBar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\UI_Weapon_BBullet.h">
+      <Filter>02.GameObjects\UI\UI_Weapon_State\UI_Weapon_BBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\UI_Weapon_GBullet.h">
+      <Filter>02.GameObjects\UI\UI_Weapon_State\UI_Weapon_GBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\UI_Weapon_Icon.h">
+      <Filter>02.GameObjects\UI\UI_Weapon_State\UI_Weapon_Icon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\UI_Weapon_NumPanel.h">
+      <Filter>02.GameObjects\UI\UI_Weapon_State\UI_Weapon_NumPanel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\UI_Weapon_Panel.h">
+      <Filter>02.GameObjects\UI\UI_Weapon_State\UI_Weapon_Panel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\UI_Weapon_YBullet.h">
+      <Filter>02.GameObjects\UI\UI_Weapon_State\UI_Weapon_YBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\UI_Bullet_Font.h">
+      <Filter>02.GameObjects\UI\UI_Bullet_Font</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\UI_Player_Bar.h">
+      <Filter>02.GameObjects\UI\UI_Player_State\UI_Player_Bar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\UI_Player_BarPanel.h">
+      <Filter>02.GameObjects\UI\UI_Player_State\UI_Player_BarPanel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\UI_Player_HpBar.h">
+      <Filter>02.GameObjects\UI\UI_Player_State\UI_Player_HpBar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\UI_Player_HpBlankBar.h">
+      <Filter>02.GameObjects\UI\UI_Player_State\UI_Player_HpBlankBar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\UI_Player_Icon.h">
+      <Filter>02.GameObjects\UI\UI_Player_State\UI_Player_Icon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\UI_Player_ShieldBar.h">
+      <Filter>02.GameObjects\UI\UI_Player_State\UI_Player_ShieldBar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\UI_Player_ShieldBlankBar.h">
+      <Filter>02.GameObjects\UI\UI_Player_State\UI_Player_ShieldBlankBar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\UI_Skill_Aiming.h">
+      <Filter>02.GameObjects\UI\UI_Skill_State\UI_Skill_Aiming</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\UI_Skill_Dash.h">
+      <Filter>02.GameObjects\UI\UI_Skill_State\UI_Skill_Dash</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\UI_Skill_Panel.h">
+      <Filter>02.GameObjects\UI\UI_Skill_State\UI_Skill_Panel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\UI_Sniper_Hair.h">
+      <Filter>02.GameObjects\UI\UI_Cross_Hair\Sniper\Hair</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\UI_Cross_Hair.h">
+      <Filter>02.GameObjects\UI\UI_Cross_Hair</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\UI_Sniper_Ring.h">
+      <Filter>02.GameObjects\UI\UI_Cross_Hair\Sniper\Ring</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Weapon_Player.h">
+      <Filter>02.GameObjects\Player\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Weapon_Player_BoomGun.h">
+      <Filter>02.GameObjects\Player\Weapon\BoomGun</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Weapon_Player_Pistol.h">
+      <Filter>02.GameObjects\Player\Weapon\Pistol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Weapon_Player_Shuriken.h">
+      <Filter>02.GameObjects\Player\Weapon\Shuriken</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Weapon_Player_Sniper.h">
+      <Filter>02.GameObjects\Player\Weapon\Sniper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Tool_Manager.h">
+      <Filter>04.Tool\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Tool_Object.h">
+      <Filter>04.Tool\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Tool.h">
+      <Filter>04.Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Tool_Save.h">
+      <Filter>04.Tool\Save</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Skill_Archer_Bullet.h">
+      <Filter>02.GameObjects\Skill\Monster_Skill\Skill_Archer_Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Skill_BoomGun_Bullet.h">
+      <Filter>02.GameObjects\Skill\Player_Skill\BoomGun_Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Skill_Dragon_Breath.h">
+      <Filter>02.GameObjects\Skill\Monster_Skill\Breath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Skill_Dragon_Bubble.h">
+      <Filter>02.GameObjects\Skill\Monster_Skill\Bubble</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Skill_Dragon_Dust.h">
+      <Filter>02.GameObjects\Skill\Monster_Skill\Dust</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Skill_Dragon_Floor.h">
+      <Filter>02.GameObjects\Skill\Monster_Skill\Floor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Skill.h">
+      <Filter>02.GameObjects\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Skill_Monster.h">
+      <Filter>02.GameObjects\Skill\Monster_Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Skill_Pistol_Bullet.h">
+      <Filter>02.GameObjects\Skill\Player_Skill\Pistol_Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Skill_Player.h">
+      <Filter>02.GameObjects\Skill\Player_Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Skill_Shuriken_Bullet.h">
+      <Filter>02.GameObjects\Skill\Player_Skill\Shuriken_Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Skill_Sniper_Bullet.h">
+      <Filter>02.GameObjects\Skill\Player_Skill\Sniper_Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Client_Defines.h">
+      <Filter>99.Defines</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="Client.rc" />
+    <Image Include="Client.ico">
+      <Filter>98.Default</Filter>
+    </Image>
+    <Image Include="small.ico">
+      <Filter>98.Default</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Client.ico" />
-    <Image Include="small.ico" />
+    <Filter Include="00.MainApp">
+      <UniqueIdentifier>{9b2abcb7-5da6-4d93-a311-7be6cd618aed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Level">
+      <UniqueIdentifier>{b092b0ae-9d3d-4131-bfce-eedf28e72f0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Level\00.Logo">
+      <UniqueIdentifier>{da4e2eaa-1a6d-4b9b-9da1-c62181032271}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Level\01.GamePlay">
+      <UniqueIdentifier>{ba1b9e96-c1c7-4b14-b5e9-e2f60bdecd0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects">
+      <UniqueIdentifier>{0b11dc14-29f8-4ee5-b57a-5450ebce215a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\BackGround">
+      <UniqueIdentifier>{7d5561e5-2bd4-43ea-8074-17fe7e6f3f31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Camera">
+      <UniqueIdentifier>{bfa6d67a-8b41-4b2f-a72a-85c7b86777f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Cube">
+      <UniqueIdentifier>{e3fd3bd3-088e-4210-9648-947e45ed1412}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Effect">
+      <UniqueIdentifier>{8f00ed4b-774f-47d3-8da6-94e0056f05dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Monster">
+      <UniqueIdentifier>{1a06ecc8-51fb-4f77-b858-a8721727ee5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Player">
+      <UniqueIdentifier>{47f878eb-4715-4a4f-b134-ebbe6a3fe605}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Skill">
+      <UniqueIdentifier>{5563fc9e-7ccb-4870-8642-53f5c901a44a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Sky">
+      <UniqueIdentifier>{5a329640-5b15-4e6b-b8e5-b8f6b15bae76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Terrain">
+      <UniqueIdentifier>{216e6cb2-c51b-4ad9-abf7-8f1a357f6358}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI">
+      <UniqueIdentifier>{7b49b7ba-dc8d-4cd0-b68e-b26e25691b11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Camera\Free">
+      <UniqueIdentifier>{743d029f-be3a-44e6-8694-21396d882aeb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Effect\Deco_Effect">
+      <UniqueIdentifier>{c6396d14-3475-42a1-9324-0c97dfcdc45e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Effect\Monster_Effect">
+      <UniqueIdentifier>{ead9bfc8-07ea-4bd7-8e86-c818a8972ca1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Effect\Player_Effect">
+      <UniqueIdentifier>{e1293626-7eb6-4103-8e9f-909d81c6dc2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco">
+      <UniqueIdentifier>{c6fc646a-710d-424b-bb56-2291303028c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Door">
+      <UniqueIdentifier>{32d366d3-ee50-4062-97aa-1883b79c2181}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Floor">
+      <UniqueIdentifier>{451edd33-a366-4240-8927-af491f2881f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Wall_Stage">
+      <UniqueIdentifier>{744cc554-5d0d-495e-95cf-7de6df358562}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Monster\Archer">
+      <UniqueIdentifier>{a79b78df-1856-4632-b93d-cf9d70bc1525}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Monster\Bug">
+      <UniqueIdentifier>{25a3c0b4-ea79-491d-b721-0af30aa8a4bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Monster\Deash_Boom">
+      <UniqueIdentifier>{afa96331-c3bc-4c86-8586-5bf381656df4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Monster\Knight">
+      <UniqueIdentifier>{0867c9cd-9660-4709-a22c-5f10f68e4ec5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Monster\Shield_Knight">
+      <UniqueIdentifier>{43085a47-0cf7-4204-ad99-02b44a8e398f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Monster\Spear">
+      <UniqueIdentifier>{c98b5d74-5a76-4e14-b246-d0bb3dae1c04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Player\Weapon">
+      <UniqueIdentifier>{4ec60554-a5a7-46f5-8ab2-d085c5b2fc5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Player\Weapon\BoomGun">
+      <UniqueIdentifier>{e0a8f23d-cb45-4f8d-b3c4-5614ff4e4ea4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Player\Weapon\Pistol">
+      <UniqueIdentifier>{134653bc-96de-451f-9332-d0a6edfbe9c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Player\Weapon\Shuriken">
+      <UniqueIdentifier>{697d82b4-535c-442f-82b2-a0e7bbf0882b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Player\Weapon\Sniper">
+      <UniqueIdentifier>{3bf563ce-4408-4dec-8888-e8f6deb6c9e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Skill\Monster_Skill">
+      <UniqueIdentifier>{4c1b92b7-9787-4685-bb67-01eb1b63053c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Skill\Player_Skill">
+      <UniqueIdentifier>{99a9765a-d104-4009-99b3-c2fbaa7a56b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Bullet_Font">
+      <UniqueIdentifier>{df879443-41b5-4d92-b01f-25a3dfd650af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Cross_Hair">
+      <UniqueIdentifier>{89f0c6ea-44ca-42fa-a852-7ec5a97c2ac6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Player_State">
+      <UniqueIdentifier>{91f66bdb-3f8b-4dd6-bf4b-a1421e7a669b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Skill_State">
+      <UniqueIdentifier>{779c240c-3229-4049-96bb-5bb1df3517b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Weapon_State">
+      <UniqueIdentifier>{5db3ebc2-4890-4588-a049-44e2ac48de62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Monster_State">
+      <UniqueIdentifier>{7cf4fc52-9f68-43ae-928d-4d62324ba352}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Monster_State\UI_Mon_BarPanel">
+      <UniqueIdentifier>{65bfe116-ede5-4ec5-b164-c2863c36db82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Monster_State\UI_Mon_HpBar">
+      <UniqueIdentifier>{64083cd5-b17c-443d-a5d7-003b7d855680}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Monster_State\UI_Mon_HpBlankBar">
+      <UniqueIdentifier>{e4455c90-3b4e-44f7-8697-52e54ba13aff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Player_State\UI_Player_Bar">
+      <UniqueIdentifier>{3daff0ca-2a98-4d4e-9957-a9a180453860}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Player_State\UI_Player_BarPanel">
+      <UniqueIdentifier>{5fc9b47f-b211-46d5-8450-3b7a2574927f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Player_State\UI_Player_HpBar">
+      <UniqueIdentifier>{2ca56bd5-b11b-40a5-9f0c-5df0ae7e4a86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Player_State\UI_Player_HpBlankBar">
+      <UniqueIdentifier>{2a0590d7-a41d-45c8-b7b2-6019a6d130ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Player_State\UI_Player_Icon">
+      <UniqueIdentifier>{96d49541-6256-4cfa-a277-99c53d29ea94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Player_State\UI_Player_ShieldBar">
+      <UniqueIdentifier>{e1e837f9-8130-4c3e-a538-7cfa0125dec3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Player_State\UI_Player_ShieldBlankBar">
+      <UniqueIdentifier>{982a169a-2537-4b4d-a4d8-a7e6778ce862}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Skill_State\UI_Skill_Aiming">
+      <UniqueIdentifier>{ee04ab93-e3aa-4685-b63b-cb92fc7f50a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Skill_State\UI_Skill_Dash">
+      <UniqueIdentifier>{3b9c48c0-412d-42d9-bed7-7fe5094ef6a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Skill_State\UI_Skill_Panel">
+      <UniqueIdentifier>{a5774414-0b38-4bc5-ae3b-80cb3dc6dd30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Weapon_State\UI_Weapon_BBullet">
+      <UniqueIdentifier>{757dc394-1d9a-49fb-bd5a-c888f8e15afe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Weapon_State\UI_Weapon_GBullet">
+      <UniqueIdentifier>{ff44069f-9bbd-4e6c-aa39-e0c0e71c8a01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Weapon_State\UI_Weapon_Icon">
+      <UniqueIdentifier>{22293217-5316-485e-a549-0469fcda01b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Weapon_State\UI_Weapon_Panel">
+      <UniqueIdentifier>{0fa511b4-ec6e-4a74-9dc5-5f2800ad1837}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Weapon_State\UI_Weapon_NumPanel">
+      <UniqueIdentifier>{947b5e2c-6f6b-4eb8-8c23-66247e863b43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Weapon_State\UI_Weapon_YBullet">
+      <UniqueIdentifier>{b5a32215-11fc-4c13-a7c7-9a1320204e65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Effect\Deco_Effect\Snow">
+      <UniqueIdentifier>{48e00dc0-bab0-4890-b104-7c0c5ffa8f91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Effect\Monster_Effect\Dust">
+      <UniqueIdentifier>{f5def08c-096f-497a-bb3e-717426060e4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Effect\Monster_Effect\Breath">
+      <UniqueIdentifier>{a7cebb77-dfbf-48b4-9fd7-f381f2ffddc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine">
+      <UniqueIdentifier>{d3c18257-3d6b-4b41-9522-02f0dc487d78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Tool">
+      <UniqueIdentifier>{cee652ff-1cb2-4077-8853-c43c881c1810}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="96.Imgui">
+      <UniqueIdentifier>{89d0502e-152f-45bc-b5d3-8682bbf31693}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.ShaderFiles">
+      <UniqueIdentifier>{f1ea2390-14cf-4cc8-b2f8-afaf07ce45ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98.Default">
+      <UniqueIdentifier>{3548df78-4240-4fb9-8a26-da200576a522}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99.Defines">
+      <UniqueIdentifier>{c6cc0bb6-24b4-43f2-9a83-904049b49b63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Monster\Dragon">
+      <UniqueIdentifier>{fbc62c9c-5268-47bc-8379-8c11b214ebd5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Floor\101">
+      <UniqueIdentifier>{91f31654-9270-407c-8604-e78a690a4682}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Floor\102">
+      <UniqueIdentifier>{8b3c2e08-694e-43df-9015-335ed77ff409}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Floor\103">
+      <UniqueIdentifier>{a6a2cd80-dddd-4ac0-ad0a-da4b4f2f60de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Floor\105">
+      <UniqueIdentifier>{9f79861a-6917-4b6d-bcab-8e0543557fb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Floor\106">
+      <UniqueIdentifier>{6b8b3a47-6e0c-4bf5-be56-2501b7b1a9d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Floor\107">
+      <UniqueIdentifier>{bd5b37d7-bcd2-4673-ab08-57d211789209}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Floor\108">
+      <UniqueIdentifier>{d8e180a1-57b8-4bb7-8138-53be0e24a49e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Floor\109">
+      <UniqueIdentifier>{2cdd160d-766d-4184-9c37-9471d50ec8df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Floor\110">
+      <UniqueIdentifier>{19da42a9-1d5b-4370-8d98-161241472294}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Floor\111">
+      <UniqueIdentifier>{3d619ca8-89c5-4a05-958e-f8e0e61202b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Floor\112">
+      <UniqueIdentifier>{8101faa3-c185-43fa-946c-ea8e623e037c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Floor\114">
+      <UniqueIdentifier>{4f79fe22-9a5c-4756-9c30-41d41c5f740b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Wall_Stage\Stage1">
+      <UniqueIdentifier>{037ca03a-bb23-44f8-bd12-071d893db1fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Wall_Stage\Stage2">
+      <UniqueIdentifier>{80cf1549-0c69-486c-bfbc-2b446f0b9baf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Ceiling">
+      <UniqueIdentifier>{be5c8577-8447-4aea-b4cf-d3ad9c1a0bd6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Ceiling\101">
+      <UniqueIdentifier>{26813f17-d420-429d-ac8e-27caca8500e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Ceiling\103">
+      <UniqueIdentifier>{7be29b48-e574-4e01-bb4a-7477e33c3f8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Ceiling\104">
+      <UniqueIdentifier>{baf1b4e7-8024-47c6-ba4a-49ab3ff3d082}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Ceiling\105">
+      <UniqueIdentifier>{92a3c87a-69ea-4586-b7f2-4ee284a7481b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster">
+      <UniqueIdentifier>{7c39e370-4af3-4c26-b96c-956a53e6ee59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Dragon">
+      <UniqueIdentifier>{84074d67-9452-4174-a08b-ed4a7e1a0669}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Dragon\Head">
+      <UniqueIdentifier>{165e140b-844e-4c6d-98bb-08419278faeb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Dragon\Head\Attack">
+      <UniqueIdentifier>{294e4321-769f-4f92-b193-b7aa8ceb8979}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Dragon\Head\Idle">
+      <UniqueIdentifier>{f357f2db-6570-408e-aabc-8446384a8b05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Dragon\Head\In">
+      <UniqueIdentifier>{4a7bc8db-b934-47a0-b765-33b65db0a55a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Dragon\Head\Out">
+      <UniqueIdentifier>{443dce4e-5961-4d56-945a-8c21eae92762}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Dragon\Body">
+      <UniqueIdentifier>{8bc9a19c-ae2b-4f03-990f-ca26949062d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Dragon\Body\Attack">
+      <UniqueIdentifier>{bf933714-d425-47d0-95f2-9170f1dad90f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Dragon\Body\Death">
+      <UniqueIdentifier>{7828fa3c-2c12-4400-8b25-5e2b64d770d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Dragon\Body\Idle">
+      <UniqueIdentifier>{6d319516-ecce-45c4-b8dd-51f616c33de1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Dragon\Tail">
+      <UniqueIdentifier>{5de3a89d-acd8-459f-b053-3c9b9a293ba3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Dragon\Tail\Attack">
+      <UniqueIdentifier>{ca8bfb6a-d811-418e-95d6-80a6a9c640cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Dragon\Tail\Idle">
+      <UniqueIdentifier>{d8190fc0-d0ac-43ea-9e09-39c64876e588}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Dragon\Tail\In">
+      <UniqueIdentifier>{60ed20ca-63b8-46a3-8845-c5b622648bb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Dragon\Tail\Out">
+      <UniqueIdentifier>{7865e9bd-902b-43ba-a51b-b1f9853fcd74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Archer">
+      <UniqueIdentifier>{ded1e4eb-6d83-4310-813c-be7512f569bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Archer\Attack">
+      <UniqueIdentifier>{0ed5eada-6562-42a6-91a8-1db5d9a346fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Archer\Hit">
+      <UniqueIdentifier>{3f4378f8-dcb3-4e28-8a52-845887c7383e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Archer\Idle">
+      <UniqueIdentifier>{7f5af9c1-6a76-4046-b2e4-55f7bbb71c72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Archer\Run">
+      <UniqueIdentifier>{02e622c8-1af6-4e77-9bc3-04aa61197a51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Archer\Walk">
+      <UniqueIdentifier>{afbd6eb8-b5c5-4a14-a8a7-aa2f102cb801}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Bug">
+      <UniqueIdentifier>{5a50d3fe-340d-43e6-be17-1c6e939438d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Bug\Idle">
+      <UniqueIdentifier>{ca678d1c-8622-4641-82d7-362e539a13d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Bug\Run">
+      <UniqueIdentifier>{a7ab4579-81c1-45f7-85d6-90e99e9f6751}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Bug\Attack">
+      <UniqueIdentifier>{20bf565c-9bf6-4247-be30-27b6318f1205}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Knight">
+      <UniqueIdentifier>{3c58f359-c3be-4754-95c8-be10cf75882c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Knight\Attack">
+      <UniqueIdentifier>{7579716f-8181-478a-891b-74c07b9050db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Knight\Hit">
+      <UniqueIdentifier>{8cdd359b-2619-4952-82a9-b4f5ae4f758e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Knight\Idle">
+      <UniqueIdentifier>{6ce8e82b-2834-4819-a026-7b724ae5d777}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Knight\RangeAttack">
+      <UniqueIdentifier>{51812718-568c-4998-ab9f-2f3822153dd0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Knight\Roll">
+      <UniqueIdentifier>{9fc616dd-0c58-42b0-8b4e-ad2f57cf081c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Knight\Run">
+      <UniqueIdentifier>{4e9f3690-cff9-4845-aff2-acccce9390a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Boom">
+      <UniqueIdentifier>{998bb4ce-0689-4357-953d-cd2fcc7de14f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Boom\Attack">
+      <UniqueIdentifier>{d117f96d-3f5e-4d66-b3bb-ac554595c21b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Boom\Idle">
+      <UniqueIdentifier>{58317ec2-9b24-4698-83f9-d9e809736170}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Boom\Run">
+      <UniqueIdentifier>{92d49eca-bbc8-419f-aa0b-dd7ec39112f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Boom\Walk">
+      <UniqueIdentifier>{e234417c-bba7-4e14-a207-7d1bb0caea71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Shield">
+      <UniqueIdentifier>{7a43464f-be4e-42c6-8f07-7d692ff106a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Shield\Attack">
+      <UniqueIdentifier>{65a2d7b8-ba62-4208-9284-095027339062}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Shield\Hit">
+      <UniqueIdentifier>{60f1a784-a9f4-463e-bab6-1a5fd82fc7e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Shield\Idle">
+      <UniqueIdentifier>{43b5fc6a-cdaf-46d3-aefc-395a64094b7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Shield\Run">
+      <UniqueIdentifier>{66babbfb-1cfb-4cb7-98bb-3b3c69cee9eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Shield\Walk">
+      <UniqueIdentifier>{cdee6f91-34c3-45f1-9cac-22d32705a6af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Spear">
+      <UniqueIdentifier>{3863dd53-9a2d-47a8-9635-8a0ff876b5de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Spear\Attack">
+      <UniqueIdentifier>{a11b390e-27de-48dd-812f-d0638c4581b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Spear\Dash">
+      <UniqueIdentifier>{703e0bea-5d5f-4950-95c9-fec688297567}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Spear\Hit">
+      <UniqueIdentifier>{bc0c1018-6c62-4321-a787-81ee05fd2288}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Spear\Idle">
+      <UniqueIdentifier>{681fcee3-cb08-4af8-b29b-83fbd6b849d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Spear\Roll">
+      <UniqueIdentifier>{77fb87e1-5354-4475-bc17-c52cd8eb1f5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Spear\Run">
+      <UniqueIdentifier>{4e81b35a-bc9a-44e6-ab6e-359611bd8021}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Monster\Spear\Walk">
+      <UniqueIdentifier>{ff643d87-9328-4e9e-8514-33575394a6cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Player">
+      <UniqueIdentifier>{ffadeba8-9102-4ee2-a9d6-aed6c57ead0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Player\Attack">
+      <UniqueIdentifier>{435c04a3-fe8e-449e-90dd-74a4fb80f9ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Stage_Machine\FSM_Player\Dash">
+      <UniqueIdentifier>{655abcdc-472c-431c-9967-a82dfaf4af20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Terrain\Terrain_Boss">
+      <UniqueIdentifier>{d63fa682-130f-4afc-88f4-ac437c7dfc76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Terrain\Terrain_GamePlay">
+      <UniqueIdentifier>{b61177dd-4c3f-4124-a3d2-bf3b6bbfc83b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="96.Imgui\h">
+      <UniqueIdentifier>{e71f77c8-8891-4d56-befd-6df218f5dcb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="96.Imgui\cpp">
+      <UniqueIdentifier>{4b4b001b-0d1a-4340-88dd-94bcb7056bdb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Item">
+      <UniqueIdentifier>{a12e8f54-9ca3-49d4-92a8-e68639622773}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Item\Weapon">
+      <UniqueIdentifier>{010b0fcf-808c-403a-9122-63bcde9d1ec1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Item\Weapon\Sniper">
+      <UniqueIdentifier>{961c7d74-5aae-43df-b565-271002b9224d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Level\02.Loading">
+      <UniqueIdentifier>{aa2ab423-e33f-4b36-93f3-ea164e873bf1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Level\03.Boss">
+      <UniqueIdentifier>{c8723c1b-68e4-44ce-911f-30777b854b5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Level\99.Loading">
+      <UniqueIdentifier>{d8f111a5-5f22-4343-aeda-0ce1ef0168ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Level\99.Loading\Loader">
+      <UniqueIdentifier>{f971ce6b-5351-4138-bf0a-5969936c549a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Pillars">
+      <UniqueIdentifier>{81a75abe-649e-4cf8-ad88-9aebfb764f3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Pillars\101">
+      <UniqueIdentifier>{2ad82325-4471-4b9a-93c2-80809bdb464b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Stair">
+      <UniqueIdentifier>{24159ae0-d0f4-4e40-bc31-d5a06ad54102}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Stair\101">
+      <UniqueIdentifier>{a71fdf09-b16e-4fb7-adcf-1f90c53f3e52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Stair\1">
+      <UniqueIdentifier>{79088a9d-3982-435f-aca2-aa2163576f8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Stair\2">
+      <UniqueIdentifier>{c3051396-5649-404e-98ec-aecddcb19522}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Stair\101\Addon">
+      <UniqueIdentifier>{046b9882-9d85-40bf-9755-a067b7e60033}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Portal">
+      <UniqueIdentifier>{5a1273b8-62c9-41f8-a9d7-88b54c262c7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Cross_Hair\Sniper">
+      <UniqueIdentifier>{1a4f4fd0-93ce-4c34-a425-a5e4ece1ead3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Cross_Hair\Sniper\Ring">
+      <UniqueIdentifier>{f45a40a9-54d8-48df-8639-0a6425c48592}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Cross_Hair\Sniper\Hair">
+      <UniqueIdentifier>{0904f9ae-cee4-4739-a36c-34eb8506cca2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Tool\Manager">
+      <UniqueIdentifier>{755d67e6-091c-4dfc-9c9b-cb3e5daea159}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Tool\Object">
+      <UniqueIdentifier>{5c3c6abe-e338-43a1-9e27-a36993d99179}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Tool\Save">
+      <UniqueIdentifier>{ee89f25b-fcfd-4fa0-b2c7-bfe450ba711c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Skill\Monster_Skill\Skill_Archer_Bullet">
+      <UniqueIdentifier>{c901dfb0-87fd-4a3c-a409-71a99d03c42d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Skill\Player_Skill\BoomGun_Bullet">
+      <UniqueIdentifier>{738ec676-6e6b-4897-9b27-0bae1efd3fa9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Skill\Player_Skill\Pistol_Bullet">
+      <UniqueIdentifier>{caa44c9c-c7ed-47bd-931e-0d2c351d8df2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Skill\Player_Skill\Shuriken_Bullet">
+      <UniqueIdentifier>{9316d1f1-7637-445d-bd3b-98b8833345a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Skill\Player_Skill\Sniper_Bullet">
+      <UniqueIdentifier>{9d98908c-4980-4074-9ecd-4c40c84c7c1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Skill\Monster_Skill\Floor">
+      <UniqueIdentifier>{bd3bdb09-cf19-4e7e-a610-a995979cbe45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Skill\Monster_Skill\Dust">
+      <UniqueIdentifier>{ac43bcba-af54-4b61-b405-133130b037a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Skill\Monster_Skill\Breath">
+      <UniqueIdentifier>{73ac6c64-0724-4d5b-b3d9-8bf9eaff0886}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Skill\Monster_Skill\Bubble">
+      <UniqueIdentifier>{8a5f731a-c444-4cbc-b278-d566318b5755}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="cpp.hint" />
+    <ResourceCompile Include="Client.rc">
+      <Filter>98.Default</Filter>
+    </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
+    <None Include="cpp.hint">
+      <Filter>98.Default</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt">
+      <Filter>98.Default</Filter>
+    </Text>
   </ItemGroup>
 </Project>
