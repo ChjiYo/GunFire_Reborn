@@ -18,7 +18,7 @@ HRESULT CVFX_Mon_Dust::Initialize_Prototype()
     if (FAILED(__super::Initialize_Prototype()))
         return E_FAIL;
 
-    return S_OK;
+    return S_OK; 
 }
 
 HRESULT CVFX_Mon_Dust::Initialize(void* pArg)
@@ -35,6 +35,11 @@ HRESULT CVFX_Mon_Dust::Initialize(void* pArg)
 void CVFX_Mon_Dust::Priority_Update(_float fTimeDelta)
 {
     __super::Priority_Update(fTimeDelta);
+
+    m_fAnimFrame += 26.f * fTimeDelta;
+    
+    if (m_fAnimFrame >= 13.f)
+        m_fAnimFrame = 0.f;
 }
 
 void CVFX_Mon_Dust::Update(_float fTimeDelta)
@@ -100,7 +105,7 @@ HRESULT CVFX_Mon_Dust::Bind_ShaderResources()
     if (FAILED(m_pShaderCom->Bind_Matrix("g_ProjMatrix", &m_pGameInstance->Get_Transform_Float4x4(CPipeLine::D3DTS_PROJ))))
         return E_FAIL;
 
-    if (FAILED(m_pTextureCom->Bind_ShaderResource(m_pShaderCom, "g_Texture", 0)))
+    if (FAILED(m_pTextureCom->Bind_ShaderResource(m_pShaderCom, "g_Texture", m_fAnimFrame)))
         return E_FAIL;
 
 

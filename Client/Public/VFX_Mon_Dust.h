@@ -38,7 +38,7 @@ private:
 	CVIBuffer_Point_Instancing* m_pVIBufferCom = { nullptr };
 
 private:
-	_float m_fTimer = { 0.f };
+	_float m_fAnimFrame = { 0.f };
 
 public:
 	static CVFX_Mon_Dust* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
