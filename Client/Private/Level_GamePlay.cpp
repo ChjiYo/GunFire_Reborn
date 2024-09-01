@@ -120,8 +120,8 @@ HRESULT CLevel_GamePlay::Ready_Lights()
 	LightDesc.eType = LIGHT_DESC::TYPE_POINT;
 	LightDesc.vPosition = _float4(20.f,3.f, 12.f, 1.f);
 	LightDesc.fRange = 25.f;
-	LightDesc.vDiffuse = _float4(1.0f, 0.549f, 0.0f, 0.75f);
-	LightDesc.vAmbient = _float4(0.25f, 0.25f, 0.25f, 1.f);
+	LightDesc.vDiffuse = _float4(1.0f, 0.0f, 0.0f, 0.75f);
+	LightDesc.vAmbient = _float4(0.25f, 0.25f, 0.f, 1.f);
 	LightDesc.vSpecular = _float4(0.f, 0.f, 0.f, 1.f);
 
 	if (FAILED(m_pGameInstance->Add_Light(LightDesc)))
