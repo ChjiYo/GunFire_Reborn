@@ -40,8 +40,8 @@ void CItem_Weapon::Update(_float fTimeDelta)
 {
 	__super::Update(fTimeDelta);
 
-	CTransform* pPlayerTranfsorm = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_Player"), TEXT("Com_Transform")));
-	CPlayer* pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_Player")).back());
+	CTransform* pPlayerTranfsorm = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Player"), TEXT("Com_Transform")));
+	CPlayer* pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY , TEXT("Layer_Player")).back());
 
 	_float fDistance = XMVectorGetX(XMVector3Length(m_pTransformCom->Get_State(CTransform::STATE_POSITION) - pPlayerTranfsorm->Get_State(CTransform::STATE_POSITION)));
 

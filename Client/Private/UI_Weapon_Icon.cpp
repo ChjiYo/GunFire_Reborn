@@ -28,10 +28,9 @@ HRESULT CUI_Weapon_Icon::Initialize(void* pArg)
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
-	UI_DESC* Desc = static_cast<UI_DESC*>(pArg);
-	m_pPlayer = dynamic_cast<CPlayer*>(Desc->pGameObject);
-
+	m_pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_Player")).back());
 	Safe_AddRef(m_pPlayer);
+
 
 	__super::Set_UI_Setting(200.f, 200.f, 1450.f, 750.f);
 
