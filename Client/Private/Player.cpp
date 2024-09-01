@@ -156,7 +156,7 @@ HRESULT CPlayer::Ready_Components()
 void CPlayer::Key_State(_float fTimeDelta)
 {
     Player_Move(fTimeDelta);
-   // Player_Jump(fTimeDelta);
+    Player_Jump(fTimeDelta);
 }
 
 void CPlayer::Player_Move(_float fTimeDelta)

@@ -39,7 +39,6 @@ HRESULT CSkill_BoomGun_Bullet::Initialize(void* pArg)
 
     m_pTransformCom->Set_Scaled(3.f, 0.25f, 0.25f);
 
-    m_pNavigationCom->Init_Index(m_pTransformCom);
     return S_OK;
 }
 
@@ -142,8 +141,6 @@ void CSkill_BoomGun_Bullet::Destroy(_float fTimeDelta, _vector vPos)
     if (m_fDestroyTimer > 5.f)
         m_bDead = true;
 
-    if (!m_pNavigationCom->is_Move(vPos))
-        m_bDead = true;
 }
 
 CSkill_BoomGun_Bullet* CSkill_BoomGun_Bullet::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
@@ -179,7 +176,6 @@ void CSkill_BoomGun_Bullet::Free()
     Safe_Release(m_pVIBufferCom);
     Safe_Release(m_pTextureCom);
     Safe_Release(m_pColliderCom);
-    Safe_Release(m_pNavigationCom);
 
     __super::Free();
 }

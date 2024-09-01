@@ -4,7 +4,7 @@
 #include "ContainerObject.h"
 
 BEGIN(Engine)
-class CNavigation;
+
 END
 
 BEGIN(Client)
@@ -41,7 +41,6 @@ protected:
 
 protected:
 	CTransform* m_pOriginTransform = {};
-	CNavigation* m_pNavigationCom = {};
 
 	_uint		m_iSkillDamage = {};
 

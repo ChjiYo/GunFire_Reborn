@@ -51,14 +51,6 @@ HRESULT CSkill::Render()
 
 HRESULT CSkill::Ready_Components()
 {
-	CNavigation::NAVIGATION_DESC		NavigationDesc{};
-	NavigationDesc.iCurrentCellIndex = 0;
-
-	/* Com_Navigation */
-	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Navigation"),
-		TEXT("Com_Navigation"), reinterpret_cast<CComponent**>(&m_pNavigationCom), &NavigationDesc)))
-		return E_FAIL;
-
 	return S_OK;
 }
 

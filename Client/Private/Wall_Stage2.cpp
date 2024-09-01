@@ -31,7 +31,7 @@ HRESULT CWall_Stage2::Initialize(void* pArg)
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
-	//Monster_Create();
+	Monster_Create();
   
 	return S_OK;
 }
@@ -61,9 +61,6 @@ HRESULT CWall_Stage2::Render()
 		if (FAILED(m_pModelCom->Bind_MaterialSRV(m_pShaderCom, aiTextureType_DIFFUSE, "g_DiffuseTexture", i)))
 			return E_FAIL;
 
-		//if (FAILED(m_pModelCom->Bind_Material(m_pShaderCom, "g_NormalTexture", i, aiTextureType_NORMALS)))
-		//	return E_FAIL;
-
 		m_pShaderCom->Begin(0);
 
 		m_pModelCom->Render(i);
@@ -79,7 +76,7 @@ HRESULT CWall_Stage2::Monster_Create()
 	Desc.iHp = 10;
 
 
-	for (int i = 0; i < 5; ++i)
+	for (int i = 0; i < 3; ++i)
 	{
 		Desc.vPos = { (_float)(rand() % 17 + 42), 6.2f , (_float)(rand() % 20 + 34) };
 		if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Mon_Bug"), TEXT("Layer_Monster_Stage2"), &Desc)))
