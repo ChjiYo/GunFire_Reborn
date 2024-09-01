@@ -30,9 +30,6 @@
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\private\Boss_Logo.cpp">
-      <Filter>01.Level\00.Logo</Filter>
-    </ClCompile>
     <ClCompile Include="..\Private\Level_Logo.cpp">
       <Filter>01.Level\00.Logo</Filter>
     </ClCompile>
@@ -498,11 +495,11 @@
     <ClCompile Include="..\private\Skill_Sniper_Bullet.cpp">
       <Filter>02.GameObjects\Skill\Player_Skill\Sniper_Bullet</Filter>
     </ClCompile>
+    <ClCompile Include="..\private\Boss_Logo.cpp">
+      <Filter>02.GameObjects\BackGround\Boss</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\public\Boss_Logo.h">
-      <Filter>01.Level\00.Logo</Filter>
-    </ClInclude>
     <ClInclude Include="..\Public\Level_Logo.h">
       <Filter>01.Level\00.Logo</Filter>
     </ClInclude>
@@ -979,6 +976,9 @@
     </ClInclude>
     <ClInclude Include="..\Public\Client_Defines.h">
       <Filter>99.Defines</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Boss_Logo.h">
+      <Filter>02.GameObjects\BackGround\Boss</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1526,6 +1526,9 @@
     </Filter>
     <Filter Include="02.GameObjects\Skill\Monster_Skill\Bubble">
       <UniqueIdentifier>{8a5f731a-c444-4cbc-b278-d566318b5755}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\BackGround\Boss">
+      <UniqueIdentifier>{2eb8842a-4ef9-41cb-80c3-55c27e956d8a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

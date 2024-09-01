@@ -6,6 +6,8 @@
 #include "Level_GamePlay.h"
 #include "Level_Boss.h"
 
+#include "Boss_Logo.h"
+
 #include "GameInstance.h"
 
 CLevel_Loading::CLevel_Loading(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
@@ -27,6 +29,9 @@ HRESULT CLevel_Loading::Initialize(LEVELID eNextLevelID)
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_LOADING, TEXT("Prototype_Component_Texture_BossLogo"),
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Logo/UI_Boss_Logo.png")))))
 		return E_FAIL;
+
+	//if (FAILED(Ready_Layer_Loading(TEXT("Layer_Logo"))))
+	//	return E_FAIL;
 
 	return S_OK;
 }
@@ -68,7 +73,8 @@ HRESULT CLevel_Loading::Render()
 
 HRESULT CLevel_Loading::Ready_Layer_Loading(const _wstring& strLayerTag)
 {
-	//m_pGameInstance->Add_GameObject_ToLayer(LEVEL_LOADING, TEXT("Prototype_Component_Texture_BossLogo"), strLayerTag);
+	if(FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_LOADING, TEXT("Prototype_GameObject_Boss_Logo"), strLayerTag)))
+		return E_FAIL;
 
 	return S_OK;
 }

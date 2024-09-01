@@ -123,7 +123,7 @@ technique11		DefaultTechnique
 
     pass None
     {
-        SetRasterizerState(RS_Cull_NONE);
+        SetRasterizerState(RS_Default);
         SetDepthStencilState(DSS_Default, 0);
         SetBlendState(BS_Default, float4(0.f, 0.f, 0.f, 0.f), 0xffffffff);
 
