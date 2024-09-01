@@ -27,6 +27,9 @@ private:
 	_uint m_iAttackType = { 0 };
 	_uint m_iAttackCnt = { 0 };
 
+	_float m_fNextStateTimer = { 0.f };
+	_bool m_bAttackEnable = { false };
+
 
 public:
 	static CFSM_Mon_DragonTail_Attack* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, FSM_MON_DESC Desc);

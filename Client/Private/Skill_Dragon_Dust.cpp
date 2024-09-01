@@ -38,7 +38,7 @@ HRESULT CSkill_Dragon_Dust::Initialize(void* pArg)
 
     Safe_AddRef(m_pOriginTransform);
 
-    m_pTransformCom->Set_State(CTransform::STATE_POSITION, m_pOriginTransform->Get_State(CTransform::STATE_POSITION));
+    m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetY(m_pOriginTransform->Get_State(CTransform::STATE_POSITION) , 0.f));
 
     m_bAttack = false;
 

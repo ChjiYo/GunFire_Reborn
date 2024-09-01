@@ -33,6 +33,25 @@ HRESULT CFSM_Mon_DragonTail_Attack::Initialize(FSM_MON_DESC Desc)
 wstring CFSM_Mon_DragonTail_Attack::Priority_Update(_float fTimeDelta)
 {
 	m_fAttackDelay += fTimeDelta;
+	m_fNextStateTimer += fTimeDelta;
+
+	if (m_iAttackType % 2 == 0)
+	{
+		if (m_tDesc.pModel->Get_Anim(10)->Get_Duration() <= m_fAttackDelay )
+		{
+			m_bAttackEnable = false;
+			m_fAttackDelay = 0.f;
+		}
+	}
+	else
+	{
+		if (m_tDesc.pModel->Get_Anim(9)->Get_Duration() <= m_fAttackDelay)
+		{
+			m_bAttackEnable = false;
+			m_fAttackDelay = 0.f;
+		}
+	}
+
 
 	return TEXT("Monster_DragonTail_State_Attack");
 }
@@ -41,8 +60,9 @@ wstring CFSM_Mon_DragonTail_Attack::Update(_float fTimeDelta)
 {
 	if (m_iAttackType % 2 == 0)
 	{
-		if (m_tDesc.pModel->Get_Anim(10)->Get_Duration() <= m_fAttackDelay)
+		if (m_tDesc.pModel->Get_Anim(10)->Get_Duration() -0.5f <= m_fAttackDelay && !m_bAttackEnable)
 		{
+			m_bAttackEnable = true;
 			CSkill::SKILL_DESC	BubbleDesc = {};
 
 			BubbleDesc.pOriginTransform = m_tDesc.pTransform;
@@ -57,13 +77,13 @@ wstring CFSM_Mon_DragonTail_Attack::Update(_float fTimeDelta)
 				m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Skill_Dragon_Bubble"), TEXT("Layer_Skill_Dragon_Bubble"), &BubbleDesc);
 			}
 			m_iAttackCnt++;
-			m_fAttackDelay = 0.f;
 		}
 	}
 	else 
 	{
-		if (m_tDesc.pModel->Get_Anim(9)->Get_Duration() <= m_fAttackDelay)
+		if (m_tDesc.pModel->Get_Anim(9)->Get_Duration()- 0.5f <= m_fAttackDelay && !m_bAttackEnable)
 		{
+			m_bAttackEnable = true;
 			CSkill::SKILL_DESC	DustDesc = {};
 
 			DustDesc.pOriginTransform = m_tDesc.pTransform;
@@ -75,7 +95,6 @@ wstring CFSM_Mon_DragonTail_Attack::Update(_float fTimeDelta)
 
 			m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Skill_Dragon_Dust"), TEXT("Layer_Skill_Dragon_Dust"), &DustDesc);
 
-			m_fAttackDelay = 0.f;
 			m_iAttackCnt++;
 		}
 	}
@@ -85,11 +104,29 @@ wstring CFSM_Mon_DragonTail_Attack::Update(_float fTimeDelta)
 
 wstring CFSM_Mon_DragonTail_Attack::Late_Update(_float fTimeDelta)
 {
-	if (m_iAttackCnt >= 2)
+	//if (m_iAttackCnt >= 2)
+	//{
+	//	m_iAttackCnt = 0;
+	//	return TEXT("Monster_DragonTail_State_In");
+	//}
+
+	if (m_iAttackType % 2 == 0)
 	{
-		m_iAttackCnt = 0;
-		return TEXT("Monster_DragonTail_State_In");
+		if (m_tDesc.pModel->Get_Anim(10)->Get_Duration() * 2 <= m_fNextStateTimer)
+		{
+			m_fNextStateTimer = 0.f;
+			return TEXT("Monster_DragonTail_State_In");
+		}
 	}
+	else
+	{
+		if (m_tDesc.pModel->Get_Anim(9)->Get_Duration() * 2 <= m_fNextStateTimer)
+		{
+			m_fNextStateTimer = 0.f;
+			return TEXT("Monster_DragonTail_State_In");
+		}
+	}
+
 	return TEXT("Monster_DragonTail_State_Attack");
 }
 
@@ -104,7 +141,7 @@ void CFSM_Mon_DragonTail_Attack::Enter()
 	m_iAttackType++;
 
 		//rand() % 2;
-	_vector vUpdatePos = XMVectorSetY(m_tDesc.pTransform->Get_State(CTransform::STATE_POSITION), 0.0f);
+	_vector vUpdatePos = XMVectorSetY(m_tDesc.pTransform->Get_State(CTransform::STATE_POSITION), -0.5f);
 	m_tDesc.pTransform->Set_State(CTransform::STATE_POSITION, vUpdatePos);
 
 	if (m_iAttackType % 2 == 0)
