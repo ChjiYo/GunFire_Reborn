@@ -9,7 +9,6 @@ class CModel;
 class CBinModel;
 class CKeyState;
 class CCollider;
-class CState_Machine;
 class CNavigation;
 END
 
@@ -83,7 +82,6 @@ private:
 	void ShieldRecovery();
 
 private:
-	CState_Machine*		m_pState = { nullptr };
 	CNavigation*		m_pNavigationCom = { nullptr };
 	CCollider*			m_pColliderCom = { nullptr };
 
@@ -105,7 +103,6 @@ private:
 	
 private:
 	HRESULT Ready_Components();
-	HRESULT Ready_State();
 
 	void Key_State(_float fTimeDelta);
 

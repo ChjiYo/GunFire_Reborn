@@ -25,7 +25,13 @@ HRESULT CLevel_Boss::Initialize()
 {
 	m_iLevelIndex = LEVEL_BOSS;
 
-	if (FAILED(Ready_Layer_BackGround(TEXT("Layer_BackGround"))))
+	if (FAILED(Ready_Layer_Ground(TEXT("Layer_BackGround"))))
+		return E_FAIL;
+
+	if (FAILED(Ready_Layer_Player(TEXT("Layer_Player"))))
+		return E_FAIL;
+
+	if (FAILED(Ready_Layer_Camera(TEXT("Layer_Camera"))))
 		return E_FAIL;
 
 
@@ -44,10 +50,49 @@ HRESULT CLevel_Boss::Render()
 	return S_OK;
 }
 
-HRESULT CLevel_Boss::Ready_Layer_BackGround(const _wstring & strLayerTag)
+HRESULT CLevel_Boss::Ready_Layer_Ground(const _wstring & strLayerTag)
 {
 	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_Terrain_Boss"), strLayerTag)))
 		return E_FAIL;
+}
+
+HRESULT CLevel_Boss::Ready_Layer_Player(const _wstring& strLayerTag)
+{
+	CPlayer::PLAYER_DESC	Desc = {};
+	Desc.iHp = 65;
+	Desc.iMaxHp = 65;
+	Desc.iShield = 65;
+	Desc.iMaxShield = 65;
+	Desc.fSpeedPerSec = 5.f;
+	Desc.fRotationPerSec = XMConvertToRadians(90.0f);
+
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_Player"), strLayerTag, &Desc)))
+		return E_FAIL;
+
+	return S_OK;
+}
+
+HRESULT CLevel_Boss::Ready_Layer_Camera(const _wstring& strLayerTag)
+{
+	CCamera_Free::CAMERA_FREE_DESC			CameraDesc{};
+
+	CameraDesc.vEye = _float3(0.f, 2.f, -10.f);
+	CameraDesc.vAt = _float3(0.f, 0.f, 0.f);
+	CameraDesc.fFovy = XMConvertToRadians(60.0f);
+	CameraDesc.fNear = 0.1f;
+	CameraDesc.fFar = 1000.f;
+	CameraDesc.fSpeedPerSec = 5.f;
+	CameraDesc.fRotationPerSec = XMConvertToRadians(90.0f);
+
+	CameraDesc.fSensor = 0.1f;
+
+	CameraDesc.pPlayerTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_BOSS, TEXT("Layer_Player"), TEXT("Com_Transform")));
+
+
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_Camera_Free"), strLayerTag, &CameraDesc)))
+		return E_FAIL;
+
+	return S_OK;
 }
 
 

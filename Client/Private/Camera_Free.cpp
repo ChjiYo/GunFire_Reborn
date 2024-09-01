@@ -35,11 +35,9 @@ HRESULT CCamera_Free::Initialize(void * pArg)
 
 	CAMERA_FREE_DESC* Desc = static_cast<CAMERA_FREE_DESC*>(pArg);
 	m_pPlayerTransform = Desc->pPlayerTransform;
-	Safe_Release(m_pPlayerTransform);
+	Safe_AddRef(m_pPlayerTransform);
 
 	m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 5.f , 5.5f , 0.f, 1.f });
-	m_pNavigationCom->Init_Index(m_pTransformCom);
-
 	m_fScopeLevel = 10.35f;
 
 	return S_OK;
@@ -71,15 +69,6 @@ HRESULT CCamera_Free::Render()
 
 HRESULT CCamera_Free::Ready_Components()
 {
-	CNavigation::NAVIGATION_DESC		NavigationDesc{};
-	NavigationDesc.iCurrentCellIndex = 0;
-
-	/* Com_Navigation */
-	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Navigation"),
-		TEXT("Com_Navigation"), reinterpret_cast<CComponent**>(&m_pNavigationCom), &NavigationDesc)))
-		return E_FAIL;
-
-
 	return S_OK;
 }
 
@@ -200,7 +189,6 @@ CGameObject * CCamera_Free::Clone(void * pArg)
 void CCamera_Free::Free()
 {
 	Safe_Release(m_pPlayerTransform);
-	Safe_Release(m_pNavigationCom);
 
 	__super::Free();
 }

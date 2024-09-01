@@ -4,10 +4,7 @@
 #include "Camera.h"
 
 BEGIN(Engine)
-
 class CState_Machine;
-class CNavigation;
-
 END
 
 BEGIN(Client)
@@ -45,7 +42,6 @@ public:
 
 private:
 	CTransform*			m_pPlayerTransform = { nullptr };
-	CNavigation*		m_pNavigationCom = { nullptr };
 
 	_float				m_fMouseSensor = {};
 	_float				m_fScopeLevel = { 0.f };

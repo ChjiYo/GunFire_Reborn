@@ -37,7 +37,7 @@ void CTerrain_Boss::Priority_Update(_float fTimeDelta)
 
 void CTerrain_Boss::Update(_float fTimeDelta)
 {
-	//m_pNavigationCom->Update(m_pTransformCom->Get_WorldMatrix());
+	m_pNavigationCom->Update(m_pTransformCom->Get_WorldMatrix());
 }
 
 void CTerrain_Boss::Late_Update(_float fTimeDelta)
@@ -46,7 +46,7 @@ void CTerrain_Boss::Late_Update(_float fTimeDelta)
 
 
 #ifdef _DEBUG
-	//m_pGameInstance->Add_DebugComponent(m_pNavigationCom);
+	m_pGameInstance->Add_DebugComponent(m_pNavigationCom);
 #endif
 }
 
@@ -86,9 +86,9 @@ HRESULT CTerrain_Boss::Ready_Components()
 		return E_FAIL;
 
 	/* Com_Navigation */
-	/*if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Navigation"),
+	if (FAILED(__super::Add_Component(LEVEL_BOSS, TEXT("Prototype_Component_Navigation"),
 		TEXT("Com_Navigation"), reinterpret_cast<CComponent**>(&m_pNavigationCom))))
-		return E_FAIL;*/
+		return E_FAIL;
 
 	return S_OK;
 }
@@ -122,7 +122,7 @@ CGameObject* CTerrain_Boss::Clone(void* pArg)
 void CTerrain_Boss::Free()
 {
 
-	//Safe_Release(m_pNavigationCom);
+	Safe_Release(m_pNavigationCom);
 
 	for (auto& pTexture : m_pTextureCom)
 		Safe_Release(pTexture);

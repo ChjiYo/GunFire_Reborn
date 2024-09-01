@@ -56,9 +56,6 @@ HRESULT CPlayer::Initialize(void* pArg)
     if (FAILED(Ready_Components()))
         return E_FAIL;
 
-    if (FAILED(Ready_State()))
-        return E_FAIL;
-
     m_eWeaponID = PISTOL;
     m_eWeaponIDArray[2] = PISTOL;
 
@@ -94,7 +91,7 @@ void CPlayer::Update(_float fTimeDelta)
 
     _vector vPos = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
    
- 
+    int a = 10;
 
 }
 
@@ -138,18 +135,12 @@ HRESULT CPlayer::Ready_Components()
     NavigationDesc.iCurrentCellIndex = 0;
     
     /* Com_Navigation */
-    if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Navigation"),
+    if (FAILED(__super::Add_Component(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Prototype_Component_Navigation"),
         TEXT("Com_Navigation"), reinterpret_cast<CComponent**>(&m_pNavigationCom), &NavigationDesc)))
-        return E_FAIL;
-
-    /* For.Com_State */
-    if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_State"),
-        TEXT("Com_State"), reinterpret_cast<CComponent**>(&m_pState))))
         return E_FAIL;
 
     /* For.Com_Collider */
    CBounding_AABB::BOUNDING_AABB_DESC	BoundingDesc{};
-   
 
    BoundingDesc.vExtents = _float3(1.0f, 1.0f, 1.0f);
    BoundingDesc.vCenter = _float3(0.f, BoundingDesc.vExtents.y * 0.5f  , 0.f);  
@@ -162,17 +153,10 @@ HRESULT CPlayer::Ready_Components()
     return S_OK;
 }
 
-HRESULT CPlayer::Ready_State()
-{
-    m_pState->Add_State(CFSM_Player_Attack::Create(m_pDevice ,m_pContext), TEXT("Player_State_Attack"));
-    m_pState->Add_State(CFSM_Player_Dash::Create(m_pDevice, m_pContext), TEXT("Player_State_Dash"));
-
-    return S_OK;
-}
 void CPlayer::Key_State(_float fTimeDelta)
 {
     Player_Move(fTimeDelta);
-    Player_Jump(fTimeDelta);
+   // Player_Jump(fTimeDelta);
 }
 
 void CPlayer::Player_Move(_float fTimeDelta)
@@ -366,7 +350,6 @@ CGameObject* CPlayer::Clone(void* pArg)
 
 void CPlayer::Free()
 {
-    Safe_Release(m_pState);
     Safe_Release(m_pColliderCom);
     Safe_Release(m_pNavigationCom);
 
