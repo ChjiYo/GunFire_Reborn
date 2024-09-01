@@ -59,7 +59,19 @@ HRESULT CPlayer::Initialize(void* pArg)
     m_eWeaponID = PISTOL;
     m_eWeaponIDArray[2] = PISTOL;
 
-    m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 5.f , 1.0f , 5.f, 1.f });
+
+    
+    switch (m_pGameInstance->GetLoadingLevelIndex())
+    {
+    case LEVEL_GAMEPLAY:
+        m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 46.f , 1.0f , 64.f, 1.f });
+        break;
+
+    case LEVEL_BOSS:
+        m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 5.f , 1.0f , 5.f, 1.f });
+        break;
+    }
+
     m_pNavigationCom->Init_Index(m_pTransformCom);
     
     return S_OK;
@@ -91,8 +103,6 @@ void CPlayer::Update(_float fTimeDelta)
 
     _vector vPos = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
    
-    int a = 10;
-
 }
 
 void CPlayer::Late_Update(_float fTimeDelta)

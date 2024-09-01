@@ -45,7 +45,6 @@ HRESULT CUI_Mon_HpBar::Initialize(void* pArg)
 
 void CUI_Mon_HpBar::Priority_Update(_float fTimeDelta)
 {
-
 	CTransform* pCamTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_Camera"), TEXT("Com_Transform")));
 
 	_float3 vPos = {};
@@ -56,7 +55,7 @@ void CUI_Mon_HpBar::Priority_Update(_float fTimeDelta)
 
 void CUI_Mon_HpBar::Update(_float fTimeDelta)
 {
-	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetY(m_pOriginTransform->Get_State(CTransform::STATE_POSITION), XMVectorGetY(m_pOriginTransform->Get_State(CTransform::STATE_POSITION))+ 1.0f));
+	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetY(m_pOriginTransform->Get_State(CTransform::STATE_POSITION), XMVectorGetY(m_pOriginTransform->Get_State(CTransform::STATE_POSITION))+ 1.5f));
 
 	fHpRatio = static_cast<float>(m_pMonster->Get_MonDesc().iHp) / static_cast<float>(m_pMonster->Get_MonDesc().iMaxHp);
 

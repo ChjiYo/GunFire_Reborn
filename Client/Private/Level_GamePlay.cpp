@@ -65,8 +65,10 @@ HRESULT CLevel_GamePlay::Initialize()
 
 void CLevel_GamePlay::Update(_float fTimeDelta)
 {
+	CCollider* pPlayerCollider = dynamic_cast<CCollider*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY , TEXT("Layer_Player"),TEXT("Com_Collider")));
+	CCollider* pPortalCollider = dynamic_cast<CCollider*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Portal"), TEXT("Com_Collider")));
 
-	if (m_pGameInstance->Key_Down('Y'))
+	if (pPlayerCollider->isCollision(pPortalCollider))
 	{
 		if (FAILED(m_pGameInstance->Change_Level(CLevel_Loading::Create(m_pDevice, m_pContext, LEVEL_BOSS))))
 			return;
@@ -336,8 +338,8 @@ HRESULT CLevel_GamePlay::Ready_Layer_DecoObject(const _wstring& strLayerTag)
 	//if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Wall_Stage2"), TEXT("Layer_Wall_Stage2"))))
 	//	return E_FAIL;
 
-	//if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Portal"), TEXT("Layer_Portal"))))
-	//	return E_FAIL;
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Portal"), TEXT("Layer_Portal"))))
+		return E_FAIL;
 	
 	return S_OK;
 }

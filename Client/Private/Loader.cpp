@@ -993,7 +993,6 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 HRESULT CLoader::Loading_For_BossLevel()
 {
 
-
 	/* 네비게이션을 로드한다. */
 
 	/* Prototype_Component_Navigation_Desert */
@@ -1007,9 +1006,6 @@ HRESULT CLoader::Loading_For_BossLevel()
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Terrain_Boss"),
 		CTerrain_Boss::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
-
-
-
 
 	m_isFinished = true;
 

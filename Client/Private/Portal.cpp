@@ -7,6 +7,8 @@
 #include "Wall_Stage1.h"
 #include "Wall_Stage2.h"
 
+#include "Level_Loading.h"
+
 CPortal::CPortal(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	:CElement{ pDevice , pContext }
 {
@@ -35,6 +37,7 @@ HRESULT CPortal::Initialize(void* pArg)
 
 	m_pTransformCom->Set_Scaled(3.f, 10.f, 1.f);
 	m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 40.f, 10.f * 0.5f, 65.f, 1.f });
+	m_pTransformCom->Rotation({ 0.f , 1.f ,0.f }, XMConvertToRadians(90.f));
 
 	return S_OK;
 }
@@ -49,7 +52,7 @@ void CPortal::Priority_Update(_float fTimeDelta)
 
 void CPortal::Update(_float fTimeDelta)
 {
-
+	m_pColliderCom->Update(m_pTransformCom->Get_WorldMatrix());
 
 }
 
@@ -57,19 +60,11 @@ void CPortal::Late_Update(_float fTimeDelta)
 {
 	__super::Late_Update(fTimeDelta);
 
-	CCollider* pPlayerCollier = dynamic_cast<CCollider*>(m_pGameInstance->Get_Component(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_Player"), TEXT("Com_Collider")));
-
-	if (m_pColliderCom->isCollision(pPlayerCollier))
-	{
-
-	}
-
 	m_pGameInstance->Add_RenderObject(CRenderer::RG_NONBLEND, this);
 
 #ifdef _DEBUG
 	m_pGameInstance->Add_DebugComponent(m_pColliderCom);
 #endif
-
 }
 
 HRESULT CPortal::Render()
@@ -92,7 +87,7 @@ HRESULT CPortal::Render()
 HRESULT CPortal::Ready_Components()
 {
 	/* For.Com_Shader */
-	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Shader_Effect_MaskTex"),
+	if (FAILED(__super::Add_Component(LEVEL_STATIC , TEXT("Prototype_Component_Shader_Effect_MaskTex"),
 		TEXT("Com_Shader"), reinterpret_cast<CComponent**>(&m_pShaderCom))))
 		return E_FAIL;
 
@@ -112,7 +107,7 @@ HRESULT CPortal::Ready_Components()
 	BoundingDesc.vCenter = _float3(0.f, BoundingDesc.vExtents.y * 0.5f, 0.f);
 	BoundingDesc.pObject = this;
 
-	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Collider_AABB"),
+	if (FAILED(__super::Add_Component(LEVEL_STATIC, TEXT("Prototype_Component_Collider_AABB"),
 		TEXT("Com_Collider"), reinterpret_cast<CComponent**>(&m_pColliderCom), &BoundingDesc)))
 		return E_FAIL;
 
