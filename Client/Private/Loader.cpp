@@ -933,7 +933,7 @@ HRESULT CLoader::Loading_For_BossLevel()
 	ParticleDesc.vCenter = _float3(0.0f, 0.f, 0.0f);
 	ParticleDesc.vPivot = _float3(0.0f, 0.0f, 0.f);
 	ParticleDesc.vSpeed = _float2(15.0f, 15.f);
-	ParticleDesc.vScale = _float2(0.3f, 0.7f);
+	ParticleDesc.vScale = _float2(0.3f, 1.7f);
 	ParticleDesc.vLifeTime = _float2(10.0f, 10.5f);
 	ParticleDesc.isLoop = true;
 
