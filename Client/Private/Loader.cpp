@@ -324,6 +324,31 @@ HRESULT CLoader::Loading_For_BinaryFile()
 		return E_FAIL;
 
 
+	// LEVEL_BOSS
+
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Model_Mountain105"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Mountain/105/Mountain105.fbx", TEXT("../Bin/DataFiles/Mountain105.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Model_Mountain106"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Mountain/106/Mountain106.fbx", TEXT("../Bin/DataFiles/Mountain106.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Model_Mountain107"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Mountain/107/Mountain107.fbx", TEXT("../Bin/DataFiles/Mountain107.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Model_Mountain114"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Mountain/114/Mountain114.fbx", TEXT("../Bin/DataFiles/Mountain114.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Model_Mountain310"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Mountain/310/Mountain310.fbx", TEXT("../Bin/DataFiles/Mountain310.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Model_Mountain311"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Mountain/311/Mountain311.fbx", TEXT("../Bin/DataFiles/Mountain311.dat"), PreTransformMatrix))))
+		return E_FAIL;
 
 	lstrcpy(m_szLoadingText, TEXT("바이러리 파일 로드가 완료되었습니다."));
 
@@ -986,6 +1011,37 @@ HRESULT CLoader::Loading_For_BossLevel()
 		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_ANIM, TEXT("../Bin/DataFiles/Dragon.dat"), PreTransformMatrix))))
 		return E_FAIL;
 
+		PreTransformMatrix = XMMatrixScaling(0.01f, 0.01f, 0.01f) * XMMatrixRotationY(XMConvertToRadians(180.0f));
+
+		/* For.Prototype_Component_Model_Mountain105*/
+		if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Model_Mountain105"),
+			CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Mountain105.dat"), PreTransformMatrix))))
+			return E_FAIL;
+
+	/* For.Prototype_Component_Model_Mountain106*/
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Model_Mountain106"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Mountain106.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Model_Mountain107*/
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Model_Mountain107"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Mountain107.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Model_Mountain114*/
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Model_Mountain114"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Mountain114.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Model_Mountain310*/
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Model_Mountain310"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Mountain310.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Model_Mountain311 */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Model_Mountain311"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Mountain311.dat"), PreTransformMatrix))))
+		return E_FAIL;
 
 	lstrcpy(m_szLoadingText, TEXT("객체원형을 로딩 중 입니다."));
 
