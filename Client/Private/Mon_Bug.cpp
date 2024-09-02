@@ -61,13 +61,19 @@ HRESULT CMon_Bug::Initialize(void* pArg)
 
 void CMon_Bug::Priority_Update(_float fTimeDelta)
 {
+
 	m_pStateCom->Priority_Update(fTimeDelta);
-	m_pModelCom->Play_Animation(fTimeDelta);
+
 }
 
 void CMon_Bug::Update(_float fTimeDelta)
 {
+	if (!m_isMove)
+		fTimeDelta = 0.f;
+
 	__super::Update(fTimeDelta);
+
+	m_pModelCom->Play_Animation(fTimeDelta);
 
 	m_pColliderCom[COLL_AABB]->Update(m_pTransformCom->Get_WorldMatrix());
 	

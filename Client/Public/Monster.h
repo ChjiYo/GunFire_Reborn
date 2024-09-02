@@ -40,6 +40,7 @@ public:
 	}
 
 	CCollider* Get_Collider(COLLIDERTYPE eColliderType) { return m_pColliderCom[eColliderType]; }
+	void SetMoveEnable(_bool bStop) { m_isMove = bStop; }
 
 public:
 	virtual HRESULT Initialize_Prototype() override;
@@ -53,13 +54,14 @@ public:
 	HRESULT Ready_Components();
 	HRESULT Ready_UI();
 
+
 protected:
 	CNavigation* m_pNavigationCom	= { nullptr };
 	CCollider*	m_pColliderCom[COLL_END] = { nullptr , nullptr };
 
 	MON_DESC	m_tMonDesc = {};
 	_float		m_fDamageDelay = { 0.f };
-	_bool		m_isMove = { false };
+	_bool		m_isMove = { true };
 
 public:
 	virtual void Free() override;

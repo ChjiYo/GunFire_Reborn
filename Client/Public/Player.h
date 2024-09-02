@@ -3,6 +3,8 @@
 #include "Client_Defines.h"
 #include "ContainerObject.h"
 
+#include <stack>
+
 BEGIN(Engine)
 class CShader;
 class CModel;
@@ -80,6 +82,7 @@ public:
 
 private:
 	void ShieldRecovery();
+	void PositionSave();
 
 private:
 	CNavigation*		m_pNavigationCom = { nullptr };
@@ -100,6 +103,12 @@ private:
 	SLOTID				m_eSlotID = { SLOT_END };
 
 	_bool				m_bDash = { false };
+
+	vector<_matrix> m_StackPos = {};
+
+	_float m_fPosSaveTimer = { 0.f };
+	_float m_fMoveSkillTimer = { 0.f };
+	_bool	m_bBackPos = {false};
 	
 private:
 	HRESULT Ready_Components();

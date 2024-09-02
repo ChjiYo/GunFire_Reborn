@@ -66,7 +66,12 @@ void CMon_Spear::Priority_Update(_float fTimeDelta)
 
 void CMon_Spear::Update(_float fTimeDelta)
 { 
+	if (!m_isMove)
+		fTimeDelta = 0.f;
+
 	__super::Update(fTimeDelta);
+
+	m_pModelCom->Play_Animation(fTimeDelta);
 
 	for (int i = 0; i < COLL_END; ++i)
 		m_pColliderCom[i]->Update(m_pTransformCom->Get_WorldMatrix());
@@ -81,7 +86,6 @@ void CMon_Spear::Late_Update(_float fTimeDelta)
 {
 	__super::Late_Update(fTimeDelta);
 
-	m_pModelCom->Play_Animation(fTimeDelta);
 	m_pGameInstance->Add_RenderObject(CRenderer::RG_NONBLEND, this);
 
 	m_pStateCom->Late_Update(fTimeDelta);
