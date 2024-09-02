@@ -43,6 +43,10 @@ HRESULT CLevel_Boss::Initialize()
 		return E_FAIL;
 
 
+	if (FAILED(ParseInitialize()))
+		return E_FAIL;
+
+
 	return S_OK;
 }
 
