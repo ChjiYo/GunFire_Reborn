@@ -1,0 +1,48 @@
+LayerName: Layer_Mountain_105
+PrototypeTag: Prototype_GameObject_Mountain_105
+LevelIndex: 5
+Position: 50 0 50
+Scale: 1 1 1
+Rotation: 0
+IsParsing: 1
+
+LayerName: Layer_Mountain_106
+PrototypeTag: Prototype_GameObject_Mountain_106
+LevelIndex: 5
+Position: 63.3998 0 63.9998
+Scale: 1 0.999997 0.999998
+Rotation: 0.140674
+IsParsing: 1
+
+LayerName: Layer_Mountain_107
+PrototypeTag: Prototype_GameObject_Mountain_107
+LevelIndex: 5
+Position: 66.2998 0 57.3999
+Scale: 1 1 1
+Rotation: 0
+IsParsing: 1
+
+LayerName: Layer_Mountain_114
+PrototypeTag: Prototype_GameObject_Mountain_114
+LevelIndex: 5
+Position: 35.6002 0 65.0998
+Scale: 1 1 1
+Rotation: 0
+IsParsing: 1
+
+LayerName: Layer_Mountain_310
+PrototypeTag: Prototype_GameObject_Mountain_310
+LevelIndex: 5
+Position: 44.0001 0 57.1999
+Scale: 1 1 1
+Rotation: 0
+IsParsing: 1
+
+LayerName: Layer_Mountain_311
+PrototypeTag: Prototype_GameObject_Mountain_311
+LevelIndex: 5
+Position: 62.3998 0 55.9999
+Scale: 1 1 1
+Rotation: 0
+IsParsing: 1
+
