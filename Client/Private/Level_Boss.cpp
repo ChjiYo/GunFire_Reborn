@@ -43,6 +43,10 @@ HRESULT CLevel_Boss::Initialize()
 		return E_FAIL;
 
 
+	if (FAILED(ParseInitialize()))
+		return E_FAIL;
+
+
 	return S_OK;
 }
 
@@ -78,6 +82,9 @@ HRESULT CLevel_Boss::Ready_Lights()
 HRESULT CLevel_Boss::Ready_Layer_Ground(const _wstring & strLayerTag)
 {
 	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_Terrain_Boss"), strLayerTag)))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_Sky_Boss"), strLayerTag)))
 		return E_FAIL;
 }
 

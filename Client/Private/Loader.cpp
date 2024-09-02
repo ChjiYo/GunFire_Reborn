@@ -12,6 +12,7 @@
 #include "Terrain_Boss.h"
 
 #include "Sky.h"
+#include "Sky_Boss.h"
 #include "Cube.h"
 
 #include "Wall_Stage1.h"
@@ -43,6 +44,13 @@
 #include "Ceiling_105.h"
 
 #include "Pillars101.h"
+
+#include "Mountain_105.h"
+#include "Mountain_106.h"
+#include "Mountain_107.h"
+#include "Mountain_114.h"
+#include "Mountain_310.h"
+#include "Mountain_311.h"
 
 #include "Effect_Deco_Snow.h"
 
@@ -323,6 +331,31 @@ HRESULT CLoader::Loading_For_BinaryFile()
 		return E_FAIL;
 
 
+	// LEVEL_BOSS
+
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Model_Mountain105"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Mountain/105/Mountain105.fbx", TEXT("../Bin/DataFiles/Mountain105.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Model_Mountain106"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Mountain/106/Mountain106.fbx", TEXT("../Bin/DataFiles/Mountain106.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Model_Mountain107"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Mountain/107/Mountain107.fbx", TEXT("../Bin/DataFiles/Mountain107.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Model_Mountain114"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Mountain/114/Mountain114.fbx", TEXT("../Bin/DataFiles/Mountain114.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Model_Mountain310"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Mountain/310/Mountain310.fbx", TEXT("../Bin/DataFiles/Mountain310.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Model_Mountain311"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Mountain/311/Mountain311.fbx", TEXT("../Bin/DataFiles/Mountain311.dat"), PreTransformMatrix))))
+		return E_FAIL;
 
 	lstrcpy(m_szLoadingText, TEXT("바이러리 파일 로드가 완료되었습니다."));
 
@@ -479,7 +512,7 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 
 	/* For.Prototype_Component_Texture_Sky */
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_Sky"),
-		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/Resources/Textures/SkyBox/Sky_%d.dds"), 4))))
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/Resources/Textures/SkyBox/Sky_%d.dds"), 6))))
 		return E_FAIL;
 
 	/* For.Prototype_Component_Texture_Snow */
@@ -656,10 +689,7 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Item_Sniper.dat"), PreTransformMatrix))))
 		return E_FAIL;
 	
-	/* For.Prototype_Component_VIBuffer_Cube */
-	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_VIBuffer_Cube"),
-		CVIBuffer_Cube::Create(m_pDevice, m_pContext))))
-		return E_FAIL;
+	
 
 	/* For.Prototype_Component_VIBuffer_Rect_Instancing */
 	CVIBuffer_Instancing::VIBUFFER_INSTANCE_DESC	ParticleDesc{};
@@ -973,6 +1003,11 @@ HRESULT CLoader::Loading_For_BossLevel()
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/Skill/Monster/Dragon/Dust/Dust%d.png"), 14))))
 		return E_FAIL;
 
+	/* For.Prototype_Component_Texture_Sky */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Texture_Sky"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/Resources/Textures/SkyBox/Sky_5.dds")))))
+		return E_FAIL;
+
 	lstrcpy(m_szLoadingText, TEXT("모델을 로딩 중 입니다."));
 
 	_matrix			PreTransformMatrix = XMMatrixIdentity();
@@ -983,12 +1018,78 @@ HRESULT CLoader::Loading_For_BossLevel()
 		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_ANIM, TEXT("../Bin/DataFiles/Dragon.dat"), PreTransformMatrix))))
 		return E_FAIL;
 
+		PreTransformMatrix = XMMatrixScaling(0.01f, 0.01f, 0.01f) * XMMatrixRotationY(XMConvertToRadians(180.0f));
+
+		/* For.Prototype_Component_Model_Mountain105*/
+		if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Model_Mountain105"),
+			CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Mountain105.dat"), PreTransformMatrix))))
+			return E_FAIL;
+
+	/* For.Prototype_Component_Model_Mountain106*/
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Model_Mountain106"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Mountain106.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Model_Mountain107*/
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Model_Mountain107"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Mountain107.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Model_Mountain114*/
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Model_Mountain114"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Mountain114.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Model_Mountain310*/
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Model_Mountain310"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Mountain310.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Model_Mountain311 */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Model_Mountain311"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Mountain311.dat"), PreTransformMatrix))))
+		return E_FAIL;
 
 	lstrcpy(m_szLoadingText, TEXT("객체원형을 로딩 중 입니다."));
+
+	/* For.Prototype_GameObject_Sky_Boss */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Sky_Boss"),
+		CSky_Boss::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
 
 	/* For.Prototype_GameObject_Terrain_Boss */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Terrain_Boss"),
 		CTerrain_Boss::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Mountain_105 */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Mountain_105"),
+		CMountain_105::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Mountain_106 */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Mountain_106"),
+		CMountain_106::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Mountain_107 */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Mountain_107"),
+		CMountain_107::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Mountain_114 */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Mountain_114"),
+		CMountain_114::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Mountain_310 */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Mountain_310"),
+		CMountain_310::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Mountain_311 */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Mountain_311"),
+		CMountain_311 ::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
 	/* For.Prototype_GameObject_Mon_Dragon */

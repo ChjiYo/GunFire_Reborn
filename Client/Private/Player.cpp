@@ -59,16 +59,14 @@ HRESULT CPlayer::Initialize(void* pArg)
     m_eWeaponID = PISTOL;
     m_eWeaponIDArray[2] = PISTOL;
 
-
-    
     switch (m_pGameInstance->GetLoadingLevelIndex())
     {
     case LEVEL_GAMEPLAY:
-        m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 46.f , 1.0f , 64.f, 1.f });
+        m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 47.f , 1.0f , 64.f, 1.f });
         break;
 
     case LEVEL_BOSS:
-        m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 5.f , 1.0f , 5.f, 1.f });
+        m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 106.f , 1.0f , 70.f, 1.f });
         break;
     }
 

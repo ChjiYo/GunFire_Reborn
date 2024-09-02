@@ -273,9 +273,6 @@
     <ClCompile Include="..\private\Terrain_GamePlay.cpp">
       <Filter>02.GameObjects\Terrain\Terrain_GamePlay</Filter>
     </ClCompile>
-    <ClCompile Include="..\private\Sky.cpp">
-      <Filter>02.GameObjects\Sky</Filter>
-    </ClCompile>
     <ClCompile Include="..\Public\Imgui\imgui.cpp">
       <Filter>96.Imgui\cpp</Filter>
     </ClCompile>
@@ -497,6 +494,30 @@
     </ClCompile>
     <ClCompile Include="..\private\Boss_Logo.cpp">
       <Filter>02.GameObjects\BackGround\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Sky.cpp">
+      <Filter>02.GameObjects\Sky\GamePlay</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Sky_Boss.cpp">
+      <Filter>02.GameObjects\Sky\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Mountain_105.cpp">
+      <Filter>02.GameObjects\Deco\Mountain\105</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Mountain_106.cpp">
+      <Filter>02.GameObjects\Deco\Mountain\106</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Mountain_107.cpp">
+      <Filter>02.GameObjects\Deco\Mountain\107</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Mountain_114.cpp">
+      <Filter>02.GameObjects\Deco\Mountain\114</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Mountain_310.cpp">
+      <Filter>02.GameObjects\Deco\Mountain\310</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Mountain_311.cpp">
+      <Filter>02.GameObjects\Deco\Mountain\311</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -743,9 +764,6 @@
     <ClInclude Include="..\public\Terrain_GamePlay.h">
       <Filter>02.GameObjects\Terrain\Terrain_GamePlay</Filter>
     </ClInclude>
-    <ClInclude Include="..\public\Sky.h">
-      <Filter>02.GameObjects\Sky</Filter>
-    </ClInclude>
     <ClInclude Include="..\Public\Imgui\imgui.h">
       <Filter>96.Imgui\h</Filter>
     </ClInclude>
@@ -979,6 +997,30 @@
     </ClInclude>
     <ClInclude Include="..\public\Boss_Logo.h">
       <Filter>02.GameObjects\BackGround\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Sky.h">
+      <Filter>02.GameObjects\Sky\GamePlay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Sky_Boss.h">
+      <Filter>02.GameObjects\Sky\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Mountain_105.h">
+      <Filter>02.GameObjects\Deco\Mountain\105</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Mountain_106.h">
+      <Filter>02.GameObjects\Deco\Mountain\106</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Mountain_107.h">
+      <Filter>02.GameObjects\Deco\Mountain\107</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Mountain_114.h">
+      <Filter>02.GameObjects\Deco\Mountain\114</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Mountain_310.h">
+      <Filter>02.GameObjects\Deco\Mountain\310</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Mountain_311.h">
+      <Filter>02.GameObjects\Deco\Mountain\311</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1529,6 +1571,36 @@
     </Filter>
     <Filter Include="02.GameObjects\BackGround\Boss">
       <UniqueIdentifier>{2eb8842a-4ef9-41cb-80c3-55c27e956d8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Sky\Boss">
+      <UniqueIdentifier>{8a75c80f-f3bd-447a-8431-84933a6d1e8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Sky\GamePlay">
+      <UniqueIdentifier>{ea3c6272-2d23-4bc5-9deb-caab49dcbb25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Mou">
+      <UniqueIdentifier>{2622345d-3e38-46fc-a86f-758af861db28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Mountain">
+      <UniqueIdentifier>{ff42b67e-b723-4ffa-8dd6-cfc2910cfae5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Mountain\105">
+      <UniqueIdentifier>{e265d5c4-2217-47ff-87a8-156dac17840a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Mountain\106">
+      <UniqueIdentifier>{388d9ba7-7c07-41a2-8125-4dc5d26de7d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Mountain\107">
+      <UniqueIdentifier>{ac8eee28-ff51-4133-9211-8660e4ad0249}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Mountain\114">
+      <UniqueIdentifier>{4fa1cf88-42f4-482b-9d69-b704ce6b1070}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Mountain\310">
+      <UniqueIdentifier>{cc0d797d-3514-42f0-93c6-179742e68e7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Mountain\311">
+      <UniqueIdentifier>{4c39933d-0e0a-498a-a308-94357ac7d1aa}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
