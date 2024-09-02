@@ -12,6 +12,7 @@
 #include "Terrain_Boss.h"
 
 #include "Sky.h"
+#include "Sky_Boss.h"
 #include "Cube.h"
 
 #include "Wall_Stage1.h"
@@ -987,6 +988,11 @@ HRESULT CLoader::Loading_For_BossLevel()
 
 
 	lstrcpy(m_szLoadingText, TEXT("객체원형을 로딩 중 입니다."));
+
+	/* For.Prototype_GameObject_Sky_Boss */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Sky_Boss"),
+		CSky_Boss::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
 
 	/* For.Prototype_GameObject_Terrain_Boss */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Terrain_Boss"),
