@@ -734,6 +734,78 @@ Scale: 1 1 1
 Rotation: 3.14159
 IsParsing: 1
 
+LayerName: Layer_FireLight
+PrototypeTag: Prototype_GameObject_FireLight
+LevelIndex: 4
+Position: 1.1716 6.17878 27.842
+Scale: 1 1 1
+Rotation: 0
+IsParsing: 1
+
+LayerName: Layer_FireLight
+PrototypeTag: Prototype_GameObject_FireLight
+LevelIndex: 4
+Position: 34.2268 6.72805 20.9246
+Scale: 1 1 1
+Rotation: 0
+IsParsing: 1
+
+LayerName: Layer_FireLight
+PrototypeTag: Prototype_GameObject_FireLight
+LevelIndex: 4
+Position: 2.92392 7.75524 6.04801
+Scale: 1 1 1
+Rotation: 0
+IsParsing: 1
+
+LayerName: Layer_FireLight
+PrototypeTag: Prototype_GameObject_FireLight
+LevelIndex: 4
+Position: 19.6707 5.31601 11.9517
+Scale: 1 1 1
+Rotation: 0
+IsParsing: 1
+
+LayerName: Layer_FireLight
+PrototypeTag: Prototype_GameObject_FireLight
+LevelIndex: 4
+Position: 59.8094 5.29168 22.6389
+Scale: 1 1 1
+Rotation: 0
+IsParsing: 1
+
+LayerName: Layer_FireLight
+PrototypeTag: Prototype_GameObject_FireLight
+LevelIndex: 4
+Position: 39.3257 4.54968 32.0752
+Scale: 1 1 1
+Rotation: 0
+IsParsing: 1
+
+LayerName: Layer_FireLight
+PrototypeTag: Prototype_GameObject_FireLight
+LevelIndex: 4
+Position: 59.8024 2.03412 55.0797
+Scale: 1 1 1
+Rotation: 0
+IsParsing: 1
+
+LayerName: Layer_FireLight
+PrototypeTag: Prototype_GameObject_FireLight
+LevelIndex: 4
+Position: 39.3137 4.7534 53.0762
+Scale: 1 1 1
+Rotation: 0
+IsParsing: 1
+
+LayerName: Layer_FireLight
+PrototypeTag: Prototype_GameObject_FireLight
+LevelIndex: 4
+Position: 50.5219 6.21343 68.546
+Scale: 1 1 1
+Rotation: 0
+IsParsing: 1
+
 LayerName: Layer_Floor_101
 PrototypeTag: Prototype_GameObject_Floor_101
 LevelIndex: 4
@@ -2460,6 +2532,14 @@ LevelIndex: 4
 Position: 57.9999 -1.49012e-08 40.5001
 Scale: 1 0.69 1
 Rotation: 6.28319
+IsParsing: 1
+
+LayerName: Layer_Portal
+PrototypeTag: Prototype_GameObject_Portal
+LevelIndex: 4
+Position: 39.25 3.9 64.88
+Scale: 4.18 8 1
+Rotation: 1.5708
 IsParsing: 1
 
 LayerName: Layer_Portal

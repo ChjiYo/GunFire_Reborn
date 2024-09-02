@@ -558,8 +558,13 @@ HRESULT CTool_Object::Show_LayerObjects()
 					wstring_convert<std::codecvt_utf8<wchar_t>> converter;
 					std::wstring wLayerName = converter.from_bytes(layerName);
 					
-					m_vPickingPos = PickingPos();
+					_bool		isPick = { false };
+					_float4 PickPos = m_pGameInstance->Picked_Position(&isPick);
+					m_vPickingPos = { PickPos.x ,PickPos.y ,PickPos.z };  //PickingPos();
+					
 					PickingSelectedObject(wLayerName, gameObject, m_vPickingPos);
+
+					
 				}
 			}
 		

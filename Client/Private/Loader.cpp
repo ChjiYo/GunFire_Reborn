@@ -15,6 +15,8 @@
 #include "Sky_Boss.h"
 #include "Cube.h"
 
+#include "Fire_Light.h"
+
 #include "Wall_Stage1.h"
 #include "Wall_Stage2.h"
 
@@ -921,6 +923,11 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 	/* For.Prototype_GameObject_Portal*/
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Portal"),
 		CPortal::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_FireLight*/
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_FireLight"),
+		CFire_Light::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
 

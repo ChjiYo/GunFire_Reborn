@@ -118,17 +118,6 @@ HRESULT CLevel_GamePlay::Ready_Lights()
 	if (FAILED(m_pGameInstance->Add_Light(LightDesc)))
 		return E_FAIL;*/
 
-	ZeroMemory(&LightDesc, sizeof(LIGHT_DESC));
-	LightDesc.eType = LIGHT_DESC::TYPE_POINT;
-	LightDesc.vPosition = _float4(20.f,3.f, 12.f, 1.f);
-	LightDesc.fRange = 25.f;
-	LightDesc.vDiffuse = _float4(1.0f, 0.0f, 0.0f, 0.75f);
-	LightDesc.vAmbient = _float4(0.25f, 0.25f, 0.f, 1.f);
-	LightDesc.vSpecular = _float4(0.f, 0.f, 0.f, 1.f);
-
-	if (FAILED(m_pGameInstance->Add_Light(LightDesc)))
-		return E_FAIL;
-
 	//1.0f, 0.647f, 0.0f, 0.75f
 
 	return S_OK;

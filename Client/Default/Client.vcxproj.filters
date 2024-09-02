@@ -519,6 +519,9 @@
     <ClCompile Include="..\private\Mountain_311.cpp">
       <Filter>02.GameObjects\Deco\Mountain\311</Filter>
     </ClCompile>
+    <ClCompile Include="..\private\Fire_Light.cpp">
+      <Filter>02.GameObjects\Deco\Fire_Light</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Public\Level_Logo.h">
@@ -1021,6 +1024,9 @@
     </ClInclude>
     <ClInclude Include="..\public\Mountain_311.h">
       <Filter>02.GameObjects\Deco\Mountain\311</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Fire_Light.h">
+      <Filter>02.GameObjects\Deco\Fire_Light</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1601,6 +1607,9 @@
     </Filter>
     <Filter Include="02.GameObjects\Deco\Mountain\311">
       <UniqueIdentifier>{4c39933d-0e0a-498a-a308-94357ac7d1aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Fire_Light">
+      <UniqueIdentifier>{493f1d42-9dbd-4c43-a5e1-7eca34d337bd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -245,7 +245,7 @@ void CPlayer::Player_Move(_float fTimeDelta)
 
     if (m_pGameInstance->Key_Down('4'))
     {
-        m_eWeaponID = BOOMGUN;
+        m_eWeaponID = SHURIKEN;
         m_bWeaponChange = true;
     }
 }
