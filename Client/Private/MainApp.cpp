@@ -146,8 +146,10 @@ HRESULT CMainApp::Ready_Prototype_Component_ForStatic()
 		CVIBuffer_Terrain::Create(m_pDevice, m_pContext, 100, 100))))
 		return E_FAIL;
 
-
-
+	/* For.Prototype_Component_VIBuffer_Terrain */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_STATIC, TEXT("Prototype_Component_VIBuffer_Terrain_Height"),
+		CVIBuffer_Terrain::Create(m_pDevice, m_pContext, TEXT("../Bin/Resources/Textures/Terrain/Test3.bmp")))))
+		return E_FAIL;
 
 	/* 쉐이더를 로드한다. */
 	/* For.Prototype_Component_Shader_VtxNorTex */

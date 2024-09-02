@@ -164,7 +164,7 @@ HRESULT CMon_Shield_Knight::Ready_Components()
 	/* For.Com_Collider */
 	CBounding_AABB::BOUNDING_AABB_DESC	AABBBoundingDesc{};
 
-	AABBBoundingDesc.vExtents = _float3(0.5f, 0.5f, 0.5f);
+	AABBBoundingDesc.vExtents = _float3(0.75f, 1.f, 1.f);
 	AABBBoundingDesc.vCenter = _float3(0.f, AABBBoundingDesc.vExtents.y, 0.f);
 	AABBBoundingDesc.pObject = this;
 

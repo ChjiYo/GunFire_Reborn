@@ -152,6 +152,7 @@ HRESULT CTool_Object::ShowLevels()
 	vector<pair<string, LEVELID>> levels = {
 		{"Logo", LEVEL_LOGO},
 		{"GamePlay", LEVEL_GAMEPLAY},
+		{"Boss", LEVEL_BOSS},
 	};
 
 	for (auto& level : levels) {

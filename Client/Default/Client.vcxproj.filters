@@ -273,9 +273,6 @@
     <ClCompile Include="..\private\Terrain_GamePlay.cpp">
       <Filter>02.GameObjects\Terrain\Terrain_GamePlay</Filter>
     </ClCompile>
-    <ClCompile Include="..\private\Sky.cpp">
-      <Filter>02.GameObjects\Sky</Filter>
-    </ClCompile>
     <ClCompile Include="..\Public\Imgui\imgui.cpp">
       <Filter>96.Imgui\cpp</Filter>
     </ClCompile>
@@ -497,6 +494,12 @@
     </ClCompile>
     <ClCompile Include="..\private\Boss_Logo.cpp">
       <Filter>02.GameObjects\BackGround\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Sky.cpp">
+      <Filter>02.GameObjects\Sky\GamePlay</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Sky_Boss.cpp">
+      <Filter>02.GameObjects\Sky\Boss</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -743,9 +746,6 @@
     <ClInclude Include="..\public\Terrain_GamePlay.h">
       <Filter>02.GameObjects\Terrain\Terrain_GamePlay</Filter>
     </ClInclude>
-    <ClInclude Include="..\public\Sky.h">
-      <Filter>02.GameObjects\Sky</Filter>
-    </ClInclude>
     <ClInclude Include="..\Public\Imgui\imgui.h">
       <Filter>96.Imgui\h</Filter>
     </ClInclude>
@@ -979,6 +979,12 @@
     </ClInclude>
     <ClInclude Include="..\public\Boss_Logo.h">
       <Filter>02.GameObjects\BackGround\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Sky.h">
+      <Filter>02.GameObjects\Sky\GamePlay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Sky_Boss.h">
+      <Filter>02.GameObjects\Sky\Boss</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1529,6 +1535,12 @@
     </Filter>
     <Filter Include="02.GameObjects\BackGround\Boss">
       <UniqueIdentifier>{2eb8842a-4ef9-41cb-80c3-55c27e956d8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Sky\Boss">
+      <UniqueIdentifier>{8a75c80f-f3bd-447a-8431-84933a6d1e8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Sky\GamePlay">
+      <UniqueIdentifier>{ea3c6272-2d23-4bc5-9deb-caab49dcbb25}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

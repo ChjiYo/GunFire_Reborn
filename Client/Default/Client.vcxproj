@@ -281,6 +281,7 @@
     <ClInclude Include="..\public\Skill_Sniper_Bullet.h" />
     <ClInclude Include="..\public\Sky.h" />
     <ClInclude Include="..\public\Mon_Spear.h" />
+    <ClInclude Include="..\public\Sky_Boss.h" />
     <ClInclude Include="..\public\Stair1.h" />
     <ClInclude Include="..\public\Stair101.h" />
     <ClInclude Include="..\public\Stair101_Addon.h" />
@@ -438,6 +439,7 @@
     <ClCompile Include="..\private\Skill_Sniper_Bullet.cpp" />
     <ClCompile Include="..\private\Sky.cpp" />
     <ClCompile Include="..\private\Mon_Spear.cpp" />
+    <ClCompile Include="..\private\Sky_Boss.cpp" />
     <ClCompile Include="..\private\Stair1.cpp" />
     <ClCompile Include="..\private\Stair101.cpp" />
     <ClCompile Include="..\private\Stair101_Addon.cpp" />
