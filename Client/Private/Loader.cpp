@@ -45,6 +45,13 @@
 
 #include "Pillars101.h"
 
+#include "Mountain_105.h"
+#include "Mountain_106.h"
+#include "Mountain_107.h"
+#include "Mountain_114.h"
+#include "Mountain_310.h"
+#include "Mountain_311.h"
+
 #include "Effect_Deco_Snow.h"
 
 #include "Player.h"
@@ -1053,6 +1060,36 @@ HRESULT CLoader::Loading_For_BossLevel()
 	/* For.Prototype_GameObject_Terrain_Boss */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Terrain_Boss"),
 		CTerrain_Boss::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Mountain_105 */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Mountain_105"),
+		CMountain_105::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Mountain_106 */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Mountain_106"),
+		CMountain_106::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Mountain_107 */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Mountain_107"),
+		CMountain_107::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Mountain_114 */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Mountain_114"),
+		CMountain_114::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Mountain_310 */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Mountain_310"),
+		CMountain_310::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Mountain_311 */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Mountain_311"),
+		CMountain_311 ::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
 	/* For.Prototype_GameObject_Mon_Dragon */

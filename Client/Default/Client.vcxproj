@@ -224,6 +224,12 @@
     <ClInclude Include="..\public\Mon_Knight.h" />
     <ClInclude Include="..\public\Mon_Bug.h" />
     <ClInclude Include="..\public\Mon_Shield_Knight.h" />
+    <ClInclude Include="..\public\Mountain_105.h" />
+    <ClInclude Include="..\public\Mountain_106.h" />
+    <ClInclude Include="..\public\Mountain_107.h" />
+    <ClInclude Include="..\public\Mountain_114.h" />
+    <ClInclude Include="..\public\Mountain_310.h" />
+    <ClInclude Include="..\public\Mountain_311.h" />
     <ClInclude Include="..\public\Pillars101.h" />
     <ClInclude Include="..\public\Portal.h" />
     <ClInclude Include="..\public\Skill_Archer_Bullet.h" />
@@ -390,6 +396,12 @@
     <ClCompile Include="..\private\Mon_Knight.cpp" />
     <ClCompile Include="..\private\Mon_Bug.cpp" />
     <ClCompile Include="..\private\Mon_Shield_Knight.cpp" />
+    <ClCompile Include="..\private\Mountain_105.cpp" />
+    <ClCompile Include="..\private\Mountain_106.cpp" />
+    <ClCompile Include="..\private\Mountain_107.cpp" />
+    <ClCompile Include="..\private\Mountain_114.cpp" />
+    <ClCompile Include="..\private\Mountain_310.cpp" />
+    <ClCompile Include="..\private\Mountain_311.cpp" />
     <ClCompile Include="..\private\Pillars101.cpp" />
     <ClCompile Include="..\private\Portal.cpp" />
     <ClCompile Include="..\private\Skill_Archer_Bullet.cpp" />
