@@ -104,12 +104,6 @@ wstring CFSM_Mon_DragonTail_Attack::Update(_float fTimeDelta)
 
 wstring CFSM_Mon_DragonTail_Attack::Late_Update(_float fTimeDelta)
 {
-	//if (m_iAttackCnt >= 2)
-	//{
-	//	m_iAttackCnt = 0;
-	//	return TEXT("Monster_DragonTail_State_In");
-	//}
-
 	if (m_iAttackType % 2 == 0)
 	{
 		if (m_tDesc.pModel->Get_Anim(10)->Get_Duration() * 2 <= m_fNextStateTimer)

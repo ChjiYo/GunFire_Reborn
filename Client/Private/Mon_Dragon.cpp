@@ -17,6 +17,8 @@
 #include "FSM_Mon_DragonTail_In.h"
 #include "FSM_Mon_DragonTail_Out.h"
 
+#include "PartObject.h"
+
 #include "Player.h"
 
 CMon_Dragon::CMon_Dragon(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
@@ -41,7 +43,7 @@ HRESULT CMon_Dragon::Initialize(void* pArg)
 	CContainerObject::CONTAINEROBJECT_DESC		ContainerDesc{};
 	ContainerDesc.fRotationPerSec = XMConvertToRadians(45.0f);
 	ContainerDesc.fSpeedPerSec = 2.5f;
-	ContainerDesc.iNumParts = PART_HEAD;
+	ContainerDesc.iNumParts = PART_END;
 
 	if (FAILED(__super::Initialize(&ContainerDesc)))
 		return E_FAIL;
@@ -69,12 +71,17 @@ HRESULT CMon_Dragon::Initialize(void* pArg)
 
 void CMon_Dragon::Priority_Update(_float fTimeDelta)
 {
+	__super::Priority_Update(fTimeDelta);
+
 	m_pStateCom->Priority_Update(fTimeDelta);
 	m_pModelCom->Play_Animation(fTimeDelta);
+
+	m_fEffectCreateTimer += fTimeDelta;
 }
 
 void CMon_Dragon::Update(_float fTimeDelta)
 {
+	__super::Update(fTimeDelta);
 
 	m_pColliderCom[COLL_AABB]->Update(m_pTransformCom->Get_WorldMatrix());
 

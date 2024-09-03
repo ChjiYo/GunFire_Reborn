@@ -34,19 +34,26 @@ HRESULT CMonster::Initialize(void * pArg)
 
 void CMonster::Priority_Update(_float fTimeDelta)
 {
+	__super::Priority_Update(fTimeDelta);
+
 	m_fDamageDelay += fTimeDelta;
 }
 
 void CMonster::Update(_float fTimeDelta)
 {
-	_float fNNaviHeight = m_pNavigationCom->Navi_Height(m_pTransformCom);
+	__super::Update(fTimeDelta);
 
-	m_pTransformCom->Gravity(0.2f, fNNaviHeight + 0.25f, fTimeDelta);
-
+	if (m_pGameInstance->GetLoadingLevelIndex() == LEVEL_GAMEPLAY)
+	{
+		_float fNNaviHeight = m_pNavigationCom->Navi_Height(m_pTransformCom);
+		m_pTransformCom->Gravity(0.2f, fNNaviHeight + 0.25f, fTimeDelta);
+	}
 }
 
 void CMonster::Late_Update(_float fTimeDelta)
 {
+	__super::Late_Update(fTimeDelta);
+
 
 	CCollider* pTargetCollider = dynamic_cast<CCollider*>(m_pGameInstance->Get_Component(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_Player"), TEXT("Com_Collider"), 0));
 	CPlayer* pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_Player")).front());

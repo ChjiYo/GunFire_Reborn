@@ -126,10 +126,7 @@ PS_OUT PS_MAIN(PS_IN In)
     Out.vColor = g_Texture.Sample(LinearSampler, In.vTexcoord);
 	
 
-    //if (In.vLifeTime.y >= In.vLifeTime.x || Out.vColor.a < 0.1f)
-    //    discard;
-
-    if (Out.vColor.a <= 0.1f)
+    if (In.vLifeTime.y >= In.vLifeTime.x || Out.vColor.a < 0.1f)
         discard;
 
     //Out.vColor = g_vColor;

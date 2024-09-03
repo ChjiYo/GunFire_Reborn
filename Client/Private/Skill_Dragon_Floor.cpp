@@ -33,7 +33,7 @@ HRESULT CSkill_Dragon_Floor::Initialize(void* pArg)
 
     Safe_AddRef(m_pOriginTransform);
     
-    m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetY(m_pOriginTransform->Get_State(CTransform::STATE_POSITION),0.1f));
+    m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetY(m_pOriginTransform->Get_State(CTransform::STATE_POSITION), m_iNumSkill * 0.01f));
     m_pTransformCom->Set_Scaled(5.f, 5.f, 1.f);
     m_pTransformCom->Rotation({ 1.f, 0.f , 0.f }, XMConvertToRadians(90.f));
 

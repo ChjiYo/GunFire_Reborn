@@ -45,7 +45,6 @@ private:
 	_float m_fDestroyTimer = {};
 	_float m_fAnimFrame = { 0.f };
 
-	_uint m_iTextureIndex = { 0 };
 public:
 	static CSkill_Dragon_Bubble* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	virtual CGameObject* Clone(void* pArg);

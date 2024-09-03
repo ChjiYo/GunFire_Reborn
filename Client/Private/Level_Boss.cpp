@@ -42,6 +42,11 @@ HRESULT CLevel_Boss::Initialize()
 	if (FAILED(Ready_Layer_Camera(TEXT("Layer_Camera"))))
 		return E_FAIL;
 
+	if (FAILED(Ready_Layer_Camera(TEXT("Layer_Camera"))))
+		return E_FAIL;
+
+
+
 
 	if (FAILED(ParseInitialize()))
 		return E_FAIL;
@@ -135,6 +140,14 @@ HRESULT CLevel_Boss::Ready_Layer_Camera(const _wstring& strLayerTag)
 
 	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_Camera_Free"), strLayerTag, &CameraDesc)))
 		return E_FAIL;
+
+	return S_OK;
+}
+
+HRESULT CLevel_Boss::Ready_Layer_Effect(const _wstring& strLayerTag)
+{
+	//if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_"), strLayerTag, &CameraDesc)))
+	//	return E_FAIL;
 
 	return S_OK;
 }

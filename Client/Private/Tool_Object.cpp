@@ -516,11 +516,13 @@ HRESULT CTool_Object::Show_LayerObjects()
 
 				CTransform* transform = static_cast<CTransform*>(component);
 
+				//averageRotation.y = transform->Get_RotationYValue();
+
 				if (averageRotation.x > 0.f)
 					transform->Rotation({ 1.f, 0.f, 0.f ,0.f }, XMConvertToRadians(averageRotation.x));
 
 				if (averageRotation.y > 0.f)
-					transform->Rotation({ 0.f, 1.f, 0.f ,0.f }, XMConvertToRadians(transform->Get_RotationYValue()));
+					transform->Rotation({ 0.f, 1.f, 0.f ,0.f }, XMConvertToRadians(averageRotation.y));
 
 				if (averageRotation.z > 0.f)
 					transform->Rotation({ 0.f, 0.f, 1.f ,0.f }, XMConvertToRadians(averageRotation.z));

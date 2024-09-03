@@ -32,7 +32,7 @@ HRESULT CSkill_Dragon_Bubble::Initialize(void* pArg)
         return E_FAIL;
 
     Safe_AddRef(m_pOriginTransform);
-
+    
     Offset_Rotation({ 0.f, 0.f, 0.f });
     m_vPos = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
 
@@ -63,7 +63,7 @@ void CSkill_Dragon_Bubble::Update(_float fTimeDelta)
         SKILL_DESC Desc = {};
         Desc.pOriginTransform = m_pTransformCom;
         Desc.iSkillDamage = 5.f;
-        Desc.iNumSkill = 1;
+        Desc.iNumSkill = m_iNumSkill;
 
         m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Skill_Dragon_Floor"), TEXT("Layer_Skill_Dragon_Floor"),&Desc);
     }

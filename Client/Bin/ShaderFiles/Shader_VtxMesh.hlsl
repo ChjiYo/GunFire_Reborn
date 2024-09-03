@@ -1,4 +1,3 @@
-
 #include "Engine_Shader_Defines.hlsli"
 
 float4x4		g_WorldMatrix, g_ViewMatrix, g_ProjMatrix;

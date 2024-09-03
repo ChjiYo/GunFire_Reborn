@@ -84,6 +84,7 @@
 
 #include "VFX_Mon_Breath.h"
 #include "VFX_Mon_Dust.h"
+#include "VFX_Mon_Circle.h"
 
 #include "Item_Sniper.h"
 
@@ -978,6 +979,18 @@ HRESULT CLoader::Loading_For_BossLevel()
 		CVIBuffer_Point_Instancing::Create(m_pDevice, m_pContext, &ParticleDesc))))
 		return E_FAIL;
 
+	ParticleDesc.iNumInstance = 200;
+	ParticleDesc.vRange = _float3(10.0f, 0.0f, 10.0f);
+	ParticleDesc.vCenter = _float3(0.0f, 0.f, 0.0f);
+	ParticleDesc.vPivot = _float3(0.0f, 0.0f, 0.f);
+	ParticleDesc.vSpeed = _float2(0.0f, 0.f);
+	ParticleDesc.vScale = _float2(1.0f, 3.0f);
+	ParticleDesc.vLifeTime = _float2(0.5f, 3.5f);
+	ParticleDesc.isLoop = true;
+
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_VIBuffer_Particle_Circle"),
+		CVIBuffer_Point_Instancing::Create(m_pDevice, m_pContext, &ParticleDesc))))
+		return E_FAIL;
 
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_State"),
 		CState_Machine::Create(m_pDevice, m_pContext))))
@@ -1132,6 +1145,11 @@ HRESULT CLoader::Loading_For_BossLevel()
 	/* For.Prototype_GameObject_VFX_Dragon_Dust */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_VFX_Dragon_Dust"),
 		CVFX_Mon_Dust::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_VFX_Dragon_Dust */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_VFX_Dragon_Circle"),
+		CVFX_Mon_Circle::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
 

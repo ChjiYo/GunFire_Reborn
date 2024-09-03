@@ -58,7 +58,7 @@ PS_OUT PS_MAIN(PS_IN In)
 	Out.vColor = g_Texture.Sample(LinearSampler, In.vTexcoord);
 
 	//Out.vColor.gb = Out.vColor.r;
-    if (Out.vColor.a <= 0.1f)
+    if (Out.vColor.a <= 0.3f)
         discard;
 
 	return Out;
@@ -88,6 +88,29 @@ PS_OUT PS_Effect(PS_IN In)
 	//Out.vColor.gb = Out.vColor.r;
     if (Out.vColor.a <= 0.1f)
         discard;
+
+    return Out;
+}
+
+PS_OUT PS_CircleEffect(PS_IN In)
+{
+    PS_OUT Out;
+    
+    Out.vColor = g_Texture.Sample(LinearSampler, In.vTexcoord);
+
+    float2 Center = float2(0.5f, 0.5f);
+    float2 offset = In.vTexcoord - Center;
+    float distance = length(offset);
+
+// °Å¸® ±â¹ÝÀ¸·Î ºí·»µù ºñÀ² °è»ê (Áß¾ÓÀÏ¼ö·Ï blendFactor°¡ 1, ¿Ü°ûÀÏ¼ö·Ï 0)
+    float blendFactor = 1.0f - saturate(distance / 1.0f);
+
+// ºí·»µù °è»ê (Áß¾ÓÀÌ ¾îµÓ°í ¿Ü°ûÀÌ ¹àÀ½)
+    Out.vColor = lerp(float4(1, 1, 1, 0), Out.vColor, blendFactor);
+
+    if (Out.vColor.a <= 0.1f)
+        discard;
+
 
     return Out;
 }
@@ -123,6 +146,16 @@ technique11		DefaultTechnique
 
         VertexShader = compile vs_5_0 VS_MAIN();
         PixelShader = compile ps_5_0 PS_Effect();
+    }
+
+    pass CircleEffect
+    {
+        SetRasterizerState(RS_Cull_NONE);
+        SetDepthStencilState(DSS_Default, 0);
+        SetBlendState(BS_AlphaBlend, float4(0.f, 0.f, 0.f, 0.f), 0xffffffff);
+
+        VertexShader = compile vs_5_0 VS_MAIN();
+        PixelShader = compile ps_5_0 PS_CircleEffect();
 
     }
 

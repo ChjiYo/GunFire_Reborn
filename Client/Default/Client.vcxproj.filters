@@ -522,6 +522,9 @@
     <ClCompile Include="..\private\Fire_Light.cpp">
       <Filter>02.GameObjects\Deco\Fire_Light</Filter>
     </ClCompile>
+    <ClCompile Include="..\private\VFX_Mon_Circle.cpp">
+      <Filter>02.GameObjects\Effect\Monster_Effect\Circle</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Public\Level_Logo.h">
@@ -1027,6 +1030,9 @@
     </ClInclude>
     <ClInclude Include="..\public\Fire_Light.h">
       <Filter>02.GameObjects\Deco\Fire_Light</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\VFX_Mon_Circle.h">
+      <Filter>02.GameObjects\Effect\Monster_Effect\Circle</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1610,6 +1616,9 @@
     </Filter>
     <Filter Include="02.GameObjects\Deco\Fire_Light">
       <UniqueIdentifier>{493f1d42-9dbd-4c43-a5e1-7eca34d337bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Effect\Monster_Effect\Circle">
+      <UniqueIdentifier>{2870f195-10c4-4042-9bd6-ecd94431d134}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

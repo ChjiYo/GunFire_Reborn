@@ -34,6 +34,9 @@ private:
 	CBinModel* m_pModelCom = { nullptr };
 	CState_Machine* m_pStateCom = { nullptr };
 
+
+	_float m_fEffectCreateTimer = { 0.f };
+
 private:
 	HRESULT Ready_State();
 	HRESULT Ready_Components();
