@@ -54,6 +54,11 @@
 #include "Mountain_310.h"
 #include "Mountain_311.h"
 
+#include "Fish_Body.h"
+#include "Fish_Body2.h"
+#include "Fish_Head.h"
+#include "Fish_Teath.h"
+
 #include "Effect_Deco_Snow.h"
 
 #include "Player.h"
@@ -358,6 +363,23 @@ HRESULT CLoader::Loading_For_BinaryFile()
 
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Model_Mountain311"),
 		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Mountain/311/Mountain311.fbx", TEXT("../Bin/DataFiles/Mountain311.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Model_Fish_Body"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Fish/Body/Fish_Body.fbx", TEXT("../Bin/DataFiles/Fish_Body.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Model_Fish_Body2"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Fish/Body2/Fish_Body2.fbx", TEXT("../Bin/DataFiles/Fish_Body2.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Model_Fish_Head"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Fish/Head/Fish_Head.fbx", TEXT("../Bin/DataFiles/Fish_Head.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Model_Fish_Teath"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Element/Fish/Teath/Fish_Teath.fbx", TEXT("../Bin/DataFiles/Fish_Teath.dat"), PreTransformMatrix))))
 		return E_FAIL;
 
 	lstrcpy(m_szLoadingText, TEXT("바이러리 파일 로드가 완료되었습니다."));
@@ -1070,6 +1092,27 @@ HRESULT CLoader::Loading_For_BossLevel()
 		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Mountain311.dat"), PreTransformMatrix))))
 		return E_FAIL;
 
+	/* For.Prototype_Component_Model_Fish_Body */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Model_Fish_Body"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Fish_Body.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Model_Fish_Body2 */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Model_Fish_Body2"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Fish_Body2.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Model_Fish_Head */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Model_Fish_Head"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Fish_Head.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Model_Fish_Teath */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Model_Fish_Teath"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Fish_Teath.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	
 	lstrcpy(m_szLoadingText, TEXT("객체원형을 로딩 중 입니다."));
 
 	/* For.Prototype_GameObject_Sky_Boss */
@@ -1110,6 +1153,25 @@ HRESULT CLoader::Loading_For_BossLevel()
 	/* For.Prototype_GameObject_Mountain_311 */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Mountain_311"),
 		CMountain_311 ::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Fish_Body */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Fish_Body"),
+		CFish_Body::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Fish_Body2 */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Fish_Body2"),
+		CFish_Body2::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Fish_Head */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Fish_Head"),
+		CFish_Head::Create(m_pDevice, m_pContext))))
+		return E_FAIL; 
+	/* For.Prototype_GameObject_Fish_Teath */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Fish_Teath"),
+		CFish_Teath::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
 	/* For.Prototype_GameObject_Mon_Dragon */

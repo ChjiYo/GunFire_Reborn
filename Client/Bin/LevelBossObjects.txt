@@ -1,3 +1,59 @@
+LayerName: Layer_Fish_Body
+PrototypeTag: Prototype_GameObject_Fish_Body
+LevelIndex: 5
+Position: 80 -1.5 46.2001
+Scale: 0.999987 0.999998 0.999987
+Rotation: 5.25161
+IsParsing: 1
+
+LayerName: Layer_Fish_Body
+PrototypeTag: Prototype_GameObject_Fish_Body
+LevelIndex: 5
+Position: 105.5 -1.5 50
+Scale: 0.999977 0.999927 0.999977
+Rotation: 3.65737
+IsParsing: 1
+
+LayerName: Layer_Fish_Body2
+PrototypeTag: Prototype_GameObject_Fish_Body2
+LevelIndex: 5
+Position: 101 -2.8 39.0003
+Scale: 0.999994 0.999997 0.999994
+Rotation: 4.4076
+IsParsing: 1
+
+LayerName: Layer_Fish_Head
+PrototypeTag: Prototype_GameObject_Fish_Head
+LevelIndex: 5
+Position: 64.3 -2.1 66.8
+Scale: 0.499999 0.5 0.499999
+Rotation: 0.562677
+IsParsing: 1
+
+LayerName: Layer_Fish_Teath
+PrototypeTag: Prototype_GameObject_Fish_Teath
+LevelIndex: 5
+Position: 81.4998 -0.9 82.3
+Scale: 0.999998 1 0.999998
+Rotation: 0.9378
+IsParsing: 1
+
+LayerName: Layer_Fish_Teath
+PrototypeTag: Prototype_GameObject_Fish_Teath
+LevelIndex: 5
+Position: 100 -1.9 88.1002
+Scale: 0.999995 0.999999 0.999995
+Rotation: 3.61049
+IsParsing: 1
+
+LayerName: Layer_Fish_Teath
+PrototypeTag: Prototype_GameObject_Fish_Teath
+LevelIndex: 5
+Position: 115.4 -1.9 70
+Scale: 0.999994 0.999999 0.999994
+Rotation: 5.53296
+IsParsing: 1
+
 LayerName: Layer_Mountain_105
 PrototypeTag: Prototype_GameObject_Mountain_105
 LevelIndex: 5

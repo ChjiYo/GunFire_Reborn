@@ -32,7 +32,7 @@ HRESULT CVFX_Mon_Breath::Initialize(void* pArg)
     m_pTransformCom->Set_Scaled(1.f, 30.f,1.f);
     m_pTransformCom->Rotation({ 1.f, 0.f, 0.f }, XMConvertToRadians(90.f));
     m_pTransformCom->Radian_Turn(m_pTransformCom->Get_State(CTransform::STATE_UP), XMConvertToRadians(90.f));
-    m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 0.f,2.f, 8.f, 1.f });
+    m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 0.f,2.f, 15.f, 1.f });
 	return S_OK;
 }
 

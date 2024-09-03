@@ -62,7 +62,7 @@ HRESULT CPlayer::Initialize(void* pArg)
     switch (m_pGameInstance->GetLoadingLevelIndex())
     {
     case LEVEL_GAMEPLAY:
-        m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 47.f , 1.0f , 64.f, 1.f });
+        m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 40.f , 1.0f , 60.f, 1.f });
         break;
 
     case LEVEL_BOSS:
@@ -104,7 +104,7 @@ void CPlayer::Update(_float fTimeDelta)
     _vector vPos = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
 
     if (m_pGameInstance->Key_Down('B'))
-        Set_Damage(-5);   
+        Set_Damage(-5);    
 }
 
 void CPlayer::Late_Update(_float fTimeDelta)

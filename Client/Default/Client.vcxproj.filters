@@ -525,6 +525,18 @@
     <ClCompile Include="..\private\VFX_Mon_Circle.cpp">
       <Filter>02.GameObjects\Effect\Monster_Effect\Circle</Filter>
     </ClCompile>
+    <ClCompile Include="..\private\Fish_Teath.cpp">
+      <Filter>02.GameObjects\Deco\Fish\Teath</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Fish_Body.cpp">
+      <Filter>02.GameObjects\Deco\Fish\Body</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Fish_Head.cpp">
+      <Filter>02.GameObjects\Deco\Fish\Head</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Fish_Body2.cpp">
+      <Filter>02.GameObjects\Deco\Fish\Body2</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Public\Level_Logo.h">
@@ -1033,6 +1045,18 @@
     </ClInclude>
     <ClInclude Include="..\public\VFX_Mon_Circle.h">
       <Filter>02.GameObjects\Effect\Monster_Effect\Circle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Fish_Teath.h">
+      <Filter>02.GameObjects\Deco\Fish\Teath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Fish_Body2.h">
+      <Filter>02.GameObjects\Deco\Fish\Body2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Fish_Body.h">
+      <Filter>02.GameObjects\Deco\Fish\Body</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Fish_Head.h">
+      <Filter>02.GameObjects\Deco\Fish\Head</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1619,6 +1643,21 @@
     </Filter>
     <Filter Include="02.GameObjects\Effect\Monster_Effect\Circle">
       <UniqueIdentifier>{2870f195-10c4-4042-9bd6-ecd94431d134}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Fish">
+      <UniqueIdentifier>{e7534afe-cd2e-4d31-8ff5-3c2b9358008c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Fish\Head">
+      <UniqueIdentifier>{b41985e8-b740-486d-b16e-e8331cffb3ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Fish\Body">
+      <UniqueIdentifier>{038f2295-1c3d-4411-9ee1-c32f37c9feab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Fish\Body2">
+      <UniqueIdentifier>{90287347-c670-4c71-8ed9-93e1353c8128}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Fish\Teath">
+      <UniqueIdentifier>{a6eed261-dc67-43c4-8515-a5460ba4a16d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
