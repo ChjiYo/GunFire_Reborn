@@ -144,7 +144,7 @@ void CPlayer::ShieldRecovery()
 
 void CPlayer::PositionSave()
 {
-    if (m_fPosSaveTimer > 0.01 && !m_bBackPos)
+    if (m_fPosSaveTimer > 0.075f && !m_bBackPos)
     {
         m_fPosSaveTimer = 0.f;
         m_StackPos.push_back(m_pTransformCom->Get_WorldMatrix());
@@ -183,9 +183,9 @@ void CPlayer::PositionSave()
         m_pNavigationCom->Init_Index(m_pTransformCom);
     }
 
-    if (m_StackPos.size() >= 200)
+    if (m_StackPos.size() >= 30)
     {
-        m_StackPos.erase(m_StackPos.begin());
+        m_StackPos.pop_front();
     }
 }
 

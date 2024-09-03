@@ -3,7 +3,7 @@
 #include "Client_Defines.h"
 #include "ContainerObject.h"
 
-#include <stack>
+#include <deque>
 
 BEGIN(Engine)
 class CShader;
@@ -104,7 +104,7 @@ private:
 
 	_bool				m_bDash = { false };
 
-	vector<_matrix> m_StackPos = {};
+	deque<_matrix> m_StackPos = {};
 
 	_float m_fPosSaveTimer = { 0.f };
 	_float m_fMoveSkillTimer = { 0.f };
