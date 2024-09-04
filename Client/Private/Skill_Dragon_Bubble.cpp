@@ -70,7 +70,7 @@ void CSkill_Dragon_Bubble::Update(_float fTimeDelta)
     m_pTransformCom->Go_Straight(fTimeDelta);
 }
 
-void CSkill_Dragon_Bubble::Late_Update(_float fTimeDelta)
+void CSkill_Dragon_Bubble::Late_Update(_float fTimeDelta )
 {
     CCollider* pTargetCollider = dynamic_cast<CCollider*>(m_pGameInstance->Get_Component(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_Player"), TEXT("Com_Collider"), 0));
     CPlayer* pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_Player")).front());

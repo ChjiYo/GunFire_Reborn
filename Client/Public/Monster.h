@@ -16,7 +16,7 @@ BEGIN(Client)
 class CMonster abstract : public CContainerObject
 {
 public:
-	typedef struct
+	typedef struct :public CContainerObject::CONTAINEROBJECT_DESC
 	{
 		_uint iHp = {};
 		_uint iMaxHp = {};

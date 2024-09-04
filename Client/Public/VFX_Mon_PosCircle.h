@@ -1,21 +1,16 @@
 #pragma once
 
-#include "Client_Defines.h"
-#include "VFX_Monster.h"
+#include "Skill_Monster.h"
 
 BEGIN(Engine)
 class CShader;
 class CTexture;
-class CVIBuffer_Point_Instancing;
+class CVIBuffer_Rect;
+class CCollider;
 END
 
-BEGIN(Client)
-
-class CVFX_Mon_PosCircle final :public CVFX_Monster
+class CVFX_Mon_PosCircle final :public CSkill_Monster
 {
-public:
-	enum TEXTURETEX { TEX_DIFFUSE, TEX_MASK, TEX_END };
-
 protected:
 	CVFX_Mon_PosCircle(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	CVFX_Mon_PosCircle(const CVFX_Mon_PosCircle& Prototype);
@@ -29,22 +24,21 @@ public:
 	virtual void Late_Update(_float fTimeDelta) override;
 	virtual HRESULT Render() override;
 
-protected:
+private:
 	HRESULT Ready_Components();
 	HRESULT Bind_ShaderResources();
+
+private:
+	void Destroy(_float fTimeDelta);
+
 private:
 	CShader* m_pShaderCom = { nullptr };
 	CTexture* m_pTextureCom = { nullptr };
-	CVIBuffer_Point_Instancing* m_pVIBufferCom = { nullptr };
-
-private:
-	_float m_fAnimFrame = { 0.f };
+	CVIBuffer_Rect* m_pVIBufferCom = { nullptr };
 
 public:
 	static CVFX_Mon_PosCircle* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	virtual CGameObject* Clone(void* pArg);
 	virtual void Free() override;
 };
-
-END
 

@@ -546,6 +546,10 @@
     <ClCompile Include="..\private\VFX_Mon_PosCircle.cpp">
       <Filter>02.GameObjects\Effect\Monster_Effect\Pos_Circle</Filter>
     </ClCompile>
+    <ClCompile Include="..\private\VFX.cpp">
+      <Filter>02.GameObjects\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\VFX_Mon_Bubble.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Public\Level_Logo.h">
@@ -1076,6 +1080,10 @@
     <ClInclude Include="..\public\VFX_Mon_PosCircle.h">
       <Filter>02.GameObjects\Effect\Monster_Effect\Pos_Circle</Filter>
     </ClInclude>
+    <ClInclude Include="..\public\VFX.h">
+      <Filter>02.GameObjects\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\VFX_Mon_Bubble.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -1685,6 +1693,9 @@
     </Filter>
     <Filter Include="02.GameObjects\Effect\Monster_Effect\Pos_Circle">
       <UniqueIdentifier>{9d57211c-a8e7-4eb2-96b4-1cd1cf71e71a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Effect\Monster_Effect\Bubble">
+      <UniqueIdentifier>{21335ed4-b6cc-4448-8f0b-70221f51d3a5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

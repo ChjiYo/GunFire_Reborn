@@ -115,7 +115,8 @@ HRESULT CLevel_Boss::Ready_Layer_Monster(const _wstring& strLayerTag)
 	CMonster::MON_DESC MonDesc = {};
 	MonDesc.iMaxHp = 10.f;
 	MonDesc.iHp = 10.f;
-	
+	MonDesc.iNumParts = CMonster::PART_END;
+
 	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_Mon_Dragon"), strLayerTag, &MonDesc)))
 		return E_FAIL;
 
@@ -128,7 +129,7 @@ HRESULT CLevel_Boss::Ready_Layer_Camera(const _wstring& strLayerTag)
 
 	CameraDesc.vEye = _float3(0.f, 2.f, -10.f);
 	CameraDesc.vAt = _float3(0.f, 0.f, 0.f);
-	CameraDesc.fFovy = XMConvertToRadians(60.0f);
+	CameraDesc.fFovy = XMConvertToRadians(60.0f); 
 	CameraDesc.fNear = 0.1f;
 	CameraDesc.fFar = 1000.f;
 	CameraDesc.fSpeedPerSec = 5.f;
@@ -141,7 +142,7 @@ HRESULT CLevel_Boss::Ready_Layer_Camera(const _wstring& strLayerTag)
 
 	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_Camera_Free"), strLayerTag, &CameraDesc)))
 		return E_FAIL;
-
+	
 	return S_OK;
 }
 

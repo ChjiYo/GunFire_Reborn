@@ -4,6 +4,7 @@
 #include "GameInstance.h"
 
 #include "Player.h"
+#include "PartObject.h"
 
 CSkill_Dragon_Floor::CSkill_Dragon_Floor(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
     :CSkill_Monster{ pDevice , pContext }
@@ -29,6 +30,9 @@ HRESULT CSkill_Dragon_Floor::Initialize(void* pArg)
         return E_FAIL;
 
     if (FAILED(Ready_Components()))
+        return E_FAIL;
+
+    if (FAILED(Ready_PartObject()))
         return E_FAIL;
 
     Safe_AddRef(m_pOriginTransform);
@@ -113,6 +117,18 @@ HRESULT CSkill_Dragon_Floor::Ready_Components()
 
     if (FAILED(__super::Add_Component(LEVEL_STATIC, TEXT("Prototype_Component_Collider_Sphere"),
         TEXT("Com_ColliderSphere"), reinterpret_cast<CComponent**>(&m_pColliderCom), &BoundingDesc)))
+        return E_FAIL;
+
+    return S_OK;
+}
+
+HRESULT CSkill_Dragon_Floor::Ready_PartObject()
+{
+    /* 바디객체를 추가하자 */
+    CPartObject::PARTOBJECT_DESC			BodyDesc{};
+    BodyDesc.pParentMatrix = m_pTransformCom->Get_WorldMatrixPtr();
+
+    if (FAILED(__super::Add_PartObject(PART_EFFECT, TEXT("Prototype_GameObject_VFX_Dragon_Bubble"), &BodyDesc)))
         return E_FAIL;
 
     return S_OK;

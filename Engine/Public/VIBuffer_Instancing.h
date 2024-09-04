@@ -34,6 +34,7 @@ public:
 public:
 	void Spread(_float fTimeDelta);
 	void Drop(_float fTimeDelta);
+	void Fly(_float fTimeDelta);
 
 protected:
 	/* 모델(Instance하나)의 상태제어를 위한 행렬정보를 가지는 정점 버퍼.  */

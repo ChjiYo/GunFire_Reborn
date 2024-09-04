@@ -58,7 +58,7 @@ PS_OUT PS_MAIN(PS_IN In)
 	Out.vColor = g_Texture.Sample(LinearSampler, In.vTexcoord);
 
 	//Out.vColor.gb = Out.vColor.r;
-    if (Out.vColor.a <= 0.3f)
+    if (Out.vColor.a <= 0.1f)
         discard;
 
 	return Out;
@@ -125,6 +125,9 @@ technique11		DefaultTechnique
         SetBlendState(BS_Default, float4(0.f, 0.f, 0.f, 0.f), 0xffffffff);
 
 		VertexShader = compile vs_5_0 VS_MAIN();
+        GeometryShader = NULL;
+        HullShader = NULL;
+        DomainShader = NULL;
 		PixelShader = compile ps_5_0 PS_MAIN();
 	}
 
@@ -135,6 +138,9 @@ technique11		DefaultTechnique
         SetBlendState(BS_Default, float4(0.f, 0.f, 0.f, 0.f), 0xffffffff);
 
         VertexShader = compile vs_5_0 VS_MAIN();
+        GeometryShader = NULL;
+        HullShader = NULL;
+        DomainShader = NULL;
         PixelShader = compile ps_5_0 PS_MAIN();
     }
 
@@ -145,6 +151,9 @@ technique11		DefaultTechnique
         SetBlendState(BS_Default, float4(0.f, 0.f, 0.f, 0.f), 0xffffffff);
 
         VertexShader = compile vs_5_0 VS_MAIN();
+        GeometryShader = NULL;
+        HullShader = NULL;
+        DomainShader = NULL;
         PixelShader = compile ps_5_0 PS_Effect();
     }
 
@@ -155,6 +164,9 @@ technique11		DefaultTechnique
         SetBlendState(BS_AlphaBlend, float4(0.f, 0.f, 0.f, 0.f), 0xffffffff);
 
         VertexShader = compile vs_5_0 VS_MAIN();
+        GeometryShader = NULL;
+        HullShader = NULL;
+        DomainShader = NULL;
         PixelShader = compile ps_5_0 PS_CircleEffect();
 
     }

@@ -35,11 +35,6 @@ HRESULT CVFX_Mon_Circle::Initialize(void* pArg)
 void CVFX_Mon_Circle::Priority_Update(_float fTimeDelta)
 {
     __super::Priority_Update(fTimeDelta);
-
-    m_fAnimFrame += (rand() % 26) * fTimeDelta;
-
-    if (m_fAnimFrame >= 13.f)
-        m_bDead = true;
 }
 
 void CVFX_Mon_Circle::Update(_float fTimeDelta)
@@ -81,7 +76,7 @@ HRESULT CVFX_Mon_Circle::Ready_Components()
         return E_FAIL;
 
     /* For.Com_Model */
-    if (FAILED(__super::Add_Component(LEVEL_BOSS, TEXT("Prototype_Component_Texture_VFX_Dragon_Dust"),
+    if (FAILED(__super::Add_Component(LEVEL_BOSS, TEXT("Prototype_Component_Texture_VFX_Pos_Circle"),
         TEXT("Com_Texture"), reinterpret_cast<CComponent**>(&m_pTextureCom))))
         return E_FAIL;
 
@@ -104,10 +99,6 @@ HRESULT CVFX_Mon_Circle::Bind_ShaderResources()
 
     if (FAILED(m_pShaderCom->Bind_Matrix("g_ProjMatrix", &m_pGameInstance->Get_Transform_Float4x4(CPipeLine::D3DTS_PROJ))))
         return E_FAIL;
-
-    if (FAILED(m_pTextureCom->Bind_ShaderResource(m_pShaderCom, "g_Texture", m_fAnimFrame)))
-        return E_FAIL;
-
 
     return S_OK;
 }

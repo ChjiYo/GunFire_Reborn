@@ -94,10 +94,6 @@ HRESULT CSkill_Dragon_Dust::Render()
     if (FAILED(m_pVIBufferCom->Bind_Buffers()))
         return E_FAIL;
 
-    if (FAILED(m_pVIBufferCom->Render()))
-        return E_FAIL;
-
-
     return S_OK;
 }
 

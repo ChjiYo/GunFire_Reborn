@@ -3,13 +3,15 @@
 #include "VFX_Mon_PosCircle.h"
 #include "GameInstance.h"
 
+#include "Player.h"
+
 CVFX_Mon_PosCircle::CVFX_Mon_PosCircle(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
-    :CVFX_Monster{ pDevice ,pContext }
+    :CSkill_Monster{ pDevice , pContext }
 {
 }
 
 CVFX_Mon_PosCircle::CVFX_Mon_PosCircle(const CVFX_Mon_PosCircle& Prototype)
-    :CVFX_Monster{ Prototype }
+    :CSkill_Monster{ Prototype }
 {
 }
 
@@ -29,31 +31,29 @@ HRESULT CVFX_Mon_PosCircle::Initialize(void* pArg)
     if (FAILED(Ready_Components()))
         return E_FAIL;
 
+    Safe_AddRef(m_pOriginTransform);
+
+    //m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetY(m_pOriginTransform->Get_State(CTransform::STATE_POSITION), m_iNumSkill * 0.01f));
+    m_pTransformCom->Set_Scaled(8.f, 8.f, 8.f);
+    m_pTransformCom->Rotation({ 1.f, 0.f , 0.f }, XMConvertToRadians(90.f));
+
     return S_OK;
 }
 
 void CVFX_Mon_PosCircle::Priority_Update(_float fTimeDelta)
 {
-    __super::Priority_Update(fTimeDelta);
+    m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetY(m_pOriginTransform->Get_State(CTransform::STATE_POSITION), 0.001f));
 
-    m_fAnimFrame += (rand() % 26) * fTimeDelta;
-
-    if (m_fAnimFrame >= 13.f)
-        m_bDead = true;
 }
 
 void CVFX_Mon_PosCircle::Update(_float fTimeDelta)
 {
-    __super::Update(fTimeDelta);
 
-    m_pVIBufferCom->Spread(fTimeDelta);
+    Destroy(fTimeDelta);
 }
 
 void CVFX_Mon_PosCircle::Late_Update(_float fTimeDelta)
 {
-    __super::Late_Update(fTimeDelta);
-
-
     m_pGameInstance->Add_RenderObject(CRenderer::RG_BLEND, this);
 }
 
@@ -71,12 +71,14 @@ HRESULT CVFX_Mon_PosCircle::Render()
     if (FAILED(m_pVIBufferCom->Render()))
         return E_FAIL;
 
+
     return S_OK;
 }
 
 HRESULT CVFX_Mon_PosCircle::Ready_Components()
-{ /* For.Com_Shader */
-    if (FAILED(__super::Add_Component(LEVEL_STATIC, TEXT("Prototype_Component_Shader_Particle_VtxPoint"),
+{
+    /* For.Com_Shader */
+    if (FAILED(__super::Add_Component(LEVEL_STATIC, TEXT("Prototype_Component_Shader_VtxPosTex"),
         TEXT("Com_Shader"), reinterpret_cast<CComponent**>(&m_pShaderCom))))
         return E_FAIL;
 
@@ -86,7 +88,7 @@ HRESULT CVFX_Mon_PosCircle::Ready_Components()
         return E_FAIL;
 
     /* For.Com_VIBuffer */
-    if (FAILED(__super::Add_Component(LEVEL_BOSS, TEXT("Prototype_Component_VIBuffer_Particle_Circle"),
+    if (FAILED(__super::Add_Component(LEVEL_STATIC, TEXT("Prototype_Component_VIBuffer_Rect"),
         TEXT("Com_VIBuffer"), reinterpret_cast<CComponent**>(&m_pVIBufferCom))))
         return E_FAIL;
 
@@ -95,8 +97,7 @@ HRESULT CVFX_Mon_PosCircle::Ready_Components()
 
 HRESULT CVFX_Mon_PosCircle::Bind_ShaderResources()
 {
-
-    if (FAILED(__super::Bind_WorldMatrix(m_pShaderCom, "g_WorldMatrix")))
+    if (FAILED(m_pTransformCom->Bind_ShaderResource(m_pShaderCom, "g_WorldMatrix")))
         return E_FAIL;
 
     if (FAILED(m_pShaderCom->Bind_Matrix("g_ViewMatrix", &m_pGameInstance->Get_Transform_Float4x4(CPipeLine::D3DTS_VIEW))))
@@ -105,12 +106,17 @@ HRESULT CVFX_Mon_PosCircle::Bind_ShaderResources()
     if (FAILED(m_pShaderCom->Bind_Matrix("g_ProjMatrix", &m_pGameInstance->Get_Transform_Float4x4(CPipeLine::D3DTS_PROJ))))
         return E_FAIL;
 
-    if (FAILED(m_pTextureCom->Bind_ShaderResource(m_pShaderCom, "g_Texture", m_fAnimFrame)))
+    if (FAILED(m_pTextureCom->Bind_ShaderResource(m_pShaderCom, "g_Texture", 0)))
         return E_FAIL;
-
 
     return S_OK;
 }
+
+void CVFX_Mon_PosCircle::Destroy(_float fTimeDelta)
+{
+
+}
+
 
 CVFX_Mon_PosCircle* CVFX_Mon_PosCircle::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 {
@@ -138,12 +144,12 @@ CGameObject* CVFX_Mon_PosCircle::Clone(void* pArg)
     return pInstance;
 }
 
-
 void CVFX_Mon_PosCircle::Free()
 {
+    Safe_Release(m_pOriginTransform);
     Safe_Release(m_pShaderCom);
-    Safe_Release(m_pTextureCom);
     Safe_Release(m_pVIBufferCom);
+    Safe_Release(m_pTextureCom);
 
     __super::Free();
 }

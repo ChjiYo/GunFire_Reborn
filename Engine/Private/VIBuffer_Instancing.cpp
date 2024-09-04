@@ -127,6 +127,32 @@ void CVIBuffer_Instancing::Drop(_float fTimeDelta)
 	m_pContext->Unmap(m_pVBInstance, 0);
 }
 
+void CVIBuffer_Instancing::Fly(_float fTimeDelta)
+{
+	D3D11_MAPPED_SUBRESOURCE		MappedSubResource{};
+
+	m_pContext->Map(m_pVBInstance, 0, D3D11_MAP_WRITE_NO_OVERWRITE, 0, &MappedSubResource);
+
+	VTXINSTANCE* pMatrices = static_cast<VTXINSTANCE*>(MappedSubResource.pData);
+
+	for (size_t i = 0; i < m_iNumInstance; i++)
+	{
+		_vector		vMoveDir = XMVectorSet(0.0f, 1.f, 0.0f, 0.f);
+
+		XMStoreFloat4(&pMatrices[i].vTranslation,
+			XMLoadFloat4(&pMatrices[i].vTranslation) + vMoveDir * m_pSpeeds[i] * fTimeDelta);
+
+		pMatrices[i].vLifeTime.y += fTimeDelta;
+		if (m_isLoop == true && pMatrices[i].vLifeTime.y >= pMatrices[i].vLifeTime.x)
+		{
+			pMatrices[i].vTranslation = m_pInstanceVertices[i].vTranslation;
+			pMatrices[i].vLifeTime.y = 0.f;
+		}
+	}
+
+	m_pContext->Unmap(m_pVBInstance, 0);
+}
+
 
 HRESULT CVIBuffer_Instancing::Create_InstanceBuffer()
 {

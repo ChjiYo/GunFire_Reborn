@@ -7,6 +7,9 @@
 #include "Skill.h"
 #include "Player.h"
 
+#include "VFX_Monster.h"
+#include "Skill_Monster.h"
+
 CFSM_Mon_Dragon_Idle::CFSM_Mon_Dragon_Idle(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	:CFSM_Monster{ pDevice , pContext }
 {
@@ -37,15 +40,12 @@ wstring CFSM_Mon_Dragon_Idle::Priority_Update(_float fTimeDelta)
 	return TEXT("Monster_Dragon_State_Idle");
 }
 
-
-
-
 wstring CFSM_Mon_Dragon_Idle::Update(_float fTimeDelta)
 {
 	_vector vPlayerPos =  m_pPlayerTransform->Get_State(CTransform::STATE_POSITION);
 	_vector vPos = m_tDesc.pTransform->Get_State(CTransform::STATE_POSITION);
 
-	_vector vDir = XMVector3Normalize(vPlayerPos - vPos);
+	_vector vDir = XMVector3Normalize(XMVectorSetY(vPlayerPos, -3.f) - vPos);
 
 	if (m_bStartAnimEnd)
 	{
@@ -68,7 +68,8 @@ wstring CFSM_Mon_Dragon_Idle::Update(_float fTimeDelta)
 
 wstring CFSM_Mon_Dragon_Idle::Late_Update(_float fTimeDelta)
 {
-	if (!m_bStartAnimEnd && m_tDesc.pModel->Get_Anim(1)->Get_Duration() <= m_fStartAnimTimer)
+	//&& m_tDesc.pModel->Get_Anim(1)->Get_Duration() <= m_fStartAnimTimer
+	if (!m_bStartAnimEnd )
 	{
 		m_fStartAnimTimer = 0.f;
 		m_bStartAnimEnd = true;
@@ -90,6 +91,18 @@ void CFSM_Mon_Dragon_Idle::Enter()
 	
 	m_bStartAnimEnd = false;
 	m_tDesc.pTransform->LookAt(m_pPlayerTransform->Get_State(CTransform::STATE_POSITION));
+	XMVectorSetY(m_tDesc.pTransform->Get_State(CTransform::STATE_POSITION), -3.f);
+
+	CSkill_Monster::SKILL_DESC Desc = {};
+	Desc.fSpeedPerSec = 10.f;
+	Desc.fRotationPerSec = XMConvertToRadians(90.0f);
+	Desc.pOriginTransform = m_tDesc.pTransform;
+	Desc.iSkillDamage = 5.f;
+	Desc.iNumSkill = 1;
+	Desc.iNumParts = CSkill::PART_END;
+
+	m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_VFX_Dragon_PosCircle"), TEXT("Layer_Skill_Dragon_PosCircle"), &Desc);
+		
 
 	m_tDesc.pModel->SetUp_Animation(1, false);
 	m_strName = TEXT("Monster_Dragon_State_Idle");
@@ -97,6 +110,7 @@ void CFSM_Mon_Dragon_Idle::Enter()
 
 void CFSM_Mon_Dragon_Idle::Exit()
 {
+	m_pGameInstance->Get_Layer(LEVEL_BOSS, TEXT("Layer_Skill_Dragon_PosCircle")).back()->Set_Dead();
 }
 
 CFSM_Mon_Dragon_Idle* CFSM_Mon_Dragon_Idle::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, FSM_MON_DESC Desc)
