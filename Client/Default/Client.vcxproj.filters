@@ -366,7 +366,7 @@
     <ClCompile Include="..\private\UI_Mon_HpBar.cpp">
       <Filter>02.GameObjects\UI\UI_Monster_State\UI_Mon_HpBar</Filter>
     </ClCompile>
-    <ClCompile Include="..\private\UI_Mon_HpBlankBar.cpp">
+    <ClCompile Include="..\private\UI_Boss_HpBar.cpp">
       <Filter>02.GameObjects\UI\UI_Monster_State\UI_Mon_HpBlankBar</Filter>
     </ClCompile>
     <ClCompile Include="..\Private\UI_Weapon_BBullet.cpp">
@@ -536,6 +536,12 @@
     </ClCompile>
     <ClCompile Include="..\private\Fish_Body2.cpp">
       <Filter>02.GameObjects\Deco\Fish\Body2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\UI_Boss_Icon.cpp">
+      <Filter>02.GameObjects\UI\UI_Monster_State\UI_Mon Icon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\UI_Boss_HpPanel.cpp">
+      <Filter>02.GameObjects\UI\UI_Monster_State\UI_Boss_HpBar</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -884,7 +890,7 @@
     <ClInclude Include="..\public\UI_Mon_HpBar.h">
       <Filter>02.GameObjects\UI\UI_Monster_State\UI_Mon_HpBar</Filter>
     </ClInclude>
-    <ClInclude Include="..\public\UI_Mon_HpBlankBar.h">
+    <ClInclude Include="..\public\UI_Boss_HpBar.h">
       <Filter>02.GameObjects\UI\UI_Monster_State\UI_Mon_HpBlankBar</Filter>
     </ClInclude>
     <ClInclude Include="..\Public\UI_Weapon_BBullet.h">
@@ -1057,6 +1063,12 @@
     </ClInclude>
     <ClInclude Include="..\public\Fish_Head.h">
       <Filter>02.GameObjects\Deco\Fish\Head</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\UI_Boss_Icon.h">
+      <Filter>02.GameObjects\UI\UI_Monster_State\UI_Mon Icon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\UI_Boss_HpPanel.h">
+      <Filter>02.GameObjects\UI\UI_Monster_State\UI_Boss_HpBar</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1658,6 +1670,12 @@
     </Filter>
     <Filter Include="02.GameObjects\Deco\Fish\Teath">
       <UniqueIdentifier>{a6eed261-dc67-43c4-8515-a5460ba4a16d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Monster_State\UI_Mon Icon">
+      <UniqueIdentifier>{508569d2-2425-4ef4-bd72-ca45ec5b707d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Monster_State\UI_Boss_HpBar">
+      <UniqueIdentifier>{1b303adb-b3ba-49fa-bbc2-94bfc090fffd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

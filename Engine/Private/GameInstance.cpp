@@ -456,9 +456,22 @@ HRESULT CGameInstance::Begin_MRT(const _wstring& strMRTTag, ID3D11DepthStencilVi
 	return m_pTarget_Manager->Begin_MRT(strMRTTag);
 }
 
+//HRESULT CGameInstance::Begin_MRT(const wstring& strMRTTag, _bool isClear)
+//{
+//	return m_pTarget_Manager->Begin_MRT(strMRTTag, isClear);
+//}
+
 HRESULT CGameInstance::End_MRT()
 {
 	return m_pTarget_Manager->End_MRT();
+}
+
+ID3D11DepthStencilView* CGameInstance::Get_DSV() const
+{
+	if (nullptr == m_pGraphic_Device)
+		return nullptr;
+
+	return m_pGraphic_Device->Get_DSV();
 }
 
 HRESULT CGameInstance::Copy_RenderTarget(const _wstring& strTargetTag, ID3D11Texture2D* pTexture2D)

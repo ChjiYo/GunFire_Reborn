@@ -1,19 +1,19 @@
 #include "stdafx.h"
 
-#include "UI_Mon_HpBlankBar.h"
+#include "UI_Boss_HpBar.h"
 #include "Monster.h"
 
-CUI_Mon_HpBlankBar::CUI_Mon_HpBlankBar(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
+CUI_Boss_HpBar::CUI_Boss_HpBar(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	:CUIObject{ pDevice ,pContext }
 {
 }
 
-CUI_Mon_HpBlankBar::CUI_Mon_HpBlankBar(const CUI_Mon_HpBlankBar& Prototype)
+CUI_Boss_HpBar::CUI_Boss_HpBar(const CUI_Boss_HpBar& Prototype)
 	:CUIObject{ Prototype }
 {
 }
 
-HRESULT CUI_Mon_HpBlankBar::Initialize_Prototype()
+HRESULT CUI_Boss_HpBar::Initialize_Prototype()
 {
 	if (FAILED(__super::Initialize_Prototype()))
 		return E_FAIL;
@@ -21,7 +21,7 @@ HRESULT CUI_Mon_HpBlankBar::Initialize_Prototype()
 	return S_OK;
 }
 
-HRESULT CUI_Mon_HpBlankBar::Initialize(void* pArg)
+HRESULT CUI_Boss_HpBar::Initialize(void* pArg)
 {
 	if (FAILED(__super::Initialize(pArg)))
 		return E_FAIL;
@@ -38,7 +38,7 @@ HRESULT CUI_Mon_HpBlankBar::Initialize(void* pArg)
 	return S_OK;
 }
 
-void CUI_Mon_HpBlankBar::Priority_Update(_float fTimeDelta)
+void CUI_Boss_HpBar::Priority_Update(_float fTimeDelta)
 {
 
 	CTransform* pCamTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_Camera"), TEXT("Com_Transform")));
@@ -46,17 +46,17 @@ void CUI_Mon_HpBlankBar::Priority_Update(_float fTimeDelta)
 	m_pTransformCom->LookAt(XMVectorSetY(pCamTransform->Get_State(CTransform::STATE_POSITION),3.f));
 }
 
-void CUI_Mon_HpBlankBar::Update(_float fTimeDelta)
+void CUI_Boss_HpBar::Update(_float fTimeDelta)
 {
 	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetY(m_pOriginTransform->Get_State(CTransform::STATE_POSITION), 3.f));
 }
 
-void CUI_Mon_HpBlankBar::Late_Update(_float fTimeDelta)
+void CUI_Boss_HpBar::Late_Update(_float fTimeDelta)
 {
 	m_pGameInstance->Add_RenderObject(CRenderer::RG_UI, this);
 }
 
-HRESULT CUI_Mon_HpBlankBar::Render()
+HRESULT CUI_Boss_HpBar::Render()
 {
 	if (FAILED(__super::Bind_Perspective()))
 		return E_FAIL;
@@ -76,44 +76,44 @@ HRESULT CUI_Mon_HpBlankBar::Render()
 	return S_OK;
 }
 
-HRESULT CUI_Mon_HpBlankBar::Ready_Components()
+HRESULT CUI_Boss_HpBar::Ready_Components()
 {
 	if (FAILED(__super::Ready_Components()))
 		return E_FAIL;
 
 	/* For.Com_Texture */
-	if (FAILED(__super::Add_Component(LEVEL_STATIC, TEXT("Prototype_Component_Texture_UI_Monster_HpBlankBar"),
+	if (FAILED(__super::Add_Component(LEVEL_BOSS, TEXT("Prototype_Component_Texture_UI_Boss_HpBar"),
 		TEXT("Com_Texture"), reinterpret_cast<CComponent**>(&m_pTextureCom))))
 		return E_FAIL;
 }
 
-CUI_Mon_HpBlankBar* CUI_Mon_HpBlankBar::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
+CUI_Boss_HpBar* CUI_Boss_HpBar::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 {
-	CUI_Mon_HpBlankBar* pInstatnce = new CUI_Mon_HpBlankBar(pDevice, pContext);
+	CUI_Boss_HpBar* pInstatnce = new CUI_Boss_HpBar(pDevice, pContext);
 
 	if (FAILED(pInstatnce->Initialize_Prototype()))
 	{
-		MSG_BOX(TEXT("Failed to Created : CUI_Mon_HpBlankBar"));
+		MSG_BOX(TEXT("Failed to Created : CUI_Boss_HpBar"));
 		Safe_Release(pInstatnce);
 	}
 
 	return pInstatnce;
 }
 
-CGameObject* CUI_Mon_HpBlankBar::Clone(void* pArg)
+CGameObject* CUI_Boss_HpBar::Clone(void* pArg)
 {
-	CUI_Mon_HpBlankBar* pInstatnce = new CUI_Mon_HpBlankBar(*this);
+	CUI_Boss_HpBar* pInstatnce = new CUI_Boss_HpBar(*this);
 
 	if (FAILED(pInstatnce->Initialize(pArg)))
 	{
-		MSG_BOX(TEXT("Failed to Cloend : CUI_Mon_HpBlankBar"));
+		MSG_BOX(TEXT("Failed to Cloend : CUI_Boss_HpBar"));
 		Safe_Release(pInstatnce);
 	}
 
 	return pInstatnce;
 }
 
-void CUI_Mon_HpBlankBar::Free()
+void CUI_Boss_HpBar::Free()
 {
 	Safe_Release(m_pOriginTransform);
 

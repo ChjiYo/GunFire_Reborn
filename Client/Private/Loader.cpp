@@ -95,6 +95,10 @@
 
 #include "Portal.h"
 
+#include "UI_Boss_HpBar.h"
+#include "UI_Boss_Icon.h"
+#include "UI_Boss_HpPanel.h"
+
 CLoader::CLoader(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	: m_pDevice { pDevice }
 	, m_pContext { pContext }
@@ -1050,6 +1054,28 @@ HRESULT CLoader::Loading_For_BossLevel()
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/Resources/Textures/SkyBox/Sky_5.dds")))))
 		return E_FAIL;
 
+	/* For.Prototype_Component_Texture_UI_Boss_Icon */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Texture_UI_Boss_Icon"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/Resources/Textures/UI/Bar/UI_Boss_Icon.png")))))
+		return E_FAIL;
+	
+	/* For.Prototype_Component_Texture_UI_Boss_HpBar */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Texture_UI_Boss_HpBar"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Bar/UI_Monster_HpBlankBar.png")))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Texture_UI_Boss_Hp_Panel */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Texture_UI_Boss_Hp_Panel"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/Resources/Textures/UI/Bar/UI_Boss_Hp_Panel.png")))))
+		return E_FAIL;
+
+
+
+	/* For.Prototype_Component_Texture_Sky */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Texture_Sky"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/Resources/Textures/SkyBox/Sky_5.dds")))))
+		return E_FAIL;
+
 	lstrcpy(m_szLoadingText, TEXT("모델을 로딩 중 입니다."));
 
 	_matrix			PreTransformMatrix = XMMatrixIdentity();
@@ -1214,7 +1240,25 @@ HRESULT CLoader::Loading_For_BossLevel()
 		CVFX_Mon_Circle::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
+	/* For.Prototype_GameObject_VFX_Dragon_Dust */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_VFX_Dragon_Circle"),
+		CVFX_Mon_Circle::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
 
+	/* For.Prototype_GameObject_UI_Boss_HpBar */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_Boss_HpBar"),
+		CUI_Boss_HpBar::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+	
+	/* For.Prototype_GameObject_UI_Boss_Icon*/
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_Boss_Icon"),
+		CUI_Boss_Icon::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+	
+	/* For.Prototype_GameObject_UI_Boss_HpPanel*/
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_Boss_HpPanel"),
+		CUI_Boss_HpPanel::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
 
 	m_isFinished = true;
 

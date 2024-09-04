@@ -48,6 +48,8 @@ private:
 	HRESULT Render_NonLight();
 	HRESULT Render_Blend();
 	HRESULT Render_UI();
+	HRESULT Render_Blur();
+	HRESULT Render_FinalBlend();
 
 #ifdef _DEBUG
 private:

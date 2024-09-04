@@ -16,6 +16,7 @@ public:
 	HRESULT Add_RenderTarget(const _wstring& strTargetTag, _uint iWidth, _uint iHeight, DXGI_FORMAT ePixelFormat, _fvector vClearColor);
 	HRESULT Add_MRT(const _wstring& strMRTTag, const _wstring& strTargetTag);
 	HRESULT Begin_MRT(const _wstring& strMRTTag, ID3D11DepthStencilView* pDSV = nullptr);
+	HRESULT Begin_MRT(const wstring& strMRTTag, _bool isClear);
 	HRESULT End_MRT();
 	HRESULT Copy_RenderTarget(const _wstring& strTargetTag, ID3D11Texture2D* pTexture2D);
 	HRESULT Bind_ShaderResource(class CShader* pShader, const _char* pConstantName, const _wstring& strTargetTag);
@@ -29,6 +30,7 @@ public:
 private:
 	ID3D11Device*									m_pDevice = { nullptr };
 	ID3D11DeviceContext*							m_pContext = { nullptr };
+	class CGameInstance* m_pGameInstance = { nullptr };
 
 	map<const _wstring, class CRenderTarget*>		m_RenderTargets;
 	map<const _wstring, list<class CRenderTarget*>>	m_MRTs;

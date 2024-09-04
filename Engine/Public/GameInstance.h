@@ -24,6 +24,7 @@ public: /* For.Graphic_Device */
 	HRESULT Clear_BackBuffer_View(_float4 vClearColor);	
 	HRESULT Clear_DepthStencil_View();	
 	HRESULT Present();
+	ID3D11DepthStencilView* Get_DSV() const;
 
 public: /* For.Input_Device */
 	_byte	Get_DIKeyState(_ubyte byKeyID);
@@ -104,6 +105,7 @@ public: /* For.Target_Manager */
 	HRESULT Add_RenderTarget(const _wstring& strTargetTag, _uint iWidth, _uint iHeight, DXGI_FORMAT ePixelFormat, _fvector vClearColor);
 	HRESULT Add_MRT(const _wstring& strMRTTag, const _wstring& strTargetTag);
 	HRESULT Begin_MRT(const _wstring& strMRTTag, ID3D11DepthStencilView* pDSV = nullptr);
+	//HRESULT Begin_MRT(const wstring& strMRTTag, _bool isClear = true);
 	HRESULT End_MRT();
 	HRESULT Copy_RenderTarget(const _wstring& strTargetTag, ID3D11Texture2D* pTexture2D);
 	HRESULT Bind_RT_ShaderResource(class CShader* pShader, const _char* pConstantName, const _wstring& strTargetTag);

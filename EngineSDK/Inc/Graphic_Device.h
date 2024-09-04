@@ -26,6 +26,10 @@ public:
 
 	/* 깊이버퍼 + 스텐실버퍼를 지운다. */
 	HRESULT Clear_DepthStencil_View();
+
+	ID3D11DepthStencilView* Get_DSV() const {
+		return m_pDepthStencilView;
+	}
 	
 	/* 후면 버퍼를 전면버퍼로 교체한다.(백버퍼를 화면에 직접 보여준다.) */
 	HRESULT Present();

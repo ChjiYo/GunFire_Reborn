@@ -23,7 +23,6 @@
 
 #include "UI_Mon_BarPanel.h"
 #include "UI_Mon_HpBar.h"
-#include "UI_Mon_HpBlankBar.h"
 
 #include "UI_Weapon_BBullet.h"
 #include "UI_Weapon_GBullet.h"
@@ -258,11 +257,6 @@ HRESULT CMainApp::Ready_Prototype_Component_ForStatic()
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Bar/UI_Monster_HpBar.png")))))
 		return E_FAIL;
 
-	/* For.Prototype_Component_Texture_UI_Monster_HpBlankBar */
-	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_STATIC, TEXT("Prototype_Component_Texture_UI_Monster_HpBlankBar"),
-		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Bar/UI_Monster_HpBlankBar.png")))))
-		return E_FAIL;
-
 	//Weapon
 
 	//Prototype_Component_Texture_UI_Weapon_Panel
@@ -293,9 +287,7 @@ HRESULT CMainApp::Ready_Prototype_Component_ForStatic()
 	//Prototype_Component_Texture_UI_Weapon_Icon
 
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_STATIC, TEXT("Prototype_Component_Texture_UI_Weapon_Icon"),
-
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Weapon/UI_Weapon_Icon_%d.png"), 4))))
-
 		return E_FAIL;
 
 	//Skill
@@ -386,11 +378,6 @@ HRESULT CMainApp::Ready_Prototoype_Resource_ForStatic()
 	/* For.Prototype_GameObject_UI_Monster_HpBar */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_Monster_HpBar"),
 		CUI_Mon_HpBar::Create(m_pDevice, m_pContext))))
-		return E_FAIL;
-
-	/* For.Prototype_GameObject_UI_Monster_HpBlankBar */
-	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_Monster_HpBlankBar"),
-		CUI_Mon_HpBlankBar::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
 	//UI_Weapon_State

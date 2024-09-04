@@ -24,6 +24,7 @@ private:
 	HRESULT Ready_Layer_Monster(const _wstring& strLayerTag);
 	HRESULT Ready_Layer_Camera(const _wstring& strLayerTag);
 	HRESULT Ready_Layer_Effect(const _wstring& strLayerTag);
+	HRESULT Ready_Layer_UI_Boss(const _wstring& strLayerTag);
 
 
 public:

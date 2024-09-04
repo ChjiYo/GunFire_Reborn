@@ -1,10 +1,13 @@
 #include "Target_Manager.h"
 #include "RenderTarget.h"
+#include "GameInstance.h"
 
 CTarget_Manager::CTarget_Manager(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	: m_pDevice{ pDevice }
 	, m_pContext{ pContext }
+	, m_pGameInstance(CGameInstance::Get_Instance())
 {
+	Safe_AddRef(m_pGameInstance);
 	Safe_AddRef(m_pDevice);
 	Safe_AddRef(m_pContext);
 }
@@ -74,6 +77,28 @@ HRESULT CTarget_Manager::Begin_MRT(const _wstring& strMRTTag, ID3D11DepthStencil
 		m_pContext->ClearDepthStencilView(pDSV, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.f, 0);
 
 	m_pContext->OMSetRenderTargets(iNumRTV, RenderTargets, nullptr == pDSV ? m_pOldDSV : pDSV);	
+
+	return S_OK;
+}
+
+HRESULT CTarget_Manager::Begin_MRT(const wstring& strMRTTag, _bool isClear)
+{
+	/* strMRTTag에 모여있는 렌더타겟들을 장치에 순차적으로 바인딩한다. */
+	list<CRenderTarget*>* pMRTList = Find_MRT(strMRTTag);
+	if (nullptr == pMRTList)
+		return E_FAIL;
+	ID3D11RenderTargetView* pRTVs[8];
+
+	_uint		iNumRTVs = { 0 };
+
+	for (auto& pRenderTarget : *pMRTList)
+	{
+		if (true == isClear)
+			pRenderTarget->Clear();
+		pRTVs[iNumRTVs++] = pRenderTarget->Get_RTV();
+	}
+
+	m_pContext->OMSetRenderTargets(iNumRTVs, pRTVs, m_pGameInstance->Get_DSV());
 
 	return S_OK;
 }
@@ -162,6 +187,8 @@ CTarget_Manager* CTarget_Manager::Create(ID3D11Device* pDevice, ID3D11DeviceCont
 
 void CTarget_Manager::Free()
 {
+	Safe_Release(m_pGameInstance);
+
 	for (auto& Pair : m_MRTs)
 	{
 		for (auto& pRenderTarget : Pair.second)

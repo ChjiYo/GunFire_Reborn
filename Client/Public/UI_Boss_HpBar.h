@@ -4,12 +4,12 @@
 
 BEGIN(Client)
 
-class CUI_Mon_HpBlankBar final :public CUIObject
+class CUI_Boss_HpBar final :public CUIObject
 {
 private:
-	CUI_Mon_HpBlankBar(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
-	CUI_Mon_HpBlankBar(const CUI_Mon_HpBlankBar& Prototype);
-	virtual ~CUI_Mon_HpBlankBar() = default;
+	CUI_Boss_HpBar(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
+	CUI_Boss_HpBar(const CUI_Boss_HpBar& Prototype);
+	virtual ~CUI_Boss_HpBar() = default;
 
 public:
 	virtual HRESULT Initialize_Prototype();
@@ -23,7 +23,7 @@ private:
 	virtual HRESULT Ready_Components();
 
 public:
-	static CUI_Mon_HpBlankBar* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
+	static CUI_Boss_HpBar* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	virtual CGameObject* Clone(void* pArg);
 	virtual void Free() override;
 };

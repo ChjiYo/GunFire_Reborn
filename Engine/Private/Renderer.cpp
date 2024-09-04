@@ -44,6 +44,7 @@ HRESULT CRenderer::Initialize(ID3D11Device* pDevice, ID3D11DeviceContext* pConte
 		return E_FAIL;
 
 
+
 	/* 멀티렌더타겟에 타겟들을 모아놓는다. */
 	if (FAILED(m_pGameInstance->Add_MRT(TEXT("MRT_GameObjects"), TEXT("Target_Diffuse"))))
 		return E_FAIL;
@@ -61,6 +62,23 @@ HRESULT CRenderer::Initialize(ID3D11Device* pDevice, ID3D11DeviceContext* pConte
 
 	if (FAILED(m_pGameInstance->Add_MRT(TEXT("MRT_ShadowObjects"), TEXT("Target_LightDepth"))))
 		return E_FAIL;
+	
+
+	//if (FAILED(m_pGameInstance->Add_RenderTarget(TEXT("Target_Blur_X"), ViewportDesc.Width, ViewportDesc.Height, DXGI_FORMAT_B8G8R8A8_UNORM, XMVectorSet(1.f, 1.f, 1.f, 0.f))))
+	//	return E_FAIL;
+	//if (FAILED(m_pGameInstance->Add_MRT(TEXT("MRT_Blur_X"), TEXT("Target_Blur_X"))))
+	//	return E_FAIL;
+	//
+	//if (FAILED(m_pGameInstance->Add_RenderTarget(TEXT("Target_Blur_Y"), ViewportDesc.Width, ViewportDesc.Height, DXGI_FORMAT_B8G8R8A8_UNORM, XMVectorSet(1.f, 1.f, 1.f, 0.f))))
+	//	return E_FAIL;
+	//if (FAILED(m_pGameInstance->Add_MRT(TEXT("MRT_Blur_Y"), TEXT("Target_Blur_Y"))))
+	//	return E_FAIL;
+	//
+	//if (FAILED(m_pGameInstance->Add_RenderTarget(TEXT("Target_Result"), ViewportDesc.Width, ViewportDesc.Height, DXGI_FORMAT_B8G8R8A8_UNORM, XMVectorSet(1.f, 1.f, 1.f, 0.f))))
+	//	return E_FAIL;
+	//if (FAILED(m_pGameInstance->Add_MRT(TEXT("MRT_Result"), TEXT("Target_Result"))))
+	//	return E_FAIL;
+
 
 	XMStoreFloat4x4(&m_WorldMatrix, XMMatrixScaling(ViewportDesc.Width, ViewportDesc.Height, 1.f));
 	XMStoreFloat4x4(&m_ViewMatrix, XMMatrixIdentity());
@@ -123,6 +141,17 @@ HRESULT CRenderer::Initialize(ID3D11Device* pDevice, ID3D11DeviceContext* pConte
 		return E_FAIL;
 	if (FAILED(m_pGameInstance->Ready_RT_Debug(TEXT("Target_LightDepth"), 1600.0f - 100.0f, 100.f, 200.f, 200.f)))
 		return E_FAIL;
+
+
+	//if (FAILED(m_pGameInstance->Ready_RT_Debug(TEXT("Target_Result"), 100.f, 900.f - 100.f, 200.f, 200.f)))
+	//	return E_FAIL;
+	//
+	//if (FAILED(m_pGameInstance->Ready_RT_Debug(TEXT("Target_Blur_X"), 300.f, 900.f - 100.f,200.f ,200.f)))
+	//	return E_FAIL;
+	//
+	//if (FAILED(m_pGameInstance->Ready_RT_Debug(TEXT("Target_Blur_Y"), 700.f, 900.f - 100.f ,200.f, 200.f)))
+	//	return E_FAIL;
+
 #endif
 
 	return S_OK;
@@ -165,20 +194,23 @@ HRESULT CRenderer::Draw()
 	if (FAILED(Render_Priority()))
 		return E_FAIL;
 
-	if (FAILED(Render_ShadowObj()))
-		return E_FAIL;
-
 	if (FAILED(Render_NonBlend()))
 		return E_FAIL;
 
 	if (FAILED(Render_Lights()))
 		return E_FAIL;
 
+	if (FAILED(Render_NonLight()))
+		return E_FAIL;
+
 	if (FAILED(Render_Deferred()))
 		return E_FAIL;
 
-	if (FAILED(Render_NonLight()))
-		return E_FAIL;
+	//if (FAILED(Render_Blur()))
+	//	return E_FAIL;
+	//
+	//if (FAILED(Render_FinalBlend()))
+	//	return E_FAIL;
 
 	if (FAILED(Render_Blend()))
 		return E_FAIL;
@@ -186,7 +218,8 @@ HRESULT CRenderer::Draw()
 	if (FAILED(Render_UI()))
 		return E_FAIL;
 
-
+	if (FAILED(Render_Debug()))
+		return E_FAIL;
 
 
 #ifdef _DEBUG
@@ -195,14 +228,13 @@ HRESULT CRenderer::Draw()
 #endif
 
 
-
-
-
 	return S_OK;
 }
 
 HRESULT CRenderer::Render_Priority()
 {
+	//m_pGameInstance->Begin_MRT(TEXT("MRT_Result"));
+
 	for (auto& pRenderObject : m_RenderObjects[RG_PRIORITY])
 	{
 		if (nullptr != pRenderObject)
@@ -212,6 +244,8 @@ HRESULT CRenderer::Render_Priority()
 	}
 
 	m_RenderObjects[RG_PRIORITY].clear();
+
+	//m_pGameInstance->End_MRT();
 
 	return S_OK;
 }
@@ -319,6 +353,8 @@ HRESULT CRenderer::Render_Lights()
 }
 HRESULT CRenderer::Render_Deferred()
 {
+	//m_pGameInstance->Begin_MRT(TEXT("MRT_Result"),false);
+
 	if (FAILED(m_pShader->Bind_Matrix("g_WorldMatrix", &m_WorldMatrix)))
 		return E_FAIL;
 	if (FAILED(m_pShader->Bind_Matrix("g_ViewMatrix", &m_ViewMatrix)))
@@ -337,21 +373,11 @@ HRESULT CRenderer::Render_Deferred()
 	if (FAILED(m_pGameInstance->Bind_RT_ShaderResource(m_pShader, "g_DepthTexture", TEXT("Target_Depth"))))
 		return E_FAIL;
 
-	_float4x4			LightViewMatrix, LightProjMatrix;
-
-	XMStoreFloat4x4(&LightViewMatrix, XMMatrixLookAtLH(XMVectorSet(0.f, 10.f, 0.f, 1.f), XMVectorSet(1.f, -1.f, 1.f, 0.f), XMVectorSet(0.f, 1.f, 0.f, 0.f)));
-	XMStoreFloat4x4(&LightProjMatrix, XMMatrixPerspectiveFovLH(XMConvertToRadians(120.0f), (_float)1600.0f / 900.0f, 0.1f, 1000.f));
-
-	if (FAILED(m_pShader->Bind_Matrix("g_LightViewMatrix", &LightViewMatrix)))
-		return E_FAIL;
-
-	if (FAILED(m_pShader->Bind_Matrix("g_LightProjMatrix", &LightProjMatrix)))
-		return E_FAIL;
-
 	m_pShader->Begin(3);
 	m_pVIBuffer->Bind_Buffers();
 	m_pVIBuffer->Render();
 
+	//m_pGameInstance->End_MRT();
 
 	return S_OK;
 }
@@ -369,19 +395,9 @@ HRESULT CRenderer::Render_NonLight()
 
 	return S_OK;
 }
-//
-//_bool Compare(CGameObject* pSour, CGameObject* pDest)
-//{
-//	return ((CBlendObject*)pSour)->Get_ViewZ() > ((CBlendObject*)pDest)->Get_ViewZ();
-//}
 
 HRESULT CRenderer::Render_Blend()
 {
-	//m_RenderObjects[RG_BLEND].sort([](CGameObject* pSour, CGameObject* pDest)->_bool
-	//{
-	//	return ((CBlendObject*)pSour)->Get_ViewZ() > ((CBlendObject*)pDest)->Get_ViewZ();
-	//});
-
 	for (auto& pRenderObject : m_RenderObjects[RG_BLEND])
 	{
 		if (nullptr != pRenderObject)
@@ -397,8 +413,6 @@ HRESULT CRenderer::Render_Blend()
 
 HRESULT CRenderer::Render_UI()
 {
-
-
 	for (auto& pRenderObject : m_RenderObjects[RG_UI])
 	{
 		if (nullptr != pRenderObject)
@@ -408,6 +422,80 @@ HRESULT CRenderer::Render_UI()
 	}
 
 	m_RenderObjects[RG_UI].clear();
+
+	return S_OK;
+}
+
+HRESULT CRenderer::Render_Blur()
+{
+	//if (FAILED(m_pGameInstance->Begin_MRT(TEXT("MRT_Blur_X"))))
+	//	return E_FAIL;
+
+	if (FAILED(m_pShader->Bind_Matrix("g_WorldMatrix", &m_WorldMatrix)))
+		return E_FAIL;
+	if (FAILED(m_pShader->Bind_Matrix("g_ViewMatrix", &m_ViewMatrix)))
+		return E_FAIL;
+	if (FAILED(m_pShader->Bind_Matrix("g_ProjMatrix", &m_ProjMatrix)))
+		return E_FAIL;
+
+	/* g_ResultTexture라는 쉐이더 전역변수에다가 최종적인 장면의 텍스쳐를 전달해준다. */
+	//if (FAILED(m_pGameInstance->Bind_RT_ShaderResource(m_pShader,"g_ResultTexture",TEXT("Target_Result"))))
+	//	return E_FAIL;
+	
+	m_pVIBuffer->Bind_Buffers();
+
+	m_pShader->Begin(4);
+
+	m_pVIBuffer->Render();
+
+	if (FAILED(m_pGameInstance->End_MRT()))
+		return E_FAIL;
+
+	//if (FAILED(m_pGameInstance->Begin_MRT(TEXT("MRT_Blur_Y"))))
+	//	return E_FAIL;
+
+	//if (FAILED(m_pGameInstance->Bind_RT_ShaderResource(m_pShader ,  "g_ResultTexture", TEXT("Target_Blur_X"))))
+	//	return E_FAIL;
+
+	m_pVIBuffer->Bind_Buffers();
+
+	m_pShader->Begin(5);
+
+	m_pVIBuffer->Render();
+
+	if (FAILED(m_pGameInstance->End_MRT()))
+		return E_FAIL;
+
+	return S_OK;
+}
+
+HRESULT CRenderer::Render_FinalBlend()
+{
+	if (FAILED(m_pShader->Bind_Matrix("g_WorldMatrix", &m_WorldMatrix)))
+		return E_FAIL;
+	if (FAILED(m_pShader->Bind_Matrix("g_ViewMatrix", &m_ViewMatrix)))
+		return E_FAIL;
+	if (FAILED(m_pShader->Bind_Matrix("g_ProjMatrix", &m_ProjMatrix)))
+		return E_FAIL;
+
+
+	/* 가로로 블러먹이고 세로로 블러먹인 장면을 g_BlurTexture에다가 전ㄷ라한다.ㅏ */
+	//if (FAILED(m_pGameInstance->Bind_RT_ShaderResource( m_pShader, "g_BlurTexture", TEXT("Target_Blur_Y"))))
+	//	return E_FAIL;
+
+	//if (FAILED(m_pGameInstance->Bind_RenderTarget_ShaderResource(TEXT("Target_Effect"), m_pShader, "g_EffectTexture")))
+	//	return E_FAIL;
+
+	/* 최종적인 장면을 g_ResultTexture에다가 전달한다. 블러가 안먹은 장면 */
+	//if (FAILED(m_pGameInstance->Bind_RT_ShaderResource(m_pShader, "g_ResultTexture", TEXT("Target_Result"))))
+	//	return E_FAIL;
+
+	m_pVIBuffer->Bind_Buffers();
+
+	m_pShader->Begin(6);
+
+	m_pVIBuffer->Render();
+
 
 	return S_OK;
 }
@@ -437,6 +525,17 @@ HRESULT CRenderer::Render_Debug()
 	if (FAILED(m_pGameInstance->Render_RT_Debug(TEXT("MRT_ShadowObjects"), m_pShader, m_pVIBuffer)))
 		return E_FAIL;
 
+	//if(FAILED(m_pGameInstance->Render_RT_Debug(TEXT("MRT_Result"), m_pShader, m_pVIBuffer)))
+	//	return E_FAIL;
+	//
+	//if (FAILED(m_pGameInstance->Render_RT_Debug(TEXT("MRT_Blur_X"), m_pShader, m_pVIBuffer)))
+	//	return E_FAIL;
+	//
+	//if(FAILED(m_pGameInstance->Render_RT_Debug(TEXT("MRT_Blur_Y"), m_pShader, m_pVIBuffer)))
+	//	return E_FAIL;
+	//if (FAILED(m_pGameInstance->Render_RT_Debug(TEXT("MRT_Sky"), m_pShader, m_pVIBuffer)))
+	//	return E_FAIL;
+	
 	return S_OK;
 }
 
@@ -466,7 +565,7 @@ void CRenderer::Free()
 			Safe_Release(pRenderObject);
 		m_RenderObjects[i].clear();
 	}
-
+	
 	Safe_Release(m_pShadowDSV);
 
 	Safe_Release(m_pShader);
