@@ -8,6 +8,8 @@
 #include "FSM_Player_Dash.h"
 
 #include "Skill.h"
+#include "Monster.h"
+
 
 CWeapon_Player_Pistol::CWeapon_Player_Pistol(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
     :CWeapon_Player{ pDevice  , pContext }
@@ -39,6 +41,8 @@ HRESULT CWeapon_Player_Pistol::Initialize(void* pArg)
     m_iNumMaxBullet = Desc->iMaxBullet;
     m_iNumBullet = Desc->iNumBullet;
     m_fAttackSpeed = Desc->fAttackSpeed;
+    m_pPlayerTransform = Desc->pTargetTransform;
+    Safe_AddRef(m_pPlayerTransform);
 
     return S_OK;
 }
@@ -49,6 +53,8 @@ void CWeapon_Player_Pistol::Priority_Update(_float fTimeDelta)
         return;
 
     m_fAttackTimer += fTimeDelta;
+    m_fPosSaveTimer += fTimeDelta;
+    m_fMoveSkillTimer += fTimeDelta;
 
     Key_State();
 
@@ -65,6 +71,8 @@ void CWeapon_Player_Pistol::Update(_float fTimeDelta)
 void CWeapon_Player_Pistol::Late_Update(_float fTimeDelta)
 {
     __super::Late_Update(fTimeDelta);
+
+    PositionSave();
 
     m_pGameInstance->Add_RenderObject(CRenderer::RG_NONBLEND, this);
 }
@@ -157,6 +165,79 @@ void CWeapon_Player_Pistol::Create_Bullet()
 	m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Prototype_GameObject_Skill_Pistol_Bullet"),TEXT("Layer_Skill_Player_Bullet"), &Desc);
 }
 
+void CWeapon_Player_Pistol::PositionSave()
+{
+    if (m_fPosSaveTimer > 0.075f && !m_bBackPos)
+    {
+        m_fPosSaveTimer = 0.f;
+        m_StackPos.push_back(m_pPlayerTransform->Get_WorldMatrix());
+    }
+
+    if ((m_pGameInstance->Key_Down('E') || m_bBackPos) && m_fMoveSkillTimer > 0.0001f)
+    {
+        m_bBackPos = true;
+
+        m_pPlayerTransform->Set_State(CTransform::STATE_RIGHT, m_StackPos.back().r[CTransform::STATE_RIGHT]);
+        m_pPlayerTransform->Set_State(CTransform::STATE_UP, m_StackPos.back().r[CTransform::STATE_UP]);
+        m_pPlayerTransform->Set_State(CTransform::STATE_LOOK, m_StackPos.back().r[CTransform::STATE_LOOK]);
+        m_pPlayerTransform->Set_State(CTransform::STATE_POSITION, m_StackPos.back().r[CTransform::STATE_POSITION]);
+        m_StackPos.pop_back();
+        m_fMoveSkillTimer = 0.f;
+
+
+        list<CGameObject*> MonsterList1 = m_pGameInstance->Get_Layer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Layer_Monster_Stage1"));
+        list<CGameObject*> MonsterList2 = m_pGameInstance->Get_Layer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Layer_Monster_Stage2"));
+        list<CGameObject*> MonsterList3 = m_pGameInstance->Get_Layer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Layer_Monster"));
+
+        for (auto& iter : MonsterList1)
+        {
+            dynamic_cast<CMonster*>(iter)->SetMoveEnable(false);
+        }
+
+        for (auto& iter : MonsterList2)
+        {
+            dynamic_cast<CMonster*>(iter)->SetMoveEnable(false);
+        }
+
+        for (auto& iter : MonsterList3)
+        {
+            dynamic_cast<CMonster*>(iter)->SetMoveEnable(false);
+        }
+    }
+
+    if (m_StackPos.empty())
+    {
+        list<CGameObject*> MonsterList1 = m_pGameInstance->Get_Layer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Layer_Monster_Stage1"));
+        list<CGameObject*> MonsterList2 = m_pGameInstance->Get_Layer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Layer_Monster_Stage2"));
+        list<CGameObject*> MonsterList3 = m_pGameInstance->Get_Layer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Layer_Monster"));
+
+        for (auto& iter : MonsterList1)
+        {
+            dynamic_cast<CMonster*>(iter)->SetMoveEnable(true);
+        }
+
+        for (auto& iter : MonsterList2)
+        {
+            dynamic_cast<CMonster*>(iter)->SetMoveEnable(true);
+        }
+
+        for (auto& iter : MonsterList3)
+        {
+            dynamic_cast<CMonster*>(iter)->SetMoveEnable(true);
+        }
+
+        m_bBackPos = false;
+
+        CNavigation* pPlayerNavi = dynamic_cast<CNavigation*>(m_pGameInstance->Get_Component(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Layer_Player"), TEXT("Com_Navigation")));
+        pPlayerNavi->Init_Index(m_pTransformCom);
+    }
+
+    if (m_StackPos.size() >= 30)
+    {
+        m_StackPos.pop_front();
+    }
+}
+
 
 CWeapon_Player_Pistol* CWeapon_Player_Pistol::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 {
@@ -188,6 +269,7 @@ void CWeapon_Player_Pistol::Free()
 {
     Safe_Release(m_pShaderCom);
     Safe_Release(m_pModelCom);
+    Safe_Release(m_pPlayerTransform);
 
     __super::Free();
 }

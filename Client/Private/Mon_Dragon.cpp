@@ -72,17 +72,24 @@ HRESULT CMon_Dragon::Initialize(void* pArg)
 
 void CMon_Dragon::Priority_Update(_float fTimeDelta)
 {
+	if (!m_isMove)
+		fTimeDelta = 0.f;
 	__super::Priority_Update(fTimeDelta);
 
 	m_pStateCom->Priority_Update(fTimeDelta);
-	m_pModelCom->Play_Animation(fTimeDelta);
+
 
 	m_fEffectCreateTimer += fTimeDelta;
 }
 
 void CMon_Dragon::Update(_float fTimeDelta)
 {
+	if (!m_isMove)
+		fTimeDelta = 0.f;
+
 	__super::Update(fTimeDelta);
+
+	m_pModelCom->Play_Animation(fTimeDelta);
 
 	m_pColliderCom[COLL_AABB]->Update(m_pTransformCom->Get_WorldMatrix());
 
@@ -93,6 +100,9 @@ void CMon_Dragon::Update(_float fTimeDelta)
 
 void CMon_Dragon::Late_Update(_float fTimeDelta)
 {
+	if (!m_isMove)
+		fTimeDelta = 0.f;
+
 	__super::Late_Update(fTimeDelta);
 
 	m_pGameInstance->Add_RenderObject(CRenderer::RG_NONBLEND, this);

@@ -3,6 +3,8 @@
 #include "Client_Defines.h"
 #include "Weapon_Player.h"
 
+#include <deque>
+
 BEGIN(Engine)
 class CShader;
 class CModel;
@@ -36,15 +38,25 @@ private:
 	CBinModel* m_pModelCom = { nullptr };
 
 	CCollider* m_pColliderCom = { nullptr };
+	CTransform* m_pPlayerTransform = { nullptr };
 
 	_bool					m_isShadow = { true };
 	_uint					m_iPassIndex = { 0 };
+
+private: 
+	deque<_matrix> m_StackPos = {};
+
+	_float m_fPosSaveTimer = { 0.f };
+	_float m_fMoveSkillTimer = { 0.f };
+	_bool	m_bBackPos = { false };
+
 private:
 	HRESULT Ready_Components();
 	HRESULT Bind_ShaderResources();
 
 	void Key_State();
 	void Create_Bullet();
+	void PositionSave();
 
 public:
 	static CWeapon_Player_Pistol* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);

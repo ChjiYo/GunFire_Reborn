@@ -121,10 +121,7 @@ void CPlayer::Update(_float fTimeDelta)
     ShieldRecovery();
     Player_Weapon_Change();
 
-    _vector vPos = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
-
-    if (m_pGameInstance->Key_Down('B'))
-        Set_Damage(-5);    
+    _vector vPos = m_pTransformCom->Get_State(CTransform::STATE_POSITION);  
 }
 
 void CPlayer::Late_Update(_float fTimeDelta)
@@ -164,49 +161,49 @@ void CPlayer::ShieldRecovery()
 
 void CPlayer::PositionSave()
 {
-    if (m_fPosSaveTimer > 0.075f && !m_bBackPos)
-    {
-        m_fPosSaveTimer = 0.f;
-        m_StackPos.push_back(m_pTransformCom->Get_WorldMatrix());
-    }
-
-    if ((m_pGameInstance->Key_Down('I') || m_bBackPos) && m_fMoveSkillTimer > 0.0001f)
-    {
-        m_bBackPos = true;
-
-        m_pTransformCom->Set_State(CTransform::STATE_RIGHT, m_StackPos.back().r[CTransform::STATE_RIGHT]);
-        m_pTransformCom->Set_State(CTransform::STATE_UP, m_StackPos.back().r[CTransform::STATE_UP]);
-        m_pTransformCom->Set_State(CTransform::STATE_LOOK, m_StackPos.back().r[CTransform::STATE_LOOK]);
-        m_pTransformCom->Set_State(CTransform::STATE_POSITION, m_StackPos.back().r[CTransform::STATE_POSITION]);
-        m_StackPos.pop_back();
-        m_fMoveSkillTimer = 0.f;
-
-
-        list<CGameObject*> MonsterList = m_pGameInstance->Get_Layer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Layer_Monster_Stage2"));
-
-        for (auto& iter : MonsterList)
-        {
-            dynamic_cast<CMonster*>(iter)->SetMoveEnable(false);
-        }
-    }
-
-    if (m_StackPos.empty())
-    {
-        list<CGameObject*> MonsterList = m_pGameInstance->Get_Layer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Layer_Monster_Stage2"));
-
-        for (auto& iter : MonsterList)
-        {
-            dynamic_cast<CMonster*>(iter)->SetMoveEnable(true);
-        }
-
-        m_bBackPos = false;
-        m_pNavigationCom->Init_Index(m_pTransformCom);
-    }
-
-    if (m_StackPos.size() >= 30)
-    {
-        m_StackPos.pop_front();
-    }
+  // if (m_fPosSaveTimer > 0.075f && !m_bBackPos)
+  // {
+  //     m_fPosSaveTimer = 0.f;
+  //     m_StackPos.push_back(m_pTransformCom->Get_WorldMatrix());
+  // }
+  //
+  // if ((m_pGameInstance->Key_Down('I') || m_bBackPos) && m_fMoveSkillTimer > 0.0001f)
+  // {
+  //     m_bBackPos = true;
+  //
+  //     m_pTransformCom->Set_State(CTransform::STATE_RIGHT, m_StackPos.back().r[CTransform::STATE_RIGHT]);
+  //     m_pTransformCom->Set_State(CTransform::STATE_UP, m_StackPos.back().r[CTransform::STATE_UP]);
+  //     m_pTransformCom->Set_State(CTransform::STATE_LOOK, m_StackPos.back().r[CTransform::STATE_LOOK]);
+  //     m_pTransformCom->Set_State(CTransform::STATE_POSITION, m_StackPos.back().r[CTransform::STATE_POSITION]);
+  //     m_StackPos.pop_back();
+  //     m_fMoveSkillTimer = 0.f;
+  //
+  //
+  //     list<CGameObject*> MonsterList = m_pGameInstance->Get_Layer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Layer_Monster_Stage2"));
+  //
+  //     for (auto& iter : MonsterList)
+  //     {
+  //         dynamic_cast<CMonster*>(iter)->SetMoveEnable(false);
+  //     }
+  // }
+  //
+  // if (m_StackPos.empty())
+  // {
+  //     list<CGameObject*> MonsterList = m_pGameInstance->Get_Layer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Layer_Monster_Stage2"));
+  //
+  //     for (auto& iter : MonsterList)
+  //     {
+  //         dynamic_cast<CMonster*>(iter)->SetMoveEnable(true);
+  //     }
+  //
+  //     m_bBackPos = false;
+  //     m_pNavigationCom->Init_Index(m_pTransformCom);
+  // }
+  //
+  // if (m_StackPos.size() >= 30)
+  // {
+  //     m_StackPos.pop_front();
+  // }
 }
 
 HRESULT CPlayer::Ready_Components()
@@ -352,7 +349,7 @@ void CPlayer::Player_Weapon_Change()
         CWeapon_Player::PLAYER_WEAPON_DESC Desc{};
         Desc.pParentMatrix = m_pTransformCom->Get_WorldMatrixPtr();
         Desc.pParentState = 0x00000000;
-  
+        Desc.pTargetTransform = m_pTransformCom;
         switch (m_eWeaponID)
         {
         case PISTOL:
