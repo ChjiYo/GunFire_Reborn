@@ -15,6 +15,8 @@ CVIBuffer_Instancing::CVIBuffer_Instancing(const CVIBuffer_Instancing& Prototype
 	, m_pSpeeds{ Prototype.m_pSpeeds }
 	, m_vPivotPos{ Prototype.m_vPivotPos }
 	, m_isLoop{ Prototype.m_isLoop }
+	, m_vMoveDir{ Prototype.m_vMoveDir }
+
 {
 	Safe_AddRef(m_pVBInstance);
 }
@@ -34,6 +36,8 @@ HRESULT CVIBuffer_Instancing::Initialize_Prototype(const VIBUFFER_INSTANCE_DESC*
 	{
 		m_pSpeeds[i] = Get_Random(pInitialDesc->vSpeed.x, pInitialDesc->vSpeed.y);
 	}
+
+	m_vMoveDir = pInitialDesc->vMoveDir;
 
 	return S_OK;
 }
@@ -127,20 +131,18 @@ void CVIBuffer_Instancing::Drop(_float fTimeDelta)
 	m_pContext->Unmap(m_pVBInstance, 0);
 }
 
-void CVIBuffer_Instancing::Fly(_float fTimeDelta)
+void CVIBuffer_Instancing::Go_Dir(_float fTimeDelta)
 {
 	D3D11_MAPPED_SUBRESOURCE		MappedSubResource{};
 
 	m_pContext->Map(m_pVBInstance, 0, D3D11_MAP_WRITE_NO_OVERWRITE, 0, &MappedSubResource);
 
 	VTXINSTANCE* pMatrices = static_cast<VTXINSTANCE*>(MappedSubResource.pData);
-
+	
 	for (size_t i = 0; i < m_iNumInstance; i++)
 	{
-		_vector		vMoveDir = XMVectorSet(0.0f, 1.f, 0.0f, 0.f);
-
 		XMStoreFloat4(&pMatrices[i].vTranslation,
-			XMLoadFloat4(&pMatrices[i].vTranslation) + vMoveDir * m_pSpeeds[i] * fTimeDelta);
+			XMLoadFloat4(&pMatrices[i].vTranslation) + m_vMoveDir * m_pSpeeds[i] * fTimeDelta);
 
 		pMatrices[i].vLifeTime.y += fTimeDelta;
 		if (m_isLoop == true && pMatrices[i].vLifeTime.y >= pMatrices[i].vLifeTime.x)

@@ -26,6 +26,10 @@ private:
 	HRESULT Ready_Layer_Effect(const _wstring& strLayerTag);
 	HRESULT Ready_Layer_UI_Boss(const _wstring& strLayerTag);
 
+	HRESULT Ready_UI_PlayerState();
+	HRESULT Ready_UI_WeaponState();
+	HRESULT Ready_UI_SkillState();
+	HRESULT Ready_CrossHair();
 
 public:
 	static CLevel_Boss* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);

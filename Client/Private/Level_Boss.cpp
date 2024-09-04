@@ -42,6 +42,15 @@ HRESULT CLevel_Boss::Initialize()
 	if (FAILED(Ready_Layer_Camera(TEXT("Layer_Camera"))))
 		return E_FAIL;
 
+	if (FAILED(Ready_UI_PlayerState()))
+		return E_FAIL;
+
+	if (FAILED(Ready_UI_WeaponState()))
+		return E_FAIL;
+
+	if (FAILED(Ready_CrossHair()))
+		return E_FAIL;
+
 	if (FAILED(ParseInitialize()))
 		return E_FAIL;
 
@@ -164,6 +173,87 @@ HRESULT CLevel_Boss::Ready_Layer_UI_Boss(const _wstring& strLayerTag)
 	
 	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_UI_Boss_HpBar"), strLayerTag)))
 		return E_FAIL;
+
+	return S_OK;
+}
+
+HRESULT CLevel_Boss::Ready_UI_PlayerState()
+{
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_UI_Player_BarPanel"), TEXT("Layer_UI_Player_ABarPanel"))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_UI_Player_Icon"), TEXT("Layer_UI_Player_Icon"))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_UI_Player_HpBar"), TEXT("Layer_UI_Player_UI_Player_HpBar"))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_UI_Player_ShieldBar"), TEXT("Layer_UI_Player_UI_Player_ShieldBar"))))
+		return E_FAIL;
+
+	//if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_UI_Player_HpBlankBar"), TEXT("Layer_UI_Player_BHpBlankBar"))))
+	//	return E_FAIL;
+
+	//if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_UI_Player_ShieldBlankBar"), TEXT("Layer_UI_Player_BShieldBlankBar"))))
+	//	return E_FAIL;
+
+	return S_OK;
+}
+
+HRESULT CLevel_Boss::Ready_UI_WeaponState()
+{
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_UI_Weapon_Panel"), TEXT("Layer_UI_AWeapon_Panel"))))
+		return E_FAIL;
+
+	CUIObject::UI_DESC		UIDesc = {};
+
+	for (int i = 0; i < 3; ++i)
+	{
+		UIDesc.iNumUI = i;
+		if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_UI_Weapon_NumPanel"), TEXT("Layer_UI_AWeapon_NumPanel"), &UIDesc)))
+			return E_FAIL;
+	}
+
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_UI_Weapon_BlueBullet"), TEXT("Layer_UI_Weapon_BlueBullet"))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_UI_Weapon_GreenBullet"), TEXT("Layer_UI_Weapon_GreenBullet"))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_UI_Weapon_YellowBullet"), TEXT("Layer_UI_Weapon_YellowBullet"))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_UI_Weapon_Icon"), TEXT("Layer_UI_Weapon_Icon"))))
+		return E_FAIL;
+
+	return S_OK;
+}
+
+HRESULT CLevel_Boss::Ready_UI_SkillState()
+{
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_UI_SKill_Panel"), TEXT("Layer_UI_Weapon_SKill_Panel"))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_UI_SKill_Dash"), TEXT("Layer_UI_Weapon_SKill_Dash"))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_UI_SKill_Aiming"), TEXT("Layer_UI_Weapon_SKill_Aiming"))))
+		return E_FAIL;
+
+	return S_OK;
+}
+
+HRESULT CLevel_Boss::Ready_CrossHair()
+{
+	CUI_Cross_Hair::CROSS_HAIR_DESC Desc = {  };
+	Desc.fSpeedPerSec = 10.f;
+
+	for (int i = 0; i < 4; i++)
+	{
+		Desc.iNum = i;
+		if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_UI_Cross_Hair"), TEXT("Layer_UI_CrossHair"), &Desc)))
+			return E_FAIL;
+	}
 
 	return S_OK;
 }

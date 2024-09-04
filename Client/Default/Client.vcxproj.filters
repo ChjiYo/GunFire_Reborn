@@ -550,6 +550,9 @@
       <Filter>02.GameObjects\Effect</Filter>
     </ClCompile>
     <ClCompile Include="..\private\VFX_Mon_Bubble.cpp" />
+    <ClCompile Include="..\private\Data_Manager.cpp">
+      <Filter>95.Manager\Data</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Public\Level_Logo.h">
@@ -1084,6 +1087,9 @@
       <Filter>02.GameObjects\Effect</Filter>
     </ClInclude>
     <ClInclude Include="..\public\VFX_Mon_Bubble.h" />
+    <ClInclude Include="..\public\Data_Manager.h">
+      <Filter>95.Manager\Data</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -1696,6 +1702,12 @@
     </Filter>
     <Filter Include="02.GameObjects\Effect\Monster_Effect\Bubble">
       <UniqueIdentifier>{21335ed4-b6cc-4448-8f0b-70221f51d3a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="95.Manager">
+      <UniqueIdentifier>{8d3cc87e-b318-4dd6-9e1e-644bde1d14a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="95.Manager\Data">
+      <UniqueIdentifier>{cbce0b12-f466-4ca8-96fc-b90b3a0b9ca5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

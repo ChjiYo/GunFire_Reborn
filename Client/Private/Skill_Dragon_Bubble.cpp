@@ -64,7 +64,7 @@ void CSkill_Dragon_Bubble::Update(_float fTimeDelta)
         Desc.pOriginTransform = m_pTransformCom;
         Desc.iSkillDamage = 5.f;
         Desc.iNumSkill = m_iNumSkill;
-
+        Desc.iNumParts = PART_END;
         m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Skill_Dragon_Floor"), TEXT("Layer_Skill_Dragon_Floor"),&Desc);
     }
     m_pTransformCom->Go_Straight(fTimeDelta);

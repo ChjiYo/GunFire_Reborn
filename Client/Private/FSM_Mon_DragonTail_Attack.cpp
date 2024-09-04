@@ -69,12 +69,13 @@ wstring CFSM_Mon_DragonTail_Attack::Update(_float fTimeDelta)
 			BubbleDesc.fSpeedPerSec = 10.f;
 			BubbleDesc.fRotationPerSec = XMConvertToRadians(90.0f);
 			BubbleDesc.iSkillDamage = 5.f;
+			BubbleDesc.iNumParts = CSkill::PART_END;
 			m_tDesc.pTransform->LookAt(m_pPlayerTransform->Get_State(CTransform::STATE_POSITION));
 
 			for (int i = 1; i <= rand() % 6 + 6; ++i)
 			{
 				BubbleDesc.iNumSkill = i;
-				m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Skill_Dragon_Bubble"), TEXT("Layer_Skill_Dragon_Bubble"), &BubbleDesc);
+				m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_Skill_Dragon_Bubble"), TEXT("Layer_Skill_Dragon_Bubble"), &BubbleDesc);
 			}
 			m_iAttackCnt++;
 		}
@@ -93,7 +94,7 @@ wstring CFSM_Mon_DragonTail_Attack::Update(_float fTimeDelta)
 			DustDesc.iNumParts = CSkill::PART_END;
 			m_tDesc.pTransform->LookAt(m_pPlayerTransform->Get_State(CTransform::STATE_POSITION));
 
-			m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Skill_Dragon_Dust"), TEXT("Layer_Skill_Dragon_Dust"), &DustDesc);
+			m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_Skill_Dragon_Dust"), TEXT("Layer_Skill_Dragon_Dust"), &DustDesc);
 
 			m_iAttackCnt++;
 		}

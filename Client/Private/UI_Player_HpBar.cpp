@@ -46,7 +46,7 @@ HRESULT CUI_Player_HpBar::Initialize(void* pArg)
 void CUI_Player_HpBar::Priority_Update(_float fTimeDelta)
 {
 	m_strHp = to_wstring(m_pPlayer->Get_Player_Desc().iHp);
-	m_strMaxHp = to_wstring(v->Get_Player_Desc().iMaxHp);
+	m_strMaxHp = to_wstring(m_pPlayer->Get_Player_Desc().iMaxHp);
 
 	m_fHpRatio = static_cast<_float>(m_pPlayer->Get_Player_Desc().iHp) / static_cast<_float>(m_pPlayer->Get_Player_Desc().iMaxHp);
 }

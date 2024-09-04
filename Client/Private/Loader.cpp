@@ -1020,13 +1020,14 @@ HRESULT CLoader::Loading_For_BossLevel()
 		CVIBuffer_Point_Instancing::Create(m_pDevice, m_pContext, &ParticleDesc))))
 		return E_FAIL;
 
-	ParticleDesc.iNumInstance = 50;
-	ParticleDesc.vRange = _float3(5.0f, 0.0f, 5.0f);
+	ParticleDesc.iNumInstance = 10;
+	ParticleDesc.vRange = _float3(2.0f, 0.0f, 2.0f);
 	ParticleDesc.vCenter = _float3(0.0f, 0.f, 0.0f);
 	ParticleDesc.vPivot = _float3(0.0f, 0.0f, 0.f);
 	ParticleDesc.vSpeed = _float2(1.0f, 3.f);
-	ParticleDesc.vScale = _float2(0.25f, 1.25f);
-	ParticleDesc.vLifeTime = _float2(0.5f, 2.f);
+	ParticleDesc.vScale = _float2(0.1f, 0.25f);
+	ParticleDesc.vLifeTime = _float2(0.5f, 1.f);
+	ParticleDesc.vMoveDir = {0.f, 0.f , -1.f};
 	ParticleDesc.isLoop = true;
 
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_VIBuffer_Particle_Bubble"),

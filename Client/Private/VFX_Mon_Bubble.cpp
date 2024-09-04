@@ -41,7 +41,7 @@ void CVFX_Mon_Bubble::Update(_float fTimeDelta)
 {
     __super::Update(fTimeDelta);
 
-    m_pVIBufferCom->Fly(fTimeDelta);
+    m_pVIBufferCom->Go_Dir(fTimeDelta);
 }
 
 void CVFX_Mon_Bubble::Late_Update(_float fTimeDelta)
@@ -99,6 +99,13 @@ HRESULT CVFX_Mon_Bubble::Bind_ShaderResources()
 
     if (FAILED(m_pShaderCom->Bind_Matrix("g_ProjMatrix", &m_pGameInstance->Get_Transform_Float4x4(CPipeLine::D3DTS_PROJ))))
         return E_FAIL;
+
+    if (FAILED(m_pTextureCom->Bind_ShaderResource(m_pShaderCom, "g_Texture", 0)))
+        return E_FAIL;
+
+    if (FAILED(m_pShaderCom->Bind_RawValue("g_vCamPosition", &m_pGameInstance->Get_CamPosition_Float4(), sizeof(_float4))))
+        return E_FAIL;
+
 
     return S_OK;
 }

@@ -46,12 +46,15 @@ HRESULT CSkill_Dragon_Floor::Initialize(void* pArg)
 
 void CSkill_Dragon_Floor::Priority_Update(_float fTimeDelta)
 {
+    __super::Priority_Update(fTimeDelta);
+
     m_fDestoryTimer += fTimeDelta;
     m_fTickDamageTimer += fTimeDelta;
 }
 
 void CSkill_Dragon_Floor::Update(_float fTimeDelta)
 {
+    __super::Update(fTimeDelta);
     m_pColliderCom->Update(m_pTransformCom->Get_WorldMatrix());
 
     Destroy(fTimeDelta);
@@ -59,6 +62,8 @@ void CSkill_Dragon_Floor::Update(_float fTimeDelta)
 
 void CSkill_Dragon_Floor::Late_Update(_float fTimeDelta)
 {
+    __super::Late_Update(fTimeDelta);
+
     CCollider* pTargetCollider = dynamic_cast<CCollider*>(m_pGameInstance->Get_Component(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_Player"), TEXT("Com_Collider"), 0));
     CPlayer* pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_Player")).front());
 
@@ -127,7 +132,7 @@ HRESULT CSkill_Dragon_Floor::Ready_PartObject()
     /* 바디객체를 추가하자 */
     CPartObject::PARTOBJECT_DESC			BodyDesc{};
     BodyDesc.pParentMatrix = m_pTransformCom->Get_WorldMatrixPtr();
-
+    
     if (FAILED(__super::Add_PartObject(PART_EFFECT, TEXT("Prototype_GameObject_VFX_Dragon_Bubble"), &BodyDesc)))
         return E_FAIL;
 

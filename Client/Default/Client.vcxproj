@@ -176,6 +176,7 @@
     <ClInclude Include="..\public\Ceiling_104.h" />
     <ClInclude Include="..\public\Ceiling_105.h" />
     <ClInclude Include="..\Public\Client_Defines.h" />
+    <ClInclude Include="..\public\Data_Manager.h" />
     <ClInclude Include="..\public\Effect.h" />
     <ClInclude Include="..\public\Fire_Light.h" />
     <ClInclude Include="..\public\Fish_Body.h" />
@@ -365,6 +366,7 @@
     <ClCompile Include="..\private\Ceiling_103.cpp" />
     <ClCompile Include="..\private\Ceiling_104.cpp" />
     <ClCompile Include="..\private\Ceiling_105.cpp" />
+    <ClCompile Include="..\private\Data_Manager.cpp" />
     <ClCompile Include="..\private\Effect.cpp" />
     <ClCompile Include="..\private\Fire_Light.cpp" />
     <ClCompile Include="..\private\Fish_Body.cpp" />
