@@ -1,6 +1,7 @@
 #pragma once
 
 #include "UIObject.h"
+#include "Monster.h"
 
 BEGIN(Client)
 
@@ -21,6 +22,14 @@ public:
 
 private:
 	virtual HRESULT Ready_Components();
+
+private:
+	CMonster* m_pBoss= {};
+
+	wstring m_strHp = {};
+	wstring m_strMaxHp = {};
+
+	_float m_fHpRatio = { 0.f };
 
 public:
 	static CUI_Boss_HpBar* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);

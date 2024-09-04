@@ -64,7 +64,7 @@ void CFSM_Mon_DragonHead_Idle::Enter()
 {
 	__super::Enter();
 
-	m_tDesc.pTransform->Set_State(CTransform::STATE_POSITION, { 106.f, 0.f, 90.f , 1.f });
+	m_tDesc.pTransform->Set_State(CTransform::STATE_POSITION, { 91.f, 0.f, 72.f , 1.f });
 	m_tDesc.pModel->SetUp_Animation(5, true);
 	m_strName = TEXT("Monster_DragonHead_State_Idle");
 }

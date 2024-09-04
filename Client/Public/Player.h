@@ -2,6 +2,7 @@
 
 #include "Client_Defines.h"
 #include "ContainerObject.h"
+#include "Light.h"
 
 #include <deque>
 
@@ -109,6 +110,8 @@ private:
 	_float m_fPosSaveTimer = { 0.f };
 	_float m_fMoveSkillTimer = { 0.f };
 	_bool	m_bBackPos = {false};
+
+	CLight* m_pLight = {};
 	
 private:
 	HRESULT Ready_Components();

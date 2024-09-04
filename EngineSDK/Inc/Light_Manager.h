@@ -12,13 +12,15 @@ private:
 
 public:
 	const LIGHT_DESC* Get_LightDesc(_uint iLightIndex) const;
-
+	list<class CLight*>	Get_Light() { return m_Lights; }
+	
 public:
 	HRESULT Initialize();
 	HRESULT Add_Light(const LIGHT_DESC& LightDesc);
 	HRESULT Delete_Light();
 	HRESULT Clear_Light();
 	HRESULT Render_Lights(class CShader* pShader, class CVIBuffer_Rect* pVIBuffer);
+
 
 private:
 	list<class CLight*>				m_Lights;

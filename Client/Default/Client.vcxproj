@@ -334,6 +334,7 @@
     <ClInclude Include="..\public\VFX_Mon_Dust.h" />
     <ClInclude Include="..\public\VFX_Monster.h" />
     <ClInclude Include="..\public\VFX_Mon_Breath.h" />
+    <ClInclude Include="..\public\VFX_Mon_PosCircle.h" />
     <ClInclude Include="..\public\Wall_Stage1.h" />
     <ClInclude Include="..\public\Wall_Stage2.h" />
     <ClInclude Include="..\public\Weapon_Player.h" />
@@ -506,6 +507,7 @@
     <ClCompile Include="..\private\VFX_Mon_Dust.cpp" />
     <ClCompile Include="..\private\VFX_Monster.cpp" />
     <ClCompile Include="..\private\VFX_Mon_Breath.cpp" />
+    <ClCompile Include="..\private\VFX_Mon_PosCircle.cpp" />
     <ClCompile Include="..\private\Wall_Stage1.cpp" />
     <ClCompile Include="..\private\Wall_Stage2.cpp" />
     <ClCompile Include="..\private\Weapon_Player.cpp" />

@@ -72,6 +72,23 @@ PS_OUT PS_DEFAULT(PS_IN In)
 	//Out.vColor.gb = Out.vColor.r;
     if (Out.vColor.a <= 0.1f)
         discard;
+    
+
+
+    return Out;
+}
+
+PS_OUT PS_BOSS(PS_IN In)
+{
+    PS_OUT Out;
+
+    float2 scaledTexCoord = In.vTexcoord * g_Ratio;
+    
+    Out.vColor = g_Texture.Sample(LinearSampler, scaledTexCoord);
+    Out.vColor.rgb = float3(1.f, 0.f, 0.f);
+	
+    if (In.vTexcoord.x >= g_Ratio)
+        Out.vColor.rgb = float3(0.5f, 0.5f, 0.5f);
 
     return Out;
 }
@@ -118,6 +135,19 @@ technique11 DefaultTechnique
         HullShader = NULL;
         DomainShader = NULL;
         PixelShader = compile ps_5_0 PS_MAIN();
+    }
+
+    pass Boss
+    {
+        SetRasterizerState(RS_Cull_NONE);
+        SetDepthStencilState(DSS_Default, 0);
+        SetBlendState(BS_AlphaBlend, float4(0.f, 0.f, 0.f, 0.f), 0xffffffff);
+
+        VertexShader = compile vs_5_0 VS_MAIN();
+        GeometryShader = NULL;
+        HullShader = NULL;
+        DomainShader = NULL;
+        PixelShader = compile ps_5_0 PS_BOSS();
     }
 
 }

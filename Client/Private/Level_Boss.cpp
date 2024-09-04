@@ -42,12 +42,6 @@ HRESULT CLevel_Boss::Initialize()
 	if (FAILED(Ready_Layer_Camera(TEXT("Layer_Camera"))))
 		return E_FAIL;
 
-	if (FAILED(Ready_Layer_Camera(TEXT("Layer_Camera"))))
-		return E_FAIL;
-
-
-
-
 	if (FAILED(ParseInitialize()))
 		return E_FAIL;
 
@@ -74,9 +68,16 @@ HRESULT CLevel_Boss::Ready_Lights()
 	ZeroMemory(&LightDesc, sizeof(LIGHT_DESC));
 	LightDesc.eType = LIGHT_DESC::TYPE_DIRECTIONAL;
 	LightDesc.vDirection = _float4(1.f, -1.f, 1.f, 0.f);
-	LightDesc.vDiffuse = _float4(0.7725f, 0.5294f, 0.2980f, 1.f); // 정규화된 RGB 값
-	LightDesc.vAmbient = _float4(0.7725f * 0.5f, 0.5294f * 0.5f, 0.2980f * 0.5f, 1.f); // 약간 어두운 분위기
+	LightDesc.vDiffuse = _float4(0.1f, 0.1f, 0.1f, 1.f);
+	LightDesc.vAmbient = _float4(0.7725f * 0.1f, 0.5294f * 0.1f, 0.2980f * 0.1f, 1.f); // 약간 어두운 분위기
 	LightDesc.vSpecular = _float4(0.7725f * 1.2f, 0.5294f * 1.2f, 0.2980f * 1.2f, 1.f); // 밝은 빛 반사
+
+	//ZeroMemory(&LightDesc, sizeof(LIGHT_DESC));
+	//LightDesc.eType = LIGHT_DESC::TYPE_DIRECTIONAL;
+	//LightDesc.vDirection = _float4(1.f, -1.f, 1.f, 0.f);
+	//LightDesc.vDiffuse = _float4(0.f, 0.f, 0.f, 1.f); // 정규화된 RGB 값
+	//LightDesc.vAmbient = _float4(0.01f , 0.01f, 0.01f, 1.f); // 약간 어두운 분위기
+	//LightDesc.vSpecular = _float4(0.f , 0.f , 0.f, 1.f); // 밝은 빛 반사
 
 	if (FAILED(m_pGameInstance->Add_Light(LightDesc)))
 		return E_FAIL;

@@ -27,17 +27,10 @@ HRESULT CUI_Boss_HpPanel::Initialize(void* pArg)
 
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
+	__super::Set_UI_Setting(550.f, 60.f, g_iWinSizeX * 0.5f, 60);
 
-	m_fSizeX = 251.f;
-	m_fSizeY = 11.f;
-	m_fPosX = 290.f;
-	m_fPosY = 810.f;
-
-	__super::Set_UI_Setting(m_fSizeX, m_fSizeY, m_fPosX, m_fPosY);
-	m_pTransformCom->Rotation({ 0.f , 0.f, 1.f }, XMConvertToRadians(5.f));
-
-	m_pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_Player")).back());
-	Safe_AddRef(m_pPlayer);
+	//m_pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_Player")).back());
+	//Safe_AddRef(m_pPlayer);
 
 	return S_OK;
 
@@ -45,10 +38,10 @@ HRESULT CUI_Boss_HpPanel::Initialize(void* pArg)
 
 void CUI_Boss_HpPanel::Priority_Update(_float fTimeDelta)
 {
-	m_strHp = to_wstring(m_pPlayer->Get_Player_Desc().iHp);
-	m_strMaxHp = to_wstring(m_pPlayer->Get_Player_Desc().iMaxHp);
-
-	m_fHpRatio = static_cast<_float>(m_pPlayer->Get_Player_Desc().iHp) / static_cast<_float>(m_pPlayer->Get_Player_Desc().iMaxHp);
+	//m_strHp = to_wstring(m_pPlayer->Get_Player_Desc().iHp);
+	//m_strMaxHp = to_wstring(m_pPlayer->Get_Player_Desc().iMaxHp);
+	//
+	//m_fHpRatio = static_cast<_float>(m_pPlayer->Get_Player_Desc().iHp) / static_cast<_float>(m_pPlayer->Get_Player_Desc().iMaxHp);
 }
 
 void CUI_Boss_HpPanel::Update(_float fTimeDelta)
@@ -71,7 +64,7 @@ HRESULT CUI_Boss_HpPanel::Render()
 	if (FAILED(m_pTextureCom->Bind_ShaderResource(m_pShaderCom, "g_Texture", 0)))
 		return E_FAIL;
 
-	if (FAILED(m_pShaderCom->Begin(2)))
+	if (FAILED(m_pShaderCom->Begin(0)))
 		return E_FAIL;
 
 	if (FAILED(m_pVIBufferCom->Bind_Buffers()))
@@ -124,7 +117,7 @@ CGameObject* CUI_Boss_HpPanel::Clone(void* pArg)
 
 void CUI_Boss_HpPanel::Free()
 {
-	Safe_Release(m_pPlayer);
+	//Safe_Release(m_pPlayer);
 
 	__super::Free();
 }

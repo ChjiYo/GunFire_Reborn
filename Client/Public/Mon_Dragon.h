@@ -40,6 +40,7 @@ private:
 private:
 	HRESULT Ready_State();
 	HRESULT Ready_Components();
+	HRESULT Ready_UI();
 	HRESULT Bind_ShaderResources();
 
 public:

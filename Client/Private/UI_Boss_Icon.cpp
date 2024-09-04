@@ -28,7 +28,7 @@ HRESULT CUI_Boss_Icon::Initialize(void* pArg)
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
-	__super::Set_UI_Setting(200.f, 200.f, 90.f, 740.f);
+	__super::Set_UI_Setting( 100.f, 100.f, g_iWinSizeX * 0.5f - 550.f *0.5f , 60);
 
 	return S_OK;
 }

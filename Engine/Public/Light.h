@@ -15,6 +15,12 @@ public:
 		return &m_LightDesc;
 	}
 
+	void Set_LightPos(_vector vPos) {
+		_float4 vTmp = {};
+		XMStoreFloat4(&vTmp, vPos);
+		m_LightDesc.vPosition = vTmp;
+	}
+
 public:
 	HRESULT Initialize(const LIGHT_DESC& LightDesc);
 	HRESULT Render(class CShader* pShader, class CVIBuffer_Rect* pVIBuffer);

@@ -543,6 +543,9 @@
     <ClCompile Include="..\private\UI_Boss_HpPanel.cpp">
       <Filter>02.GameObjects\UI\UI_Monster_State\UI_Boss_HpBar</Filter>
     </ClCompile>
+    <ClCompile Include="..\private\VFX_Mon_PosCircle.cpp">
+      <Filter>02.GameObjects\Effect\Monster_Effect\Pos_Circle</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Public\Level_Logo.h">
@@ -1069,6 +1072,9 @@
     </ClInclude>
     <ClInclude Include="..\public\UI_Boss_HpPanel.h">
       <Filter>02.GameObjects\UI\UI_Monster_State\UI_Boss_HpBar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\VFX_Mon_PosCircle.h">
+      <Filter>02.GameObjects\Effect\Monster_Effect\Pos_Circle</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1676,6 +1682,9 @@
     </Filter>
     <Filter Include="02.GameObjects\UI\UI_Monster_State\UI_Boss_HpBar">
       <UniqueIdentifier>{1b303adb-b3ba-49fa-bbc2-94bfc090fffd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Effect\Monster_Effect\Pos_Circle">
+      <UniqueIdentifier>{9d57211c-a8e7-4eb2-96b4-1cd1cf71e71a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

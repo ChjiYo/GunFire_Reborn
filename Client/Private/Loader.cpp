@@ -1049,14 +1049,19 @@ HRESULT CLoader::Loading_For_BossLevel()
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/Skill/Monster/Dragon/Dust/Dust%d.png"), 14))))
 		return E_FAIL;
 
+	/* For.Prototype_Component_Texture_VFX_Pos_Circle */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Texture_VFX_Pos_Circle"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/Skill/Monster/Dragon/Pos_Circle/Pos_Circle.png")))))
+		return E_FAIL;
+
 	/* For.Prototype_Component_Texture_Sky */
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Texture_Sky"),
-		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/Resources/Textures/SkyBox/Sky_5.dds")))))
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/Resources/Textures/SkyBox/Sky_6.dds")))))
 		return E_FAIL;
 
 	/* For.Prototype_Component_Texture_UI_Boss_Icon */
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Texture_UI_Boss_Icon"),
-		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/Resources/Textures/UI/Bar/UI_Boss_Icon.png")))))
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Bar/UI_Boss_Icon.png")))))
 		return E_FAIL;
 	
 	/* For.Prototype_Component_Texture_UI_Boss_HpBar */
@@ -1066,14 +1071,7 @@ HRESULT CLoader::Loading_For_BossLevel()
 
 	/* For.Prototype_Component_Texture_UI_Boss_Hp_Panel */
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Texture_UI_Boss_Hp_Panel"),
-		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/Resources/Textures/UI/Bar/UI_Boss_Hp_Panel.png")))))
-		return E_FAIL;
-
-
-
-	/* For.Prototype_Component_Texture_Sky */
-	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Texture_Sky"),
-		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/Resources/Textures/SkyBox/Sky_5.dds")))))
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Bar/UI_Boss_Hp_Panel.png")))))
 		return E_FAIL;
 
 	lstrcpy(m_szLoadingText, TEXT("모델을 로딩 중 입니다."));
@@ -1233,11 +1231,6 @@ HRESULT CLoader::Loading_For_BossLevel()
 	/* For.Prototype_GameObject_VFX_Dragon_Dust */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_VFX_Dragon_Dust"),
 		CVFX_Mon_Dust::Create(m_pDevice, m_pContext))))
-		return E_FAIL;
-
-	/* For.Prototype_GameObject_VFX_Dragon_Dust */
-	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_VFX_Dragon_Circle"),
-		CVFX_Mon_Circle::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
 	/* For.Prototype_GameObject_VFX_Dragon_Dust */

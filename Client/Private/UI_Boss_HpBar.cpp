@@ -1,7 +1,6 @@
 #include "stdafx.h"
 
 #include "UI_Boss_HpBar.h"
-#include "Monster.h"
 
 CUI_Boss_HpBar::CUI_Boss_HpBar(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	:CUIObject{ pDevice ,pContext }
@@ -26,29 +25,28 @@ HRESULT CUI_Boss_HpBar::Initialize(void* pArg)
 	if (FAILED(__super::Initialize(pArg)))
 		return E_FAIL;
 
-	UI_DESC* Desc = static_cast<UI_DESC*>(pArg);
-	m_pOriginTransform = Desc->pTransform;
-	Safe_AddRef(m_pOriginTransform);
-
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
-	m_pTransformCom->Set_Scaled(1.5f, 0.125f, 1.f);
+	__super::Set_UI_Setting(450.f, 10.f, g_iWinSizeX * 0.5f, 60.f);
+
+	UI_DESC* pDesc = static_cast<UI_DESC*>(pArg);
+	m_pBoss = dynamic_cast<CMonster*>(pDesc->pGameObject);
 
 	return S_OK;
+
 }
 
 void CUI_Boss_HpBar::Priority_Update(_float fTimeDelta)
 {
-
-	CTransform* pCamTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_Camera"), TEXT("Com_Transform")));
-
-	m_pTransformCom->LookAt(XMVectorSetY(pCamTransform->Get_State(CTransform::STATE_POSITION),3.f));
+	m_strHp = to_wstring(m_pBoss->Get_MonDesc().iHp);
+	m_strMaxHp = to_wstring(m_pBoss->Get_MonDesc().iMaxHp);
+	
+	m_fHpRatio = static_cast<_float>(m_pBoss->Get_MonDesc().iHp) / static_cast<_float>(m_pBoss->Get_MonDesc().iMaxHp);
 }
 
 void CUI_Boss_HpBar::Update(_float fTimeDelta)
 {
-	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetY(m_pOriginTransform->Get_State(CTransform::STATE_POSITION), 3.f));
 }
 
 void CUI_Boss_HpBar::Late_Update(_float fTimeDelta)
@@ -58,13 +56,16 @@ void CUI_Boss_HpBar::Late_Update(_float fTimeDelta)
 
 HRESULT CUI_Boss_HpBar::Render()
 {
-	if (FAILED(__super::Bind_Perspective()))
+	if (FAILED(__super::Bind_ShaderResources()))
+		return E_FAIL;
+
+	if (FAILED(m_pShaderCom->Bind_RawValue("g_Ratio", &m_fHpRatio, sizeof(_float))))
 		return E_FAIL;
 
 	if (FAILED(m_pTextureCom->Bind_ShaderResource(m_pShaderCom, "g_Texture", 0)))
 		return E_FAIL;
 
-	if (FAILED(m_pShaderCom->Begin(0)))
+	if (FAILED(m_pShaderCom->Begin(3)))
 		return E_FAIL;
 
 	if (FAILED(m_pVIBufferCom->Bind_Buffers()))
@@ -72,6 +73,8 @@ HRESULT CUI_Boss_HpBar::Render()
 
 	if (FAILED(m_pVIBufferCom->Render()))
 		return E_FAIL;
+
+	m_pGameInstance->Draw_Font(TEXT("Font_Nexon"), m_strHp + TEXT(" / ") + m_strMaxHp, _float2(g_iWinSizeX * 0.5f, 55.f), XMVectorSet(0.f, 0.f, 0.f, 1.f), XMConvertToRadians(0.f), 0.3f);
 
 	return S_OK;
 }
@@ -115,7 +118,7 @@ CGameObject* CUI_Boss_HpBar::Clone(void* pArg)
 
 void CUI_Boss_HpBar::Free()
 {
-	Safe_Release(m_pOriginTransform);
+	//Safe_Release(m_pBoss);
 
 	__super::Free();
 }

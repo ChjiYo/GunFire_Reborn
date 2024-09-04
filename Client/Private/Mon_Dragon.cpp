@@ -61,6 +61,7 @@ HRESULT CMon_Dragon::Initialize(void* pArg)
 	if (FAILED(Ready_UI()))
 		return E_FAIL;
 
+
 	m_pStateCom->Set_State(TEXT("Monster_DragonHead_State_Idle"));
 
 	m_pTransformCom->Set_Scaled(3.f, 3.f, 3.0f);
@@ -194,6 +195,23 @@ HRESULT CMon_Dragon::Ready_Components()
 
 	if (FAILED(__super::Add_Component(LEVEL_STATIC, TEXT("Prototype_Component_Collider_AABB"),
 		TEXT("Com_ColliderAABB"), reinterpret_cast<CComponent**>(&m_pColliderCom[COLL_AABB]), &BoundingDesc)))
+		return E_FAIL;
+
+	return S_OK;
+}
+
+HRESULT CMon_Dragon::Ready_UI()
+{
+	if(FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_UI_Boss_Icon"), TEXT("Layer_UI_Boss_Icon"))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_UI_Boss_HpPanel"), TEXT("Layer_UI_Boss_AHpPanel"))))
+		return E_FAIL;
+
+	CUIObject::UI_DESC Desc = {};
+	Desc.pGameObject = this;
+
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_UI_Boss_HpBar"), TEXT("Layer_UI_Boss_HpBar"), &Desc)))
 		return E_FAIL;
 
 	return S_OK;

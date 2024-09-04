@@ -100,6 +100,7 @@ public: /* For.Light */
 	HRESULT Delete_Light();
 	HRESULT Clear_Light();
 	HRESULT Render_Lights(class CShader* pShader, class CVIBuffer_Rect* pVIBuffer);
+	list<class CLight*>	Get_Light();
 
 public: /* For.Target_Manager */
 	HRESULT Add_RenderTarget(const _wstring& strTargetTag, _uint iWidth, _uint iHeight, DXGI_FORMAT ePixelFormat, _fvector vClearColor);

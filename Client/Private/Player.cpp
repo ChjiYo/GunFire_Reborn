@@ -71,7 +71,25 @@ HRESULT CPlayer::Initialize(void* pArg)
     }
 
     m_pNavigationCom->Init_Index(m_pTransformCom);
+
+
+    LIGHT_DESC			LightDesc{};
+
+    ZeroMemory(&LightDesc, sizeof(LIGHT_DESC));
+    LightDesc.eType = LIGHT_DESC::TYPE_POINT;
+    LightDesc.vPosition = _float4(0.f, 0.f, 0.f, 1.f);
+    LightDesc.fRange = 15.f;
+    LightDesc.vDiffuse = _float4(1.0f, 0.0f, 0.0f, 0.75f);
+    LightDesc.vAmbient = _float4(0.25f, 0.25f, 0.f, 1.f);
+    LightDesc.vSpecular = _float4(0.f, 0.f, 0.f, 1.f);
     
+    if (FAILED(m_pGameInstance->Add_Light(LightDesc)))
+        return E_FAIL;
+
+    m_pLight = m_pGameInstance->Get_Light().back();
+    
+
+
     return S_OK;
 }
 
@@ -96,6 +114,8 @@ void CPlayer::Update(_float fTimeDelta)
 {
     __super::Update(fTimeDelta);
 
+
+    m_pLight->Set_LightPos(m_pTransformCom->Get_State(CTransform::STATE_POSITION));
     m_pColliderCom->Update(m_pTransformCom->Get_WorldMatrix());
 
     ShieldRecovery();
