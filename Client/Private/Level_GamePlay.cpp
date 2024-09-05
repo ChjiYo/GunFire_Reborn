@@ -14,8 +14,11 @@
 #include "Skill.h"
 #include "Terrain.h"
 
+#include "Data_Manager.h"
+
 CLevel_GamePlay::CLevel_GamePlay(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	: CLevel{ pDevice, pContext } 
+	, m_pDataMgr{ CData_Manager::Get_Instance() }
 {
 }
 
@@ -57,8 +60,8 @@ HRESULT CLevel_GamePlay::Initialize()
 	if (FAILED(ParseInitialize()))
 		return E_FAIL;
 
-	if (FAILED(Ready_Layer_Item(TEXT("Layer_Item"))))
-		return E_FAIL;
+	//if (FAILED(Ready_Layer_Item(TEXT("Layer_Item"))))
+	//	return E_FAIL;
 
 	return S_OK;
 }
@@ -70,6 +73,8 @@ void CLevel_GamePlay::Update(_float fTimeDelta)
 
 	if (pPlayerCollider->isCollision(pPortalCollider))
 	{
+		m_pDataMgr->Initialize();
+
 		if (FAILED(m_pGameInstance->Change_Level(CLevel_Loading::Create(m_pDevice, m_pContext, LEVEL_BOSS))))
 			return;
 	}
@@ -175,7 +180,7 @@ HRESULT CLevel_GamePlay::Ready_LandObjects()
 }
 HRESULT CLevel_GamePlay::Ready_Layer_Item(const wstring& strLayerTag)
 {
-	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Item_Sniper"), strLayerTag)))
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Item_BoomGun"), strLayerTag)))
 		return E_FAIL;
 
 	return S_OK;
@@ -345,5 +350,7 @@ CLevel_GamePlay * CLevel_GamePlay::Create(ID3D11Device* pDevice, ID3D11DeviceCon
 
 void CLevel_GamePlay::Free()
 {
+	//Safe_Release(m_pDataMgr);
+
 	__super::Free();
 }

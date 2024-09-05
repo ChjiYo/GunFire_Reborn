@@ -39,6 +39,7 @@
 #include "Stair101_Addon.h"
 
 #include "Door.h"
+#include "Box.h"
 
 #include "Ceiling_101.h"
 #include "Ceiling_103.h"
@@ -93,7 +94,7 @@
 #include "VFX_Mon_PosCircle.h"
 #include "VFX_Mon_Bubble.h"
 
-#include "Item_Sniper.h"
+#include "Item_BoomGun.h"
 
 #include "Portal.h"
 
@@ -239,6 +240,10 @@ HRESULT CLoader::Loading_For_BinaryFile()
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Monster_Dragon"),
 		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_ANIM, "../Bin/GunFire_Resources/Models/Monster/Boss/Boss_Dragon/Dragon.fbx", TEXT("../Bin/DataFiles/Dragon.dat"), PreTransformMatrix))))
 		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Box"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_ANIM, "../Bin/GunFire_Resources/Models/Element/Box/Box.fbx", TEXT("../Bin/DataFiles/Box.dat"), PreTransformMatrix))))
+		return E_FAIL;
 	
 	PreTransformMatrix = XMMatrixScaling(0.01f, 0.01f, 0.01f) * XMMatrixRotationY(XMConvertToRadians(180.0f))* XMMatrixTranslation( 6.f  , 19.5f , -72.f );
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Door"),
@@ -342,6 +347,10 @@ HRESULT CLoader::Loading_For_BinaryFile()
 
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Item_Weapon_Sniper"),
 		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Item/Weapon/Sniper/Item_Sniper.fbx", TEXT("../Bin/DataFiles/Item_Sniper.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Item_Weapon_BoomGun"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Item/Weapon/BoomGun/Item_BoomGun.fbx", TEXT("../Bin/DataFiles/Item_BoomGun.dat"), PreTransformMatrix))))
 		return E_FAIL;
 
 
@@ -598,8 +607,14 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_ANIM, TEXT("../Bin/DataFiles/Door.dat"), PreTransformMatrix))))
 		return E_FAIL;
 
-	PreTransformMatrix = XMMatrixScaling(0.01f, 0.01f, 0.01f) * XMMatrixRotationY(XMConvertToRadians(180.0f));
+	PreTransformMatrix =  XMMatrixRotationY(XMConvertToRadians(180.0f)) * XMMatrixTranslation(-38.75f, 1.f, -20.f);
 
+	/* For.Prototype_Component_Model_Box */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Box"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_ANIM, TEXT("../Bin/DataFiles/Box.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	PreTransformMatrix = XMMatrixScaling(0.01f, 0.01f, 0.01f) * XMMatrixRotationY(XMConvertToRadians(180.0f));
 	/* For.Prototype_Component_Model_Wall_State1 */
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Wall_Stage1"),
 		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Wall_Stage.dat"), PreTransformMatrix))))
@@ -716,8 +731,8 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 		return E_FAIL;
 
 	/* For.Prototype_Component_Model_Item_Weapon_Sniper */
-	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Item_Weapon_Sniper"),
-		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Item_Sniper.dat"), PreTransformMatrix))))
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Item_Weapon_BoomGun"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Item_BoomGun.dat"), PreTransformMatrix))))
 		return E_FAIL;
 	
 	
@@ -939,7 +954,7 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 		CCeiling_105::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
-	/* For.Prototype_GameObject_Door*/
+	/* For.Prototype_GameObject_Pillars_101*/
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Pillars_101"),
 		CPillars101::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
@@ -947,6 +962,11 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 	/* For.Prototype_GameObject_Door*/
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Door"),
 		CDoor::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Door*/
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Box"),
+		CBox::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
 	/* For.Prototype_GameObject_Portal*/
@@ -960,8 +980,8 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 		return E_FAIL;
 
 
-	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Item_Sniper"),
-		CItem_Sniper::Create(m_pDevice, m_pContext))))
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Item_BoomGun"),
+		CItem_BoomGun::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
 	/* For.Prototype_GameObject_Effect_Deco_Snow */

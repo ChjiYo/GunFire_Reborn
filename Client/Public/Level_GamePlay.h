@@ -36,6 +36,9 @@ private:
 	HRESULT Ready_Layer_DecoObject(const _wstring& strLayerTag);
 
 
+private:
+	class CData_Manager* m_pDataMgr = {};
+
 public:
 	static CLevel_GamePlay* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	virtual void Free() override;

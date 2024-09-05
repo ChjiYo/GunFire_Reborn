@@ -49,6 +49,7 @@ public:
 
 public:
 	PLAYER_DESC Get_Player_Desc() { return Player_Desc; }
+	WEAPONID Get_WeaponID(_uint iSlotIndex) { return m_eWeaponIDArray[iSlotIndex]; }
 
 	void		Set_Damage(_int iDamage)
 	{

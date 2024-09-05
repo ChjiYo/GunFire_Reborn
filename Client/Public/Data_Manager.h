@@ -22,9 +22,14 @@ public:
 	HRESULT Initialize();
 
 
+public:
+	CPlayer::PLAYER_DESC Get_PlayerDesc(){ return m_ePlayerDesc; }
+
 private:
 	CPlayer::PLAYER_DESC	m_ePlayerDesc = {};
-	CWeapon_Player::PLAYER_WEAPON_DESC m_eWeaponDesc[WEAPON_END] = {};
+	_uint m_eWeaponDesc[WEAPON_END] = {};
+
+	class CGameInstance* m_pGameInstance = { nullptr };
 
 public:
 	static CData_Manager* Create();

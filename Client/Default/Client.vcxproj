@@ -170,6 +170,7 @@
   <ItemGroup>
     <ClInclude Include="..\public\BackGround.h" />
     <ClInclude Include="..\public\Boss_Logo.h" />
+    <ClInclude Include="..\public\Box.h" />
     <ClInclude Include="..\public\Camera_Free.h" />
     <ClInclude Include="..\public\Ceiling_101.h" />
     <ClInclude Include="..\public\Ceiling_103.h" />
@@ -221,7 +222,7 @@
     <ClInclude Include="..\public\FSM_Mon_Spear_Run.h" />
     <ClInclude Include="..\public\FSM_Mon_Spear_Walk.h" />
     <ClInclude Include="..\public\Item.h" />
-    <ClInclude Include="..\public\Item_Sniper.h" />
+    <ClInclude Include="..\public\Item_BoomGun.h" />
     <ClInclude Include="..\public\Item_Weapon.h" />
     <ClInclude Include="..\public\Level_Boss.h" />
     <ClInclude Include="..\public\Mon_Deash_Boom.h" />
@@ -361,6 +362,7 @@
   <ItemGroup>
     <ClCompile Include="..\private\BackGround.cpp" />
     <ClCompile Include="..\private\Boss_Logo.cpp" />
+    <ClCompile Include="..\private\Box.cpp" />
     <ClCompile Include="..\private\Camera_Free.cpp" />
     <ClCompile Include="..\private\Ceiling_101.cpp" />
     <ClCompile Include="..\private\Ceiling_103.cpp" />
@@ -411,7 +413,7 @@
     <ClCompile Include="..\private\FSM_Mon_Spear_Run.cpp" />
     <ClCompile Include="..\private\FSM_Mon_Spear_Walk.cpp" />
     <ClCompile Include="..\private\Item.cpp" />
-    <ClCompile Include="..\private\Item_Sniper.cpp" />
+    <ClCompile Include="..\private\Item_BoomGun.cpp" />
     <ClCompile Include="..\private\Item_Weapon.cpp" />
     <ClCompile Include="..\private\Level_Boss.cpp" />
     <ClCompile Include="..\private\Mon_Deash_Boom.cpp" />

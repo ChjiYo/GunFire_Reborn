@@ -45,7 +45,7 @@ void CItem_Weapon::Update(_float fTimeDelta)
 
 	_float fDistance = XMVectorGetX(XMVector3Length(m_pTransformCom->Get_State(CTransform::STATE_POSITION) - pPlayerTranfsorm->Get_State(CTransform::STATE_POSITION)));
 
-	if (fabs(fDistance) <= 1.f && m_pGameInstance->Key_Down('F'))
+	if (fabs(fDistance) <= 2.f && m_pGameInstance->Key_Down('F'))
 	{
 		pPlayer->ChangeWeapon(static_cast<CPlayer::WEAPONID>(m_eWeaponID));
 		m_bDead = true;

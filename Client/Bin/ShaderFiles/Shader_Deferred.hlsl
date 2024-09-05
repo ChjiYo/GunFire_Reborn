@@ -185,6 +185,7 @@ PS_OUT PS_MAIN_DEFERRED(PS_IN In)
     PS_OUT Out = (PS_OUT) 0;
 
     vector vDiffuse = g_DiffuseTexture.Sample(LinearSampler, In.vTexcoord);
+   
     if (0.0f == vDiffuse.a)
         discard;
 

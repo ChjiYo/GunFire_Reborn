@@ -15,9 +15,11 @@
 
 #include "Terrain.h"
 
+#include "Data_Manager.h"
 
 CLevel_Boss::CLevel_Boss(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	: CLevel{ pDevice, pContext }
+	, m_pDataMgr{ CData_Manager::Get_Instance() }
 {
 }
 
@@ -106,12 +108,7 @@ HRESULT CLevel_Boss::Ready_Layer_Ground(const _wstring & strLayerTag)
 HRESULT CLevel_Boss::Ready_Layer_Player(const _wstring& strLayerTag)
 {
 	CPlayer::PLAYER_DESC	Desc = {};
-	Desc.iHp = 65;
-	Desc.iMaxHp = 65;
-	Desc.iShield = 65;
-	Desc.iMaxShield = 65;
-	Desc.fSpeedPerSec = 5.f;
-	Desc.fRotationPerSec = XMConvertToRadians(90.0f);
+	Desc = m_pDataMgr->Get_PlayerDesc();
 
 	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_Player"), strLayerTag, &Desc)))
 		return E_FAIL;

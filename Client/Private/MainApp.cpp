@@ -31,10 +31,11 @@
 #include "UI_Weapon_NumPanel.h"
 #include "UI_Weapon_Icon.h"
 
-
 #include "UI_Skill_Panel.h"
 #include "UI_Skill_Dash.h"
 #include "UI_Skill_Aiming.h"
+
+#include "Data_Manager.h"
 
 CMainApp::CMainApp()
 	: m_pGameInstance { CGameInstance::Get_Instance() }
@@ -73,7 +74,7 @@ HRESULT CMainApp::Initialize()
 void CMainApp::Update(_float fTimeDelta)
 {	
 	
-	if (!m_bShowTool)
+	if (!m_bShowTool && !(m_pGameInstance->GetLoadingLevelIndex() == LEVEL_BIN))
 	{
 		POINT pt;
 		pt.x = g_iWinSizeX * 0.5f;
@@ -467,6 +468,7 @@ void CMainApp::Free()
 	Safe_Release(m_pDevice);
 
 	m_pGameInstance->Release_Engine();
+	//CData_Manager::Get_Instance()->Destroy_Instance();
 
 	Safe_Release(m_pGameInstance);	
 

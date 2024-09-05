@@ -31,6 +31,9 @@ private:
 	HRESULT Ready_UI_SkillState();
 	HRESULT Ready_CrossHair();
 
+private:
+	class CData_Manager* m_pDataMgr = {};
+
 public:
 	static CLevel_Boss* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	virtual void Free() override;

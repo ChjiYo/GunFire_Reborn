@@ -114,6 +114,10 @@ void CPlayer::Update(_float fTimeDelta)
 {
     __super::Update(fTimeDelta);
 
+    if (m_pGameInstance->Key_Down('J'))
+    {
+        Player_Desc.iHp -= 20;
+    }
 
     m_pLight->Set_LightPos(m_pTransformCom->Get_State(CTransform::STATE_POSITION));
     m_pColliderCom->Update(m_pTransformCom->Get_WorldMatrix());

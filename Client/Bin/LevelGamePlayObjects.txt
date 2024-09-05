@@ -1,3 +1,11 @@
+LayerName: Layer_Box
+PrototypeTag: Prototype_GameObject_Box
+LevelIndex: 4
+Position: 43.8001 0 67.5997
+Scale: 1 1 1
+Rotation: 3.14159
+IsParsing: 1
+
 LayerName: Layer_Ceiling_101
 PrototypeTag: Prototype_GameObject_Ceiling_101
 LevelIndex: 4
@@ -2532,6 +2540,14 @@ LevelIndex: 4
 Position: 57.9999 -1.49012e-08 40.5001
 Scale: 1 0.69 1
 Rotation: 6.28319
+IsParsing: 1
+
+LayerName: Layer_Portal
+PrototypeTag: Prototype_GameObject_Portal
+LevelIndex: 4
+Position: 39.25 3.9 64.88
+Scale: 4.18 8 1
+Rotation: 1.5708
 IsParsing: 1
 
 LayerName: Layer_Portal

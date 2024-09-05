@@ -32,6 +32,10 @@ public:
 	virtual void Late_Update(_float fTimeDelta)	override;
 	virtual HRESULT Render()	override;
 
+public:
+	_uint Get_CurrentBullet() { return m_iNumBullet; }
+
+
 protected:
 	_uint m_iOriginBullet = { 0 };
 	_uint m_iNumBullet = { 0 };
