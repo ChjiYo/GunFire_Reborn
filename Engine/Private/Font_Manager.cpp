@@ -32,7 +32,7 @@ HRESULT CFont_Manager::Draw_Font(const _wstring& strFontTag, const _tchar* pText
 	return pFont->Draw(pText, vPosition, vFontColor, fRadian, vPivotPos,fScale);
 }
 
-HRESULT CFont_Manager::DeathDraw_Font(const _wstring& strFontTag, const _tchar* pText, const _float3& vPosition, _fvector vFontColor, _float fRadian, _float2 vPivotPos, _float fScale)
+HRESULT CFont_Manager::DeathDraw_Font(const _wstring& strFontTag, const _tchar* pText, _vector vPosition, _fvector vFontColor, _float fRadian, _vector vPivotPos, _vector fScale)
 {
 	CCustomFont* pFont = Find_Font(strFontTag);
 	if (nullptr == pFont)

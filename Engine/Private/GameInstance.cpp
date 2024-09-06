@@ -364,7 +364,7 @@ HRESULT CGameInstance::Draw_Font(const _wstring& strFontTag, const _tchar* pText
 	return m_pFont_Manager->Draw_Font(strFontTag, pText, vPosition, vFontColor, fRadian, vPivotPos, fScale);
 }
 
-HRESULT CGameInstance::DeathDraw_Font(const _wstring& strFontTag, const _tchar* pText, const _float3& vPosition, _fvector vFontColor, _float fRadian, _float2 vPivotPos, _float fScale)
+HRESULT CGameInstance::DeathDraw_Font(const _wstring& strFontTag, const _tchar* pText, _vector vPosition, _fvector vFontColor, _float fRadian, _vector vPivotPos, _vector fScale)
 {
 	return m_pFont_Manager->DeathDraw_Font(strFontTag, pText, vPosition, vFontColor, fRadian, vPivotPos, fScale);
 }

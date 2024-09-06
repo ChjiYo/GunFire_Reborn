@@ -60,8 +60,8 @@ HRESULT CLevel_GamePlay::Initialize()
 	if (FAILED(ParseInitialize()))
 		return E_FAIL;
 
-	//if (FAILED(Ready_TestObject()))
-	//	return E_FAIL;
+	if (FAILED(Ready_TestObject()))
+		return E_FAIL;
 
 	//if (FAILED(Ready_Layer_Item(TEXT("Layer_Item"))))
 	//	return E_FAIL;

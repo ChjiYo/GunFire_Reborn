@@ -14,7 +14,7 @@ private:
 public:
 	HRESULT Initialize(const _tchar* pFontFilePath);
 	HRESULT Draw(const _tchar* pText, const _float2& vPosition, _fvector vFontColor, _float fRadian, _float2 vPivotPos, _float fScale);
-	HRESULT DeathDraw(const _tchar* pText, const _float3& vPosition, _fvector vFontColor, _float fRadian, _float2 vPivotPos, _float fScale);
+	HRESULT DeathDraw(const _tchar* pText, _vector vPosition, _fvector vFontColor, _float fRadian, _vector  vPivotPos, _vector fScale);
 	
 private:
 	ID3D11Device*				m_pDevice = { nullptr };

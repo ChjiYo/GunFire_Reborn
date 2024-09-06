@@ -27,8 +27,8 @@ HRESULT CCustomFont::Initialize(const _tchar * pFontFilePath)
 	BlendDesc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
 	BlendDesc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_RED | D3D11_COLOR_WRITE_ENABLE_GREEN | D3D11_COLOR_WRITE_ENABLE_BLUE;
 
-
 	m_pDevice->CreateBlendState(&BlendDesc, &m_pBlendState);
+
 	return S_OK;
 }
 
@@ -45,17 +45,25 @@ HRESULT CCustomFont::Draw(const _tchar* pText, const _float2& vPosition, _fvecto
 	return S_OK;
 }
 
-HRESULT CCustomFont::DeathDraw(const _tchar* pText, const _float3& vPosition, _fvector vFontColor, _float fRadian, _float2 vPivotPos, _float fScale)
+HRESULT CCustomFont::DeathDraw(const _tchar* pText, _vector vPosition, _fvector vFontColor, _float fRadian, _vector vPivotPos, _vector fScale)
 {
+	
 	_matrix matView = m_pGameInstance->Get_Transform_Matrix(CPipeLine::D3DTS_VIEW);
 	_matrix matProj = m_pGameInstance->Get_Transform_Matrix(CPipeLine::D3DTS_PROJ);
 
+	// SpriteBatch 시작
 	m_pContext->GSSetShader(nullptr, nullptr, 0);
+	m_pBatch->Begin(SpriteSortMode_Deferred, m_pBlendState, nullptr, nullptr, nullptr, nullptr, matView * matProj);
 
-	m_pBatch->Begin(SpriteSortMode_Deferred, nullptr, nullptr, nullptr, nullptr, nullptr, matView * matProj);
+	// 3D 위치 설정 (vPosition을 XMVECTOR로 변환)
+	XMVECTOR position = XMVectorSet(0.f, 0.f, 5.f, 1.0f);
 
-	m_pFont->DrawString(m_pBatch, pText, _float2(vPosition.x, vPosition.y), vFontColor, fRadian, vPivotPos, fScale, SpriteEffects_None);
+	// 3D 텍스트 그리기
+	XMVECTOR origin = XMVectorSet(0.f, 0.f, 5.0f, 1.0f);
+	XMVECTOR scale = XMVectorSet(2.f, 2.f,0.0f, 0.0f);
+	m_pFont->DrawString(m_pBatch, pText, position, vFontColor, fRadian, origin, scale, SpriteEffects_None , 1.f);
 
+	// SpriteBatch 종료
 	m_pBatch->End();
 
 	return S_OK;
@@ -81,10 +89,10 @@ void CCustomFont::Free()
 
 	Safe_Delete(m_pBatch);
 	Safe_Delete(m_pFont);
-	//Safe_Delete(m_pBlendState);
 
 	Safe_Release(m_pDevice);
 	Safe_Release(m_pContext);
+	Safe_Release(m_pBlendState);
 
 	__super::Free();
 }

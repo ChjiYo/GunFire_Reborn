@@ -77,7 +77,7 @@ public: /* For.PipeLine */
 public: /* For.Font_Manager */
 	HRESULT Add_Font(ID3D11Device* pDevice,ID3D11DeviceContext* pContext,const _wstring& strFontTag, const _wstring& strFontFilePath);
 	HRESULT Draw_Font(const _wstring& strFontTag, const _tchar* pText, const _float2& vPosition, _fvector vFontColor = XMVectorSet(1.f, 1.f, 1.f, 1.f), _float fRadian = 0.f, _float2 vPivotPos = _float2(0.f, 0.f), _float fScale = 1.f);
-	HRESULT DeathDraw_Font(const _wstring& strFontTag, const _tchar* pText, const _float3& vPosition, _fvector vFontColor = XMVectorSet(1.f, 1.f, 1.f, 1.f), _float fRadian = 0.f, _float2 vPivotPos = _float2(0.f, 0.f), _float fScale = 1.f);
+	HRESULT DeathDraw_Font(const _wstring& strFontTag, const _tchar* pText, _vector vPosition, _fvector vFontColor = XMVectorSet(1.f, 1.f, 1.f, 1.f), _float fRadian = 0.f, _vector vPivotPos = { 0.f, 0.f , 0.f }, _vector fScale = {1.f, 1.f, 1.f});
 
 public: /* For.Picking */
 	_float4 Picked_Position(_bool* pPick);
