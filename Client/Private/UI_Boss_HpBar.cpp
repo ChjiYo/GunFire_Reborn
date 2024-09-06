@@ -74,7 +74,7 @@ HRESULT CUI_Boss_HpBar::Render()
 	if (FAILED(m_pVIBufferCom->Render()))
 		return E_FAIL;
 
-	m_pGameInstance->Draw_Font(TEXT("Font_Nexon"), m_strHp + TEXT(" / ") + m_strMaxHp, _float2(g_iWinSizeX * 0.5f, 55.f), XMVectorSet(0.f, 0.f, 0.f, 1.f), XMConvertToRadians(0.f), 0.3f);
+	
 
 	return S_OK;
 }

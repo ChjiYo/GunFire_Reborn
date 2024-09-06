@@ -60,6 +60,8 @@ HRESULT CMon_Knight::Initialize(void* pArg)
 
 void CMon_Knight::Priority_Update(_float fTimeDelta)
 {
+	__super::Priority_Update(fTimeDelta);
+
 	m_pStateCom->Priority_Update(fTimeDelta);
 }
 

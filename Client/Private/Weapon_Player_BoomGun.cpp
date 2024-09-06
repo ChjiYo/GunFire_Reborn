@@ -94,11 +94,7 @@ HRESULT CWeapon_Player_BoomGun::Render()
         if (FAILED(m_pModelCom->Render(i)))
             return E_FAIL;
     }
-    wstring strNumBullet = to_wstring(m_iNumBullet);
-    wstring strNumMaxBullet = to_wstring(m_iNumMaxBullet);
 
-    m_pGameInstance->Draw_Font(TEXT("Font_Nexon"), strNumBullet, _float2(1300.f, 800.f), XMVectorSet(0.7f, 1.f, 0.3f, 1.f), XMConvertToRadians(-5.f), 0.8f);
-    m_pGameInstance->Draw_Font(TEXT("Font_Nexon"), strNumMaxBullet, _float2(1450.f, 800.f), XMVectorSet(0.7f, 1.f, 0.3f, 1.f), XMConvertToRadians(-5.f), 0.8f);
 
     return S_OK;
 }

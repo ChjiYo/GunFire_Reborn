@@ -43,13 +43,12 @@ wstring CFSM_Mon_Bug_Attack::Update(_float fTimeDelta)
 	_vector vPos = m_tDesc.pTransform->Get_State(CTransform::STATE_POSITION);
 
 	_vector vDistance = vTargetPos - vPos;
-	XMVector4Length(vDistance);
-	_float fLength = XMVectorGetX(vDistance);
+	_float fLength = XMVectorGetX(XMVector3Length(vDistance));
 
 	CCollider* pTargetCollider = dynamic_cast<CCollider*>(m_pGameInstance->Get_Component(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_Player"), TEXT("Com_Collider"), 0));
 	CPlayer* pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_Player")).front());
 
-	if (m_fDamageDelay >= m_tDesc.pModel->Get_Anim(4)->Get_Duration() - 0.25f && abs(fLength) <= 0.25f)
+	if (m_fDamageDelay >= m_tDesc.pModel->Get_Anim(4)->Get_Duration() - 0.25f && abs(fLength) <= 2.f)
 	{
 		pPlayer->Set_Damage(-10);
 		m_fDamageDelay = 0.f;
@@ -64,14 +63,13 @@ wstring CFSM_Mon_Bug_Attack::Late_Update(_float fTimeDelta)
 	_vector vPos = m_tDesc.pTransform->Get_State(CTransform::STATE_POSITION);
 
 	_vector vDistance = vTargetPos - vPos;
-	XMVector4Length(vDistance);
-	_float fLength = XMVectorGetX(vDistance);
+	_float fLength = XMVectorGetX(XMVector4Length(vDistance));
 
 	if (m_fAttackTime >= m_tDesc.pModel->Get_Anim(4)->Get_Duration())
 	{
 		m_fAttackTime = 0.f;
 
-		if (abs(fLength) > 1.f)
+		if (abs(fLength) > 2.f)
 		{
 			return TEXT("Monster_Bug_State_Run");
 		}

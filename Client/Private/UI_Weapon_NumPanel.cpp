@@ -81,7 +81,7 @@ HRESULT CUI_Weapon_NumPanel::Render()
 	if (FAILED(m_pVIBufferCom->Render()))
 		return E_FAIL;
 	
-	m_pGameInstance->Draw_Font(TEXT("Font_Nexon"), m_strNum, _float2(1290.f + m_iCloneIndex * 100.f, 840.f), XMVectorSet(1.f, 1.f, 1.0f, 1.f), XMConvertToRadians(-5.f), 0.8f);
+
 
 	return S_OK;
 }

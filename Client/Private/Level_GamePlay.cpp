@@ -60,6 +60,9 @@ HRESULT CLevel_GamePlay::Initialize()
 	if (FAILED(ParseInitialize()))
 		return E_FAIL;
 
+	//if (FAILED(Ready_TestObject()))
+	//	return E_FAIL;
+
 	//if (FAILED(Ready_Layer_Item(TEXT("Layer_Item"))))
 	//	return E_FAIL;
 
@@ -332,6 +335,14 @@ HRESULT CLevel_GamePlay::Ready_Layer_DecoObject(const _wstring& strLayerTag)
 	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Portal"), TEXT("Layer_Portal"))))
 		return E_FAIL;
 	
+	return S_OK;
+}
+
+HRESULT CLevel_GamePlay::Ready_TestObject()
+{
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Bullet_Font"), TEXT("Layer_Font"))))
+		return E_FAIL;
+
 	return S_OK;
 }
 

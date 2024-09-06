@@ -54,8 +54,8 @@ wstring CFSM_Mon_Shield_Attack::Late_Update(_float fTimeDelta)
 	_vector vPos = m_tDesc.pTransform->Get_State(CTransform::STATE_POSITION);
 
 	_vector vDistance = vTargetPos - vPos;
-	XMVector4Length(vDistance);
-	_float fLength = XMVectorGetX(vDistance);
+	
+	_float fLength = XMVectorGetX(XMVector4Length(vDistance));
 
 	if (m_fAttackEndTime >= m_tDesc.pModel->Get_Anim(13)->Get_Duration())
 	{

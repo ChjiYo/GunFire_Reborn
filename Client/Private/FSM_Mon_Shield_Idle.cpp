@@ -44,8 +44,8 @@ wstring CFSM_Mon_Shield_Idle::Late_Update(_float fTimeDelta)
 	_vector vPos = m_tDesc.pTransform->Get_State(CTransform::STATE_POSITION);
 
 	_vector vDistance = vTargetPos - vPos;
-	XMVector4Length(vDistance);
-	_float fLength = XMVectorGetX(vDistance);
+	
+	_float fLength = XMVectorGetX(XMVector4Length(vDistance));
 
 	if (abs(fLength) < 10.f)
 	{

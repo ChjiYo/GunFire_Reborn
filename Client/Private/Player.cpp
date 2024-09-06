@@ -62,7 +62,8 @@ HRESULT CPlayer::Initialize(void* pArg)
     switch (m_pGameInstance->GetLoadingLevelIndex())
     {
     case LEVEL_GAMEPLAY:
-        m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 40.f , 1.0f , 60.f, 1.f });
+       // m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 40.f , 1.0f , 60.f, 1.f });
+        m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 4.f , 1.5f , 7.f, 1.f });
         break;
 
     case LEVEL_BOSS:
@@ -366,7 +367,7 @@ void CPlayer::Player_Weapon_Change()
 
         case SHURIKEN:
             Desc.iNumBullet = 1;
-            Desc.iNumBullet = 60;
+            Desc.iMaxBullet = 60;
             Desc.fAttackSpeed = 0.25f;
             __super::Add_PartObject(PART_WEAPON, TEXT("Prototype_GameObject_Weapon_Player_Shuriken"), &Desc);
 

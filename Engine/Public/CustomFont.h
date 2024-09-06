@@ -13,12 +13,15 @@ private:
 
 public:
 	HRESULT Initialize(const _tchar* pFontFilePath);
-	HRESULT Render(const _wstring & strText, const _float2 & vPosition, _fvector vColor = XMVectorSet(0.f, 0.f, 0.f, 1.f), _float rotation = 0.f, _float fScale = 1.f);
+	HRESULT Draw(const _tchar* pText, const _float2& vPosition, _fvector vFontColor, _float fRadian, _float2 vPivotPos, _float fScale);
+	HRESULT DeathDraw(const _tchar* pText, const _float3& vPosition, _fvector vFontColor, _float fRadian, _float2 vPivotPos, _float fScale);
 	
-
 private:
 	ID3D11Device*				m_pDevice = { nullptr };
 	ID3D11DeviceContext*		m_pContext = { nullptr };
+	ID3D11BlendState*			m_pBlendState = { nullptr };
+
+	class CGameInstance*			m_pGameInstance = { nullptr };
 
 private:
 	SpriteBatch*				m_pBatch = { nullptr };

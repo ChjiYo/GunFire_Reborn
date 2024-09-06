@@ -53,10 +53,7 @@ public:
 
 	void		Set_Damage(_int iDamage)
 	{
-		if(Player_Desc.iShield <= 0 )
-			Player_Desc.iHp += iDamage;
-		else 
-			Player_Desc.iShield += iDamage;	
+		Player_Desc.iShield <= 0 ? Player_Desc.iHp += iDamage, Player_Desc.iShield = 0 : Player_Desc.iShield += iDamage;
 
 		m_fShieldRecoveryTimer = 0.f;
 	}

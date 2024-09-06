@@ -55,10 +55,10 @@ wstring CFSM_Mon_Bug_Run::Late_Update(_float fTimeDelta)
 	_vector vPos = m_tDesc.pTransform->Get_State(CTransform::STATE_POSITION);
 
 	_vector vDistance = vTargetPos - vPos;
-	XMVector4Length(vDistance);
-	_float fLength = XMVectorGetX(vDistance);
+	
+	_float fLength = XMVectorGetX(XMVector4Length(vDistance));
 
-	if (abs(fLength) < 0.25f)
+	if (abs(fLength) < 1.75f)
 		return TEXT("Monster_Bug_State_Attack");
 
 	return TEXT("Monster_Bug_State_Run");

@@ -80,7 +80,7 @@ HRESULT CUI_Player_HpBar::Render()
 	if (FAILED(m_pVIBufferCom->Render()))
 		return E_FAIL;
 
-	m_pGameInstance->Draw_Font(TEXT("Font_Nexon"), m_strHp + TEXT(" / ") + m_strMaxHp, _float2(m_fPosX + 130.f, m_fPosY - 25.f), XMVectorSet(0.7f, 1.f, 0.3f, 1.f), XMConvertToRadians(-5.f), 0.8f);
+	
 	
 	return S_OK;
 }

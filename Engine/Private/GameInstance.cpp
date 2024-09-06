@@ -359,9 +359,14 @@ HRESULT CGameInstance::Add_Font(ID3D11Device* pDevice, ID3D11DeviceContext* pCon
 	return m_pFont_Manager->Add_Font( pDevice, pContext , strFontTag, strFontFilePath);
 }
 
-HRESULT CGameInstance::Draw_Font(const _wstring& strFontTag, const _wstring& strText, const _float2& vPosition, _fvector vColor, _float fRotation, _float fScale)
+HRESULT CGameInstance::Draw_Font(const _wstring& strFontTag, const _tchar* pText, const _float2& vPosition, _fvector vFontColor, _float fRadian, _float2 vPivotPos, _float fScale)
 {
-	return m_pFont_Manager->Render(strFontTag, strText, vPosition, vColor, fRotation, fScale);
+	return m_pFont_Manager->Draw_Font(strFontTag, pText, vPosition, vFontColor, fRadian, vPivotPos, fScale);
+}
+
+HRESULT CGameInstance::DeathDraw_Font(const _wstring& strFontTag, const _tchar* pText, const _float3& vPosition, _fvector vFontColor, _float fRadian, _float2 vPivotPos, _float fScale)
+{
+	return m_pFont_Manager->DeathDraw_Font(strFontTag, pText, vPosition, vFontColor, fRadian, vPivotPos, fScale);
 }
 
 _float4 CGameInstance::Picked_Position(_bool* pPick)

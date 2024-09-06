@@ -35,7 +35,7 @@ private:
 	HRESULT Ready_Layer_Monster(const _wstring& strLayerTag);
 	HRESULT Ready_Layer_DecoObject(const _wstring& strLayerTag);
 
-
+	HRESULT Ready_TestObject();
 private:
 	class CData_Manager* m_pDataMgr = {};
 

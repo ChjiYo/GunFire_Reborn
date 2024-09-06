@@ -102,6 +102,8 @@
 #include "UI_Boss_Icon.h"
 #include "UI_Boss_HpPanel.h"
 
+#include "UI_Bullet_Font.h"
+
 CLoader::CLoader(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	: m_pDevice { pDevice }
 	, m_pContext { pContext }
@@ -474,7 +476,12 @@ HRESULT CLoader::Loading_For_StaticLevel()
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Player"),
 		CPlayer::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
-	
+
+	/* For.Prototype_GameObject_Player */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_Bullet_Font"),
+		CUI_Bullet_Font::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
 	return S_OK;
 }
 

@@ -34,7 +34,7 @@ protected:
 
 public:
 	MON_DESC Get_MonDesc() { return m_tMonDesc; }
-	void Set_Damage(_uint iDamage)
+	void Set_Damage(_int iDamage)
 	{
 		m_tMonDesc.iHp += iDamage;
 	}

@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "UI_Bullet_Font.h"
+#include "GameInstance.h"
 
 CUI_Bullet_Font::CUI_Bullet_Font(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
     :CGameObject { pDevice ,pContext }
@@ -39,12 +40,12 @@ void CUI_Bullet_Font::Update(_float fTimeDelta)
 
 void CUI_Bullet_Font::Late_Update(_float fTimeDelta)
 {
-
+    m_pGameInstance->Add_RenderObject(CRenderer::RG_UI, this);
 }
 
 HRESULT CUI_Bullet_Font::Render()
 {
-
+    m_pGameInstance->DeathDraw_Font(TEXT("Font_Nexon"), TEXT("Áø¿µ"), _float3(8.f, 5.f, 8.f), XMVectorSet(0.f, 0.f, 0.f, 1.f));
 
     return S_OK;
 }

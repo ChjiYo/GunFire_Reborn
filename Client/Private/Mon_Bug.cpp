@@ -61,9 +61,9 @@ HRESULT CMon_Bug::Initialize(void* pArg)
 
 void CMon_Bug::Priority_Update(_float fTimeDelta)
 {
+	__super::Priority_Update(fTimeDelta);
 
 	m_pStateCom->Priority_Update(fTimeDelta);
-
 }
 
 void CMon_Bug::Update(_float fTimeDelta)

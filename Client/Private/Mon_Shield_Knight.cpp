@@ -116,9 +116,6 @@ HRESULT CMon_Shield_Knight::Render()
 			return E_FAIL;
 	}
 
-	wstring m_strMaxHp = to_wstring(m_iAnimFrame);
-	m_pGameInstance->Draw_Font(TEXT("Font_Nexon"), m_strMaxHp, _float2(1200.f, 100.f), XMVectorSet(0.7f, 1.f, 0.3f, 1.f), XMConvertToRadians(-5.f), 0.8f);
-
 	return S_OK;
 }
 
