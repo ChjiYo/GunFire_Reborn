@@ -32,6 +32,8 @@ public:
 	HRESULT Clear_Navi();
 	vector<class CCell*> Get_Cell() { return m_Cells; }
 	
+	_vector OutLine(_vector vPos);
+	_vector SliderDIr(_vector vPos, _vector TargetDir);
 private:
 	vector<class CCell*>				m_Cells;
 	_int								m_iCurrentCellIndex = { -1 };

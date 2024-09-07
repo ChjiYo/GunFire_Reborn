@@ -64,8 +64,7 @@ _bool CCell::isIn(_fvector vPosition, _int* pNeighborIndex)
 
 		if (0 < XMVectorGetX(XMVector3Dot(vDir, vNormal)))
 		{	
-			
-
+	
 			*pNeighborIndex = m_iNeighborIndices[i];
 			return false;
 		}
@@ -73,6 +72,8 @@ _bool CCell::isIn(_fvector vPosition, _int* pNeighborIndex)
 	//XMPlaneFromPoints();   
 	return true;
 }
+
+
 
 #ifdef _DEBUG
 

@@ -38,6 +38,7 @@ public:
 	//플레이어가 안에 들어왔는지 체크
 	_bool isIn(_fvector vPosition, _int* pNeighborIndex);
 
+
 #ifdef _DEBUG
 public:
 	HRESULT Render();

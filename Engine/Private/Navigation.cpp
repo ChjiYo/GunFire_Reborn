@@ -135,7 +135,7 @@ _bool CNavigation::is_Move(_fvector vPosition)
 	_vector		vLocalPos = XMVector3TransformCoord(vPosition, XMMatrixInverse(nullptr, XMLoadFloat4x4(&m_WorldMatrix)));
 
 	_int		iNeighborIndex = { -1 };
-
+	
 	if (true == m_Cells[m_iCurrentCellIndex]->isIn(vLocalPos, &iNeighborIndex))
 	{
 		return true;
@@ -373,6 +373,44 @@ HRESULT CNavigation::Clear_Navi()
 	m_Cells.clear();
 
 	return S_OK;
+}
+
+_vector CNavigation::OutLine(_vector vPos)
+{
+	CCell* pCurrentCell = m_Cells.at(m_iCurrentCellIndex );
+
+	for (size_t i = 0; i < CCell::LINE_END; i++)
+	{
+		_vector vPointA = XMLoadFloat3(&pCurrentCell->Get_Point(i));
+		_vector vPointB = XMLoadFloat3(&pCurrentCell->Get_Point((i + 1) % CCell::POINT_END));
+
+		_vector vDir = XMVector3Normalize(vPos - vPointA);
+		_vector vLine = vPointB - vPointA;
+
+		// 노멀 벡터 계산, Y축은 0으로 가정 (2D 플레인)
+		_vector vNormal = XMVectorSet(-XMVectorGetZ(vLine), 0.f, XMVectorGetX(vLine), 0.f);
+		vNormal = XMVector3Normalize(vNormal);
+		  
+		// 경계를 벗어나려는지 체크
+		if (XMVectorGetX(XMVector3Dot(vDir, vNormal)) > 0)
+		{
+			return XMVector3Normalize(vLine);  // 선분의 방향 벡터 반환
+		}
+	}
+
+	return XMVectorZero();  // 기본 값 반환 (경계가 아닌 경우)
+}
+
+_vector CNavigation::SliderDIr(_vector vPos, _vector TargetDir)
+{
+	// OutLine 결과 캐싱
+	_vector vOutline = OutLine(vPos);
+
+	// 내적 결과로 슬라이딩 방향 결정
+	_float fDot = XMVectorGetX(XMVector3Dot(vOutline, TargetDir));
+
+	// 내적 값을 선분 벡터 전체에 곱해 슬라이딩 벡터 계산
+	return XMVector3Normalize(vOutline * fDot);
 }
 
 CNavigation * CNavigation::Create(ID3D11Device * pDevice, ID3D11DeviceContext * pContext, const _tchar * pNavigationDataFilePath)
