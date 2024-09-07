@@ -8,7 +8,7 @@
 
 _uint		g_iSizeX = 10240;
 _uint		g_iSizeY = 5760;
-
+ 
 CRenderer::CRenderer(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	: m_pDevice{ pDevice }
 	, m_pContext{ pContext }
@@ -44,7 +44,7 @@ HRESULT CRenderer::Initialize(ID3D11Device* pDevice, ID3D11DeviceContext* pConte
 		return E_FAIL;
 
 
-
+	
 	/* ¸ÖÆ¼·»´õÅ¸°Ù¿¡ Å¸°ÙµéÀ» ¸ð¾Æ³õ´Â´Ù. */
 	if (FAILED(m_pGameInstance->Add_MRT(TEXT("MRT_GameObjects"), TEXT("Target_Diffuse"))))
 		return E_FAIL;

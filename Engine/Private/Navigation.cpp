@@ -395,6 +395,8 @@ _vector CNavigation::OutLine(_vector vPos)
 		{
 			return XMVector3Normalize(vLine);  
 		}
+		else
+			return XMVectorZero();
 	}
 
 	return XMVectorZero();  
@@ -404,7 +406,11 @@ _vector CNavigation::SliderDIr(_vector vMovingPos, _vector TargetDir)
 {
 
 	_vector vOutline = OutLine(vMovingPos);
+	_vector vResult=  XMVectorEqual(vOutline, XMVectorZero());
+	_bool bResult = XMVector4EqualInt(vResult, XMVectorTrueInt());
 
+	if(bResult)
+		return XMVectorZero();
 
 	_float fDot = XMVectorGetX(XMVector3Dot(vOutline, TargetDir));
 

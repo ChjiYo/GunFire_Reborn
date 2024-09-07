@@ -82,7 +82,6 @@ public:
 
 private:
 	void ShieldRecovery();
-	void PositionSave();
 
 private:
 	CNavigation*		m_pNavigationCom = { nullptr };

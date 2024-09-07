@@ -92,23 +92,29 @@ void CTransform::Go_StraightY(_float fTimeDelta, CNavigation* pNavigation, _bool
 {
 	_vector	vPosition = Get_State(STATE_POSITION);
 	_vector	vLook = Get_State(STATE_LOOK);
-	_float3 vLookDir = {};
-	XMStoreFloat3(&vLookDir, vLook);
-	vLookDir.y = 0.f;
+	vLook  = XMVectorSetY(vLook,0.f);
+
+	_vector vSlideVector = pNavigation->SliderDIr(vPosition, vLook);
+	//
+	_vector vResult = XMVectorEqual(vSlideVector, XMVectorZero());
+	_bool bResult = XMVector4EqualInt(vResult, XMVectorTrueInt());
+	
+	
+	if(bResult)
+		vPosition += XMVector3Normalize(vLook) * m_fSpeedPerSec * fTimeDelta;
+	else
+		vPosition += vSlideVector * m_fSpeedPerSec * fTimeDelta;
+
 
 
 	if ((nullptr == pNavigation || true == pNavigation->is_Move(vPosition) || bMove) )
 	{
-		vPosition += XMVector3Normalize(XMLoadFloat3(&vLookDir)) * m_fSpeedPerSec * fTimeDelta;
 		Set_State(STATE_POSITION, vPosition);
 		return;
 	}
-	else
+	else if(false == pNavigation->is_Move(vPosition))
 	{
-		//+ vLook * m_fSpeedPerSec * fTimeDelta
-		vPosition += pNavigation->SliderDIr(vPosition, vLook * m_fSpeedPerSec * fTimeDelta);
-		Set_State(STATE_POSITION, vPosition);
-		//pNavigation->Init_Index(this);
+ 		Set_State(STATE_POSITION, vPosition);	 
 		return;
 	}
 

@@ -50,6 +50,7 @@ void CCamera_Free::Priority_Update(_float fTimeDelta)
 	//__super::Priority_Update(fTimeDelta);
 	m_pGameInstance->Set_Transform(CPipeLine::D3DTS_VIEW, m_pTransformCom->Get_WorldMatrix_Inverse());
 	m_pGameInstance->Set_Transform(CPipeLine::D3DTS_PROJ, XMMatrixPerspectiveFovLH(m_fFovy, m_fViewportWidth / m_fViewportHeight, m_fNear, m_fFar));
+
 }
 
 void CCamera_Free::Update(_float fTimeDelta)
