@@ -96,18 +96,18 @@ void CTransform::Go_StraightY(_float fTimeDelta, CNavigation* pNavigation, _bool
 	XMStoreFloat3(&vLookDir, vLook);
 	vLookDir.y = 0.f;
 
-	vPosition += XMVector3Normalize(XMLoadFloat3(&vLookDir)) * m_fSpeedPerSec * fTimeDelta;
 
 	if ((nullptr == pNavigation || true == pNavigation->is_Move(vPosition) || bMove) )
 	{
+		vPosition += XMVector3Normalize(XMLoadFloat3(&vLookDir)) * m_fSpeedPerSec * fTimeDelta;
 		Set_State(STATE_POSITION, vPosition);
 		return;
 	}
 	else
 	{
-	//vPosition += pNavigation->SliderDIr(vPosition, vLook) * fTimeDelta;
-	//Set_State(STATE_POSITION, vPosition);
-	//pNavigation->Init_Index(this);
+		vPosition += pNavigation->SliderDIr(vPosition, vLook * m_fSpeedPerSec * fTimeDelta);
+		Set_State(STATE_POSITION, vPosition);
+		pNavigation->Init_Index(this);
 		return;
 	}
 

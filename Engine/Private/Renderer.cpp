@@ -116,6 +116,7 @@ HRESULT CRenderer::Initialize(ID3D11Device* pDevice, ID3D11DeviceContext* pConte
 
 	if (FAILED(m_pDevice->CreateTexture2D(&TextureDesc, nullptr, &pDepthStencilTexture)))
 		return E_FAIL;
+	  
 
 	/* RenderTarget */
 	/* ShaderResource */

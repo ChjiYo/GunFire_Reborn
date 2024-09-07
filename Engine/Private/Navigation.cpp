@@ -387,30 +387,28 @@ _vector CNavigation::OutLine(_vector vPos)
 		_vector vDir = XMVector3Normalize(vPos - vPointA);
 		_vector vLine = vPointB - vPointA;
 
-		// 노멀 벡터 계산, Y축은 0으로 가정 (2D 플레인)
-		_vector vNormal = XMVectorSet(-XMVectorGetZ(vLine), 0.f, XMVectorGetX(vLine), 0.f);
+		_vector vNormal = XMVectorSet(-XMVectorGetZ(vLine) * -1.f, 0.f, XMVectorGetX(vLine), 0.f);
 		vNormal = XMVector3Normalize(vNormal);
 		  
-		// 경계를 벗어나려는지 체크
-		if (XMVectorGetX(XMVector3Dot(vDir, vNormal)) > 0)
+
+		if (XMVectorGetX(XMVector3Dot(vDir, vNormal)) < 0)
 		{
-			return XMVector3Normalize(vLine);  // 선분의 방향 벡터 반환
+			return XMVector3Normalize(vLine);  
 		}
 	}
 
-	return XMVectorZero();  // 기본 값 반환 (경계가 아닌 경우)
+	return XMVectorZero();  
 }
 
-_vector CNavigation::SliderDIr(_vector vPos, _vector TargetDir)
+_vector CNavigation::SliderDIr(_vector vMovingPos, _vector TargetDir)
 {
-	// OutLine 결과 캐싱
-	_vector vOutline = OutLine(vPos);
 
-	// 내적 결과로 슬라이딩 방향 결정
+	_vector vOutline = OutLine(vMovingPos);
+
+
 	_float fDot = XMVectorGetX(XMVector3Dot(vOutline, TargetDir));
 
-	// 내적 값을 선분 벡터 전체에 곱해 슬라이딩 벡터 계산
-	return XMVector3Normalize(vOutline * fDot);
+	return vOutline * fDot;
 }
 
 CNavigation * CNavigation::Create(ID3D11Device * pDevice, ID3D11DeviceContext * pContext, const _tchar * pNavigationDataFilePath)
