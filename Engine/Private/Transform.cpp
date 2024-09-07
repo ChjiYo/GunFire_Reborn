@@ -105,9 +105,10 @@ void CTransform::Go_StraightY(_float fTimeDelta, CNavigation* pNavigation, _bool
 	}
 	else
 	{
+		//+ vLook * m_fSpeedPerSec * fTimeDelta
 		vPosition += pNavigation->SliderDIr(vPosition, vLook * m_fSpeedPerSec * fTimeDelta);
 		Set_State(STATE_POSITION, vPosition);
-		pNavigation->Init_Index(this);
+		//pNavigation->Init_Index(this);
 		return;
 	}
 

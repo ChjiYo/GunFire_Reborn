@@ -385,13 +385,13 @@ _vector CNavigation::OutLine(_vector vPos)
 		_vector vPointB = XMLoadFloat3(&pCurrentCell->Get_Point((i + 1) % CCell::POINT_END));
 
 		_vector vDir = XMVector3Normalize(vPos - vPointA);
-		_vector vLine = vPointB - vPointA;
+		_vector vLine = vPointB - vPointA  ;
 
-		_vector vNormal = XMVectorSet(-XMVectorGetZ(vLine) * -1.f, 0.f, XMVectorGetX(vLine), 0.f);
+		_vector vNormal = XMVectorSet(XMVectorGetZ(vLine) * -1.f, 0.f, XMVectorGetX(vLine) , 0.f);
 		vNormal = XMVector3Normalize(vNormal);
 		  
 
-		if (XMVectorGetX(XMVector3Dot(vDir, vNormal)) < 0)
+		if (XMVectorGetX(XMVector3Dot(vDir, vNormal)) > 0)
 		{
 			return XMVector3Normalize(vLine);  
 		}
