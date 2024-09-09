@@ -20,6 +20,14 @@ RasterizerState RS_Default
     FrontCounterClockwise = false;
 };
 
+/* D3D11_RASTERIZER_DESC */
+RasterizerState RS_Fill_WireFrame
+{
+    FillMode = WireFrame;
+    CullMode = Back;
+    FrontCounterClockwise = false;
+};
+
 RasterizerState RS_Cull_CW
 {
     FillMode = Solid;

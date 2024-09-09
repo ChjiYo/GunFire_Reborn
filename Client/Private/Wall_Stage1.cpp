@@ -89,8 +89,8 @@ HRESULT CWall_Stage1::Monster_Create()
 	//}
 
 	Desc.vPos = { 10.f, 1.f, 10.f};
-	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Mon_Knight"), TEXT("Layer_Monster_Stage1"), &Desc)))
-		return E_FAIL;
+	//if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Mon_Knight"), TEXT("Layer_Monster_Stage1"), &Desc)))
+	//	return E_FAIL;
 
 	//for (int i = 0; i < 2; ++i)
 	//{

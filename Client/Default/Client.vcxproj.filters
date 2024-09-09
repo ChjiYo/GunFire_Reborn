@@ -558,6 +558,9 @@
     <ClCompile Include="..\private\Box.cpp">
       <Filter>02.GameObjects\Deco\Box</Filter>
     </ClCompile>
+    <ClCompile Include="..\private\VFX_Spectrum.cpp">
+      <Filter>02.GameObjects\Effect\Player_Effect\Spectrum</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Public\Level_Logo.h">
@@ -1100,6 +1103,9 @@
     <ClInclude Include="..\public\Box.h">
       <Filter>02.GameObjects\Deco\Box</Filter>
     </ClInclude>
+    <ClInclude Include="..\public\VFX_Spectrum.h">
+      <Filter>02.GameObjects\Effect\Player_Effect\Spectrum</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -1361,9 +1367,6 @@
     </Filter>
     <Filter Include="02.GameObjects\Deco\Wall_Stage\Stage1">
       <UniqueIdentifier>{037ca03a-bb23-44f8-bd12-071d893db1fd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02.GameObjects\Deco\Wall_Stage\Stage2">
-      <UniqueIdentifier>{80cf1549-0c69-486c-bfbc-2b446f0b9baf}</UniqueIdentifier>
     </Filter>
     <Filter Include="02.GameObjects\Deco\Ceiling">
       <UniqueIdentifier>{be5c8577-8447-4aea-b4cf-d3ad9c1a0bd6}</UniqueIdentifier>
@@ -1718,6 +1721,12 @@
     </Filter>
     <Filter Include="02.GameObjects\Deco\Box">
       <UniqueIdentifier>{dd14ad5d-3bad-40e8-9423-7043115aa479}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Wall_Stage\Stage2">
+      <UniqueIdentifier>{80cf1549-0c69-486c-bfbc-2b446f0b9baf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Effect\Player_Effect\Spectrum">
+      <UniqueIdentifier>{ce727878-3fdc-4d0b-bf68-58b2d34aba55}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

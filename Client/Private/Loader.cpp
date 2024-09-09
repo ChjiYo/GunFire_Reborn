@@ -88,6 +88,8 @@
 #include "Skill_Dragon_Breath.h"
 #include "Skill_Dragon_Dust.h"
 
+#include "VFX_Spectrum.h"
+
 #include "VFX_Mon_Breath.h"
 #include "VFX_Mon_Dust.h"
 #include "VFX_Mon_Circle.h"
@@ -503,6 +505,13 @@ HRESULT CLoader::Loading_For_LogoLevel()
 
 	/* 객체원형을 로드한다. */
 	lstrcpy(m_szLoadingText, TEXT("객체원형을 로딩 중 입니다."));
+
+	
+
+	/* For.Prototype_GameObject_VFX_Specrum */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_VFX_Specrum"),
+		CVFX_Spectrum::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
 
 	/* For.Prototype_GameObject_BackGround */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_BackGround"),
@@ -1129,6 +1138,11 @@ HRESULT CLoader::Loading_For_BossLevel()
 	/* For.Prototype_Component_Model_Monster_Dragon*/
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Model_Monster_Dragon"),
 		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_ANIM, TEXT("../Bin/DataFiles/Dragon.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Model_Archer*/
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Model_Monster_Archer"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_ANIM, TEXT("../Bin/DataFiles/Monster_Archer.dat"), PreTransformMatrix))))
 		return E_FAIL;
 
 		PreTransformMatrix = XMMatrixScaling(0.01f, 0.01f, 0.01f) * XMMatrixRotationY(XMConvertToRadians(180.0f));
