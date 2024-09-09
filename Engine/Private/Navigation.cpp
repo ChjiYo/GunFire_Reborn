@@ -389,14 +389,17 @@ _vector CNavigation::OutLine(_vector vPos)
 
 		_vector vNormal = XMVectorSet(XMVectorGetZ(vLine) * -1.f, 0.f, XMVectorGetX(vLine) , 0.f);
 		vNormal = XMVector3Normalize(vNormal);
-		  
+		_float fTmp = XMVectorGetX(XMVector3Dot(vDir, vNormal));
 
 		if (XMVectorGetX(XMVector3Dot(vDir, vNormal)) > 0)
 		{
 			return XMVector3Normalize(vLine);  
 		}
 		else
+		{
 			return XMVectorZero();
+		}
+			
 	}
 
 	return XMVectorZero();  
