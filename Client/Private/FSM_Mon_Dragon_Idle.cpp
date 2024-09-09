@@ -10,6 +10,8 @@
 #include "VFX_Monster.h"
 #include "Skill_Monster.h"
 
+#include "VFX_Mon_PosCircle.h"
+
 CFSM_Mon_Dragon_Idle::CFSM_Mon_Dragon_Idle(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	:CFSM_Monster{ pDevice , pContext }
 {
@@ -93,13 +95,10 @@ void CFSM_Mon_Dragon_Idle::Enter()
 	m_tDesc.pTransform->LookAt(m_pPlayerTransform->Get_State(CTransform::STATE_POSITION));
 	XMVectorSetY(m_tDesc.pTransform->Get_State(CTransform::STATE_POSITION), -3.f);
 
-	CSkill_Monster::SKILL_DESC Desc = {};
+	CVFX_Mon_PosCircle::VFX_DESC Desc = {};
 	Desc.fSpeedPerSec = 10.f;
 	Desc.fRotationPerSec = XMConvertToRadians(90.0f);
 	Desc.pOriginTransform = m_tDesc.pTransform;
-	Desc.iSkillDamage = 5.f;
-	Desc.iNumSkill = 1;
-	Desc.iNumParts = CSkill::PART_END;
 
 	m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_VFX_Dragon_PosCircle"), TEXT("Layer_Skill_Dragon_PosCircle"), &Desc);
 		

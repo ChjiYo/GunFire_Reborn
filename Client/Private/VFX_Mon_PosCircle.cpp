@@ -6,12 +6,12 @@
 #include "Player.h"
 
 CVFX_Mon_PosCircle::CVFX_Mon_PosCircle(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
-    :CSkill_Monster{ pDevice , pContext }
+    :CVFX{ pDevice , pContext }
 {
 }
 
 CVFX_Mon_PosCircle::CVFX_Mon_PosCircle(const CVFX_Mon_PosCircle& Prototype)
-    :CSkill_Monster{ Prototype }
+    :CVFX{ Prototype }
 {
 }
 
@@ -31,9 +31,11 @@ HRESULT CVFX_Mon_PosCircle::Initialize(void* pArg)
     if (FAILED(Ready_Components()))
         return E_FAIL;
 
+    VFX_DESC* pDesc = static_cast<VFX_DESC*>(pArg);
+    m_pOriginTransform = pDesc->pOriginTransform;
+  
     Safe_AddRef(m_pOriginTransform);
 
-    //m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetY(m_pOriginTransform->Get_State(CTransform::STATE_POSITION), m_iNumSkill * 0.01f));
     m_pTransformCom->Set_Scaled(8.f, 8.f, 8.f);
     m_pTransformCom->Rotation({ 1.f, 0.f , 0.f }, XMConvertToRadians(90.f));
 

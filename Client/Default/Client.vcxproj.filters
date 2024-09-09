@@ -543,12 +543,6 @@
     <ClCompile Include="..\private\UI_Boss_HpPanel.cpp">
       <Filter>02.GameObjects\UI\UI_Monster_State\UI_Boss_HpBar</Filter>
     </ClCompile>
-    <ClCompile Include="..\private\VFX_Mon_PosCircle.cpp">
-      <Filter>02.GameObjects\Effect\Monster_Effect\Pos_Circle</Filter>
-    </ClCompile>
-    <ClCompile Include="..\private\VFX.cpp">
-      <Filter>02.GameObjects\Effect</Filter>
-    </ClCompile>
     <ClCompile Include="..\private\Data_Manager.cpp">
       <Filter>95.Manager\Data</Filter>
     </ClCompile>
@@ -558,8 +552,14 @@
     <ClCompile Include="..\private\Box.cpp">
       <Filter>02.GameObjects\Deco\Box</Filter>
     </ClCompile>
+    <ClCompile Include="..\private\VFX.cpp">
+      <Filter>02.GameObjects\Effect\VFX</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\VFX_Mon_PosCircle.cpp">
+      <Filter>02.GameObjects\Effect\VFX\Pos_Circle</Filter>
+    </ClCompile>
     <ClCompile Include="..\private\VFX_Spectrum.cpp">
-      <Filter>02.GameObjects\Effect\Player_Effect\Spectrum</Filter>
+      <Filter>02.GameObjects\Effect\VFX\Spectrum</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1088,12 +1088,6 @@
     <ClInclude Include="..\public\UI_Boss_HpPanel.h">
       <Filter>02.GameObjects\UI\UI_Monster_State\UI_Boss_HpBar</Filter>
     </ClInclude>
-    <ClInclude Include="..\public\VFX_Mon_PosCircle.h">
-      <Filter>02.GameObjects\Effect\Monster_Effect\Pos_Circle</Filter>
-    </ClInclude>
-    <ClInclude Include="..\public\VFX.h">
-      <Filter>02.GameObjects\Effect</Filter>
-    </ClInclude>
     <ClInclude Include="..\public\Data_Manager.h">
       <Filter>95.Manager\Data</Filter>
     </ClInclude>
@@ -1103,8 +1097,14 @@
     <ClInclude Include="..\public\Box.h">
       <Filter>02.GameObjects\Deco\Box</Filter>
     </ClInclude>
+    <ClInclude Include="..\public\VFX.h">
+      <Filter>02.GameObjects\Effect\VFX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\VFX_Mon_PosCircle.h">
+      <Filter>02.GameObjects\Effect\VFX\Pos_Circle</Filter>
+    </ClInclude>
     <ClInclude Include="..\public\VFX_Spectrum.h">
-      <Filter>02.GameObjects\Effect\Player_Effect\Spectrum</Filter>
+      <Filter>02.GameObjects\Effect\VFX\Spectrum</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1707,9 +1707,6 @@
     <Filter Include="02.GameObjects\UI\UI_Monster_State\UI_Boss_HpBar">
       <UniqueIdentifier>{1b303adb-b3ba-49fa-bbc2-94bfc090fffd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02.GameObjects\Effect\Monster_Effect\Pos_Circle">
-      <UniqueIdentifier>{9d57211c-a8e7-4eb2-96b4-1cd1cf71e71a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="02.GameObjects\Effect\Monster_Effect\Bubble">
       <UniqueIdentifier>{21335ed4-b6cc-4448-8f0b-70221f51d3a5}</UniqueIdentifier>
     </Filter>
@@ -1727,6 +1724,15 @@
     </Filter>
     <Filter Include="02.GameObjects\Effect\Player_Effect\Spectrum">
       <UniqueIdentifier>{ce727878-3fdc-4d0b-bf68-58b2d34aba55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Effect\VFX">
+      <UniqueIdentifier>{be25a79f-c04f-4ad3-9ede-c96e221ae472}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Effect\VFX\Pos_Circle">
+      <UniqueIdentifier>{9d57211c-a8e7-4eb2-96b4-1cd1cf71e71a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Effect\VFX\Spectrum">
+      <UniqueIdentifier>{ff274b13-3445-46be-a3ae-6f64624c04bc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

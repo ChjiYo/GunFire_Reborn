@@ -4,12 +4,12 @@
 #include "GameInstance.h"
 
 CVFX_Spectrum::CVFX_Spectrum(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
-    :CVFX_Monster{ pDevice ,pContext }
+    :CVFX{ pDevice ,pContext }
 {
 }
 
 CVFX_Spectrum::CVFX_Spectrum(const CVFX_Spectrum& Prototype)
-    :CVFX_Monster{ Prototype }
+    :CVFX{ Prototype }
 {
 }
 
@@ -95,7 +95,7 @@ HRESULT CVFX_Spectrum::Ready_Components()
 
 HRESULT CVFX_Spectrum::Bind_ShaderResources()
 {
-    if (FAILED(__super::Bind_WorldMatrix(m_pShaderCom, "g_WorldMatrix")))
+    if (FAILED(m_pTransformCom->Bind_ShaderResource(m_pShaderCom, "g_WorldMatrix")))
         return E_FAIL;
 
     if (FAILED(m_pShaderCom->Bind_Matrix("g_ViewMatrix", &m_pGameInstance->Get_Transform_Float4x4(CPipeLine::D3DTS_VIEW))))

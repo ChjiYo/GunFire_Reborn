@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Skill_Monster.h"
+#include "VFX.h"
 
 BEGIN(Engine)
 class CShader;
@@ -9,7 +9,7 @@ class CVIBuffer_Rect;
 class CCollider;
 END
 
-class CVFX_Mon_PosCircle final :public CSkill_Monster
+class CVFX_Mon_PosCircle final :public CVFX
 {
 protected:
 	CVFX_Mon_PosCircle(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);

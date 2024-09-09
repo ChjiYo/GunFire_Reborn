@@ -1,17 +1,23 @@
 #pragma once
 
 #include "Client_Defines.h"
-#include "PartObject.h"
+#include "GameObject.h"
 
 
 BEGIN(Client)
 
-class CEffect abstract :public CPartObject
+class CVFX abstract :public CGameObject
 {
+public:
+	typedef struct :public CGameObject::GAMEOBJECT_DESC
+	{
+		CTransform* pOriginTransform = {};
+	}VFX_DESC;
+
 protected:
-	CEffect(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
-	CEffect(const CEffect& Prototype);
-	virtual ~CEffect() = default;
+	CVFX(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
+	CVFX(const CVFX& Prototype);
+	virtual ~CVFX() = default;
 
 public:
 	virtual HRESULT Initialize_Prototype() override;
@@ -23,6 +29,9 @@ public:
 
 protected:
 	HRESULT Ready_Components();
+
+protected:
+	CTransform* m_pOriginTransform = {};
 
 public:
 	virtual CGameObject* Clone(void* pArg) = 0;
