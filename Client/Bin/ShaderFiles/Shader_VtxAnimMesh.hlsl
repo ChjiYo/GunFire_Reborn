@@ -4,10 +4,15 @@
 float4x4 g_WorldMatrix, g_ViewMatrix, g_ProjMatrix;
 
 texture2D g_DiffuseTexture;
+texture2D g_NoiseTexture;
 
 /* ¸ðµ¨ ÀüÃ¼ÀÇ »À(x), ¸Þ½Ã¿¡°Ô ¿µÇâÀ» ÁÖ´Â »À(o)*/
 float4x4 g_BoneMatrices[512];
 
+vector g_PlayerPos;
+vector g_MyPos;
+
+float g_Timer;
 
 struct VS_IN
 {
@@ -87,9 +92,6 @@ PS_OUT PS_MAIN(PS_IN In)
 
     Out.vDiffuse = vMtrlDiffuse;
 
-	/* In.vNormal.xyz -> -1 ~ 1 */
-	/* Out.vNormal.xyz -> 0 ~ 1 */
-
     Out.vNormal = vector(In.vNormal.xyz * 0.5f + 0.5f, 0.f);
     Out.vDepth = vector(In.vProjPos.w / 1000.f, In.vProjPos.z / In.vProjPos.w, 0.f, 0.f);
 
@@ -97,21 +99,44 @@ PS_OUT PS_MAIN(PS_IN In)
 }
 
 
-PS_OUT PS_RED(PS_IN In)
+PS_OUT PS_Spectrum(PS_IN In)
 {
     PS_OUT Out;
 
     vector vMtrlDiffuse = g_DiffuseTexture.Sample(LinearSampler, In.vTexcoord);
     
-    vMtrlDiffuse.rgba = float4(1.f, 0.f, 0.f,1.f);
+    vMtrlDiffuse.rgba = float4(0.247f, 0.616f, 0.969f,0.5f);
+    
+    float fDist = distance(g_MyPos, g_PlayerPos);
+    
+    float fAlpha = saturate( (fDist / 1.f) - 1.f);
+    vMtrlDiffuse.a = fAlpha;
+    
     if (vMtrlDiffuse.a < 0.1f)
         discard;
 
     Out.vDiffuse = vMtrlDiffuse;
+    Out.vNormal = vector(In.vNormal.xyz * 0.5f + 0.5f, 0.f);
+    Out.vDepth = vector(In.vProjPos.w / 1000.f, In.vProjPos.z / In.vProjPos.w, 0.f, 0.f);
 
-	/* In.vNormal.xyz -> -1 ~ 1 */
-	/* Out.vNormal.xyz -> 0 ~ 1 */
+    return Out;
+}
 
+PS_OUT PS_Noise(PS_IN In)
+{
+    PS_OUT Out;
+
+    vector vMtrlDiffuse = g_DiffuseTexture.Sample(LinearSampler, In.vTexcoord);
+    
+    float fNoiseValue = g_NoiseTexture.Sample(LinearSampler, In.vTexcoord).r;
+    
+    if (vMtrlDiffuse.a < 0.1f)
+        discard;
+    
+    if (fNoiseValue < g_Timer)
+        discard;
+
+    Out.vDiffuse = vMtrlDiffuse;
     Out.vNormal = vector(In.vNormal.xyz * 0.5f + 0.5f, 0.f);
     Out.vDepth = vector(In.vProjPos.w / 1000.f, In.vProjPos.z / In.vProjPos.w, 0.f, 0.f);
 
@@ -152,9 +177,6 @@ technique11 DefaultTechnique
         PixelShader = compile ps_5_0 PS_MAIN();
     }
 
-
-
-
     pass CW
     {
         SetRasterizerState(RS_Cull_CW);
@@ -182,7 +204,21 @@ technique11 DefaultTechnique
         PixelShader = compile ps_5_0 PS_MAIN_SHADOW();
     }
 
-    pass Test
+    pass Spectrum
+    {
+        SetRasterizerState(RS_Fill_WireFrame);
+        SetDepthStencilState(DSS_Default, 0);
+        SetBlendState(BS_AlphaBlend, float4(0.f, 0.f, 0.f, 0.f), 0xffffffff);
+
+
+        VertexShader = compile vs_5_0 VS_MAIN();
+        GeometryShader = NULL;
+        HullShader = NULL;
+        DomainShader = NULL;
+        PixelShader = compile ps_5_0 PS_Spectrum();
+    }
+
+    pass Noise
     {
         SetRasterizerState(RS_Default);
         SetDepthStencilState(DSS_Default, 0);
@@ -193,21 +229,7 @@ technique11 DefaultTechnique
         GeometryShader = NULL;
         HullShader = NULL;
         DomainShader = NULL;
-        PixelShader = compile ps_5_0 PS_RED();
+        PixelShader = compile ps_5_0 PS_Noise();
     }
-
-    pass Fill_WireFrame
-    {
-        SetRasterizerState(RS_Fill_WireFrame);
-        SetDepthStencilState(DSS_Default, 0);
-        SetBlendState(BS_Default, float4(0.f, 0.f, 0.f, 0.f), 0xffffffff);
-
-
-        VertexShader = compile vs_5_0 VS_MAIN();
-        GeometryShader = NULL;
-        HullShader = NULL;
-        DomainShader = NULL;
-        PixelShader = compile ps_5_0 PS_MAIN();
-    }
-	
+		
 }

@@ -35,8 +35,6 @@ private:
 	CShader* m_pShaderCom = { nullptr };
 	CBinModel* m_pModelCom = { nullptr };
 
-private:
-	_float m_fTimer = { 0.f };
 
 public:
 	static CVFX_Spectrum* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);

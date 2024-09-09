@@ -62,6 +62,10 @@ void CMon_Knight::Priority_Update(_float fTimeDelta)
 {
 	__super::Priority_Update(fTimeDelta);
 
+	if(m_bNoise)
+		m_fTimer += fTimeDelta;
+
+
 	m_pStateCom->Priority_Update(fTimeDelta);
 }
 
@@ -100,7 +104,7 @@ HRESULT CMon_Knight::Render()
 {
 	if (FAILED(Bind_ShaderResources()))
 		return E_FAIL;
-
+	
 	_uint		iNumMeshes = m_pModelCom->Get_NumMeshes();
 
 	for (size_t i = 0; i < iNumMeshes; i++)
@@ -110,7 +114,7 @@ HRESULT CMon_Knight::Render()
 
 		m_pModelCom->Bind_BoneMatrices(m_pShaderCom, "g_BoneMatrices", i);
 
-		if (FAILED(m_pShaderCom->Begin(3)))
+		if (FAILED(m_pShaderCom->Begin(4)))
 			return E_FAIL;
 
 		if (FAILED(m_pModelCom->Render(i)))
@@ -122,7 +126,10 @@ HRESULT CMon_Knight::Render()
 
 void CMon_Knight::Destroy()
 {
-	if (m_tMonDesc.iHp <= 0.f)
+	if (m_tMonDesc.iHp <= 0)
+		m_bNoise = true;
+
+	if (m_tMonDesc.iHp <= 0 && m_fTimer >= 1)
 		m_bDead = true;
 
 }
@@ -159,6 +166,11 @@ HRESULT CMon_Knight::Ready_Components()
 	/* Com_Model */
 	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Monster_Knight"),
 		TEXT("Com_Model"), reinterpret_cast<CComponent**>(&m_pModelCom))))
+		return E_FAIL;
+
+	/* Com_Texture */
+	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_Noise"),
+		TEXT("Com_Texture"), reinterpret_cast<CComponent**>(&m_pTextureCom))))
 		return E_FAIL;
 
 	/* Com_State */
@@ -202,6 +214,12 @@ HRESULT CMon_Knight::Bind_ShaderResources()
 	if (FAILED(m_pShaderCom->Bind_Matrix("g_ProjMatrix", &m_pGameInstance->Get_Transform_Float4x4(CPipeLine::D3DTS_PROJ))))
 		return E_FAIL;
 
+	if (FAILED(m_pTextureCom->Bind_ShaderResources(m_pShaderCom, "g_NoiseTexture")))
+		return E_FAIL;
+
+	if (FAILED(m_pShaderCom->Bind_RawValue("g_Timer", &m_fTimer, sizeof(_float))))
+		return E_FAIL;
+
 	return S_OK;
 }
 
@@ -237,6 +255,7 @@ void CMon_Knight::Free()
 	Safe_Release(m_pStateCom);
 	Safe_Release(m_pModelCom);
 	Safe_Release(m_pNavigationCom);
+	Safe_Release(m_pTextureCom);
 
 	for (size_t i = 0; i < COLL_END; i++)
 		Safe_Release(m_pColliderCom[i]);

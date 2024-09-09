@@ -7,6 +7,7 @@ BEGIN(Engine)
 class CShader;
 class CBinModel;
 class CState_Machine;
+class CTexture;
 END
 
 BEGIN(Client)
@@ -33,9 +34,10 @@ private:
 	CShader* m_pShaderCom = { nullptr };
 	CBinModel* m_pModelCom = { nullptr };
 	CState_Machine* m_pStateCom = { nullptr };
-
+	CTexture* m_pTextureCom = { nullptr };
 private:
-	_uint m_iAnimFrame = { 0 };
+	_float m_fTimer  = { 0 };
+	_bool m_bNoise = {false};
 
 private:
 	HRESULT Ready_State();

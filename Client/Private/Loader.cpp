@@ -484,6 +484,11 @@ HRESULT CLoader::Loading_For_StaticLevel()
 		CUI_Bullet_Font::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
+	/* For.Prototype_GameObject_VFX_Specrum */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_VFX_Specrum"),
+		CVFX_Spectrum::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
 	return S_OK;
 }
 
@@ -505,13 +510,6 @@ HRESULT CLoader::Loading_For_LogoLevel()
 
 	/* 객체원형을 로드한다. */
 	lstrcpy(m_szLoadingText, TEXT("객체원형을 로딩 중 입니다."));
-
-	
-
-	/* For.Prototype_GameObject_VFX_Specrum */
-	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_VFX_Specrum"),
-		CVFX_Spectrum::Create(m_pDevice, m_pContext))))
-		return E_FAIL;
 
 	/* For.Prototype_GameObject_BackGround */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_BackGround"),
@@ -555,11 +553,14 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/Black.png")))))
 		return E_FAIL;
 
-	
-
 	/* For.Prototype_Component_Texture_Portal*/
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_Portal"),
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/Deco/Portal/Portal_Tex.png")))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Texture_Noise */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_Noise"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Models/Monster/NoiseCaustic03.png")))))
 		return E_FAIL;
 
 	/* 모델을 로드한다. */

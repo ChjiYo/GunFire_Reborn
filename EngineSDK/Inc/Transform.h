@@ -62,6 +62,8 @@ public:
 		XMStoreFloat4((_float4*)&m_WorldMatrix.m[eState][0], vState);
 	}
 
+	void Set_WorldMatrix(_matrix matWorld) { XMLoadFloat4x4(&m_WorldMatrix) = matWorld; }
+
 public:
 	HRESULT Initialize();
 	void SetUp_TransformDesc(const TRANSFORM_DESC* pTransformDesc);

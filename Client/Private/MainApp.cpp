@@ -71,7 +71,7 @@ HRESULT CMainApp::Initialize()
 	return S_OK;
 }
 
-void CMainApp::Update(_float fTimeDelta)
+void CMainApp::Update(_float fTimeDelta) 
 {	
 	
 	if (!m_bShowTool && !(m_pGameInstance->GetLoadingLevelIndex() == LEVEL_BIN))

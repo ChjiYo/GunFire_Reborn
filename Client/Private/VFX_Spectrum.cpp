@@ -3,6 +3,9 @@
 #include "VFX_Spectrum.h"
 #include "GameInstance.h"
 
+#include "Player.h"
+#include "Weapon_Player_Pistol.h"
+
 CVFX_Spectrum::CVFX_Spectrum(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
     :CVFX{ pDevice ,pContext }
 {
@@ -29,21 +32,48 @@ HRESULT CVFX_Spectrum::Initialize(void* pArg)
     if (FAILED(Ready_Components()))
         return E_FAIL;
 
+    m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 0.f, 0.f, 0.f,1.f });
+    m_pModelCom->SetUp_Animation(0, false);
+
     return S_OK;
 }
 
 void CVFX_Spectrum::Priority_Update(_float fTimeDelta)
 {
-    m_fTimer += fTimeDelta;
-    if (m_fTimer >= 1.f)
-        m_fTimer = 0.f;
-
     __super::Priority_Update(fTimeDelta);
+
+    CPlayer* pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_Player")).back());
+    CWeapon_Player_Pistol* pWeapon = dynamic_cast<CWeapon_Player_Pistol*> (pPlayer->Get_Parts()[CPlayer::PART_WEAPON]);
+
+    //m_pTransformCom->Set_State(CTransform::STATE_POSITION , pPlayer->Get_Transform()->Get_State(CTrnasform::))
+
+    if (pWeapon->Get_PosSIze() != 0)
+    {
+
+
+        m_pTransformCom->Set_State(CTransform::STATE_RIGHT , pWeapon->Get_EffectPos().r[CTransform::STATE_RIGHT]);
+        m_pTransformCom->Set_State(CTransform::STATE_UP, pWeapon->Get_EffectPos().r[CTransform::STATE_UP]);
+        m_pTransformCom->Set_State(CTransform::STATE_LOOK, pWeapon->Get_EffectPos().r[CTransform::STATE_LOOK]);
+        m_pTransformCom->Set_State(CTransform::STATE_POSITION, pWeapon->Get_EffectPos().r[CTransform::STATE_POSITION]);
+
+        _float fPosX = XMVectorGetX(m_pTransformCom->Get_State(CTransform::STATE_POSITION));
+        _float fPosY = XMVectorGetY(m_pTransformCom->Get_State(CTransform::STATE_POSITION));
+        _float fPosZ = XMVectorGetZ(m_pTransformCom->Get_State(CTransform::STATE_POSITION));
+        _vector vPos = { fPosX, fPosY - 1.f, fPosZ ,  1.f };
+
+        m_pTransformCom->Set_State(CTransform::STATE_POSITION, vPos);
+        //m_pTransformCom->Set_WorldMatrix(matPos);
+    }
+
+    if (pPlayer->Get_WeaponID() != CPlayer::PISTOL)
+        m_bDead = true;
 }
 
 void CVFX_Spectrum::Update(_float fTimeDelta)
 {
     __super::Update(fTimeDelta);
+    
+    m_pModelCom->Play_Animation(fTimeDelta);
 }
 
 void CVFX_Spectrum::Late_Update(_float fTimeDelta)
@@ -68,7 +98,7 @@ HRESULT CVFX_Spectrum::Render()
        if (FAILED(m_pModelCom->Bind_BoneMatrices(m_pShaderCom, "g_BoneMatrices", (_uint)i)))
            return E_FAIL;
    
-       if (FAILED(m_pShaderCom->Begin(4)))
+       if (FAILED(m_pShaderCom->Begin(3)))
            return E_FAIL;
    
        if (FAILED(m_pModelCom->Render(i)))
@@ -104,7 +134,11 @@ HRESULT CVFX_Spectrum::Bind_ShaderResources()
     if (FAILED(m_pShaderCom->Bind_Matrix("g_ProjMatrix", &m_pGameInstance->Get_Transform_Float4x4(CPipeLine::D3DTS_PROJ))))
         return E_FAIL;
 
-    if (FAILED(m_pShaderCom->Bind_RawValue("g_Timer", &m_fTimer, sizeof(_float))))
+    CTransform* pPlayerTransform =  dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Layer_Player"), TEXT("Com_Transform")));
+    if (FAILED(m_pShaderCom->Bind_RawValue("g_PlayerPos", &pPlayerTransform->Get_State(CTransform::STATE_POSITION), sizeof(_vector))))
+        return E_FAIL;
+
+    if (FAILED(m_pShaderCom->Bind_RawValue("g_MyPos", &m_pTransformCom->Get_State(CTransform::STATE_POSITION), sizeof(_vector))))
         return E_FAIL;
 
     return S_OK;
@@ -140,7 +174,7 @@ CGameObject* CVFX_Spectrum::Clone(void* pArg)
 void CVFX_Spectrum::Free()
 {
     Safe_Release(m_pShaderCom);
-
+    Safe_Release(m_pModelCom);
 
     __super::Free();
 }

@@ -44,6 +44,8 @@ HRESULT CWeapon_Player_Pistol::Initialize(void* pArg)
     m_pPlayerTransform = Desc->pTargetTransform;
     Safe_AddRef(m_pPlayerTransform);
 
+    m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Prototype_GameObject_VFX_Specrum"), TEXT("Layer_Effect"));
+
     return S_OK;
 }
 
@@ -168,6 +170,7 @@ void CWeapon_Player_Pistol::Create_Bullet()
 
 void CWeapon_Player_Pistol::PositionSave()
 {
+    //0.075f
     if (m_fPosSaveTimer > 0.075f && !m_bBackPos)
     {
         m_fPosSaveTimer = 0.f;

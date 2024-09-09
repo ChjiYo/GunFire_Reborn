@@ -94,7 +94,7 @@ void CTransform::Go_StraightY(_float fTimeDelta, CNavigation* pNavigation, _bool
 	_vector	vLook = Get_State(STATE_LOOK);
 	vLook  = XMVectorSetY(vLook,0.f);
 
-	_vector vSlideVector = pNavigation->SliderDIr(vPosition + vLook * m_fSpeedPerSec * fTimeDelta, vLook);
+	_vector vSlideVector = pNavigation->SliderDIr(vPosition , vLook);
 	//
 	_vector vResult = XMVectorEqual(vSlideVector, XMVectorZero());
 	_bool bResult = XMVector4EqualInt(vResult, XMVectorTrueInt());
@@ -103,16 +103,17 @@ void CTransform::Go_StraightY(_float fTimeDelta, CNavigation* pNavigation, _bool
 	if(bResult)
 		vPosition += XMVector3Normalize(vLook) * m_fSpeedPerSec * fTimeDelta;
 	else
+	{
 		vPosition += vSlideVector * m_fSpeedPerSec * fTimeDelta;
-
-
-	Set_State(STATE_POSITION, vPosition);
-
+		pNavigation->Init_Index(this);
+	}
 	if ((nullptr == pNavigation || true == pNavigation->is_Move(vPosition) || bMove))
 	{
+		Set_State(STATE_POSITION, vPosition);
 		return;
 	}
-
+	else if(false == pNavigation->is_Move(vPosition))
+		Set_State(STATE_POSITION, vPosition);
 }
 
 void CTransform::Go_BackwardY(_float fTimeDelta, CNavigation* pNavigation, _bool bMove)

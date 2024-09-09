@@ -18,8 +18,8 @@ class CMonster abstract : public CContainerObject
 public:
 	typedef struct :public CContainerObject::CONTAINEROBJECT_DESC
 	{
-		_uint iHp = {};
-		_uint iMaxHp = {};
+		_int iHp = {};
+		_int iMaxHp = {};
 		_vector vPos = {};
 	}MON_DESC;
 

@@ -32,6 +32,13 @@ public:
 	virtual HRESULT Render() override;
 
 public:
+	_matrix Get_EffectPos() { 
+		return m_StackPos.front(); 
+	}
+
+	_uint Get_PosSIze() {
+		return m_StackPos.size();
+	}
 
 private:
 	CShader* m_pShaderCom = { nullptr };
