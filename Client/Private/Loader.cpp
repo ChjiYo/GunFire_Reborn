@@ -358,6 +358,10 @@ HRESULT CLoader::Loading_For_BinaryFile()
 		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Item/Weapon/BoomGun/Item_BoomGun.fbx", TEXT("../Bin/DataFiles/Item_BoomGun.dat"), PreTransformMatrix))))
 		return E_FAIL;
 
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Item_Coin"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_NONANIM, "../Bin/GunFire_Resources/Models/Item/Coin/Coin.fbx", TEXT("../Bin/DataFiles/Item_Coin.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
 
 	// LEVEL_BOSS
 
@@ -445,7 +449,7 @@ HRESULT CLoader::Loading_For_StaticLevel()
 
 	/* For.Prototype_Component_Texture_Number */
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_STATIC, TEXT("Prototype_Component_Texture_Number"),
-		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Num//Num_%d.dds"), 11))))
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Num//Num_%d.png"), 11))))
 		return E_FAIL;
 
 	lstrcpy(m_szLoadingText, TEXT("모델을 로딩 중 입니다."));
@@ -573,6 +577,11 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 	/* For.Prototype_Component_Texture_Noise */
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_Noise"),
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Models/Monster/NoiseCaustic03.png")))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Texture_Item_Coin */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_Item_Coin"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Coin/Icon_Coin.png")))))
 		return E_FAIL;
 
 	/* 모델을 로드한다. */
@@ -764,6 +773,10 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Item_BoomGun.dat"), PreTransformMatrix))))
 		return E_FAIL;
 	
+	/* For.Prototype_Component_Model_Item_Coin */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Item_Coin"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_NONANIM, TEXT("../Bin/DataFiles/Item_Coin.dat"), PreTransformMatrix))))
+		return E_FAIL;
 	
 
 	/* For.Prototype_Component_VIBuffer_Rect_Instancing */

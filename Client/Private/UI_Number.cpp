@@ -18,6 +18,7 @@ HRESULT CUI_Number::Initialize_Prototype()
     if (FAILED(__super::Initialize_Prototype()))
         return E_FAIL;
 
+
     return S_OK;
 }
 
@@ -26,19 +27,51 @@ HRESULT CUI_Number::Initialize(void* pArg)
     if (FAILED(__super::Initialize(pArg)))
         return E_FAIL;
 
+    UI_NUM_DESC* Desc = static_cast<UI_NUM_DESC*>(pArg);
+    m_iTextureIndex = Desc->iTextureIndex;
+    m_iNumTexture = Desc->iNumUI;
+    m_fAngle = Desc->fAngle;
+    _uint iNumCnt = Desc->iNumCnt;
+
+    m_pOriginTransform = Desc->pTransform;
+    Safe_AddRef(m_pOriginTransform);
+
     if (FAILED(Ready_Component()))
         return E_FAIL;
+
+    _vector vPos = m_pOriginTransform->Get_State(CTransform::STATE_POSITION) + m_pOriginTransform->Get_State(CTransform::STATE_RIGHT) * ((Desc->iNumCnt + 1) * 0.5f);
+    m_pTransformCom->Set_State(CTransform::STATE_POSITION, vPos);
+    
+    m_pTransformCom->Set_Scaled(0.5f , 0.5f, 0.5f);
 
     return S_OK;
 }
 
 void CUI_Number::Priority_Update(_float fTimeDelta)
 {
-    
+    CTransform* pPlayerTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Layer_Player"), TEXT("Com_Transform")));
+    m_pTransformCom->LookAt(-pPlayerTransform->Get_State(CTransform::STATE_POSITION));
+
+    m_pTransformCom->Gravity(0.2f, XMVectorGetY(m_pOriginTransform->Get_State(CTransform::STATE_POSITION)), fTimeDelta);
+
+    m_fDeleteTimer += fTimeDelta;
 }
 
 void CUI_Number::Update(_float fTimeDelta)
 {
+    m_pTransformCom->Go_Up(fTimeDelta);
+
+    _float WarfPosX = XMVectorGetX(m_pOriginTransform->Get_State(CTransform::STATE_POSITION)) + 1.f * cos(m_fAngle * (3.14f / 180.f));
+    _float WarfPosZ = XMVectorGetZ(m_pOriginTransform->Get_State(CTransform::STATE_POSITION)) - 1.f * sin(m_fAngle * (3.14f / 180.f));
+
+    _vector vDir = { WarfPosX  ,XMVectorGetY(m_pOriginTransform->Get_State(CTransform::STATE_POSITION)) , WarfPosZ };
+    vDir = XMVector3Normalize(vDir);
+
+    _vector vPos = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
+    vPos += vDir * 5.f * fTimeDelta;
+    m_pTransformCom->Set_State(CTransform::STATE_POSITION, vPos);
+
+    Destroy(fTimeDelta);
 }
 
 void CUI_Number::Late_Update(_float fTimeDelta)
@@ -51,10 +84,10 @@ HRESULT CUI_Number::Render()
     if (FAILED(Bind_ShaderResources()))
         return E_FAIL;
 
-    if (FAILED(m_pTextureCom->Bind_ShaderResource(m_pShaderCom, "g_Texture", 0)))
+    if (FAILED(m_pTextureCom->Bind_ShaderResource(m_pShaderCom, "g_Texture", m_iTextureIndex)))
         return E_FAIL;
 
-    if (FAILED(m_pShaderCom->Begin(0)))
+    if (FAILED(m_pShaderCom->Begin(4)))
         return E_FAIL;
 
     if (FAILED(m_pVIBufferCom->Bind_Buffers()))
@@ -68,7 +101,16 @@ HRESULT CUI_Number::Render()
 
 HRESULT CUI_Number::Ready_Component()
 {
-    if (FAILED(__super::Ready_Components()))
+    //if (FAILED(__super::Ready_Components()))
+    //    return E_FAIL;
+
+    if (FAILED(__super::Add_Component(LEVEL_STATIC, TEXT("Prototype_Component_Shader_UI_VtxRect"),
+        TEXT("Com_Shader"), reinterpret_cast<CComponent**>(&m_pShaderCom))))
+        return E_FAIL;
+
+    /* For.Com_VIBuffer */
+    if (FAILED(__super::Add_Component(LEVEL_STATIC, TEXT("Prototype_Component_VIBuffer_Rect"),
+        TEXT("Com_VIBuffer"), reinterpret_cast<CComponent**>(&m_pVIBufferCom))))
         return E_FAIL;
 
     /* For.Com_Texture */
@@ -81,10 +123,31 @@ HRESULT CUI_Number::Ready_Component()
 
 HRESULT CUI_Number::Bind_ShaderResources()
 {
-    if (FAILED(__super::Bind_Perspective()))
+    //if (FAILED(__super::Bind_Perspective()))
+    //    return E_FAIL;
+
+    if (FAILED(m_pTransformCom->Bind_ShaderResource(m_pShaderCom, "g_WorldMatrix")))
+        return E_FAIL;
+
+    if (FAILED(m_pShaderCom->Bind_Matrix("g_ViewMatrix", &m_pGameInstance->Get_Transform_Float4x4(CPipeLine::D3DTS_VIEW))))
+        return E_FAIL;
+
+    if (FAILED(m_pShaderCom->Bind_Matrix("g_ProjMatrix", &m_pGameInstance->Get_Transform_Float4x4(CPipeLine::D3DTS_PROJ))))
+        return E_FAIL;
+
+    if (FAILED(m_pShaderCom->Bind_RawValue("g_Timer" , &m_fDeleteTimer, sizeof(_float))))
         return E_FAIL;
 
     return S_OK;
+}
+
+void CUI_Number::Destroy(_float fTimeDelta)
+{
+    if (m_fDeleteTimer >= 1.f)
+    {
+        m_bDead = true;
+        m_fDeleteTimer = 0.f;
+    }
 }
 
 CUI_Number* CUI_Number::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
@@ -115,5 +178,7 @@ CGameObject* CUI_Number::Clone(void* pArg)
 
 void CUI_Number::Free()
 {
+    Safe_Release(m_pOriginTransform);
+
     __super::Free();
 }

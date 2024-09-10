@@ -3,6 +3,12 @@
 #include "UIObject.h"
 #include "Client_Defines.h"
 
+BEGIN(Engine)
+
+class CTransform;
+
+END
+
 BEGIN(Client)
 
 class CUI_Number final :public CUIObject
@@ -10,7 +16,9 @@ class CUI_Number final :public CUIObject
 public:
 	typedef struct :public  CUIObject::UI_DESC
 	{
-		_uint iTextureIndex = {};
+		_uint iTextureIndex = {0};
+		_uint iNumCnt = { 0 };
+		_float fAngle = { 0.f };
 	}UI_NUM_DESC;
 private:
 	CUI_Number(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
@@ -29,13 +37,18 @@ private:
 	HRESULT Ready_Component();
 	HRESULT Bind_ShaderResources();
 
-private :
-	CShader* m_pShaderCom = { nullptr };
-	CTexture* m_pTextureCom = { nullptr };
-	CVIBuffer_Rect* m_pVIBufferCom = { nullptr };
+private:
+	void Destroy(_float fTimeDelta);
+
+private:
+	class CTransform* m_pOriginTransform = { nullptr };
 
 private:
 	_uint m_iTextureIndex = { 0 };
+	_uint m_iNumTexture = { 0 };
+
+	_float m_fDeleteTimer = { 0.f };
+	_float m_fAngle = { 0.f };
 
 public:
 	static CUI_Number* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);

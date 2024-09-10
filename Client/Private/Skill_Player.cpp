@@ -2,6 +2,9 @@
 
 #include "Skill_Player.h"
 #include "Monster.h"
+#include <stack>
+
+#include "UI_Number.h"
 
 CSkill_Player::CSkill_Player(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	:CSkill{ pDevice  , pContext }
@@ -35,6 +38,10 @@ HRESULT CSkill_Player::Initialize(void* pArg)
 
 void CSkill_Player::Priority_Update(_float fTimeDelta)
 {
+	m_fAngle++;
+
+	if (m_fAngle >= 360.f)
+		m_fAngle = 0.f;
 }
 
 void CSkill_Player::Update(_float fTimeDelta)
@@ -48,6 +55,15 @@ void CSkill_Player::Late_Update(_float fTimeDelta)
 	list<class CGameObject*> MonStageList3 = m_pGameInstance->Get_Layer(LEVEL_BOSS, TEXT("Layer_Monster"));
 
 	_int iDamage = rand() % 10 + m_iSkillDamage;
+	_uint iCopyDamage = iDamage;
+	_uint iNumCnt = { 0 };
+
+	stack<_uint> DamageStack = {};
+	for (int i = 0; iCopyDamage != 0 ; ++i)
+	{
+		DamageStack.push(iCopyDamage % 10);
+		iCopyDamage /= 10;
+	}
 
 	for (auto& ColliderIter : MonStageList1)
 	{
@@ -56,7 +72,22 @@ void CSkill_Player::Late_Update(_float fTimeDelta)
 		if (m_pColliderCom->isCollision(pMonster->Get_Collider(CMonster::COLL_AABB)))
 		{
 			pMonster->Set_Damage(-iDamage);
-			
+
+			CUI_Number::UI_NUM_DESC Desc = {};
+			Desc.iNumUI = log10(iDamage) + 1;
+			Desc.pTransform = pMonster->Get_Transform();
+			Desc.fAngle = m_fAngle;
+			Desc.fSpeedPerSec = 5.f;
+
+			for (int i = 0; i < DamageStack.size(); )
+			{
+				Desc.iTextureIndex = DamageStack.top();
+				Desc.iNumCnt = iNumCnt;
+				iNumCnt++;
+				m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Prototype_GameObject_UI_Number"), TEXT("Layer_UI_Number"), &Desc);
+				DamageStack.pop();
+			}
+
 			m_bDead = true;
 		}
 	}

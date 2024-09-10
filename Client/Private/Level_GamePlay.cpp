@@ -340,8 +340,8 @@ HRESULT CLevel_GamePlay::Ready_Layer_DecoObject(const _wstring& strLayerTag)
 
 HRESULT CLevel_GamePlay::Ready_TestObject()
 {
-	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Bullet_Font"), TEXT("Layer_Font"))))
-		return E_FAIL;
+	//if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Bullet_Font"), TEXT("Layer_Font"))))
+	//	return E_FAIL;
 
 	return S_OK;
 }
