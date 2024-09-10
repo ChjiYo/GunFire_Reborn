@@ -387,9 +387,6 @@
     <ClCompile Include="..\Private\UI_Weapon_YBullet.cpp">
       <Filter>02.GameObjects\UI\UI_Weapon_State\UI_Weapon_YBullet</Filter>
     </ClCompile>
-    <ClCompile Include="..\private\UI_Bullet_Font.cpp">
-      <Filter>02.GameObjects\UI\UI_Bullet_Font</Filter>
-    </ClCompile>
     <ClCompile Include="..\Private\UI_Player_Bar.cpp">
       <Filter>02.GameObjects\UI\UI_Player_State\UI_Player_Bar</Filter>
     </ClCompile>
@@ -560,6 +557,12 @@
     </ClCompile>
     <ClCompile Include="..\private\VFX_Spectrum.cpp">
       <Filter>02.GameObjects\Effect\VFX\Spectrum</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Skill_Mon_Boom.cpp">
+      <Filter>02.GameObjects\Skill\Monster_Skill\Boom</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\UI_Number.cpp">
+      <Filter>02.GameObjects\UI\UI_Num</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -929,9 +932,6 @@
     <ClInclude Include="..\Public\UI_Weapon_YBullet.h">
       <Filter>02.GameObjects\UI\UI_Weapon_State\UI_Weapon_YBullet</Filter>
     </ClInclude>
-    <ClInclude Include="..\public\UI_Bullet_Font.h">
-      <Filter>02.GameObjects\UI\UI_Bullet_Font</Filter>
-    </ClInclude>
     <ClInclude Include="..\Public\UI_Player_Bar.h">
       <Filter>02.GameObjects\UI\UI_Player_State\UI_Player_Bar</Filter>
     </ClInclude>
@@ -1106,6 +1106,12 @@
     <ClInclude Include="..\public\VFX_Spectrum.h">
       <Filter>02.GameObjects\Effect\VFX\Spectrum</Filter>
     </ClInclude>
+    <ClInclude Include="..\public\Skill_Mon_Boom.h">
+      <Filter>02.GameObjects\Skill\Monster_Skill\Boom</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\UI_Number.h">
+      <Filter>02.GameObjects\UI\UI_Num</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -1223,9 +1229,6 @@
     </Filter>
     <Filter Include="02.GameObjects\Skill\Player_Skill">
       <UniqueIdentifier>{99a9765a-d104-4009-99b3-c2fbaa7a56b4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02.GameObjects\UI\UI_Bullet_Font">
-      <UniqueIdentifier>{df879443-41b5-4d92-b01f-25a3dfd650af}</UniqueIdentifier>
     </Filter>
     <Filter Include="02.GameObjects\UI\UI_Cross_Hair">
       <UniqueIdentifier>{89f0c6ea-44ca-42fa-a852-7ec5a97c2ac6}</UniqueIdentifier>
@@ -1733,6 +1736,12 @@
     </Filter>
     <Filter Include="02.GameObjects\Effect\VFX\Spectrum">
       <UniqueIdentifier>{ff274b13-3445-46be-a3ae-6f64624c04bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Skill\Monster_Skill\Boom">
+      <UniqueIdentifier>{be61f90c-59d4-4559-b962-2d491d19014b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Num">
+      <UniqueIdentifier>{1334c191-2d82-42ac-a33b-d4a87dfa2b47}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

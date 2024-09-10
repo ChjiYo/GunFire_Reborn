@@ -18,7 +18,7 @@ BEGIN(Client)
 class CUIObject abstract : public CGameObject
 {
 public:
-	typedef struct
+	typedef struct :public CGameObject::GAMEOBJECT_DESC
 	{
 		class CTransform* pTransform = {};
 		CGameObject* pGameObject = {};

@@ -41,6 +41,11 @@ wstring CFSM_Mon_Boom_Attack::Update(_float fTimeDelta)
 {
 	if (m_fAttackEndTime >= m_tDesc.pModel->Get_Anim(3)->Get_Duration())
 	{
+		CSkill::SKILL_DESC Desc = {};
+		Desc.pOriginTransform = m_tDesc.pTransform;
+		Desc.iNumParts = CSkill::PART_END;
+
+		m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Skill_Mon_Boom"), TEXT("Layer_Monster_Skill"),&Desc);
 		m_tDesc.pOriginObj->Set_Dead();
 	}
 	

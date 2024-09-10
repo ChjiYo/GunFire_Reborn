@@ -55,6 +55,9 @@ HRESULT CTerrain_GamePlay::Render()
 	if (FAILED(__super::Bind_ShaderResources()))
 		return E_FAIL;
 
+	if (FAILED(m_pTextureCom[TEX_DIFFUSE]->Bind_ShaderResource(m_pShaderCom, "g_DiffuseTexture", 1)))
+		return E_FAIL;
+
 	if (FAILED(m_pShaderCom->Begin(0)))
 		return E_FAIL;
 

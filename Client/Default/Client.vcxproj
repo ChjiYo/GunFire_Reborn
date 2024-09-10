@@ -288,6 +288,7 @@
     <ClInclude Include="..\public\Skill_Dragon_Dust.h" />
     <ClInclude Include="..\public\Skill_Dragon_Floor.h" />
     <ClInclude Include="..\public\Skill_Monster.h" />
+    <ClInclude Include="..\public\Skill_Mon_Boom.h" />
     <ClInclude Include="..\Public\Skill_Player.h" />
     <ClInclude Include="..\Public\Skill_Pistol_Bullet.h" />
     <ClInclude Include="..\public\Skill_Shuriken_Bullet.h" />
@@ -308,7 +309,7 @@
     <ClInclude Include="..\Public\Tool_Save.h" />
     <ClInclude Include="..\Public\UIObject.h" />
     <ClInclude Include="..\public\UI_Boss_HpPanel.h" />
-    <ClInclude Include="..\public\UI_Bullet_Font.h" />
+    <ClInclude Include="..\public\UI_Number.h" />
     <ClInclude Include="..\Public\UI_Cross_Hair.h" />
     <ClInclude Include="..\public\UI_Mon_BarPanel.h" />
     <ClInclude Include="..\public\UI_Mon_HpBar.h" />
@@ -472,6 +473,7 @@
     <ClCompile Include="..\private\Skill_Dragon_Dust.cpp" />
     <ClCompile Include="..\private\Skill_Dragon_Floor.cpp" />
     <ClCompile Include="..\private\Skill_Monster.cpp" />
+    <ClCompile Include="..\private\Skill_Mon_Boom.cpp" />
     <ClCompile Include="..\Private\Skill_Player.cpp" />
     <ClCompile Include="..\Private\Skill_Pistol_Bullet.cpp" />
     <ClCompile Include="..\private\Skill_Shuriken_Bullet.cpp" />
@@ -492,7 +494,7 @@
     <ClCompile Include="..\Private\Tool_Save.cpp" />
     <ClCompile Include="..\Private\UIObject.cpp" />
     <ClCompile Include="..\private\UI_Boss_HpPanel.cpp" />
-    <ClCompile Include="..\private\UI_Bullet_Font.cpp" />
+    <ClCompile Include="..\private\UI_Number.cpp" />
     <ClCompile Include="..\Private\UI_Cross_Hair.cpp" />
     <ClCompile Include="..\private\UI_Mon_BarPanel.cpp" />
     <ClCompile Include="..\private\UI_Mon_HpBar.cpp" />

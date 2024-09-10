@@ -83,6 +83,7 @@
 #include "Mon_Dragon.h"
 
 #include "Skill_Archer_Bullet.h"
+#include "Skill_Mon_Boom.h"
 #include "Skill_Dragon_Bubble.h"
 #include "Skill_Dragon_Floor.h"
 #include "Skill_Dragon_Breath.h"
@@ -104,7 +105,7 @@
 #include "UI_Boss_Icon.h"
 #include "UI_Boss_HpPanel.h"
 
-#include "UI_Bullet_Font.h"
+#include "UI_Number.h"
 
 CLoader::CLoader(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	: m_pDevice { pDevice }
@@ -442,6 +443,11 @@ HRESULT CLoader::Loading_For_StaticLevel()
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/Skill/Player/Bullet/Bullet_%d.dds"), 4))))
 		return E_FAIL;
 
+	/* For.Prototype_Component_Texture_Number */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_STATIC, TEXT("Prototype_Component_Texture_Number"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Num//Num_%d.dds"), 11))))
+		return E_FAIL;
+
 	lstrcpy(m_szLoadingText, TEXT("모델을 로딩 중 입니다."));
 
 	_matrix			PreTransformMatrix = XMMatrixIdentity();
@@ -479,9 +485,9 @@ HRESULT CLoader::Loading_For_StaticLevel()
 		CPlayer::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
-	/* For.Prototype_GameObject_Player */
-	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_Bullet_Font"),
-		CUI_Bullet_Font::Create(m_pDevice, m_pContext))))
+	/* For.Prototype_GameObject_UI_Number */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_Number"),
+		CUI_Number::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
 	/* For.Prototype_GameObject_VFX_Specrum */
@@ -557,6 +563,12 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_Portal"),
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/Deco/Portal/Portal_Tex.png")))))
 		return E_FAIL;
+
+	/* For.Prototype_Component_Texture_Boom_Fire*/
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_Boom_Fire"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/Skill/Monster/Boom/sprite_%d.png"), 15))))
+		return E_FAIL;
+
 
 	/* For.Prototype_Component_Texture_Noise */
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_Noise"),
@@ -813,18 +825,22 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 		CMon_Shield_Knight::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
+	/* For.Prototype_GameObject_Weapon_Player_Pistol */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Weapon_Player_Pistol"),
 		CWeapon_Player_Pistol::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
+	/* For.Prototype_GameObject_Weapon_Player_Sniper */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Weapon_Player_Sniper"),
 		CWeapon_Player_Sniper::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
+	/* For.Prototype_GameObject_Weapon_Player_Shuriken */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Weapon_Player_Shuriken"),
 		CWeapon_Player_Shuriken::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
+	/* For.Prototype_GameObject_Weapon_Player_BoomGun */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Weapon_Player_BoomGun"),
 		CWeapon_Player_BoomGun::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
@@ -854,7 +870,10 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 		CSkill_Archer_Bullet::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
-	
+	/* For.Prototype_GameObject_Skill_Mon_Boom */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Skill_Mon_Boom"),
+		CSkill_Mon_Boom::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
 
 	/* For.Prototype_GameObject_Cube */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Cube"),

@@ -260,7 +260,7 @@ _uint CNavigation::Init_Index(class CTransform* pTransform)
 			
 		if (((m_vPosX.y < vPos.x && vPos.x < m_vPosX.x) && (m_vPosZ.y < vPos.z && vPos.z < m_vPosZ.x)))
 		{
-			m_iCurrentCellIndex = i;
+			m_iCurrentCellIndex = i ;
 
 			if (fHeightDist < 1.35f)
 			{

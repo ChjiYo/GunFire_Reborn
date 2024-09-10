@@ -56,6 +56,7 @@ void CSkill_Player::Late_Update(_float fTimeDelta)
 		if (m_pColliderCom->isCollision(pMonster->Get_Collider(CMonster::COLL_AABB)))
 		{
 			pMonster->Set_Damage(-iDamage);
+			
 			m_bDead = true;
 		}
 	}
