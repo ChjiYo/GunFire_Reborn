@@ -34,6 +34,7 @@
 #include "UI_Skill_Panel.h"
 #include "UI_Skill_Dash.h"
 #include "UI_Skill_Aiming.h"
+#include "UI_Coin.h"
 
 #include "Data_Manager.h"
 
@@ -60,7 +61,7 @@ HRESULT CMainApp::Initialize()
 		return E_FAIL;
 
 	//LOGO 먼저 (실수 2스택!!)
-	if (FAILED(Open_Level(LEVEL_BIN)))
+	if (FAILED(Open_Level(LEVEL_LOGO)))
 		return E_FAIL;	
 
 	if (FAILED(m_pGameInstance->Add_Font(m_pDevice, m_pContext,TEXT("Font_Nexon"), TEXT("../Bin/Resources/Fonts/144ex.spriteFont"))))
@@ -310,6 +311,11 @@ HRESULT CMainApp::Ready_Prototype_Component_ForStatic()
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Skill/UI_Skill_Dash.png")))))
 		return E_FAIL;
 
+	/* For.Prototype_Component_Texture_Item_Coin */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_STATIC, TEXT("Prototype_Component_Texture_Item_Coin"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Coin/Icon_Coin.png")))))
+		return E_FAIL;
+
 	return S_OK;
 }
 
@@ -411,6 +417,11 @@ HRESULT CMainApp::Ready_Prototoype_Resource_ForStatic()
 	/* For.Prototype_GameObject_UI_Weapon_Icon */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_Weapon_Icon"),
 		CUI_Weapon_Icon::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_UI_Coin */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_Coin"),
+		CUI_Coin::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
 	//UI_Skill_State

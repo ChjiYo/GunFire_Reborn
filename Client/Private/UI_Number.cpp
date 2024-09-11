@@ -30,7 +30,7 @@ HRESULT CUI_Number::Initialize(void* pArg)
     UI_NUM_DESC* Desc = static_cast<UI_NUM_DESC*>(pArg);
     m_iTextureIndex = Desc->iTextureIndex;
     m_iNumTexture = Desc->iNumUI;
-    m_fAngle = Desc->fAngle;
+    m_iAngle = Desc->iAngle;
     _uint iNumCnt = Desc->iNumCnt;
 
     m_pOriginTransform = Desc->pTransform;
@@ -50,19 +50,21 @@ HRESULT CUI_Number::Initialize(void* pArg)
 void CUI_Number::Priority_Update(_float fTimeDelta)
 {
     CTransform* pPlayerTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Layer_Player"), TEXT("Com_Transform")));
-    m_pTransformCom->LookAt(-pPlayerTransform->Get_State(CTransform::STATE_POSITION));
+    m_pTransformCom->LookAt(pPlayerTransform->Get_State(CTransform::STATE_POSITION));
+    m_pTransformCom->Radian_Turn(m_pTransformCom->Get_State(CTransform::STATE_UP), XMConvertToRadians(180.f));
 
-    m_pTransformCom->Gravity(0.2f, XMVectorGetY(m_pOriginTransform->Get_State(CTransform::STATE_POSITION)), fTimeDelta);
+    if(!m_pTransformCom->Gravity(0.2f, XMVectorGetY(m_pOriginTransform->Get_State(CTransform::STATE_POSITION)), fTimeDelta))
+        m_pTransformCom->Go_Up(fTimeDelta);
 
     m_fDeleteTimer += fTimeDelta;
 }
 
 void CUI_Number::Update(_float fTimeDelta)
 {
-    m_pTransformCom->Go_Up(fTimeDelta);
+  
 
-    _float WarfPosX = XMVectorGetX(m_pOriginTransform->Get_State(CTransform::STATE_POSITION)) + 1.f * cos(m_fAngle * (3.14f / 180.f));
-    _float WarfPosZ = XMVectorGetZ(m_pOriginTransform->Get_State(CTransform::STATE_POSITION)) - 1.f * sin(m_fAngle * (3.14f / 180.f));
+    _float WarfPosX = XMVectorGetX(m_pOriginTransform->Get_State(CTransform::STATE_POSITION)) + 1.f * cos(m_iAngle * (3.14f / 180.f));
+    _float WarfPosZ = XMVectorGetZ(m_pOriginTransform->Get_State(CTransform::STATE_POSITION)) - 1.f * sin(m_iAngle * (3.14f / 180.f));
 
     _vector vDir = { WarfPosX  ,XMVectorGetY(m_pOriginTransform->Get_State(CTransform::STATE_POSITION)) , WarfPosZ };
     vDir = XMVector3Normalize(vDir);

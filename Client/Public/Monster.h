@@ -53,7 +53,7 @@ public:
 public:
 	HRESULT Ready_Components();
 	HRESULT Ready_UI();
-
+	HRESULT	DropItem();
 
 protected:
 	CNavigation* m_pNavigationCom	= { nullptr };

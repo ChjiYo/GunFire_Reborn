@@ -45,6 +45,7 @@ HRESULT CSkill_Pistol_Bullet::Initialize(void* pArg)
 
 void CSkill_Pistol_Bullet::Priority_Update(_float fTimeDelta)
 {
+    __super::Priority_Update(fTimeDelta);
 }
 
 void CSkill_Pistol_Bullet::Update(_float fTimeDelta)

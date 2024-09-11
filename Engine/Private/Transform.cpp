@@ -133,6 +133,21 @@ void CTransform::Go_Up(_float fTimeDelta)
 	Set_State(STATE_POSITION, vPosition);
 }
 
+void CTransform::RangeChase(_float fTimeDelta, _vector vTargetPos, _float fRange)
+{
+	_vector	vPosition = Get_State(STATE_POSITION);
+
+	_vector vDir = XMVector3Normalize(vTargetPos - vPosition);
+
+	_float fDist = XMVectorGetX(XMVector3Length(vTargetPos - vPosition));
+	vPosition += vDir * m_fSpeedPerSec * fTimeDelta;
+	if (fDist <= fRange)
+	{
+		Set_State(STATE_POSITION, vPosition);
+		return;
+	}
+}
+
 _bool CTransform::Gravity(_float fWeight, _float fLandPosY, _float fTimeDelta)
 {
 	_float4 vPosition = {};

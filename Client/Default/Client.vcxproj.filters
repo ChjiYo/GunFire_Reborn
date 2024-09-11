@@ -564,6 +564,12 @@
     <ClCompile Include="..\private\UI_Number.cpp">
       <Filter>02.GameObjects\UI\UI_Num</Filter>
     </ClCompile>
+    <ClCompile Include="..\Private\Item_Coin.cpp">
+      <Filter>02.GameObjects\Item\Coin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\UI_Coin.cpp">
+      <Filter>02.GameObjects\UI\UI_Coin</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Public\Level_Logo.h">
@@ -1111,6 +1117,12 @@
     </ClInclude>
     <ClInclude Include="..\public\UI_Number.h">
       <Filter>02.GameObjects\UI\UI_Num</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Item_Coin.h">
+      <Filter>02.GameObjects\Item\Coin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\UI_Coin.h">
+      <Filter>02.GameObjects\UI\UI_Coin</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1742,6 +1754,12 @@
     </Filter>
     <Filter Include="02.GameObjects\UI\UI_Num">
       <UniqueIdentifier>{1334c191-2d82-42ac-a33b-d4a87dfa2b47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Item\Coin">
+      <UniqueIdentifier>{0008fd94-472c-4a90-bbc2-4b8f596785db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Coin">
+      <UniqueIdentifier>{3b733b93-65d2-44b5-a452-fbef4eeabdd7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

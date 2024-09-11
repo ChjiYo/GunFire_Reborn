@@ -36,7 +36,7 @@ protected:
 
 protected:
 	_float4 m_vDestoryPos = {};
-	_float m_fAngle = { 0.f };
+
 public:
 	virtual CGameObject* Clone(void* pArg) = 0;
 	virtual void Free() override;

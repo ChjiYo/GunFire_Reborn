@@ -55,11 +55,12 @@ PS_OUT PS_MAIN(PS_IN In)
       Out.vColor = g_Texture.Sample(LinearSampler, scaledTexCoord);
 
     // 알파 값이 0.1 이하인 경우 픽셀 제거
-    if (Out.vColor.a <= 0.1f)
-        discard;
-    
+ 
     if (In.vTexcoord.x >= g_Ratio)
         Out.vColor.rgb = float3(0.5f, 0.5f, 0.5f);
+    
+    if (Out.vColor.a <= 0.1f)
+        discard;
         
     return Out;
 }

@@ -140,8 +140,8 @@ HRESULT CRenderer::Initialize(ID3D11Device* pDevice, ID3D11DeviceContext* pConte
 		return E_FAIL;
 	if (FAILED(m_pGameInstance->Ready_RT_Debug(TEXT("Target_Specular"), 300.f, 500.f, 200.f, 200.f)))
 		return E_FAIL;
-	if (FAILED(m_pGameInstance->Ready_RT_Debug(TEXT("Target_LightDepth"), 1600.0f - 100.0f, 100.f, 200.f, 200.f)))
-		return E_FAIL;
+	//if (FAILED(m_pGameInstance->Ready_RT_Debug(TEXT("Target_LightDepth"), 1600.0f - 100.0f, 100.f, 200.f, 200.f)))
+	//	return E_FAIL;
 
 
 	//if (FAILED(m_pGameInstance->Ready_RT_Debug(TEXT("Target_Result"), 100.f, 900.f - 100.f, 200.f, 200.f)))

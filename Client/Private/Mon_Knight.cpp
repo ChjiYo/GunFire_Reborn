@@ -127,11 +127,16 @@ HRESULT CMon_Knight::Render()
 void CMon_Knight::Destroy()
 {
 	if (m_tMonDesc.iHp <= 0)
+	{
+		m_pModelCom->SetUp_Animation(0, false);
+		m_pTransformCom->Set_Speed(0);
 		m_bNoise = true;
-
+	}
 	if (m_tMonDesc.iHp <= 0 && m_fTimer >= 1)
+	{
+		DropItem();
 		m_bDead = true;
-
+	}
 }
 
 HRESULT CMon_Knight::Ready_State()

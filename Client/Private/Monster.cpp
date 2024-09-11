@@ -4,6 +4,8 @@
 #include "GameInstance.h"
 
 #include "Player.h"
+#include "Item.h"
+#include "UI_Coin.h"
 
 CMonster::CMonster(ID3D11Device * pDevice, ID3D11DeviceContext * pContext)
 	: CContainerObject{ pDevice, pContext }
@@ -46,7 +48,7 @@ void CMonster::Update(_float fTimeDelta)
 	if (m_pGameInstance->GetLoadingLevelIndex() == LEVEL_GAMEPLAY)
 	{
 		_float fNNaviHeight = m_pNavigationCom->Navi_Height(m_pTransformCom);
-		m_pTransformCom->Gravity(0.2f, fNNaviHeight + 0.25f, fTimeDelta);
+		m_pTransformCom->Gravity(0.1f, fNNaviHeight + 0.25f, fTimeDelta);
 	}
 }
 
@@ -63,7 +65,6 @@ void CMonster::Late_Update(_float fTimeDelta)
 		pPlayer->Set_Damage(-5);
 		m_fDamageDelay = 0.f;
 	}
-
 }
 
 HRESULT CMonster::Render()
@@ -94,6 +95,21 @@ HRESULT CMonster::Ready_UI()
 	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Monster_HpBar"), TEXT("Layer_UI_Monster_CHpBar"),&Desc)))
 		return E_FAIL;
 	
+	return S_OK;
+}
+
+HRESULT CMonster::DropItem()
+{
+	CItem::ITEM_DESC Desc = {};
+	Desc.pOriginTransform = m_pTransformCom;
+	Desc.fSpeedPerSec = 5.f;
+	Desc.fRotationPerSec = XMConvertToRadians(60.f);
+
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Item_Coin"), TEXT("Layer_Item_Coin"), &Desc)))
+		return E_FAIL;
+
+	//dynamic_cast<CUI_Coin*>(m_pGameInstance->Get_Layer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Layer_UI_Player_UI_Coin")).back())->Set_Coin(rand() % 100 + 10);
+
 	return S_OK;
 }
 

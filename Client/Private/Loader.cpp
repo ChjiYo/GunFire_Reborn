@@ -98,6 +98,7 @@
 #include "VFX_Mon_Bubble.h"
 
 #include "Item_BoomGun.h"
+#include "Item_Coin.h"
 
 #include "Portal.h"
 
@@ -579,11 +580,6 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Models/Monster/NoiseCaustic03.png")))))
 		return E_FAIL;
 
-	/* For.Prototype_Component_Texture_Item_Coin */
-	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_Item_Coin"),
-		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Coin/Icon_Coin.png")))))
-		return E_FAIL;
-
 	/* 모델을 로드한다. */
 	lstrcpy(m_szLoadingText, TEXT("모델(정점 -> 폴리곤 -> 메시 -> 모델)을 로딩 중 입니다."));	
 
@@ -1031,6 +1027,10 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Item_BoomGun"),
 		CItem_BoomGun::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Item_Coin"),
+		CItem_Coin::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
 	/* For.Prototype_GameObject_Effect_Deco_Snow */

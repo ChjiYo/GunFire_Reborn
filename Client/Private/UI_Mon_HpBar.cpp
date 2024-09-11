@@ -50,7 +50,8 @@ void CUI_Mon_HpBar::Priority_Update(_float fTimeDelta)
 	_float3 vPos = {};
 	XMStoreFloat3(&vPos , pCamTransform->Get_State(CTransform::STATE_POSITION));
 
-	m_pTransformCom->LookAt({ vPos.x ,3.f,  vPos.z , 1.f});
+	_vector vTmp = { vPos.x ,3.f,  vPos.z , 1.f };
+	m_pTransformCom->LookAt(vTmp);
 }
 
 void CUI_Mon_HpBar::Update(_float fTimeDelta)
@@ -89,7 +90,7 @@ HRESULT CUI_Mon_HpBar::Render()
 
 void CUI_Mon_HpBar::Destroy()
 {
-	if (m_pMonster->Get_Dead())
+	if (m_pMonster->Get_MonDesc().iHp <= 0)
 		m_bDead = true;
 }
 

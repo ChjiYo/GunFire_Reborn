@@ -81,6 +81,8 @@ public:
 
 	void Go_Up(_float fTimeDelta);
 
+	void RangeChase(_float fTimeDelta, _vector vTargetPos, _float fRange);
+
 	void Set_Speed(_float fSpeed) { m_fSpeedPerSec = fSpeed; }
 	_float Get_Speed() { return m_fSpeedPerSec; }
 

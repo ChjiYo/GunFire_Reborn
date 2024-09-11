@@ -38,10 +38,7 @@ HRESULT CSkill_Player::Initialize(void* pArg)
 
 void CSkill_Player::Priority_Update(_float fTimeDelta)
 {
-	m_fAngle++;
 
-	if (m_fAngle >= 360.f)
-		m_fAngle = 0.f;
 }
 
 void CSkill_Player::Update(_float fTimeDelta)
@@ -76,7 +73,7 @@ void CSkill_Player::Late_Update(_float fTimeDelta)
 			CUI_Number::UI_NUM_DESC Desc = {};
 			Desc.iNumUI = log10(iDamage) + 1;
 			Desc.pTransform = pMonster->Get_Transform();
-			Desc.fAngle = m_fAngle;
+			Desc.iAngle = rand() % 360;
 			Desc.fSpeedPerSec = 5.f;
 
 			for (int i = 0; i < DamageStack.size(); )

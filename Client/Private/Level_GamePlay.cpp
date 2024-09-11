@@ -202,6 +202,9 @@ HRESULT CLevel_GamePlay::Ready_UI_PlayerState()
 	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Player_ShieldBar"), TEXT("Layer_UI_Player_UI_Player_ShieldBar"))))
 		return E_FAIL;
 
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Coin"), TEXT("Layer_UI_Player_UI_Coin"))))
+		return E_FAIL;
+
 	//if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Player_HpBlankBar"), TEXT("Layer_UI_Player_BHpBlankBar"))))
 	//	return E_FAIL;
 

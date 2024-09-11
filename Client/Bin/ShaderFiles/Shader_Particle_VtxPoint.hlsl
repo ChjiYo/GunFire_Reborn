@@ -48,14 +48,14 @@ struct GS_IN
 
 struct GS_OUT
 {
-    float4 vPosition : SV_POSITION;
+    float4 vPosition : SV_POSITION; 
     float2 vTexcoord : TEXCOORD0;
     float2 vLifeTime : TEXCOORD1;
 };
 
 /* 사각형을 구성하기위한 정점을 생성할꺼야. */
 /* 항상 카메라를 쳐다보게끔 만들어줄꺼야. */
-/* g_vCamPosition위치랑 정점의 위치의 차를 통해 사각형이 바라봐야할 룩을 구할거야. */
+/* g_vCamPosition위치랑 정점의Co위치의 차를 통해 사각형이 바라봐야할 룩을 구할거야. */
 /* 월드공간상에서 연산이 일어난다고 볼 수 있기때문에 정점의 위치를 월드까지면 변환하여 전달한다. */
 
 /* GeometryShader : 정점을 추가 생성해줄 수 있다. */

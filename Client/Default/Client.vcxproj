@@ -223,6 +223,7 @@
     <ClInclude Include="..\public\FSM_Mon_Spear_Walk.h" />
     <ClInclude Include="..\public\Item.h" />
     <ClInclude Include="..\public\Item_BoomGun.h" />
+    <ClInclude Include="..\Public\Item_Coin.h" />
     <ClInclude Include="..\public\Item_Weapon.h" />
     <ClInclude Include="..\public\Level_Boss.h" />
     <ClInclude Include="..\public\Mon_Deash_Boom.h" />
@@ -309,6 +310,7 @@
     <ClInclude Include="..\Public\Tool_Save.h" />
     <ClInclude Include="..\Public\UIObject.h" />
     <ClInclude Include="..\public\UI_Boss_HpPanel.h" />
+    <ClInclude Include="..\public\UI_Coin.h" />
     <ClInclude Include="..\public\UI_Number.h" />
     <ClInclude Include="..\Public\UI_Cross_Hair.h" />
     <ClInclude Include="..\public\UI_Mon_BarPanel.h" />
@@ -416,6 +418,7 @@
     <ClCompile Include="..\private\FSM_Mon_Spear_Walk.cpp" />
     <ClCompile Include="..\private\Item.cpp" />
     <ClCompile Include="..\private\Item_BoomGun.cpp" />
+    <ClCompile Include="..\Private\Item_Coin.cpp" />
     <ClCompile Include="..\private\Item_Weapon.cpp" />
     <ClCompile Include="..\private\Level_Boss.cpp" />
     <ClCompile Include="..\private\Mon_Deash_Boom.cpp" />
@@ -494,6 +497,7 @@
     <ClCompile Include="..\Private\Tool_Save.cpp" />
     <ClCompile Include="..\Private\UIObject.cpp" />
     <ClCompile Include="..\private\UI_Boss_HpPanel.cpp" />
+    <ClCompile Include="..\private\UI_Coin.cpp" />
     <ClCompile Include="..\private\UI_Number.cpp" />
     <ClCompile Include="..\Private\UI_Cross_Hair.cpp" />
     <ClCompile Include="..\private\UI_Mon_BarPanel.cpp" />
