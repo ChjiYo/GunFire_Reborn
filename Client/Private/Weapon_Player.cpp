@@ -26,6 +26,8 @@ HRESULT CWeapon_Player::Initialize(void* pArg)
 	if (FAILED(__super::Initialize(pArg)))
 		return E_FAIL;
 
+	m_iBulletDamage = static_cast<PLAYER_WEAPON_DESC*>(pArg)->iBulletDamage;
+
 	return S_OK;
 }
 

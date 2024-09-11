@@ -179,6 +179,9 @@ HRESULT CLevel_GamePlay::Ready_LandObjects()
 	if (FAILED(Ready_Layer_Monster(TEXT("Layer_Monster"))))
 		return E_FAIL; 
 
+	if (FAILED(Ready_Layer_NPC(TEXT("Layer_NPC"))))
+		return E_FAIL;
+
 	return S_OK;
 }
 HRESULT CLevel_GamePlay::Ready_Layer_Item(const wstring& strLayerTag)
@@ -316,6 +319,14 @@ HRESULT CLevel_GamePlay::Ready_Layer_Monster(const _wstring & strLayerTag)
 	//	return E_FAIL; 
 
 return S_OK;
+}
+
+HRESULT CLevel_GamePlay::Ready_Layer_NPC(const _wstring& strLayerTag)
+{
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_NPC_Weapon"), strLayerTag)))
+		return E_FAIL; 
+
+	return S_OK;
 }
 
 HRESULT CLevel_GamePlay::Ready_Layer_DecoObject(const _wstring& strLayerTag)

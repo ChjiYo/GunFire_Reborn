@@ -2,6 +2,7 @@
 
 #include "Skill_Player.h"
 #include "Monster.h"
+#include <queue>
 #include <stack>
 
 #include "UI_Number.h"
@@ -32,6 +33,7 @@ HRESULT CSkill_Player::Initialize(void* pArg)
 	SKILL_DESC* Desc = static_cast<SKILL_DESC*>(pArg);
 	m_pOriginTransform = Desc->pOriginTransform;
 	m_vDestoryPos = Desc->vDestoryPos;
+	m_iSkillDamage = Desc->iSkillDamage;
 
 	return S_OK;
 }
@@ -74,7 +76,7 @@ void CSkill_Player::Late_Update(_float fTimeDelta)
 			Desc.iNumUI = log10(iDamage) + 1;
 			Desc.pTransform = pMonster->Get_Transform();
 			Desc.iAngle = rand() % 360;
-			Desc.fSpeedPerSec = 5.f;
+			Desc.fSpeedPerSec = 2.f;
 
 			for (int i = 0; i < DamageStack.size(); )
 			{

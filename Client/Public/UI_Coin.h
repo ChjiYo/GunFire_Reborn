@@ -21,13 +21,14 @@ public:
 	virtual HRESULT Render();
 
 public:
-	void Set_Coin(_uint iCoin) { m_iCoin += iCoin; }
+	void Set_Coin(_uint iCoin) { m_iCopyCoin += iCoin; }
 
 private:
 	virtual HRESULT Ready_Components();
 
 private:
 	_uint m_iCoin = { 0 };
+	_uint m_iCopyCoin = { 0 };
 	
 public:
 	static CUI_Coin* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);

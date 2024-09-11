@@ -570,6 +570,24 @@
     <ClCompile Include="..\private\UI_Coin.cpp">
       <Filter>02.GameObjects\UI\UI_Coin</Filter>
     </ClCompile>
+    <ClCompile Include="..\private\NPC.cpp">
+      <Filter>02.GameObjects\NPC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\NPC_Weapon.cpp">
+      <Filter>02.GameObjects\NPC\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\UI_NPC_Weapon_Info.cpp">
+      <Filter>02.GameObjects\UI\UI_NPC_Weapon\Info</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\UI_NPC_Weapon_Btn.cpp">
+      <Filter>02.GameObjects\UI\UI_NPC_Weapon\Btn</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\UI_NPC_Weapon_Panel.cpp">
+      <Filter>02.GameObjects\UI\UI_NPC_Weapon\Panel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\UI_NPC_Weapon_Icon.cpp">
+      <Filter>02.GameObjects\UI\UI_NPC_Weapon\Icon</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Public\Level_Logo.h">
@@ -1123,6 +1141,24 @@
     </ClInclude>
     <ClInclude Include="..\public\UI_Coin.h">
       <Filter>02.GameObjects\UI\UI_Coin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\NPC.h">
+      <Filter>02.GameObjects\NPC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\NPC_Weapon.h">
+      <Filter>02.GameObjects\NPC\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\UI_NPC_Weapon_Info.h">
+      <Filter>02.GameObjects\UI\UI_NPC_Weapon\Info</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\UI_NPC_Weapon_Btn.h">
+      <Filter>02.GameObjects\UI\UI_NPC_Weapon\Btn</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\UI_NPC_Weapon_Panel.h">
+      <Filter>02.GameObjects\UI\UI_NPC_Weapon\Panel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\UI_NPC_Weapon_Icon.h">
+      <Filter>02.GameObjects\UI\UI_NPC_Weapon\Icon</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1760,6 +1796,27 @@
     </Filter>
     <Filter Include="02.GameObjects\UI\UI_Coin">
       <UniqueIdentifier>{3b733b93-65d2-44b5-a452-fbef4eeabdd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\NPC">
+      <UniqueIdentifier>{58f77a28-6a98-4d5e-8839-8316c5c31d7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\NPC\Weapon">
+      <UniqueIdentifier>{75becdbc-9da7-4c4d-8571-21c7f9468417}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_NPC_Weapon">
+      <UniqueIdentifier>{07877719-d73d-4441-a851-bed92cebb583}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_NPC_Weapon\Panel">
+      <UniqueIdentifier>{b132b830-ae69-4695-80d0-742348f97216}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_NPC_Weapon\Info">
+      <UniqueIdentifier>{e273f2d7-0e15-42ea-8185-0d23ca875feb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_NPC_Weapon\Btn">
+      <UniqueIdentifier>{33ab5d9c-13bc-4c47-9b38-cb15a21efe77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_NPC_Weapon\Icon">
+      <UniqueIdentifier>{e1d020a1-917d-4cc7-8bfb-b7e7880cecbf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -159,7 +159,7 @@ void CWeapon_Player_Pistol::Create_Bullet()
 	Desc.pOriginTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_Player"), TEXT("Com_Transform")));
 	Desc.fSpeedPerSec = 10.f;
 	Desc.fRotationPerSec = XMConvertToRadians(90.0f);
-    Desc.iSkillDamage = 100;
+    Desc.iSkillDamage = m_iBulletDamage;
 
     _bool		isPick = { false };
 

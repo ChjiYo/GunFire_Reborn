@@ -15,6 +15,7 @@ public:
 
 		_uint iNumBullet = {};
 		_uint iMaxBullet = {};
+		_uint iBulletDamage = {};
 		_float fAttackSpeed = {};
 	}PLAYER_WEAPON_DESC;
 
@@ -34,6 +35,7 @@ public:
 
 public:
 	_uint Get_CurrentBullet() { return m_iNumBullet; }
+	_uint Get_Damage() { return m_iBulletDamage; }
 
 
 protected:
@@ -42,6 +44,7 @@ protected:
 	_uint m_iNumMaxBullet = { 0 };
 	_float m_fAttackSpeed = { 0.f };
 	_float m_fAttackTimer = { 0.f };
+	_uint m_iBulletDamage = { 0 };
 
 public:
 	virtual void Free() override;

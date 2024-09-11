@@ -82,6 +82,13 @@
 #include "Mon_Deash_Boom.h"
 #include "Mon_Dragon.h"
 
+#include "NPC_Weapon.h"
+
+#include "UI_NPC_Weapon_Panel.h"
+#include "UI_NPC_Weapon_Info.h"
+#include "UI_NPC_Weapon_Btn.h"
+#include "UI_NPC_Weapon_Icon.h"
+
 #include "Skill_Archer_Bullet.h"
 #include "Skill_Mon_Boom.h"
 #include "Skill_Dragon_Bubble.h"
@@ -245,6 +252,10 @@ HRESULT CLoader::Loading_For_BinaryFile()
 
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Monster_Dragon"),
 		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_ANIM, "../Bin/GunFire_Resources/Models/Monster/Boss/Boss_Dragon/Dragon.fbx", TEXT("../Bin/DataFiles/Dragon.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_NPC_Weapon"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_ANIM, "../Bin/GunFire_Resources/Models/NPC/Weapon/NPC_Smith.fbx", TEXT("../Bin/DataFiles/NPC_Weapon.dat"), PreTransformMatrix))))
 		return E_FAIL;
 
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Box"),
@@ -580,6 +591,21 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Models/Monster/NoiseCaustic03.png")))))
 		return E_FAIL;
 
+	/* For.Prototype_Component_Texture_UI_NPC_Weapon_Panel */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_NPC_Weapon_Panel"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/NPC/Weapon/NPC_Weapon_Panel.png")))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Texture_UI_NPC_Weapon_Info */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_NPC_Weapon_Info"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/NPC/Weapon/NPC_Weapon_Info.png")))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Texture_UI_NPC_Weapon_Btn */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_NPC_Weapon_Btn"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/NPC/Weapon/NPC_Weapon_Btn.png")))))
+		return E_FAIL;
+
 	/* 모델을 로드한다. */
 	lstrcpy(m_szLoadingText, TEXT("모델(정점 -> 폴리곤 -> 메시 -> 모델)을 로딩 중 입니다."));	
 
@@ -612,26 +638,30 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_ANIM, TEXT("../Bin/DataFiles/Monster_Knight.dat"), PreTransformMatrix))))
 		return E_FAIL;
 
-	/* For.Prototype_Component_Model_Archer*/
+	/* For.Prototype_Component_Model_Monster_Shield_Knight*/
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Monster_Shield_Knight"),
 		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_ANIM, TEXT("../Bin/DataFiles/Monster_Shielded_Knight.dat"), PreTransformMatrix))))
 		return E_FAIL;
 
-	/* For.Prototype_Component_Model_Archer*/
+	/* For.Prototype_Component_Model_Monster_Spear*/
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Monster_Spear"),
 		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_ANIM, TEXT("../Bin/DataFiles/Monster_Spear.dat"), PreTransformMatrix))))
 		return E_FAIL;
 
-	/* For.Prototype_Component_Model_Archer*/
+	/* For.Prototype_Component_Model_Monster_Boom*/
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Monster_Boom"),
 		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_ANIM, TEXT("../Bin/DataFiles/Monster_Boom.dat"), PreTransformMatrix))))
 		return E_FAIL;
 
-	/* For.Prototype_Component_Model_Archer*/
+	/* For.Prototype_Component_Model_Monster_Deash_Boom*/
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Monster_Deash_Boom"),
 		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_ANIM, TEXT("../Bin/DataFiles/Monster_Deash_Boom.dat"), PreTransformMatrix))))
 		return E_FAIL;
 
+	/* For.Prototype_Component_Model_NPC_Weapon*/
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_NPC_Weapon"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_ANIM, TEXT("../Bin/DataFiles/NPC_Weapon.dat"), PreTransformMatrix))))
+		return E_FAIL;
 
 
 	PreTransformMatrix = XMMatrixRotationY(XMConvertToRadians(180.0f)) * XMMatrixTranslation(-5.8f, 19.2f, -87.8f);
@@ -829,6 +859,31 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 		CMon_Spear::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
+	/* For.Prototype_GameObject_NPC_Weapon */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_NPC_Weapon"),
+		CNPC_Weapon::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_UI_NPC_Weapon_Panel */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_NPC_Weapon_Panel"),
+		CUI_NPC_Weapon_Panel::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_UI_NPC_Weapon_Info */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_NPC_Weapon_Info"),
+		CUI_NPC_Weapon_Info::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_UI_NPC_Weapon_Btn */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_NPC_Weapon_Btn"),
+		CUI_NPC_Weapon_Btn::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_UI_NPC_Weapon_Icon */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_NPC_Weapon_Icon"),
+		CUI_NPC_Weapon_Icon::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+	
 	/* For.Prototype_GameObject_Mon_Shield_Knight */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Mon_Shield_Knight"),
 		CMon_Shield_Knight::Create(m_pDevice, m_pContext))))

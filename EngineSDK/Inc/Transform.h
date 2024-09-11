@@ -86,7 +86,7 @@ public:
 	void Set_Speed(_float fSpeed) { m_fSpeedPerSec = fSpeed; }
 	_float Get_Speed() { return m_fSpeedPerSec; }
 
-	_bool CTransform::Gravity(_float fWeight, _float fLandPosY, _float fTimeDelta);
+	_bool CTransform::Gravity(_float fWeight, _float fLandPosY, _float fTimeDelta );
 public:
 	/* Transform_Rotation */
 	void Turn(_fvector vAxis, _float fTimeDelta);

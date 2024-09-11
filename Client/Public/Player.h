@@ -60,9 +60,10 @@ public:
 
 	WEAPONID	Get_WeaponID() { 
 
-		int a = 10;
 		return m_eWeaponID; 
 	}
+
+
 	void ChangeWeapon(WEAPONID eWeaponID)
 	{
 		m_bWeaponChange = true;

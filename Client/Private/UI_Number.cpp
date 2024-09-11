@@ -39,7 +39,7 @@ HRESULT CUI_Number::Initialize(void* pArg)
     if (FAILED(Ready_Component()))
         return E_FAIL;
 
-    _vector vPos = m_pOriginTransform->Get_State(CTransform::STATE_POSITION) + m_pOriginTransform->Get_State(CTransform::STATE_RIGHT) * ((Desc->iNumCnt + 1) * 0.5f);
+    _vector vPos = m_pOriginTransform->Get_State(CTransform::STATE_POSITION) + (m_pOriginTransform->Get_State(CTransform::STATE_RIGHT) * ((Desc->iNumCnt) * 0.5f)) + (m_pOriginTransform->Get_State(CTransform::STATE_LOOK) * ((Desc->iNumCnt) * -0.5f));
     m_pTransformCom->Set_State(CTransform::STATE_POSITION, vPos);
     
     m_pTransformCom->Set_Scaled(0.5f , 0.5f, 0.5f);
@@ -63,14 +63,14 @@ void CUI_Number::Update(_float fTimeDelta)
 {
   
 
-    _float WarfPosX = XMVectorGetX(m_pOriginTransform->Get_State(CTransform::STATE_POSITION)) + 1.f * cos(m_iAngle * (3.14f / 180.f));
-    _float WarfPosZ = XMVectorGetZ(m_pOriginTransform->Get_State(CTransform::STATE_POSITION)) - 1.f * sin(m_iAngle * (3.14f / 180.f));
+    _float WarfPosX = XMVectorGetX(m_pOriginTransform->Get_State(CTransform::STATE_POSITION)) * cos(m_iAngle * (3.14f / 180.f));
+    _float WarfPosZ = XMVectorGetZ(m_pOriginTransform->Get_State(CTransform::STATE_POSITION)) * sin(m_iAngle * (3.14f / 180.f));
 
-    _vector vDir = { WarfPosX  ,XMVectorGetY(m_pOriginTransform->Get_State(CTransform::STATE_POSITION)) , WarfPosZ };
+    _vector vDir = { WarfPosX  ,XMVectorGetY(m_pOriginTransform->Get_State(CTransform::STATE_POSITION)) , WarfPosZ , 1.f};
     vDir = XMVector3Normalize(vDir);
 
     _vector vPos = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
-    vPos += vDir * 5.f * fTimeDelta;
+    vPos += vDir * 2.f * fTimeDelta;
     m_pTransformCom->Set_State(CTransform::STATE_POSITION, vPos);
 
     Destroy(fTimeDelta);

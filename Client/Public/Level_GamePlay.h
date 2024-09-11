@@ -33,6 +33,7 @@ private:
 	HRESULT Ready_Layer_Item(const wstring& strLayerTag);
 	HRESULT Ready_Layer_Player(const wstring& strLayerTag);
 	HRESULT Ready_Layer_Monster(const _wstring& strLayerTag);
+	HRESULT Ready_Layer_NPC(const _wstring& strLayerTag);
 	HRESULT Ready_Layer_DecoObject(const _wstring& strLayerTag);
 
 	HRESULT Ready_TestObject();

@@ -44,6 +44,8 @@ void CUI_Coin::Priority_Update(_float fTimeDelta)
 
 void CUI_Coin::Update(_float fTimeDelta)
 {
+	if (m_iCoin < m_iCopyCoin)
+		m_iCoin++;
 }
 
 void CUI_Coin::Late_Update(_float fTimeDelta)
@@ -71,7 +73,6 @@ HRESULT CUI_Coin::Render()
 	wstring m_strCoin = to_wstring(m_iCoin);
 	const _tchar* szCoin = m_strCoin.c_str();
 
-	
 	m_pGameInstance->Draw_Font(TEXT("Font_Nexon"), szCoin , _float2(1500.f, 25.f));
 
 	return S_OK;

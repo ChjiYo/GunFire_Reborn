@@ -36,6 +36,9 @@ public:
 	virtual void Late_Update(_float fTimeDelta) override;
 	virtual HRESULT Render() override;
 
+public:
+	_uint GetDamage() { return m_iSkillDamage; }
+
 protected:
 	HRESULT Ready_Components();
 

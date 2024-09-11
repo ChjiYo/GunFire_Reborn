@@ -238,6 +238,8 @@
     <ClInclude Include="..\public\Mountain_114.h" />
     <ClInclude Include="..\public\Mountain_310.h" />
     <ClInclude Include="..\public\Mountain_311.h" />
+    <ClInclude Include="..\public\NPC.h" />
+    <ClInclude Include="..\public\NPC_Weapon.h" />
     <ClInclude Include="..\public\Pillars101.h" />
     <ClInclude Include="..\public\Portal.h" />
     <ClInclude Include="..\public\Skill_Archer_Bullet.h" />
@@ -311,6 +313,10 @@
     <ClInclude Include="..\Public\UIObject.h" />
     <ClInclude Include="..\public\UI_Boss_HpPanel.h" />
     <ClInclude Include="..\public\UI_Coin.h" />
+    <ClInclude Include="..\public\UI_NPC_Weapon_Btn.h" />
+    <ClInclude Include="..\public\UI_NPC_Weapon_Icon.h" />
+    <ClInclude Include="..\public\UI_NPC_Weapon_Info.h" />
+    <ClInclude Include="..\public\UI_NPC_Weapon_Panel.h" />
     <ClInclude Include="..\public\UI_Number.h" />
     <ClInclude Include="..\Public\UI_Cross_Hair.h" />
     <ClInclude Include="..\public\UI_Mon_BarPanel.h" />
@@ -433,6 +439,8 @@
     <ClCompile Include="..\private\Mountain_114.cpp" />
     <ClCompile Include="..\private\Mountain_310.cpp" />
     <ClCompile Include="..\private\Mountain_311.cpp" />
+    <ClCompile Include="..\private\NPC.cpp" />
+    <ClCompile Include="..\private\NPC_Weapon.cpp" />
     <ClCompile Include="..\private\Pillars101.cpp" />
     <ClCompile Include="..\private\Portal.cpp" />
     <ClCompile Include="..\private\Skill_Archer_Bullet.cpp" />
@@ -498,6 +506,10 @@
     <ClCompile Include="..\Private\UIObject.cpp" />
     <ClCompile Include="..\private\UI_Boss_HpPanel.cpp" />
     <ClCompile Include="..\private\UI_Coin.cpp" />
+    <ClCompile Include="..\private\UI_NPC_Weapon_Btn.cpp" />
+    <ClCompile Include="..\private\UI_NPC_Weapon_Icon.cpp" />
+    <ClCompile Include="..\private\UI_NPC_Weapon_Info.cpp" />
+    <ClCompile Include="..\private\UI_NPC_Weapon_Panel.cpp" />
     <ClCompile Include="..\private\UI_Number.cpp" />
     <ClCompile Include="..\Private\UI_Cross_Hair.cpp" />
     <ClCompile Include="..\private\UI_Mon_BarPanel.cpp" />
