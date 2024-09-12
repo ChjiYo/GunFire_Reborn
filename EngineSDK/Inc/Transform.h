@@ -62,7 +62,9 @@ public:
 		XMStoreFloat4((_float4*)&m_WorldMatrix.m[eState][0], vState);
 	}
 
-	void Set_WorldMatrix(_matrix matWorld) { XMLoadFloat4x4(&m_WorldMatrix) = matWorld; }
+	void Set_WorldMatrix(_matrix matWorld) {
+		XMStoreFloat4x4(&m_WorldMatrix, matWorld);
+	}
 
 public:
 	HRESULT Initialize();

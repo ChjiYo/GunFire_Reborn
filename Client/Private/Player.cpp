@@ -269,12 +269,6 @@ void CPlayer::Player_Move(_float fTimeDelta)
         m_eWeaponID = PISTOL;
         m_bWeaponChange = true;
     }
-
-    if (m_pGameInstance->Key_Down('4'))
-    {
-        m_eWeaponID = SHURIKEN;
-        m_bWeaponChange = true;
-    }
 }
 
 void CPlayer::Player_Jump(_float fTimeDelta)
@@ -317,7 +311,7 @@ void CPlayer::Player_Weapon_Change()
             Desc.iNumBullet = 8;
             Desc.iMaxBullet = 999999999;
             Desc.fAttackSpeed = 0.25f;
-            Desc.iBulletDamage = 100;
+            Desc.iBulletDamage = m_vDamage[m_eWeaponID] + m_vUpgreadCnt[m_eWeaponID] * 10;
             __super::Add_PartObject(PART_WEAPON, TEXT("Prototype_GameObject_Weapon_Player_Pistol"), &Desc);
 
             break;
@@ -326,7 +320,7 @@ void CPlayer::Player_Weapon_Change()
             Desc.iNumBullet = 1;
             Desc.iMaxBullet = 60;
             Desc.fAttackSpeed = 0.25f;
-            Desc.iBulletDamage = 50;
+            Desc.iBulletDamage = m_vDamage[m_eWeaponID] + m_vUpgreadCnt[m_eWeaponID] * 10;
             __super::Add_PartObject(PART_WEAPON, TEXT("Prototype_GameObject_Weapon_Player_Shuriken"), &Desc);
 
             break;
@@ -336,7 +330,7 @@ void CPlayer::Player_Weapon_Change()
             Desc.iNumBullet = 8;
             Desc.iMaxBullet = 80;
             Desc.fAttackSpeed = 0.25f;
-            Desc.iBulletDamage = 200;
+            Desc.iBulletDamage = m_vDamage[m_eWeaponID] + m_vUpgreadCnt[m_eWeaponID] * 10;
             __super::Add_PartObject(PART_WEAPON, TEXT("Prototype_GameObject_Weapon_Player_Sniper"), &Desc);
 
             break;
@@ -345,7 +339,7 @@ void CPlayer::Player_Weapon_Change()
             Desc.iNumBullet = 30;
             Desc.iMaxBullet = 120;
             Desc.fAttackSpeed = 0.125f;
-            Desc.iBulletDamage = 25;
+            Desc.iBulletDamage = m_vDamage[m_eWeaponID] + m_vUpgreadCnt[m_eWeaponID] * 10;
             __super::Add_PartObject(PART_WEAPON, TEXT("Prototype_GameObject_Weapon_Player_BoomGun"), &Desc);
             break;
 

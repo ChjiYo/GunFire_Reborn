@@ -37,6 +37,9 @@ public:
 
 	HRESULT Clear_Resources(_uint iLevelIndex);
 	class list<class CGameObject*> Get_Layer(_uint iLevelIndex, const wstring& strLayerTag);
+
+public:
+	void SetDeltaTime(_float fFreeTimer) { m_fFreeDeltaTime = fFreeTimer; }
 	
 private:
 	map<const wstring, class CGameObject*>		m_Prototypes;
@@ -44,6 +47,9 @@ private:
 private:
 	_uint										m_iNumLevels = { 0 };
 	map<const wstring, class CLayer*>*			m_pLayers = { nullptr };
+
+private:
+	_float m_fFreeDeltaTime = { 1.f };
 
 private:
 	class CGameObject* Find_Prototype(const wstring& strPrototypeTag);

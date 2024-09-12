@@ -43,8 +43,13 @@ public:
 private:
 	CTransform*			m_pPlayerTransform = { nullptr };
 
+	_bool				m_bShowCursor = { true };
+	_bool				m_bTrueCurrsor = { false };
+	_bool				m_isCurrsorEnable = { true };
+
 	_float				m_fMouseSensor = {};
 	_float				m_fScopeLevel = { 0.f };
+
 	CAMERA_TYPE			m_eCameraType = { PLAYER };
 	
 private:

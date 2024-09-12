@@ -2,6 +2,7 @@
 
 #include "UIObject.h"
 #include "Monster.h"
+#include "Player.h"
 
 BEGIN(Client)
 
@@ -22,6 +23,9 @@ public:
 
 private:
 	virtual HRESULT Ready_Components();
+
+private:
+	CPlayer* m_pPlayer = { nullptr };
 
 public:
 	static CUI_NPC_Weapon_Info* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);

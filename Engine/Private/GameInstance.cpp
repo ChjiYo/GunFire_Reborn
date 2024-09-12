@@ -287,6 +287,11 @@ CGameObject* CGameInstance::GetObjectByIndex(_uint iLevelIndex, const wstring& s
 	return	m_pObject_Manager->GetObjectByIndex(iLevelIndex, strLayerTag, index);
 }
 
+void CGameInstance::SetDeltaTime(_float fFreeTimer)
+{
+	return m_pObject_Manager->SetDeltaTime(fFreeTimer);
+}
+
 HRESULT CGameInstance::Add_Prototype(_uint iLevelIndex, const _wstring & strPrototypeTag, CComponent * pPrototype)
 {
 	if (nullptr == m_pComponent_Manager)

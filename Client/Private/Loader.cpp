@@ -83,11 +83,14 @@
 #include "Mon_Dragon.h"
 
 #include "NPC_Weapon.h"
+#include "NPC_Quest.h"
 
 #include "UI_NPC_Weapon_Panel.h"
 #include "UI_NPC_Weapon_Info.h"
 #include "UI_NPC_Weapon_Btn.h"
 #include "UI_NPC_Weapon_Icon.h"
+
+#include "UI_Cursor.h"
 
 #include "Skill_Archer_Bullet.h"
 #include "Skill_Mon_Boom.h"
@@ -256,6 +259,10 @@ HRESULT CLoader::Loading_For_BinaryFile()
 
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_NPC_Weapon"),
 		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_ANIM, "../Bin/GunFire_Resources/Models/NPC/Weapon/NPC_Smith.fbx", TEXT("../Bin/DataFiles/NPC_Weapon.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_NPC_Quest"),
+		CModel::Create(m_pDevice, m_pContext, CModel::TYPE_ANIM, "../Bin/GunFire_Resources/Models/NPC/Quest/Npc_Quest.fbx", TEXT("../Bin/DataFiles/Npc_Quest.dat"), PreTransformMatrix))))
 		return E_FAIL;
 
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Box"),
@@ -464,6 +471,11 @@ HRESULT CLoader::Loading_For_StaticLevel()
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Num//Num_%d.png"), 11))))
 		return E_FAIL;
 
+	/* For.Prototype_Component_Texture_Cursor */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_STATIC, TEXT("Prototype_Component_Texture_Cursor"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Cursor/Cursor.png")))))
+		return E_FAIL;
+
 	lstrcpy(m_szLoadingText, TEXT("모델을 로딩 중 입니다."));
 
 	_matrix			PreTransformMatrix = XMMatrixIdentity();
@@ -509,6 +521,12 @@ HRESULT CLoader::Loading_For_StaticLevel()
 	/* For.Prototype_GameObject_VFX_Specrum */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_VFX_Specrum"),
 		CVFX_Spectrum::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+
+	/* For.Prototype_GameObject_UI_Cursor */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_Cursor"),
+		CUI_Cursor::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
 	return S_OK;
@@ -661,6 +679,13 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 	/* For.Prototype_Component_Model_NPC_Weapon*/
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_NPC_Weapon"),
 		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_ANIM, TEXT("../Bin/DataFiles/NPC_Weapon.dat"), PreTransformMatrix))))
+		return E_FAIL;
+
+	//PreTransformMatrix = XMMatrixRotationY(XMConvertToRadians(180.0f)) * XMMatrixTranslation(-5.8f, 19.2f, -87.8f);
+
+	/* For.Prototype_Component_Model_NPC_Quest*/
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_NPC_Quest"),
+		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_ANIM, TEXT("../Bin/DataFiles/NPC_Quest.dat"), PreTransformMatrix))))
 		return E_FAIL;
 
 
@@ -862,6 +887,11 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 	/* For.Prototype_GameObject_NPC_Weapon */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_NPC_Weapon"),
 		CNPC_Weapon::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_NPC_Quest */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_NPC_Quest"),
+		CNPC_Quest::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
 	/* For.Prototype_GameObject_UI_NPC_Weapon_Panel */

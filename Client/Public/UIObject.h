@@ -45,6 +45,7 @@ protected:
 	virtual HRESULT Ready_Components();
 
 	virtual void Set_UI_Setting(_float fSizeX, _float fSizeY , _float fPosX , _float fPosY);
+	_bool ClickRange();
 
 protected:
 	CShader* m_pShaderCom = { nullptr };
@@ -59,6 +60,7 @@ protected:
 	_float m_fSizeY = { 0.f };
 	_float m_fPosX = { 0.f };
 	_float m_fPosY = { 0.f };
+	_uint m_iNumber = { 0 };
 
 	CTransform* m_pOriginTransform = {};
 

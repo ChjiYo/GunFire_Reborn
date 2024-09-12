@@ -28,10 +28,17 @@ HRESULT CUI_NPC_Weapon_Icon::Initialize(void* pArg)
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
+	m_iNumber = static_cast<UI_DESC*>(pArg)->iNumUI;
+
 	m_pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_Player")).back());
 	Safe_AddRef(m_pPlayer);
+	
+	if(m_iNumber == 0)
+		m_fPosX = g_iWinSizeX * 0.5f - 350.f;
+	else
+		m_fPosX = g_iWinSizeX * 0.5f + 150.f;
 
-	__super::Set_UI_Setting(150.f, 150.f, g_iWinSizeX * 0.5f - 100.f, g_iWinSizeY * 0.5f - 225.f);
+	__super::Set_UI_Setting(150.f, 150.f, m_fPosX, g_iWinSizeY * 0.5f - 225.f);
 
 	return S_OK;
 }
@@ -55,9 +62,7 @@ HRESULT CUI_NPC_Weapon_Icon::Render()
 	if (FAILED(__super::Bind_ShaderResources()))
 		return E_FAIL;
 
-	CPlayer::WEAPONID pID = m_pPlayer->Get_WeaponID(0);
-	if (m_pPlayer->Get_WeaponID(0) == CPlayer::WEAPON_END)
-		pID = CPlayer::PISTOL;
+	CPlayer::WEAPONID pID = m_pPlayer->Get_WeaponID(m_iNumber);
 
 	if (FAILED(m_pTextureCom->Bind_ShaderResource(m_pShaderCom, "g_Texture", pID)))
 
@@ -72,22 +77,28 @@ HRESULT CUI_NPC_Weapon_Icon::Render()
 	if (FAILED(m_pVIBufferCom->Render()))
 		return E_FAIL;
 
+	wstring m_strCnt = to_wstring(m_pPlayer->UpgreadCnt((CPlayer::WEAPONID) m_iNumber));
+	const _tchar* szCnt = m_strCnt.c_str();
+
+	m_pGameInstance->Draw_Font(TEXT("Font_Nexon"), TEXT(" + "), _float2(m_fPosX + 125.f, g_iWinSizeY * 0.5f - 275.f), {0.6235, 0.5725, 0.4353, 1.f}, 0.f, _float2(0.f, 0.f), 0.75f);
+	m_pGameInstance->Draw_Font(TEXT("Font_Nexon"), szCnt, _float2(m_fPosX  + 150.f, g_iWinSizeY * 0.5f - 275.f), { 0.6235, 0.5725, 0.4353, 1.f }, 0.f, _float2(0.f, 0.f), 0.75f);
+
 	switch (pID)
 	{
 	case CPlayer::PISTOL:
-		m_pGameInstance->Draw_Font(TEXT("Font_Nexon"), TEXT("피스톨"), _float2(g_iWinSizeX * 0.5f - 50.f, g_iWinSizeY * 0.5f - 275.f), {0.6235, 0.5725, 0.4353, 1.f} , 0.f, _float2(0.f, 0.f),0.75f);
+		m_pGameInstance->Draw_Font(TEXT("Font_Nexon"), TEXT("피스톨"), _float2(m_fPosX , g_iWinSizeY * 0.5f - 275.f), {0.6235, 0.5725, 0.4353, 1.f} , 0.f, _float2(0.f, 0.f),0.75f);
 		break;
 
 	case CPlayer::SHURIKEN:
-		m_pGameInstance->Draw_Font(TEXT("Font_Nexon"), TEXT("수리검"), _float2(g_iWinSizeX * 0.5f - 50.f, g_iWinSizeY * 0.5f - 275.f), { 0.6235, 0.5725, 0.4353, 1.f }, 0.f, _float2(0.f, 0.f), 0.75f);
+		m_pGameInstance->Draw_Font(TEXT("Font_Nexon"), TEXT("수리검"), _float2(m_fPosX , g_iWinSizeY * 0.5f - 275.f), { 0.6235, 0.5725, 0.4353, 1.f }, 0.f, _float2(0.f, 0.f), 0.75f);
 		break;
 
 	case CPlayer::SNIPER:
-		m_pGameInstance->Draw_Font(TEXT("Font_Nexon"), TEXT("스나이퍼"), _float2(g_iWinSizeX * 0.5f - 50.f, g_iWinSizeY * 0.5f - 275.f), { 0.6235, 0.5725, 0.4353, 1.f }, 0.f, _float2(0.f, 0.f), 0.75f);
+		m_pGameInstance->Draw_Font(TEXT("Font_Nexon"), TEXT("스나이퍼"), _float2(m_fPosX , g_iWinSizeY * 0.5f - 275.f), { 0.6235, 0.5725, 0.4353, 1.f }, 0.f, _float2(0.f, 0.f), 0.75f);
 		break;
 
 	case CPlayer::BOOMGUN:
-		m_pGameInstance->Draw_Font(TEXT("Font_Nexon"), TEXT("돌격총"), _float2(g_iWinSizeX * 0.5f - 50.f, g_iWinSizeY * 0.5f - 275.f), { 0.6235, 0.5725, 0.4353, 1.f }, 0.f, _float2(0.f, 0.f), 0.75f);
+		m_pGameInstance->Draw_Font(TEXT("Font_Nexon"), TEXT("돌격총"), _float2(m_fPosX , g_iWinSizeY * 0.5f - 275.f), { 0.6235, 0.5725, 0.4353, 1.f }, 0.f, _float2(0.f, 0.f), 0.75f);
 		break;
 
 	default:

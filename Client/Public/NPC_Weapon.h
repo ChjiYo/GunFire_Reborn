@@ -32,10 +32,17 @@ public:
 	HRESULT Ready_Components();
 	HRESULT Bind_ShaderResources();
 
+public:
+	_bool GetCursor() { return m_bCursorFree; }
+
 private:
 	CShader* m_pShaderCom = { nullptr };
 	CBinModel* m_pModelCom = { nullptr };
 	CCollider* m_pColliderCom = { nullptr };
+
+private:
+	_bool m_bClick = { false };
+	_bool m_bCursorFree = { false };
 	
 public:
 	static CNPC_Weapon* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);

@@ -3,6 +3,8 @@
 #include "..\Public\NPC_Weapon.h"
 #include "GameInstance.h"
 
+#include "UIObject.h"
+
 CNPC_Weapon::CNPC_Weapon(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	: CNPC{ pDevice, pContext }
 {
@@ -54,13 +56,32 @@ void CNPC_Weapon::Late_Update(_float fTimeDelta)
 {
 	__super::Late_Update(fTimeDelta);
 
-
 	CCollider* pPlayerCollider = dynamic_cast<CCollider*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Player"), TEXT("Com_Collider")));
-	if (m_pColliderCom->isCollision(pPlayerCollider) && m_pGameInstance->Key_Down('F'))
+	if (!m_bClick && m_pColliderCom->isCollision(pPlayerCollider) && m_pGameInstance->Key_Down('F'))
 	{
-		m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_NPC_Weapon_Panel"), TEXT("Layer_UI_NPC_Weapon"));
-		m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_NPC_Weapon_Info"), TEXT("Layer_UI_NPC_Weapon"));
-		m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_NPC_Weapon_Icon"), TEXT("Layer_UI_NPC_Weapon"));
+		m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_NPC_Weapon_Panel"), TEXT("Layer_UI_ANPC_Weapon"));
+
+		CUIObject::UI_DESC Desc = {};
+		for (int i = 0; i < 2; i++)
+		{
+			Desc.iNumUI = i;
+
+			m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_NPC_Weapon_Info"), TEXT("Layer_UI_ANPC_Weapon"), &Desc);
+			m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_NPC_Weapon_Icon"), TEXT("Layer_UI_ANPC_Weapon"), &Desc);
+			m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_NPC_Weapon_Btn"), TEXT("Layer_UI_ANPC_Weapon") , &Desc);
+		}
+		m_bClick = true;
+		m_bCursorFree = true;
+	}
+
+	if (m_bClick && m_pColliderCom->isCollision(pPlayerCollider) && m_pGameInstance->Key_Down('F'))
+	{
+		for (auto& iter : m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_UI_ANPC_Weapon")))
+		{
+			iter->Set_Dead();
+		}
+		m_bClick = false;
+		m_bCursorFree = false;
 	}
 
 	m_pGameInstance->Add_RenderObject(CRenderer::RG_NONBLEND, this);

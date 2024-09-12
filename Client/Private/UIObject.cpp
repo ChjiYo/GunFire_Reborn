@@ -55,6 +55,23 @@ void CUIObject::Set_UI_Setting(_float fSizeX, _float fSizeY, _float fPosX, _floa
 	XMStoreFloat4x4(&m_ProjMatrix, XMMatrixOrthographicLH((_float)g_iWinSizeX, (_float)g_iWinSizeY, 0.f, 1.f));
 }
 
+_bool CUIObject::ClickRange()
+{
+	POINT pt;
+	GetCursorPos(&pt);
+	ScreenToClient(g_hWnd, &pt);
+
+	_float MouseX = (_float)(pt.x);
+	_float MouseY = (_float)(pt.y);
+
+	if (m_fPosX - m_fSizeX * 0.5f < MouseX && m_fPosX + m_fSizeX * 0.5f > MouseX && m_fPosY - m_fSizeY * 0.5f < MouseY && m_fPosY + m_fSizeY * 0.5f > MouseY)
+	{
+		return true;
+	}
+
+	return false;
+}
+
 HRESULT CUIObject::Bind_ShaderResources()
 {
 	if (FAILED(m_pTransformCom->Bind_ShaderResource(m_pShaderCom, "g_WorldMatrix")))

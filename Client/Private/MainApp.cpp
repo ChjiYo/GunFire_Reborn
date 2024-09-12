@@ -75,34 +75,34 @@ HRESULT CMainApp::Initialize()
 void CMainApp::Update(_float fTimeDelta) 
 {	
 	
-	if (!m_bShowTool && !(m_pGameInstance->GetLoadingLevelIndex() == LEVEL_BIN))
-	{
-		POINT pt;
-		pt.x = g_iWinSizeX * 0.5f;
-		pt.y = g_iWinSizeY * 0.5f;
-
-		ClientToScreen(g_hWnd, &pt);
-		SetCursorPos(pt.x, pt.y);
-	}
+	//if (!m_bShowTool && !(m_pGameInstance->GetLoadingLevelIndex() == LEVEL_BIN))
+	//{
+	//	POINT pt;
+	//	pt.x = g_iWinSizeX * 0.5f;
+	//	pt.y = g_iWinSizeY * 0.5f;
+	//
+	//	ClientToScreen(g_hWnd, &pt);
+	
+	//	SetCursorPos(pt.x, pt.y);
+	//}
 	
 
 	if (m_pGameInstance->Key_Down('O'))
 		m_bShowTool ? m_bShowTool = false : (m_bShowTool = true );
 
-	if(m_pGameInstance->Key_Down('P'))
-		m_bShowCursor ? m_bShowCursor = false : (m_bShowCursor = true);
+	//if(m_pGameInstance->Key_Down('P'))
+	//	m_bShowCursor ? m_bShowCursor = false : (m_bShowCursor = true);
 
 	if (m_bShowTool)
 	{
 		_uint iNum = m_pGameInstance->GetLoadingLevelIndex();
 		CCamera_Free* pCamera = dynamic_cast<CCamera_Free*>(m_pGameInstance->Get_Layer(iNum, TEXT("Layer_Camera")).back());
-
 		pCamera->Priority_Update(fTimeDelta);
 
 		fTimeDelta = 0.f;
 	}
 
-	ShowCursor(m_bShowCursor);
+	//ShowCursor(m_bShowCursor);
 
 	m_pGameInstance->Update_Engine(fTimeDelta);
 }

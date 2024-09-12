@@ -3,6 +3,8 @@
 
 #include "GameInstance.h"
 
+#include "NPC_Weapon.h"
+
 CCamera_Free::CCamera_Free(ID3D11Device * pDevice, ID3D11DeviceContext * pContext)
 	: CCamera { pDevice, pContext }
 {
@@ -60,7 +62,31 @@ void CCamera_Free::Update(_float fTimeDelta)
 
 void CCamera_Free::Late_Update(_float fTimeDelta)
 {
-	
+	_bool bNpcCursor =  dynamic_cast<CNPC_Weapon*>(m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_NPC")).back())->GetCursor();
+
+	bNpcCursor ? m_pGameInstance->SetDeltaTime(0.f) : m_pGameInstance->SetDeltaTime(1.f);
+
+	if (m_bTrueCurrsor ||(m_pGameInstance->Key_Down('P')))
+	{
+		if(!m_bTrueCurrsor)
+			m_bShowCursor ? m_bShowCursor = false : (m_bShowCursor = true);
+
+		POINT pt;
+		pt.x = g_iWinSizeX * 0.5f;
+		pt.y = g_iWinSizeY * 0.5f;
+
+		ClientToScreen(g_hWnd, &pt);
+		SetCursorPos(pt.x, pt.y);
+		m_bTrueCurrsor = true;
+
+		if ((m_bTrueCurrsor && m_pGameInstance->Key_Down('P')) || bNpcCursor)
+		{
+			m_bTrueCurrsor = false;
+			m_bShowCursor = true;
+		}
+	}
+
+	ShowCursor(m_bShowCursor);
 }
 
 HRESULT CCamera_Free::Render()

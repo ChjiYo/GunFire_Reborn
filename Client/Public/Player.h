@@ -49,7 +49,10 @@ public:
 
 public:
 	PLAYER_DESC Get_Player_Desc() { return Player_Desc; }
-	WEAPONID Get_WeaponID(_uint iSlotIndex) { return m_eWeaponIDArray[iSlotIndex]; }
+	WEAPONID Get_WeaponID(_uint iSlotIndex) {
+		int a = 0;
+		return m_eWeaponIDArray[iSlotIndex]; 
+	}
 
 	void		Set_Damage(_int iDamage)
 	{
@@ -81,6 +84,23 @@ public:
 		m_eWeaponID = m_eWeaponIDArray[m_eSlotID];
 	}
 
+public:
+	void WeaponUpgread(CPlayer::SLOTID eID)
+	{
+		m_vUpgreadCnt[eID] += 1; 
+		m_vCurrentDamage[m_eWeaponIDArray[eID]] = m_vDamage[m_eWeaponIDArray[eID]] + (m_vUpgreadCnt[eID] * 10);
+		int a = 10;
+	}
+
+	_uint UpgreadCnt(CPlayer::WEAPONID eID) { 
+		int a = 10;
+		return m_vUpgreadCnt[eID]; 
+	}
+	_uint WeaponDamage(CPlayer::WEAPONID eID) { return m_vDamage[eID]; }
+	_uint CurrentDamage(CPlayer::WEAPONID eID) {
+		return m_vCurrentDamage[eID]; 
+	}
+
 private:
 	void ShieldRecovery();
 
@@ -98,8 +118,8 @@ private:
 	_float				m_fShieldRecoveryTimer = { 0.f };
 	_float				m_fDashTimer = { 0.f };
 	_float				m_fInvincibleTime = { 0.f };
-
-	WEAPONID			m_eWeaponIDArray[3] = { WEAPON_END ,WEAPON_END ,PISTOL };
+	
+	WEAPONID			m_eWeaponIDArray[3] = { SHURIKEN ,SNIPER ,PISTOL };
 	SLOTID				m_eSlotID = { SLOT_END };
 
 	_bool				m_bDash = { false };
@@ -111,7 +131,12 @@ private:
 	_bool	m_bBackPos = {false};
 
 	CLight* m_pLight = {};
+	_uint m_vDamage[WEAPON_END] = {100 , 200 , 50 , 25};
+	_uint m_vCurrentDamage[WEAPON_END] = { 100 , 200 , 50 , 25 };
+	_uint m_vUpgreadCnt[WEAPON_END] = { 0 , 0 , 0 , 0 };
 	
+	vector<CPartObject*> vecParts = {};
+
 private:
 	HRESULT Ready_Components();
 

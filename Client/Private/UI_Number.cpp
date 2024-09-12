@@ -39,8 +39,16 @@ HRESULT CUI_Number::Initialize(void* pArg)
     if (FAILED(Ready_Component()))
         return E_FAIL;
 
-    _vector vPos = m_pOriginTransform->Get_State(CTransform::STATE_POSITION) + (m_pOriginTransform->Get_State(CTransform::STATE_RIGHT) * ((Desc->iNumCnt) * 0.5f)) + (m_pOriginTransform->Get_State(CTransform::STATE_LOOK) * ((Desc->iNumCnt) * -0.5f));
-    m_pTransformCom->Set_State(CTransform::STATE_POSITION, vPos);
+   // _vector vPos = m_pOriginTransform->Get_State(CTransform::STATE_POSITION) + (m_pOriginTransform->Get_State(CTransform::STATE_RIGHT) * ((Desc->iNumCnt) * 0.5f)) + (m_pOriginTransform->Get_State(CTransform::STATE_LOOK) * ((Desc->iNumCnt) * -0.5f));
+    //m_pTransformCom->Set_State(CTransform::STATE_POSITION, vPos);
+    if (!m_pGameInstance->Get_Layer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_UI_Number")).empty())
+    {
+        _matrix vMatPivot = m_pGameInstance->Get_Layer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_UI_Number")).front()->Get_Transform()->Get_WorldMatrix();
+        // vMatPivot.r[CTransform::STATE_POSITION] += vMatPivot.r[CTransform::STATE_LOOK] * 1.25f * (iNumCnt + 1);
+        m_pTransformCom->Set_WorldMatrix(vMatPivot);
+    }
+    else
+        m_pTransformCom->Set_State(CTransform::STATE_POSITION , m_pOriginTransform->Get_State(CTransform::STATE_POSITION));
     
     m_pTransformCom->Set_Scaled(0.5f , 0.5f, 0.5f);
 
@@ -55,7 +63,8 @@ void CUI_Number::Priority_Update(_float fTimeDelta)
 
     if(!m_pTransformCom->Gravity(0.2f, XMVectorGetY(m_pOriginTransform->Get_State(CTransform::STATE_POSITION)), fTimeDelta))
         m_pTransformCom->Go_Up(fTimeDelta);
-
+    
+    //나중에 그냥 쉐이더로 던지자 그게 마음 편하다 진짜로
     m_fDeleteTimer += fTimeDelta;
 }
 

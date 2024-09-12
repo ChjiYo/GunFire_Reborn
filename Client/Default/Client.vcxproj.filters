@@ -40,7 +40,7 @@
       <Filter>02.GameObjects\BackGround</Filter>
     </ClCompile>
     <ClCompile Include="..\private\Camera_Free.cpp">
-      <Filter>02.GameObjects\Camera\Free</Filter>
+      <Filter>02.GameObjects\BackGround\Camera\Free</Filter>
     </ClCompile>
     <ClCompile Include="..\Private\Cube.cpp">
       <Filter>02.GameObjects\Cube</Filter>
@@ -588,6 +588,9 @@
     <ClCompile Include="..\private\UI_NPC_Weapon_Icon.cpp">
       <Filter>02.GameObjects\UI\UI_NPC_Weapon\Icon</Filter>
     </ClCompile>
+    <ClCompile Include="..\private\UI_Cursor.cpp">
+      <Filter>02.GameObjects\UI\UI_Cursor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Public\Level_Logo.h">
@@ -600,7 +603,7 @@
       <Filter>02.GameObjects\BackGround</Filter>
     </ClInclude>
     <ClInclude Include="..\public\Camera_Free.h">
-      <Filter>02.GameObjects\Camera\Free</Filter>
+      <Filter>02.GameObjects\BackGround\Camera\Free</Filter>
     </ClInclude>
     <ClInclude Include="..\Public\Cube.h">
       <Filter>02.GameObjects\Cube</Filter>
@@ -1160,6 +1163,9 @@
     <ClInclude Include="..\public\UI_NPC_Weapon_Icon.h">
       <Filter>02.GameObjects\UI\UI_NPC_Weapon\Icon</Filter>
     </ClInclude>
+    <ClInclude Include="..\public\UI_Cursor.h">
+      <Filter>02.GameObjects\UI\UI_Cursor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -1188,9 +1194,6 @@
     <Filter Include="02.GameObjects\BackGround">
       <UniqueIdentifier>{7d5561e5-2bd4-43ea-8074-17fe7e6f3f31}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02.GameObjects\Camera">
-      <UniqueIdentifier>{bfa6d67a-8b41-4b2f-a72a-85c7b86777f1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="02.GameObjects\Cube">
       <UniqueIdentifier>{e3fd3bd3-088e-4210-9648-947e45ed1412}</UniqueIdentifier>
     </Filter>
@@ -1214,9 +1217,6 @@
     </Filter>
     <Filter Include="02.GameObjects\UI">
       <UniqueIdentifier>{7b49b7ba-dc8d-4cd0-b68e-b26e25691b11}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02.GameObjects\Camera\Free">
-      <UniqueIdentifier>{743d029f-be3a-44e6-8694-21396d882aeb}</UniqueIdentifier>
     </Filter>
     <Filter Include="02.GameObjects\Effect\Deco_Effect">
       <UniqueIdentifier>{c6396d14-3475-42a1-9324-0c97dfcdc45e}</UniqueIdentifier>
@@ -1817,6 +1817,15 @@
     </Filter>
     <Filter Include="02.GameObjects\UI\UI_NPC_Weapon\Icon">
       <UniqueIdentifier>{e1d020a1-917d-4cc7-8bfb-b7e7880cecbf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Cursor">
+      <UniqueIdentifier>{799ebcf1-f75a-4704-91c9-053d47207d6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\BackGround\Camera">
+      <UniqueIdentifier>{bfa6d67a-8b41-4b2f-a72a-85c7b86777f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\BackGround\Camera\Free">
+      <UniqueIdentifier>{743d029f-be3a-44e6-8694-21396d882aeb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

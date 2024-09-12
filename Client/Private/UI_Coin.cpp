@@ -44,8 +44,23 @@ void CUI_Coin::Priority_Update(_float fTimeDelta)
 
 void CUI_Coin::Update(_float fTimeDelta)
 {
-	if (m_iCoin < m_iCopyCoin)
-		m_iCoin++;
+
+	if (m_bAddCoin)
+	{
+		m_iCoin < m_iCopyCoin ? m_iCoin++ : m_iCoin--;
+
+		if (m_iCoin < m_iCopyCoin)
+		{
+			m_iCoin++;
+		}
+		else if (m_iCoin > m_iCopyCoin)
+		{
+			m_iCoin--;
+		}
+		else
+			m_bAddCoin = false;
+	}
+		
 }
 
 void CUI_Coin::Late_Update(_float fTimeDelta)

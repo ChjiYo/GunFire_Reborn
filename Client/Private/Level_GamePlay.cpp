@@ -323,8 +323,11 @@ return S_OK;
 
 HRESULT CLevel_GamePlay::Ready_Layer_NPC(const _wstring& strLayerTag)
 {
-	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_NPC_Weapon"), strLayerTag)))
-		return E_FAIL; 
+	//if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_NPC_Weapon"), strLayerTag)))
+	//	return E_FAIL; 
+
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_NPC_Quest"), strLayerTag)))
+		return E_FAIL;
 
 	return S_OK;
 }

@@ -313,6 +313,7 @@
     <ClInclude Include="..\Public\UIObject.h" />
     <ClInclude Include="..\public\UI_Boss_HpPanel.h" />
     <ClInclude Include="..\public\UI_Coin.h" />
+    <ClInclude Include="..\public\UI_Cursor.h" />
     <ClInclude Include="..\public\UI_NPC_Weapon_Btn.h" />
     <ClInclude Include="..\public\UI_NPC_Weapon_Icon.h" />
     <ClInclude Include="..\public\UI_NPC_Weapon_Info.h" />
@@ -506,6 +507,7 @@
     <ClCompile Include="..\Private\UIObject.cpp" />
     <ClCompile Include="..\private\UI_Boss_HpPanel.cpp" />
     <ClCompile Include="..\private\UI_Coin.cpp" />
+    <ClCompile Include="..\private\UI_Cursor.cpp" />
     <ClCompile Include="..\private\UI_NPC_Weapon_Btn.cpp" />
     <ClCompile Include="..\private\UI_NPC_Weapon_Icon.cpp" />
     <ClCompile Include="..\private\UI_NPC_Weapon_Info.cpp" />
