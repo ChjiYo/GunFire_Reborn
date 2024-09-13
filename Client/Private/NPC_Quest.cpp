@@ -30,7 +30,7 @@ HRESULT CNPC_Quest::Initialize(void* pArg)
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
-	m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 7.f , 0.f, 7.f, 1.f });
+	m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 7.f , -0.025f, 7.f, 1.f });
 
 	m_pModelCom->SetUp_Animation(0, true);
 
@@ -55,6 +55,13 @@ void CNPC_Quest::Update(_float fTimeDelta)
 void CNPC_Quest::Late_Update(_float fTimeDelta)
 {
 	__super::Late_Update(fTimeDelta);
+
+	CCollider* pCollioder = dynamic_cast<CCollider*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Player"), TEXT("Com_Collider")));
+	if (!m_bClick && m_pColliderCom->isCollision(pCollioder) && m_pGameInstance->Key_Down('F'))
+	{
+		m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Log"), TEXT("Layer_UI_Log"));
+		m_bClick = true;
+	}
 
 	m_pGameInstance->Add_RenderObject(CRenderer::RG_NONBLEND, this);
 

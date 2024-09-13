@@ -239,6 +239,7 @@
     <ClInclude Include="..\public\Mountain_310.h" />
     <ClInclude Include="..\public\Mountain_311.h" />
     <ClInclude Include="..\public\NPC.h" />
+    <ClInclude Include="..\public\NPC_Quest.h" />
     <ClInclude Include="..\public\NPC_Weapon.h" />
     <ClInclude Include="..\public\Pillars101.h" />
     <ClInclude Include="..\public\Portal.h" />
@@ -314,6 +315,7 @@
     <ClInclude Include="..\public\UI_Boss_HpPanel.h" />
     <ClInclude Include="..\public\UI_Coin.h" />
     <ClInclude Include="..\public\UI_Cursor.h" />
+    <ClInclude Include="..\public\UI_Log.h" />
     <ClInclude Include="..\public\UI_NPC_Weapon_Btn.h" />
     <ClInclude Include="..\public\UI_NPC_Weapon_Icon.h" />
     <ClInclude Include="..\public\UI_NPC_Weapon_Info.h" />
@@ -331,6 +333,7 @@
     <ClInclude Include="..\Public\UI_Player_Icon.h" />
     <ClInclude Include="..\Public\UI_Player_ShieldBar.h" />
     <ClInclude Include="..\Public\UI_Player_ShieldBlankBar.h" />
+    <ClInclude Include="..\public\UI_Quest.h" />
     <ClInclude Include="..\Public\UI_Skill_Aiming.h" />
     <ClInclude Include="..\Public\UI_Skill_Dash.h" />
     <ClInclude Include="..\Public\UI_Skill_Panel.h" />
@@ -441,6 +444,7 @@
     <ClCompile Include="..\private\Mountain_310.cpp" />
     <ClCompile Include="..\private\Mountain_311.cpp" />
     <ClCompile Include="..\private\NPC.cpp" />
+    <ClCompile Include="..\private\NPC_Quest.cpp" />
     <ClCompile Include="..\private\NPC_Weapon.cpp" />
     <ClCompile Include="..\private\Pillars101.cpp" />
     <ClCompile Include="..\private\Portal.cpp" />
@@ -508,6 +512,7 @@
     <ClCompile Include="..\private\UI_Boss_HpPanel.cpp" />
     <ClCompile Include="..\private\UI_Coin.cpp" />
     <ClCompile Include="..\private\UI_Cursor.cpp" />
+    <ClCompile Include="..\private\UI_Log.cpp" />
     <ClCompile Include="..\private\UI_NPC_Weapon_Btn.cpp" />
     <ClCompile Include="..\private\UI_NPC_Weapon_Icon.cpp" />
     <ClCompile Include="..\private\UI_NPC_Weapon_Info.cpp" />
@@ -525,6 +530,7 @@
     <ClCompile Include="..\Private\UI_Player_Icon.cpp" />
     <ClCompile Include="..\Private\UI_Player_ShieldBar.cpp" />
     <ClCompile Include="..\Private\UI_Player_ShieldBlankBar.cpp" />
+    <ClCompile Include="..\private\UI_Quest.cpp" />
     <ClCompile Include="..\Private\UI_Skill_Aiming.cpp" />
     <ClCompile Include="..\Private\UI_Skill_Dash.cpp" />
     <ClCompile Include="..\Private\UI_Skill_Panel.cpp" />

@@ -90,6 +90,9 @@
 #include "UI_NPC_Weapon_Btn.h"
 #include "UI_NPC_Weapon_Icon.h"
 
+#include  "UI_Quest.h"
+#include  "UI_Log.h"
+
 #include "UI_Cursor.h"
 
 #include "Skill_Archer_Bullet.h"
@@ -609,6 +612,16 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Models/Monster/NoiseCaustic03.png")))))
 		return E_FAIL;
 
+	/* For.Prototype_Component_Texture_UI_Quest */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Quest"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Quest/Quest.png")))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Texture_UI_Log */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Log"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Quest/Log.png")))))
+		return E_FAIL;
+
 	/* For.Prototype_Component_Texture_UI_NPC_Weapon_Panel */
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_NPC_Weapon_Panel"),
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/NPC/Weapon/NPC_Weapon_Panel.png")))))
@@ -681,7 +694,7 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 		CBinModel::Create(m_pDevice, m_pContext, CBinModel::TYPE_ANIM, TEXT("../Bin/DataFiles/NPC_Weapon.dat"), PreTransformMatrix))))
 		return E_FAIL;
 
-	//PreTransformMatrix = XMMatrixRotationY(XMConvertToRadians(180.0f)) * XMMatrixTranslation(-5.8f, 19.2f, -87.8f);
+	PreTransformMatrix = XMMatrixRotationY(XMConvertToRadians(180.0f)) * XMMatrixTranslation(11.5f, 0.f, 50.0f);
 
 	/* For.Prototype_Component_Model_NPC_Quest*/
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_NPC_Quest"),
@@ -884,15 +897,27 @@ HRESULT CLoader::Loading_For_GamePlayLevel()
 		CMon_Spear::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
+	/* For.Prototype_GameObject_NPC_Quest */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_NPC_Quest"),
+		CNPC_Quest::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_NPC_Quest */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_Quest"),
+		CUI_Quest::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_NPC_Log */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_Log"),
+		CUI_Log::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+
 	/* For.Prototype_GameObject_NPC_Weapon */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_NPC_Weapon"),
 		CNPC_Weapon::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
-	/* For.Prototype_GameObject_NPC_Quest */
-	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_NPC_Quest"),
-		CNPC_Quest::Create(m_pDevice, m_pContext))))
-		return E_FAIL;
 
 	/* For.Prototype_GameObject_UI_NPC_Weapon_Panel */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_NPC_Weapon_Panel"),

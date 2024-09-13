@@ -109,9 +109,26 @@ PS_OUT PS_Alpha(PS_IN In)
     return Out;
 }
 
+PS_OUT PS_Half(PS_IN In)
+{
+    PS_OUT Out;
+    
+    Out.vColor = g_Texture.Sample(LinearSampler, In.vTexcoord);
+    if (Out.vColor.a <= 0.1f)
+        discard;
+    
+    Out.vColor.a = 0.3f;
+    
+
+    return Out;
+}
+
+
 technique11 DefaultTechnique
 {
 	/* PASSÀÇ ±âÁØ : ¼ÎÀÌ´õ ±â¹ýÀÇ Ä¸½¶È­. */
+
+//0
     pass Default
     {
 
@@ -126,6 +143,7 @@ technique11 DefaultTechnique
         PixelShader = compile ps_5_0 PS_DEFAULT();
     }
 
+//1
     pass CW
     {
         SetRasterizerState(RS_Cull_CW);
@@ -139,6 +157,7 @@ technique11 DefaultTechnique
         PixelShader = compile ps_5_0 PS_DEFAULT();
     }
 
+//2
     pass Bar
     {
 
@@ -153,6 +172,7 @@ technique11 DefaultTechnique
         PixelShader = compile ps_5_0 PS_MAIN();
     }
 
+//3
     pass Boss
     {
         SetRasterizerState(RS_Cull_NONE);
@@ -166,7 +186,7 @@ technique11 DefaultTechnique
         PixelShader = compile ps_5_0 PS_BOSS();
     }
 
-
+//4
     pass Alpha
     {
         SetRasterizerState(RS_Cull_NONE);
@@ -178,6 +198,20 @@ technique11 DefaultTechnique
         HullShader = NULL;
         DomainShader = NULL;
         PixelShader = compile ps_5_0 PS_Alpha();
+    }
+
+//5
+    pass Half
+    {
+        SetRasterizerState(RS_Cull_NONE);
+        SetDepthStencilState(DSS_Default, 0);
+        SetBlendState(BS_AlphaBlend, float4(0.f, 0.f, 0.f, 0.f), 0xffffffff);
+
+        VertexShader = compile vs_5_0 VS_MAIN();
+        GeometryShader = NULL;
+        HullShader = NULL;
+        DomainShader = NULL;
+        PixelShader = compile ps_5_0 PS_Half();
     }
 
 }

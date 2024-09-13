@@ -76,7 +76,7 @@ _float4 CPicking::Picked_Position(_bool* pPicked)
 	/* 투영공간상의 픽셀의 위치를 구한다. */
 	vProjPos.x = ptMouse.x / (m_iWidth * 0.5f) - 1.f;
 	vProjPos.y = ptMouse.y / (m_iHeight * -0.5f) + 1.f;
-	vProjPos.z = pPickDepth[iIndex].y;
+ 	vProjPos.z = pPickDepth[iIndex].y;
 	vProjPos.w = 1.f;
 
 	/* 뷰공간상의 픽셀의 위치를 구한다. */

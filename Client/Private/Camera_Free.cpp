@@ -62,7 +62,15 @@ void CCamera_Free::Update(_float fTimeDelta)
 
 void CCamera_Free::Late_Update(_float fTimeDelta)
 {
-	_bool bNpcCursor =  dynamic_cast<CNPC_Weapon*>(m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_NPC")).back())->GetCursor();
+	_bool m_bEmpty = false;
+
+	if (dynamic_cast<CNPC_Weapon*>(m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_NPC")).back()) == nullptr)
+		m_bEmpty = true;
+
+	_bool bNpcCursor = false;
+
+	if(!m_bEmpty)
+		bNpcCursor = dynamic_cast<CNPC_Weapon*>(m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_NPC")).back())->GetCursor();
 
 	bNpcCursor ? m_pGameInstance->SetDeltaTime(0.f) : m_pGameInstance->SetDeltaTime(1.f);
 

@@ -49,6 +49,7 @@ void CMonster::Update(_float fTimeDelta)
 	{
 		_float fNNaviHeight = m_pNavigationCom->Navi_Height(m_pTransformCom);
 		m_pTransformCom->Gravity(0.1f, fNNaviHeight + 0.25f, fTimeDelta);
+		m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetY(m_pTransformCom->Get_State(CTransform::STATE_POSITION), fNNaviHeight));
 	}
 }
 

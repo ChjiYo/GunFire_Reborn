@@ -47,8 +47,11 @@ private:
 	_uint m_iTextureIndex = { 0 };
 	_uint m_iNumTexture = { 0 };
 	_uint m_iAngle = { 0 };
+	_uint m_iNiumCnt = { 0 };
 
 	_float m_fDeleteTimer = { 0.f };
+
+	_vector m_vOffsetPos = {};
 
 public:
 	static CUI_Number* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);

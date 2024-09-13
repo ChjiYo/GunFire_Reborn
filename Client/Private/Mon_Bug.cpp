@@ -40,6 +40,7 @@ HRESULT CMon_Bug::Initialize(void* pArg)
 	m_tMonDesc.iMaxHp = MonDesc->iMaxHp;
 	m_tMonDesc.iHp = MonDesc->iHp;
 	m_tMonDesc.vPos = MonDesc->vPos;
+	m_tMonDesc.iNum = MonDesc->iNum;
 
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
@@ -51,7 +52,22 @@ HRESULT CMon_Bug::Initialize(void* pArg)
 		return E_FAIL;
 
 	m_pStateCom->Set_State(TEXT("Monster_Bug_State_Idle"));
-	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetW(MonDesc->vPos, 1.f));
+
+	switch (m_tMonDesc.iNum)
+	{
+	case 0:
+		m_pTransformCom->Set_State(CTransform::STATE_POSITION, {4.f, 2.f, 25.f, 1.f});
+		break;
+
+	case 1:
+		m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 1.5f, 2.f, 25.f, 1.f });
+		break;
+
+	case 2:
+		m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 18.5f, 1.f, 17.5f, 1.f });
+		break;
+
+	}
 
 
 	m_pNavigationCom->Init_Index(m_pTransformCom);

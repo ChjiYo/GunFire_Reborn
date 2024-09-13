@@ -20,6 +20,7 @@ public:
 	{
 		_int iHp = {};
 		_int iMaxHp = {};
+		_int iNum = {};
 		_vector vPos = {};
 	}MON_DESC;
 

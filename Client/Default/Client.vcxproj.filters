@@ -591,6 +591,15 @@
     <ClCompile Include="..\private\UI_Cursor.cpp">
       <Filter>02.GameObjects\UI\UI_Cursor</Filter>
     </ClCompile>
+    <ClCompile Include="..\private\NPC_Quest.cpp">
+      <Filter>02.GameObjects\NPC\Quest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\UI_Quest.cpp">
+      <Filter>02.GameObjects\UI\UI_Quest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\UI_Log.cpp">
+      <Filter>02.GameObjects\UI\UI_Log</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Public\Level_Logo.h">
@@ -1165,6 +1174,15 @@
     </ClInclude>
     <ClInclude Include="..\public\UI_Cursor.h">
       <Filter>02.GameObjects\UI\UI_Cursor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\NPC_Quest.h">
+      <Filter>02.GameObjects\NPC\Quest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\UI_Quest.h">
+      <Filter>02.GameObjects\UI\UI_Quest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\UI_Log.h">
+      <Filter>02.GameObjects\UI\UI_Log</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1826,6 +1844,15 @@
     </Filter>
     <Filter Include="02.GameObjects\BackGround\Camera\Free">
       <UniqueIdentifier>{743d029f-be3a-44e6-8694-21396d882aeb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\NPC\Quest">
+      <UniqueIdentifier>{375a7ca9-b4da-499a-9955-68f0c2b9864a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Quest">
+      <UniqueIdentifier>{68e8f856-6c13-4055-896b-336316dbd234}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Log">
+      <UniqueIdentifier>{d72376f1-7274-4d58-a4b7-4930948bfb30}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

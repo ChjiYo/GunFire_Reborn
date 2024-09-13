@@ -31,7 +31,7 @@ HRESULT CUI_Number::Initialize(void* pArg)
     m_iTextureIndex = Desc->iTextureIndex;
     m_iNumTexture = Desc->iNumUI;
     m_iAngle = Desc->iAngle;
-    _uint iNumCnt = Desc->iNumCnt;
+    m_iNiumCnt = Desc->iNumCnt;
 
     m_pOriginTransform = Desc->pTransform;
     Safe_AddRef(m_pOriginTransform);
@@ -41,11 +41,11 @@ HRESULT CUI_Number::Initialize(void* pArg)
 
    // _vector vPos = m_pOriginTransform->Get_State(CTransform::STATE_POSITION) + (m_pOriginTransform->Get_State(CTransform::STATE_RIGHT) * ((Desc->iNumCnt) * 0.5f)) + (m_pOriginTransform->Get_State(CTransform::STATE_LOOK) * ((Desc->iNumCnt) * -0.5f));
     //m_pTransformCom->Set_State(CTransform::STATE_POSITION, vPos);
-    if (!m_pGameInstance->Get_Layer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_UI_Number")).empty())
+    if (m_iNiumCnt != 0)
     {
-        _matrix vMatPivot = m_pGameInstance->Get_Layer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_UI_Number")).front()->Get_Transform()->Get_WorldMatrix();
-        // vMatPivot.r[CTransform::STATE_POSITION] += vMatPivot.r[CTransform::STATE_LOOK] * 1.25f * (iNumCnt + 1);
-        m_pTransformCom->Set_WorldMatrix(vMatPivot);
+       _matrix vMatPivot = m_pGameInstance->Get_Layer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_UI_Number")).front()->Get_Transform()->Get_WorldMatrix();
+        m_vOffsetPos  = vMatPivot.r[CTransform::STATE_POSITION]  + vMatPivot.r[CTransform::STATE_RIGHT] * (1.25f * (m_iNiumCnt));
+       m_pTransformCom->Set_WorldMatrix(vMatPivot);
     }
     else
         m_pTransformCom->Set_State(CTransform::STATE_POSITION , m_pOriginTransform->Get_State(CTransform::STATE_POSITION));
@@ -61,6 +61,12 @@ void CUI_Number::Priority_Update(_float fTimeDelta)
     m_pTransformCom->LookAt(pPlayerTransform->Get_State(CTransform::STATE_POSITION));
     m_pTransformCom->Radian_Turn(m_pTransformCom->Get_State(CTransform::STATE_UP), XMConvertToRadians(180.f));
 
+    if (m_iNiumCnt != 0)
+    {
+        m_pTransformCom->Set_State(CTransform::STATE_POSITION, m_vOffsetPos);
+    }
+
+
     if(!m_pTransformCom->Gravity(0.2f, XMVectorGetY(m_pOriginTransform->Get_State(CTransform::STATE_POSITION)), fTimeDelta))
         m_pTransformCom->Go_Up(fTimeDelta);
     
@@ -70,7 +76,10 @@ void CUI_Number::Priority_Update(_float fTimeDelta)
 
 void CUI_Number::Update(_float fTimeDelta)
 {
-  
+    if (m_iNiumCnt != 0)
+    {
+       // m_pTransformCom->Set_State(CTrnasform);
+    }
 
     _float WarfPosX = XMVectorGetX(m_pOriginTransform->Get_State(CTransform::STATE_POSITION)) * cos(m_iAngle * (3.14f / 180.f));
     _float WarfPosZ = XMVectorGetZ(m_pOriginTransform->Get_State(CTransform::STATE_POSITION)) * sin(m_iAngle * (3.14f / 180.f));
