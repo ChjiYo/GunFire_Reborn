@@ -46,6 +46,7 @@ private:
 	_bool				m_bShowCursor = { true };
 	_bool				m_bTrueCurrsor = { false };
 	_bool				m_isCurrsorEnable = { true };
+	_bool				m_bNPC = { false };
 
 	_float				m_fMouseSensor = {};
 	_float				m_fScopeLevel = { 0.f };

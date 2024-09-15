@@ -26,8 +26,6 @@ HRESULT CSkill::Initialize(void* pArg)
 	if (FAILED(__super::Initialize(pArg)))
 		return E_FAIL;
 
-	//m_iSkillDamage = static_cast<>
-
 	return S_OK;
 }
 

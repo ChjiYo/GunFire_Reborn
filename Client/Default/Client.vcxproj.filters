@@ -600,6 +600,9 @@
     <ClCompile Include="..\private\UI_Log.cpp">
       <Filter>02.GameObjects\UI\UI_Log</Filter>
     </ClCompile>
+    <ClCompile Include="..\private\VFX_Pistol_Barrel.cpp">
+      <Filter>02.GameObjects\Effect\VFX\Barrel</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Public\Level_Logo.h">
@@ -1183,6 +1186,9 @@
     </ClInclude>
     <ClInclude Include="..\public\UI_Log.h">
       <Filter>02.GameObjects\UI\UI_Log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\VFX_Pistol_Barrel.h">
+      <Filter>02.GameObjects\Effect\VFX\Barrel</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1853,6 +1859,9 @@
     </Filter>
     <Filter Include="02.GameObjects\UI\UI_Log">
       <UniqueIdentifier>{d72376f1-7274-4d58-a4b7-4930948bfb30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Effect\VFX\Barrel">
+      <UniqueIdentifier>{79f7c0bf-62a6-4f2f-a7aa-a6e15f22432d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

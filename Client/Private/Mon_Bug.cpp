@@ -139,8 +139,10 @@ HRESULT CMon_Bug::Render()
 void CMon_Bug::Destroy()
 {
 	if (m_tMonDesc.iHp <= 0.f)
+	{
+		DropItem();
 		m_bDead = true;
-
+	}
 }
 
 HRESULT CMon_Bug::Ready_State()

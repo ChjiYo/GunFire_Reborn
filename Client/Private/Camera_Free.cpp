@@ -64,15 +64,18 @@ void CCamera_Free::Late_Update(_float fTimeDelta)
 {
 	_bool m_bEmpty = false;
 
-	if (dynamic_cast<CNPC_Weapon*>(m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_NPC")).back()) == nullptr)
-		m_bEmpty = true;
+	if (m_pGameInstance->GetLoadingLevelIndex() == LEVEL_GAMEPLAY)
+	{
+		if (dynamic_cast<CNPC_Weapon*>(m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_NPC")).front()) == nullptr)
+			m_bEmpty = true;
 
-	_bool bNpcCursor = false;
+		m_bNPC = false;
+		
+		if (!m_bEmpty)
+			m_bNPC = dynamic_cast<CNPC_Weapon*>(m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_NPC")).front())->GetCursor();
 
-	if(!m_bEmpty)
-		bNpcCursor = dynamic_cast<CNPC_Weapon*>(m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_NPC")).back())->GetCursor();
-
-	bNpcCursor ? m_pGameInstance->SetDeltaTime(0.f) : m_pGameInstance->SetDeltaTime(1.f);
+		m_bNPC ? m_pGameInstance->SetDeltaTime(0.f) : m_pGameInstance->SetDeltaTime(1.f);
+	}
 
 	if (m_bTrueCurrsor ||(m_pGameInstance->Key_Down('P')))
 	{
@@ -87,7 +90,7 @@ void CCamera_Free::Late_Update(_float fTimeDelta)
 		SetCursorPos(pt.x, pt.y);
 		m_bTrueCurrsor = true;
 
-		if ((m_bTrueCurrsor && m_pGameInstance->Key_Down('P')) || bNpcCursor)
+		if ((m_bTrueCurrsor && m_pGameInstance->Key_Down('P')) || m_bNPC)
 		{
 			m_bTrueCurrsor = false;
 			m_bShowCursor = true;

@@ -10,6 +10,8 @@
 #include "Skill.h"
 #include "Monster.h"
 
+#include "VFX.h"
+
 
 CWeapon_Player_Pistol::CWeapon_Player_Pistol(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
     :CWeapon_Player{ pDevice  , pContext }
@@ -44,7 +46,10 @@ HRESULT CWeapon_Player_Pistol::Initialize(void* pArg)
     m_pPlayerTransform = Desc->pTargetTransform;
     Safe_AddRef(m_pPlayerTransform);
 
-    m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Prototype_GameObject_VFX_Specrum"), TEXT("Layer_Effect"));
+    CVFX::VFX_DESC VFX_Desc = {};
+    VFX_Desc.pOriginTransform = m_pPlayerTransform;
+
+    m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Prototype_GameObject_VFX_Specrum"), TEXT("Layer_Effect"), &VFX_Desc);
 
     return S_OK;
 }
@@ -144,6 +149,11 @@ void CWeapon_Player_Pistol::Key_State()
         m_pModelCom->SetUp_Animation(1, false);
         Create_Bullet();
         m_fAttackTimer = 0.f;
+
+        CVFX::VFX_DESC Desc = {};
+        Desc.pOriginTransform = m_pPlayerTransform;
+
+        //m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Prototype_GameObject_VFX_Pistol_Barrel"), TEXT("Layer_Effect"), &Desc);
     }
 
     if (m_pGameInstance->Key_Down('R'))

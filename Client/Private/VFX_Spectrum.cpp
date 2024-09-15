@@ -21,6 +21,7 @@ HRESULT CVFX_Spectrum::Initialize_Prototype()
     if (FAILED(__super::Initialize_Prototype()))
         return E_FAIL;
 
+
     return S_OK;
 }
 
@@ -31,6 +32,10 @@ HRESULT CVFX_Spectrum::Initialize(void* pArg)
 
     if (FAILED(Ready_Components()))
         return E_FAIL;
+
+    VFX_DESC* Desc = static_cast<VFX_DESC*>(pArg);
+    m_pOriginTransform = Desc->pOriginTransform;
+    Safe_AddRef(m_pOriginTransform);
 
     m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 0.f, 0.f, 0.f,1.f });
     m_pModelCom->SetUp_Animation(0, false);
@@ -116,7 +121,7 @@ HRESULT CVFX_Spectrum::Ready_Components()
         return E_FAIL;
 
     /* For.Com_Model */
-    if (FAILED(__super::Add_Component(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Prototype_Component_Model_Monster_Archer"),
+    if (FAILED(__super::Add_Component(LEVEL_STATIC, TEXT("Prototype_Component_Model_Weapon_Player_Spectrum"),
         TEXT("Com_Texture"), reinterpret_cast<CComponent**>(&m_pModelCom))))
         return E_FAIL;
 
@@ -134,8 +139,7 @@ HRESULT CVFX_Spectrum::Bind_ShaderResources()
     if (FAILED(m_pShaderCom->Bind_Matrix("g_ProjMatrix", &m_pGameInstance->Get_Transform_Float4x4(CPipeLine::D3DTS_PROJ))))
         return E_FAIL;
 
-    CTransform* pPlayerTransform =  dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Layer_Player"), TEXT("Com_Transform")));
-    if (FAILED(m_pShaderCom->Bind_RawValue("g_PlayerPos", &pPlayerTransform->Get_State(CTransform::STATE_POSITION), sizeof(_vector))))
+    if (FAILED(m_pShaderCom->Bind_RawValue("g_PlayerPos", &m_pOriginTransform->Get_State(CTransform::STATE_POSITION), sizeof(_vector))))
         return E_FAIL;
 
     if (FAILED(m_pShaderCom->Bind_RawValue("g_MyPos", &m_pTransformCom->Get_State(CTransform::STATE_POSITION), sizeof(_vector))))
@@ -175,6 +179,7 @@ void CVFX_Spectrum::Free()
 {
     Safe_Release(m_pShaderCom);
     Safe_Release(m_pModelCom);
+    Safe_Release(m_pOriginTransform);
 
     __super::Free();
 }

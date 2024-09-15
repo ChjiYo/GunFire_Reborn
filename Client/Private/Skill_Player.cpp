@@ -76,7 +76,7 @@ void CSkill_Player::Late_Update(_float fTimeDelta)
 			Desc.iNumUI = log10(iDamage) + 1;
 			Desc.pTransform = pMonster->Get_Transform();
 			Desc.iAngle = rand() % 360;
-			Desc.fSpeedPerSec = 2.f;
+			Desc.fSpeedPerSec = 5.f;
 
 			for (int i = 0; i < DamageStack.size(); )
 			{
