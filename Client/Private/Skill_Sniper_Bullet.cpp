@@ -6,6 +6,8 @@
 #include "Monster.h"
 #include "Bounding_OBB.h"
 
+#include "VFX.h"
+
 CSkill_Sniper_Bullet::CSkill_Sniper_Bullet(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
     :CSkill_Player{ pDevice , pContext }
 {
@@ -38,6 +40,15 @@ HRESULT CSkill_Sniper_Bullet::Initialize(void* pArg)
 
     m_vTargetLook = m_pOriginTransform->Get_State(CTransform::STATE_LOOK);
     m_pTransformCom->Set_Scaled(3.f, 0.25f, 1.f);
+
+
+   /* CVFX::VFX_DESC VFX_Desc = {};
+    VFX_Desc.pOriginTransform = m_pOriginTransform;
+
+    _bool		isPick = { false };
+
+    VFX_Desc.vCreatePos = XMLoadFloat4(&m_pGameInstance->Picked_Position(&isPick));
+    m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Prototype_GameObject_VFX_Sniper"), TEXT("Layer_Effect"), &VFX_Desc);*/
 
     return S_OK;
 }

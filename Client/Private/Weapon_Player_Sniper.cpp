@@ -8,6 +8,7 @@
 #include "FSM_Player_Dash.h"
 
 #include "Skill.h"
+#include "VFX.h"
 
 #include "UI_Sniper_Hair.h"
 #include "UI_Sniper_Ring.h"
@@ -37,6 +38,10 @@ HRESULT CWeapon_Player_Sniper::Initialize(void* pArg)
 
     if (FAILED(Ready_Components()))
         return E_FAIL;
+
+    PLAYER_WEAPON_DESC* Desc = static_cast<PLAYER_WEAPON_DESC*>(pArg);
+    m_pPlayerTransform = Desc->pTargetTransform;
+    Safe_AddRef(m_pPlayerTransform);
 
     m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 0.25f , -0.15f , -0.15f , 1.f });
 
@@ -202,6 +207,14 @@ void CWeapon_Player_Sniper::Create_Bullet()
     Desc.fRotationPerSec = XMConvertToRadians(90.0f);
 
     m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Prototype_GameObject_Skill_Sniper_Bullet"), TEXT("Layer_Skill_Player_Bullet"), &Desc);
+
+    CVFX::VFX_DESC VFX_Desc = {};
+    VFX_Desc.pOriginTransform = m_pPlayerTransform;
+
+    _bool		isPick = { false };
+
+    VFX_Desc.vCreatePos = XMLoadFloat4(&m_pGameInstance->Picked_Position(&isPick));
+    m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Prototype_GameObject_VFX_Sniper"), TEXT("Layer_Effect"), &VFX_Desc);
 }
 
 void CWeapon_Player_Sniper::Zoom()
@@ -239,6 +252,7 @@ void CWeapon_Player_Sniper::Free()
 {
     Safe_Release(m_pShaderCom);
     Safe_Release(m_pModelCom);
+    Safe_Release(m_pPlayerTransform);
 
     __super::Free();
 }

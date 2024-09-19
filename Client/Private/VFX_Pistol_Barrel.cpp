@@ -33,7 +33,7 @@ HRESULT CVFX_Pistol_Barrel::Initialize(void* pArg)
 
     VFX_DESC* Desc = static_cast<VFX_DESC*>(pArg);
     m_pOriginTransform = Desc->pOriginTransform;
-    Safe_Release(m_pOriginTransform);
+    Safe_AddRef(m_pOriginTransform);
 
     _vector vPos = m_pOriginTransform->Get_State(CTransform::STATE_POSITION);
     _vector vRight = m_pOriginTransform->Get_State(CTransform::STATE_RIGHT);

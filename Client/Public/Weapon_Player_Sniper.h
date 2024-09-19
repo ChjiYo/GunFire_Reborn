@@ -34,6 +34,8 @@ private:
 	CBinModel* m_pModelCom = { nullptr };
 
 	CCollider* m_pColliderCom = { nullptr };
+	CTransform* m_pPlayerTransform = { nullptr };
+
 
 private:
 	_bool				m_bZoomCheck = { false };

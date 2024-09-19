@@ -22,13 +22,15 @@ private:
 	HRESULT Bind_ShaderResources();
 
 private:
-	void Destroy(_float fTimeDelta);
+	void Destroy(_float fTimeDelta, _vector vPos);
 
 private:
 	_vector m_vTargetLook = {};
 
 	_float m_fDestroyTimer = {};
 	_uint m_iTextureIndex = { 0 };
+
+	_float4 m_vDestroyPos = {};
 public:
 	static CSkill_Shuriken_Bullet* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	virtual CGameObject* Clone(void* pArg);

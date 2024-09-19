@@ -603,6 +603,24 @@
     <ClCompile Include="..\private\VFX_Pistol_Barrel.cpp">
       <Filter>02.GameObjects\Effect\VFX\Barrel</Filter>
     </ClCompile>
+    <ClCompile Include="..\private\VFX_Hit.cpp">
+      <Filter>02.GameObjects\Effect\VFX\Hit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\VFX_Destroy.cpp">
+      <Filter>02.GameObjects\Effect\VFX\Destroy</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\VFX_Shuriken.cpp">
+      <Filter>02.GameObjects\Effect\VFX\Shuriken</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\VFX_Sniper.cpp">
+      <Filter>02.GameObjects\Effect\VFX\Sniper</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\UI_MiniMap.cpp">
+      <Filter>02.GameObjects\UI\UI_MiniMap\MiniMap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\UI_Mark.cpp">
+      <Filter>02.GameObjects\UI\UI_MiniMap\Mark</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Public\Level_Logo.h">
@@ -1189,6 +1207,24 @@
     </ClInclude>
     <ClInclude Include="..\public\VFX_Pistol_Barrel.h">
       <Filter>02.GameObjects\Effect\VFX\Barrel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\VFX_Hit.h">
+      <Filter>02.GameObjects\Effect\VFX\Hit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\VFX_Destroy.h">
+      <Filter>02.GameObjects\Effect\VFX\Destroy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\VFX_Shuriken.h">
+      <Filter>02.GameObjects\Effect\VFX\Shuriken</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\VFX_Sniper.h">
+      <Filter>02.GameObjects\Effect\VFX\Sniper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\UI_MiniMap.h">
+      <Filter>02.GameObjects\UI\UI_MiniMap\MiniMap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\UI_Mark.h">
+      <Filter>02.GameObjects\UI\UI_MiniMap\Mark</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1862,6 +1898,27 @@
     </Filter>
     <Filter Include="02.GameObjects\Effect\VFX\Barrel">
       <UniqueIdentifier>{79f7c0bf-62a6-4f2f-a7aa-a6e15f22432d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Effect\VFX\Destroy">
+      <UniqueIdentifier>{4f37154c-15fe-49f7-af73-53bb1810e1f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Effect\VFX\Hit">
+      <UniqueIdentifier>{32e7a967-e3b2-4d67-92d7-521f064b016a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Effect\VFX\Shuriken">
+      <UniqueIdentifier>{df927b0b-d804-42ad-93ab-adf8525fb8ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Effect\VFX\Sniper">
+      <UniqueIdentifier>{832ae039-b35f-4dd3-b89f-ed741a303df6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_MiniMap">
+      <UniqueIdentifier>{d11f9d06-e386-4b7c-978a-e9329d422698}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_MiniMap\MiniMap">
+      <UniqueIdentifier>{26a58440-fdc4-48d1-b155-9390b079a64d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_MiniMap\Mark">
+      <UniqueIdentifier>{f057de1c-4389-47df-b0c9-0d5d8535d5bc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

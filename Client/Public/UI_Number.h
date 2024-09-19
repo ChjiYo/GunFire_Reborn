@@ -51,7 +51,9 @@ private:
 
 	_float m_fDeleteTimer = { 0.f };
 
-	_vector m_vOffsetPos = {};
+private:
+	_vector m_vFirstPos = {};
+	_vector m_vFirstRight = {};
 
 public:
 	static CUI_Number* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);

@@ -96,6 +96,23 @@ PS_OUT PS_ROTATION(PS_IN In)
     return Out;
 }
 
+PS_OUT PS_SNIPER(PS_IN In)
+{
+    PS_OUT Out;
+
+    float2 offset = float2(g_Timer, 0); 
+    float2 newTexcoord = In.vTexcoord + offset;
+
+    Out.vColor = g_Texture.Sample(LinearSampler, newTexcoord);
+
+    if (Out.vColor.a <= 0.1f)
+        discard;
+    
+    Out.vColor.a = 1 - g_Timer;
+
+    return Out;
+}
+
 technique11 DefaultTechnique
 {
 	/* PASSÀÇ ±âÁØ : ¼ÎÀÌ´õ ±â¹ýÀÇ Ä¸½¶È­. */
@@ -117,6 +134,16 @@ technique11 DefaultTechnique
 
         VertexShader = compile vs_5_0 VS_MAIN();
         PixelShader = compile ps_5_0 PS_ROTATION();
+    }
+
+    pass Sniper
+    {
+        SetRasterizerState(RS_Cull_NONE);
+        SetDepthStencilState(DSS_Default, 0);
+        SetBlendState(BS_AlphaBlend, float4(0.f, 0.f, 0.f, 0.f), 0xffffffff);
+
+        VertexShader = compile vs_5_0 VS_MAIN();
+        PixelShader = compile ps_5_0 PS_SNIPER();
     }
 
 }

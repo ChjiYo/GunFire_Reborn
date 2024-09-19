@@ -33,6 +33,7 @@ private:
 	CShader* m_pShaderCom = { nullptr };
 	CBinModel* m_pModelCom = { nullptr };
 	CState_Machine* m_pStateCom = { nullptr };
+	CTexture* m_pTextureCom = { nullptr };
 
 
 	_float m_fEffectCreateTimer = { 0.f };

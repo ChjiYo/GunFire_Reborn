@@ -39,22 +39,23 @@ HRESULT CUI_Number::Initialize(void* pArg)
     if (FAILED(Ready_Component()))
         return E_FAIL;
 
-    _vector vPos = m_pOriginTransform->Get_State(CTransform::STATE_POSITION);
-    _vector vRight = m_pOriginTransform->Get_State(CTransform::STATE_RIGHT);
 
-    vPos += vRight * (0.6f * (m_iNiumCnt));
-    m_pTransformCom->Set_State(CTransform::STATE_POSITION, vPos);
+    if (m_iNiumCnt != 0)
+    {
+        CTransform* pTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Layer_UI_Number"), TEXT("Com_Transform")));
+        m_vFirstPos = pTransform->Get_State(CTransform::STATE_POSITION);
+        m_vFirstRight = pTransform->Get_State(CTransform::STATE_RIGHT);
 
-    //m_pTransformCom->Set_State(CTransform::STATE_POSITION , )
-    //if (m_iNiumCnt != 0)
-    //{
-    //   _matrix vMatPivot = m_pGameInstance->Get_Layer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_UI_Number")).front()->Get_Transform()->Get_WorldMatrix();
-    //    m_vOffsetPos  = vMatPivot.r[CTransform::STATE_POSITION]  + vMatPivot.r[CTransform::STATE_RIGHT] * (1.25f * (m_iNiumCnt));
-    //   m_pTransformCom->Set_WorldMatrix(vMatPivot);
-    //}
-    //else
-    //    m_pTransformCom->Set_State(CTransform::STATE_POSITION , m_pOriginTransform->Get_State(CTransform::STATE_POSITION));
-    
+        m_vFirstPos += m_vFirstRight * 0.75f * m_iNiumCnt;
+        m_pTransformCom->Set_State(CTransform::STATE_POSITION, m_vFirstPos);
+    }
+    else
+        m_pTransformCom->Set_State(CTransform::STATE_POSITION, m_pOriginTransform->Get_State(CTransform::STATE_POSITION));
+
+    CTransform* pPlayerTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Layer_Player"), TEXT("Com_Transform")));
+    m_pTransformCom->LookAt(pPlayerTransform->Get_State(CTransform::STATE_POSITION));
+    m_pTransformCom->Radian_Turn(m_pTransformCom->Get_State(CTransform::STATE_UP), XMConvertToRadians(180.f));
+
     m_pTransformCom->Set_Scaled(0.5f , 0.5f, 0.5f);
 
     return S_OK;
@@ -62,30 +63,16 @@ HRESULT CUI_Number::Initialize(void* pArg)
 
 void CUI_Number::Priority_Update(_float fTimeDelta)
 {
-    CTransform* pPlayerTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Layer_Player"), TEXT("Com_Transform")));
-    //m_pTransformCom->Radian_Turn(m_pTransformCom->Get_State(CTransform::STATE_UP), XMConvertToRadians(180.f));
-
-    //if (m_iNiumCnt != 0)
-    //{
-    //    m_pTransformCom->Set_State(CTransform::STATE_POSITION, m_vOffsetPos);
-    //}
-
 
     m_pTransformCom->Go_Up(fTimeDelta);
 
     if(!m_pTransformCom->Gravity(0.2f, XMVectorGetY(m_pOriginTransform->Get_State(CTransform::STATE_POSITION)) + 1.f, fTimeDelta))
-    
-    //나중에 그냥 쉐이더로 던지자 그게 마음 편하다 진짜로
+
     m_fDeleteTimer += fTimeDelta;
 }
 
 void CUI_Number::Update(_float fTimeDelta)
 {
-    if (m_iNiumCnt != 0)
-    {
-       // m_pTransformCom->Set_State(CTrnasform);
-    }
-
     _float WarfPosX = XMVectorGetX(m_pOriginTransform->Get_State(CTransform::STATE_POSITION)) * cos(m_iAngle * (3.14f / 180.f));
     _float WarfPosZ = XMVectorGetZ(m_pOriginTransform->Get_State(CTransform::STATE_POSITION)) * sin(m_iAngle * (3.14f / 180.f));
 
@@ -126,8 +113,6 @@ HRESULT CUI_Number::Render()
 
 HRESULT CUI_Number::Ready_Component()
 {
-    //if (FAILED(__super::Ready_Components()))
-    //    return E_FAIL;
 
     if (FAILED(__super::Add_Component(LEVEL_STATIC, TEXT("Prototype_Component_Shader_UI_VtxRect"),
         TEXT("Com_Shader"), reinterpret_cast<CComponent**>(&m_pShaderCom))))
@@ -148,8 +133,6 @@ HRESULT CUI_Number::Ready_Component()
 
 HRESULT CUI_Number::Bind_ShaderResources()
 {
-    //if (FAILED(__super::Bind_Perspective()))
-    //    return E_FAIL;
 
     if (FAILED(m_pTransformCom->Bind_ShaderResource(m_pShaderCom, "g_WorldMatrix")))
         return E_FAIL;

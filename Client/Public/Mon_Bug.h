@@ -33,9 +33,11 @@ private:
 	CShader* m_pShaderCom = { nullptr };
 	CBinModel* m_pModelCom = { nullptr };
 	CState_Machine* m_pStateCom = { nullptr };
+	CTexture* m_pTextureCom = { nullptr };
 
 private:
 	_uint m_iAnimFrame = { 0 };
+	_bool m_bDeadEffect = { false };
 
 private:
 	HRESULT Ready_State();

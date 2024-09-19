@@ -47,6 +47,9 @@ HRESULT CLevel_GamePlay::Initialize()
 	if (FAILED(Ready_UI_WeaponState()))
 		return E_FAIL;
 
+	if (FAILED(Ready_MiniMap()))
+		return E_FAIL;
+
 	//if (FAILED(Ready_UI_SkillState()))
 	//	return E_FAIL;
 	
@@ -270,6 +273,17 @@ HRESULT CLevel_GamePlay::Ready_CrossHair()
 		if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Cross_Hair"), TEXT("Layer_UI_CrossHair") , &Desc)))
 			return E_FAIL;
 	}
+
+	return S_OK;
+}
+
+HRESULT CLevel_GamePlay::Ready_MiniMap()
+{
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_MiniMap"), TEXT("Layer_UI_MiniMap"))))
+		return E_FAIL;
+
+	//if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Cross_Hair"), TEXT("Layer_UI_CrossHair"))))
+	//	return E_FAIL;
 
 	return S_OK;
 }

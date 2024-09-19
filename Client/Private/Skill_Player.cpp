@@ -6,6 +6,7 @@
 #include <stack>
 
 #include "UI_Number.h"
+#include "VFX.h"
 
 CSkill_Player::CSkill_Player(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	:CSkill{ pDevice  , pContext }
@@ -86,6 +87,10 @@ void CSkill_Player::Late_Update(_float fTimeDelta)
 				m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Prototype_GameObject_UI_Number"), TEXT("Layer_UI_Number"), &Desc);
 				DamageStack.pop();
 			}
+
+			CVFX::VFX_DESC VFX_Desc = {};
+			VFX_Desc.vCreatePos = XMLoadFloat4(&m_vDestoryPos);
+			m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Prototype_GameObject_VFX_Hit"), TEXT("Layer_Effect"),&VFX_Desc);
 
 			m_bDead = true;
 		}

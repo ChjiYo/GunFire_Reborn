@@ -123,6 +123,14 @@
 
 #include "UI_Number.h"
 
+#include "VFX_Hit.h"
+#include "VFX_Destroy.h"
+#include "VFX_Shuriken.h"
+#include "VFX_Sniper.h"
+
+#include "UI_MiniMap.h"
+#include "UI_Mark.h"
+
 CLoader::CLoader(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	: m_pDevice { pDevice }
 	, m_pContext { pContext }
@@ -458,6 +466,23 @@ HRESULT CLoader::Loading_For_StaticLevel()
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_STATIC, TEXT("Prototype_Component_Collider_Ray"),
 		CCollider::Create(m_pDevice, m_pContext, CCollider::TYPE_RAY))))
 		return E_FAIL;
+
+	lstrcpy(m_szLoadingText, TEXT("컴포넌트를 로드하는 중입니다."));
+
+	/* For.Prototype_Component_VIBuffer_Particle_Shuriken */
+	CVIBuffer_Instancing::VIBUFFER_INSTANCE_DESC	ParticleDesc{};
+	ParticleDesc.iNumInstance = 50;
+	ParticleDesc.vRange = _float3(3.0f, 3.f, 3.f);
+	ParticleDesc.vCenter = _float3(0.f, 0.f, 0.f);
+	ParticleDesc.vPivot = _float3(0.f, 0.f, 0.f);
+	ParticleDesc.vSpeed = _float2(2.5f, 3.75f);
+	ParticleDesc.vScale = _float2(0.25f, 0.5f);
+	ParticleDesc.vLifeTime = _float2(0.25f, 0.75f);
+	ParticleDesc.isLoop = false;
+
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_STATIC, TEXT("Prototype_Component_VIBuffer_Particle_Shuriken"),
+		CVIBuffer_Point_Instancing::Create(m_pDevice, m_pContext, &ParticleDesc))))
+		return E_FAIL;
 	
 	lstrcpy(m_szLoadingText, TEXT("텍스처를 로드하는 중입니다."));
 	/* For.Prototype_Component_Texture_Terrain */
@@ -485,6 +510,38 @@ HRESULT CLoader::Loading_For_StaticLevel()
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_STATIC, TEXT("Prototype_Component_Texture_Barrel"),
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/Skill/Player/Pistol/Barrel%d.png"),7))))
 		return E_FAIL;
+
+	/* For.Prototype_Component_Texture_Hit */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_STATIC, TEXT("Prototype_Component_Texture_Hit"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/Effect/Hit/Hit_%d.png"), 4))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Texture_Destroy */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_STATIC, TEXT("Prototype_Component_Texture_Destroy"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/Effect/Destroy/Destroy_%d.png"), 13))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Texture_VFX_Shuriken */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_STATIC, TEXT("Prototype_Component_Texture_VFX_Shuriken"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/SKill/Player/Shuriken/Shuriken_Destroy.png")))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Texture_VFX_Sniper */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_STATIC, TEXT("Prototype_Component_Texture_VFX_Sniper"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/SKill/Player/Sniper/Sniper_Smoke.png")))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Texture_MiniMap */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_STATIC, TEXT("Prototype_Component_Texture_MiniMap"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/MiniMap/MiniMap.png")))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Texture_Mark */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_STATIC, TEXT("Prototype_Component_Texture_Mark"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/MiniMap/Mark.png")))))
+		return E_FAIL;
+
+
 
 	lstrcpy(m_szLoadingText, TEXT("모델을 로딩 중 입니다."));
 
@@ -543,9 +600,39 @@ HRESULT CLoader::Loading_For_StaticLevel()
 		CVFX_Pistol_Barrel::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
+	/* For.Prototype_GameObject_VFX_Hit */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_VFX_Hit"),
+		CVFX_Hit::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_VFX_Destroy */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_VFX_Destroy"),
+		CVFX_Destroy::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_VFX_Shuriken */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_VFX_Shuriken"),
+		CVFX_Shuriken::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_VFX_Sniper */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_VFX_Sniper"),
+		CVFX_Sniper::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
 	/* For.Prototype_GameObject_UI_Cursor */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_Cursor"),
 		CUI_Cursor::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_UI_MiniMap */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_MiniMap"),
+		CUI_MiniMap::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_UI_Mark */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_Mark"),
+		CUI_Mark::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
 	return S_OK;

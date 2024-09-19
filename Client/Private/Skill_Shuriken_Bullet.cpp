@@ -3,6 +3,8 @@
 #include "Skill_Shuriken_Bullet.h"
 #include "GameInstance.h"   
 
+#include "VFX.h"
+
 CSkill_Shuriken_Bullet::CSkill_Shuriken_Bullet(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
     :CSkill_Player{ pDevice , pContext }
 {
@@ -55,7 +57,7 @@ void CSkill_Shuriken_Bullet::Update(_float fTimeDelta)
     vPosition += m_vTargetLook * 50.f * fTimeDelta;
     m_pTransformCom->Set_State(CTransform::STATE_POSITION, vPosition);
 
-    Destroy(fTimeDelta);
+    Destroy(fTimeDelta, vPosition);
 }
 
 void CSkill_Shuriken_Bullet::Late_Update(_float fTimeDelta)
@@ -131,12 +133,24 @@ HRESULT CSkill_Shuriken_Bullet::Bind_ShaderResources()
     return S_OK;
 }
 
-void CSkill_Shuriken_Bullet::Destroy(_float fTimeDelta)
+void CSkill_Shuriken_Bullet::Destroy(_float fTimeDelta, _vector vPos)
 {
     m_fDestroyTimer += fTimeDelta;
 
-    if (m_fDestroyTimer > 5.f)
+    if (m_fDestroyTimer > 15.f)
         m_bDead = true;
+
+    //m_vDestoryPos
+    _float fDistance = XMVectorGetX(XMVector3Length(vPos - XMLoadFloat4(&m_vDestoryPos)));
+
+    if (fabs(fDistance) < 2.25f)
+    {
+        CVFX::VFX_DESC Desc = {};
+        Desc.vCreatePos = XMLoadFloat4(&m_vDestoryPos);
+
+        m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Prototype_GameObject_VFX_Shuriken"), TEXT("Layer_Effect"),&Desc);
+        m_bDead = true;
+    }
 
 }
 

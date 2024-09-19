@@ -35,9 +35,6 @@ private:
 	CBinModel* m_pModelCom = { nullptr };
 	CState_Machine* m_pStateCom = { nullptr };
 	CTexture* m_pTextureCom = { nullptr };
-private:
-	_float m_fTimer  = { 0 };
-	_bool m_bNoise = {false};
 
 private:
 	HRESULT Ready_State();

@@ -143,7 +143,7 @@ technique11 DefaultTechnique
 	/* PASS¿« ±‚¡ÿ : ºŒ¿Ã¥ı ±‚π˝¿« ƒ∏Ω∂»≠. */
     pass Default
     {
-        SetRasterizerState(RS_Default);
+        SetRasterizerState(RS_Cull_NONE);
         SetDepthStencilState(DSS_Default, 0);
         SetBlendState(BS_Default, float4(0.f, 0.f, 0.f, 0.f), 0xffffffff);
 

@@ -12,6 +12,7 @@ public:
 	typedef struct :public CGameObject::GAMEOBJECT_DESC
 	{
 		CTransform* pOriginTransform = {};
+		_vector vCreatePos = {};
 	}VFX_DESC;
 
 protected:

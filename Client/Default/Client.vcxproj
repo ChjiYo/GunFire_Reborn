@@ -316,6 +316,8 @@
     <ClInclude Include="..\public\UI_Coin.h" />
     <ClInclude Include="..\public\UI_Cursor.h" />
     <ClInclude Include="..\public\UI_Log.h" />
+    <ClInclude Include="..\public\UI_Mark.h" />
+    <ClInclude Include="..\public\UI_MiniMap.h" />
     <ClInclude Include="..\public\UI_NPC_Weapon_Btn.h" />
     <ClInclude Include="..\public\UI_NPC_Weapon_Icon.h" />
     <ClInclude Include="..\public\UI_NPC_Weapon_Info.h" />
@@ -349,6 +351,8 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="..\public\VFX_Destroy.h" />
+    <ClInclude Include="..\public\VFX_Hit.h" />
     <ClInclude Include="..\public\VFX_Mon_Bubble.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
@@ -359,6 +363,8 @@
     <ClInclude Include="..\public\VFX_Mon_Breath.h" />
     <ClInclude Include="..\public\VFX_Mon_PosCircle.h" />
     <ClInclude Include="..\public\VFX_Pistol_Barrel.h" />
+    <ClInclude Include="..\public\VFX_Shuriken.h" />
+    <ClInclude Include="..\public\VFX_Sniper.h" />
     <ClInclude Include="..\public\VFX_Spectrum.h" />
     <ClInclude Include="..\public\Wall_Stage1.h" />
     <ClInclude Include="..\public\Wall_Stage2.h" />
@@ -514,6 +520,8 @@
     <ClCompile Include="..\private\UI_Coin.cpp" />
     <ClCompile Include="..\private\UI_Cursor.cpp" />
     <ClCompile Include="..\private\UI_Log.cpp" />
+    <ClCompile Include="..\private\UI_Mark.cpp" />
+    <ClCompile Include="..\private\UI_MiniMap.cpp" />
     <ClCompile Include="..\private\UI_NPC_Weapon_Btn.cpp" />
     <ClCompile Include="..\private\UI_NPC_Weapon_Icon.cpp" />
     <ClCompile Include="..\private\UI_NPC_Weapon_Info.cpp" />
@@ -547,6 +555,8 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\private\VFX_Destroy.cpp" />
+    <ClCompile Include="..\private\VFX_Hit.cpp" />
     <ClCompile Include="..\private\VFX_Mon_Bubble.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
@@ -557,6 +567,8 @@
     <ClCompile Include="..\private\VFX_Mon_Breath.cpp" />
     <ClCompile Include="..\private\VFX_Mon_PosCircle.cpp" />
     <ClCompile Include="..\private\VFX_Pistol_Barrel.cpp" />
+    <ClCompile Include="..\private\VFX_Shuriken.cpp" />
+    <ClCompile Include="..\private\VFX_Sniper.cpp" />
     <ClCompile Include="..\private\VFX_Spectrum.cpp" />
     <ClCompile Include="..\private\Wall_Stage1.cpp" />
     <ClCompile Include="..\private\Wall_Stage2.cpp" />

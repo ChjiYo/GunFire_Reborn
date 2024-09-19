@@ -56,6 +56,10 @@ public:
 	HRESULT Ready_UI();
 	HRESULT	DropItem();
 
+public:
+	_bool Get_Mark() { return m_bMark; }
+	void Set_Mark(_bool bMark) { m_bMark = bMark; }
+
 protected:
 	CNavigation* m_pNavigationCom	= { nullptr };
 	CCollider*	m_pColliderCom[COLL_END] = { nullptr , nullptr };
@@ -63,6 +67,10 @@ protected:
 	MON_DESC	m_tMonDesc = {};
 	_float		m_fDamageDelay = { 0.f };
 	_bool		m_isMove = { true };
+	_bool		m_bMark = { false };
+
+	_float m_fTimer = { 0 };
+	_bool m_bNoise = { false };
 
 public:
 	virtual void Free() override;
