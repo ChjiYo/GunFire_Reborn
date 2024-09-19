@@ -63,7 +63,7 @@ HRESULT CPlayer::Initialize(void* pArg)
     {
     case LEVEL_GAMEPLAY:
        // m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 40.f , 1.0f , 60.f, 1.f });
-        m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 4.f , 1.5f , 7.f, 1.f });
+        m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 6.f , 1.5f , 2.f, 1.f });
         break;
 
     case LEVEL_BOSS:

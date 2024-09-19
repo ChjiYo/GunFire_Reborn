@@ -50,12 +50,9 @@ HRESULT CLevel_GamePlay::Initialize()
 	if (FAILED(Ready_MiniMap()))
 		return E_FAIL;
 
-	//if (FAILED(Ready_UI_SkillState()))
-	//	return E_FAIL;
 	
 	if (FAILED(Ready_CrossHair()))
 		return E_FAIL;
-
 
 	if (FAILED(Ready_Layer_DecoObject(TEXT("Layer_Deco"))))
 		return E_FAIL;
@@ -102,34 +99,10 @@ HRESULT CLevel_GamePlay::Ready_Lights()
 	LightDesc.vDirection = _float4(1.f, -1.f, 1.f, 0.f);
 	LightDesc.vDiffuse = _float4(0.1f, 0.1f, 0.1f, 1.f);
 	LightDesc.vAmbient = _float4(0.2f, 0.2f, 0.2f, 1.f);
-	LightDesc.vSpecular = _float4(1.f, 1.f, 1.f, 1.f);
+	LightDesc.vSpecular = _float4(0.f, 0.f, 0.f, 1.f);
 
 	if (FAILED(m_pGameInstance->Add_Light(LightDesc)))
 		return E_FAIL;
-
-	/*ZeroMemory(&LightDesc, sizeof(LIGHT_DESC));
-	LightDesc.eType = LIGHT_DESC::TYPE_POINT;
-	LightDesc.vPosition = _float4(10.f, 5.f, 10.f, 1.f);
-	LightDesc.fRange = 10.f;
-	LightDesc.vDiffuse = _float4(1.f, 0.0f, 0.f, 1.f);
-	LightDesc.vAmbient = _float4(0.3f, 0.f, 0.f, 1.f);
-	LightDesc.vSpecular = _float4(1.f, 0.f, 1.f, 1.f);
-
-	if (FAILED(m_pGameInstance->Add_Light(LightDesc)))
-		return E_FAIL;
-
-	ZeroMemory(&LightDesc, sizeof(LIGHT_DESC));
-	LightDesc.eType = LIGHT_DESC::TYPE_POINT;
-	LightDesc.vPosition = _float4(20.f, 5.f, 10.f, 1.f);
-	LightDesc.fRange = 10.f;
-	LightDesc.vDiffuse = _float4(0.0f, 1.f, 0.f, 1.f);
-	LightDesc.vAmbient = _float4(0.f, 0.3f, 0.f, 1.f);
-	LightDesc.vSpecular = _float4(0.f, 1.f, 0.f, 1.f);
-
-	if (FAILED(m_pGameInstance->Add_Light(LightDesc)))
-		return E_FAIL;*/
-
-	//1.0f, 0.647f, 0.0f, 0.75f
 
 	return S_OK;
 }
@@ -356,16 +329,14 @@ HRESULT CLevel_GamePlay::Ready_Layer_DecoObject(const _wstring& strLayerTag)
 		if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Door"), TEXT("Layer_Door"), &DecoDesc)))
 			return E_FAIL; 
 	}
-
-	//if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Wall_Stage"), TEXT("Layer_Wall_Stage"))))
-	//	return E_FAIL;
-	//
-	//if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Wall_Stage2"), TEXT("Layer_Wall_Stage2"))))
-	//	return E_FAIL;
-
-	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Portal"), TEXT("Layer_Portal"))))
-		return E_FAIL;
 	
+	for (int i = 0; i < 2; ++i)
+	{
+		DecoDesc.iNumDeco = i;
+
+		if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Portal"), TEXT("Layer_Portal"),&DecoDesc)))
+			return E_FAIL;
+	}
 	return S_OK;
 }
 

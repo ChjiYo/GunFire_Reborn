@@ -7,6 +7,7 @@ class CShader;
 class CModel;
 class CBinModel;
 class CCollider;
+class CNavigation;
 END
 
 
@@ -31,6 +32,7 @@ private:
 	CShader* m_pShaderCom = { nullptr };
 	CBinModel* m_pModelCom = { nullptr };
 	CCollider* m_pCollider = { nullptr };
+	CNavigation* m_pNavigationCom = { nullptr };
 
 private:
 	_bool	m_bLand = { false };

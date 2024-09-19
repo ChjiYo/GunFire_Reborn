@@ -46,7 +46,7 @@ HRESULT CUI_Number::Initialize(void* pArg)
         m_vFirstPos = pTransform->Get_State(CTransform::STATE_POSITION);
         m_vFirstRight = pTransform->Get_State(CTransform::STATE_RIGHT);
 
-        m_vFirstPos += m_vFirstRight * 0.75f * m_iNiumCnt;
+        m_vFirstPos += m_vFirstRight * (0.75f * m_iNiumCnt);
         m_pTransformCom->Set_State(CTransform::STATE_POSITION, m_vFirstPos);
     }
     else
@@ -73,16 +73,6 @@ void CUI_Number::Priority_Update(_float fTimeDelta)
 
 void CUI_Number::Update(_float fTimeDelta)
 {
-    _float WarfPosX = XMVectorGetX(m_pOriginTransform->Get_State(CTransform::STATE_POSITION)) * cos(m_iAngle * (3.14f / 180.f));
-    _float WarfPosZ = XMVectorGetZ(m_pOriginTransform->Get_State(CTransform::STATE_POSITION)) * sin(m_iAngle * (3.14f / 180.f));
-
-    _vector vDir = { WarfPosX  ,XMVectorGetY(m_pOriginTransform->Get_State(CTransform::STATE_POSITION)) , WarfPosZ , 1.f};
-    vDir = XMVector3Normalize(vDir);
-
-    _vector vPos = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
-    vPos += vDir * 2.f * fTimeDelta;
-    m_pTransformCom->Set_State(CTransform::STATE_POSITION, vPos);
-
     Destroy(fTimeDelta);
 }
 

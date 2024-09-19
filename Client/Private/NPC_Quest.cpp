@@ -30,7 +30,7 @@ HRESULT CNPC_Quest::Initialize(void* pArg)
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
-	m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 7.f , -0.025f, 7.f, 1.f });
+	m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 9.76f , -0.025f, 3.65f, 1.f });
 
 	m_pModelCom->SetUp_Animation(0, true);
 

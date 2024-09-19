@@ -35,9 +35,24 @@ HRESULT CPortal::Initialize(void* pArg)
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
-	m_pTransformCom->Set_Scaled(4.18f, 8.f, 1.f);
-	m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 39.25f, 3.9f, 64.88, 1.f });
-	m_pTransformCom->Rotation({ 0.f , 1.f ,0.f }, XMConvertToRadians(90.f));
+	_uint iNum = static_cast<DECO_DESC*>(pArg)->iNumDeco;
+
+	switch (iNum)
+	{
+	case 0:
+		m_pTransformCom->Set_Scaled(4.18f, 8.f, 1.f);
+		m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 39.25f, 3.9f, 64.88, 1.f });
+		m_pTransformCom->Rotation({ 0.f , 1.f ,0.f }, XMConvertToRadians(90.f));
+		break;
+
+	case 1:
+		m_pTransformCom->Set_Scaled(4.18f, 8.f, 1.f);
+		m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 6.86f, 3.9f, 0.f , 1.f });
+		
+		break;
+	}
+
+	
 
 	return S_OK;
 }

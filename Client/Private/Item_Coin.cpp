@@ -36,6 +36,8 @@ HRESULT CItem_Coin::Initialize(void* pArg)
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
+	m_pNavigationCom->Init_Index(m_pTransformCom);
+
 	return S_OK;
 }
 
@@ -51,8 +53,12 @@ void CItem_Coin::Update(_float fTimeDelta)
 
 	m_pCollider->Update(m_pTransformCom->Get_WorldMatrix());
 
-	if(!m_bLand)
-		m_bLand  = 	m_pTransformCom->Gravity(1.f, 0.f, fTimeDelta);
+	if (!m_bLand && m_pGameInstance->GetLoadingLevelIndex() == LEVEL_GAMEPLAY)
+	{
+		_float fNNaviHeight = m_pNavigationCom->Navi_Height(m_pTransformCom);
+		m_bLand  =m_pTransformCom->Gravity(0.1f, fNNaviHeight + 0.25f, fTimeDelta);
+		m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetY(m_pTransformCom->Get_State(CTransform::STATE_POSITION), fNNaviHeight));
+	}
 
 	m_pTransformCom->Turn({0 , 1, 0}, fTimeDelta);
 	CTransform* pPlayerTransform =dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Layer_Player")  , TEXT("Com_Transform")));
@@ -121,6 +127,14 @@ HRESULT CItem_Coin::Ready_Components()
 		TEXT("Com_ColliderSphere"), reinterpret_cast<CComponent**>(&m_pCollider), &SphereBoundingDesc)))
 		return E_FAIL;
 
+	CNavigation::NAVIGATION_DESC		NavigationDesc{};
+	NavigationDesc.iCurrentCellIndex = 0;
+
+	/* Com_Navigation */
+	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Navigation"),
+		TEXT("Com_Navigation"), reinterpret_cast<CComponent**>(&m_pNavigationCom), &NavigationDesc)))
+		return E_FAIL;
+
 	return S_OK;
 }
 
@@ -169,6 +183,7 @@ void CItem_Coin::Free()
 	Safe_Release(m_pShaderCom);
 	Safe_Release(m_pModelCom);
 	Safe_Release(m_pCollider);
+	Safe_Release(m_pNavigationCom);
 
 	__super::Free();
 }

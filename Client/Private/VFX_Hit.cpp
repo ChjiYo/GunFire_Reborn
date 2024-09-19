@@ -34,7 +34,10 @@ HRESULT CVFX_Hit::Initialize(void* pArg)
     VFX_DESC* Desc = static_cast<VFX_DESC*>(pArg);
     _vector _vCreatePos = Desc->vCreatePos;
 
-    m_pTransformCom->Set_State(CTransform::STATE_POSITION, _vCreatePos);
+    _float fPosY = XMVectorGetY(_vCreatePos);
+
+    m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetY(_vCreatePos , fPosY + 0.5f));
+    m_pTransformCom->Set_Scaled(2.f, 2.f, 2.f);
 
 
     return S_OK;

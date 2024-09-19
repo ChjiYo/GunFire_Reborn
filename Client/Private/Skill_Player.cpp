@@ -83,13 +83,13 @@ void CSkill_Player::Late_Update(_float fTimeDelta)
 			{
 				Desc.iTextureIndex = DamageStack.top();
 				Desc.iNumCnt = iNumCnt;
-				iNumCnt++;
 				m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Prototype_GameObject_UI_Number"), TEXT("Layer_UI_Number"), &Desc);
+				iNumCnt++;
 				DamageStack.pop();
 			}
 
 			CVFX::VFX_DESC VFX_Desc = {};
-			VFX_Desc.vCreatePos = XMLoadFloat4(&m_vDestoryPos);
+			VFX_Desc.vCreatePos = pMonster->Get_Transform()->Get_State(CTransform::STATE_POSITION);
 			m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Prototype_GameObject_VFX_Hit"), TEXT("Layer_Effect"),&VFX_Desc);
 
 			m_bDead = true;
@@ -103,6 +103,26 @@ void CSkill_Player::Late_Update(_float fTimeDelta)
 		if (m_pColliderCom->isCollision(pMonster->Get_Collider(CMonster::COLL_AABB)))
 		{
 			pMonster->Set_Damage(-iDamage);
+
+			CUI_Number::UI_NUM_DESC Desc = {};
+			Desc.iNumUI = log10(iDamage) + 1;
+			Desc.pTransform = pMonster->Get_Transform();
+			Desc.iAngle = rand() % 360;
+			Desc.fSpeedPerSec = 5.f;
+
+			for (int i = 0; i < DamageStack.size(); )
+			{
+				Desc.iTextureIndex = DamageStack.top();
+				Desc.iNumCnt = iNumCnt;
+				m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Prototype_GameObject_UI_Number"), TEXT("Layer_UI_Number"), &Desc);
+				iNumCnt++;
+				DamageStack.pop();
+			}
+
+			CVFX::VFX_DESC VFX_Desc = {};
+			VFX_Desc.vCreatePos = XMLoadFloat4(&m_vDestoryPos);
+			m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Prototype_GameObject_VFX_Hit"), TEXT("Layer_Effect"), &VFX_Desc);
+
 			m_bDead = true;
 		}
 	}

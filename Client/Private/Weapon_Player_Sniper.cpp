@@ -205,6 +205,7 @@ void CWeapon_Player_Sniper::Create_Bullet()
     Desc.pOriginTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_Player"), TEXT("Com_Transform")));
     Desc.fSpeedPerSec = 5.f;
     Desc.fRotationPerSec = XMConvertToRadians(90.0f);
+    Desc.iSkillDamage = m_iBulletDamage;
 
     m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Prototype_GameObject_Skill_Sniper_Bullet"), TEXT("Layer_Skill_Player_Bullet"), &Desc);
 

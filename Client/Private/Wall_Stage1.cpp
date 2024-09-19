@@ -88,19 +88,25 @@ HRESULT CWall_Stage1::Monster_Create()
 			return E_FAIL;
 	}
 
-	//for (int i = 0; i < 2; ++i)
-	//{
-	//	Desc.iNum = i;
-	//	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Mon_Archer"), TEXT("Layer_Monster_Stage1"), &Desc)))
-	//		return E_FAIL;
-	//}
-	//
-	//for (int i = 0; i < 1; ++i)
-	//{
-	//	Desc.iNum = i;
-	//	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Mon_Knight"), TEXT("Layer_Monster_Stage1"), &Desc)))
-	//		return E_FAIL;
-	//}
+	Desc.iMaxHp = 400;
+	Desc.iHp = 400;
+
+	for (int i = 0; i < 2; ++i)
+	{
+		Desc.iNum = i;
+		if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Mon_Archer"), TEXT("Layer_Monster_Stage1"), &Desc)))
+			return E_FAIL;
+	}
+
+	Desc.iMaxHp = 400;
+	Desc.iHp = 400;
+	
+	for (int i = 0; i < 1; ++i)
+	{
+		Desc.iNum = i;
+		if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Mon_Knight"), TEXT("Layer_Monster_Stage1"), &Desc)))
+			return E_FAIL;
+	}
 
 	return S_OK;
 }

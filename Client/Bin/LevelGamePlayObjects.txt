@@ -2542,46 +2542,6 @@ Scale: 1 0.69 1
 Rotation: 6.28319
 IsParsing: 1
 
-LayerName: Layer_Portal
-PrototypeTag: Prototype_GameObject_Portal
-LevelIndex: 4
-Position: 39.25 3.9 64.88
-Scale: 4.18 8 1
-Rotation: 1.5708
-IsParsing: 1
-
-LayerName: Layer_Portal
-PrototypeTag: Prototype_GameObject_Portal
-LevelIndex: 4
-Position: 39.25 3.9 64.88
-Scale: 4.18 8 1
-Rotation: 1.5708
-IsParsing: 1
-
-LayerName: Layer_Portal
-PrototypeTag: Prototype_GameObject_Portal
-LevelIndex: 4
-Position: 39.25 3.9 64.88
-Scale: 4.18 8 1
-Rotation: 1.5708
-IsParsing: 1
-
-LayerName: Layer_Portal
-PrototypeTag: Prototype_GameObject_Portal
-LevelIndex: 4
-Position: 39.25 3.9 64.88
-Scale: 4.18 8 1
-Rotation: 1.5708
-IsParsing: 1
-
-LayerName: Layer_Portal
-PrototypeTag: Prototype_GameObject_Portal
-LevelIndex: 4
-Position: 39.25 3.9 64.88
-Scale: 4.18 8 1
-Rotation: 1.5708
-IsParsing: 1
-
 LayerName: Layer_Stair1
 PrototypeTag: Prototype_GameObject_Stair1
 LevelIndex: 4

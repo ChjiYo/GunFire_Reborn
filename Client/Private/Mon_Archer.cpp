@@ -100,7 +100,7 @@ void CMon_Archer::Late_Update(_float fTimeDelta)
 {
 	__super::Late_Update(fTimeDelta);
 
-	m_pModelCom->Play_Animation(fTimeDelta);
+	m_pModelCom->Play_Animation(fTimeDelta * 0.5f);
 	m_pGameInstance->Add_RenderObject(CRenderer::RG_NONBLEND, this);
 
 	m_pStateCom->Late_Update(fTimeDelta);
