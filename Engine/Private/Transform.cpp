@@ -257,7 +257,7 @@ _float CTransform::Look_Degree()
 	_vector		vLook = Get_State(STATE_LOOK);
 	vLook = XMVector3Normalize(vLook);
 
-	_vector		vAxis{ 0.f, 0.f, 1.f,1.0f };
+	_vector		vAxis{ 0.f, 0.f, 1.f, 0.0f };
 
 	_vector vAngle = XMVector3Dot(vLook, vAxis);
 	_float fAngle = {};
@@ -281,7 +281,8 @@ _float CTransform::Target_Look_Degree(const _vector& vTargetPos)
 
 	vLook = XMVector3Normalize(vLook);
 
-	_vector	vAxis{ 0.f, 0.f, 1.f };
+	_vector	vAxis = Get_State(STATE_LOOK); 
+	//_vector	vAxis = {0,0,1};
 
 	_vector vAngle =  XMVector3Dot(vLook, vAxis);
 	_float fAngle = {};

@@ -56,14 +56,14 @@ void CUI_Mark::Update(_float fTimeDelta)
 
 	_float fDist = XMVectorGetX(XMVector4Length(vMonPos - vPlayerPos));
 
-	_float fAngle = m_pTransformCom->Target_Look_Degree(vMonPos);
+	_float fAngle = pPlayerTransform->Target_Look_Degree(vMonPos) + 90.f;
 
-	_float fOffSetX = (fDist * 2) * cos(fAngle * (3.14f / 180.f));
-	_float fOffSetY = (fDist * 2) * sin(fAngle * (3.14f / 180.f));
+	_float fOffSetX = m_fPosX + (fDist * 2) * cos(fAngle * (3.14f / 180.f));
+	_float fOffSetY = m_fPosY - (fDist * 2) * sin(fAngle * (3.14f / 180.f));
 
-	__super::Set_UI_Setting(10.f, 10.f, m_fPosX + fOffSetX, m_fPosY - fOffSetY);
+	__super::Set_UI_Setting(10.f, 10.f, fOffSetX, fOffSetY);
 
-	if (fDist > 15.f)
+	if (fDist > 30.f)
 		m_bDead = true;
 
 	if(m_pMonster->Get_Dead())

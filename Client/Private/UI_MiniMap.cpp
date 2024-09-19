@@ -54,7 +54,7 @@ void CUI_MiniMap::Update(_float fTimeDelta)
 
 		_float fDist = XMVectorGetX(XMVector4Length(vMonPos - vPlayerPos));
 
-		if (fDist <= 15.f)
+		if (fDist <= 30.f)
 		{
 			if (!dynamic_cast<CMonster*>(iter)->Get_Mark())
 			{
