@@ -35,8 +35,8 @@ public:
 
 public:
 	_uint Get_CurrentBullet() { return m_iNumBullet; }
+	_uint Get_MaxBullet() { return m_iNumMaxBullet; }
 	_uint Get_Damage() { return m_iBulletDamage; }
-
 
 protected:
 	_uint m_iOriginBullet = { 0 };

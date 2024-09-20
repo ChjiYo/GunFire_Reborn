@@ -184,6 +184,9 @@
     <Filter Include="01.Utility\98.Renderer">
       <UniqueIdentifier>{666a3e3b-97c5-4993-a2c6-d578a67e38b8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Utility\13.Sound">
+      <UniqueIdentifier>{8d93a9af-d8d5-4ad0-bbe6-18f107cff689}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\private\GameInstance.cpp">
@@ -359,6 +362,9 @@
     </ClCompile>
     <ClCompile Include="..\Private\Renderer.cpp">
       <Filter>01.Utility\98.Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Sound_Manager.cpp">
+      <Filter>01.Utility\13.Sound</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -547,6 +553,9 @@
     </ClInclude>
     <ClInclude Include="..\Public\Renderer.h">
       <Filter>01.Utility\98.Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Sound_Manager.h">
+      <Filter>01.Utility\13.Sound</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

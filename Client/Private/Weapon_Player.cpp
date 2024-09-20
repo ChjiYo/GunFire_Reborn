@@ -3,6 +3,8 @@
 #include "Weapon_Player.h"
 #include "GameInstance.h"
 
+#include "UIObject.h"
+
 CWeapon_Player::CWeapon_Player(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	:CPartObject{ pDevice, pContext }
 {

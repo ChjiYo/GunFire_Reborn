@@ -76,6 +76,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>..\Bin\</OutDir>
+    <IncludePath>../Bin/SoundSDK/core/inc/;$(IncludePath)</IncludePath>
+    <LibraryPath>../Bin/SoundSDK/core/lib/x64/;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -313,6 +315,7 @@
     <ClInclude Include="..\Public\Tool_Save.h" />
     <ClInclude Include="..\Public\UIObject.h" />
     <ClInclude Include="..\public\UI_Boss_HpPanel.h" />
+    <ClInclude Include="..\public\UI_Bullet_Num.h" />
     <ClInclude Include="..\public\UI_Coin.h" />
     <ClInclude Include="..\public\UI_Cursor.h" />
     <ClInclude Include="..\public\UI_Log.h" />
@@ -517,6 +520,7 @@
     <ClCompile Include="..\Private\Tool_Save.cpp" />
     <ClCompile Include="..\Private\UIObject.cpp" />
     <ClCompile Include="..\private\UI_Boss_HpPanel.cpp" />
+    <ClCompile Include="..\private\UI_Bullet_Num.cpp" />
     <ClCompile Include="..\private\UI_Coin.cpp" />
     <ClCompile Include="..\private\UI_Cursor.cpp" />
     <ClCompile Include="..\private\UI_Log.cpp" />

@@ -131,6 +131,8 @@
 #include "UI_MiniMap.h"
 #include "UI_Mark.h"
 
+#include "UI_Bullet_Num.h"
+
 CLoader::CLoader(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	: m_pDevice { pDevice }
 	, m_pContext { pContext }
@@ -498,7 +500,7 @@ HRESULT CLoader::Loading_For_StaticLevel()
 
 	/* For.Prototype_Component_Texture_Number */
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_STATIC, TEXT("Prototype_Component_Texture_Number"),
-		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Num//Num_%d.png"), 11))))
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Num//Num_%d.png"), 12))))
 		return E_FAIL;
 
 	/* For.Prototype_Component_Texture_Cursor */
@@ -633,6 +635,11 @@ HRESULT CLoader::Loading_For_StaticLevel()
 	/* For.Prototype_GameObject_UI_Mark */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_Mark"),
 		CUI_Mark::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_UI_Bullet_Num */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_Bullet_Num"),
+		CUI_Bullet_Num::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
 	return S_OK;

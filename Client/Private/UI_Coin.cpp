@@ -31,10 +31,7 @@ HRESULT CUI_Coin::Initialize(void* pArg)
 
 	__super::Set_UI_Setting(50.f, 50.f, 1450.f, 50.f);
 
-	//m_iCoin += rand() % 100 + 10;
-
 	return S_OK;
-
 }
 
 void CUI_Coin::Priority_Update(_float fTimeDelta)

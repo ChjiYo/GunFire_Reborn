@@ -63,6 +63,9 @@ HRESULT CLevel_GamePlay::Initialize()
 	if (FAILED(Ready_TestObject()))
 		return E_FAIL;
 
+	if (FAILED(Ready_Weapon_Bullet()))
+		return E_FAIL;
+
 	//if (FAILED(Ready_Layer_Item(TEXT("Layer_Item"))))
 	//	return E_FAIL;
 
@@ -98,7 +101,7 @@ HRESULT CLevel_GamePlay::Ready_Lights()
 	LightDesc.eType = LIGHT_DESC::TYPE_DIRECTIONAL;
 	LightDesc.vDirection = _float4(1.f, -1.f, 1.f, 0.f);
 	LightDesc.vDiffuse = _float4(0.1f, 0.1f, 0.1f, 1.f);
-	LightDesc.vAmbient = _float4(0.2f, 0.2f, 0.2f, 1.f);
+	LightDesc.vAmbient = _float4(0.4f, 0.4f, 0.4f, 1.f);
 	LightDesc.vSpecular = _float4(0.f, 0.f, 0.f, 1.f);
 
 	if (FAILED(m_pGameInstance->Add_Light(LightDesc)))
@@ -257,6 +260,19 @@ HRESULT CLevel_GamePlay::Ready_MiniMap()
 
 	//if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Cross_Hair"), TEXT("Layer_UI_CrossHair"))))
 	//	return E_FAIL;
+
+	return S_OK;
+}
+
+HRESULT CLevel_GamePlay::Ready_Weapon_Bullet()
+{
+	CUIObject::UI_DESC  Desc = {};
+	for (int i = 0; i < 5; ++i)
+	{
+		Desc.iNumUI = i;
+
+		m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Prototype_GameObject_UI_Bullet_Num"), TEXT("Layer_UI_Bullet_Num"), &Desc);
+	}
 
 	return S_OK;
 }

@@ -80,8 +80,11 @@ HRESULT CUI_Weapon_NumPanel::Render()
 
 	if (FAILED(m_pVIBufferCom->Render()))
 		return E_FAIL;
-	
 
+	wstring m_strNum = to_wstring(m_iCloneIndex + 1);
+	const _tchar* szNum = m_strNum.c_str();
+	
+	m_pGameInstance->Draw_Font(TEXT("Font_Nexon"), szNum, _float2(1290.f + m_iCloneIndex * 100.f, 830.f), { 1.f, 1.f , 1.f , 1.f }, 0.f, { 0.f, 0.f }, 1.f);
 
 	return S_OK;
 }

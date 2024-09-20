@@ -106,9 +106,6 @@ HRESULT CWeapon_Player_Pistol::Render()
             return E_FAIL;  
     }
 
-    wstring strNumBullet = to_wstring(m_iNumBullet);
-    wstring strNumMaxBullet = to_wstring(m_iNumMaxBullet);
-    
     return S_OK;
 }
 
@@ -150,8 +147,8 @@ void CWeapon_Player_Pistol::Key_State()
         Create_Bullet();
         m_fAttackTimer = 0.f;
 
-        CVFX::VFX_DESC Desc = {};
-        Desc.pOriginTransform = m_pPlayerTransform;
+        //CVFX::VFX_DESC Desc = {};
+        //Desc.pOriginTransform = m_pPlayerTransform;
 
         //m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Prototype_GameObject_VFX_Pistol_Barrel"), TEXT("Layer_Effect"), &Desc);
     }
