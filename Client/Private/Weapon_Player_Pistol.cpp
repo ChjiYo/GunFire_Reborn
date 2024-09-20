@@ -146,11 +146,6 @@ void CWeapon_Player_Pistol::Key_State()
         m_pModelCom->SetUp_Animation(1, false);
         Create_Bullet();
         m_fAttackTimer = 0.f;
-
-        //CVFX::VFX_DESC Desc = {};
-        //Desc.pOriginTransform = m_pPlayerTransform;
-
-        //m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Prototype_GameObject_VFX_Pistol_Barrel"), TEXT("Layer_Effect"), &Desc);
     }
 
     if (m_pGameInstance->Key_Down('R'))
