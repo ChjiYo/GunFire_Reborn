@@ -85,6 +85,7 @@ HRESULT CUI_Mon_HpBar::Render()
 	if (FAILED(m_pVIBufferCom->Render()))
 		return E_FAIL;
 
+
 	return S_OK;
 }
 

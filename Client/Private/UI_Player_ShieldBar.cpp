@@ -79,7 +79,9 @@ HRESULT CUI_Player_ShieldBar::Render()
 	if (FAILED(m_pVIBufferCom->Render()))
 		return E_FAIL;
 
-	
+	m_pGameInstance->Draw_Font(TEXT("Font_Nexon"), m_strShield.c_str(), _float2(m_fPosX + 140, m_fPosY - 23), { 0.192f, 0.937f , 1.f , 1.f }, 0.f, { 0.f, 0.f }, 0.75);
+	m_pGameInstance->Draw_Font(TEXT("Font_Nexon"), TEXT(" /"), _float2(m_fPosX + 166, m_fPosY - 23), { 0.192f, 0.937f , 1.f , 1.f }, 0.f, { 0.f, 0.f }, 0.75);
+	m_pGameInstance->Draw_Font(TEXT("Font_Nexon"), m_strMaxShield.c_str(), _float2(m_fPosX + 190, m_fPosY - 23), { 0.192f, 0.937f , 1.f , 1.f }, 0.f, { 0.f, 0.f }, 0.75);
 	
 	return S_OK;
 }

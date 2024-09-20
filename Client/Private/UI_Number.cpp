@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "UI_Number.h"
+#include "Skill_Player.h"
 #include "GameInstance.h"
 
 CUI_Number::CUI_Number(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
@@ -32,6 +33,7 @@ HRESULT CUI_Number::Initialize(void* pArg)
     m_iNumTexture = Desc->iNumUI;
     m_iAngle = Desc->iAngle;
     m_iNiumCnt = Desc->iNumCnt;
+    _uint iStatic = Desc->iStatic;
 
     m_pOriginTransform = Desc->pTransform;
     Safe_AddRef(m_pOriginTransform);
@@ -42,12 +44,16 @@ HRESULT CUI_Number::Initialize(void* pArg)
 
     if (m_iNiumCnt != 0)
     {
-        CTransform* pTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Layer_UI_Number"), TEXT("Com_Transform")));
-        m_vFirstPos = pTransform->Get_State(CTransform::STATE_POSITION);
-        m_vFirstRight = pTransform->Get_State(CTransform::STATE_RIGHT);
+      _tchar AfterPath[MAX_PATH] = {};
+      const _tchar* LayerName = TEXT("Layer_UI_Number%d");
+      wsprintf(AfterPath, LayerName, iStatic);
 
-        m_vFirstPos += m_vFirstRight * (0.75f * m_iNiumCnt);
-        m_pTransformCom->Set_State(CTransform::STATE_POSITION, m_vFirstPos);
+       CTransform* pTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(m_pGameInstance->GetCurrentLevelIndex(), AfterPath, TEXT("Com_Transform")));
+       m_vFirstRight = pTransform->Get_State(CTransform::STATE_RIGHT);
+       m_vFirstPos = pTransform->Get_State(CTransform::STATE_POSITION);
+       
+       m_vFirstPos += m_vFirstRight * (0.75f * m_iNiumCnt);
+       m_pTransformCom->Set_State(CTransform::STATE_POSITION, m_vFirstPos);
     }
     else
         m_pTransformCom->Set_State(CTransform::STATE_POSITION, m_pOriginTransform->Get_State(CTransform::STATE_POSITION));

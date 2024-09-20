@@ -19,6 +19,7 @@ public:
 		_uint iTextureIndex = {0};
 		_uint iNumCnt = { 0 };
 		_uint iAngle = { 0 };
+		_uint iStatic = { 0 };
 	}UI_NUM_DESC;
 private:
 	CUI_Number(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);

@@ -8,6 +8,8 @@
 #include "UI_Number.h"
 #include "VFX.h"
 
+
+
 CSkill_Player::CSkill_Player(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	:CSkill{ pDevice  , pContext }
 {
@@ -58,6 +60,8 @@ void CSkill_Player::Late_Update(_float fTimeDelta)
 	_uint iCopyDamage = iDamage;
 	_uint iNumCnt = { 0 };
 
+	//wsprintf(szFullPath, pTextureFilePath, i);
+
 	stack<_uint> DamageStack = {};
 	for (int i = 0; iCopyDamage != 0 ; ++i)
 	{
@@ -78,16 +82,21 @@ void CSkill_Player::Late_Update(_float fTimeDelta)
 			Desc.pTransform = pMonster->Get_Transform();
 			Desc.iAngle = rand() % 360;
 			Desc.fSpeedPerSec = 5.f;
+			Desc.iStatic = iNumber;
+			_tchar AfterPath[MAX_PATH] = {};
+			const _tchar* LayerName = TEXT("Layer_UI_Number%d");
+			wsprintf(AfterPath, LayerName, iNumber);
 
 			for (int i = 0; i < DamageStack.size(); )
 			{
 				Desc.iTextureIndex = DamageStack.top();
 				Desc.iNumCnt = iNumCnt;
-				m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Prototype_GameObject_UI_Number"), TEXT("Layer_UI_Number"), &Desc);
+				m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Prototype_GameObject_UI_Number"), AfterPath, &Desc);
 				iNumCnt++;
 				DamageStack.pop();
 			}
 
+			iNumber++;
 			CVFX::VFX_DESC VFX_Desc = {};
 			VFX_Desc.vCreatePos = pMonster->Get_Transform()->Get_State(CTransform::STATE_POSITION);
 			m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Prototype_GameObject_VFX_Hit"), TEXT("Layer_Effect"),&VFX_Desc);

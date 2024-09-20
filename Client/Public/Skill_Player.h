@@ -9,6 +9,8 @@ class CVIBuffer_Rect;
 class CCollider;
 END
 
+static _uint iNumber = { 0 };
+
 class CSkill_Player abstract:public CSkill
 {
 protected:
@@ -36,6 +38,7 @@ protected:
 
 protected:
 	_float4 m_vDestoryPos = {};
+
 
 public:
 	virtual CGameObject* Clone(void* pArg) = 0;
