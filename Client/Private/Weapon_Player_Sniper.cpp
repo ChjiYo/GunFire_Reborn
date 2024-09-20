@@ -56,6 +56,8 @@ void CWeapon_Player_Sniper::Priority_Update(_float fTimeDelta)
     if (fTimeDelta == 0.f)
         return;
 
+    m_fReboundTimer += fTimeDelta;
+
     Key_State(fTimeDelta);
 
     m_pModelCom->Play_Animation(fTimeDelta);
@@ -135,7 +137,13 @@ void CWeapon_Player_Sniper::Key_State(_float fTimeDelta)
     {
         m_pModelCom->SetUp_Animation(0, false);
         Create_Bullet();
+
+        m_bReboundEnble = true;
+
     }
+    if(m_bReboundEnble)
+        Rebound();
+
 
     if (m_pGameInstance->Key_Down('R'))
     {
@@ -216,6 +224,29 @@ void CWeapon_Player_Sniper::Create_Bullet()
 
     VFX_Desc.vCreatePos = XMLoadFloat4(&m_pGameInstance->Picked_Position(&isPick));
     m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Prototype_GameObject_VFX_Sniper"), TEXT("Layer_Effect"), &VFX_Desc);
+}
+
+void CWeapon_Player_Sniper::Rebound()
+{
+    CTransform* pPlayerTransform = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Layer_Player"), TEXT("Com_Transform")));
+
+    if (m_fReboundTimer >= 0.01f)
+    {
+        m_fReboundAngle -= 2.f;
+        m_fReboundTimer = 0.f;
+        pPlayerTransform->Radian_Turn(pPlayerTransform->Get_State(CTransform::STATE_RIGHT), XMConvertToRadians(m_fReboundAngle));
+    }
+
+
+
+    if (m_fReboundAngle <= -6.f)
+    {
+        m_bReboundEnble = false;
+        m_fReboundTimer = 0.f;
+        m_fReboundAngle = 0.f;
+    }
+    
+
 }
 
 void CWeapon_Player_Sniper::Zoom()

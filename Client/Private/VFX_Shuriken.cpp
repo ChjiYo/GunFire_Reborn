@@ -47,6 +47,8 @@ void CVFX_Shuriken::Priority_Update(_float fTimeDelta)
 void CVFX_Shuriken::Update(_float fTimeDelta)
 {
     m_pVIBufferCom->Spread(fTimeDelta);
+
+    m_pTransformCom->Gravity(0.1f, 0.f, fTimeDelta);
 }
 
 void CVFX_Shuriken::Late_Update(_float fTimeDelta)

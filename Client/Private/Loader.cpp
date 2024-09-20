@@ -472,12 +472,12 @@ HRESULT CLoader::Loading_For_StaticLevel()
 	/* For.Prototype_Component_VIBuffer_Particle_Shuriken */
 	CVIBuffer_Instancing::VIBUFFER_INSTANCE_DESC	ParticleDesc{};
 	ParticleDesc.iNumInstance = 50;
-	ParticleDesc.vRange = _float3(3.0f, 3.f, 3.f);
+	ParticleDesc.vRange = _float3(1.0f, 1.f, 1.f);
 	ParticleDesc.vCenter = _float3(0.f, 0.f, 0.f);
 	ParticleDesc.vPivot = _float3(0.f, 0.f, 0.f);
 	ParticleDesc.vSpeed = _float2(2.5f, 3.75f);
-	ParticleDesc.vScale = _float2(0.25f, 0.5f);
-	ParticleDesc.vLifeTime = _float2(0.25f, 0.75f);
+	ParticleDesc.vScale = _float2(0.1f, 0.25f);
+	ParticleDesc.vLifeTime = _float2(0.5f, 1.f);
 	ParticleDesc.isLoop = false;
 
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_STATIC, TEXT("Prototype_Component_VIBuffer_Particle_Shuriken"),

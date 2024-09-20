@@ -39,8 +39,13 @@ private:
 
 private:
 	_bool				m_bZoomCheck = { false };
+	_bool				m_bReboundEnble = { false };
+
 	_uint				m_pAnimFrame = { 0 };
 	_float				m_fZoomTimer = { 0.f };
+	_float				m_fReboundTimer = { 0.f };
+	_float				m_fReboundAngle = { 0.f };
+	
 
 private:
 	HRESULT Ready_Components();
@@ -48,6 +53,7 @@ private:
 
 	void Key_State(_float fTimeDelta);
 	void Create_Bullet();
+	void Rebound();
 
 	void Zoom();
 
