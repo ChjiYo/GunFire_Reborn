@@ -122,8 +122,6 @@ PS_OUT PS_Half(PS_IN In)
 
     return Out;
 }
-
-
 technique11 DefaultTechnique
 {
 	/* PASS의 기준 : 셰이더 기법의 캡슐화. */
@@ -213,5 +211,4 @@ technique11 DefaultTechnique
         DomainShader = NULL;
         PixelShader = compile ps_5_0 PS_Half();
     }
-
 }

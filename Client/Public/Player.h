@@ -101,6 +101,9 @@ public:
 		return m_vCurrentDamage[eID]; 
 	}
 
+public:
+	SLOTID Get_Slot() { return m_eSlotID; }
+
 private:
 	void ShieldRecovery();
 

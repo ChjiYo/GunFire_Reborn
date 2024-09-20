@@ -56,13 +56,13 @@ HRESULT CPlayer::Initialize(void* pArg)
     if (FAILED(Ready_Components()))
         return E_FAIL;
 
+    m_eSlotID = THREE;
     m_eWeaponID = PISTOL;
     m_eWeaponIDArray[2] = PISTOL;
 
     switch (m_pGameInstance->GetLoadingLevelIndex())
     {
-    case LEVEL_GAMEPLAY:
-       // m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 40.f , 1.0f , 60.f, 1.f });
+    case LEVEL_GAMEPLAY: 
         m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 6.f , 1.5f , 2.f, 1.f });
         break;
 
@@ -267,6 +267,7 @@ void CPlayer::Player_Move(_float fTimeDelta)
     if (m_pGameInstance->Key_Down('3'))
     {
         m_eWeaponID = PISTOL;
+        m_eSlotID = THREE;
         m_bWeaponChange = true;
     }
 }

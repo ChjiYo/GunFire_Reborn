@@ -2,6 +2,9 @@
 
 #include "UI_Weapon_NumPanel.h"
 
+#include "Player.h"
+#include "GameInstance.h"
+
 CUI_Weapon_NumPanel::CUI_Weapon_NumPanel(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	:CUIObject{ pDevice ,pContext }
 {
@@ -72,8 +75,17 @@ HRESULT CUI_Weapon_NumPanel::Render()
 	if (FAILED(m_pTextureCom->Bind_ShaderResource(m_pShaderCom, "g_Texture", 0)))
 		return E_FAIL;
 
-	if (FAILED(m_pShaderCom->Begin(0)))
-		return E_FAIL;
+	CPlayer* pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Layer_Player")).back());
+	if (pPlayer->Get_Slot() == m_iCloneIndex)
+	{
+		if (FAILED(m_pShaderCom->Begin(0)))
+			return E_FAIL;
+	}
+	else
+	{
+		if (FAILED(m_pShaderCom->Begin(5)))
+			return E_FAIL;
+	}
 
 	if (FAILED(m_pVIBufferCom->Bind_Buffers()))
 		return E_FAIL;
