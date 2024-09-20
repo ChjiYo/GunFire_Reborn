@@ -338,7 +338,7 @@ void CPlayer::Player_Weapon_Change()
 
         case BOOMGUN:
             Desc.iNumBullet = 30;
-            Desc.iMaxBullet = 120;
+            Desc.iMaxBullet = 90;
             Desc.fAttackSpeed = 0.125f;
             Desc.iBulletDamage = m_vDamage[m_eWeaponID] + m_vUpgreadCnt[m_eWeaponID] * 10;
             __super::Add_PartObject(PART_WEAPON, TEXT("Prototype_GameObject_Weapon_Player_BoomGun"), &Desc);
