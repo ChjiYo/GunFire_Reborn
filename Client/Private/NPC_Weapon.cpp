@@ -30,7 +30,8 @@ HRESULT CNPC_Weapon::Initialize(void* pArg)
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
-	m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 49.38f , 0.f, 6749.f, 1.f });
+	//m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 49.38f , 0.f, 67.49f, 1.f });
+	m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 7.38f , 0.f, 7.f, 1.f });
 
 	m_pModelCom->SetUp_Animation(0, true);
 
@@ -60,6 +61,7 @@ void CNPC_Weapon::Late_Update(_float fTimeDelta)
 	if (!m_bClick && m_pColliderCom->isCollision(pPlayerCollider) && m_pGameInstance->Key_Down('F'))
 	{
 		m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_NPC_Weapon_Panel"), TEXT("Layer_UI_ANPC_Weapon"));
+		m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Prototype_GameObject_UI_Cursor"), TEXT("Layer_UI_Cursor"));
 
 		CUIObject::UI_DESC Desc = {};
 		for (int i = 0; i < 2; i++)
@@ -80,6 +82,9 @@ void CNPC_Weapon::Late_Update(_float fTimeDelta)
 		{
 			iter->Set_Dead();
 		}
+
+		m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_UI_Cursor")).back()->Set_Dead();
+
 		m_bClick = false;
 		m_bCursorFree = false;
 	}

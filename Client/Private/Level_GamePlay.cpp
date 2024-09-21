@@ -66,8 +66,8 @@ HRESULT CLevel_GamePlay::Initialize()
 	if (FAILED(Ready_Weapon_Bullet()))
 		return E_FAIL;
 
-	//if (FAILED(Ready_Cursor()))
-	//	return E_FAIL;
+	if (FAILED(Ready_Cursor()))
+		return E_FAIL;
 
 	//if (FAILED(Ready_Layer_Item(TEXT("Layer_Item"))))
 	//	return E_FAIL;
@@ -282,7 +282,7 @@ HRESULT CLevel_GamePlay::Ready_Weapon_Bullet()
 
 HRESULT CLevel_GamePlay::Ready_Cursor()
 {
-	m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Prototype_GameObject_UI_Cursor"), TEXT("Layer_UI_Cursor"));
+	//m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Prototype_GameObject_UI_Cursor"), TEXT("Layer_UI_Cursor"));
 
 	return S_OK;
 }

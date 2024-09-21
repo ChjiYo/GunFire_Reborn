@@ -72,9 +72,26 @@ void CCamera_Free::Late_Update(_float fTimeDelta)
 		m_bNPC = false;
 		
 		if (!m_bEmpty)
+		{
 			m_bNPC = dynamic_cast<CNPC_Weapon*>(m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_NPC")).front())->GetCursor();
+		}
 
-		m_bNPC ? m_pGameInstance->SetDeltaTime(0.f) : m_pGameInstance->SetDeltaTime(1.f);
+		if (m_bNPC)
+		{
+			m_pGameInstance->SetDeltaTime(0.f);
+		}
+		else
+		{
+			m_pGameInstance->SetDeltaTime(1.f);
+
+			POINT pt;
+			pt.x = g_iWinSizeX * 0.5f;
+			pt.y = g_iWinSizeY * 0.5f;
+
+			ClientToScreen(g_hWnd, &pt);
+			SetCursorPos(pt.x, pt.y);
+		}
+		//m_bNPC ? m_pGameInstance->SetDeltaTime(0.f) : m_pGameInstance->SetDeltaTime(1.f);
 	}
 
 	if (m_bTrueCurrsor ||(m_pGameInstance->Key_Down('P')))
@@ -92,12 +109,13 @@ void CCamera_Free::Late_Update(_float fTimeDelta)
 
 		if ((m_bTrueCurrsor && m_pGameInstance->Key_Down('P')) || m_bNPC)
 		{
+			m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Prototype_GameObject_UI_Cursor"), TEXT("Layer_UI_Cursor"));
 			m_bTrueCurrsor = false;
 			m_bShowCursor = true;
 		}
 	}
 
-	ShowCursor(m_bShowCursor);
+	ShowCursor(false);
 }
 
 HRESULT CCamera_Free::Render()
