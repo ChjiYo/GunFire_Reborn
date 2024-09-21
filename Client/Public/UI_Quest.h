@@ -24,6 +24,9 @@ private:
 	virtual HRESULT Ready_Components();
 
 private:
+	_bool Quest();
+
+private:
 	_float m_fScaleWeight = { 1.f };
 	_float m_fPosWeight = { 1.f };
 

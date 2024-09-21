@@ -56,8 +56,8 @@ void CSkill_Player::Late_Update(_float fTimeDelta)
 	list<class CGameObject*> MonStageList2 = m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Monster_Stage2"));
 	list<class CGameObject*> MonStageList3 = m_pGameInstance->Get_Layer(LEVEL_BOSS, TEXT("Layer_Monster"));
 
-	_int iDamage = rand() % 10 + m_iSkillDamage;
-	_uint iCopyDamage = iDamage;
+	m_iDamage = rand() % 10 + m_iSkillDamage;
+	_uint iCopyDamage = m_iDamage;
 	_uint iNumCnt = { 0 };
 
 	//wsprintf(szFullPath, pTextureFilePath, i);
@@ -75,14 +75,14 @@ void CSkill_Player::Late_Update(_float fTimeDelta)
 	
 		if (m_pColliderCom->isCollision(pMonster->Get_Collider(CMonster::COLL_AABB)))
 		{
-			pMonster->Set_Damage(-iDamage);
+			pMonster->Set_Damage(-m_iDamage);
 
 			CUI_Number::UI_NUM_DESC Desc = {};
-			Desc.iNumUI = log10(iDamage) + 1;
+			Desc.iNumUI = log10(m_iDamage) + 1;
 			Desc.pTransform = pMonster->Get_Transform();
 			Desc.iAngle = rand() % 360;
 			Desc.fSpeedPerSec = 5.f;
-			Desc.iStatic = iNumber;
+			Desc.iStatic = iNumber; 
 			_tchar AfterPath[MAX_PATH] = {};
 			const _tchar* LayerName = TEXT("Layer_UI_Number%d");
 			wsprintf(AfterPath, LayerName, iNumber);
@@ -103,6 +103,36 @@ void CSkill_Player::Late_Update(_float fTimeDelta)
 
 			m_bDead = true;
 		}
+		else if ((pMonster->Get_Collider(CMonster::COLL_SPHERE) != nullptr) &&  (m_pColliderCom->isCollision(pMonster->Get_Collider(CMonster::COLL_SPHERE))))
+		{
+			pMonster->Set_Damage(-m_iDamage * 1.5);
+
+			CUI_Number::UI_NUM_DESC Desc = {};
+			Desc.iNumUI = log10(m_iDamage) + 1;
+			Desc.pTransform = pMonster->Get_Transform();
+			Desc.iAngle = rand() % 360;
+			Desc.fSpeedPerSec = 5.f;
+			Desc.iStatic = iNumber;
+			_tchar AfterPath[MAX_PATH] = {};
+			const _tchar* LayerName = TEXT("Layer_UI_Number%d");
+			wsprintf(AfterPath, LayerName, iNumber);
+
+			for (int i = 0; i < DamageStack.size(); )
+			{
+				Desc.iTextureIndex = DamageStack.top();
+				Desc.iNumCnt = iNumCnt;
+				m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Prototype_GameObject_UI_Number"), AfterPath, &Desc);
+				iNumCnt++;
+				DamageStack.pop();
+			}
+
+			iNumber++;
+			CVFX::VFX_DESC VFX_Desc = {};
+			VFX_Desc.vCreatePos = pMonster->Get_Transform()->Get_State(CTransform::STATE_POSITION);
+			m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Prototype_GameObject_VFX_Hit"), TEXT("Layer_Effect"), &VFX_Desc);
+
+			m_bDead = true;
+		}
 	}
 
 	for (auto& ColliderIter : MonStageList2)
@@ -111,10 +141,10 @@ void CSkill_Player::Late_Update(_float fTimeDelta)
 
 		if (m_pColliderCom->isCollision(pMonster->Get_Collider(CMonster::COLL_AABB)))
 		{
-			pMonster->Set_Damage(-iDamage);
+			pMonster->Set_Damage(-m_iDamage);
 
 			CUI_Number::UI_NUM_DESC Desc = {};
-			Desc.iNumUI = log10(iDamage) + 1;
+			Desc.iNumUI = log10(m_iDamage) + 1;
 			Desc.pTransform = pMonster->Get_Transform();
 			Desc.iAngle = rand() % 360;
 			Desc.fSpeedPerSec = 5.f;
@@ -142,10 +172,13 @@ void CSkill_Player::Late_Update(_float fTimeDelta)
 
 		if (m_pColliderCom->isCollision(pMonster->Get_Collider(CMonster::COLL_AABB)))
 		{
-			pMonster->Set_Damage(-iDamage);
+			pMonster->Set_Damage(-m_iDamage);
 			m_bDead = true;
 		}
 	}
+
+	if (m_bFont)
+		FontCreate();
 
 }
 
@@ -176,6 +209,10 @@ void CSkill_Player::Set_Position(_float3 vOffSet)
 	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetW(vSetPos,1.f));
 
 	m_pTransformCom->Radian_Turn(m_pTransformCom->Get_State(CTransform::STATE_UP), XMConvertToRadians(270.f));
+}
+
+void CSkill_Player::FontCreate()
+{
 }
 
 void CSkill_Player::Free()

@@ -17,15 +17,18 @@
 #include "Cell.h"
 
 #include "Level_Loading.h"
+#include "Data_Manager.h"
 
 CPlayer::CPlayer(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
     :CContainerObject{ pDevice  , pContext }
+    , m_pDataMgr{ CData_Manager::Get_Instance() }
 {
 }
 
 CPlayer::CPlayer(const CPlayer& Prototype)
     :CContainerObject{ Prototype }
-{
+    , m_pDataMgr{ CData_Manager::Get_Instance() }
+{ 
 }
 
 HRESULT CPlayer::Initialize_Prototype()
@@ -299,6 +302,13 @@ void CPlayer::Player_Weapon_Change()
 {
     if (m_bWeaponChange)
     {
+        if (m_Parts[PART_WEAPON] != nullptr)
+        {
+            _uint iMaxBullet = dynamic_cast<CWeapon_Player*>(m_Parts[PART_WEAPON])->Get_MaxBullet();
+            _uint iCurrBullet = dynamic_cast<CWeapon_Player*>(m_Parts[PART_WEAPON])->Get_CurrentBullet();
+            m_pDataMgr->SaveBullet(m_ePrevWeaponID, iMaxBullet,iCurrBullet );
+        }
+
         Safe_Release(__super::Get_Parts().front());
         __super::Get_Parts().clear();
 
@@ -309,7 +319,7 @@ void CPlayer::Player_Weapon_Change()
         switch (m_eWeaponID)
         {
         case PISTOL:
-            Desc.iNumBullet = 8;
+            Desc.iNumBullet = m_pDataMgr->Get_CurrBullet(PISTOL);
             Desc.iMaxBullet = 999999999;
             Desc.fAttackSpeed = 0.25f;
             Desc.iBulletDamage = m_vDamage[m_eWeaponID] + m_vUpgreadCnt[m_eWeaponID] * 10;
@@ -328,8 +338,8 @@ void CPlayer::Player_Weapon_Change()
 
         case SNIPER:
             
-            Desc.iNumBullet = 8;
-            Desc.iMaxBullet = 80;
+            Desc.iNumBullet = m_pDataMgr->Get_CurrBullet(SNIPER);;
+            Desc.iMaxBullet = m_pDataMgr->Get_MaxBullet(SNIPER);;
             Desc.fAttackSpeed = 0.25f;
             Desc.iBulletDamage = m_vDamage[m_eWeaponID] + m_vUpgreadCnt[m_eWeaponID] * 10;
             __super::Add_PartObject(PART_WEAPON, TEXT("Prototype_GameObject_Weapon_Player_Sniper"), &Desc);
@@ -348,7 +358,7 @@ void CPlayer::Player_Weapon_Change()
             break;
         }
 
-        
+        m_ePrevWeaponID = m_eWeaponID;
         m_bWeaponChange = false;
     }
 }

@@ -56,6 +56,9 @@ void CUI_Quest::Update(_float fTimeDelta)
 	}
 	else
 		m_bFont = true;
+
+	if (Quest() == true)
+		m_bDead = true;
 }
 
 void CUI_Quest::Late_Update(_float fTimeDelta)
@@ -95,6 +98,17 @@ HRESULT CUI_Quest::Ready_Components()
 	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_UI_Quest"),
 		TEXT("Com_Texture"), reinterpret_cast<CComponent**>(&m_pTextureCom))))
 		return E_FAIL;
+}
+
+_bool CUI_Quest::Quest()
+{
+	if (!m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Monster_Stage1")).empty())
+		return false;
+
+	if (!m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Monster_Stage2")).empty())
+		return false;
+
+	return true;
 }
 
 CUI_Quest* CUI_Quest::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)

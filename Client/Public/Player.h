@@ -111,18 +111,22 @@ private:
 	CNavigation*		m_pNavigationCom = { nullptr };
 	CCollider*			m_pColliderCom = { nullptr };
 
+	class CData_Manager*		m_pDataMgr = { nullptr };
+
 private:
 	PLAYER_DESC			Player_Desc = {};
 	_bool				m_bJump = { false };
 	_bool				m_bWeaponChange = { true };
 
 	WEAPONID			m_eWeaponID = { WEAPON_END };
+	WEAPONID			m_ePrevWeaponID = { WEAPON_END };
 
 	_float				m_fShieldRecoveryTimer = { 0.f };
 	_float				m_fDashTimer = { 0.f };
 	_float				m_fInvincibleTime = { 0.f };
 	
 	WEAPONID			m_eWeaponIDArray[3] = { SHURIKEN ,SNIPER ,PISTOL };
+
 	SLOTID				m_eSlotID = { SLOT_END };
 
 	_bool				m_bDash = { false };

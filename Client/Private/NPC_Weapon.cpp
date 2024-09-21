@@ -83,7 +83,12 @@ void CNPC_Weapon::Late_Update(_float fTimeDelta)
 			iter->Set_Dead();
 		}
 
-		m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_UI_Cursor")).back()->Set_Dead();
+		for (auto& iter : m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_UI_Cursor")))
+		{
+			iter->Set_Dead();
+		}
+
+		//m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_UI_Cursor")).back()->Set_Dead();
 
 		m_bClick = false;
 		m_bCursorFree = false;

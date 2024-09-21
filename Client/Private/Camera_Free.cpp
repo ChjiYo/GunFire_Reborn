@@ -83,13 +83,6 @@ void CCamera_Free::Late_Update(_float fTimeDelta)
 		else
 		{
 			m_pGameInstance->SetDeltaTime(1.f);
-
-			POINT pt;
-			pt.x = g_iWinSizeX * 0.5f;
-			pt.y = g_iWinSizeY * 0.5f;
-
-			ClientToScreen(g_hWnd, &pt);
-			SetCursorPos(pt.x, pt.y);
 		}
 		//m_bNPC ? m_pGameInstance->SetDeltaTime(0.f) : m_pGameInstance->SetDeltaTime(1.f);
 	}

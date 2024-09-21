@@ -46,7 +46,7 @@ HRESULT CWeapon_Player_Sniper::Initialize(void* pArg)
     m_pPlayerTransform = Desc->pTargetTransform;
     Safe_AddRef(m_pPlayerTransform);
 
-    m_iOriginBullet = m_iNumBullet;
+    m_iOriginBullet = 8;
 
     m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 0.25f , -0.15f , -0.15f , 1.f });
 
@@ -253,16 +253,13 @@ void CWeapon_Player_Sniper::Rebound()
         pPlayerTransform->Radian_Turn(pPlayerTransform->Get_State(CTransform::STATE_RIGHT), XMConvertToRadians(m_fReboundAngle));
     }
 
-
-
     if (m_fReboundAngle <= -6.f)
     {
         m_bReboundEnble = false;
         m_fReboundTimer = 0.f;
         m_fReboundAngle = 0.f;
     }
-    
-
+ 
 }
 
 void CWeapon_Player_Sniper::Zoom()
