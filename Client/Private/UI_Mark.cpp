@@ -61,7 +61,7 @@ void CUI_Mark::Update(_float fTimeDelta)
 	_float fOffSetX = m_fPosX + (fDist * 2) * cos(fAngle * (3.14f / 180.f));
 	_float fOffSetY = m_fPosY - (fDist * 2) * sin(fAngle * (3.14f / 180.f));
 
-	__super::Set_UI_Setting(10.f, 10.f, fOffSetX, fOffSetY);
+	__super::Set_UI_Setting(20.f, 20.f, fOffSetX, fOffSetY);
 
 	if (fDist > 30.f)
 		m_bDead = true;

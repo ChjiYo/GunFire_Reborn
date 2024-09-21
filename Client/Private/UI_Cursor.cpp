@@ -28,13 +28,17 @@ HRESULT CUI_Cursor::Initialize(void* pArg)
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
-	__super::Set_UI_Setting(150.f, 150.f, g_iWinSizeX * 0.5f - 100.f, g_iWinSizeY * 0.5f - 225.f);
 
 	return S_OK;
 }
 
 void CUI_Cursor::Priority_Update(_float fTimeDelta)
 {
+	POINT MousePos;
+	GetCursorPos(&MousePos);
+	ScreenToClient(g_hWnd, &MousePos);
+	
+	__super::Set_UI_Setting(50.f, 50.f, MousePos.x, MousePos.y);
 }
 
 void CUI_Cursor::Update(_float fTimeDelta)

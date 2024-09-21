@@ -130,6 +130,7 @@
 
 #include "UI_MiniMap.h"
 #include "UI_Mark.h"
+#include "UI_Player_Mark.h"
 
 #include "UI_Bullet_Num.h"
 
@@ -543,6 +544,11 @@ HRESULT CLoader::Loading_For_StaticLevel()
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/MiniMap/Mark.png")))))
 		return E_FAIL;
 
+	/* For.Prototype_Component_Texture_Player_Mark */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_STATIC, TEXT("Prototype_Component_Texture_Player_Mark"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/MiniMap/Player_Mark.png")))))
+		return E_FAIL;
+
 
 
 	lstrcpy(m_szLoadingText, TEXT("모델을 로딩 중 입니다."));
@@ -635,6 +641,11 @@ HRESULT CLoader::Loading_For_StaticLevel()
 	/* For.Prototype_GameObject_UI_Mark */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_Mark"),
 		CUI_Mark::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_UI_Player_Mark */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_Player_Mark"),
+		CUI_Player_Mark::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
 	/* For.Prototype_GameObject_UI_Bullet_Num */

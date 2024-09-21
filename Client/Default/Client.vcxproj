@@ -336,6 +336,7 @@
     <ClInclude Include="..\Public\UI_Player_HpBar.h" />
     <ClInclude Include="..\Public\UI_Player_HpBlankBar.h" />
     <ClInclude Include="..\Public\UI_Player_Icon.h" />
+    <ClInclude Include="..\public\UI_Player_Mark.h" />
     <ClInclude Include="..\Public\UI_Player_ShieldBar.h" />
     <ClInclude Include="..\Public\UI_Player_ShieldBlankBar.h" />
     <ClInclude Include="..\public\UI_Quest.h" />
@@ -541,6 +542,7 @@
     <ClCompile Include="..\Private\UI_Player_HpBar.cpp" />
     <ClCompile Include="..\Private\UI_Player_HpBlankBar.cpp" />
     <ClCompile Include="..\Private\UI_Player_Icon.cpp" />
+    <ClCompile Include="..\private\UI_Player_Mark.cpp" />
     <ClCompile Include="..\Private\UI_Player_ShieldBar.cpp" />
     <ClCompile Include="..\Private\UI_Player_ShieldBlankBar.cpp" />
     <ClCompile Include="..\private\UI_Quest.cpp" />

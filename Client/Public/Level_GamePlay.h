@@ -30,6 +30,7 @@ private:
 	HRESULT Ready_CrossHair();
 	HRESULT Ready_MiniMap();
 	HRESULT Ready_Weapon_Bullet();
+	HRESULT Ready_Cursor();
 
 	HRESULT Ready_LandObjects();
 	HRESULT Ready_Layer_Item(const wstring& strLayerTag);

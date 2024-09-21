@@ -624,6 +624,9 @@
     <ClCompile Include="..\private\UI_Bullet_Num.cpp">
       <Filter>02.GameObjects\UI\UI_Bullet_Num</Filter>
     </ClCompile>
+    <ClCompile Include="..\private\UI_Player_Mark.cpp">
+      <Filter>02.GameObjects\UI\UI_MiniMap\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Public\Level_Logo.h">
@@ -1231,6 +1234,9 @@
     </ClInclude>
     <ClInclude Include="..\public\UI_Bullet_Num.h">
       <Filter>02.GameObjects\UI\UI_Bullet_Num</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\UI_Player_Mark.h">
+      <Filter>02.GameObjects\UI\UI_MiniMap\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1928,6 +1934,9 @@
     </Filter>
     <Filter Include="02.GameObjects\UI\UI_Bullet_Num">
       <UniqueIdentifier>{dc4d27e1-4331-48fe-b30f-2d90558638f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_MiniMap\Player">
+      <UniqueIdentifier>{42381632-599e-4cbf-b9e6-33b6b9f0317f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

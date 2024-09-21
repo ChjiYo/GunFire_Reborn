@@ -66,6 +66,9 @@ HRESULT CLevel_GamePlay::Initialize()
 	if (FAILED(Ready_Weapon_Bullet()))
 		return E_FAIL;
 
+	//if (FAILED(Ready_Cursor()))
+	//	return E_FAIL;
+
 	//if (FAILED(Ready_Layer_Item(TEXT("Layer_Item"))))
 	//	return E_FAIL;
 
@@ -258,8 +261,8 @@ HRESULT CLevel_GamePlay::Ready_MiniMap()
 	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_MiniMap"), TEXT("Layer_UI_MiniMap"))))
 		return E_FAIL;
 
-	//if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Cross_Hair"), TEXT("Layer_UI_CrossHair"))))
-	//	return E_FAIL;
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Player_Mark"), TEXT("Layer_UI_Player_Mark"))))
+		return E_FAIL;
 
 	return S_OK;
 }
@@ -273,6 +276,13 @@ HRESULT CLevel_GamePlay::Ready_Weapon_Bullet()
 
 		m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Prototype_GameObject_UI_Bullet_Num"), TEXT("Layer_UI_Bullet_Num"), &Desc);
 	}
+
+	return S_OK;
+}
+
+HRESULT CLevel_GamePlay::Ready_Cursor()
+{
+	m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Prototype_GameObject_UI_Cursor"), TEXT("Layer_UI_Cursor"));
 
 	return S_OK;
 }
