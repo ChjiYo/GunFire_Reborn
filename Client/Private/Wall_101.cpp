@@ -85,8 +85,8 @@ HRESULT CWall_101::Ready_Components()
 	/* For.Com_Collider */
 	CBounding_OBB::BOUNDING_OBB_DESC	BoundingDesc{};
 
-	BoundingDesc.vExtents = _float3(5.0f, 5.0f, 0.5f);
-	BoundingDesc.vCenter = _float3(0.f, BoundingDesc.vExtents.y * 0.5f, 0.f);
+	BoundingDesc.vExtents = _float3(5.6f, 7.0f, 0.5f);
+	BoundingDesc.vCenter = _float3(0.f, BoundingDesc.vExtents.y * 0.5f - (BoundingDesc.vExtents.y * 0.5f), 0.f);
 	BoundingDesc.vRotation = _float3(0.f, 0, 0.f);
 	BoundingDesc.pObject = this;
 

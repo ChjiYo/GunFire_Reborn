@@ -10,6 +10,7 @@ class CShader;
 class CTexture;
 class CVIBuffer_Terrain;
 class CNavigation;
+class CCollider;
 END
 
 BEGIN(Client)
@@ -32,6 +33,9 @@ public:
 
 private:
 	HRESULT Ready_Components();
+
+private:
+	CCollider* m_pColliderCom = { nullptr };
 
 public:
 	static CTerrain_GamePlay* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);

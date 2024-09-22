@@ -38,11 +38,16 @@ void CWall_102::Priority_Update(_float fTimeDelta)
 
 void CWall_102::Update(_float fTimeDelta)
 {
+	m_pColliderCom->Update(m_pTransformCom->Get_WorldMatrix());
 }
 
 void CWall_102::Late_Update(_float fTimeDelta)
 {
 	m_pGameInstance->Add_RenderObject(CRenderer::RG_NONBLEND, this);
+
+#ifdef _DEBUG
+	m_pGameInstance->Add_DebugComponent(m_pColliderCom);
+#endif
 }
 
 HRESULT CWall_102::Render()
@@ -78,6 +83,18 @@ HRESULT CWall_102::Ready_Components()
 	/* For.Com_Model */
 	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Wall_102"),
 		TEXT("Com_Model"), reinterpret_cast<CComponent**>(&m_pModelCom))))
+		return E_FAIL;
+
+	/* For.Com_Collider */
+	CBounding_OBB::BOUNDING_OBB_DESC	BoundingDesc{};
+
+	BoundingDesc.vExtents = _float3(5.6f, 7.0f, 0.5f);
+	BoundingDesc.vCenter = _float3(0.f, BoundingDesc.vExtents.y * 0.5f - (BoundingDesc.vExtents.y * 0.5f), 0.f);
+	BoundingDesc.vRotation = _float3(0.f, 0, 0.f);
+	BoundingDesc.pObject = this;
+
+	if (FAILED(__super::Add_Component(LEVEL_STATIC, TEXT("Prototype_Component_Collider_OBB"),
+		TEXT("Com_ColliderOBB"), reinterpret_cast<CComponent**>(&m_pColliderCom), &BoundingDesc)))
 		return E_FAIL;
 
 	return S_OK;
@@ -127,6 +144,7 @@ void CWall_102::Free()
 {
 	Safe_Release(m_pShaderCom);
 	Safe_Release(m_pModelCom);
+	Safe_Release(m_pColliderCom);
 
 	__super::Free();
 }

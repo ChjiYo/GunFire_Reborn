@@ -38,6 +38,7 @@ void CTerrain_GamePlay::Priority_Update(_float fTimeDelta)
 void CTerrain_GamePlay::Update(_float fTimeDelta)
 {
 	m_pNavigationCom->Update(m_pTransformCom->Get_WorldMatrix());
+	//m_pColliderCom->Update(m_pTransformCom->Get_WorldMatrix());
 }
 
 void CTerrain_GamePlay::Late_Update(_float fTimeDelta)
@@ -47,6 +48,8 @@ void CTerrain_GamePlay::Late_Update(_float fTimeDelta)
 
 #ifdef _DEBUG
 	m_pGameInstance->Add_DebugComponent(m_pNavigationCom);
+	//m_pGameInstance->Add_DebugComponent(m_pColliderCom);
+
 #endif
 }
 
@@ -92,6 +95,18 @@ HRESULT CTerrain_GamePlay::Ready_Components()
 	if (FAILED(__super::Add_Component(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Navigation"),
 		TEXT("Com_Navigation"), reinterpret_cast<CComponent**>(&m_pNavigationCom))))
 		return E_FAIL;
+
+	/* For.Com_Collider */
+	/*CBounding_OBB::BOUNDING_OBB_DESC	BoundingDesc{};
+
+	BoundingDesc.vExtents = _float3(0.5f, 0.5f, 0.5f);
+	BoundingDesc.vCenter = _float3(0.f, BoundingDesc.vExtents.y * 0.5f , 0.f);
+	BoundingDesc.vRotation = _float3(0.f, 0, 0.f);
+	BoundingDesc.pObject = this;
+
+	if (FAILED(__super::Add_Component(LEVEL_STATIC, TEXT("Prototype_Component_Collider_OBB"),
+		TEXT("Com_ColliderOBB"), reinterpret_cast<CComponent**>(&m_pColliderCom), &BoundingDesc)))
+		return E_FAIL;*/
 
 	return S_OK;
 }

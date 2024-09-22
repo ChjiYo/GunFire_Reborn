@@ -47,19 +47,22 @@ HRESULT CSkill_Shuriken_Bullet::Initialize(void* pArg)
 void CSkill_Shuriken_Bullet::Priority_Update(_float fTimeDelta)
 {
     //_vector vPos = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
-  
+    m_fReCollTimer += fTimeDelta;
 }
 
 void CSkill_Shuriken_Bullet::Update(_float fTimeDelta)
 {
+    if (m_fReCollTimer > 0.5f)
+    {
+        m_fReCollTimer = 0.f;
+        m_bWallColl = false;
+    }
+
     m_pColliderCom->Update(m_pTransformCom->Get_WorldMatrix());
 
     _vector	vPosition = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
 
-    if (!m_bWallColl)
-        vPosition += m_vTargetLook * 50.f * fTimeDelta;
-    else
-        vPosition += m_vReflectVec * 50.f * fTimeDelta;
+    vPosition += m_vTargetLook * 50.f * fTimeDelta;
 
     m_pTransformCom->Set_State(CTransform::STATE_POSITION, vPosition);
 
@@ -78,13 +81,17 @@ void CSkill_Shuriken_Bullet::Late_Update(_float fTimeDelta)
 
         if (m_pColliderCom->isCollision(pWall->Get_Collider()))
         {
-            m_bWallColl = true;
 
             _vector vBulletLook = m_pTransformCom->Get_State(CTransform::STATE_LOOK);
             _vector vWallLook = pWall->Get_Transform()->Get_State(CTransform::STATE_LOOK);
-            
-            m_vReflectVec = XMVector3Normalize(XMVector3Reflect(m_vTargetLook, {0,0,1}));
+
+            if (!m_bWallColl)
+            {
+                m_vTargetLook = XMVector3Normalize(XMVector3Reflect(m_vTargetLook, vWallLook));
+                m_bWallColl = true;
+            }
         }
+
     }
     m_pGameInstance->Add_RenderObject(CRenderer::RG_BLEND, this);
 }

@@ -25,6 +25,8 @@ private:
 	void Destroy(_float fTimeDelta, _vector vPos);
 
 private:
+	_float m_fReCollTimer = { 0.f };
+
 	_bool m_bWallColl = { false };
 
 	_vector m_vTargetLook = {};
