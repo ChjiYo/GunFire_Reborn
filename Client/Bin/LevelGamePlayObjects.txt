@@ -2654,6 +2654,22 @@ Scale: 0.648285 1 0.996998
 Rotation: 1.5708
 IsParsing: 1
 
+LayerName: Layer_Wall_101
+PrototypeTag: Prototype_GameObject_Wall_101
+LevelIndex: 4
+Position: 15.9 4 11.64
+Scale: 0.48 0.6 1
+Rotation: 0
+IsParsing: 1
+
+LayerName: Layer_Wall_102
+PrototypeTag: Prototype_GameObject_Wall_102
+LevelIndex: 4
+Position: 21.3 4 11.64
+Scale: 0.48 0.6 1
+Rotation: 0
+IsParsing: 1
+
 LayerName: Layer_Wall_Stage
 PrototypeTag: Prototype_GameObject_Wall_Stage
 LevelIndex: 4

@@ -108,7 +108,7 @@ HRESULT CTool_Save::Save_Button_Pressed(bool* bShowSaveSuccessMessage, bool* bSh
 		if (object.first.find(L"Layer_UI") == 0 ||
 			object.first.find(L"Layer_ZUI") == 0 ||
 			object.first.find(L"Layer_XUI") == 0 ||
-			object.first.find(L"Layer_Npc") == 0 ||
+			object.first.find(L"Layer_NPC") == 0 ||
 			object.first.find(L"Layer_Monster") == 0 )
 		{
 			skipLayers.insert(object.first);

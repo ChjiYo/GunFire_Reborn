@@ -370,6 +370,8 @@
     <ClInclude Include="..\public\VFX_Shuriken.h" />
     <ClInclude Include="..\public\VFX_Sniper.h" />
     <ClInclude Include="..\public\VFX_Spectrum.h" />
+    <ClInclude Include="..\public\Wall_101.h" />
+    <ClInclude Include="..\public\Wall_102.h" />
     <ClInclude Include="..\public\Wall_Stage1.h" />
     <ClInclude Include="..\public\Wall_Stage2.h" />
     <ClInclude Include="..\public\Weapon_Player.h" />
@@ -576,6 +578,8 @@
     <ClCompile Include="..\private\VFX_Shuriken.cpp" />
     <ClCompile Include="..\private\VFX_Sniper.cpp" />
     <ClCompile Include="..\private\VFX_Spectrum.cpp" />
+    <ClCompile Include="..\private\Wall_101.cpp" />
+    <ClCompile Include="..\private\Wall_102.cpp" />
     <ClCompile Include="..\private\Wall_Stage1.cpp" />
     <ClCompile Include="..\private\Wall_Stage2.cpp" />
     <ClCompile Include="..\private\Weapon_Player.cpp" />

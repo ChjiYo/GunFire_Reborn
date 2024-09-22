@@ -627,6 +627,12 @@
     <ClCompile Include="..\private\UI_Player_Mark.cpp">
       <Filter>02.GameObjects\UI\UI_MiniMap\Player</Filter>
     </ClCompile>
+    <ClCompile Include="..\private\Wall_101.cpp">
+      <Filter>02.GameObjects\Deco\Wall\101</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Wall_102.cpp">
+      <Filter>02.GameObjects\Deco\Wall\102</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Public\Level_Logo.h">
@@ -1237,6 +1243,12 @@
     </ClInclude>
     <ClInclude Include="..\public\UI_Player_Mark.h">
       <Filter>02.GameObjects\UI\UI_MiniMap\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Wall_101.h">
+      <Filter>02.GameObjects\Deco\Wall\101</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Wall_102.h">
+      <Filter>02.GameObjects\Deco\Wall\102</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1937,6 +1949,15 @@
     </Filter>
     <Filter Include="02.GameObjects\UI\UI_MiniMap\Player">
       <UniqueIdentifier>{42381632-599e-4cbf-b9e6-33b6b9f0317f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Wall">
+      <UniqueIdentifier>{61b5b278-7f27-4472-994a-0aec515c6633}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Wall\101">
+      <UniqueIdentifier>{b54b6a45-524d-4cbd-a155-2e295383155d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Deco\Wall\102">
+      <UniqueIdentifier>{97dafa9e-8f39-4fc7-9441-01b6102c9b8b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

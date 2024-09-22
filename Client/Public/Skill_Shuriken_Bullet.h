@@ -25,7 +25,10 @@ private:
 	void Destroy(_float fTimeDelta, _vector vPos);
 
 private:
+	_bool m_bWallColl = { false };
+
 	_vector m_vTargetLook = {};
+	_vector m_vReflectVec = {};
 
 	_float m_fDestroyTimer = {};
 	_uint m_iTextureIndex = { 0 };

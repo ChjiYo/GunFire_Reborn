@@ -3,6 +3,8 @@
 #include "Skill_Shuriken_Bullet.h"
 #include "GameInstance.h"   
 
+#include "Wall_101.h"
+
 #include "VFX.h"
 
 CSkill_Shuriken_Bullet::CSkill_Shuriken_Bullet(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
@@ -54,15 +56,36 @@ void CSkill_Shuriken_Bullet::Update(_float fTimeDelta)
 
     _vector	vPosition = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
 
-    vPosition += m_vTargetLook * 50.f * fTimeDelta;
+    if (!m_bWallColl)
+        vPosition += m_vTargetLook * 50.f * fTimeDelta;
+    else
+        vPosition += m_vReflectVec * 50.f * fTimeDelta;
+
     m_pTransformCom->Set_State(CTransform::STATE_POSITION, vPosition);
 
-    Destroy(fTimeDelta, vPosition);
+   // Destroy(fTimeDelta, vPosition);
 }
 
 void CSkill_Shuriken_Bullet::Late_Update(_float fTimeDelta)
 {
-    __super::Late_Update(fTimeDelta);
+    //__super::Late_Update(fTimeDelta);
+    CCollider* n_pCollider = dynamic_cast<CCollider*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Wall_101"), TEXT("Com_ColliderOBB")));
+    list<CGameObject*> vecWall = m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Wall_101"));
+
+    for (auto& iter : vecWall)
+    {
+        CWall_101* pWall = dynamic_cast<CWall_101*>(iter);
+
+        if (m_pColliderCom->isCollision(pWall->Get_Collider()))
+        {
+            m_bWallColl = true;
+
+            _vector vBulletLook = m_pTransformCom->Get_State(CTransform::STATE_LOOK);
+            _vector vWallLook = pWall->Get_Transform()->Get_State(CTransform::STATE_LOOK);
+            
+            m_vReflectVec = XMVector3Normalize(XMVector3Reflect(m_vTargetLook, {0,0,1}));
+        }
+    }
     m_pGameInstance->Add_RenderObject(CRenderer::RG_BLEND, this);
 }
 
