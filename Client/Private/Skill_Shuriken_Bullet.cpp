@@ -80,6 +80,8 @@ void CSkill_Shuriken_Bullet::Update(_float fTimeDelta)
 
 void CSkill_Shuriken_Bullet::Late_Update(_float fTimeDelta)
 {
+    __super::Late_Update(fTimeDelta);
+
     list<CGameObject*> vecWall = m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Wall_101"));
     list<CGameObject*> vecWall2 = m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Wall_102"));
 

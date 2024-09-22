@@ -30,8 +30,8 @@ HRESULT CNPC_Weapon::Initialize(void* pArg)
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
-	//m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 49.38f , 0.f, 67.49f, 1.f });
-	m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 7.38f , 0.f, 7.f, 1.f });
+	m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 49.38f , 0.f, 67.49f, 1.f });
+	//m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 7.38f , 0.f, 7.f, 1.f });
 
 	m_pModelCom->SetUp_Animation(0, true);
 
