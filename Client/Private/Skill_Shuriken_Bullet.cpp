@@ -102,6 +102,11 @@ void CSkill_Shuriken_Bullet::Late_Update(_float fTimeDelta)
                 _vector vPos = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
                 m_pTransformCom->LookAt(vPos + m_vTargetLook * 2.f);
                 m_pTransformCom->Radian_Turn(m_pTransformCom->Get_State(CTransform::STATE_UP), XMConvertToRadians(90.f));
+
+                CVFX::VFX_DESC Desc = {};
+                Desc.vCreatePos = vPos;
+
+                m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Prototype_GameObject_VFX_Shuriken"), TEXT("Layer_Effect"), &Desc);
             }
         }
     }
@@ -125,6 +130,11 @@ void CSkill_Shuriken_Bullet::Late_Update(_float fTimeDelta)
                 _vector vPos = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
                 m_pTransformCom->LookAt(vPos + m_vTargetLook * 2.f);
                 m_pTransformCom->Radian_Turn(m_pTransformCom->Get_State(CTransform::STATE_UP), XMConvertToRadians(90.f));
+
+                CVFX::VFX_DESC Desc = {};
+                Desc.vCreatePos = vPos;
+
+                m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Prototype_GameObject_VFX_Shuriken"), TEXT("Layer_Effect"), &Desc);
             }
         }
     }
@@ -265,6 +275,11 @@ void CSkill_Shuriken_Bullet::NaviReflect()
             _vector vPos = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
             m_pTransformCom->LookAt(vPos  + m_vTargetLook * 2.f);
             m_pTransformCom->Radian_Turn(m_pTransformCom->Get_State(CTransform::STATE_UP), XMConvertToRadians(90.f));
+
+            CVFX::VFX_DESC Desc = {};
+            Desc.vCreatePos = vPos;
+
+            m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Prototype_GameObject_VFX_Shuriken"), TEXT("Layer_Effect"), &Desc);
         }
     }
 
@@ -287,6 +302,11 @@ void CSkill_Shuriken_Bullet::HighReflect()
             _vector vPos = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
             m_pTransformCom->LookAt(vPos + m_vTargetLook * 2.f);
             m_pTransformCom->Radian_Turn(m_pTransformCom->Get_State(CTransform::STATE_UP), XMConvertToRadians(90.f));
+
+            CVFX::VFX_DESC Desc = {};
+            Desc.vCreatePos = vPos;
+
+            m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Prototype_GameObject_VFX_Shuriken"), TEXT("Layer_Effect"), &Desc);
         }
     }
 
