@@ -33,6 +33,7 @@ private:
 private:
 	void Destroy(_float fTimeDelta, _vector vPos);
 	void NaviReflect();
+	void HighReflect();
 
 private:
 	class CNavigation* m_pNaviCom = { nullptr };

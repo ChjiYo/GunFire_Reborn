@@ -51,13 +51,14 @@ HRESULT CSkill_Shuriken_Bullet::Initialize(void* pArg)
 void CSkill_Shuriken_Bullet::Priority_Update(_float fTimeDelta)
 {
     //_vector vPos = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
+    
     m_fDestroyTimer += fTimeDelta;
     m_fReCollTimer += fTimeDelta;
 }
 
 void CSkill_Shuriken_Bullet::Update(_float fTimeDelta)
 {
-    if (m_fReCollTimer > 0.5f)
+    if (m_fReCollTimer > 0.25f)
     {
         m_fReCollTimer = 0.f;
         m_bWallColl = false;
@@ -67,11 +68,12 @@ void CSkill_Shuriken_Bullet::Update(_float fTimeDelta)
 
     _vector	vPosition = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
 
-    vPosition += m_vTargetLook * 50.f * fTimeDelta;
+    vPosition += m_vTargetLook * 35.f * fTimeDelta;
 
     m_pTransformCom->Set_State(CTransform::STATE_POSITION, vPosition);
 
     NaviReflect();
+    HighReflect();
 
     Destroy(fTimeDelta, vPosition);
 }
@@ -96,6 +98,10 @@ void CSkill_Shuriken_Bullet::Late_Update(_float fTimeDelta)
                 m_vTargetLook = XMVector3Normalize(XMVector3Reflect(m_vTargetLook, vWallLook));
                 m_bWallColl = true;
                 m_iNumBounding++;
+
+                _vector vPos = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
+                m_pTransformCom->LookAt(vPos + m_vTargetLook * 2.f);
+                m_pTransformCom->Radian_Turn(m_pTransformCom->Get_State(CTransform::STATE_UP), XMConvertToRadians(90.f));
             }
         }
     }
@@ -115,6 +121,10 @@ void CSkill_Shuriken_Bullet::Late_Update(_float fTimeDelta)
                 m_vTargetLook = XMVector3Normalize(XMVector3Reflect(m_vTargetLook, vWallLook));
                 m_bWallColl = true;
                 m_iNumBounding++;
+
+                _vector vPos = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
+                m_pTransformCom->LookAt(vPos + m_vTargetLook * 2.f);
+                m_pTransformCom->Radian_Turn(m_pTransformCom->Get_State(CTransform::STATE_UP), XMConvertToRadians(90.f));
             }
         }
     }
@@ -251,10 +261,34 @@ void CSkill_Shuriken_Bullet::NaviReflect()
             m_vTargetLook = XMVector3Normalize(XMVector3Reflect(m_vTargetLook, m_vReflectVec));
             m_bWallColl = true;
             m_iNumBounding++;
+
+            _vector vPos = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
+            m_pTransformCom->LookAt(vPos  + m_vTargetLook * 2.f);
+            m_pTransformCom->Radian_Turn(m_pTransformCom->Get_State(CTransform::STATE_UP), XMConvertToRadians(90.f));
         }
     }
 
 
+
+}
+
+void CSkill_Shuriken_Bullet::HighReflect()
+{
+    _float vPosY = XMVectorGetY(m_pTransformCom->Get_State(CTransform::STATE_POSITION));
+
+    if (vPosY > 6.5f)
+    {
+        if (!m_bWallColl)
+        {
+            m_vTargetLook = XMVector3Normalize(XMVector3Reflect(m_vTargetLook, {0, -1, 0}));
+            m_bWallColl = true;
+            m_iNumBounding++;
+
+            _vector vPos = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
+            m_pTransformCom->LookAt(vPos + m_vTargetLook * 2.f);
+            m_pTransformCom->Radian_Turn(m_pTransformCom->Get_State(CTransform::STATE_UP), XMConvertToRadians(90.f));
+        }
+    }
 
 }
 

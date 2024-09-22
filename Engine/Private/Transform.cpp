@@ -252,6 +252,10 @@ void CTransform::LookAt(_fvector vAt)
 
 }
 
+void CTransform::ResetLook(_vector vLook)
+{
+}
+
 _float CTransform::Look_Degree()
 {
 	_vector		vLook = Get_State(STATE_LOOK);
