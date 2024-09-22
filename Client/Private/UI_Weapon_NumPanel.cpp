@@ -50,6 +50,8 @@ HRESULT CUI_Weapon_NumPanel::Initialize(void* pArg)
 
 	}
 
+	m_pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_Player")).back());
+
 	return S_OK;
 }
 
@@ -75,8 +77,7 @@ HRESULT CUI_Weapon_NumPanel::Render()
 	if (FAILED(m_pTextureCom->Bind_ShaderResource(m_pShaderCom, "g_Texture", 0)))
 		return E_FAIL;
 
-	CPlayer* pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_Player")).back());
-	if (pPlayer->Get_Slot() == m_iCloneIndex)
+	if (m_pPlayer->Get_Slot() == m_iCloneIndex)
 	{
 		if (FAILED(m_pShaderCom->Begin(0)))
 			return E_FAIL;

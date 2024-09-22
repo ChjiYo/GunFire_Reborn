@@ -29,7 +29,7 @@ HRESULT CUI_MiniMap::Initialize(void* pArg)
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
-	__super::Set_UI_Setting(200.f, 200.f, 1450.f, 200.f);
+	__super::Set_UI_Setting(200.f, 200.f, 150.f, 150.f);
 
 	return S_OK;
 }

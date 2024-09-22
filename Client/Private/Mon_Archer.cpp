@@ -142,7 +142,7 @@ void CMon_Archer::Destroy()
 	
 	if (m_tMonDesc.iHp <= 0)
 	{
-		m_pModelCom->SetUp_Animation(0, false);
+		m_pStateCom->Set_State(TEXT("Monster_Archer_State_Idle"));
 		m_pTransformCom->Set_Speed(0);
 		m_bNoise = true;
 	}

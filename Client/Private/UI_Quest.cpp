@@ -32,7 +32,7 @@ HRESULT CUI_Quest::Initialize(void* pArg)
 	m_fSizeX = 40.f;
 	m_fSizeY = 10.f;
 	m_fPosX = 200;
-	m_fPosY = 700;
+	m_fPosY = 550;
 
 	__super::Set_UI_Setting(m_fSizeX, m_fSizeY, m_fPosX, m_fPosY);
   

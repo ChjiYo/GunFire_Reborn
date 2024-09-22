@@ -26,6 +26,8 @@ private:
 	_uint m_iCloneIndex = {};
 	wstring m_strNum = {};
 
+	class CPlayer* m_pPlayer = { nullptr };
+
 public:
 	static CUI_Weapon_NumPanel* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	virtual CGameObject* Clone(void* pArg);

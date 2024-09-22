@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Skill.h"
+#include "Monster.h"
+#include <stack>
 
 BEGIN(Engine)
 class CShader;
@@ -29,13 +31,17 @@ public:
 protected:
 	HRESULT Ready_Components();
 	void Set_Position(_float3 vOffSet);
-	void FontCreate();
+	void FontCreate(class CMonster* pMonster, stack<_uint> stack);
 
 protected:
 	CShader* m_pShaderCom = { nullptr };
 	CTexture* m_pTextureCom = { nullptr };
 	CVIBuffer_Rect* m_pVIBufferCom = { nullptr };
 	CCollider* m_pColliderCom = { nullptr };
+
+private:
+	class CMonster* m_pMonster = { nullptr };
+	CTransform* m_pMonTransform = { nullptr };
 
 protected:
 	_float4 m_vDestoryPos = {};

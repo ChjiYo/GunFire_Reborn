@@ -52,7 +52,7 @@ void CVFX_Spectrum::Priority_Update(_float fTimeDelta)
 
     //m_pTransformCom->Set_State(CTransform::STATE_POSITION , pPlayer->Get_Transform()->Get_State(CTrnasform::))
 
-    if (pWeapon->Get_PosSIze() != 0)
+    if (pWeapon != nullptr && pWeapon->Get_PosSIze() != 0)
     {
 
 
@@ -67,7 +67,6 @@ void CVFX_Spectrum::Priority_Update(_float fTimeDelta)
         _vector vPos = { fPosX, fPosY - 1.f, fPosZ ,  1.f };
 
         m_pTransformCom->Set_State(CTransform::STATE_POSITION, vPos);
-        //m_pTransformCom->Set_WorldMatrix(matPos);
     }
 
     if (pPlayer->Get_WeaponID() != CPlayer::PISTOL)

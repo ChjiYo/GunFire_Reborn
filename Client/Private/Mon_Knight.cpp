@@ -89,9 +89,9 @@ void CMon_Knight::Update(_float fTimeDelta)
 
 	m_pModelCom->Play_Animation(fTimeDelta);
 
-	for (int i = 0; i < COLL_END; ++i)
-		m_pColliderCom[i]->Update(m_pTransformCom->Get_WorldMatrix());
-
+		for (int i = 0; i < COLL_END; ++i)
+			m_pColliderCom[i]->Update(m_pTransformCom->Get_WorldMatrix());
+	
 	Destroy();
 	m_pStateCom->Update(fTimeDelta);
 }

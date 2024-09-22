@@ -36,8 +36,8 @@ HRESULT CUI_Mark::Initialize(void* pArg)
 	Safe_AddRef(m_pMonTransform);
 	Safe_AddRef(m_pMonster);
 
-	m_fPosX = 1450.f;
-	m_fPosY= 200.f;
+	m_fPosX = 150.f;
+	m_fPosY= 150.f;
 	
 	return S_OK;
 }
@@ -58,7 +58,7 @@ void CUI_Mark::Update(_float fTimeDelta)
 
 	_float fAngle = pPlayerTransform->Target_Look_Degree(vMonPos) + 90.f;
 
-	_float fOffSetX = m_fPosX + (fDist * 2) * cos(fAngle * (3.14f / 180.f));
+	_float fOffSetX = m_fPosX - (fDist * 2) * cos(fAngle * (3.14f / 180.f));
 	_float fOffSetY = m_fPosY - (fDist * 2) * sin(fAngle * (3.14f / 180.f));
 
 	__super::Set_UI_Setting(20.f, 20.f, fOffSetX, fOffSetY);

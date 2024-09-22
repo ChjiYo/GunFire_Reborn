@@ -57,6 +57,7 @@ public:
 	HRESULT	DropItem();
 
 public:
+	_bool Get_Noise() { return m_bNoise; }
 	_bool Get_Mark() { return m_bMark; }
 	void Set_Mark(_bool bMark) { m_bMark = bMark; }
 

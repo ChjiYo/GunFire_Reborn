@@ -3,7 +3,6 @@
 #include "Skill_Player.h"
 #include "Monster.h"
 #include <queue>
-#include <stack>
 
 #include "UI_Number.h"
 #include "VFX.h"
@@ -57,128 +56,99 @@ void CSkill_Player::Late_Update(_float fTimeDelta)
 	list<class CGameObject*> MonStageList3 = m_pGameInstance->Get_Layer(LEVEL_BOSS, TEXT("Layer_Monster"));
 
 	m_iDamage = rand() % 10 + m_iSkillDamage;
-	_uint iCopyDamage = m_iDamage;
 	_uint iNumCnt = { 0 };
 
-	//wsprintf(szFullPath, pTextureFilePath, i);
+	CMonster* pMonster = {};
+
+	for (auto& ColliderIter : MonStageList1)
+	{
+		pMonster = dynamic_cast<CMonster*>(ColliderIter);
+
+		if (!pMonster->Get_Noise())
+		{
+
+			if ((pMonster->Get_Collider(CMonster::COLL_AABB) != nullptr) && m_pColliderCom->isCollision(pMonster->Get_Collider(CMonster::COLL_AABB)))
+			{
+				pMonster->Set_Damage(-m_iDamage);
+
+				CVFX::VFX_DESC VFX_Desc = {};
+				VFX_Desc.vCreatePos = pMonster->Get_Transform()->Get_State(CTransform::STATE_POSITION);
+				m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Prototype_GameObject_VFX_Hit"), TEXT("Layer_Effect"), &VFX_Desc);
+				m_pMonTransform = pMonster->Get_Transform();
+
+				m_bDead = true;
+				m_bFont = true;
+			}
+			else if ((pMonster->Get_Collider(CMonster::COLL_SPHERE) != nullptr) && (m_pColliderCom->isCollision(pMonster->Get_Collider(CMonster::COLL_SPHERE))))
+			{
+				m_iDamage = m_iDamage * 1.5;
+
+				pMonster->Set_Damage(-m_iDamage);
+
+				CVFX::VFX_DESC VFX_Desc = {};
+				VFX_Desc.vCreatePos = pMonster->Get_Transform()->Get_State(CTransform::STATE_POSITION);
+				m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Prototype_GameObject_VFX_Hit"), TEXT("Layer_Effect"), &VFX_Desc);
+				m_pMonTransform = pMonster->Get_Transform();
+
+				m_bDead = true;
+				m_bFont = true;
+			}
+		}
+	}
+
+	//for (auto& ColliderIter : MonStageList2)
+	//{
+	//	CMonster* pMonster = dynamic_cast<CMonster*>(ColliderIter);
+	//
+	//	if (m_pColliderCom->isCollision(pMonster->Get_Collider(CMonster::COLL_AABB)))
+	//	{
+	//		pMonster->Set_Damage(-m_iDamage);
+	//
+	//		CUI_Number::UI_NUM_DESC Desc = {};
+	//		Desc.iNumUI = log10(m_iDamage) + 1;
+	//		Desc.pTransform = pMonster->Get_Transform();
+	//		Desc.iAngle = rand() % 360;
+	//		Desc.fSpeedPerSec = 5.f;
+	//
+	//		for (int i = 0; i < DamageStack.size(); )
+	//		{
+	//			Desc.iTextureIndex = DamageStack.top();
+	//			Desc.iNumCnt = iNumCnt;
+	//			m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Prototype_GameObject_UI_Number"), TEXT("Layer_UI_Number"), &Desc);
+	//			iNumCnt++;
+	//			DamageStack.pop();
+	//		}
+	//
+	//		CVFX::VFX_DESC VFX_Desc = {};
+	//		VFX_Desc.vCreatePos = XMLoadFloat4(&m_vDestoryPos);
+	//		m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Prototype_GameObject_VFX_Hit"), TEXT("Layer_Effect"), &VFX_Desc);
+	//
+	//		m_bDead = true;
+	//	}
+	//}
+	//
+	//for (auto& ColliderIter : MonStageList3)
+	//{
+	//	CMonster* pMonster = dynamic_cast<CMonster*>(ColliderIter);
+	//
+	//	if (m_pColliderCom->isCollision(pMonster->Get_Collider(CMonster::COLL_AABB)))
+	//	{
+	//		pMonster->Set_Damage(-m_iDamage);
+	//		m_bDead = true;
+	//	}
+	//}
+
 
 	stack<_uint> DamageStack = {};
-	for (int i = 0; iCopyDamage != 0 ; ++i)
+	_uint iCopyDamage = m_iDamage;
+	for (int i = 0; iCopyDamage != 0; ++i)
 	{
 		DamageStack.push(iCopyDamage % 10);
 		iCopyDamage /= 10;
 	}
 
-	for (auto& ColliderIter : MonStageList1)
-	{
-		CMonster* pMonster = dynamic_cast<CMonster*>(ColliderIter);
-	
-		if (m_pColliderCom->isCollision(pMonster->Get_Collider(CMonster::COLL_AABB)))
-		{
-			pMonster->Set_Damage(-m_iDamage);
-
-			CUI_Number::UI_NUM_DESC Desc = {};
-			Desc.iNumUI = log10(m_iDamage) + 1;
-			Desc.pTransform = pMonster->Get_Transform();
-			Desc.iAngle = rand() % 360;
-			Desc.fSpeedPerSec = 5.f;
-			Desc.iStatic = iNumber; 
-			_tchar AfterPath[MAX_PATH] = {};
-			const _tchar* LayerName = TEXT("Layer_UI_Number%d");
-			wsprintf(AfterPath, LayerName, iNumber);
-
-			for (int i = 0; i < DamageStack.size(); )
-			{
-				Desc.iTextureIndex = DamageStack.top();
-				Desc.iNumCnt = iNumCnt;
-				m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Prototype_GameObject_UI_Number"), AfterPath, &Desc);
-				iNumCnt++;
-				DamageStack.pop();
-			}
-
-			iNumber++;
-			CVFX::VFX_DESC VFX_Desc = {};
-			VFX_Desc.vCreatePos = pMonster->Get_Transform()->Get_State(CTransform::STATE_POSITION);
-			m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Prototype_GameObject_VFX_Hit"), TEXT("Layer_Effect"),&VFX_Desc);
-
-			m_bDead = true;
-		}
-		else if ((pMonster->Get_Collider(CMonster::COLL_SPHERE) != nullptr) &&  (m_pColliderCom->isCollision(pMonster->Get_Collider(CMonster::COLL_SPHERE))))
-		{
-			pMonster->Set_Damage(-m_iDamage * 1.5);
-
-			CUI_Number::UI_NUM_DESC Desc = {};
-			Desc.iNumUI = log10(m_iDamage) + 1;
-			Desc.pTransform = pMonster->Get_Transform();
-			Desc.iAngle = rand() % 360;
-			Desc.fSpeedPerSec = 5.f;
-			Desc.iStatic = iNumber;
-			_tchar AfterPath[MAX_PATH] = {};
-			const _tchar* LayerName = TEXT("Layer_UI_Number%d");
-			wsprintf(AfterPath, LayerName, iNumber);
-
-			for (int i = 0; i < DamageStack.size(); )
-			{
-				Desc.iTextureIndex = DamageStack.top();
-				Desc.iNumCnt = iNumCnt;
-				m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Prototype_GameObject_UI_Number"), AfterPath, &Desc);
-				iNumCnt++;
-				DamageStack.pop();
-			}
-
-			iNumber++;
-			CVFX::VFX_DESC VFX_Desc = {};
-			VFX_Desc.vCreatePos = pMonster->Get_Transform()->Get_State(CTransform::STATE_POSITION);
-			m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Prototype_GameObject_VFX_Hit"), TEXT("Layer_Effect"), &VFX_Desc);
-
-			m_bDead = true;
-		}
-	}
-
-	for (auto& ColliderIter : MonStageList2)
-	{
-		CMonster* pMonster = dynamic_cast<CMonster*>(ColliderIter);
-
-		if (m_pColliderCom->isCollision(pMonster->Get_Collider(CMonster::COLL_AABB)))
-		{
-			pMonster->Set_Damage(-m_iDamage);
-
-			CUI_Number::UI_NUM_DESC Desc = {};
-			Desc.iNumUI = log10(m_iDamage) + 1;
-			Desc.pTransform = pMonster->Get_Transform();
-			Desc.iAngle = rand() % 360;
-			Desc.fSpeedPerSec = 5.f;
-
-			for (int i = 0; i < DamageStack.size(); )
-			{
-				Desc.iTextureIndex = DamageStack.top();
-				Desc.iNumCnt = iNumCnt;
-				m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Prototype_GameObject_UI_Number"), TEXT("Layer_UI_Number"), &Desc);
-				iNumCnt++;
-				DamageStack.pop();
-			}
-
-			CVFX::VFX_DESC VFX_Desc = {};
-			VFX_Desc.vCreatePos = XMLoadFloat4(&m_vDestoryPos);
-			m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Prototype_GameObject_VFX_Hit"), TEXT("Layer_Effect"), &VFX_Desc);
-
-			m_bDead = true;
-		}
-	}
-
-	for (auto& ColliderIter : MonStageList3)
-	{
-		CMonster* pMonster = dynamic_cast<CMonster*>(ColliderIter);
-
-		if (m_pColliderCom->isCollision(pMonster->Get_Collider(CMonster::COLL_AABB)))
-		{
-			pMonster->Set_Damage(-m_iDamage);
-			m_bDead = true;
-		}
-	}
-
 	if (m_bFont)
-		FontCreate();
+		FontCreate(pMonster, DamageStack);
 
 }
 
@@ -211,8 +181,31 @@ void CSkill_Player::Set_Position(_float3 vOffSet)
 	m_pTransformCom->Radian_Turn(m_pTransformCom->Get_State(CTransform::STATE_UP), XMConvertToRadians(270.f));
 }
 
-void CSkill_Player::FontCreate()
+void CSkill_Player::FontCreate(CMonster* pMonster,stack<_uint> stack)
 {
+	_uint iNumCnt = { 0 };
+
+	CUI_Number::UI_NUM_DESC Desc = {};
+	Desc.iNumUI = log10(m_iDamage) + 1;
+	Desc.pTransform = m_pMonTransform;
+	Desc.iAngle = rand() % 360;
+	Desc.fSpeedPerSec = 5.f;
+	Desc.iStatic = iNumber;
+	_tchar AfterPath[MAX_PATH] = {};
+	const _tchar* LayerName = TEXT("Layer_UI_Number%d");
+	wsprintf(AfterPath, LayerName, iNumber);
+
+	for (int i = 0; i < stack.size(); )
+	{
+		Desc.iTextureIndex = stack.top();
+		Desc.iNumCnt = iNumCnt;
+		m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Prototype_GameObject_UI_Number"), AfterPath, &Desc);
+		iNumCnt++;
+		stack.pop();
+	}
+
+	iNumber++;
+	m_bFont = false;
 }
 
 void CSkill_Player::Free()
