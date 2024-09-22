@@ -2,8 +2,10 @@
 
 #include "Skill_Shuriken_Bullet.h"
 #include "GameInstance.h"   
+#include "Cell.h"
 
 #include "Wall_101.h"
+#include "Wall_102.h"
 
 #include "VFX.h"
 
@@ -40,6 +42,8 @@ HRESULT CSkill_Shuriken_Bullet::Initialize(void* pArg)
     m_vTargetLook = m_pOriginTransform->Get_State(CTransform::STATE_LOOK);
     m_pTransformCom->Set_Scaled(3.f, 0.25f, 1.f);
 
+    m_pNaviCom->Init_Index(m_pTransformCom);
+
     //네비게이션 메쉬 밖으로 나가면 delete? good 
     return S_OK;
 }
@@ -47,6 +51,7 @@ HRESULT CSkill_Shuriken_Bullet::Initialize(void* pArg)
 void CSkill_Shuriken_Bullet::Priority_Update(_float fTimeDelta)
 {
     //_vector vPos = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
+    m_fDestroyTimer += fTimeDelta;
     m_fReCollTimer += fTimeDelta;
 }
 
@@ -66,14 +71,15 @@ void CSkill_Shuriken_Bullet::Update(_float fTimeDelta)
 
     m_pTransformCom->Set_State(CTransform::STATE_POSITION, vPosition);
 
-   // Destroy(fTimeDelta, vPosition);
+    NaviReflect();
+
+    Destroy(fTimeDelta, vPosition);
 }
 
 void CSkill_Shuriken_Bullet::Late_Update(_float fTimeDelta)
 {
-    //__super::Late_Update(fTimeDelta);
-    CCollider* n_pCollider = dynamic_cast<CCollider*>(m_pGameInstance->Get_Component(LEVEL_GAMEPLAY, TEXT("Layer_Wall_101"), TEXT("Com_ColliderOBB")));
     list<CGameObject*> vecWall = m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Wall_101"));
+    list<CGameObject*> vecWall2 = m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Wall_102"));
 
     for (auto& iter : vecWall)
     {
@@ -89,10 +95,30 @@ void CSkill_Shuriken_Bullet::Late_Update(_float fTimeDelta)
             {
                 m_vTargetLook = XMVector3Normalize(XMVector3Reflect(m_vTargetLook, vWallLook));
                 m_bWallColl = true;
+                m_iNumBounding++;
             }
         }
-
     }
+
+    for (auto& iter : vecWall2)
+    {
+        CWall_102* pWall2 = dynamic_cast<CWall_102*>(iter);
+
+        if (m_pColliderCom->isCollision(pWall2->Get_Collider()))
+        {
+
+            _vector vBulletLook = m_pTransformCom->Get_State(CTransform::STATE_LOOK);
+            _vector vWallLook = pWall2->Get_Transform()->Get_State(CTransform::STATE_LOOK);
+
+            if (!m_bWallColl)
+            {
+                m_vTargetLook = XMVector3Normalize(XMVector3Reflect(m_vTargetLook, vWallLook));
+                m_bWallColl = true;
+                m_iNumBounding++;
+            }
+        }
+    }
+
     m_pGameInstance->Add_RenderObject(CRenderer::RG_BLEND, this);
 }
 
@@ -118,6 +144,14 @@ HRESULT CSkill_Shuriken_Bullet::Render()
 
 HRESULT CSkill_Shuriken_Bullet::Ready_Components()
 {
+    CNavigation::NAVIGATION_DESC		NavigationDesc{};
+    NavigationDesc.iCurrentCellIndex = 0;
+
+    /* Com_Navigation */
+    if (FAILED(__super::Add_Component(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Prototype_Component_Navigation"),
+        TEXT("Com_Navigation"), reinterpret_cast<CComponent**>(&m_pNaviCom), &NavigationDesc)))
+        return E_FAIL;
+
     /* For.Com_Shader */
     if (FAILED(__super::Add_Component(LEVEL_STATIC, TEXT("Prototype_Component_Shader_VtxPosTex"),
         TEXT("Com_Shader"), reinterpret_cast<CComponent**>(&m_pShaderCom))))
@@ -170,17 +204,57 @@ void CSkill_Shuriken_Bullet::Destroy(_float fTimeDelta, _vector vPos)
     if (m_fDestroyTimer > 15.f)
         m_bDead = true;
 
-    //m_vDestoryPos
-    _float fDistance = XMVectorGetX(XMVector3Length(vPos - XMLoadFloat4(&m_vDestoryPos)));
-
-    if (fabs(fDistance) < 2.25f)
-    {
-        CVFX::VFX_DESC Desc = {};
-        Desc.vCreatePos = XMLoadFloat4(&m_vDestoryPos);
-
-        m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Prototype_GameObject_VFX_Shuriken"), TEXT("Layer_Effect"),&Desc);
+    if(m_iNumBounding >= 4)
         m_bDead = true;
+
+    //m_vDestoryPos
+    //_float fDistance = XMVectorGetX(XMVector3Length(vPos - XMLoadFloat4(&m_vDestoryPos)));
+    //
+    //if (fabs(fDistance) < 2.25f)
+    //{
+    //    CVFX::VFX_DESC Desc = {};
+    //    Desc.vCreatePos = XMLoadFloat4(&m_vDestoryPos);
+    //
+    //    m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Prototype_GameObject_VFX_Shuriken"), TEXT("Layer_Effect"),&Desc);
+    //    m_bDead = true;
+    //}
+
+}
+
+void CSkill_Shuriken_Bullet::NaviReflect()
+{
+    _uint iCurrNavi =  m_pNaviCom->Init_Index(m_pTransformCom);
+    _float3 vCellPos[CCell::POINT_END] = {};
+    _vector vCellPosPtr[CCell::POINT_END] = {};
+
+    _float fHeight = m_pNaviCom->Navi_Height(m_pTransformCom);
+    _float vPosY = XMVectorGetY(m_pTransformCom->Get_State(CTransform::STATE_POSITION));
+
+    _vector vNormal = {};
+
+    for (int i = 0; i < CCell::POINT_END; ++i)
+    {
+        vCellPos[i] = m_pNaviCom->Get_Cell().at(iCurrNavi)->Get_Point(i);
+        vCellPosPtr[i] = XMLoadFloat3(&vCellPos[i]);
+
+        _vector V1 = XMVectorSubtract(vCellPosPtr[1] , vCellPosPtr[0]);
+        _vector V2 = XMVectorSubtract(vCellPosPtr[2], vCellPosPtr[0]);
+
+        m_vReflectVec = XMVector3Normalize(XMVector3Cross(V1, V2));
     }
+    
+
+    if (vPosY <= fHeight + 0.5f && vPosY >= fHeight - 0.5f)
+    {
+        if (!m_bWallColl)
+        {
+            m_vTargetLook = XMVector3Normalize(XMVector3Reflect(m_vTargetLook, m_vReflectVec));
+            m_bWallColl = true;
+            m_iNumBounding++;
+        }
+    }
+
+
 
 }
 
@@ -217,6 +291,7 @@ void CSkill_Shuriken_Bullet::Free()
     Safe_Release(m_pVIBufferCom);
     Safe_Release(m_pTextureCom);
     Safe_Release(m_pColliderCom);
+    Safe_Release(m_pNaviCom);
 
     __super::Free();
 }

@@ -2,8 +2,17 @@
 
 #include "Skill_Player.h"
 
+BEGIN(Engine)
+
+class CNavigation;
+
+END
+
+BEGIN(Client)
+
 class CSkill_Shuriken_Bullet final :public CSkill_Player
 {
+
 protected:
 	CSkill_Shuriken_Bullet(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	CSkill_Shuriken_Bullet(const CSkill& Prototype);
@@ -23,6 +32,10 @@ private:
 
 private:
 	void Destroy(_float fTimeDelta, _vector vPos);
+	void NaviReflect();
+
+private:
+	class CNavigation* m_pNaviCom = { nullptr };
 
 private:
 	_float m_fReCollTimer = { 0.f };
@@ -36,9 +49,13 @@ private:
 	_uint m_iTextureIndex = { 0 };
 
 	_float4 m_vDestroyPos = {};
+
+	_uint m_iNumBounding = { 0 };
+
 public:
 	static CSkill_Shuriken_Bullet* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	virtual CGameObject* Clone(void* pArg);
 	virtual void Free() override;
 };
 
+END

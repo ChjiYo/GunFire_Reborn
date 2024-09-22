@@ -288,16 +288,13 @@ _float CNavigation::Navi_Height(class CTransform* pTransform)
 	_vector v2 = vPosC - vPosA;
 	_vector vNormal = XMVector3Cross(v1, v2);
 
-	// 평면 방정식의 계수 계산
-	float fPlaneX = XMVectorGetX(vNormal);
-	float fPlaneY = XMVectorGetY(vNormal);
-	float fPlaneZ = XMVectorGetZ(vNormal);
+	_float fPlaneX = XMVectorGetX(vNormal);
+	_float fPlaneY = XMVectorGetY(vNormal);
+	_float fPlaneZ = XMVectorGetZ(vNormal);
 
-	// 절편 d 계산
-	float fPlaneW = -(fPlaneX * XMVectorGetX(vPosA) + fPlaneY * XMVectorGetY(vPosA) + fPlaneZ * XMVectorGetZ(vPosA));
+	_float fPlaneW = -(fPlaneX * XMVectorGetX(vPosA) + fPlaneY * XMVectorGetY(vPosA) + fPlaneZ * XMVectorGetZ(vPosA));
 
-	// 주어진 x, z 위치에서 y 계산
-	float fHeight = -(fPlaneX * fPosX + fPlaneZ * fPosZ + fPlaneW) / fPlaneY;
+	_float fHeight = -(fPlaneX * fPosX + fPlaneZ * fPosZ + fPlaneW) / fPlaneY;
 
 	return fHeight;
 }
