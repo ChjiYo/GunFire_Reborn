@@ -398,6 +398,38 @@ Scale: 1.12 0.999939 1.43
 Rotation: 6.28319
 IsParsing: 1
 
+LayerName: Layer_Ceiling_101
+PrototypeTag: Prototype_GameObject_Ceiling_101
+LevelIndex: 4
+Position: 49.3 3.52099 44.9001
+Scale: 0.54 0.999939 0.5
+Rotation: 6.28319
+IsParsing: 1
+
+LayerName: Layer_Ceiling_101
+PrototypeTag: Prototype_GameObject_Ceiling_101
+LevelIndex: 4
+Position: 49.3 3.52099 49.9
+Scale: 0.54 0.999939 0.5
+Rotation: 6.28319
+IsParsing: 1
+
+LayerName: Layer_Ceiling_101
+PrototypeTag: Prototype_GameObject_Ceiling_101
+LevelIndex: 4
+Position: 49.3 3.52099 47.4001
+Scale: 0.54 0.999939 0.5
+Rotation: 6.28319
+IsParsing: 1
+
+LayerName: Layer_Ceiling_101
+PrototypeTag: Prototype_GameObject_Ceiling_101
+LevelIndex: 4
+Position: 49.3 3.52099 52.4
+Scale: 0.54 0.999939 0.5
+Rotation: 6.28319
+IsParsing: 1
+
 LayerName: Layer_Ceiling_103
 PrototypeTag: Prototype_GameObject_Ceiling_103
 LevelIndex: 4
