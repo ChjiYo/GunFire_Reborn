@@ -51,7 +51,7 @@ HRESULT CMon_Shield_Knight::Initialize(void* pArg)
 
 	m_pStateCom->Set_State(TEXT("Monster_Shield_State_Idle"));
 
-	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetW(MonDesc->vPos, 1.f));
+	m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 43.42 , 1.f, 46.72,1.f });
 	m_pNavigationCom->Init_Index(m_pTransformCom);
 
 	return S_OK;

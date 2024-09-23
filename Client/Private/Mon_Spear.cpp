@@ -41,6 +41,7 @@ HRESULT CMon_Spear::Initialize(void* pArg)
 	MON_DESC* MonDesc = static_cast<MON_DESC*>(pArg);
 	m_tMonDesc.iMaxHp = MonDesc->iMaxHp;
 	m_tMonDesc.iHp = MonDesc->iHp;
+	m_tMonDesc.iNum = MonDesc->iNum;
 
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
@@ -53,7 +54,17 @@ HRESULT CMon_Spear::Initialize(void* pArg)
 
 	m_pStateCom->Set_State(TEXT("Monster_Spear_State_Idle"));
 
-	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetW(MonDesc->vPos, 1.f));
+	switch (m_tMonDesc.iNum)
+	{
+	case 0:
+		m_pTransformCom->Set_State(CTransform::STATE_POSITION, {54.55f , 1.f, 40.61f, 1.f});
+		break;
+
+	case 1:
+		m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 43.28f , 1.f, 40.61, 1.f });
+		break;
+	}
+
 	m_pNavigationCom->Init_Index(m_pTransformCom);
 
 	return S_OK;

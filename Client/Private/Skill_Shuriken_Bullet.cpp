@@ -44,14 +44,11 @@ HRESULT CSkill_Shuriken_Bullet::Initialize(void* pArg)
 
     m_pNaviCom->Init_Index(m_pTransformCom);
 
-    //네비게이션 메쉬 밖으로 나가면 delete? good 
     return S_OK;
 }
 
 void CSkill_Shuriken_Bullet::Priority_Update(_float fTimeDelta)
 {
-    //_vector vPos = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
-    
     m_fDestroyTimer += fTimeDelta;
     m_fReCollTimer += fTimeDelta;
 }
@@ -228,19 +225,6 @@ void CSkill_Shuriken_Bullet::Destroy(_float fTimeDelta, _vector vPos)
 
     if(m_iNumBounding >= 4)
         m_bDead = true;
-
-    //m_vDestoryPos
-    //_float fDistance = XMVectorGetX(XMVector3Length(vPos - XMLoadFloat4(&m_vDestoryPos)));
-    //
-    //if (fabs(fDistance) < 2.25f)
-    //{
-    //    CVFX::VFX_DESC Desc = {};
-    //    Desc.vCreatePos = XMLoadFloat4(&m_vDestoryPos);
-    //
-    //    m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Prototype_GameObject_VFX_Shuriken"), TEXT("Layer_Effect"),&Desc);
-    //    m_bDead = true;
-    //}
-
 }
 
 void CSkill_Shuriken_Bullet::NaviReflect()

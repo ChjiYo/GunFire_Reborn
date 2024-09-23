@@ -35,6 +35,11 @@ HRESULT CWeapon_Player_Shuriken::Initialize(void* pArg)
     if (FAILED(Ready_Components()))
         return E_FAIL;
 
+    PLAYER_WEAPON_DESC* Desc = static_cast<PLAYER_WEAPON_DESC*>(pArg);
+    m_iNumMaxBullet = Desc->iMaxBullet;
+    m_iNumBullet = Desc->iNumBullet;
+    m_fAttackSpeed = Desc->fAttackSpeed;
+
     return S_OK;
 }
 

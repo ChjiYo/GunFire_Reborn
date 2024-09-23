@@ -77,25 +77,25 @@ HRESULT CWall_Stage2::Monster_Create()
 	CMonster::MON_DESC Desc = {};
 	Desc.iMaxHp = 10;
 	Desc.iHp = 10;
-
+	Desc.iNum = 0;
 
 	for (int i = 0; i < 2; ++i)
 	{
-		Desc.vPos = { (_float)(rand() % 17 + 42), 6.2f , (_float)(rand() % 20 + 34) };
+		Desc.iNum = i;
 		if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Mon_Deash_Boom"), TEXT("Layer_Monster_Stage2"), &Desc)))
 			return E_FAIL;
 	}
 
 	for (int i = 0; i < 2; ++i)
 	{
-		Desc.vPos = { (_float)(rand() % 17 + 42), 6.2f , (_float)(rand() % 20 + 34) };
+		Desc.iNum = i;
 		if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Mon_Spear"), TEXT("Layer_Monster_Stage2"), &Desc)))
 			return E_FAIL;
 	}
 
 	for (int i = 0; i < 1; ++i)
 	{
-		Desc.vPos = { (_float)(rand() % 17 + 42), 6.2f , (_float)(rand() % 20 + 34) };
+		Desc.iNum = i;
 		if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Mon_Shield_Knight"), TEXT("Layer_Monster_Stage2"), &Desc)))
 			return E_FAIL;
 	}

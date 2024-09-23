@@ -38,6 +38,7 @@ HRESULT CMon_Deash_Boom::Initialize(void* pArg)
 	MON_DESC* MonDesc = static_cast<MON_DESC*>(pArg);
 	m_tMonDesc.iMaxHp = MonDesc->iMaxHp;
 	m_tMonDesc.iHp = MonDesc->iHp;
+	m_tMonDesc.iNum = MonDesc->iNum;
 
 	if (FAILED(Ready_Components()))
 		return E_FAIL;

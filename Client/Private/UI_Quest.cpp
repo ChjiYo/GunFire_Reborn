@@ -42,7 +42,6 @@ HRESULT CUI_Quest::Initialize(void* pArg)
 void CUI_Quest::Priority_Update(_float fTimeDelta)
 {
 	m_fScaleWeight += fTimeDelta * 5.f;
-
 }
 
 void CUI_Quest::Update(_float fTimeDelta)
