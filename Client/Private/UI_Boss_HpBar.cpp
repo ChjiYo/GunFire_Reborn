@@ -47,6 +47,8 @@ void CUI_Boss_HpBar::Priority_Update(_float fTimeDelta)
 
 void CUI_Boss_HpBar::Update(_float fTimeDelta)
 {
+	if (m_pBoss->Get_MonDesc().iHp <= 0)
+		m_bDead = true;
 }
 
 void CUI_Boss_HpBar::Late_Update(_float fTimeDelta)

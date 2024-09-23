@@ -31,9 +31,9 @@ HRESULT CNPC_Weapon::Initialize(void* pArg)
 		return E_FAIL;
 
 	m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 49.38f , 0.f, 67.49f, 1.f });
-	//m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 7.38f , 0.f, 7.f, 1.f });
-
 	m_pModelCom->SetUp_Animation(0, true);
+
+	m_pTransformCom->Rotation({ 0,1,0 }, XMConvertToRadians(180.f));
 
 	return S_OK;
 }

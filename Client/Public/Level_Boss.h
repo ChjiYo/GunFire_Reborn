@@ -29,6 +29,8 @@ private:
 	HRESULT Ready_UI_PlayerState();
 	HRESULT Ready_UI_WeaponState();
 	HRESULT Ready_UI_SkillState();
+	HRESULT Ready_MiniMap();
+	HRESULT Ready_Weapon_Bullet();
 	HRESULT Ready_CrossHair();
 
 private:

@@ -2,6 +2,9 @@
 
 #include "UI_Boss_HpPanel.h"
 
+#include "Mon_Dragon.h"
+#include "GameInstance.h"
+
 CUI_Boss_HpPanel::CUI_Boss_HpPanel(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	:CUIObject{ pDevice ,pContext }
 {
@@ -29,23 +32,21 @@ HRESULT CUI_Boss_HpPanel::Initialize(void* pArg)
 		return E_FAIL;
 	__super::Set_UI_Setting(550.f, 60.f, g_iWinSizeX * 0.5f, 60);
 
-	//m_pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_Player")).back());
-	//Safe_AddRef(m_pPlayer);
-
 	return S_OK;
 
 }
 
 void CUI_Boss_HpPanel::Priority_Update(_float fTimeDelta)
 {
-	//m_strHp = to_wstring(m_pPlayer->Get_Player_Desc().iHp);
-	//m_strMaxHp = to_wstring(m_pPlayer->Get_Player_Desc().iMaxHp);
-	//
-	//m_fHpRatio = static_cast<_float>(m_pPlayer->Get_Player_Desc().iHp) / static_cast<_float>(m_pPlayer->Get_Player_Desc().iMaxHp);
+
 }
 
 void CUI_Boss_HpPanel::Update(_float fTimeDelta)
 {
+	CMon_Dragon* pBoss = dynamic_cast<CMon_Dragon*>(m_pGameInstance->Get_Layer(LEVEL_BOSS, TEXT("Layer_Monster")).back());
+
+	if (pBoss->Get_MonDesc().iHp <= 0)
+		m_bDead = true;
 }
 
 void CUI_Boss_HpPanel::Late_Update(_float fTimeDelta)

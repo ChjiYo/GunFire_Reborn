@@ -49,7 +49,17 @@ HRESULT CMon_Deash_Boom::Initialize(void* pArg)
 	if (FAILED(Ready_UI()))
 		return E_FAIL;
 
-	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetW(MonDesc->vPos, 1.f));
+	switch (m_tMonDesc.iNum)
+	{
+	case 0:
+		m_pTransformCom->Set_State(CTransform::STATE_POSITION, {49.11 , 5.4f, 47.15f, 1.f});
+		break;
+
+	case 1:
+		m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 49.61f , 1.f, 51.26f, 1.f });
+		break;
+	}
+
 	m_pNavigationCom->Init_Index(m_pTransformCom);
 
 	m_pStateCom->Set_State(TEXT("Monster_Boom_State_Idle"));

@@ -2,6 +2,9 @@
 
 #include "UI_Boss_Icon.h"
 
+#include "GameInstance.h"
+#include "Mon_Dragon.h"
+
 CUI_Boss_Icon::CUI_Boss_Icon(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	:CUIObject{ pDevice ,pContext }
 {
@@ -39,6 +42,10 @@ void CUI_Boss_Icon::Priority_Update(_float fTimeDelta)
 
 void CUI_Boss_Icon::Update(_float fTimeDelta)
 {
+	CMon_Dragon* pBoss = dynamic_cast<CMon_Dragon*>(m_pGameInstance->Get_Layer(LEVEL_BOSS, TEXT("Layer_Monster")).back());
+
+	if (pBoss->Get_MonDesc().iHp <= 0)
+		m_bDead = true;
 }
 
 void CUI_Boss_Icon::Late_Update(_float fTimeDelta)

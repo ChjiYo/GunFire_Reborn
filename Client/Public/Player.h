@@ -80,8 +80,17 @@ public:
 				return;
 			}
 		}
-		m_eWeaponIDArray[m_eSlotID] = eWeaponID;
-		m_eWeaponID = m_eWeaponIDArray[m_eSlotID];
+
+		if (m_eSlotID == THREE)
+		{
+			m_eWeaponIDArray[ONE] = eWeaponID;
+			m_eWeaponID = m_eWeaponIDArray[ONE];
+		}
+		else
+		{
+			m_eWeaponIDArray[m_eSlotID] = eWeaponID;
+			m_eWeaponID = m_eWeaponIDArray[m_eSlotID];
+		}
 	}
 
 public:

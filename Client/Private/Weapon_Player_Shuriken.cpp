@@ -40,6 +40,8 @@ HRESULT CWeapon_Player_Shuriken::Initialize(void* pArg)
     m_iNumBullet = Desc->iNumBullet;
     m_fAttackSpeed = Desc->fAttackSpeed;
 
+    m_iOriginBullet = 1;
+
     return S_OK;
 }
 
@@ -47,6 +49,8 @@ void CWeapon_Player_Shuriken::Priority_Update(_float fTimeDelta)
 {
     if (fTimeDelta == 0.f)
         return;
+
+    m_fAttackTimer += fTimeDelta;
 
     Key_State();
 
@@ -123,10 +127,25 @@ HRESULT CWeapon_Player_Shuriken::Bind_ShaderResources()
 
 void CWeapon_Player_Shuriken::Key_State()
 {
-    if (m_pGameInstance->Key_Down(VK_LBUTTON))
+    if (m_pGameInstance->Key_Pressing(VK_LBUTTON) && m_iNumBullet > 0 && m_fAttackTimer > m_fAttackSpeed)
     {
+        m_iNumBullet--;
         m_pModelCom->SetUp_Animation(0, false);
         Create_Bullet();
+        m_fAttackTimer = 0.f;
+    }
+
+    if (m_pGameInstance->Key_Down('R') || m_iNumBullet <= 0)
+    {
+        if (m_iNumMaxBullet <= 0 || m_iOriginBullet == m_iNumBullet)
+            return;
+
+        _uint iNumReload = m_iOriginBullet - m_iNumBullet;
+
+        m_iNumMaxBullet >= iNumReload ? (m_iNumBullet += iNumReload, m_iNumMaxBullet -= iNumReload) : (m_iNumBullet += m_iNumMaxBullet, m_iNumMaxBullet = 0);
+
+
+        m_pModelCom->SetUp_Animation(2, false);
     }
 }
 

@@ -50,6 +50,12 @@ HRESULT CLevel_Boss::Initialize()
 	if (FAILED(Ready_UI_WeaponState()))
 		return E_FAIL;
 
+	if (FAILED(Ready_MiniMap()))
+		return E_FAIL;
+
+	if (FAILED(Ready_Weapon_Bullet()))
+		return E_FAIL;
+
 	if (FAILED(Ready_CrossHair()))
 		return E_FAIL;
 
@@ -82,7 +88,6 @@ HRESULT CLevel_Boss::Ready_Lights()
 	LightDesc.vDiffuse = _float4(0.1f, 0.1f, 0.1f, 1.f);
 	LightDesc.vAmbient = _float4(0.7725f * 0.1f, 0.5294f * 0.1f, 0.2980f * 0.1f, 1.f); 
 	LightDesc.vSpecular = _float4(0.f, 0.f, 0.f, 1.f);
-	//LightDesc.vSpecular = _float4(0.7725f * 1.2f, 0.5294f * 1.2f, 0.2980f * 1.2f, 1.f);
 
 	if (FAILED(m_pGameInstance->Add_Light(LightDesc)))
 		return E_FAIL;
@@ -113,8 +118,8 @@ HRESULT CLevel_Boss::Ready_Layer_Player(const _wstring& strLayerTag)
 HRESULT CLevel_Boss::Ready_Layer_Monster(const _wstring& strLayerTag)
 {
 	CMonster::MON_DESC MonDesc = {};
-	MonDesc.iMaxHp = 10.f;
-	MonDesc.iHp = 10.f;
+	MonDesc.iMaxHp = 1000.f;
+	MonDesc.iHp = 1000.f;
 	MonDesc.iNumParts = CMonster::PART_END;
 
 	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_Mon_Dragon"), strLayerTag, &MonDesc)))
@@ -148,9 +153,6 @@ HRESULT CLevel_Boss::Ready_Layer_Camera(const _wstring& strLayerTag)
 
 HRESULT CLevel_Boss::Ready_Layer_Effect(const _wstring& strLayerTag)
 {
-	//if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_"), strLayerTag, &CameraDesc)))
-	//	return E_FAIL;
-
 	return S_OK;
 }
 
@@ -181,12 +183,6 @@ HRESULT CLevel_Boss::Ready_UI_PlayerState()
 
 	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_UI_Player_ShieldBar"), TEXT("Layer_UI_Player_UI_Player_ShieldBar"))))
 		return E_FAIL;
-
-	//if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_UI_Player_HpBlankBar"), TEXT("Layer_UI_Player_BHpBlankBar"))))
-	//	return E_FAIL;
-
-	//if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_UI_Player_ShieldBlankBar"), TEXT("Layer_UI_Player_BShieldBlankBar"))))
-	//	return E_FAIL;
 
 	return S_OK;
 }
@@ -230,6 +226,30 @@ HRESULT CLevel_Boss::Ready_UI_SkillState()
 
 	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_UI_SKill_Aiming"), TEXT("Layer_UI_Weapon_SKill_Aiming"))))
 		return E_FAIL;
+
+	return S_OK;
+}
+
+HRESULT CLevel_Boss::Ready_MiniMap()
+{
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_MiniMap"), TEXT("Layer_UI_MiniMap"))))
+		return E_FAIL;
+
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Player_Mark"), TEXT("Layer_UI_Player_Mark"))))
+		return E_FAIL;
+
+	return S_OK;
+}
+
+HRESULT CLevel_Boss::Ready_Weapon_Bullet()
+{
+	CUIObject::UI_DESC  Desc = {};
+	for (int i = 0; i < 5; ++i)
+	{
+		Desc.iNumUI = i;
+
+		m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Prototype_GameObject_UI_Bullet_Num"), TEXT("Layer_UI_Bullet_Num"), &Desc);
+	}
 
 	return S_OK;
 }
