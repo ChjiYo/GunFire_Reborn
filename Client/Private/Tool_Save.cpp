@@ -100,7 +100,7 @@ HRESULT CTool_Save::Save_Button_Pressed(bool* bShowSaveSuccessMessage, bool* bSh
 
 	// 여기에 스킵할 레이어 이름을 정의
 	unordered_set<wstring> skipLayers =
-	{ L"Layer_BackGround", L"Layer_Camera",L"Layer_Monster" ,L"Layer_Player",L"Layer_Skill_Player_Bullet",L"Layer_Item",L"Layer_Effect" , L"Layer_Door", L"Layer_Portal"};
+	{ L"Layer_BackGround", L"Layer_Camera",L"Layer_Monster" ,L"Layer_Player",L"Layer_Skill_Player_Bullet",L"Layer_Item",L"Layer_Effect" , L"Layer_Door", L"Layer_Portal", L"Layer_Box"};
 
 	// "Layer_UI"로 시작하는 모든 레이어를 스킵할 레이어에 추가
 	for (const auto& object : objectLayersVector)

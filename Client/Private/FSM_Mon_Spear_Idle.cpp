@@ -49,7 +49,7 @@ wstring CFSM_Mon_Spear_Idle::Late_Update(_float fTimeDelta)
 	
 	_float fLength = XMVectorGetX(XMVector4Length(vDistance));
 
-	if (abs(fLength) < 5.f && m_fAttackDelay > 1.5f)
+	if (abs(fLength) < 10.f && m_fAttackDelay > 1.5f)
 	{
 		m_fAttackDelay = 0.f;
 		return TEXT("Monster_Spear_State_Run");

@@ -94,7 +94,7 @@ HRESULT CUI_Mon_HpBar::Render()
 
 void CUI_Mon_HpBar::Destroy()
 {
-	if (m_pMonster->Get_MonDesc().iHp <= 0)
+	if (m_pMonster->Get_MonDesc().iHp <= 0 || m_pMonster->Get_Dead())
 		m_bDead = true;
 }
 

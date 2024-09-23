@@ -82,6 +82,7 @@ public:
 	void Go_BackwardY(_float fTimeDelta, class  CNavigation* pNavigation = nullptr, _bool bMove = false);
 
 	void Go_Up(_float fTimeDelta);
+	void Go_Down(_float fTimeDelta);
 
 	void RangeChase(_float fTimeDelta, _vector vTargetPos, _float fRange);
 

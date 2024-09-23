@@ -57,7 +57,13 @@ void CUI_Quest::Update(_float fTimeDelta)
 		m_bFont = true;
 
 	if (Quest() == true)
+	{
+		CGameObject::GAMEOBJECT_DESC Desc = {};
+		Desc.fSpeedPerSec = 2.5f;
+
+		m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Box"), TEXT("Layer_Box"),&Desc);
 		m_bDead = true;
+	}
 }
 
 void CUI_Quest::Late_Update(_float fTimeDelta)
@@ -83,7 +89,7 @@ HRESULT CUI_Quest::Render()
 		return E_FAIL;
 
 	if(m_bFont)
-		m_pGameInstance->Draw_Font(TEXT("Font_Nexon"), TEXT(" 스테이지에 있는 몬스터들 \n 제거하기 [ ] "), _float2(50.f, 675.f), {0.6235, 0.5725, 0.4353, 1.f}, 0.f, _float2(0.f, 0.f), 0.5f);
+		m_pGameInstance->Draw_Font(TEXT("Font_Nexon"), TEXT(" 스테이지에 있는 몬스터들 \n 제거하기 [ ] "), _float2(50.f, 525.f), {0.6235, 0.5725, 0.4353, 1.f}, 0.f, _float2(0.f, 0.f), 0.5f);
 
 	return S_OK;
 }

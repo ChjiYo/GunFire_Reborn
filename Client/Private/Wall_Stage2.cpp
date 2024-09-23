@@ -73,25 +73,25 @@ HRESULT CWall_Stage2::Monster_Create()
 {
 	CMonster::MON_DESC Desc = {};
 
-	//Desc.iMaxHp = 10;
-	//Desc.iHp = 10;
-	//
-	//for (int i = 0; i < 2; ++i)
-	//{
-	//	Desc.iNum = i;
-	//	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Mon_Deash_Boom"), TEXT("Layer_Monster_Stage2"), &Desc)))
-	//		return E_FAIL;
-	//}
-	//
-	//Desc.iMaxHp = 400;
-	//Desc.iHp = 400;
-	//
-	//for (int i = 0; i < 2; ++i)
-	//{
-	//	Desc.iNum = i;
-	//	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Mon_Spear"), TEXT("Layer_Monster_Stage2"), &Desc)))
-	//		return E_FAIL;
-	//}
+	Desc.iMaxHp = 10;
+	Desc.iHp = 10;
+	
+	for (int i = 0; i < 2; ++i)
+	{
+		Desc.iNum = i;
+		if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Mon_Deash_Boom"), TEXT("Layer_Monster_Stage2"), &Desc)))
+			return E_FAIL;
+	}
+	
+	Desc.iMaxHp = 400;
+	Desc.iHp = 400;
+	
+	for (int i = 0; i < 2; ++i)
+	{
+		Desc.iNum = i;
+		if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Mon_Spear"), TEXT("Layer_Monster_Stage2"), &Desc)))
+			return E_FAIL;
+	}
 
 	Desc.iMaxHp = 400;
 	Desc.iHp = 400;

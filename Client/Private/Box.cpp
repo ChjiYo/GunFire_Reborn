@@ -31,12 +31,16 @@ HRESULT CBox::Initialize(void* pArg)
 
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
+	
+	m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 43.8f, 10.f, 67.59f , 1.f});
+	m_pTransformCom->Rotation({ 0,1,0 }, XMConvertToRadians(180.f));
 
 	return S_OK;
 }
 
 void CBox::Priority_Update(_float fTimeDelta)
 {
+	
 
 }
 
@@ -45,6 +49,10 @@ void CBox::Update(_float fTimeDelta)
 	m_pColliderCom->Update(m_pTransformCom->Get_WorldMatrix());
 	m_pModelCom->Play_Animation(fTimeDelta);
 
+	if (XMVectorGetY(m_pTransformCom->Get_State(CTransform::STATE_POSITION)) > 0.f)
+		m_pTransformCom->Go_Down(fTimeDelta);
+
+	m_pTransformCom->Set_Scaled(1.f, 1.f, 1.f); 
 }
 
 void CBox::Late_Update(_float fTimeDelta)

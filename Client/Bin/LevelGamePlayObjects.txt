@@ -1,11 +1,3 @@
-LayerName: Layer_Box
-PrototypeTag: Prototype_GameObject_Box
-LevelIndex: 4
-Position: 43.8001 0 67.5997
-Scale: 1 1 1
-Rotation: 3.14159
-IsParsing: 1
-
 LayerName: Layer_Ceiling_101
 PrototypeTag: Prototype_GameObject_Ceiling_101
 LevelIndex: 4

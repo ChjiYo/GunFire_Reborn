@@ -69,9 +69,6 @@ HRESULT CLevel_GamePlay::Initialize()
 	if (FAILED(Ready_Cursor()))
 		return E_FAIL;
 
-	//if (FAILED(Ready_Layer_Item(TEXT("Layer_Item"))))
-	//	return E_FAIL;
-
 	return S_OK;
 }
 
