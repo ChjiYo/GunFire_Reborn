@@ -38,6 +38,8 @@
 
 #include "Data_Manager.h"
 
+#include "Boss_Logo.h"
+
 CMainApp::CMainApp()
 	: m_pGameInstance { CGameInstance::Get_Instance() }
 {
@@ -316,11 +318,22 @@ HRESULT CMainApp::Ready_Prototype_Component_ForStatic()
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Coin/Icon_Coin.png")))))
 		return E_FAIL;
 
+	/* For.Prototype_Component_Texture_Logo */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_STATIC, TEXT("Prototype_Component_Texture_BossLogo"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Logo/UI_Login_Logo.png")))))
+		return E_FAIL;
+
 	return S_OK;
 }
 
 HRESULT CMainApp::Ready_Prototoype_Resource_ForStatic()
 {
+
+	/*For.Prototype_GameObject_Boss_Logo */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Boss_Logo"),
+		CBoss_Logo::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
 	/* Prototype Load */
 
 	// UI_Player_State

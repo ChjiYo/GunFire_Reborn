@@ -689,13 +689,7 @@ HRESULT CLoader::Loading_For_LogoLevel()
 	/* For.Prototype_GameObject_BackGround */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_BackGround"),
 		CBackGround::Create(m_pDevice, m_pContext))))
-		return E_FAIL;
-
-	/*For.Prototype_GameObject_Boss_Logo */
-	if(FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Boss_Logo"),
-		CBoss_Logo::Create(m_pDevice, m_pContext))))
-		return E_FAIL;
-	
+		return E_FAIL;	
 
 	lstrcpy(m_szLoadingText, TEXT("로딩이 완료되었습니다."));
 
