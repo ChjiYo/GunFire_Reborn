@@ -9,6 +9,9 @@
 #include "FSM_Mon_Shield_Run.h"
 #include "FSM_Mon_Shield_Attack.h"
 
+#include "PartObject.h"
+#include "Shield.h"
+
 CMon_Shield_Knight::CMon_Shield_Knight(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	: CMonster{ pDevice, pContext }
 {
@@ -31,7 +34,7 @@ HRESULT CMon_Shield_Knight::Initialize(void* pArg)
 	CContainerObject::CONTAINEROBJECT_DESC		ContainerDesc{};
 	ContainerDesc.fRotationPerSec = XMConvertToRadians(90.0f);
 	ContainerDesc.fSpeedPerSec = 2.5f;
-	ContainerDesc.iNumParts = PART_HEAD;
+	ContainerDesc.iNumParts = PART_END;
 
 	if (FAILED(__super::Initialize(&ContainerDesc)))
 		return E_FAIL;
@@ -43,15 +46,19 @@ HRESULT CMon_Shield_Knight::Initialize(void* pArg)
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
+	if (FAILED(Ready_PartObject()))
+		return E_FAIL;
+
 	if (FAILED(Ready_State()))
 		return E_FAIL;
 
-	if (FAILED(Ready_UI()))
+	if (FAILED(Ready_UI(2.5f)))
 		return E_FAIL;
 
 	m_pStateCom->Set_State(TEXT("Monster_Shield_State_Idle"));
 
-	m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 43.42 , 1.f, 46.72,1.f });
+	//m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 43.42 , 1.f, 46.72,1.f });
+	m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 7.42 , 1.f, 7.f , 1.f });
 	m_pNavigationCom->Init_Index(m_pTransformCom);
 
 	return S_OK;
@@ -70,7 +77,7 @@ void CMon_Shield_Knight::Update(_float fTimeDelta)
 	if (!m_isMove)
 		fTimeDelta = 0.f;
 
-	m_pModelCom->Play_Animation(fTimeDelta);
+ 	m_pModelCom->Play_Animation(fTimeDelta);
 
 	__super::Update(fTimeDelta);
 
@@ -182,7 +189,7 @@ HRESULT CMon_Shield_Knight::Ready_Components()
 	/* For.Com_Collider */
 	CBounding_AABB::BOUNDING_AABB_DESC	AABBBoundingDesc{};
 
-	AABBBoundingDesc.vExtents = _float3(0.75f, 1.f, 1.f);
+	AABBBoundingDesc.vExtents = _float3(0.5f, 1.f, 0.5f);
 	AABBBoundingDesc.vCenter = _float3(0.f, AABBBoundingDesc.vExtents.y, 0.f);
 	AABBBoundingDesc.pObject = this;
 
@@ -200,6 +207,19 @@ HRESULT CMon_Shield_Knight::Ready_Components()
 	if (FAILED(__super::Add_Component(LEVEL_STATIC, TEXT("Prototype_Component_Collider_Sphere"),
 		TEXT("Com_ColliderSphere"), reinterpret_cast<CComponent**>(&m_pColliderCom[COLL_SPHERE]), &SphereBoundingDesc)))
 		return E_FAIL;
+
+	return S_OK;
+}
+
+HRESULT CMon_Shield_Knight::Ready_PartObject()
+{
+
+	//m_szName = 0x000001e8c1dc5ea0 "Bip001 L Finger0"
+	CShield::WEAPON_DESC Desc{};
+	Desc.pParentMatrix = m_pTransformCom->Get_WorldMatrixPtr();
+	Desc.pSocketBoneMatrix = m_pModelCom->Get_BoneMatrixPtr("Bip001 L Hand");
+
+	__super::Add_PartObject(PART_WEAPON, TEXT("Prototype_GameObject_Shield"), &Desc);
 
 	return S_OK;
 }

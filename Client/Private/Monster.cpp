@@ -6,6 +6,7 @@
 #include "Player.h"
 #include "Item.h"
 #include "UI_Coin.h"
+#include "UI_Mon_HpBar.h"
 
 CMonster::CMonster(ID3D11Device * pDevice, ID3D11DeviceContext * pContext)
 	: CContainerObject{ pDevice, pContext }
@@ -87,11 +88,12 @@ HRESULT CMonster::Ready_Components()
 	return S_OK;
 }
 
-HRESULT CMonster::Ready_UI()
+HRESULT CMonster::Ready_UI(_float fOffsetY)
 {
-	CUIObject::UI_DESC Desc = {};
+	CUI_Mon_HpBar::MON_HP_DESC Desc = {};
 	Desc.pTransform = m_pTransformCom;
 	Desc.pGameObject = this;
+	Desc.fOffsetY = fOffsetY;
 	
 	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Monster_HpBar"), TEXT("Layer_UI_Monster_CHpBar"),&Desc)))
 		return E_FAIL;

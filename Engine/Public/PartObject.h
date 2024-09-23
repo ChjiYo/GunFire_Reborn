@@ -10,6 +10,7 @@ public:
 	typedef struct : public CGameObject::GAMEOBJECT_DESC
 	{
 		const _float4x4* pParentMatrix;
+		const _float4x4* pSocketBoneMatrix;
 	}PARTOBJECT_DESC;
 
 protected:

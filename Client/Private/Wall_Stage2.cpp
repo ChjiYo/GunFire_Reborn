@@ -61,9 +61,6 @@ HRESULT CWall_Stage2::Render()
 		if (FAILED(m_pModelCom->Bind_MaterialSRV(m_pShaderCom, aiTextureType_DIFFUSE, "g_DiffuseTexture", i)))
 			return E_FAIL;
 
-		//if (FAILED(m_pModelCom->Bind_MaterialSRV(m_pShaderCom, aiTextureType_NORMALS, "g_NormalTexture", i)))
-		//	return E_FAIL;
-
 		m_pShaderCom->Begin(2);
 
 		m_pModelCom->Render(i);
@@ -75,28 +72,34 @@ HRESULT CWall_Stage2::Render()
 HRESULT CWall_Stage2::Monster_Create()
 {
 	CMonster::MON_DESC Desc = {};
-	Desc.iMaxHp = 10;
-	Desc.iHp = 10;
-	Desc.iNum = 0;
 
-	for (int i = 0; i < 2; ++i)
-	{
-		Desc.iNum = i;
-		if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Mon_Deash_Boom"), TEXT("Layer_Monster_Stage2"), &Desc)))
-			return E_FAIL;
-	}
+	//Desc.iMaxHp = 10;
+	//Desc.iHp = 10;
+	//
+	//for (int i = 0; i < 2; ++i)
+	//{
+	//	Desc.iNum = i;
+	//	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Mon_Deash_Boom"), TEXT("Layer_Monster_Stage2"), &Desc)))
+	//		return E_FAIL;
+	//}
+	//
+	//Desc.iMaxHp = 400;
+	//Desc.iHp = 400;
+	//
+	//for (int i = 0; i < 2; ++i)
+	//{
+	//	Desc.iNum = i;
+	//	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Mon_Spear"), TEXT("Layer_Monster_Stage2"), &Desc)))
+	//		return E_FAIL;
+	//}
 
-	for (int i = 0; i < 2; ++i)
-	{
-		Desc.iNum = i;
-		if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Mon_Spear"), TEXT("Layer_Monster_Stage2"), &Desc)))
-			return E_FAIL;
-	}
+	Desc.iMaxHp = 400;
+	Desc.iHp = 400;
 
 	for (int i = 0; i < 1; ++i)
 	{
 		Desc.iNum = i;
-		if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Mon_Shield_Knight"), TEXT("Layer_Monster_Stage2"), &Desc)))
+		if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Mon_Shield_Knight"), TEXT("Layer_Monster_Shield"), &Desc)))
 			return E_FAIL;
 	}
 

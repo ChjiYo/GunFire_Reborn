@@ -128,7 +128,7 @@ void CBinModel::Play_Animation(_float fTimeDelta)
 
 void CBinModel::SetUp_Animation(_uint iAnimationIndex, _bool isLoop)
 {
-	if (iAnimationIndex >= m_iNumAnimations)
+	if (iAnimationIndex >= m_iNumAnimations)	
 		return;
 	
 	for (int i = 0; i < m_KeyFrameIndices[iAnimationIndex].size(); ++i)

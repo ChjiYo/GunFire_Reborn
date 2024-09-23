@@ -7,6 +7,7 @@
 #include "UI_Number.h"
 #include "VFX.h"
 
+#include "Mon_Shield_Knight.h"
 
 
 CSkill_Player::CSkill_Player(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
@@ -54,16 +55,31 @@ void CSkill_Player::Late_Update(_float fTimeDelta)
 	list<class CGameObject*> MonStageList1 = m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Monster_Stage1"));
 	list<class CGameObject*> MonStageList2 = m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Monster_Stage2"));
 	list<class CGameObject*> MonStageList3 = m_pGameInstance->Get_Layer(LEVEL_BOSS, TEXT("Layer_Monster"));
+	list<class CGameObject*> MonStageList4 = m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Monster_Shield"));
 
-	list<class CGameObject*> MonsterArray[3] = {};
+	list<class CGameObject*> MonsterArray[4] = {};
 	MonsterArray[0] = MonStageList1;
 	MonsterArray[1] = MonStageList2;
 	MonsterArray[2] = MonStageList3;
+	MonsterArray[3] = MonStageList4;
 
 	m_iDamage = rand() % 10 + m_iSkillDamage;
 	CMonster* pMonster = {};
 
-	for (int i = 0; i < 3; ++i)
+	for (auto& Shield : MonStageList4)
+	{
+		_uint i = dynamic_cast<CMon_Shield_Knight*>(Shield)->Get_MonDesc().iHp;
+		
+		CCollider* pSheildColl =  dynamic_cast<CCollider*>(dynamic_cast<CMon_Shield_Knight*>(Shield)->Get_Component(CMon_Shield_Knight::PART_WEAPON, TEXT("Com_ColliderAABB")));
+	
+		if (m_pColliderCom->isCollision(pSheildColl))
+		{
+			m_bDead = true;
+		}
+	}
+	
+
+	for (int i = 0; i < 4; ++i)
 	{
 
 		for (auto& ColliderIter : MonsterArray[i])

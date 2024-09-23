@@ -13,6 +13,9 @@ BEGIN(Client)
 
 class CMon_Shield_Knight final : public CMonster
 {
+public:
+	enum PARTID { PART_WEAPON, PART_EFFECT, PART_END };
+
 private:
 	CMon_Shield_Knight(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	CMon_Shield_Knight(const CMon_Shield_Knight& Prototype);
@@ -41,6 +44,8 @@ private:
 private:
 	HRESULT Ready_State();
 	HRESULT Ready_Components();
+	HRESULT Ready_PartObject();
+
 	HRESULT Bind_ShaderResources();
 
 public:

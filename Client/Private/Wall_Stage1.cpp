@@ -31,7 +31,7 @@ HRESULT CWall_Stage1::Initialize(void* pArg)
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 	
-	Monster_Create();
+	//Monster_Create();
 
 
 	return S_OK;

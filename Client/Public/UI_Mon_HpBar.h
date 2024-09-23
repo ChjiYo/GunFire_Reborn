@@ -7,6 +7,12 @@ BEGIN(Client)
 
 class CUI_Mon_HpBar final :public CUIObject
 {
+public:
+	typedef struct :public CUIObject::UI_DESC
+	{
+		_float fOffsetY = {};
+	}MON_HP_DESC;
+
 private:
 	CUI_Mon_HpBar(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	CUI_Mon_HpBar(const CUI_Mon_HpBar& Prototype);
@@ -28,6 +34,7 @@ private:
 	HRESULT Bind_ShaderResources();
 
 private:
+	_float m_fOffsetY = { 0.f };
 	_float fHpRatio = {};
 	class CMonster* m_pMonster = {};
 

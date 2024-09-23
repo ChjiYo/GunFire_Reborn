@@ -33,12 +33,15 @@ HRESULT CUI_Mon_HpBar::Initialize(void* pArg)
 	Safe_AddRef(m_pOriginTransform);
 	Safe_AddRef(m_pMonster);
 
+	MON_HP_DESC* pHpDesc = static_cast<MON_HP_DESC*>(pArg);
+	m_fOffsetY = pHpDesc->fOffsetY;
+
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
 	m_fSizeX = 1.5f;
 	m_fPosX = XMVectorGetX(m_pTransformCom->Get_State(CTransform::STATE_POSITION));
-	m_pTransformCom->Set_Scaled(m_fSizeX, 0.1f, 1.f);
+	m_pTransformCom->Set_Scaled(1.f, 0.1f, 1.f);
 	
 	return S_OK;
 }
@@ -56,7 +59,7 @@ void CUI_Mon_HpBar::Priority_Update(_float fTimeDelta)
 
 void CUI_Mon_HpBar::Update(_float fTimeDelta)
 {
-	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetY(m_pOriginTransform->Get_State(CTransform::STATE_POSITION), XMVectorGetY(m_pOriginTransform->Get_State(CTransform::STATE_POSITION))+ 1.5f));
+	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSetY(m_pOriginTransform->Get_State(CTransform::STATE_POSITION), XMVectorGetY(m_pOriginTransform->Get_State(CTransform::STATE_POSITION))+ m_fOffsetY));
 
 	fHpRatio = static_cast<float>(m_pMonster->Get_MonDesc().iHp) / static_cast<float>(m_pMonster->Get_MonDesc().iMaxHp);
 

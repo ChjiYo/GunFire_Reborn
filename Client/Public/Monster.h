@@ -53,7 +53,7 @@ public:
 
 public:
 	HRESULT Ready_Components();
-	HRESULT Ready_UI();
+	HRESULT Ready_UI(_float fOffsetY = 1.5f);
 	HRESULT	DropItem();
 
 public:

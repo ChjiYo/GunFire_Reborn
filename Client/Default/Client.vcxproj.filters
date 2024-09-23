@@ -633,6 +633,9 @@
     <ClCompile Include="..\private\Wall_102.cpp">
       <Filter>02.GameObjects\Deco\Wall\102</Filter>
     </ClCompile>
+    <ClCompile Include="..\private\Shield.cpp">
+      <Filter>02.GameObjects\Monster\Shield_Knight\Shield</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Public\Level_Logo.h">
@@ -1249,6 +1252,9 @@
     </ClInclude>
     <ClInclude Include="..\public\Wall_102.h">
       <Filter>02.GameObjects\Deco\Wall\102</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Shield.h">
+      <Filter>02.GameObjects\Monster\Shield_Knight\Shield</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1958,6 +1964,9 @@
     </Filter>
     <Filter Include="02.GameObjects\Deco\Wall\102">
       <UniqueIdentifier>{97dafa9e-8f39-4fc7-9441-01b6102c9b8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Monster\Shield_Knight\Shield">
+      <UniqueIdentifier>{aa171d42-5538-4ff3-9424-4c3cb4c2c3eb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
