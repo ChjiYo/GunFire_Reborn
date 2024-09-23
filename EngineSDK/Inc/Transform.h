@@ -96,6 +96,7 @@ public:
 	void Rotation(_float3 vRotation);
 	void Radian_Turn(_fvector vAxis, _float fRadian);
 	void LookAt(_fvector vAt);
+	void ResetLook(_vector vLook);
 
 	_float Look_Degree();
 	_float Target_Look_Degree(const _vector& vTargetPos);

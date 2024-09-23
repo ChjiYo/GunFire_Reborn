@@ -55,89 +55,53 @@ void CSkill_Player::Late_Update(_float fTimeDelta)
 	list<class CGameObject*> MonStageList2 = m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Monster_Stage2"));
 	list<class CGameObject*> MonStageList3 = m_pGameInstance->Get_Layer(LEVEL_BOSS, TEXT("Layer_Monster"));
 
-	m_iDamage = rand() % 10 + m_iSkillDamage;
-	_uint iNumCnt = { 0 };
+	list<class CGameObject*> MonsterArray[3] = {};
+	MonsterArray[0] = MonStageList1;
+	MonsterArray[1] = MonStageList2;
+	MonsterArray[2] = MonStageList3;
 
+	m_iDamage = rand() % 10 + m_iSkillDamage;
 	CMonster* pMonster = {};
 
-	for (auto& ColliderIter : MonStageList1)
+	for (int i = 0; i < 3; ++i)
 	{
-		pMonster = dynamic_cast<CMonster*>(ColliderIter);
 
-		if (!pMonster->Get_Noise())
+		for (auto& ColliderIter : MonsterArray[i])
 		{
+			pMonster = dynamic_cast<CMonster*>(ColliderIter);
 
-			if ((pMonster->Get_Collider(CMonster::COLL_AABB) != nullptr) && m_pColliderCom->isCollision(pMonster->Get_Collider(CMonster::COLL_AABB)))
+			if (!pMonster->Get_Noise())
 			{
-				pMonster->Set_Damage(-m_iDamage);
 
-				CVFX::VFX_DESC VFX_Desc = {};
-				VFX_Desc.vCreatePos = pMonster->Get_Transform()->Get_State(CTransform::STATE_POSITION);
-				m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Prototype_GameObject_VFX_Hit"), TEXT("Layer_Effect"), &VFX_Desc);
-				m_pMonTransform = pMonster->Get_Transform();
+				if ((pMonster->Get_Collider(CMonster::COLL_AABB) != nullptr) && m_pColliderCom->isCollision(pMonster->Get_Collider(CMonster::COLL_AABB)))
+				{
+					pMonster->Set_Damage(-m_iDamage);
 
-				m_bDead = true;
-				m_bFont = true;
-			}
-			else if ((pMonster->Get_Collider(CMonster::COLL_SPHERE) != nullptr) && (m_pColliderCom->isCollision(pMonster->Get_Collider(CMonster::COLL_SPHERE))))
-			{
-				m_iDamage = m_iDamage * 1.5;
+					CVFX::VFX_DESC VFX_Desc = {};
+					VFX_Desc.vCreatePos = pMonster->Get_Transform()->Get_State(CTransform::STATE_POSITION);
+					m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Prototype_GameObject_VFX_Hit"), TEXT("Layer_Effect"), &VFX_Desc);
+					m_pMonTransform = pMonster->Get_Transform();
 
-				pMonster->Set_Damage(-m_iDamage);
+					m_bDead = true;
+					m_bFont = true;
+				}
+				else if ((pMonster->Get_Collider(CMonster::COLL_SPHERE) != nullptr) && (m_pColliderCom->isCollision(pMonster->Get_Collider(CMonster::COLL_SPHERE))))
+				{
+					m_iDamage = m_iDamage * 1.5;
 
-				CVFX::VFX_DESC VFX_Desc = {};
-				VFX_Desc.vCreatePos = pMonster->Get_Transform()->Get_State(CTransform::STATE_POSITION);
-				m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Prototype_GameObject_VFX_Hit"), TEXT("Layer_Effect"), &VFX_Desc);
-				m_pMonTransform = pMonster->Get_Transform();
+					pMonster->Set_Damage(-m_iDamage);
 
-				m_bDead = true;
-				m_bFont = true;
+					CVFX::VFX_DESC VFX_Desc = {};
+					VFX_Desc.vCreatePos = pMonster->Get_Transform()->Get_State(CTransform::STATE_POSITION);
+					m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Prototype_GameObject_VFX_Hit"), TEXT("Layer_Effect"), &VFX_Desc);
+					m_pMonTransform = pMonster->Get_Transform();
+
+					m_bDead = true;
+					m_bFont = true;
+				}
 			}
 		}
 	}
-
-	//for (auto& ColliderIter : MonStageList2)
-	//{
-	//	CMonster* pMonster = dynamic_cast<CMonster*>(ColliderIter);
-	//
-	//	if (m_pColliderCom->isCollision(pMonster->Get_Collider(CMonster::COLL_AABB)))
-	//	{
-	//		pMonster->Set_Damage(-m_iDamage);
-	//
-	//		CUI_Number::UI_NUM_DESC Desc = {};
-	//		Desc.iNumUI = log10(m_iDamage) + 1;
-	//		Desc.pTransform = pMonster->Get_Transform();
-	//		Desc.iAngle = rand() % 360;
-	//		Desc.fSpeedPerSec = 5.f;
-	//
-	//		for (int i = 0; i < DamageStack.size(); )
-	//		{
-	//			Desc.iTextureIndex = DamageStack.top();
-	//			Desc.iNumCnt = iNumCnt;
-	//			m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Prototype_GameObject_UI_Number"), TEXT("Layer_UI_Number"), &Desc);
-	//			iNumCnt++;
-	//			DamageStack.pop();
-	//		}
-	//
-	//		CVFX::VFX_DESC VFX_Desc = {};
-	//		VFX_Desc.vCreatePos = XMLoadFloat4(&m_vDestoryPos);
-	//		m_pGameInstance->Add_GameObject_ToLayer(m_pGameInstance->GetCurrentLevelIndex(), TEXT("Prototype_GameObject_VFX_Hit"), TEXT("Layer_Effect"), &VFX_Desc);
-	//
-	//		m_bDead = true;
-	//	}
-	//}
-	//
-	//for (auto& ColliderIter : MonStageList3)
-	//{
-	//	CMonster* pMonster = dynamic_cast<CMonster*>(ColliderIter);
-	//
-	//	if (m_pColliderCom->isCollision(pMonster->Get_Collider(CMonster::COLL_AABB)))
-	//	{
-	//		pMonster->Set_Damage(-m_iDamage);
-	//		m_bDead = true;
-	//	}
-	//}
-
 
 	stack<_uint> DamageStack = {};
 	_uint iCopyDamage = m_iDamage;
