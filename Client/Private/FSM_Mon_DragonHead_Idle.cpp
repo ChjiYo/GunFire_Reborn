@@ -54,7 +54,7 @@ wstring CFSM_Mon_DragonHead_Idle::Late_Update(_float fTimeDelta)
 
 	CMonster* pMoster = dynamic_cast<CMonster*>(m_tDesc.pOriginObj);
 
- 	if(pMoster->Get_MonDesc().iHp / pMoster->Get_MonDesc().iMaxHp <= 0.5f)
+ 	if((_float)pMoster->Get_MonDesc().iHp / (_float)pMoster->Get_MonDesc().iMaxHp <= 0.5f)
 		return TEXT("Monster_DragonHead_State_In");
 
 	return TEXT("Monster_DragonHead_State_Idle");

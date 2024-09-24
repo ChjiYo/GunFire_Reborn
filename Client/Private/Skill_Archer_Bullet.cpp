@@ -75,7 +75,7 @@ void CSkill_Archer_Bullet::Late_Update(_float fTimeDelta)
 
     if (m_pColliderCom->isCollision(pTargetCollider))
     {
-        pPlayer->Set_Damage(-5.f);
+        pPlayer->Set_Damage(-10.f);
         m_bDead = true;
     }
 
