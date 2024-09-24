@@ -67,7 +67,7 @@ void CSkill_Mon_Boom::Late_Update(_float fTimeDelta)
 
     if (m_pColliderCom->isCollision(pTargetCollider))
     {
-        pPlayer->Set_Damage(-5.f);
+        pPlayer->Set_Damage(-30.f);
         m_bDead = true;
     }
 #ifdef _DEBUG

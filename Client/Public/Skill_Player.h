@@ -47,6 +47,7 @@ protected:
 	_float4 m_vDestoryPos = {};
 	_int m_iDamage = {0};
 	_bool m_bFont = { false };
+	_bool m_bHead = { false };
 
 
 public:

@@ -47,6 +47,8 @@ wstring CFSM_Mon_Boom_Attack::Update(_float fTimeDelta)
 
 		m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Skill_Mon_Boom"), TEXT("Layer_Monster_Skill"),&Desc);
 		m_tDesc.pOriginObj->Set_Dead();
+
+		m_pGameInstance->Play_Sound(L"SFX_Mon_Boom", LEVEL_STATIC, false);
 	}
 	
 	return TEXT("Monster_Boom_State_Attack");

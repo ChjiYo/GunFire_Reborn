@@ -33,6 +33,8 @@ HRESULT CUI_Number::Initialize(void* pArg)
     m_iNumTexture = Desc->iNumUI;
     m_iAngle = Desc->iAngle;
     m_iNiumCnt = Desc->iNumCnt;
+    m_bHead = Desc->bHead;
+
     _uint iStatic = Desc->iStatic;
 
     m_pOriginTransform = Desc->pTransform;
@@ -95,8 +97,16 @@ HRESULT CUI_Number::Render()
     if (FAILED(m_pTextureCom->Bind_ShaderResource(m_pShaderCom, "g_Texture", m_iTextureIndex)))
         return E_FAIL;
 
-    if (FAILED(m_pShaderCom->Begin(4)))
-        return E_FAIL;
+    if (m_bHead)
+    {
+        if (FAILED(m_pShaderCom->Begin(6)))
+            return E_FAIL;
+    }
+    else
+    {
+        if (FAILED(m_pShaderCom->Begin(4)))
+            return E_FAIL;
+    }
 
     if (FAILED(m_pVIBufferCom->Bind_Buffers()))
         return E_FAIL;
@@ -140,6 +150,9 @@ HRESULT CUI_Number::Bind_ShaderResources()
         return E_FAIL;
 
     if (FAILED(m_pShaderCom->Bind_RawValue("g_Timer" , &m_fDeleteTimer, sizeof(_float))))
+        return E_FAIL;
+
+    if (FAILED(m_pShaderCom->Bind_RawValue("g_Head", &m_bHead, sizeof(_bool))))
         return E_FAIL;
 
     return S_OK;

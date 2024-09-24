@@ -16,10 +16,12 @@ class CUI_Number final :public CUIObject
 public:
 	typedef struct :public  CUIObject::UI_DESC
 	{
+		_bool bHead = { false };
 		_uint iTextureIndex = {0};
 		_uint iNumCnt = { 0 };
 		_uint iAngle = { 0 };
 		_uint iStatic = { 0 };
+		
 	}UI_NUM_DESC;
 private:
 	CUI_Number(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
@@ -45,6 +47,8 @@ private:
 	class CTransform* m_pOriginTransform = { nullptr };
 
 private:
+	_bool m_bHead = { false };
+
 	_uint m_iTextureIndex = { 0 };
 	_uint m_iNumTexture = { 0 };
 	_uint m_iAngle = { 0 };

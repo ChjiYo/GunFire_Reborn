@@ -36,7 +36,6 @@ HRESULT CUI_Bullet_Num::Initialize(void* pArg)
 	UI_DESC* pDesc = static_cast<UI_DESC*>(pArg);
 	m_iNum = pDesc->iNumUI;
 
-
 	m_fSizeX = 25.f;
 	m_fSizeY = 25.f;
 	m_fPosX = 1450.f + m_iNum * 25.f;
