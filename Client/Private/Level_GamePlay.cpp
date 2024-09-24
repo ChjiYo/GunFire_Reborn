@@ -47,6 +47,9 @@ HRESULT CLevel_GamePlay::Initialize()
 	if (FAILED(Ready_UI_WeaponState()))
 		return E_FAIL;
 
+	if (FAILED(Ready_UI_SkillState()))
+		return E_FAIL;
+
 	if (FAILED(Ready_MiniMap()))
 		return E_FAIL;
 
@@ -231,14 +234,14 @@ HRESULT CLevel_GamePlay::Ready_UI_WeaponState()
 
 HRESULT CLevel_GamePlay::Ready_UI_SkillState()
 {
-	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_SKill_Panel"), TEXT("Layer_UI_Weapon_SKill_Panel"))))
+	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_SKill_Panel"), TEXT("Layer_UI_Weapon_SKill_APanel"))))
 		return E_FAIL;
 
 	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_SKill_Dash"), TEXT("Layer_UI_Weapon_SKill_Dash"))))
 		return E_FAIL;
-
-	if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_SKill_Aiming"), TEXT("Layer_UI_Weapon_SKill_Aiming"))))
-		return E_FAIL;
+	//
+	//if (FAILED(m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_SKill_Aiming"), TEXT("Layer_UI_Weapon_SKill_Aiming"))))
+	//	return E_FAIL;
 
 	return S_OK;
 }

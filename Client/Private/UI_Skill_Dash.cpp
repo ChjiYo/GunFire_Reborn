@@ -1,6 +1,9 @@
 #include "stdafx.h"
 
 #include "UI_Skill_Dash.h"
+#include "GameInstance.h"
+
+#include "Player.h"
 
 CUI_Skill_Dash::CUI_Skill_Dash(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	:CUIObject{ pDevice ,pContext }
@@ -28,13 +31,17 @@ HRESULT CUI_Skill_Dash::Initialize(void* pArg)
 	if (FAILED(Ready_Components()))
 		return E_FAIL;
 
-	__super::Set_UI_Setting(35.f, 35.f, 1400.f, 750.f);
+	__super::Set_UI_Setting(64.f, 30.f, 1200.f, 750.f);
 
 	return S_OK;
 }
 
 void CUI_Skill_Dash::Priority_Update(_float fTimeDelta)
 {
+	CPlayer* pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_Player")).back());
+
+	m_bDash = pPlayer->Get_Dash();
+	m_bDashTimer = pPlayer->Get_DashTimer();
 }
 
 void CUI_Skill_Dash::Update(_float fTimeDelta)
@@ -51,7 +58,7 @@ HRESULT CUI_Skill_Dash::Render()
 	if (FAILED(__super::Bind_ShaderResources()))
 		return E_FAIL;
 
-	if (FAILED(m_pTextureCom->Bind_ShaderResource(m_pShaderCom, "g_Texture", 0)))
+	if (FAILED(m_pTextureCom->Bind_ShaderResource(m_pShaderCom, "g_Texture", m_bDash)))
 		return E_FAIL;
 
 	if (FAILED(m_pShaderCom->Begin(0)))
@@ -72,7 +79,7 @@ HRESULT CUI_Skill_Dash::Ready_Components()
 		return E_FAIL;
 
 	/* For.Com_Texture */
-	if (FAILED(__super::Add_Component(LEVEL_STATIC, TEXT("Prototype_Component_Texture_UI_Weapon_YellowBullet"),
+	if (FAILED(__super::Add_Component(LEVEL_STATIC, TEXT("Prototype_Component_Texture_UI_Skill_Dash"),
 		TEXT("Com_Texture"), reinterpret_cast<CComponent**>(&m_pTextureCom))))
 		return E_FAIL;
 }

@@ -22,6 +22,10 @@ public:
 private:
 	virtual HRESULT Ready_Components();
 
+private:
+	_bool m_bDash = { false };
+	_float  m_bDashTimer = { 0.f};
+
 public:
 	static CUI_Skill_Dash* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	virtual CGameObject* Clone(void* pArg);

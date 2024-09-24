@@ -118,6 +118,10 @@ public:
 public:
 	SLOTID Get_Slot() { return m_eSlotID; }
 
+public:
+	_bool Get_Dash() { return m_bDash; }
+	_float Get_DashTimer() { return m_fDashTimer; }
+
 private:
 	void ShieldRecovery();
 
@@ -136,7 +140,6 @@ private:
 	WEAPONID			m_ePrevWeaponID = { WEAPON_END };
 
 	_float				m_fShieldRecoveryTimer = { 0.f };
-	_float				m_fDashTimer = { 0.f };
 	_float				m_fInvincibleTime = { 0.f };
 	
 	WEAPONID			m_eWeaponIDArray[3] = { SHURIKEN ,SNIPER ,PISTOL };
@@ -144,6 +147,7 @@ private:
 	SLOTID				m_eSlotID = { SLOT_END };
 
 	_bool				m_bDash = { false };
+	_float				m_fDashTimer = { 0.f };
 
 	deque<_matrix> m_StackPos = {};
 

@@ -313,7 +313,7 @@ HRESULT CMainApp::Ready_Prototype_Component_ForStatic()
 
 	//Prototype_Component_Texture_UI_Skill_Dash
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_STATIC, TEXT("Prototype_Component_Texture_UI_Skill_Dash"),
-		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Skill/UI_Skill_Dash.png")))))
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Skill/UI_Skill_Dash%d.png"),2))))
 		return E_FAIL;
 
 	/* For.Prototype_Component_Texture_Item_Coin */

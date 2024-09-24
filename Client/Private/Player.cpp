@@ -115,6 +115,15 @@ void CPlayer::Priority_Update(_float fTimeDelta)
     m_fPosSaveTimer += fTimeDelta;
     m_fMoveSkillTimer += fTimeDelta;
 
+    if(m_bDash)
+        m_fDashTimer += fTimeDelta;
+
+    if (m_fDashTimer >= 1.f)
+    {
+        m_fDashTimer = 0.f;
+        m_bDash = false;
+    }
+    
     if (m_bHit)
     {
         m_fHitTimer += fTimeDelta * 0.5f;
@@ -237,10 +246,11 @@ void CPlayer::Player_Move(_float fTimeDelta)
     {
         m_pTransformCom->Go_Left(fTimeDelta, m_pNavigationCom , m_bJump);
 
-        if (m_pGameInstance->Key_Down(VK_LSHIFT))
+        if (m_pGameInstance->Key_Down(VK_LSHIFT) && !m_bDash)
         {
             m_pTransformCom->Go_Left(fTimeDelta * 15.5f, m_pNavigationCom);
             m_pGameInstance->Play_Sound(L"SFX_Dash", LEVEL_STATIC, false);
+            m_bDash = true;
         }
     }
 
@@ -252,6 +262,7 @@ void CPlayer::Player_Move(_float fTimeDelta)
         {
             m_pTransformCom->Go_Right(fTimeDelta * 15.5f, m_pNavigationCom);
             m_pGameInstance->Play_Sound(L"SFX_Dash", LEVEL_STATIC, false);
+            m_bDash = true;
         }
     }
 
@@ -263,6 +274,7 @@ void CPlayer::Player_Move(_float fTimeDelta)
         {
             m_pTransformCom->Go_StraightY(fTimeDelta * 15.5f, m_pNavigationCom);
             m_pGameInstance->Play_Sound(L"SFX_Dash", LEVEL_STATIC, false);
+            m_bDash = true;
         }
     }
 
@@ -274,6 +286,7 @@ void CPlayer::Player_Move(_float fTimeDelta)
         {
             m_pTransformCom->Go_BackwardY(fTimeDelta * 15.5f, m_pNavigationCom);
             m_pGameInstance->Play_Sound(L"SFX_Dash", LEVEL_STATIC, false);
+            m_bDash = true;
         }
     }
 
@@ -402,7 +415,7 @@ void CPlayer::Player_Weapon_Change()
 void CPlayer::Dash(_float fTimeDelta)
 {
     m_pTransformCom->Go_StraightY(fTimeDelta);
-
+    
 }
 
 CPlayer* CPlayer::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
