@@ -75,6 +75,8 @@ void CSkill_Player::Late_Update(_float fTimeDelta)
 		if (m_pColliderCom->isCollision(pSheildColl))
 		{
 			m_bDead = true;
+
+			m_pGameInstance->Play_Sound(L"SFX_Sheild", LEVEL_STATIC, false);
 		}
 	}
 	
@@ -100,6 +102,9 @@ void CSkill_Player::Late_Update(_float fTimeDelta)
 
 					m_bDead = true;
 					m_bFont = true;
+					m_bHead = false;
+
+					m_pGameInstance->Play_Sound(L"SFX_Mon_Hit", LEVEL_STATIC, false);
 				}
 				else if ((pMonster->Get_Collider(CMonster::COLL_SPHERE) != nullptr) && (m_pColliderCom->isCollision(pMonster->Get_Collider(CMonster::COLL_SPHERE))))
 				{
@@ -114,6 +119,9 @@ void CSkill_Player::Late_Update(_float fTimeDelta)
 
 					m_bDead = true;
 					m_bFont = true;
+					m_bHead = true;
+
+					m_pGameInstance->Play_Sound(L"SFX_Mon_Hit", LEVEL_STATIC, false);
 				}
 			}
 		}
@@ -171,6 +179,8 @@ void CSkill_Player::FontCreate(CMonster* pMonster,stack<_uint> stack)
 	Desc.iAngle = rand() % 360;
 	Desc.fSpeedPerSec = 5.f;
 	Desc.iStatic = iNumber;
+	Desc.bHead = m_bHead;
+
 	_tchar AfterPath[MAX_PATH] = {};
 	const _tchar* LayerName = TEXT("Layer_UI_Number%d");
 	wsprintf(AfterPath, LayerName, iNumber);

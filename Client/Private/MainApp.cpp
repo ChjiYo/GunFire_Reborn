@@ -468,6 +468,32 @@ HRESULT CMainApp::Ready_Gara()
 HRESULT CMainApp::Ready_Sound()
 {
 	m_pGameInstance->Register_Sound(L"../Bin/GunFire_Resources/Sound/BGM/BGM_GamePlay.wav", L"BGM_GamePlay", LEVEL_STATIC, SOUND_BGM);
+
+	m_pGameInstance->Register_Sound(L"../Bin/GunFire_Resources/Sound/SFX/SFX_Pistol_Fire.wav", L"SFX_Pistol_Fire", LEVEL_STATIC, SOUND_SFX);
+	m_pGameInstance->Register_Sound(L"../Bin/GunFire_Resources/Sound/SFX/SFX_Sniper_Fire.wav", L"SFX_Sniper_Fire", LEVEL_STATIC, SOUND_SFX);
+	//m_pGameInstance->Register_Sound(L"../Bin/GunFire_Resources/Sound/SFX/SFX_Shuriken_Fire.wav", L"SFX_Shuriken_Fire", LEVEL_STATIC, SOUND_SFX);
+	m_pGameInstance->Register_Sound(L"../Bin/GunFire_Resources/Sound/SFX/SFX_BoomGun_Fire.wav", L"SFX_BoomGun_Fire", LEVEL_STATIC, SOUND_SFX);
+
+	m_pGameInstance->Register_Sound(L"../Bin/GunFire_Resources/Sound/SFX/SFX_Archer_Fire.wav", L"SFX_Archer_Fire", LEVEL_STATIC, SOUND_SFX);
+	m_pGameInstance->Register_Sound(L"../Bin/GunFire_Resources/Sound/SFX/SFX_Dash.wav", L"SFX_Dash", LEVEL_STATIC, SOUND_SFX);
+	m_pGameInstance->Register_Sound(L"../Bin/GunFire_Resources/Sound/SFX/SFX_Mon_Dead.wav", L"SFX_Mon_Dead", LEVEL_STATIC, SOUND_SFX);
+	m_pGameInstance->Register_Sound(L"../Bin/GunFire_Resources/Sound/SFX/SFX_Mon_Hit.wav", L"SFX_Mon_Hit", LEVEL_STATIC, SOUND_SFX);
+	m_pGameInstance->Register_Sound(L"../Bin/GunFire_Resources/Sound/SFX/SFX_Mon_Knight.wav", L"SFX_Mon_Knight", LEVEL_STATIC, SOUND_SFX);
+	m_pGameInstance->Register_Sound(L"../Bin/GunFire_Resources/Sound/SFX/SFX_Sniper_ReLoad.wav", L"SFX_Sniper_ReLoad", LEVEL_STATIC, SOUND_SFX);
+	m_pGameInstance->Register_Sound(L"../Bin/GunFire_Resources/Sound/SFX/SFX_Weapon_Change.wav", L"SFX_Weapon_Change", LEVEL_STATIC, SOUND_SFX);
+
+	m_pGameInstance->Register_Sound(L"../Bin/GunFire_Resources/Sound/SFX/SFX_Arrow.wav", L"SFX_Arrow", LEVEL_STATIC, SOUND_SFX);
+	m_pGameInstance->Register_Sound(L"../Bin/GunFire_Resources/Sound/SFX/SFX_Breath.wav", L"SFX_Breath", LEVEL_STATIC, SOUND_SFX);
+	m_pGameInstance->Register_Sound(L"../Bin/GunFire_Resources/Sound/SFX/SFX_Dragon_Dust.wav", L"SFX_Dragon_Dust", LEVEL_STATIC, SOUND_SFX);
+	m_pGameInstance->Register_Sound(L"../Bin/GunFire_Resources/Sound/SFX/SFX_Dragon_In.wav", L"SFX_Dragon_In", LEVEL_STATIC, SOUND_SFX);
+	m_pGameInstance->Register_Sound(L"../Bin/GunFire_Resources/Sound/SFX/SFX_Mon_Boom.wav", L"SFX_Mon_Boom", LEVEL_STATIC, SOUND_SFX);
+	m_pGameInstance->Register_Sound(L"../Bin/GunFire_Resources/Sound/SFX/SFX_Mon_Swing.wav", L"SFX_Mon_Swing", LEVEL_STATIC, SOUND_SFX);
+	m_pGameInstance->Register_Sound(L"../Bin/GunFire_Resources/Sound/SFX/SFX_Pistol_Skill.wav", L"SFX_Pistol_Skill", LEVEL_STATIC, SOUND_SFX);
+	m_pGameInstance->Register_Sound(L"../Bin/GunFire_Resources/Sound/SFX/SFX_Sheild.wav", L"SFX_Sheild", LEVEL_STATIC, SOUND_SFX);
+	m_pGameInstance->Register_Sound(L"../Bin/GunFire_Resources/Sound/SFX/SFX_Shuriken_Fire.wav", L"SFX_Shuriken_Fire", LEVEL_STATIC, SOUND_SFX);
+	m_pGameInstance->Register_Sound(L"../Bin/GunFire_Resources/Sound/SFX/SFX_Sniper_Bullet.wav", L"SFX_Sniper_Bullet", LEVEL_STATIC, SOUND_SFX);
+	//m_pGameInstance->Register_Sound(L"../Bin/GunFire_Resources/Sound/SFX/SFX_Sniper_Reload.wav", L"SFX_Sniper_Reload", LEVEL_STATIC, SOUND_SFX);
+
 	
 	return S_OK;
 }

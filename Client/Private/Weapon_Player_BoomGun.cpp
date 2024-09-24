@@ -136,6 +136,8 @@ void CWeapon_Player_BoomGun::Key_State()
         m_pModelCom->SetUp_Animation(0, false);
         Create_Bullet();
         m_fAttackTimer = 0.f;
+
+        m_pGameInstance->Play_Sound(L"SFX_BoomGun_Fire", LEVEL_STATIC, false);
     }
 
     if (m_pGameInstance->Key_Down('R'))

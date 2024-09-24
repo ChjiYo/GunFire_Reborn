@@ -238,7 +238,10 @@ void CPlayer::Player_Move(_float fTimeDelta)
         m_pTransformCom->Go_Left(fTimeDelta, m_pNavigationCom , m_bJump);
 
         if (m_pGameInstance->Key_Down(VK_LSHIFT))
-            m_pTransformCom->Go_Left(fTimeDelta  * 15.5f, m_pNavigationCom);
+        {
+            m_pTransformCom->Go_Left(fTimeDelta * 15.5f, m_pNavigationCom);
+            m_pGameInstance->Play_Sound(L"SFX_Dash", LEVEL_STATIC, false);
+        }
     }
 
     if (m_pGameInstance->Get_DIKeyState(DIK_D) & 0x80)
@@ -246,7 +249,10 @@ void CPlayer::Player_Move(_float fTimeDelta)
         m_pTransformCom->Go_Right(fTimeDelta, m_pNavigationCom, m_bJump);
 
         if (m_pGameInstance->Key_Down(VK_LSHIFT))
+        {
             m_pTransformCom->Go_Right(fTimeDelta * 15.5f, m_pNavigationCom);
+            m_pGameInstance->Play_Sound(L"SFX_Dash", LEVEL_STATIC, false);
+        }
     }
 
     if (m_pGameInstance->Get_DIKeyState(DIK_W) & 0x80)
@@ -254,7 +260,10 @@ void CPlayer::Player_Move(_float fTimeDelta)
         m_pTransformCom->Go_StraightY(fTimeDelta, m_pNavigationCom, m_bJump);
 
         if (m_pGameInstance->Key_Down(VK_LSHIFT))
-            m_pTransformCom->Go_StraightY(fTimeDelta * 15.5f, m_pNavigationCom);      
+        {
+            m_pTransformCom->Go_StraightY(fTimeDelta * 15.5f, m_pNavigationCom);
+            m_pGameInstance->Play_Sound(L"SFX_Dash", LEVEL_STATIC, false);
+        }
     }
 
     if (m_pGameInstance->Get_DIKeyState(DIK_S) & 0x80)
@@ -262,7 +271,10 @@ void CPlayer::Player_Move(_float fTimeDelta)
         m_pTransformCom->Go_BackwardY(fTimeDelta, m_pNavigationCom, m_bJump);
 
         if (m_pGameInstance->Key_Down(VK_LSHIFT))
+        {
             m_pTransformCom->Go_BackwardY(fTimeDelta * 15.5f, m_pNavigationCom);
+            m_pGameInstance->Play_Sound(L"SFX_Dash", LEVEL_STATIC, false);
+        }
     }
 
     if (m_pGameInstance->Key_Down('1'))
@@ -273,6 +285,8 @@ void CPlayer::Player_Move(_float fTimeDelta)
         m_eWeaponID = m_eWeaponIDArray[ONE];
         m_eSlotID = ONE;
         m_bWeaponChange = true;
+
+        m_pGameInstance->Play_Sound(L"SFX_Weapon_Change", LEVEL_STATIC, false);
     }
 
     if (m_pGameInstance->Key_Down('2'))
@@ -283,6 +297,8 @@ void CPlayer::Player_Move(_float fTimeDelta)
         m_eWeaponID = m_eWeaponIDArray[TWO];
         m_eSlotID = TWO;
         m_bWeaponChange = true;
+
+        m_pGameInstance->Play_Sound(L"SFX_Weapon_Change", LEVEL_STATIC, false);
     }
 
     if (m_pGameInstance->Key_Down('3'))
@@ -290,6 +306,8 @@ void CPlayer::Player_Move(_float fTimeDelta)
         m_eWeaponID = PISTOL;
         m_eSlotID = THREE;
         m_bWeaponChange = true;
+
+        m_pGameInstance->Play_Sound(L"SFX_Weapon_Change", LEVEL_STATIC, false);
     }
 }
 

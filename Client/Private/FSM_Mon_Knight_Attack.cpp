@@ -62,6 +62,8 @@ wstring CFSM_Mon_Knight_Attack::Late_Update(_float fTimeDelta)
 		CPlayer* pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_Player")).back());
 		pPlayer->Set_Damage(-5.f);
 		m_bAttackEnd = false;
+
+		m_pGameInstance->Play_Sound(L"SFX_Mon_Knight", LEVEL_STATIC, false);
 	}
 
 	if (m_fAttackEndTime >= m_tDesc.pModel->Get_Anim(13)->Get_Duration())

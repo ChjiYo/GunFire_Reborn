@@ -47,6 +47,7 @@ wstring CFSM_Mon_Archer_Attack::Update(_float fTimeDelta)
 	if (m_fAttackTimer > 0.25f)
 	{
 		Create_Bullet();
+		m_pGameInstance->Play_Sound(L"SFX_Arrow", LEVEL_STATIC, false);
 		m_fAttackTimer = 0.f;
 		m_iAttackCnt++;
 	}

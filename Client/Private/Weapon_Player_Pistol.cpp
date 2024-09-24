@@ -117,7 +117,6 @@ HRESULT CWeapon_Player_Pistol::Ready_Components()
         return E_FAIL;
 
     /* For.Com_Model */
-
     if (FAILED(__super::Add_Component(LEVEL_STATIC, TEXT("Prototype_Component_Model_Weapon_Player_Pistol"),
         TEXT("Com_Model"), reinterpret_cast<CComponent**>(&m_pModelCom))))
         return E_FAIL;    
@@ -146,6 +145,8 @@ void CWeapon_Player_Pistol::Key_State()
         m_pModelCom->SetUp_Animation(1, false);
         Create_Bullet();
         m_fAttackTimer = 0.f;
+
+        m_pGameInstance->Play_Sound(L"SFX_Pistol_Fire", LEVEL_STATIC ,false);
     }
 
     if (m_pGameInstance->Key_Down('R'))
@@ -181,6 +182,9 @@ void CWeapon_Player_Pistol::PositionSave()
 
     if ((m_pGameInstance->Key_Down('E') || m_bBackPos) && m_fMoveSkillTimer > 0.0001f)
     {
+        if(!m_bBackPos)
+            m_pGameInstance->Play_Sound(L"SFX_Pistol_Skill", LEVEL_STATIC, false);
+
         m_bBackPos = true;
 
         m_pPlayerTransform->Set_State(CTransform::STATE_RIGHT, m_StackPos.back().r[CTransform::STATE_RIGHT]);

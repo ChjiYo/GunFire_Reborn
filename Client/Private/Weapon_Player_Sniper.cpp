@@ -150,6 +150,8 @@ void CWeapon_Player_Sniper::Key_State(_float fTimeDelta)
 
         m_bReboundEnble = true;
 
+        m_pGameInstance->Play_Sound(L"SFX_Sniper_Fire", LEVEL_STATIC, false);
+
     }
     if(m_bReboundEnble)
         Rebound();
@@ -165,6 +167,8 @@ void CWeapon_Player_Sniper::Key_State(_float fTimeDelta)
         m_iNumMaxBullet >= iNumReload ? (m_iNumBullet += iNumReload, m_iNumMaxBullet -= iNumReload) : (m_iNumBullet += m_iNumMaxBullet, m_iNumMaxBullet = 0);
 
         m_pModelCom->SetUp_Animation(2, false);
+
+        m_pGameInstance->Play_Sound(L"SFX_Sniper_ReLoad", LEVEL_STATIC, false);
     }
     
     _float fLastTime = 0.25f;

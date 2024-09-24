@@ -58,11 +58,15 @@ void CMonster::Late_Update(_float fTimeDelta)
 {
 	__super::Late_Update(fTimeDelta);
 
+	if (m_bDead == true)
+	{
+		m_pGameInstance->Play_Sound(L"SFX_Mon_Dead", LEVEL_STATIC, false);
+	}
 
 	CCollider* pTargetCollider = dynamic_cast<CCollider*>(m_pGameInstance->Get_Component(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_Player"), TEXT("Com_Collider"), 0));
 	CPlayer* pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_Player")).front());
 
-	if (m_pColliderCom[COLL_AABB]->isCollision(pTargetCollider) && m_fDamageDelay > 0.5f)
+	if (!m_bNoise && m_pColliderCom[COLL_AABB]->isCollision(pTargetCollider) && m_fDamageDelay > 0.5f)
 	{
 		pPlayer->Set_Damage(-5);
 		m_fDamageDelay = 0.f;
