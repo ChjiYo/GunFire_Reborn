@@ -219,8 +219,12 @@ HRESULT CRenderer::Draw()
 	if (FAILED(Render_UI()))
 		return E_FAIL;
 
+	if (FAILED(Render_Last()))
+		return E_FAIL;
+
 	if (FAILED(Render_Debug()))
 		return E_FAIL;
+
 
 
 #ifdef _DEBUG
@@ -423,6 +427,21 @@ HRESULT CRenderer::Render_UI()
 	}
 
 	m_RenderObjects[RG_UI].clear();
+
+	return S_OK;
+}
+
+HRESULT CRenderer::Render_Last()
+{
+	for (auto& pRenderObject : m_RenderObjects[RG_LAST])
+	{
+		if (nullptr != pRenderObject)
+			pRenderObject->Render();
+
+		Safe_Release(pRenderObject);
+	}
+
+	m_RenderObjects[RG_LAST].clear();
 
 	return S_OK;
 }

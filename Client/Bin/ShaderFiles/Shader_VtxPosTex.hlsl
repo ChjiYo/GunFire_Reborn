@@ -4,6 +4,9 @@
 float4x4		g_WorldMatrix, g_ViewMatrix, g_ProjMatrix;
 texture2D		g_Texture;
 
+float           g_Timer;
+bool            g_Hit;
+
 struct VS_IN
 {
 	float3 vPosition : POSITION;
@@ -115,6 +118,19 @@ PS_OUT PS_CircleEffect(PS_IN In)
     return Out;
 }
 
+PS_OUT PS_HIT(PS_IN In)
+{
+    PS_OUT Out;
+    
+    Out.vColor = g_Texture.Sample(LinearSampler, In.vTexcoord);
+   
+    if (g_Hit)
+        Out.vColor.a -= g_Timer;
+    else
+        Out.vColor.a = 0;
+    return Out;
+}
+
 technique11		DefaultTechnique
 {
 	/* PASS¿« ±‚¡ÿ : ºŒ¿Ã¥ı ±‚π˝¿« ƒ∏Ω∂»≠. */
@@ -168,7 +184,19 @@ technique11		DefaultTechnique
         HullShader = NULL;
         DomainShader = NULL;
         PixelShader = compile ps_5_0 PS_CircleEffect();
+    }
 
+    pass Hit
+    {
+        SetRasterizerState(RS_Cull_NONE);
+        SetDepthStencilState(DSS_Default, 0);
+        SetBlendState(BS_AlphaBlend, float4(0.f, 0.f, 0.f, 0.f), 0xffffffff);
+
+        VertexShader = compile vs_5_0 VS_MAIN();
+        GeometryShader = NULL;
+        HullShader = NULL;
+        DomainShader = NULL;
+        PixelShader = compile ps_5_0 PS_HIT();
     }
 
 }

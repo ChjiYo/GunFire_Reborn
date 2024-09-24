@@ -139,6 +139,8 @@
 
 #include "Shield.h"
 
+#include "VFX_Player_Hit.h"
+
 CLoader::CLoader(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	: m_pDevice { pDevice }
 	, m_pContext { pContext }
@@ -562,7 +564,12 @@ HRESULT CLoader::Loading_For_StaticLevel()
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/MiniMap/Player_Mark.png")))))
 		return E_FAIL;
 
+	/* For.Prototype_Component_Texture_Player_Hit */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_STATIC, TEXT("Prototype_Component_Texture_Player_Hit"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/Effect/Player_Hit/Player_Hit.png")))))
+		return E_FAIL;
 
+	//VFX_Player_Hit
 
 	lstrcpy(m_szLoadingText, TEXT("모델을 로딩 중 입니다."));
 
@@ -664,6 +671,11 @@ HRESULT CLoader::Loading_For_StaticLevel()
 	/* For.Prototype_GameObject_UI_Bullet_Num */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_Bullet_Num"),
 		CUI_Bullet_Num::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_Player_Hit */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Player_Hit"),
+		CVFX_Player_Hit::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
 	return S_OK;

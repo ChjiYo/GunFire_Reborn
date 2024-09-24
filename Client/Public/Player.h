@@ -59,6 +59,8 @@ public:
 		Player_Desc.iShield <= 0 ? Player_Desc.iHp += iDamage, Player_Desc.iShield = 0 : Player_Desc.iShield += iDamage;
 
 		m_fShieldRecoveryTimer = 0.f;
+
+		m_bHit = true;
 	}
 
 	WEAPONID	Get_WeaponID() { 
@@ -110,6 +112,9 @@ public:
 		return m_vCurrentDamage[eID]; 
 	}
 
+	_float Get_HitTimer() { return m_fHitTimer; }
+	_bool Get_Hit() { return m_bHit; }
+
 public:
 	SLOTID Get_Slot() { return m_eSlotID; }
 
@@ -152,6 +157,10 @@ private:
 	_uint m_vUpgreadCnt[WEAPON_END] = { 0 , 0 , 0 , 0 };
 	
 	vector<CPartObject*> vecParts = {};
+
+	_bool m_bHit = { false };
+	_float m_fHitTimer = { 0.f };
+	_uint m_HitCnt = { 0 };
 
 private:
 	HRESULT Ready_Components();

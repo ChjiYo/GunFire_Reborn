@@ -62,6 +62,10 @@ HRESULT CLevel_Boss::Initialize()
 	if (FAILED(ParseInitialize()))
 		return E_FAIL;
 
+	if(FAILED(Ready_Layer_Effect(TEXT("Layer_Effect"))))
+		return E_FAIL;
+
+
 
 	return S_OK;
 }
@@ -153,6 +157,8 @@ HRESULT CLevel_Boss::Ready_Layer_Camera(const _wstring& strLayerTag)
 
 HRESULT CLevel_Boss::Ready_Layer_Effect(const _wstring& strLayerTag)
 {
+	m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_Player_Hit"), TEXT("Layer_Effect"));
+
 	return S_OK;
 }
 

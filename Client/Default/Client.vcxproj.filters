@@ -636,6 +636,9 @@
     <ClCompile Include="..\private\Shield.cpp">
       <Filter>02.GameObjects\Monster\Shield_Knight\Shield</Filter>
     </ClCompile>
+    <ClCompile Include="..\private\VFX_Player_Hit.cpp">
+      <Filter>02.GameObjects\Effect\VFX\Player_Hit</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Public\Level_Logo.h">
@@ -1255,6 +1258,9 @@
     </ClInclude>
     <ClInclude Include="..\public\Shield.h">
       <Filter>02.GameObjects\Monster\Shield_Knight\Shield</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\VFX_Player_Hit.h">
+      <Filter>02.GameObjects\Effect\VFX\Player_Hit</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1967,6 +1973,9 @@
     </Filter>
     <Filter Include="02.GameObjects\Monster\Shield_Knight\Shield">
       <UniqueIdentifier>{aa171d42-5538-4ff3-9424-4c3cb4c2c3eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Effect\VFX\Player_Hit">
+      <UniqueIdentifier>{cfb9d79d-46b7-48a0-8dab-d2480f3aa601}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

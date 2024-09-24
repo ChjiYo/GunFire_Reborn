@@ -150,6 +150,8 @@ HRESULT CLevel_GamePlay::Ready_Layer_Camera(const _wstring & strLayerTag)
 
 HRESULT CLevel_GamePlay::Ready_Layer_Effect(const _wstring & strLayerTag)
 {
+	m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Player_Hit"), TEXT("Layer_Effect"));
+
 	return S_OK;
 }
 

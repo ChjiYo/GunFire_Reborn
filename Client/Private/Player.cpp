@@ -115,6 +115,24 @@ void CPlayer::Priority_Update(_float fTimeDelta)
     m_fPosSaveTimer += fTimeDelta;
     m_fMoveSkillTimer += fTimeDelta;
 
+    if (m_bHit)
+    {
+        m_fHitTimer += fTimeDelta * 0.5f;
+
+        if (m_fHitTimer >= 0.5f)
+        {
+            m_fHitTimer = 0.f;
+            m_HitCnt++;
+        }
+
+        if (m_HitCnt >= 3)
+        {
+            m_HitCnt = 0;
+            m_fHitTimer = 0.f;
+            m_bHit = false;
+        }
+
+    }
     __super::Priority_Update(fTimeDelta);
 }
 

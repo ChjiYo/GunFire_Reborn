@@ -368,6 +368,7 @@
     <ClInclude Include="..\public\VFX_Mon_Breath.h" />
     <ClInclude Include="..\public\VFX_Mon_PosCircle.h" />
     <ClInclude Include="..\public\VFX_Pistol_Barrel.h" />
+    <ClInclude Include="..\public\VFX_Player_Hit.h" />
     <ClInclude Include="..\public\VFX_Shuriken.h" />
     <ClInclude Include="..\public\VFX_Sniper.h" />
     <ClInclude Include="..\public\VFX_Spectrum.h" />
@@ -577,6 +578,7 @@
     <ClCompile Include="..\private\VFX_Mon_Breath.cpp" />
     <ClCompile Include="..\private\VFX_Mon_PosCircle.cpp" />
     <ClCompile Include="..\private\VFX_Pistol_Barrel.cpp" />
+    <ClCompile Include="..\private\VFX_Player_Hit.cpp" />
     <ClCompile Include="..\private\VFX_Shuriken.cpp" />
     <ClCompile Include="..\private\VFX_Sniper.cpp" />
     <ClCompile Include="..\private\VFX_Spectrum.cpp" />
