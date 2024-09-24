@@ -119,6 +119,13 @@ public: /* For.Frustum */
 	_bool isIn_Frustum_InLocalSpace(_fvector vLocalPosition, _float fRadius = 0.f);
 	void Transform_Frustum_ToLocalSpace(_fmatrix WorldMatrixInverse);
 
+public: /* For.Sound */
+	void Register_Sound(const std::wstring& filePath, const std::wstring& alias, _uint levelId, _uint soundType);
+	void Play_Sound(const std::wstring& alias, _uint levelId, bool loop);
+	void Stop_Sound(const std::wstring& alias, _uint levelId);
+	void Set_Volume(const std::wstring& alias, _uint levelId, float volume);
+	void Stop_All_Sounds(_uint levelId);
+
 #ifdef _DEBUG
 public:
 	HRESULT Ready_RT_Debug(const _wstring& strTargetTag, _float fCenterX, _float fCenterY, _float fSizeX, _float fSizeY);
@@ -141,6 +148,7 @@ private:
 	class CPicking*						m_pPicking = { nullptr };
 	class CTarget_Manager*				m_pTarget_Manager = { nullptr };
 	class CFrustum*						m_pFrustum = { nullptr };
+	class CSound_Manager*				 m_pSoundManager = { nullptr };
 
 public:
 	void Release_Engine();

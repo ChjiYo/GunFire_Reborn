@@ -55,6 +55,13 @@ void CSkill_Archer_Bullet::Update(_float fTimeDelta)
     _vector	vPosition = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
     _vector vMoveDir = XMVector4Normalize(m_vPlayerPos - m_vPos);   
 
+    if (!m_bRota)
+    {
+        _vector vPos = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
+        m_pTransformCom->LookAt(vPos + vMoveDir * 2.f);
+        m_pTransformCom->Radian_Turn(m_pTransformCom->Get_State(CTransform::STATE_UP), XMConvertToRadians(90.f));
+        m_bRota = true;
+    }
     vPosition += vMoveDir * 10.f * fTimeDelta;
     m_pTransformCom->Set_State(CTransform::STATE_POSITION, vPosition);
 

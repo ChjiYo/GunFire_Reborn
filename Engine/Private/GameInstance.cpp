@@ -14,6 +14,7 @@
 #include "PipeLine.h"
 #include "Target_Manager.h"
 #include "Frustum.h"
+#include "Sound_Manager.h"
 
 IMPLEMENT_SINGLETON(CGameInstance)
 
@@ -82,6 +83,10 @@ HRESULT CGameInstance::Initialize_Engine(HINSTANCE hInst, HWND hWnd, _bool isWin
 
 	m_pFrustum = CFrustum::Create();
 	if (nullptr == m_pFrustum)
+		return E_FAIL;
+
+	m_pSoundManager = CSound_Manager::Create(iNumLevels);
+	if (nullptr == m_pSoundManager)
 		return E_FAIL;
 
 	return S_OK;
@@ -513,6 +518,48 @@ void CGameInstance::Transform_Frustum_ToLocalSpace(_fmatrix WorldMatrixInverse)
 	return m_pFrustum->Transform_ToLocalSpace(WorldMatrixInverse);
 }
 
+void CGameInstance::Register_Sound(const std::wstring& filePath, const std::wstring& alias, _uint levelId, _uint soundType)
+{
+	if (m_pSoundManager == nullptr)
+		return;
+
+	return m_pSoundManager->Register_Sound(filePath, alias, levelId, soundType);
+}
+
+void CGameInstance::Play_Sound(const std::wstring& alias, _uint levelId, bool loop)
+{
+	if (m_pSoundManager == nullptr)
+		return;
+
+	return m_pSoundManager->Play_Sound(alias, levelId, loop);
+}
+
+void CGameInstance::Stop_Sound(const wstring& filePath, _uint levelId)
+{
+	if (m_pSoundManager == nullptr)
+		return;
+
+	return m_pSoundManager->Stop_Sound(filePath, levelId);
+
+}
+
+void CGameInstance::Set_Volume(const wstring& alias, _uint levelId, float volume)
+{
+	if (m_pSoundManager == nullptr)
+		return;
+
+	return m_pSoundManager->Set_Volume(alias, levelId, volume);
+
+}
+
+void CGameInstance::Stop_All_Sounds(_uint levelId)
+{
+	if (m_pSoundManager == nullptr)
+		return;
+
+	return m_pSoundManager->Stop_All_Sounds(levelId);
+}
+
 #ifdef _DEBUG
 
 HRESULT CGameInstance::Ready_RT_Debug(const _wstring& strTargetTag, _float fCenterX, _float fCenterY, _float fSizeX, _float fSizeY)
@@ -543,6 +590,7 @@ void CGameInstance::Release_Engine()
 	Safe_Release(m_pPicking);
 	Safe_Release(m_pFileManager);
 	Safe_Release(m_pTarget_Manager);
+	Safe_Release(m_pSoundManager);
 
 	CGameInstance::Get_Instance()->Destroy_Instance();
 }

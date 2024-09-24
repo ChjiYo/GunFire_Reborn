@@ -62,6 +62,9 @@ HRESULT CMainApp::Initialize()
 	if (FAILED(Ready_Gara()))
 		return E_FAIL;
 
+	if (FAILED(Ready_Sound()))
+		return E_FAIL;
+
 	//LOGO 먼저 (실수 2스택!!)
 	if (FAILED(Open_Level(LEVEL_LOGO)))
 		return E_FAIL;	
@@ -459,6 +462,13 @@ HRESULT CMainApp::Ready_Prototoype_Resource_ForStatic()
 
 HRESULT CMainApp::Ready_Gara()
 {
+	return S_OK;
+}
+
+HRESULT CMainApp::Ready_Sound()
+{
+	m_pGameInstance->Register_Sound(L"../Bin/GunFire_Resources/Sound/BGM/BGM_GamePlay.wav", L"BGM_GamePlay", LEVEL_STATIC, SOUND_BGM);
+	
 	return S_OK;
 }
 

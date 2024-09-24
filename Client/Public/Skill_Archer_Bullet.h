@@ -38,6 +38,8 @@ private:
 	CCollider* m_pColliderCom = { nullptr };
 
 private:
+	_bool m_bRota = { false };
+
 	_vector		m_vPos = {};
 
 	_vector		m_vOffsetRandomPos = {};

@@ -34,6 +34,7 @@ private:
 	HRESULT Ready_Prototype_Component_ForStatic();
 	HRESULT Ready_Prototoype_Resource_ForStatic();
 	HRESULT Ready_Gara();
+	HRESULT Ready_Sound();
 	HRESULT Open_Level(LEVELID eStartLevelID);
 
 public:

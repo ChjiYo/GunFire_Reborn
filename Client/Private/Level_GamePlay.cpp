@@ -69,6 +69,9 @@ HRESULT CLevel_GamePlay::Initialize()
 	if (FAILED(Ready_Cursor()))
 		return E_FAIL;
 
+	m_pGameInstance->Play_Sound(L"BGM_GamePlay", LEVEL_STATIC, true);
+	m_pGameInstance->Set_Volume(L"BGM_GamePlay", LEVEL_STATIC, 0.2f);
+
 	return S_OK;
 }
 
