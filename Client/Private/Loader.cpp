@@ -140,6 +140,7 @@
 #include "Shield.h"
 
 #include "VFX_Player_Hit.h"
+#include "VFX_Shield_Hit.h"
 
 CLoader::CLoader(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	: m_pDevice { pDevice }
@@ -569,6 +570,11 @@ HRESULT CLoader::Loading_For_StaticLevel()
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/Effect/Player_Hit/Player_Hit.png")))))
 		return E_FAIL;
 
+	/* For.Prototype_Component_Texture_Shield_Hit */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_STATIC, TEXT("Prototype_Component_Texture_Shield_Hit"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/Effect/Sheild_Hit/Shield_Hit_%d.png"),4))))
+		return E_FAIL;
+
 	//VFX_Player_Hit
 
 	lstrcpy(m_szLoadingText, TEXT("모델을 로딩 중 입니다."));
@@ -677,6 +683,12 @@ HRESULT CLoader::Loading_For_StaticLevel()
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Player_Hit"),
 		CVFX_Player_Hit::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
+
+	/* For.Prototype_GameObject_Player_Hit */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Shield_Hit"),
+		CVFX_Shield_Hit::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
 
 	return S_OK;
 }
@@ -1383,6 +1395,11 @@ HRESULT CLoader::Loading_For_BossLevel()
 		return E_FAIL;
 
 	lstrcpy(m_szLoadingText, TEXT("텍스처을 로딩 중 입니다."));
+
+	/* For.Prototype_Component_Texture_Noise */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Texture_Noise"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Models/Monster/NoiseCaustic03.png")))))
+		return E_FAIL;
 
 	/* For.Prototype_Component_Texture_Skill_Dragon_Bubble*/
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Texture_Skill_Dragon_Bubble"),

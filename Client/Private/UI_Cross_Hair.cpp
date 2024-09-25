@@ -2,6 +2,11 @@
 
 #include "UI_Cross_Hair.h"
 
+#include "Player.h"
+#include "GameInstance.h"
+
+#include "Weapon_Player.h"
+
 CUI_Cross_Hair::CUI_Cross_Hair(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	:CUIObject{ pDevice ,pContext }
 {
@@ -68,9 +73,16 @@ HRESULT CUI_Cross_Hair::Initialize(void* pArg)
 
 void CUI_Cross_Hair::Priority_Update(_float fTimeDelta)
 {
-	if (GetAsyncKeyState(VK_LBUTTON) & 0x8000)
-		m_bMoveStop = false;
+	CPlayer* pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_Player")).back());
 
+
+	if ((GetAsyncKeyState(VK_LBUTTON) & 0x8000))
+	{
+		_uint iCurrBullet = dynamic_cast<CWeapon_Player*>(pPlayer->Get_Parts().at(CPlayer::PART_WEAPON))->Get_CurrentBullet();
+
+		if (iCurrBullet > 0)
+			m_bMoveStop = false;
+	}
 	if(!m_bMoveStop)
 		Move(fTimeDelta);
 

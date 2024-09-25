@@ -97,7 +97,7 @@ void CSkill_Shuriken_Bullet::Late_Update(_float fTimeDelta)
                 m_vTargetLook = XMVector3Normalize(XMVector3Reflect(m_vTargetLook, vWallLook));
                 m_bWallColl = true;
                 m_iNumBounding++;
-                m_pGameInstance->Play_Sound(L"SFX_Shuriken_Fire", LEVEL_STATIC, false);
+                m_pGameInstance->Play_Sound(L"SFX_Shuriken_Rel", LEVEL_STATIC, false);
 
                 _vector vPos = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
                 m_pTransformCom->LookAt(vPos + m_vTargetLook * 2.f);
@@ -126,6 +126,7 @@ void CSkill_Shuriken_Bullet::Late_Update(_float fTimeDelta)
                 m_vTargetLook = XMVector3Normalize(XMVector3Reflect(m_vTargetLook, vWallLook));
                 m_bWallColl = true;
                 m_iNumBounding++;
+                m_pGameInstance->Play_Sound(L"SFX_Shuriken_Rel", LEVEL_STATIC, false);
 
                 _vector vPos = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
                 m_pTransformCom->LookAt(vPos + m_vTargetLook * 2.f);
@@ -258,6 +259,7 @@ void CSkill_Shuriken_Bullet::NaviReflect()
             m_vTargetLook = XMVector3Normalize(XMVector3Reflect(m_vTargetLook, m_vReflectVec));
             m_bWallColl = true;
             m_iNumBounding++;
+            m_pGameInstance->Play_Sound(L"SFX_Shuriken_Rel", LEVEL_STATIC, false);
 
             _vector vPos = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
             m_pTransformCom->LookAt(vPos  + m_vTargetLook * 2.f);
@@ -285,6 +287,7 @@ void CSkill_Shuriken_Bullet::HighReflect()
             m_vTargetLook = XMVector3Normalize(XMVector3Reflect(m_vTargetLook, {0, -1, 0}));
             m_bWallColl = true;
             m_iNumBounding++;
+            m_pGameInstance->Play_Sound(L"SFX_Shuriken_Rel", LEVEL_STATIC, false);
 
             _vector vPos = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
             m_pTransformCom->LookAt(vPos + m_vTargetLook * 2.f);

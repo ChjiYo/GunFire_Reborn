@@ -72,6 +72,8 @@ wstring CFSM_Mon_DragonTail_Attack::Update(_float fTimeDelta)
 			BubbleDesc.iNumParts = CSkill::PART_END;
 			m_tDesc.pTransform->LookAt(m_pPlayerTransform->Get_State(CTransform::STATE_POSITION));
 
+			m_pGameInstance->Play_Sound(L"SFX_Dragon_Bubble", LEVEL_STATIC, false);
+
 			for (int i = 1; i <= rand() % 6 + 6; ++i)
 			{
 				BubbleDesc.iNumSkill = i;
@@ -82,7 +84,7 @@ wstring CFSM_Mon_DragonTail_Attack::Update(_float fTimeDelta)
 	}
 	else 
 	{
-		if (m_tDesc.pModel->Get_Anim(9)->Get_Duration()- 0.5f <= m_fAttackDelay && !m_bAttackEnable)
+		if (m_tDesc.pModel->Get_Anim(9)->Get_Duration()- 1.5f <= m_fAttackDelay && !m_bAttackEnable)
 		{
 			m_bAttackEnable = true;
 			CSkill::SKILL_DESC	DustDesc = {};
@@ -95,6 +97,7 @@ wstring CFSM_Mon_DragonTail_Attack::Update(_float fTimeDelta)
 			m_tDesc.pTransform->LookAt(m_pPlayerTransform->Get_State(CTransform::STATE_POSITION));
 
 			m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_Skill_Dragon_Dust"), TEXT("Layer_Skill_Dragon_Dust"), &DustDesc);
+			m_pGameInstance->Play_Sound(L"SFX_Dragon_Dust", LEVEL_STATIC, false);
 
 			m_iAttackCnt++;
 		}
@@ -136,7 +139,7 @@ void CFSM_Mon_DragonTail_Attack::Enter()
 	m_iAttackType++;
 
 		//rand() % 2;
-	_vector vUpdatePos = XMVectorSetY(m_tDesc.pTransform->Get_State(CTransform::STATE_POSITION), -0.5f);
+	_vector vUpdatePos = XMVectorSetY(m_tDesc.pTransform->Get_State(CTransform::STATE_POSITION), -1.5f);
 	m_tDesc.pTransform->Set_State(CTransform::STATE_POSITION, vUpdatePos);
 
 	if (m_iAttackType % 2 == 0)

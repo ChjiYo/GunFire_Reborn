@@ -639,6 +639,9 @@
     <ClCompile Include="..\private\VFX_Player_Hit.cpp">
       <Filter>02.GameObjects\Effect\VFX\Player_Hit</Filter>
     </ClCompile>
+    <ClCompile Include="..\private\VFX_Shield_Hit.cpp">
+      <Filter>02.GameObjects\Effect\VFX\Shield_Hit</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Public\Level_Logo.h">
@@ -1261,6 +1264,9 @@
     </ClInclude>
     <ClInclude Include="..\public\VFX_Player_Hit.h">
       <Filter>02.GameObjects\Effect\VFX\Player_Hit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\VFX_Shield_Hit.h">
+      <Filter>02.GameObjects\Effect\VFX\Shield_Hit</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1976,6 +1982,9 @@
     </Filter>
     <Filter Include="02.GameObjects\Effect\VFX\Player_Hit">
       <UniqueIdentifier>{cfb9d79d-46b7-48a0-8dab-d2480f3aa601}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Effect\VFX\Shield_Hit">
+      <UniqueIdentifier>{0b039c72-7cb3-4068-9a09-017cd63033f8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

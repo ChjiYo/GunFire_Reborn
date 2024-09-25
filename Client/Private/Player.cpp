@@ -66,7 +66,8 @@ HRESULT CPlayer::Initialize(void* pArg)
     switch (m_pGameInstance->GetLoadingLevelIndex())
     {
     case LEVEL_GAMEPLAY: 
-        m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 6.f , 1.5f , 2.f, 1.f });
+       //m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 6.f , 1.5f , 2.f, 1.f });
+        m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 42.f , 1.5f , 62.f, 1.f });
         break;
 
     case LEVEL_BOSS:
@@ -258,7 +259,7 @@ void CPlayer::Player_Move(_float fTimeDelta)
     {
         m_pTransformCom->Go_Right(fTimeDelta, m_pNavigationCom, m_bJump);
 
-        if (m_pGameInstance->Key_Down(VK_LSHIFT))
+        if (m_pGameInstance->Key_Down(VK_LSHIFT) && !m_bDash)
         {
             m_pTransformCom->Go_Right(fTimeDelta * 15.5f, m_pNavigationCom);
             m_pGameInstance->Play_Sound(L"SFX_Dash", LEVEL_STATIC, false);
@@ -270,7 +271,7 @@ void CPlayer::Player_Move(_float fTimeDelta)
     {
         m_pTransformCom->Go_StraightY(fTimeDelta, m_pNavigationCom, m_bJump);
 
-        if (m_pGameInstance->Key_Down(VK_LSHIFT))
+        if (m_pGameInstance->Key_Down(VK_LSHIFT) && !m_bDash)
         {
             m_pTransformCom->Go_StraightY(fTimeDelta * 15.5f, m_pNavigationCom);
             m_pGameInstance->Play_Sound(L"SFX_Dash", LEVEL_STATIC, false);
@@ -282,7 +283,7 @@ void CPlayer::Player_Move(_float fTimeDelta)
     {
         m_pTransformCom->Go_BackwardY(fTimeDelta, m_pNavigationCom, m_bJump);
 
-        if (m_pGameInstance->Key_Down(VK_LSHIFT))
+        if (m_pGameInstance->Key_Down(VK_LSHIFT) && !m_bDash)
         {
             m_pTransformCom->Go_BackwardY(fTimeDelta * 15.5f, m_pNavigationCom);
             m_pGameInstance->Play_Sound(L"SFX_Dash", LEVEL_STATIC, false);

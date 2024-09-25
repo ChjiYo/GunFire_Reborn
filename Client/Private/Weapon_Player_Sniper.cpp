@@ -64,6 +64,9 @@ void CWeapon_Player_Sniper::Priority_Update(_float fTimeDelta)
     m_fAttackTimer += fTimeDelta;
     m_fReboundTimer += fTimeDelta;
 
+    if(m_bReload)
+     m_fReloadTImer += fTimeDelta;
+
     Key_State(fTimeDelta);
 
     
@@ -153,7 +156,7 @@ void CWeapon_Player_Sniper::Key_State(_float fTimeDelta)
         m_pGameInstance->Play_Sound(L"SFX_Sniper_Fire", LEVEL_STATIC, false);
 
     }
-    if(m_bReboundEnble)
+    if (m_bReboundEnble)
         Rebound();
 
 
@@ -168,7 +171,15 @@ void CWeapon_Player_Sniper::Key_State(_float fTimeDelta)
 
         m_pModelCom->SetUp_Animation(2, false);
 
-        m_pGameInstance->Play_Sound(L"SFX_Sniper_ReLoad", LEVEL_STATIC, false);
+        m_pGameInstance->Play_Sound(L"SFX_Sniper_Reload", LEVEL_STATIC, false);
+        m_bReload = true;
+    }
+
+    if (m_fReloadTImer > 1.f)
+    {
+        m_pGameInstance->Play_Sound(L"SFX_Sniper_Bullet", LEVEL_STATIC, false);
+        m_bReload = false;
+        m_fReloadTImer = 0.f;
     }
     
     _float fLastTime = 0.25f;

@@ -8,6 +8,10 @@
 #include "VFX.h"
 
 #include "Mon_Shield_Knight.h"
+#include "Player.h"
+
+#include "Wall_101.h"
+#include "Wall_102.h"
 
 
 CSkill_Player::CSkill_Player(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
@@ -57,6 +61,16 @@ void CSkill_Player::Late_Update(_float fTimeDelta)
 	list<class CGameObject*> MonStageList3 = m_pGameInstance->Get_Layer(LEVEL_BOSS, TEXT("Layer_Monster"));
 	list<class CGameObject*> MonStageList4 = m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Monster_Shield"));
 
+	list<class CGameObject*> WallList1 = m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Wall_101"));
+	list<class CGameObject*> WallList2 = m_pGameInstance->Get_Layer(LEVEL_GAMEPLAY, TEXT("Layer_Wall_102"));
+
+	list<class CGameObject*> WallArray[2] = {};
+
+	WallArray[0] = WallList1;
+	WallArray[1] = WallList2;
+
+	CPlayer* pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_Player")).back());
+
 	list<class CGameObject*> MonsterArray[4] = {};
 	MonsterArray[0] = MonStageList1;
 	MonsterArray[1] = MonStageList2;
@@ -66,6 +80,33 @@ void CSkill_Player::Late_Update(_float fTimeDelta)
 	m_iDamage = rand() % 10 + m_iSkillDamage;
 	CMonster* pMonster = {};
 
+	for (auto& pWall0 : WallArray[0])
+	{
+		CCollider* pWallColl = dynamic_cast<CWall_101*>(pWall0)->Get_Collider();
+	
+		if (m_pColliderCom->isCollision(pWallColl))
+		{
+			CVFX::VFX_DESC Desc = {};
+			Desc.vCreatePos = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
+		
+			m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Shield_Hit"), TEXT("Layer_Effect"), &Desc);
+		}
+	}
+
+	for (auto& pWall1 : WallArray[1])
+	{
+		CCollider* pWallColl = dynamic_cast<CWall_102*>(pWall1)->Get_Collider();
+
+		if (m_pColliderCom->isCollision(pWallColl))
+		{
+			CVFX::VFX_DESC Desc = {};
+			Desc.vCreatePos = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
+
+			m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Shield_Hit"), TEXT("Layer_Effect"), &Desc);
+		}
+	}
+	
+
 	for (auto& Shield : MonStageList4)
 	{
 		_uint i = dynamic_cast<CMon_Shield_Knight*>(Shield)->Get_MonDesc().iHp;
@@ -74,9 +115,15 @@ void CSkill_Player::Late_Update(_float fTimeDelta)
 	
 		if (m_pColliderCom->isCollision(pSheildColl))
 		{
-			m_bDead = true;
-
 			m_pGameInstance->Play_Sound(L"SFX_Sheild", LEVEL_STATIC, false);
+
+			CVFX::VFX_DESC Desc = {};
+			Desc.vCreatePos = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
+
+			if(pPlayer->Get_WeaponID() != CPlayer::SNIPER)
+				m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Shield_Hit"), TEXT("Layer_Effect"),&Desc);
+
+			m_bDead = true;
 		}
 	}
 	

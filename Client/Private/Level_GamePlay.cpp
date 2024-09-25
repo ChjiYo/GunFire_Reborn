@@ -249,7 +249,7 @@ HRESULT CLevel_GamePlay::Ready_UI_SkillState()
 HRESULT CLevel_GamePlay::Ready_CrossHair()
 {
 	CUI_Cross_Hair::CROSS_HAIR_DESC Desc = {  };
-	Desc.fSpeedPerSec = 10.f;
+	Desc.fSpeedPerSec = 50.f;
 
 	for (int i = 0; i < 4; i++)
 	{

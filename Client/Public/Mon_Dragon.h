@@ -35,8 +35,11 @@ private:
 	CState_Machine* m_pStateCom = { nullptr };
 	CTexture* m_pTextureCom = { nullptr };
 
+	_bool	m_bDeadCheck = { false };
+	_float	m_fDeadTimer = { 0.f };
 
 	_float m_fEffectCreateTimer = { 0.f };
+
 
 private:
 	HRESULT Ready_State();

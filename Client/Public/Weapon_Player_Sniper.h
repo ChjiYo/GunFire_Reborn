@@ -45,6 +45,9 @@ private:
 	_float				m_fZoomTimer = { 0.f };
 	_float				m_fReboundTimer = { 0.f };
 	_float				m_fReboundAngle = { 0.f };
+
+	_bool				m_bReload = { false };
+	_float				m_fReloadTImer = { 0.f };
 	
 
 private:

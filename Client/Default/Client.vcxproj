@@ -245,6 +245,7 @@
     <ClInclude Include="..\public\NPC_Weapon.h" />
     <ClInclude Include="..\public\Pillars101.h" />
     <ClInclude Include="..\public\Portal.h" />
+    <ClInclude Include="..\public\VFX_Shield_Hit.h" />
     <ClInclude Include="..\public\Shield.h" />
     <ClInclude Include="..\public\Skill_Archer_Bullet.h" />
     <ClInclude Include="..\Public\Cube.h" />
@@ -463,6 +464,7 @@
     <ClCompile Include="..\private\NPC_Weapon.cpp" />
     <ClCompile Include="..\private\Pillars101.cpp" />
     <ClCompile Include="..\private\Portal.cpp" />
+    <ClCompile Include="..\private\VFX_Shield_Hit.cpp" />
     <ClCompile Include="..\private\Shield.cpp" />
     <ClCompile Include="..\private\Skill_Archer_Bullet.cpp" />
     <ClCompile Include="..\Private\Cube.cpp" />

@@ -32,33 +32,32 @@ HRESULT CFSM_Mon_Dragon_Death::Initialize(FSM_MON_DESC Desc)
 
 wstring CFSM_Mon_Dragon_Death::Priority_Update(_float fTimeDelta)
 {
-	m_fHitMotionTime += fTimeDelta;
-
-	return TEXT("Monster_Knight_State_Hit");
+	return TEXT("Monster_Dragon_State_Death");
 }
 
 wstring CFSM_Mon_Dragon_Death::Update(_float fTimeDelta)
 {
-	return TEXT("Monster_Knight_State_Hit");
+	return TEXT("Monster_Dragon_State_Death");
 }
 
 wstring CFSM_Mon_Dragon_Death::Late_Update(_float fTimeDelta)
 {
-	if (m_fHitMotionTime >= m_tDesc.pModel->Get_Anim(4)->Get_Duration())
-	{
-		return TEXT("Monster_Knight_State_Run");
-	}
-	return TEXT("Monster_Knight_State_Hit");
+	return TEXT("Monster_Dragon_State_Death");
 }
 
 void CFSM_Mon_Dragon_Death::Enter()
 {
 	__super::Enter();
 
-	m_tDesc.pTransform->LookAt(m_pPlayerTransform->Get_State(CTransform::STATE_POSITION));
+	m_strName = TEXT("Monster_Dragon_State_Death");
 
-	m_tDesc.pModel->SetUp_Animation(4, false);
-	m_strName = TEXT("Monster_Knight_State_Hit");
+	if (!m_bAnim)
+	{
+		m_tDesc.pModel->SetUp_Animation(16, false);
+		m_pGameInstance->Play_Sound(L"SFX_Dragon_Death", LEVEL_STATIC, false);
+		m_bAnim = true;
+	}
+
 }
 
 void CFSM_Mon_Dragon_Death::Exit()

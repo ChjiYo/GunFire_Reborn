@@ -20,6 +20,7 @@
 #include "PartObject.h"
 
 #include "Player.h"
+#include "Animation.h"
 
 CMon_Dragon::CMon_Dragon(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	: CMonster{ pDevice, pContext }
@@ -74,12 +75,19 @@ void CMon_Dragon::Priority_Update(_float fTimeDelta)
 {
 	if (!m_isMove)
 		fTimeDelta = 0.f;
+
 	__super::Priority_Update(fTimeDelta);
 
 	m_pStateCom->Priority_Update(fTimeDelta);
 
 
 	m_fEffectCreateTimer += fTimeDelta;
+
+	if(m_bDeadCheck)
+	m_fDeadTimer += fTimeDelta;
+
+	if (m_bNoise)
+		m_fTimer += fTimeDelta;
 }
 
 void CMon_Dragon::Update(_float fTimeDelta)
@@ -129,7 +137,7 @@ HRESULT CMon_Dragon::Render()
 
 		m_pModelCom->Bind_BoneMatrices(m_pShaderCom, "g_BoneMatrices", i);
 
-		if (FAILED(m_pShaderCom->Begin(0)))
+		if (FAILED(m_pShaderCom->Begin(4)))
 			return E_FAIL;
 
 		if (FAILED(m_pModelCom->Render(i)))
@@ -142,6 +150,18 @@ HRESULT CMon_Dragon::Render()
 void CMon_Dragon::Destroy()
 {
 	if (m_tMonDesc.iHp <= 0.f)
+	{
+		m_pStateCom->Set_State(TEXT("Monster_Dragon_State_Death"));
+		m_bDeadCheck = true;;
+	}
+
+	if (m_pModelCom->Get_Anim(16)->Get_Duration() <= m_fDeadTimer)
+	{
+		m_pTransformCom->Set_Speed(0);
+		m_bNoise = true;
+	}
+
+	if (m_fTimer >= 1.f)
 		m_bDead = true;
 
 }
@@ -191,6 +211,11 @@ HRESULT CMon_Dragon::Ready_Components()
 		TEXT("Com_Model"), reinterpret_cast<CComponent**>(&m_pModelCom))))
 		return E_FAIL;
 
+	/* Com_Texture */
+	if (FAILED(__super::Add_Component(LEVEL_BOSS, TEXT("Prototype_Component_Texture_Noise"),
+		TEXT("Com_Texture"), reinterpret_cast<CComponent**>(&m_pTextureCom))))
+		return E_FAIL;
+
 	/* Com_State */
 	if (FAILED(__super::Add_Component(LEVEL_BOSS, TEXT("Prototype_Component_State"),
 		TEXT("Com_State"), reinterpret_cast<CComponent**>(&m_pStateCom))))
@@ -238,6 +263,14 @@ HRESULT CMon_Dragon::Bind_ShaderResources()
 	if (FAILED(m_pShaderCom->Bind_Matrix("g_ProjMatrix", &m_pGameInstance->Get_Transform_Float4x4(CPipeLine::D3DTS_PROJ))))
 		return E_FAIL;
 
+
+	if (FAILED(m_pTextureCom->Bind_ShaderResources(m_pShaderCom, "g_NoiseTexture")))
+		return E_FAIL;
+
+	if (FAILED(m_pShaderCom->Bind_RawValue("g_Timer", &m_fTimer, sizeof(_float))))
+		return E_FAIL;
+
+
 	return S_OK;
 }
 
@@ -273,6 +306,7 @@ void CMon_Dragon::Free()
 	Safe_Release(m_pStateCom);
 	Safe_Release(m_pModelCom);
 	Safe_Release(m_pNavigationCom);
+	Safe_Release(m_pTextureCom);
 
 	for (size_t i = 0; i < COLL_END; i++)
 		Safe_Release(m_pColliderCom[i]);

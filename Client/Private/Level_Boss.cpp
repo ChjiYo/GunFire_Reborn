@@ -65,14 +65,20 @@ HRESULT CLevel_Boss::Initialize()
 	if(FAILED(Ready_Layer_Effect(TEXT("Layer_Effect"))))
 		return E_FAIL;
 
-
+	m_pGameInstance->Stop_All_Sounds(LEVEL_GAMEPLAY);
+	m_pGameInstance->Play_Sound(L"BGM_Boss", LEVEL_STATIC, true);
 
 	return S_OK;
 }
 
 void CLevel_Boss::Update(_float fTimeDelta)
 {
+	POINT pt;
+	pt.x = g_iWinSizeX * 0.5f;   
+	pt.y = g_iWinSizeY * 0.5f;
 
+	ClientToScreen(g_hWnd, &pt);
+	SetCursorPos(pt.x, pt.y);
 }
 
 HRESULT CLevel_Boss::Render()

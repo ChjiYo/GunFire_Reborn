@@ -57,19 +57,24 @@ wstring CFSM_Mon_Knight_Attack::Late_Update(_float fTimeDelta)
 	
 	_float fLength = XMVectorGetX(XMVector4Length(vDistance));
 
+	if (m_fAttackEndTime >= 0.65f && !m_bAttackSound)
+	{
+		m_pGameInstance->Play_Sound(L"SFX_Mon_Knight", LEVEL_STATIC, false);
+		m_bAttackSound = true;
+	}
+
 	if (m_fAttackEndTime >= 0.65f && abs(fLength) < 2.f && m_bAttackEnd)
 	{
 		CPlayer* pPlayer = dynamic_cast<CPlayer*>(m_pGameInstance->Get_Layer(m_pGameInstance->GetLoadingLevelIndex(), TEXT("Layer_Player")).back());
 		pPlayer->Set_Damage(-5.f);
 		m_bAttackEnd = false;
-
-		m_pGameInstance->Play_Sound(L"SFX_Mon_Knight", LEVEL_STATIC, false);
 	}
 
 	if (m_fAttackEndTime >= m_tDesc.pModel->Get_Anim(13)->Get_Duration())
 	{
 		m_fAttackEndTime = 0.f;
 		m_bAttackEnd = true;
+		m_bAttackSound = false;
 
 		if (abs(fLength) > 2.f)
 		{
@@ -83,6 +88,8 @@ wstring CFSM_Mon_Knight_Attack::Late_Update(_float fTimeDelta)
 void CFSM_Mon_Knight_Attack::Enter()
 {
 	__super::Enter();
+
+	m_bAttackSound = false;
 
 	m_tDesc.pModel->SetUp_Animation(13, true);
 	m_strName = TEXT("Monster_Knight_State_Attack");

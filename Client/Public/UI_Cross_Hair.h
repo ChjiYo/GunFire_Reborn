@@ -37,6 +37,8 @@ private:
 	_float  m_fMidPosY = {};
 	_float	m_fAddPos = {};
 
+	_float2 m_fTotalPos = {  };
+
 public:
 	static CUI_Cross_Hair* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	virtual CGameObject* Clone(void* pArg);
