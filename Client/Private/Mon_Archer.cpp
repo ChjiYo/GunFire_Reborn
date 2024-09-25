@@ -127,7 +127,7 @@ HRESULT CMon_Archer::Render()
 
 		m_pModelCom->Bind_BoneMatrices(m_pShaderCom, "g_BoneMatrices", i);
 
-		if (FAILED(m_pShaderCom->Begin(4)))
+		if (FAILED(m_pShaderCom->Begin(5)))
 			return E_FAIL;
 
 		if (FAILED(m_pModelCom->Render(i)))
@@ -235,6 +235,9 @@ HRESULT CMon_Archer::Bind_ShaderResources()
 		return E_FAIL;
 
 	if (FAILED(m_pShaderCom->Bind_RawValue("g_Timer", &m_fTimer, sizeof(_float))))
+		return E_FAIL;
+
+	if (FAILED(m_pShaderCom->Bind_RawValue("g_vCamPosition", &m_pGameInstance->Get_CamPosition_Float4(), sizeof(_float4))))
 		return E_FAIL;
 
 	return S_OK;

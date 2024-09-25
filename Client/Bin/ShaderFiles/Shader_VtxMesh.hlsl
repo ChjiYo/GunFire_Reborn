@@ -105,6 +105,36 @@ PS_OUT PS_MAIN_NORMALMAPPING(PS_IN In)
     return Out;
 }
 
+
+PS_OUT PS_LIM(PS_IN In)
+{
+    PS_OUT Out;
+  
+    float4 vMtrlDiffuse = g_DiffuseTexture.Sample(LinearSampler, In.vTexcoord);
+
+    if (vMtrlDiffuse.a < 0.1f)
+        discard;
+   
+    float4 cameraPos = g_vCamPosition;
+
+
+    float3 viewDir = normalize(cameraPos.xyz - In.vWorldPos.xyz);
+    float3 normal = normalize(In.vNormal.xyz);
+
+
+    float rimIntensity = 1.0f - saturate(dot(viewDir, normal));
+    float rimPower = pow(rimIntensity, 2.f);
+
+
+    float4 rimColor = float4(0.0f, 0.0f, 0.0f, 1.0f);
+    
+    Out.vDiffuse = vMtrlDiffuse - (rimPower * (1.0f - rimColor));
+    Out.vNormal = float4(normal * 0.5f + 0.5f, 0.f);
+    Out.vDepth = float4(In.vProjPos.w / 1000.f, In.vProjPos.z / In.vProjPos.w, 0.f, 0.f);
+
+    return Out;
+}
+
 technique11		DefaultTechnique
 {	
 	pass Default
@@ -146,6 +176,21 @@ technique11		DefaultTechnique
         HullShader = NULL;
         DomainShader = NULL;
         PixelShader = compile ps_5_0 PS_MAIN_NORMALMAPPING();
+    }
+
+    pass Lim
+    {
+        SetRasterizerState(RS_Default);
+        SetDepthStencilState(DSS_Default, 0);
+        SetBlendState(BS_Default, float4(0.f, 0.f, 0.f, 0.f), 0xffffffff);
+		//SetDepthStencilState();
+		//SetBlendState();
+
+        VertexShader = compile vs_5_0 VS_MAIN();
+        GeometryShader = NULL;
+        HullShader = NULL;
+        DomainShader = NULL;
+        PixelShader = compile ps_5_0 PS_LIM();
     }
 
 }

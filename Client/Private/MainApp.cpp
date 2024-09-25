@@ -39,6 +39,7 @@
 #include "Data_Manager.h"
 
 #include "Boss_Logo.h"
+#include "UI_Head.h"
 
 CMainApp::CMainApp()
 	: m_pGameInstance { CGameInstance::Get_Instance() }
@@ -326,6 +327,12 @@ HRESULT CMainApp::Ready_Prototype_Component_ForStatic()
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Logo/UI_Login_Logo.png")))))
 		return E_FAIL;
 
+
+	/* For.Prototype_Component_Texture_Head */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_STATIC, TEXT("Prototype_Component_Texture_Head"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/CrossHair/Head.png")))))
+		return E_FAIL;
+
 	return S_OK;
 }
 
@@ -455,6 +462,11 @@ HRESULT CMainApp::Ready_Prototoype_Resource_ForStatic()
 	/* For.Prototype_GameObject_UI_SKill_Aiming */
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_SKill_Aiming"),
 		CUI_Skill_Aiming::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_UI_Head */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_Head"),
+		CUI_Head::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
 	return S_OK;

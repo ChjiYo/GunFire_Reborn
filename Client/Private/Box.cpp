@@ -34,6 +34,7 @@ HRESULT CBox::Initialize(void* pArg)
 	
 	m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 43.8f, 10.f, 67.59f , 1.f});
 	m_pTransformCom->Rotation({ 0,1,0 }, XMConvertToRadians(180.f));
+	m_pTransformCom->Set_Scaled(1.f, 1.f, 1.f);
 
 	return S_OK;
 }
@@ -49,10 +50,7 @@ void CBox::Update(_float fTimeDelta)
 	m_pColliderCom->Update(m_pTransformCom->Get_WorldMatrix());
 	m_pModelCom->Play_Animation(fTimeDelta);
 
-	if (XMVectorGetY(m_pTransformCom->Get_State(CTransform::STATE_POSITION)) > 0.f)
-		m_pTransformCom->Go_Down(fTimeDelta);
-
-	m_pTransformCom->Set_Scaled(1.f, 1.f, 1.f); 
+	m_pTransformCom->Gravity(0.5f, 0.f, fTimeDelta);
 }
 
 void CBox::Late_Update(_float fTimeDelta)
@@ -107,7 +105,7 @@ HRESULT CBox::Render()
 
 		m_pModelCom->Bind_BoneMatrices(m_pShaderCom, "g_BoneMatrices", i);
 
-		if (FAILED(m_pShaderCom->Begin(1)))
+		if (FAILED(m_pShaderCom->Begin(3)))
 			return E_FAIL;
 
 		if (FAILED(m_pModelCom->Render(i)))
@@ -153,6 +151,10 @@ HRESULT CBox::Bind_ShaderResources()
 		return E_FAIL;
 
 	if (FAILED(m_pShaderCom->Bind_Matrix("g_ProjMatrix", &m_pGameInstance->Get_Transform_Float4x4(CPipeLine::D3DTS_PROJ))))
+		return E_FAIL;
+
+
+	if (FAILED(m_pShaderCom->Bind_RawValue("g_vCamPosition", &m_pGameInstance->Get_CamPosition_Float4(), sizeof(_float4))))
 		return E_FAIL;
 
 	return S_OK;

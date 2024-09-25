@@ -7,6 +7,8 @@
 #include "Skill.h"
 #include "Player.h"
 
+#include "VFX.h"
+
 CFSM_Mon_DragonHead_In::CFSM_Mon_DragonHead_In(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	:CFSM_Monster{ pDevice , pContext }
 {
@@ -61,6 +63,11 @@ void CFSM_Mon_DragonHead_In::Enter()
 
 	m_tDesc.pModel->SetUp_Animation(4, false);
 	m_strName = TEXT("Monster_DragonHead_State_In");
+
+	CVFX::VFX_DESC Desc = {};
+	Desc.pOriginTransform = m_tDesc.pTransform;
+	
+	m_pGameInstance->Add_GameObject_ToLayer(LEVEL_BOSS, TEXT("Prototype_GameObject_VFX_In_Dust"), TEXT("Layer_Effect") , &Desc);
 }
 
 void CFSM_Mon_DragonHead_In::Exit()

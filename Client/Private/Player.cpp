@@ -66,8 +66,8 @@ HRESULT CPlayer::Initialize(void* pArg)
     switch (m_pGameInstance->GetLoadingLevelIndex())
     {
     case LEVEL_GAMEPLAY: 
-       //m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 6.f , 1.5f , 2.f, 1.f });
-        m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 42.f , 1.5f , 62.f, 1.f });
+       m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 6.f , 1.5f , 2.f, 1.f });
+       // m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 42.f , 1.5f , 62.f, 1.f });
         break;
 
     case LEVEL_BOSS:
@@ -149,11 +149,6 @@ void CPlayer::Priority_Update(_float fTimeDelta)
 void CPlayer::Update(_float fTimeDelta)
 {
     __super::Update(fTimeDelta);
-
-    if (m_pGameInstance->Key_Down('J'))
-    {
-        Player_Desc.iHp -= 20;
-    }
 
     m_pLight->Set_LightPos(m_pTransformCom->Get_State(CTransform::STATE_POSITION));
     m_pColliderCom->Update(m_pTransformCom->Get_WorldMatrix());
@@ -251,6 +246,8 @@ void CPlayer::Player_Move(_float fTimeDelta)
         {
             m_pTransformCom->Go_Left(fTimeDelta * 15.5f, m_pNavigationCom);
             m_pGameInstance->Play_Sound(L"SFX_Dash", LEVEL_STATIC, false);
+            m_pGameInstance->Set_Volume(L"SFX_Dash", LEVEL_STATIC, 0.2f);
+
             m_bDash = true;
         }
     }
@@ -263,6 +260,8 @@ void CPlayer::Player_Move(_float fTimeDelta)
         {
             m_pTransformCom->Go_Right(fTimeDelta * 15.5f, m_pNavigationCom);
             m_pGameInstance->Play_Sound(L"SFX_Dash", LEVEL_STATIC, false);
+            m_pGameInstance->Set_Volume(L"SFX_Dash", LEVEL_STATIC, 0.2f);
+
             m_bDash = true;
         }
     }
@@ -275,6 +274,8 @@ void CPlayer::Player_Move(_float fTimeDelta)
         {
             m_pTransformCom->Go_StraightY(fTimeDelta * 15.5f, m_pNavigationCom);
             m_pGameInstance->Play_Sound(L"SFX_Dash", LEVEL_STATIC, false);
+            m_pGameInstance->Set_Volume(L"SFX_Dash", LEVEL_STATIC, 0.2f);
+
             m_bDash = true;
         }
     }
@@ -287,6 +288,8 @@ void CPlayer::Player_Move(_float fTimeDelta)
         {
             m_pTransformCom->Go_BackwardY(fTimeDelta * 15.5f, m_pNavigationCom);
             m_pGameInstance->Play_Sound(L"SFX_Dash", LEVEL_STATIC, false);
+            m_pGameInstance->Set_Volume(L"SFX_Dash", LEVEL_STATIC, 0.2f);
+
             m_bDash = true;
         }
     }

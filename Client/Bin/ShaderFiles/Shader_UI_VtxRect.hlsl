@@ -139,6 +139,23 @@ PS_OUT PS_Head(PS_IN In)
     return Out;
 }
 
+PS_OUT PS_Shot(PS_IN In)
+{
+    PS_OUT Out;
+    
+    Out.vColor = g_Texture.Sample(LinearSampler, In.vTexcoord);
+    
+    if (Out.vColor.a <= 0.5f)
+        discard;
+    
+    Out.vColor.rgb = float3(1, 0, 0);
+        
+    Out.vColor.a = 1 - g_Timer;
+    
+
+    return Out;
+}
+
 technique11 DefaultTechnique
 {
 	/* PASSÀÇ ±âÁØ : ¼ÎÀÌ´õ ±â¹ýÀÇ Ä¸½¶È­. */
@@ -242,5 +259,19 @@ technique11 DefaultTechnique
         HullShader = NULL;
         DomainShader = NULL;
         PixelShader = compile ps_5_0 PS_Head();
+    }
+
+//7
+    pass Shot
+    {
+        SetRasterizerState(RS_Cull_NONE);
+        SetDepthStencilState(DSS_Default, 0);
+        SetBlendState(BS_AlphaBlend, float4(0.f, 0.f, 0.f, 0.f), 0xffffffff);
+
+        VertexShader = compile vs_5_0 VS_MAIN();
+        GeometryShader = NULL;
+        HullShader = NULL;
+        DomainShader = NULL;
+        PixelShader = compile ps_5_0 PS_Shot();
     }
 }

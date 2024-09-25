@@ -142,6 +142,8 @@
 #include "VFX_Player_Hit.h"
 #include "VFX_Shield_Hit.h"
 
+#include "VFX_In_Dust.h"
+
 CLoader::CLoader(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	: m_pDevice { pDevice }
 	, m_pContext { pContext }
@@ -574,6 +576,8 @@ HRESULT CLoader::Loading_For_StaticLevel()
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_STATIC, TEXT("Prototype_Component_Texture_Shield_Hit"),
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/Effect/Sheild_Hit/Shield_Hit_%d.png"),4))))
 		return E_FAIL;
+
+	
 
 	//VFX_Player_Hit
 
@@ -1390,6 +1394,20 @@ HRESULT CLoader::Loading_For_BossLevel()
 		CVIBuffer_Point_Instancing::Create(m_pDevice, m_pContext, &ParticleDesc))))
 		return E_FAIL;
 
+	ParticleDesc.iNumInstance = 10;
+	ParticleDesc.vRange = _float3(2.0f, 0.0f, 2.0f);
+	ParticleDesc.vCenter = _float3(0.0f, 0.f, 0.0f);
+	ParticleDesc.vPivot = _float3(0.0f, -5.0f, 0.f);
+	ParticleDesc.vSpeed = _float2(0.0f, 0.0f);
+	ParticleDesc.vScale = _float2(1.0f, 3.0f);
+	ParticleDesc.vLifeTime = _float2(0.5f, 1.f);
+	ParticleDesc.vMoveDir = { 0.f, 1.f , 0.f };
+	ParticleDesc.isLoop = false;
+
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_VIBuffer_Particle_In_Dust"),
+		CVIBuffer_Point_Instancing::Create(m_pDevice, m_pContext, &ParticleDesc))))
+		return E_FAIL;
+
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_State"),
 		CState_Machine::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
@@ -1453,6 +1471,11 @@ HRESULT CLoader::Loading_For_BossLevel()
 	/* For.Prototype_Component_Texture_UI_Boss_Hp_Panel */
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Texture_UI_Boss_Hp_Panel"),
 		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/UI/Bar/UI_Boss_Hp_Panel.png")))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Texture_VFX_In_Dust */
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_BOSS, TEXT("Prototype_Component_Texture_VFX_In_Dust"),
+		CTexture::Create(m_pDevice, m_pContext, TEXT("../Bin/GunFire_Resources/Textures/Effect/In_Dust/VFX_In_Dust.png")))))
 		return E_FAIL;
 
 	lstrcpy(m_szLoadingText, TEXT("모델을 로딩 중 입니다."));
@@ -1647,6 +1670,11 @@ HRESULT CLoader::Loading_For_BossLevel()
 	/* For.Prototype_GameObject_UI_Boss_HpPanel*/
 	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_UI_Boss_HpPanel"),
 		CUI_Boss_HpPanel::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+
+	/* For.Prototype_GameObject_VFX_In_Dust */
+	if (FAILED(m_pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_VFX_In_Dust"),
+		CVFX_In_Dust::Create(m_pDevice, m_pContext))))
 		return E_FAIL;
 
 	m_isFinished = true;

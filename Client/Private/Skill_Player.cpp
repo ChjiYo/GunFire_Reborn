@@ -169,6 +169,14 @@ void CSkill_Player::Late_Update(_float fTimeDelta)
 					m_bHead = true;
 
 					m_pGameInstance->Play_Sound(L"SFX_Mon_Hit", LEVEL_STATIC, false);
+
+					CUIObject::UI_DESC UIDesc = {};
+					for (int i = 0; i < 4; i++)
+					{
+						UIDesc.iNumUI = i;
+						m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_UI_Head"), TEXT("Layer_UI_Head"),&UIDesc);
+						
+					}
 				}
 			}
 		}

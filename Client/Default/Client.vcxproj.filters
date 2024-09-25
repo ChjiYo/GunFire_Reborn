@@ -642,6 +642,12 @@
     <ClCompile Include="..\private\VFX_Shield_Hit.cpp">
       <Filter>02.GameObjects\Effect\VFX\Shield_Hit</Filter>
     </ClCompile>
+    <ClCompile Include="..\private\UI_Head.cpp">
+      <Filter>02.GameObjects\UI\UI_Cross_Hair\Head</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\VFX_In_Dust.cpp">
+      <Filter>02.GameObjects\Effect\VFX\In_Dust</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Public\Level_Logo.h">
@@ -1267,6 +1273,12 @@
     </ClInclude>
     <ClInclude Include="..\public\VFX_Shield_Hit.h">
       <Filter>02.GameObjects\Effect\VFX\Shield_Hit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\UI_Head.h">
+      <Filter>02.GameObjects\UI\UI_Cross_Hair\Head</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\VFX_In_Dust.h">
+      <Filter>02.GameObjects\Effect\VFX\In_Dust</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1985,6 +1997,12 @@
     </Filter>
     <Filter Include="02.GameObjects\Effect\VFX\Shield_Hit">
       <UniqueIdentifier>{0b039c72-7cb3-4068-9a09-017cd63033f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\UI\UI_Cross_Hair\Head">
+      <UniqueIdentifier>{72d9d240-5a0e-4bda-b94b-8a07f90ba051}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Effect\VFX\In_Dust">
+      <UniqueIdentifier>{efb54aab-ce27-40ed-8a32-393875ed0ed1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
