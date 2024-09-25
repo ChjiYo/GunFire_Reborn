@@ -50,7 +50,7 @@ void CBox::Update(_float fTimeDelta)
 	m_pColliderCom->Update(m_pTransformCom->Get_WorldMatrix());
 	m_pModelCom->Play_Animation(fTimeDelta);
 
-	m_pTransformCom->Gravity(0.5f, 0.f, fTimeDelta);
+	m_pTransformCom->Gravity(0.1f, 0.f, fTimeDelta);
 }
 
 void CBox::Late_Update(_float fTimeDelta)
@@ -105,7 +105,7 @@ HRESULT CBox::Render()
 
 		m_pModelCom->Bind_BoneMatrices(m_pShaderCom, "g_BoneMatrices", i);
 
-		if (FAILED(m_pShaderCom->Begin(3)))
+		if (FAILED(m_pShaderCom->Begin(6)))
 			return E_FAIL;
 
 		if (FAILED(m_pModelCom->Render(i)))

@@ -80,31 +80,31 @@ void CSkill_Player::Late_Update(_float fTimeDelta)
 	m_iDamage = rand() % 10 + m_iSkillDamage;
 	CMonster* pMonster = {};
 
-	for (auto& pWall0 : WallArray[0])
-	{
-		CCollider* pWallColl = dynamic_cast<CWall_101*>(pWall0)->Get_Collider();
-	
-		if (m_pColliderCom->isCollision(pWallColl))
-		{
-			CVFX::VFX_DESC Desc = {};
-			Desc.vCreatePos = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
-		
-			m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Shield_Hit"), TEXT("Layer_Effect"), &Desc);
-		}
-	}
+	//for (auto& pWall0 : WallArray[0])
+	//{
+	//	CCollider* pWallColl = dynamic_cast<CWall_101*>(pWall0)->Get_Collider();
+	//
+	//	if (m_pColliderCom->isCollision(pWallColl))
+	//	{
+	//		CVFX::VFX_DESC Desc = {};
+	//		Desc.vCreatePos = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
+	//	
+	//		m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Shield_Hit"), TEXT("Layer_Effect"), &Desc);
+	//	}
+	//}
 
-	for (auto& pWall1 : WallArray[1])
-	{
-		CCollider* pWallColl = dynamic_cast<CWall_102*>(pWall1)->Get_Collider();
-
-		if (m_pColliderCom->isCollision(pWallColl))
-		{
-			CVFX::VFX_DESC Desc = {};
-			Desc.vCreatePos = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
-
-			m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Shield_Hit"), TEXT("Layer_Effect"), &Desc);
-		}
-	}
+	//for (auto& pWall1 : WallArray[1])
+	//{
+	//	CCollider* pWallColl = dynamic_cast<CWall_102*>(pWall1)->Get_Collider();
+	//
+	//	if (m_pColliderCom->isCollision(pWallColl))
+	//	{
+	//		CVFX::VFX_DESC Desc = {};
+	//		Desc.vCreatePos = m_pTransformCom->Get_State(CTransform::STATE_POSITION);
+	//
+	//		m_pGameInstance->Add_GameObject_ToLayer(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Shield_Hit"), TEXT("Layer_Effect"), &Desc);
+	//	}
+	//}
 	
 
 	for (auto& Shield : MonStageList4)

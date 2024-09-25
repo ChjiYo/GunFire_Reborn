@@ -12,7 +12,7 @@ BEGIN(Client)
 class CCamera_Free final : public CCamera
 {	
 public:
-	enum CAMERA_TYPE {PLAYER , FREE , SCOPE , CAMERA_END};
+	enum CAMERA_TYPE {PLAYER , FREE , SCOPE ,ACTION ,DEATH, CAMERA_END};
 
 public:
 	typedef struct : public CCamera::CAMERA_DESC
@@ -47,9 +47,14 @@ private:
 	_bool				m_bTrueCurrsor = { false };
 	_bool				m_isCurrsorEnable = { true };
 	_bool				m_bNPC = { false };
+	_bool				m_bBoss = { false };
 
 	_float				m_fMouseSensor = {};
 	_float				m_fScopeLevel = { 0.f };
+
+
+	_uint				m_bRandDir = { 0 };
+	_float				m_fRotaionTimer = { 0.f };
 
 	CAMERA_TYPE			m_eCameraType = { PLAYER };
 	
@@ -59,6 +64,9 @@ private:
 	void FreeView_Camera(_float fTimeDelta);
 	void Position(_float3 vOffSet);
 	void Scope_Camera(_float fTimeDelta, _float fMul);
+
+	void Boss(_float fTimeDelta);
+	void Ending(_float fTimeDelta);
 
 public:
 	static CCamera_Free* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);

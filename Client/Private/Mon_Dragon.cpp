@@ -63,7 +63,7 @@ HRESULT CMon_Dragon::Initialize(void* pArg)
 		return E_FAIL;
 
 
-	m_pStateCom->Set_State(TEXT("Monster_DragonHead_State_Idle"));
+	m_pStateCom->Set_State(TEXT("Monster_DragonHead_State_Out"));
 
 	m_pTransformCom->Set_Scaled(3.f, 3.f, 3.0f);
 	m_pNavigationCom->Init_Index(m_pTransformCom);

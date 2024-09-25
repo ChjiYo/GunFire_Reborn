@@ -23,6 +23,15 @@ public:
 
 private:
 	_float m_fNextAnimFrame = {0.f};
+	_float m_fStartTimer = { 0.f };
+
+	_bool m_bStart = { false };
+	_bool m_bCheck = { false };
+
+	_float AnimTimer1 = { 0.f };
+
+	_bool m_bStraightEnd = { false };
+	_bool m_bLast = { false };
 
 public:
 	static CFSM_Mon_DragonHead_Out* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, FSM_MON_DESC Desc);

@@ -118,7 +118,7 @@ PS_OUT PS_Spectrum(PS_IN In)
     
     float fDist = distance(g_MyPos, g_PlayerPos);
     
-    float fAlpha = saturate( (fDist / 1.f) - 1.f);
+    float fAlpha = saturate( (fDist / 1.5f) - 1.f);
     vMtrlDiffuse.a = fAlpha;
     
     if (vMtrlDiffuse.a < 0.1f)

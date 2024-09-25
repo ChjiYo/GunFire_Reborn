@@ -28,12 +28,17 @@ public:
 
 	_uint Get_MaxBullet(CPlayer::WEAPONID eID) { return m_iMaxBullet[eID]; }
 	_uint Get_CurrBullet(CPlayer::WEAPONID eID) { return m_iCurrentBullet[eID]; }
+	void Set_WeaponID (CPlayer::SLOTID eSlot, CPlayer::WEAPONID eID) {  m_eWeaponIDArray[eSlot] = eID; }
+
+	CPlayer::WEAPONID Get_Weapon(CPlayer::SLOTID eSlotID) { return m_eWeaponIDArray[eSlotID]; }
 
 private:
 	CPlayer::PLAYER_DESC	m_ePlayerDesc = {};
 	_uint m_eWeaponDesc[WEAPON_END] = {};
 	_uint m_iMaxBullet[WEAPON_END] = { 0, 80, 60, 90 };
 	_uint m_iCurrentBullet[WEAPON_END] = {8, 8, 1, 30};
+
+	CPlayer::WEAPONID m_eWeaponIDArray[3] = { CPlayer::SHURIKEN ,CPlayer::SNIPER ,CPlayer::PISTOL };
 
 	class CGameInstance* m_pGameInstance = { nullptr };
 

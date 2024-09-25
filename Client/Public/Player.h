@@ -87,11 +87,15 @@ public:
 		{
 			m_eWeaponIDArray[ONE] = eWeaponID;
 			m_eWeaponID = m_eWeaponIDArray[ONE];
+
+			//m_pDataMgr->Set_WeaponID(ONE, eWeaponID);
 		}
 		else
 		{
 			m_eWeaponIDArray[m_eSlotID] = eWeaponID;
 			m_eWeaponID = m_eWeaponIDArray[m_eSlotID];
+
+			//m_pDataMgr->Set_WeaponID(m_eSlotID, eWeaponID);
 		}
 	}
 

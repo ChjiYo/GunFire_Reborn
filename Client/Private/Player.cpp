@@ -65,14 +65,18 @@ HRESULT CPlayer::Initialize(void* pArg)
 
     switch (m_pGameInstance->GetLoadingLevelIndex())
     {
-    case LEVEL_GAMEPLAY: 
-       m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 6.f , 1.5f , 2.f, 1.f });
-       // m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 42.f , 1.5f , 62.f, 1.f });
+    case LEVEL_GAMEPLAY:
+
+        m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 5.f , 1.5f , 5.f, 1.f });
+        m_pTransformCom->LookAt({ 5.f , 1.5f , 6.f, 1.f });
         break;
 
     case LEVEL_BOSS:
-        m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 106.f , 1.0f , 70.f, 1.f });
+
+        m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 106.f , 1.5f , 70.f, 1.f });
+        m_pTransformCom->LookAt({91.f, 3.f, 72.f, 1.f});
         break;
+    
     }
 
     m_pNavigationCom->Init_Index(m_pTransformCom);
@@ -98,6 +102,11 @@ HRESULT CPlayer::Initialize(void* pArg)
 
     _vector vDes =  XMVectorEqual(vTmp, vSrc);
     _bool bResult = XMVector4EqualInt(vDes, XMVectorTrueInt());   
+
+    for (int i = 0; i < SLOT_END; ++i)
+    {
+        m_eWeaponIDArray[i] =m_pDataMgr->Get_Weapon((SLOTID)i);
+    }
 
     return S_OK;
 }
@@ -304,6 +313,8 @@ void CPlayer::Player_Move(_float fTimeDelta)
         m_bWeaponChange = true;
 
         m_pGameInstance->Play_Sound(L"SFX_Weapon_Change", LEVEL_STATIC, false);
+
+        m_pDataMgr->Set_WeaponID(m_eSlotID, m_eWeaponIDArray[ONE]);
     }
 
     if (m_pGameInstance->Key_Down('2'))
@@ -316,6 +327,8 @@ void CPlayer::Player_Move(_float fTimeDelta)
         m_bWeaponChange = true;
 
         m_pGameInstance->Play_Sound(L"SFX_Weapon_Change", LEVEL_STATIC, false);
+
+        m_pDataMgr->Set_WeaponID(m_eSlotID, m_eWeaponIDArray[TWO]);
     }
 
     if (m_pGameInstance->Key_Down('3'))
@@ -325,6 +338,8 @@ void CPlayer::Player_Move(_float fTimeDelta)
         m_bWeaponChange = true;
 
         m_pGameInstance->Play_Sound(L"SFX_Weapon_Change", LEVEL_STATIC, false);
+
+        m_pDataMgr->Set_WeaponID(m_eSlotID, m_eWeaponIDArray[THREE]);
     }
 }
 

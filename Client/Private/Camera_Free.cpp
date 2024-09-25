@@ -138,6 +138,14 @@ void CCamera_Free::Camera_State(_float fTimeDelta , _float fMul)
 	case SCOPE:
 		Scope_Camera(fTimeDelta, fMul);
 		break;
+
+	case ACTION:
+		Boss(fTimeDelta);
+		break;
+
+	case DEATH:
+		Ending(fTimeDelta);
+		break;
 	}
 }
 
@@ -207,6 +215,47 @@ void CCamera_Free::Scope_Camera(_float fTimeDelta, _float fMul)
 	m_fFovy = XMConvertToRadians(30.0f);
 
 	Position({ -0.3f , 0.35f,  1.35f });
+}
+
+void CCamera_Free::Boss(_float fTimeDelta)
+{
+	m_fRotaionTimer += fTimeDelta;
+
+	 CTransform* pBoss = dynamic_cast<CTransform*>(m_pGameInstance->Get_Component(LEVEL_BOSS, TEXT("Layer_Monster"), TEXT("Com_Transform")));
+	 m_pTransformCom->LookAt({ 91.f, 3.f, 72.f , 1.f });
+
+	// m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 100.f, 5.f, 55.f , 1.f });
+	 m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 100.f, 0.5f, 65.f , 1.f });
+
+	 m_bRandDir = rand() % 4;
+
+	 if (m_fRotaionTimer > 0.05f)
+	 {
+		 switch (m_bRandDir)
+		 {
+		 case 0:
+			 m_pTransformCom->Radian_Turn(m_pTransformCom->Get_State(CTransform::STATE_RIGHT), XMConvertToRadians(2.5f));
+			 break;
+
+		 case 1:
+			 m_pTransformCom->Radian_Turn(m_pTransformCom->Get_State(CTransform::STATE_UP), XMConvertToRadians(2.5f));
+			 break;
+
+		 case 2:
+			 m_pTransformCom->Radian_Turn(m_pTransformCom->Get_State(CTransform::STATE_RIGHT), XMConvertToRadians(-2.5f));
+			 break;
+
+		 case 3:
+			 m_pTransformCom->Radian_Turn(m_pTransformCom->Get_State(CTransform::STATE_UP), XMConvertToRadians(-2.5f));
+			 break;
+		 }
+		 m_fRotaionTimer = 0.f;
+	 }
+	 
+}
+
+void CCamera_Free::Ending(_float fTimeDelta)
+{
 }
 
 CCamera_Free * CCamera_Free::Create(ID3D11Device * pDevice, ID3D11DeviceContext * pContext)

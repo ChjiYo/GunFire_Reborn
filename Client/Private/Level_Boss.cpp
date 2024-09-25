@@ -41,6 +41,8 @@ HRESULT CLevel_Boss::Initialize()
 	if (FAILED(Ready_Layer_Monster(TEXT("Layer_Monster"))))
 		return E_FAIL;
 
+
+
 	if (FAILED(Ready_Layer_Camera(TEXT("Layer_Camera"))))
 		return E_FAIL;
 
@@ -67,6 +69,9 @@ HRESULT CLevel_Boss::Initialize()
 
 	m_pGameInstance->Stop_All_Sounds(LEVEL_GAMEPLAY);
 	m_pGameInstance->Play_Sound(L"BGM_Boss", LEVEL_STATIC, true);
+
+	CCamera_Free* pCamera = dynamic_cast<CCamera_Free*>(m_pGameInstance->Get_Layer(LEVEL_BOSS, TEXT("Layer_Camera")).back());
+	pCamera->Set_CameraType(CCamera_Free::ACTION);
 
 	return S_OK;
 }
