@@ -66,15 +66,11 @@ HRESULT CPlayer::Initialize(void* pArg)
     switch (m_pGameInstance->GetLoadingLevelIndex())
     {
     case LEVEL_GAMEPLAY:
-
-        m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 5.f , 1.5f , 5.f, 1.f });
-        m_pTransformCom->LookAt({ 5.f , 1.5f , 6.f, 1.f });
+        InitPostion({ 5.f , 1.5f , 5.f, 1.f }, { 5.f , 1.5f , 6.f, 1.f });
         break;
 
     case LEVEL_BOSS:
-
-        m_pTransformCom->Set_State(CTransform::STATE_POSITION, { 106.f , 1.5f , 70.f, 1.f });
-        m_pTransformCom->LookAt({91.f, 3.f, 72.f, 1.f});
+        InitPostion({ 106.f , 1.5f , 70.f, 1.f }, { 91.f, 3.f, 72.f, 1.f });
         break;
     
     }

@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\dkdlt\\Desktop\\Study_File\\Portfolio\\GunfireReborn\\GunFire_Reborn_Game\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{2E5BEEC5-CFD3-4140-820B-D9E66D14D6D3}|Client\\Default\\Client.vcxproj|C:\\Users\\dkdlt\\Desktop\\Study_File\\Portfolio\\GunfireReborn\\GunFire_Reborn_Game\\Client\\Private\\Skill_Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2E5BEEC5-CFD3-4140-820B-D9E66D14D6D3}|Client\\Default\\Client.vcxproj|solutionrelative:Client\\Private\\Skill_Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E5BEEC5-CFD3-4140-820B-D9E66D14D6D3}|Client\\Default\\Client.vcxproj|C:\\Users\\dkdlt\\Desktop\\Study_File\\Portfolio\\GunfireReborn\\GunFire_Reborn_Game\\Client\\Private\\UI_Cross_Hair.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2E5BEEC5-CFD3-4140-820B-D9E66D14D6D3}|Client\\Default\\Client.vcxproj|solutionrelative:Client\\Private\\UI_Cross_Hair.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2E5BEEC5-CFD3-4140-820B-D9E66D14D6D3}|Client\\Default\\Client.vcxproj|C:\\Users\\dkdlt\\Desktop\\Study_File\\Portfolio\\GunfireReborn\\GunFire_Reborn_Game\\Client\\private\\MainApp.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{2E5BEEC5-CFD3-4140-820B-D9E66D14D6D3}|Client\\Default\\Client.vcxproj|solutionrelative:Client\\private\\MainApp.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
@@ -55,19 +63,45 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Skill_Player.cpp",
+              "DocumentMoniker": "C:\\Users\\dkdlt\\Desktop\\Study_File\\Portfolio\\GunfireReborn\\GunFire_Reborn_Game\\Client\\Private\\Skill_Player.cpp",
+              "RelativeDocumentMoniker": "Client\\Private\\Skill_Player.cpp",
+              "ToolTip": "C:\\Users\\dkdlt\\Desktop\\Study_File\\Portfolio\\GunfireReborn\\GunFire_Reborn_Game\\Client\\Private\\Skill_Player.cpp",
+              "RelativeToolTip": "Client\\Private\\Skill_Player.cpp",
+              "ViewState": "AgIAAIEAAAAAAAAAAAAuwIYAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-11-24T07:17:49.154Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UI_Cross_Hair.cpp",
+              "DocumentMoniker": "C:\\Users\\dkdlt\\Desktop\\Study_File\\Portfolio\\GunfireReborn\\GunFire_Reborn_Game\\Client\\Private\\UI_Cross_Hair.cpp",
+              "RelativeDocumentMoniker": "Client\\Private\\UI_Cross_Hair.cpp",
+              "ToolTip": "C:\\Users\\dkdlt\\Desktop\\Study_File\\Portfolio\\GunfireReborn\\GunFire_Reborn_Game\\Client\\Private\\UI_Cross_Hair.cpp",
+              "RelativeToolTip": "Client\\Private\\UI_Cross_Hair.cpp",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAMwEwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-11-24T07:19:27.504Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "MainApp.cpp",
               "DocumentMoniker": "C:\\Users\\dkdlt\\Desktop\\Study_File\\Portfolio\\GunfireReborn\\GunFire_Reborn_Game\\Client\\Private\\MainApp.cpp",
               "RelativeDocumentMoniker": "Client\\Private\\MainApp.cpp",
               "ToolTip": "C:\\Users\\dkdlt\\Desktop\\Study_File\\Portfolio\\GunfireReborn\\GunFire_Reborn_Game\\Client\\Private\\MainApp.cpp",
               "RelativeToolTip": "Client\\Private\\MainApp.cpp",
-              "ViewState": "AgIAAEsAAAAAAAAAAAAAAFIAAAAoAAAAAAAAAA==",
+              "ViewState": "AgIAAGUAAAAAAAAAAAAMwHIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-11-24T07:18:28.307Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Client.cpp",
               "DocumentMoniker": "C:\\Users\\dkdlt\\Desktop\\Study_File\\Portfolio\\GunfireReborn\\GunFire_Reborn_Game\\Client\\Default\\Client.cpp",
               "RelativeDocumentMoniker": "Client\\Default\\Client.cpp",
@@ -80,7 +114,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "Player.h",
               "DocumentMoniker": "C:\\Users\\dkdlt\\Desktop\\Study_File\\Portfolio\\GunfireReborn\\GunFire_Reborn_Game\\Client\\Public\\Player.h",
               "RelativeDocumentMoniker": "Client\\Public\\Player.h",
@@ -92,7 +126,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Transform.cpp",
               "DocumentMoniker": "C:\\Users\\dkdlt\\Desktop\\Study_File\\Portfolio\\GunfireReborn\\GunFire_Reborn_Game\\Engine\\Private\\Transform.cpp",
               "RelativeDocumentMoniker": "Engine\\Private\\Transform.cpp",
@@ -105,7 +139,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "Wall_Stage2.cpp",
               "DocumentMoniker": "C:\\Users\\dkdlt\\Desktop\\Study_File\\Portfolio\\GunfireReborn\\GunFire_Reborn_Game\\Client\\Private\\Wall_Stage2.cpp",
               "RelativeDocumentMoniker": "Client\\Private\\Wall_Stage2.cpp",
@@ -118,7 +152,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "Wall_Stage1.cpp",
               "DocumentMoniker": "C:\\Users\\dkdlt\\Desktop\\Study_File\\Portfolio\\GunfireReborn\\GunFire_Reborn_Game\\Client\\Private\\Wall_Stage1.cpp",
               "RelativeDocumentMoniker": "Client\\Private\\Wall_Stage1.cpp",

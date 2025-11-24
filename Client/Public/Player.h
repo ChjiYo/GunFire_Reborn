@@ -180,6 +180,13 @@ private:
 	void Player_Weapon_Change();
 	void Dash(_float fTimeDelta);
 
+private:
+	void InitPostion(_fvector vPos, _fvector vLook)
+	{
+		m_pTransformCom->Set_State(CTransform::STATE_POSITION, vPos);
+		m_pTransformCom->LookAt(vLook);
+	}
+
 public:
 	static CPlayer* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	virtual CGameObject* Clone(void* pArg) override;
