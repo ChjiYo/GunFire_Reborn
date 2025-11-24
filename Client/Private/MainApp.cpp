@@ -80,6 +80,8 @@ HRESULT CMainApp::Initialize()
 
 void CMainApp::Update(_float fTimeDelta) 
 {	
+	if (m_pGameInstance->Key_Down(VK_ESCAPE))
+		PostQuitMessage(0);
 	
 	//if (!m_bShowTool && !(m_pGameInstance->GetLoadingLevelIndex() == LEVEL_BIN))
 	//{
