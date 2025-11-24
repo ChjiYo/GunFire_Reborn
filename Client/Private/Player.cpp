@@ -72,7 +72,6 @@ HRESULT CPlayer::Initialize(void* pArg)
     case LEVEL_BOSS:
         InitPostion({ 106.f , 1.5f , 70.f, 1.f }, { 91.f, 3.f, 72.f, 1.f });
         break;
-    
     }
 
     m_pNavigationCom->Init_Index(m_pTransformCom);
@@ -92,12 +91,6 @@ HRESULT CPlayer::Initialize(void* pArg)
         return E_FAIL;
 
     m_pLight = m_pGameInstance->Get_Light().back();
-    
-    _vector vTmp = { 0 , 0.f , 0.f,1.f };
-    _vector vSrc = XMVectorZero();
-
-    _vector vDes =  XMVectorEqual(vTmp, vSrc);
-    _bool bResult = XMVector4EqualInt(vDes, XMVectorTrueInt());   
 
     for (int i = 0; i < SLOT_END; ++i)
     {
@@ -112,11 +105,8 @@ void CPlayer::Priority_Update(_float fTimeDelta)
     if (fTimeDelta == 0.f)
         return;
 
-    if (Player_Desc.iMaxShield > Player_Desc.iShield)
-        m_fShieldRecoveryTimer += fTimeDelta;
-    else
-        m_fShieldRecoveryTimer = 0.f;
-
+    Player_Desc.iMaxShield > Player_Desc.iShield ? m_fShieldRecoveryTimer += fTimeDelta : m_fShieldRecoveryTimer = 0.f;
+    
     m_fInvincibleTime += fTimeDelta;
     m_fPosSaveTimer += fTimeDelta;
     m_fMoveSkillTimer += fTimeDelta;
